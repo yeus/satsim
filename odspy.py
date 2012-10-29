@@ -4,6 +4,8 @@
 # iboss-2
 # filename: odspy.py
 # author: - Thomas Meschede
+# 
+# usage: file loads ods file and puts data into a python array
 #
 # modified:
 #	- 2012 10 25 - Thomas Meschede
@@ -38,7 +40,7 @@ def ods2table(string):
       for cell in row.iter('{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table-cell'):
         xmlcells.append(cell)
     
-      rowarray=[i]    
+      rowarray=[]    
       xmlcells=xmlcells[:-1]
       for cell in xmlcells:
         attrib=cell.attrib
@@ -48,8 +50,10 @@ def ods2table(string):
         elif '{urn:oasis:names:tc:opendocument:xmlns:office:1.0}value-type'in attrib:
           string=cell.find('{urn:oasis:names:tc:opendocument:xmlns:text:1.0}p').text
           value=[string]
+        else:
+          value=[0]
         if '{urn:oasis:names:tc:opendocument:xmlns:table:1.0}number-columns-repeated' in attrib:
-          value=[[]]*int(attrib['{urn:oasis:names:tc:opendocument:xmlns:table:1.0}number-columns-repeated'])
+          value=[0]*int(attrib['{urn:oasis:names:tc:opendocument:xmlns:table:1.0}number-columns-repeated'])
         rowarray.extend(value)
         
       #find out longest row (maximum number of columns in a row)
@@ -62,7 +66,7 @@ def ods2table(string):
     #fill all rows to the minimum number of columns
     #print(maxcols)
     for i in range(len(tablearray)):
-      tablearray[i]+=[[]]*(maxcols-len(tablearray[i]))
+      tablearray[i]+=[0]*(maxcols-len(tablearray[i]))
     
     tables[name]=(tablearray)
   
