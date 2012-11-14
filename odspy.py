@@ -37,7 +37,6 @@ def ods2table(string):
         xmlrows.extend(value)
       else: xmlrows.append(row)
 
-    xmlrows=xmlrows[:]
     i=0
     maxcols=0
     for row in xmlrows:
@@ -47,7 +46,6 @@ def ods2table(string):
         xmlcells.append(cell)
     
       rowarray=[]    
-      xmlcells=xmlcells[:]
       for cell in xmlcells:
         attrib=cell.attrib
         value=attrib
