@@ -13,6 +13,7 @@
 """script loads an ods file into python arrays"""
 
 import zipfile
+import sys
 import xml.etree.ElementTree as et
 
 def ods2table(string):
@@ -29,9 +30,14 @@ def ods2table(string):
     xmlrows=[] #list of xml-table-code
     tablearray=[] #make space for table array
     for row in table.iter("{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table-row"):
-      xmlrows.append(row)
+      if '{urn:oasis:names:tc:opendocument:xmlns:table:1.0}number-rows-repeated' in row.attrib:
+        num=int(row.attrib['{urn:oasis:names:tc:opendocument:xmlns:table:1.0}number-rows-repeated'])
+        if num>1000: break #break loop, because we reached the end of the table
+        value=[row]*num
+        xmlrows.extend(value)
+      else: xmlrows.append(row)
 
-    xmlrows=xmlrows[:-2]
+    xmlrows=xmlrows[:]
     i=0
     maxcols=0
     for row in xmlrows:
@@ -41,7 +47,7 @@ def ods2table(string):
         xmlcells.append(cell)
     
       rowarray=[]    
-      xmlcells=xmlcells[:-1]
+      xmlcells=xmlcells[:]
       for cell in xmlcells:
         attrib=cell.attrib
         value=attrib
@@ -53,7 +59,9 @@ def ods2table(string):
         else:
           value=[0]
         if '{urn:oasis:names:tc:opendocument:xmlns:table:1.0}number-columns-repeated' in attrib:
-          value=[0]*int(attrib['{urn:oasis:names:tc:opendocument:xmlns:table:1.0}number-columns-repeated'])
+          num=int(attrib['{urn:oasis:names:tc:opendocument:xmlns:table:1.0}number-columns-repeated'])
+          if num>1000: break #break loop, because we reached the end of the table
+          value=value*num
         rowarray.extend(value)
         
       #find out longest row (maximum number of columns in a row)
@@ -71,20 +79,22 @@ def ods2table(string):
     tables[name]=(tablearray)
   
   return tables
-  
-#et.dump(xmltables["Bausteine"])
-#import ezodf
-"""
-def getbausteine():
-  doc=ezodf.opendoc('bausteinkatalog.ods')
-  
-  bausteine=doc.sheets['Bausteine']
-  #komponenten=doc.sheets['Komponenten']
-  return bausteine
 
-def getkomponenten():
-  doc=ezodf.opendoc('bausteinkatalog.ods')
-  
-  #bausteine=doc.sheets['Bausteine']
-  komponenten=doc.sheets['Komponenten']
-  return komponenten"""
+def main(args):
+  try:
+    print("loading ods file ...")
+    table=ods2table(args[1])
+    print("success!, printing tables:")
+    for name,table in table.items():
+      print("\n\nname: " + name)
+      for row in table:
+        print(row)
+  except:
+    print("Unexpected error:", sys.exc_info()[0])
+    raise
+    return 1  # exit on error
+  else:
+    return 0  # exit errorlessly
+       
+if __name__ == '__main__':
+  sys.exit(main(sys.argv))

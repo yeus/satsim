@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # iboss-2
@@ -118,13 +118,24 @@ def report2file(report):
   reportfile.write(report)
   reportfile.close()
 
+helpstring="""
+Usage: katalogreport <Options>
+
+Options:
+
+"w": report2file(writereport())
+"p": print(writereport())
+"""
+
 def main(argv=None):
   if argv is None:
     argv = sys.argv
+    if len(argv)==1: print(helpstring)
     try:
       if argv[1]=="w": report2file(writereport())
       if argv[1]=="p": print(writereport())
     except:
+      raise
       return
 
 if __name__ == "__main__":
