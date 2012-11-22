@@ -16,6 +16,8 @@ import zipfile
 import sys
 import xml.etree.ElementTree as et
 
+NULL="N.A."
+
 def ods2table(string):
   z = zipfile.ZipFile(string)
 
@@ -55,7 +57,7 @@ def ods2table(string):
           string=cell.find('{urn:oasis:names:tc:opendocument:xmlns:text:1.0}p').text
           value=[string]
         else:
-          value=[0]
+          value=["N.A."]
         if '{urn:oasis:names:tc:opendocument:xmlns:table:1.0}number-columns-repeated' in attrib:
           num=int(attrib['{urn:oasis:names:tc:opendocument:xmlns:table:1.0}number-columns-repeated'])
           if num>1000: break #break loop, because we reached the end of the table
@@ -72,7 +74,7 @@ def ods2table(string):
     #fill all rows to the minimum number of columns
     #print(maxcols)
     for i in range(len(tablearray)):
-      tablearray[i]+=[0]*(maxcols-len(tablearray[i]))
+      tablearray[i]+=["N.A."]*(maxcols-len(tablearray[i]))
     
     tables[name]=(tablearray)
   

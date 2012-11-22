@@ -10,6 +10,7 @@
 #	- 2012 10 25 - Thomas Meschede
 
 import sys
+import odspy
 from odspy import ods2table
 import numpy as np
 
@@ -29,7 +30,9 @@ def tablereorder():
       daten={}
       for i,bez in enumerate(komponententable[0][1:]):
         #print(i+1,bez)
-        daten[bez]=k[i+1]
+        #löschen nicht eingetragener Eigenschaften
+        if(bez!=odspy.NULL and k[i+1]!=odspy.NULL): 
+          daten[bez]=k[i+1]
       komponenten[k[0]]=daten
 
   #Organisierung der Bausteineigenschaften
@@ -40,12 +43,16 @@ def tablereorder():
       bausteine[line[0]]=bsdata
       
     #Zuordnung der Komponenten zu einzelnen Bausteinen
-    bausteine[line[0]]["Komponenten"].update({line[3]:line[4]})
+    if odspy.NULL not in line[3:5]:
+      bausteine[line[0]]["Komponenten"].update({line[3]:line[4]})
     #Zuordnung der restlichen Werte
-    bausteine[line[0]].update({"Bemerkung":line[2], "Einsatzgebiet":line[1]})
+    if odspy.NULL!=line[2]:
+      bausteine[line[0]].update({"Bemerkung":line[2]})
+    if odspy.NULL!=line[1]:
+      bausteine[line[0]].update({"Einsatzgebiet":line[1]})
     
   #Leerzeilen löschen
-  bausteine.pop("0")
+  bausteine.pop(odspy.NULL)
   
   #Organisieren der Referenzmissionen
   referenzmissionen={}
@@ -58,16 +65,19 @@ def tablereorder():
     referenzmissionen[line[0]]["Bausteine"].append({"type":line[1],"pos":line[2],"rot":line[3]})
      
   #Leerzeilen löschen
-  referenzmissionen.pop("0")
+  referenzmissionen.pop(odspy.NULL)
   
   return bausteine, komponenten, referenzmissionen
 
 #Berechnet Gesamtmasse einzelner Bausteine/Referenzmissionen speichert sie in der Datenbank
-def calculatemasses(bausteine, referenzmissionen):
+def calculatemasses(komponenten, bausteine, referenzmissionen):
   for bskey,bsval in bausteine.items():
     mass=0
     for kp,num in bsval["Komponenten"].items():
-      mass+=float(komponenten[kp]["Masse"])*int(num)
+      if "Masse" in komponenten[kp]:
+        val=komponenten[kp]["Masse"]
+      else: val=0
+      mass+=float(val)*int(num)
     bsval["Masse"]=mass
     
   for mskey,msval in referenzmissionen.items():
@@ -77,14 +87,6 @@ def calculatemasses(bausteine, referenzmissionen):
         mass+=float(bausteine[bs["type"]]["Masse"])
     msval["Masse"]=mass
 
-def listbsmass(bausteine):
-  bsmasslist=set((key, value["Masse"]) for key,value in bausteine.items())
-  return sorted(bsmasslist, key=lambda bs: -bs[1])
-
-def listmsmass(referenzmissionen):
-  msmasslist=set((key, value["Masse"]) for key,value in referenzmissionen.items())
-  return sorted(msmasslist, key=lambda ms: -ms[1])
-
 def set2str(dt):
   out=("="*59)+" "+"="*33+"\n"
   for line in dt:
@@ -93,11 +95,17 @@ def set2str(dt):
   out+=("="*59)+" "+"="*33+"\n"
   return out
 
-bausteine, komponenten, referenzmissionen=tablereorder()
-
 def writereport():
-  calculatemasses(bausteine, referenzmissionen)
+  bausteine, komponenten, referenzmissionen=tablereorder()
+  calculatemasses(komponenten,bausteine, referenzmissionen)
   
+  def listbsmass(bausteine):
+    bsmasslist=set((key, value["Masse"]) for key,value in bausteine.items())
+    return sorted(bsmasslist, key=lambda bs: -bs[1])
+  
+  def listmsmass(referenzmissionen):
+    msmasslist=set((key, value["Masse"]) for key,value in referenzmissionen.items())
+    return sorted(msmasslist, key=lambda ms: -ms[1])
   
   report="""
 Bausteinreport:
