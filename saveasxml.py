@@ -6,44 +6,98 @@
 # filename: saveasxml.py
 # author: - Thomas Meschede
 #
+# Speichert den Bausteinkatalog im XML-Format
+#
+#
+#
+#
 # modified:
 #	- 2012 11 22 - Thomas Meschede
 
 import sys
+import odspy
 from odspy import ods2table
 import numpy as np
 import tableop as top
 import lxml.etree as et
-#et=etree.ElementTree
 #import xml.etree.ElementTree as et
 #import xml.dom.minidom
 import string
 
 helpstring="""
+Dieses Skript speichert den Bausteinkatalog im XML-Format
+
+
 Usage: saveasxml <Options> <filename.xml>
 
 Options:
 -h display this help
 """
-bausteine, komponenten, referenzmissionen=top.tablereorder()
 
-def dict2xml(name, table):
-  name=name.replace(" ","_")
+def strcomp(strconv):
+  name=strconv.replace(" ","_") #todo durch "translate" function ersetzen
   name=name.replace(".","")
   name=name.replace("(","")
   name=name.replace(")","")
+  name=name.replace("/","_")
+  name=name.replace("+","und")
+  name=name.replace("-","_")
+  name=name.replace("&","_")
+  name=name.replace(";","_")
+  name=name.replace("*","")
+  name=name.replace(",","")
   #name=name.translate((string.maketrans(" ","_").decode("utf-8")))
-  root=et.Element(name)
+  return name
+  
+#"scheme" definiert das XMl Schema, scheme ist eine Liste, die dann hierarisch als "type" attribute angesetzt wird
+def dict2xml(scheme, table, TYPE=None):
+  if scheme[0]!="": root=et.Element(strcomp(scheme[0]))
+  else: root=et.Element(strcomp(TYPE))
+  if TYPE and scheme[0]!="": root.set("type",TYPE)
+  
   if isinstance(table,dict):
    if len(table)>0:
     for subname,subtable in table.items():
-      root.append(dict2xml(subname,subtable))
-   else: root.text="0"
-  else: root.text="0"
+      newscheme=scheme[1:]
+      if len(scheme)==1: 
+        newscheme=newscheme+[subname]
+        TYPE=None
+      else: TYPE=subname
+      root.append(dict2xml(newscheme,subtable,TYPE))
+   else: root.text=odspy.NULL
+  else: 
+    try:
+      root.text=table
+    except:
+      print(table)
+      raise
   return root
 
-XML=dict2xml("komponenten",komponenten)
-et.ElementTree(XML).write("test.xml",pretty_print = True,encoding="utf-8")
+#baut die Liste der Referenzmission in eine XMl Datei um
+def refmis2xml(table):
+  root=et.Element("missions")
+  for name,subtable in table.items():
+    newelem=et.Element("mission",{"type":name})
+    newelem2=et.Element("cells")
+    for bausteine in subtable["Bausteine"]:
+      newelem3=et.Element("cell",{"type":bausteine["type"]})
+      for name,val in bausteine.items():
+        newelem4=et.Element(name)
+        newelem4.text=val
+        if name!="type":newelem3.append(newelem4)
+      newelem2.append(newelem3)
+    newelem.append(newelem2)
+    root.append(newelem)
+  return root
+
+bausteine, komponenten, referenzmissionen=top.tablereorder()
+
+#XML=dict2xml(["components","component"],komponenten)
+#et.ElementTree(XML).write("bausteinkatalog/komponenten.xml",pretty_print = True,encoding="utf-8")
+#XML=dict2xml(["cells","cell", "", "component"],bausteine)
+#et.ElementTree(XML).write("bausteinkatalog/bausteine.xml",pretty_print = True,encoding="utf-8")
+XML=refmis2xml(referenzmissionen)
+et.ElementTree(XML).write("bausteinkatalog/referenzmissionen.xml",pretty_print = True,encoding="utf-8")
 #pr=et.tostring(XML,encoding="utf-8", method="xml")
 #pr = xml.dom.minidom.parseString(pr)
 #pr = pr.toprettyxml()
