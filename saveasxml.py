@@ -92,10 +92,10 @@ def refmis2xml(table):
 
 bausteine, komponenten, referenzmissionen=top.tablereorder()
 
-#XML=dict2xml(["components","component"],komponenten)
-#et.ElementTree(XML).write("bausteinkatalog/komponenten.xml",pretty_print = True,encoding="utf-8")
-#XML=dict2xml(["cells","cell", "", "component"],bausteine)
-#et.ElementTree(XML).write("bausteinkatalog/bausteine.xml",pretty_print = True,encoding="utf-8")
+XML=dict2xml(["components","component"],komponenten)
+et.ElementTree(XML).write("bausteinkatalog/komponenten.xml",pretty_print = True,encoding="utf-8")
+XML=dict2xml(["cells","cell", "", "component"],bausteine)
+et.ElementTree(XML).write("bausteinkatalog/bausteine.xml",pretty_print = True,encoding="utf-8")
 XML=refmis2xml(referenzmissionen)
 et.ElementTree(XML).write("bausteinkatalog/referenzmissionen.xml",pretty_print = True,encoding="utf-8")
 #pr=et.tostring(XML,encoding="utf-8", method="xml")
