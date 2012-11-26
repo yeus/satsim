@@ -1,0 +1,422 @@
+<components>
+  <component type="thermale Schnittstelle">N.A.</component>
+  <component type="CMG">
+    <min_therm_Anford>-20</min_therm_Anford>
+    <max_therm_Anford>55</max_therm_Anford>
+    <Länge>350</Länge>
+    <Masse>15.7</Masse>
+    <Breite>270</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>270</Tiefe>
+    <Leistung_max>25</Leistung_max>
+    <Bemerkungen>idealisiert nach Astrium CMG 15-45S; Drehimpuls 15 Nms, Moment 45Nm; Genauigkeit &lt;10mrad Drehimpulsstabilität &lt;0,03%, einzeln für RFS bis 1000kg bei 3°/s</Bemerkungen>
+  </component>
+  <component type="elektr. Schnittstelle">
+    <Masse>0.04</Masse>
+  </component>
+  <component type="entfalt. Solarflächen 2">
+    <Länge>1750</Länge>
+    <Masse>8</Masse>
+    <Breite>1750</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>30</Tiefe>
+    <Leistung_max>800</Leistung_max>
+    <Bemerkungen>Solarzellen: GaAS-Multijunction (240W/m², 80W/kg, EOL); Anzahl der entfalt. Solarflächen variabel (abh. von max. Last) </Bemerkungen>
+  </component>
+  <component type="Antenne">
+    <min_therm_Anford>-20</min_therm_Anford>
+    <max_therm_Anford>50</max_therm_Anford>
+    <Länge>82</Länge>
+    <Masse>0.08</Masse>
+    <Breite>82</Breite>
+    <notw_Öffnungen>1</notw_Öffnungen>
+    <Tiefe>20</Tiefe>
+    <Leistung_max>10</Leistung_max>
+    <Bemerkungen>idealisiert nach Surrey Satellite Technology Ltd. S-Band Patch Antenna; ggf. gegen andere Antenne austauschbar</Bemerkungen>
+  </component>
+  <component type="entfalt. Solarflächen 1">
+    <Länge>1200</Länge>
+    <Masse>2.4</Masse>
+    <Breite>595</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>30</Tiefe>
+    <Leistung_max>175</Leistung_max>
+    <Bemerkungen>Solarzellen: GaAS-Multijunction (240W/m², 80W/kg, EOL); Anzahl der entfalt. Solarflächen variabel (abh. von max. Last), Länge ent-spricht i.M. einem </Bemerkungen>
+  </component>
+  <component type="Tank 2">
+    <Länge>691</Länge>
+    <Masse>52</Masse>
+    <Breite>350</Breite>
+    <notw_Öffnungen>2</notw_Öffnungen>
+    <Tiefe>350</Tiefe>
+    <Bemerkungen>Tank idealisiert nach VEGA AVUM Gas Tank (ATK-Space Systems Inc.), Blow Down System, Leertankmasse ca. 22 kg, Treibstoffmasse ca. 30 kg (MMH, Anfangsdruck 25 bar), Tank ist in der Länge variabel</Bemerkungen>
+  </component>
+  <component type="Drallrad (inkl.Elektro.)">
+    <min_therm_Anford>-40</min_therm_Anford>
+    <max_therm_Anford>70</max_therm_Anford>
+    <Länge>300</Länge>
+    <Masse>16.5</Masse>
+    <Breite>300</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>150</Tiefe>
+    <Leistung_max>300</Leistung_max>
+    <Bemerkungen>idealisiert nach Rockwell Collins Deutschland (TELDIX) MWI; max. Drehimpuls 100Nms; max. RFS-Masse 5000kg; auch als Reaktionsrad nutzbar</Bemerkungen>
+  </component>
+  <component type="Tank 1">
+    <Länge>700</Länge>
+    <Masse>44</Masse>
+    <Breite>350</Breite>
+    <notw_Öffnungen>1</notw_Öffnungen>
+    <Tiefe>350</Tiefe>
+    <Bemerkungen>Tank idealisiert nach VEGA AVUM Gas Tank (ATK-Space Systems Inc.), Arbeitsdruck 310 bar, Blow Down System, Leertankmasse ca. 22 kg, Gasmasse ca. 22 kg, Tank ist in der Länge variabel</Bemerkungen>
+  </component>
+  <component type="Datenschnittstelle">N.A.</component>
+  <component type="PSCU">
+    <Länge>190</Länge>
+    <Masse>18</Masse>
+    <Breite>350</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>350</Tiefe>
+    <Leistung_max>5000</Leistung_max>
+    <Bemerkungen>idealisiert und verkleinert nach Alcatel </Bemerkungen>
+  </component>
+  <component type="Erdsensor 2">
+    <min_therm_Anford>-20</min_therm_Anford>
+    <max_therm_Anford>50</max_therm_Anford>
+    <Länge>390</Länge>
+    <Masse>3.5</Masse>
+    <Breite>210</Breite>
+    <notw_Öffnungen>1</notw_Öffnungen>
+    <Tiefe>175</Tiefe>
+    <Leistung_max>8</Leistung_max>
+    <Bemerkungen>idealisiert nach EADS-Sodern STD 16 Earth Sensor; Ausrichtung 0,06° (bias), Rauschen 0,042° (noise); Orbitbereich 300 – 6000km</Bemerkungen>
+  </component>
+  <component type="Erdsensor 1">
+    <min_therm_Anford>-25</min_therm_Anford>
+    <max_therm_Anford>55</max_therm_Anford>
+    <Länge>210</Länge>
+    <Masse>3.5</Masse>
+    <Breite>210</Breite>
+    <notw_Öffnungen>1</notw_Öffnungen>
+    <Tiefe>170</Tiefe>
+    <Leistung_max>7</Leistung_max>
+    <Bemerkungen>idealisiert nach EADS-Sodern STD 15 Earth Sensor; Ausrichtung 0,035° (bias), Rauschen 0,015° (noise); Orbitbereich 15000 – 140000km; ggf. Strahlungsschutz notwendig</Bemerkungen>
+  </component>
+  <component type="Magnetometer">
+    <min_therm_Anford>-55</min_therm_Anford>
+    <max_therm_Anford>85</max_therm_Anford>
+    <Länge>350</Länge>
+    <Masse>2</Masse>
+    <Breite>120</Breite>
+    <notw_Öffnungen>1</notw_Öffnungen>
+    <Tiefe>120</Tiefe>
+    <Leistung_max>25</Leistung_max>
+    <Bemerkungen>idealisiert nach SpaceQuest Ltd. MAG-3; Magnetometer ist auf einem ausfahrbaren Ausleger montiert (24 W für Ausleger angenommen)</Bemerkungen>
+  </component>
+  <component type="FCU">
+    <Länge>410</Länge>
+    <Masse>6</Masse>
+    <Breite>295</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>120</Tiefe>
+    <Bemerkungen>Flow Control Unit idealisiert mit High- und Low-Pressure Proportional Valve sowie Silicon Mass Flow Sensor (Thales), High Pressure Latch Valve (Marotta), Pressure Transducer, Gas Pressure Filter und Gas Fill and Drain Valve (RTG), Heizsystem noch unberücksichtigt</Bemerkungen>
+  </component>
+  <component type="testdüse">
+    <Schub>1</Schub>
+    <Impulsbit>0.01</Impulsbit>
+    <Bemerkungen>Testdüse zum testen von Algorithmen und programmen</Bemerkungen>
+    <spez_Impuls>220</spez_Impuls>
+  </component>
+  <component type="CMG-Electronics">
+    <min_therm_Anford>-25</min_therm_Anford>
+    <max_therm_Anford>60</max_therm_Anford>
+    <Länge>300</Länge>
+    <vertr_Strahlung>15</vertr_Strahlung>
+    <Masse>2.7</Masse>
+    <Breite>300</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>100</Tiefe>
+    <Bemerkungen>idealisiert und verkleinert nach Astrium CMG 15-45S Elektronic; für 2 CMG; Strahlungs-schutz notwendig </Bemerkungen>
+  </component>
+  <component type="Transceiver">
+    <min_therm_Anford>-20</min_therm_Anford>
+    <max_therm_Anford>65</max_therm_Anford>
+    <Länge>204</Länge>
+    <vertr_Strahlung>20</vertr_Strahlung>
+    <Masse>2.5</Masse>
+    <Breite>160</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>87</Tiefe>
+    <Leistung_max>36</Leistung_max>
+    <Bemerkungen>idealisiert nach General Dynamics Multi-Mode S-Band Transceiver; uplink max. 512kbps, noise figure &lt;2,5dB; down-link max. 6Mbps; Strahlungsschutz notwendig</Bemerkungen>
+  </component>
+  <component type="Versorgungsleitungen">
+    <Masse>0.04</Masse>
+    <Bemerkungen>4 mm², pro Kontaktelement wird in der Vorauslegung ein Bedarf von 0,7 m Kabel angenommen (Vergleichskabelmasse: 0,05kg/m)</Bemerkungen>
+  </component>
+  <component type="GNSS-Receiver 2">
+    <min_therm_Anford>-25</min_therm_Anford>
+    <max_therm_Anford>60</max_therm_Anford>
+    <Länge>250</Länge>
+    <vertr_Strahlung>20</vertr_Strahlung>
+    <Masse>5.2</Masse>
+    <Breite>190</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>164</Tiefe>
+    <Leistung_max>30</Leistung_max>
+    <Bemerkungen>idealisiert nach ThalesAlenia LAGRANGETM; Pos. 8m, Geschw. 0,1m/s, Zeit ±250ns; geeignet für L1 und L2</Bemerkungen>
+  </component>
+  <component type="mech. Schnittstelle">
+    <Masse>0.75</Masse>
+  </component>
+  <component type="GNSS-Receiver 1">
+    <min_therm_Anford>-20</min_therm_Anford>
+    <max_therm_Anford>60</max_therm_Anford>
+    <Länge>284</Länge>
+    <vertr_Strahlung>100</vertr_Strahlung>
+    <Masse>3.9</Masse>
+    <Breite>272</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>92</Tiefe>
+    <Leistung_max>10</Leistung_max>
+    <Bemerkungen>idealisiert nach Astrium Mosaic GNSS Receiver; Pos. &lt;150m, Geschw. &lt;0,02m/s, Zeit &lt;750ns; geeignet für L1 C/A Code; ggf. Strahlungsschutz notwendig</Bemerkungen>
+  </component>
+  <component type="thermale Isolierung">N.A.</component>
+  <component type="testdrallrad">
+    <Bemerkungen>Testdüse zum testen von Algorithmen und programmen</Bemerkungen>
+    <Drehmoment>10</Drehmoment>
+  </component>
+  <component type="entfalt. Elektronik">
+    <Länge>180</Länge>
+    <Masse>2</Masse>
+    <Breite>160</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>65</Tiefe>
+    <Leistung_max>50</Leistung_max>
+    <Bemerkungen>idealisiert nach Astrium Actuator Alignment Electronic; ggf. zusätzlicher Strahlungsschutz notwendig</Bemerkungen>
+  </component>
+  <component type="Batteriekontrolle">
+    <Tiefe>265</Tiefe>
+    <Breite>53</Breite>
+    <Bemerkungen>frei angepasst</Bemerkungen>
+    <Länge>250</Länge>
+  </component>
+  <component type="SMU">
+    <min_therm_Anford>-25</min_therm_Anford>
+    <max_therm_Anford>60</max_therm_Anford>
+    <Länge>290</Länge>
+    <Masse>9.5</Masse>
+    <Breite>280</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>260</Tiefe>
+    <Leistung_max>25</Leistung_max>
+    <Bemerkungen>Daten idealisiert nach ThalesAlenia SMU-V1; es wurde noch keine Aussage bezüglich zentrale oder dezentrale OBC/SMU getroffen </Bemerkungen>
+  </component>
+  <component type="SADA">
+    <Länge>420</Länge>
+    <Masse>8.6</Masse>
+    <Breite>370</Breite>
+    <notw_Öffnungen>1</notw_Öffnungen>
+    <Tiefe>155</Tiefe>
+    <Leistung_max>200</Leistung_max>
+    <Bemerkungen>idealisiert nach MOOG Type 55 Solar Array Drive Assembly </Bemerkungen>
+  </component>
+  <component type="Transmitter">
+    <Länge>180</Länge>
+    <Masse>2.1</Masse>
+    <Breite>170</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>70</Tiefe>
+    <Leistung_max>30</Leistung_max>
+    <Bemerkungen>idealisiert nach L-3 Communications T-710() Transmitter; downlink 1,6Mbps, RF output power &gt;3W; Strahlungs-schutz notwendig</Bemerkungen>
+  </component>
+  <component type="Strahlungsschutz">N.A.</component>
+  <component type="Magnetorquer">
+    <Länge>350</Länge>
+    <Masse>4</Masse>
+    <Breite>100</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>100</Tiefe>
+    <Leistung_max>15</Leistung_max>
+    <Bemerkungen>idealisiert und Werte abgeleitet nach ZARM-Technik MT80-1 bzw. MT250-2; magnet. Moment ca. 60-80Am² je Spule</Bemerkungen>
+  </component>
+  <component type="Li-Ion-Batterie">
+    <min_therm_Anford>10</min_therm_Anford>
+    <max_therm_Anford>35</max_therm_Anford>
+    <Länge>250</Länge>
+    <Masse>1.11</Masse>
+    <Breite>53</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>53</Tiefe>
+    <Bemerkungen>idealisiert nach SAFT VES 180; Zusammenschaltung für 100Ah bei 36V → jeweils 10 Batterien in Reihe</Bemerkungen>
+  </component>
+  <component type="SSPA">
+    <min_therm_Anford>-20</min_therm_Anford>
+    <max_therm_Anford>75</max_therm_Anford>
+    <Länge>217</Länge>
+    <Masse>0.75</Masse>
+    <Breite>107</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>47</Tiefe>
+    <Leistung_max>15</Leistung_max>
+    <Bemerkungen>idealisiert nach Astrium L/S Band SSPA; nominal RF output power 15W; Strahlungsschutz notwendig</Bemerkungen>
+  </component>
+  <component type="Reaktionsrad">
+    <min_therm_Anford>-40</min_therm_Anford>
+    <max_therm_Anford>70</max_therm_Anford>
+    <Länge>300</Länge>
+    <Masse>16.5</Masse>
+    <Breite>300</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>150</Tiefe>
+    <Leistung_max>300</Leistung_max>
+    <Bemerkungen>idealisiert nach Rockwell Collins Deutschland (TELDIX) MWI; max. Drehimpuls 100Nms; max. RFS-Masse 5000kg; auch als Drallrad nutzbar</Bemerkungen>
+  </component>
+  <component type="Transponder">
+    <min_therm_Anford>-20</min_therm_Anford>
+    <max_therm_Anford>60</max_therm_Anford>
+    <Länge>230</Länge>
+    <Masse>4.2</Masse>
+    <Breite>170</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>140</Tiefe>
+    <Leistung_max>51</Leistung_max>
+    <Bemerkungen>idealisiert nach General Dynamics Advanced Multi-Mode Transponder (AMT-R) für Lunar Reconnais-sance Orbiter;; uplink max. 1Mbps, noise figure &lt;2,5dB; down-link max. 6Mbps; evtl. zusätzl. Strah-lungsschutz notwendig</Bemerkungen>
+  </component>
+  <component type="Bausteinstruktur">
+    <Tiefe>400</Tiefe>
+    <Masse>2.5</Masse>
+    <Breite>400</Breite>
+    <Länge>400</Länge>
+  </component>
+  <component type="Receiver">
+    <min_therm_Anford>-40</min_therm_Anford>
+    <max_therm_Anford>75</max_therm_Anford>
+    <Länge>170</Länge>
+    <vertr_Strahlung>60</vertr_Strahlung>
+    <Masse>1.9</Masse>
+    <Breite>165</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>95</Tiefe>
+    <Leistung_max>4</Leistung_max>
+    <Bemerkungen>idealisiert nach L-3 Communications CR-313 Receiver; uplink max. 128kbps, RF input power max. +3dBm, noise max. 4dB; Strahlungs-schutz notwendig</Bemerkungen>
+  </component>
+  <component type="IMU (Standard)">
+    <min_therm_Anford>-25</min_therm_Anford>
+    <max_therm_Anford>60</max_therm_Anford>
+    <Länge>206</Länge>
+    <vertr_Strahlung>100</vertr_Strahlung>
+    <Masse>4.2</Masse>
+    <Breite>206</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>160</Tiefe>
+    <Leistung_max>15</Leistung_max>
+    <Bemerkungen>idealisiert nach Astrium Astrix3M²; Ausrichtung &lt;0,01°/h (bias), Stabilität &lt;0,8°/h, Rauschen &lt;0,005°/√h (noise); Werte gelten für EOL; Strahlungs-schutz notwendig</Bemerkungen>
+  </component>
+  <component type="zentrale Solarfläche">
+    <Länge>1200</Länge>
+    <Masse>3.5</Masse>
+    <Breite>1200</Breite>
+    <notw_Öffnungen>1</notw_Öffnungen>
+    <Tiefe>30</Tiefe>
+    <Leistung_max>350</Leistung_max>
+    <Bemerkungen>Solarzellen: GaAS-Multijunction (240W/m², 80W/kg, EOL); Länge ent-spricht i.M. einem </Bemerkungen>
+  </component>
+  <component type="GPS-Antenne">
+    <Länge>200</Länge>
+    <Masse>0.75</Masse>
+    <Breite>200</Breite>
+    <notw_Öffnungen>1</notw_Öffnungen>
+    <Tiefe>80</Tiefe>
+    <Bemerkungen>idealisiert nach RUAG Extended GPS PEC Antenna; geeignet für L1 und L2, Platzhalter für in LAGRANGE enthaltene Antenne </Bemerkungen>
+  </component>
+  <component type="Hardware-Stack 1">
+    <Tiefe>17</Tiefe>
+    <Masse>0.2</Masse>
+    <Breite>151</Breite>
+    <Bemerkungen>Stack angepasst an Dimensionen von Europaplatinen, Dimensionen an endgültige Platinenform anpassbar, Verwendung mehrerer Stacks möglich</Bemerkungen>
+    <Länge>171</Länge>
+  </component>
+  <component type="Sonnensensor 2">
+    <min_therm_Anford>-80</min_therm_Anford>
+    <max_therm_Anford>90</max_therm_Anford>
+    <Länge>108</Länge>
+    <Masse>0.4</Masse>
+    <Breite>106</Breite>
+    <notw_Öffnungen>1</notw_Öffnungen>
+    <Tiefe>49</Tiefe>
+    <Leistung_max>0.2</Leistung_max>
+    <Bemerkungen>idealisiert nach Bradford Fine &amp; Coarse Sun Sensor CSS Accuracy &lt;1° (bias error &lt;0,15°)</Bemerkungen>
+  </component>
+  <component type="Sonnensensor 1">
+    <min_therm_Anford>-50</min_therm_Anford>
+    <max_therm_Anford>85</max_therm_Anford>
+    <Länge>46</Länge>
+    <vertr_Strahlung>100000</vertr_Strahlung>
+    <Masse>0.05</Masse>
+    <Breite>45</Breite>
+    <notw_Öffnungen>1</notw_Öffnungen>
+    <Tiefe>14</Tiefe>
+    <Bemerkungen>idealisiert nach Miniaturised Analog Fine Sun Sensor (ISIS), Accuracy 0,3°, Blickfeld 128° x 128°</Bemerkungen>
+  </component>
+  <component type="PCU">
+    <min_therm_Anford>-15</min_therm_Anford>
+    <max_therm_Anford>60</max_therm_Anford>
+    <Länge>350</Länge>
+    <Masse>25</Masse>
+    <Breite>350</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>350</Tiefe>
+    <Bemerkungen>Daten idealisiert und verkleinert nach Astrium GEO Medium Power PCU; es wurde noch keine Aussage bezüglich zentrale oder dezentrale PCU getroffen </Bemerkungen>
+  </component>
+  <component type="IMU (sehr genau)">
+    <min_therm_Anford>-10</min_therm_Anford>
+    <max_therm_Anford>50</max_therm_Anford>
+    <Länge>490</Länge>
+    <vertr_Strahlung>15</vertr_Strahlung>
+    <Masse>10</Masse>
+    <Breite>330</Breite>
+    <notw_Öffnungen>0</notw_Öffnungen>
+    <Tiefe>280</Tiefe>
+    <Leistung_max>24</Leistung_max>
+    <Bemerkungen>idealisiert nach Astrium Astrix200; Ausrichtung &lt;0,0005°/h (bias), Stabilität &lt;0,001°/h, Rauschen &lt;0,0001°/√h (noise); Werte gelten für EOL; Strahlungs-schutz notwendig</Bemerkungen>
+  </component>
+  <component type="Sternsensor">
+    <min_therm_Anford>-30</min_therm_Anford>
+    <max_therm_Anford>60</max_therm_Anford>
+    <Länge>150</Länge>
+    <Masse>2</Masse>
+    <Breite>150</Breite>
+    <notw_Öffnungen>2</notw_Öffnungen>
+    <Tiefe>375</Tiefe>
+    <Leistung_max>10</Leistung_max>
+    <Bemerkungen>idealisiert nach Jena-Optronik AstroAPS; random error &lt;1arcsec (pitch/yaw) &lt;8arcsec (roll); </Bemerkungen>
+  </component>
+  <component type="Hall Efffekt Triebwerk">
+    <Länge>140</Länge>
+    <Masse>12</Masse>
+    <Breite>240</Breite>
+    <notw_Öffnungen>1</notw_Öffnungen>
+    <Tiefe>240</Tiefe>
+    <Leistung_max>5000</Leistung_max>
+    <Bemerkungen>idealisiert nach Thales Alenia Space DS-HET, Isp 1500-3000 s, Schub 50-300 mN, max. benötigte Leistung 5000 W; anstelle von DS-HET sind auch HEMP-3050 oder RIT-22 möglich</Bemerkungen>
+  </component>
+  <component type="Kaltgasantriebssyst.">
+    <Länge>100</Länge>
+    <Masse>15</Masse>
+    <Breite>400</Breite>
+    <notw_Öffnungen>5</notw_Öffnungen>
+    <Tiefe>400</Tiefe>
+    <Leistung_max>55</Leistung_max>
+    <Bemerkungen>idealisiert nach RTG Aero-Hydraulic Inc. (Ventile, Filter, Druckregler, Wandler und Düsen); Schub-bereich 0,01...1,0N; Heizsystem noch unberücksichtigt</Bemerkungen>
+  </component>
+  <component type="Monopropell.System">
+    <Länge>100</Länge>
+    <Masse>15</Masse>
+    <Breite>400</Breite>
+    <notw_Öffnungen>5</notw_Öffnungen>
+    <Tiefe>400</Tiefe>
+    <Leistung_max>100</Leistung_max>
+    <Bemerkungen>idealisiert nach RTG Aero-Hydraulic Inc. (Filter, Wandler), Astrium (Düsen), VACCO (Latch Valve) Schubbereich 1,0-22N; seitliche Düsen um 90° drehbar montierbar, Heizsystem noch unberücksichtigt</Bemerkungen>
+  </component>
+</components>

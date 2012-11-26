@@ -39,12 +39,15 @@ def tablereorder():
   bausteine={}
   for line in bausteinetable[3:]:
     if line[0] not in bausteine:
-      bsdata={"Komponenten":{}, "Bemerkung":"", "Einsatzgebiet":""}
+      bsdata={"Komponenten":[], "Bemerkung":"", "Einsatzgebiet":""}
       bausteine[line[0]]=bsdata
       
     #Zuordnung der Komponenten zu einzelnen Bausteinen
     if odspy.NULL not in line[3:5]:
-      bausteine[line[0]]["Komponenten"].update({line[3]:line[4]})
+      newcomponent={"type":line[3],"Anzahl":float(line[4])}
+      if line[5]!=odspy.NULL: newcomponent["pos"]=[float(i) for i in line[5].split(",")] #convert string to vector
+      if line[6]!=odspy.NULL: newcomponent["force"]=[float(i) for i in line[6].split(",")] #convert string to vector
+      bausteine[line[0]]["Komponenten"].append(newcomponent)
     #Zuordnung der restlichen Werte
     if odspy.NULL!=line[2]:
       bausteine[line[0]].update({"Bemerkung":line[2]})
@@ -151,3 +154,4 @@ def main(argv=None):
 
 if __name__ == "__main__":
   main()
+  bausteine, komponenten, referenzmissionen=tablereorder()
