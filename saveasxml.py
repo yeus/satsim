@@ -90,7 +90,7 @@ def refmis2xml(table):
     root.append(newelem)
   return root
 
-bausteine, komponenten, referenzmissionen=top.tablereorder()
+komponenten, bausteine, referenzmissionen=top.tablereorder()
 
 XML=dict2xml(["components","component"],komponenten)
 et.ElementTree(XML).write("bausteinkatalog/komponenten.xml",pretty_print = True,encoding="utf-8")
