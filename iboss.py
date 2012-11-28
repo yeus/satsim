@@ -11,6 +11,8 @@
 
 """defines data structures for iboss project"""
 
+from copy import copy
+
 class component:
   def __init__(self,name):
     self.name=name
@@ -27,10 +29,11 @@ class buildingblock:
 class mission:
   def __init__(self,name):
     self.name=name
-    self.Bausteine=[]
+    self.bb=[]#list of building blocks
   
   #adds a new building block to the satellite
-  def add_bb(baustein,pos,rot):
-    baustein.pos=pos
-    baustein.rot=rot
-    self.Bausteine.append(baustein)
+  def add_bb(self,baustein,pos,rot):
+    newbs=copy(baustein)
+    newbs.pos=pos
+    newbs.rot=rot
+    self.bb.append(newbs)
