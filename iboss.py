@@ -21,6 +21,7 @@ class component:
 class buildingblock:
   def __init__(self,name):
     self.name=name
+    self.type=name
     self.components=[]
     
   def add_co(self,co):
@@ -29,6 +30,7 @@ class buildingblock:
 class mission:
   def __init__(self,name):
     self.name=name
+    self.type=name
     self.bb=[]#list of building blocks
   
   #adds a new building block to the satellite

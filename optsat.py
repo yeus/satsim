@@ -10,26 +10,22 @@
 # modified:
 #       - created: 2012 11 26 - Thomas Meschede
 
-from __future__ import unicode_literals #so the script is compatible with python3
-
 import tableop as taop
 import numpy as np
 from itertools import product
 import iboss
-from random import choice
+from random import *
+from math import *
+import copy
 
-import sys
-version=sys.version_info.major
 
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector function
-
-import sys
 
 def printclasslist(instance):
   for i in instance:
     print("\n"+i.name+":")
     for vname,vval in vars(i).items():
-      print(("{:30}=  {}").format(vname,vval))
+      print("{:30}=  {}".format(vname,vval))
 
 komponenten, bausteine, referenzmissionen=taop.converttable()
 
@@ -38,19 +34,41 @@ komponenten, bausteine, referenzmissionen=taop.converttable()
 
 
 #einen generischen Baustein entwerfen:
-mission=iboss.mission("BSP_Mission")
-
 satsize=vec(3,4,5)
 
 #todo: wie findet man die optimale Anzahl an AOCS-Bausteinen heraus?
 
 #todo:Einen Satelliten einer bestimmten Größe aus einer rein zufälligen Anordnung von Bausteinen zusammensetzen.
-#Zusammenbau eines zufälligen Satelliten:
+#Zusammenbau eines zufälligen Sat
 #for i in product(range(a),range(b),range(c)):
+
+#todo: satgrid ist die "DNA" des Satelliten
+#generation of a satellite:
+
+satgrid=np.ndarray(satsize, dtype=np.object)
+
 for pos in np.ndindex(*satsize):
-  #print(pos)
-  mission.add_bb(choice(list(bausteine.values())),pos,(0,0,0))
+  bb=copy.copy(choice(list(bausteine.values())))
+  satgrid[pos]=bb 
 
-bs=[b for b in mission.bb if b.name=="test Lageregelungsbaustein"]
+satgrid[0,0,4]=copy.copy(bausteine["test Lageregelungsbaustein"])
+satgrid[0,3,4]=copy.copy(bausteine["test Lageregelungsbaustein"])
+satgrid[2,0,4]=copy.copy(bausteine["test Lageregelungsbaustein"])
+satgrid[2,3,4]=copy.copy(bausteine["test Lageregelungsbaustein"])
 
-printclasslist(bs)
+#fitness=len([b for b in mission.bb if b.name=="test Lageregelungsbaustein"])
+
+#organize the grid (rotate buildingblocks, add certain attributes for them):
+for pos in np.ndindex(*satsize):
+  bs=satgrid[pos]
+  bs.pos=pos
+  if bs.type=="test Lageregelungsbaustein":
+    bs.rot=vec(0,0,0)
+  else: satgrid[pos].rot=vec(randrange(3)*90,randrange(3)*90,randrange(3))*pi/2
+  
+
+def getmission():
+  mission=iboss.mission("BSP_Mission")
+  mission.bb=satgrid.flatten()
+  return mission
+    
