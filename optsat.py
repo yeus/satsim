@@ -39,7 +39,7 @@ satsize=vec(3,4,5)
 #todo: wie findet man die optimale Anzahl an AOCS-Bausteinen heraus?
 
 #todo:Einen Satelliten einer bestimmten Größe aus einer rein zufälligen Anordnung von Bausteinen zusammensetzen.
-#Zusammenbau eines zufälligen Sat
+#Zusammenbau eines zufälligen Satlliten
 #for i in product(range(a),range(b),range(c)):
 
 #todo: satgrid ist die "DNA" des Satelliten
@@ -49,6 +49,9 @@ satgrid=np.ndarray(satsize, dtype=np.object)
 
 for pos in np.ndindex(*satsize):
   bb=copy.copy(choice(list(bausteine.values())))
+  while(bb.type=="test Lageregelungsbaustein"):
+    bb=copy.copy(choice(list(bausteine.values())))
+    
   satgrid[pos]=bb 
 
 satgrid[0,0,4]=copy.copy(bausteine["test Lageregelungsbaustein"])
@@ -66,7 +69,6 @@ for pos in np.ndindex(*satsize):
     bs.rot=vec(0,0,0)
   else: satgrid[pos].rot=vec(randrange(3)*90,randrange(3)*90,randrange(3))*pi/2
   
-
 def getmission():
   mission=iboss.mission("BSP_Mission")
   mission.bb=satgrid.flatten()
