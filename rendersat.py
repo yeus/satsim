@@ -25,10 +25,14 @@ imp.reload(optsat)
   
 mission=optsat.getmission()
 
+#select layer to put the satellite into:
+bpy.data.scenes['Scene'].layers=[False]*19+[True]
+
 #render satellit 
+mode=".transparent"  #transparent render
 for bs in mission.bb:
-    if bs.name=="test Lageregelungsbaustein": newobj=cpobj("düsenbaustein")
-    else: newobj=cpobj("baustein")
+    if bs.name=="test Lageregelungsbaustein": newobj=cpobj("düsenbaustein"+mode)
+    else: newobj=cpobj("baustein"+mode)
     newobj.location=Vector(bs.pos)*0.41
     newobj.rotation_mode="XYZ"
     newobj.rotation_euler=bs.rot
@@ -42,6 +46,9 @@ for bs in mission.bb:
                 newar=arrow(-Vector((0.2,0.2,0.2))+Vector(co["pos"])*0.4,Vector(co["th_vec"])*0.3,0.1)
                 newar.name="force: {}{}".format(co["pos"],co["th_vec"])
                 newar.parent=newobj
+
+#render center of gravity:
+newobj=cpobj("cross")
             
  #render the result
 bpy.ops.render.render()

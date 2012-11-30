@@ -14,6 +14,7 @@ import odspy
 from odspy import ods2table
 import numpy as np
 import iboss
+import copy
 
 #convert string to vector (python list)
 def str2vec(stringvec):
@@ -30,7 +31,7 @@ def converttable():
   
   
   #organisieren der Komponenten in dictionaries:
-  komponenten={}
+  komponenten=dict()
   for k in komponententable[2:]:
     newcomponent=iboss.component(k[0])
     for i,bez in enumerate(komponententable[0][1:]):
@@ -48,14 +49,15 @@ def converttable():
     if line[0] not in bausteine:
       bs=iboss.buildingblock(line[0])
       bausteine[line[0]]=bs
-      
+    else: bs=bausteine[line[0]]
+    
     #Zuordnung der Komponenten zu einzelnen Bausteinen
     if odspy.NULL not in line[3:5]:
-      newcomponent={"type":line[3],"Anzahl":int(line[4])}
-      if line[5]!=odspy.NULL: newcomponent["pos"]=str2vec(line[5])
-      if line[6]!=odspy.NULL: newcomponent["th_vec"]=str2vec(line[6])
+      newcomponent=copy.copy(komponenten[line[3]])
+      if line[5]!=odspy.NULL: newcomponent.pos=str2vec(line[5])
+      if line[6]!=odspy.NULL: newcomponent.th_vec=str2vec(line[6])
       #bausteine[line[0]]["Komponenten"].append(newcomponent)
-      bs.components.append(newcomponent)
+      bs.add_co(newcomponent,num=int(line[4]))
     #Zuordnung der restlichen Werte
     if odspy.NULL!=line[2]:
       bausteine[line[0]].Bemerkung=line[2]
@@ -66,95 +68,19 @@ def converttable():
     
   
   #Organisieren der Referenzmissionen
-  referenzmissionen={}
+  referenzmissionen=dict()
   for line in referenzmissionentable[3:]:
     if line[0] not in referenzmissionen:
-      satdata={"Bausteine":[]}
-      referenzmissionen[line[0]]=satdata
-      
-    #Zuordnung der Komponenten zu einzelnen Bausteinen
-    referenzmissionen[line[0]]["Bausteine"].append({"type":line[1],"pos":line[2],"rot":line[3]})
+      referenzmissionen[line[0]]=iboss.mission(line[0])
+    
+    if line[1] in bausteine.keys():
+      newbb=copy.copy(bausteine[line[1]])
+      referenzmissionen[line[0]].add_bb(bb=newbb,pos=line[2],rot=line[3])
      
   #Leerzeilen löschen
   referenzmissionen.pop(odspy.NULL)
   
   return komponenten, bausteine, referenzmissionen
-
-#organisieren aller Daten in Python Dictionaries:
-def tablereorder():
-  #laden der Tabellen aus *.ods Datei
-  tables=ods2table('bausteinkatalog.ods')
-  
-  referenzmissionentable=np.array(tables["Referenzmissionen"])
-  bausteinetable=np.array(tables["Bausteine"])
-  komponententable=np.array(tables["Komponenten"])
-  
-  
-  #organisieren der Komponenten in dictionaries:
-  komponenten={}
-  for k in komponententable[2:]:
-      daten={}
-      for i,bez in enumerate(komponententable[0][1:]):
-        #print(i+1,bez)
-        #löschen nicht eingetragener Eigenschaften
-        if(bez!=odspy.NULL and k[i+1]!=odspy.NULL): 
-          daten[bez]=k[i+1]
-      komponenten[k[0]]=daten
-
-  #Organisierung der Bausteineigenschaften
-  bausteine={}
-  for line in bausteinetable[3:]:
-    if line[0] not in bausteine:
-      bsdata={"Komponenten":[], "Bemerkung":"", "Einsatzgebiet":""}
-      bausteine[line[0]]=bsdata
-      
-    #Zuordnung der Komponenten zu einzelnen Bausteinen
-    if odspy.NULL not in line[3:5]:
-      newcomponent={"type":line[3],"Anzahl":float(line[4])}
-      if line[5]!=odspy.NULL: newcomponent["pos"]=[float(i) for i in line[5].split(",")] #convert string to vector
-      if line[6]!=odspy.NULL: newcomponent["force"]=[float(i) for i in line[6].split(",")] #convert string to vector
-      bausteine[line[0]]["Komponenten"].append(newcomponent)
-    #Zuordnung der restlichen Werte
-    if odspy.NULL!=line[2]:
-      bausteine[line[0]].update({"Bemerkung":line[2]})
-    if odspy.NULL!=line[1]:
-      bausteine[line[0]].update({"Einsatzgebiet":line[1]})
-    
-  #Leerzeilen löschen
-  bausteine.pop(odspy.NULL)
-  
-  #Organisieren der Referenzmissionen
-  referenzmissionen={}
-  for line in referenzmissionentable[3:]:
-    if line[0] not in referenzmissionen:
-      satdata={"Bausteine":[]}
-      referenzmissionen[line[0]]=satdata
-      
-    #Zuordnung der Komponenten zu einzelnen Bausteinen
-    referenzmissionen[line[0]]["Bausteine"].append({"type":line[1],"pos":line[2],"rot":line[3]})
-     
-  #Leerzeilen löschen
-  referenzmissionen.pop(odspy.NULL)
-  
-  return komponenten, bausteine, referenzmissionen
-
-#Berechnet Gesamtmasse einzelner Bausteine/Referenzmissionen speichert sie in der Datenbank
-def calculatemasses(komponenten, bausteine, referenzmissionen):
-  for bskey,bsval in bausteine.items():
-    mass=0
-    for kp,num in bsval["Komponenten"].items():
-      if "Masse" in komponenten[kp]:
-        val=komponenten[kp]["Masse"]
-      else: val=0
-      mass+=float(val)*int(num)
-    bsval["Masse"]=mass
-    
-  for mskey,msval in referenzmissionen.items():
-    mass=0
-    for bs in msval["Bausteine"]:
-      if bs["type"] in bausteine:
-        mass+=float(bausteine[bs["type"]]["Masse"])
-    msval["Masse"]=mass
 
 def set2str(dt):
   out=("="*59)+" "+"="*33+"\n"
@@ -165,14 +91,14 @@ def set2str(dt):
   return out
 
 def writereport():
-  calculatemasses(*tablereorder())
+  komponenten, bausteine, referenzmissionen=converttable()
   
   def listbsmass(bausteine):
-    bsmasslist=set((key, value["Masse"]) for key,value in bausteine.items())
+    bsmasslist=set((key, value.mass) for key,value in bausteine.items())
     return sorted(bsmasslist, key=lambda bs: -bs[1])
   
   def listmsmass(referenzmissionen):
-    msmasslist=set((key, value["Masse"]) for key,value in referenzmissionen.items())
+    msmasslist=set((key, value.mass) for key,value in referenzmissionen.items())
     return sorted(msmasslist, key=lambda ms: -ms[1])
   
   report="""
