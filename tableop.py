@@ -29,6 +29,7 @@ def converttable():
   bausteinetable=np.array(tables["Bausteine"])
   komponententable=np.array(tables["Komponenten"])
   
+  #todo: Option einbauen, daß immer alle Eigenschaften mit Standardwerten geladen werden.
   
   #organisieren der Komponenten in dictionaries:
   komponenten=dict()
@@ -145,4 +146,4 @@ def main(argv=None):
 
 if __name__ == "__main__":
   main()
-  #komponenten, bausteine, referenzmissionen=tablereorder()
+  komponenten, bausteine, referenzmissionen=converttable()

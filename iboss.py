@@ -13,13 +13,26 @@
 
 from copy import copy
 import numpy as np
+from xml.etree import ElementTree as et
+#from lxml import etree as et
 
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector
 
 class component(object):
   def __init__(self,name):
     self.type=name
-    self.name=name
+    self.name=name#
+    
+  @property
+  def xml(self):
+    root=et.Element("component")
+    root.set("type",self.type)
+    for vkey,vvalue in vars(self).items(): 
+      newelem=et.Element("property")
+      newelem.set("name",vkey)
+      newelem.set("value",unicode(vvalue))
+      root.append(newelem)
+    return root    
 
 class buildingblock(object):
   def __init__(self,name):

@@ -19,10 +19,12 @@ import odspy
 from odspy import ods2table
 import numpy as np
 import tableop as top
-import lxml.etree as et
-#import xml.etree.ElementTree as et
-#import xml.dom.minidom
+#from lxml import etree as et
+import xml.etree.ElementTree as et
+import xml.dom.minidom
+import xml
 import string
+import codecs
 
 helpstring="""
 Dieses Skript speichert den Bausteinkatalog im XML-Format
@@ -48,9 +50,25 @@ def strcomp(strconv):
   name=name.replace(",","")
   #name=name.translate((string.maketrans(" ","_").decode("utf-8")))
   return name
+
+def ibosslist2xml(name,instancelist):
+  root=et.Element(name)
+  for i in instancelist:
+    root.append(i.xml)
+  return root
+  
+def prettyprintxml(xmltree):
+  XML=et.tostring(xmltree,encoding="utf-8")
+  XML=xml.dom.minidom.parseString(XML)
+  return XML.toprettyxml()
+
+def savexml(filename,xml):
+  f=codecs.open(filename,"w",encoding="utf-8")
+  f.write(prettyprintxml(xml))
+  f.close()
   
 #"scheme" definiert das XMl Schema, scheme ist eine Liste, die dann hierarisch als "type" attribute angesetzt wird
-def dict2xml(scheme, table, TYPE=None):
+"""def dict2xml(scheme, table, TYPE=None):
   if scheme[0]!="": root=et.Element(strcomp(scheme[0]))
   else: root=et.Element(strcomp(TYPE))
   if TYPE and scheme[0]!="": root.set("type",TYPE)
@@ -88,16 +106,19 @@ def refmis2xml(table):
       newelem2.append(newelem3)
     newelem.append(newelem2)
     root.append(newelem)
-  return root
+  return root"""
 
-komponenten, bausteine, referenzmissionen=top.tablereorder()
+komponenten, bausteine, referenzmissionen=top.converttable()
 
-XML=dict2xml(["components","component"],komponenten)
-et.ElementTree(XML).write("bausteinkatalog/komponenten.xml",pretty_print = True,encoding="utf-8")
-XML=dict2xml(["cells","cell", "", "component"],bausteine)
-et.ElementTree(XML).write("bausteinkatalog/bausteine.xml",pretty_print = True,encoding="utf-8")
-XML=refmis2xml(referenzmissionen)
-et.ElementTree(XML).write("bausteinkatalog/referenzmissionen.xml",pretty_print = True,encoding="utf-8")
+XML=ibosslist2xml("components",komponenten.values())
+savexml("bausteinkatalog/komponenten.xml",XML)
+#lxml.etree.ElementTree(XML).write("bausteinkatalog/komponenten.xml",pretty_print = True,encoding="utf-8")
+#XML=dict2xml(["components","component"],komponenten)
+#et.ElementTree(XML).write("bausteinkatalog/komponenten.xml",pretty_print = True,encoding="utf-8")
+#XML=dict2xml(["cells","cell", "", "component"],bausteine)
+#et.ElementTree(XML).write("bausteinkatalog/bausteine.xml",pretty_print = True,encoding="utf-8")
+#XML=refmis2xml(referenzmissionen)
+#et.ElementTree(XML).write("bausteinkatalog/referenzmissionen.xml",pretty_print = True,encoding="utf-8")
 #pr=et.tostring(XML,encoding="utf-8", method="xml")
 #pr = xml.dom.minidom.parseString(pr)
 #pr = pr.toprettyxml()
