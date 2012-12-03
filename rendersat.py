@@ -41,17 +41,20 @@ for bs in mission.bb:
     #render forces
     if bs.name=="test Lageregelungsbaustein": 
         for co in bs.components:
-            if co["type"]=="testdüse": 
+            if co.type=="testdüse": 
                 #newar=arrow(newobj.location-Vector((0.2,0.2,0.2))+Vector(co["pos"])*0.4,Vector(co["th_vec"])*0.1,0.1)
-                newar=arrow(-Vector((0.2,0.2,0.2))+Vector(co["pos"])*0.4,Vector(co["th_vec"])*0.3,0.1)
-                newar.name="force: {}{}".format(co["pos"],co["th_vec"])
+                newar=arrow(-Vector((0.2,0.2,0.2))+Vector(co.pos)*0.4,Vector(co.th_vec)*0.3,0.1)
+                newar.name="force: {}{}".format(co.pos,co.th_vec)
                 newar.parent=newobj
 
 #render center of gravity:
 newobj=cpobj("cross")
+newobj.location=mission.com
+#print(mission.com)
             
  #render the result
+bpy.context.scene.render.use_edge_enhance=True
 bpy.ops.render.render()
 bpy.data.images['Render Result'].save_render("satellite.png")
     
-    
+#todo: render the COG together with a "forcemap"  and a "space of forces"/moments

@@ -75,7 +75,7 @@ def converttable():
     
     if line[1] in bausteine.keys():
       newbb=copy.copy(bausteine[line[1]])
-      referenzmissionen[line[0]].add_bb(bb=newbb,pos=line[2],rot=line[3])
+      referenzmissionen[line[0]].add_bb(bb=newbb,pos=str2vec(line[2]),rot=str2vec(line[3]))
      
   #Leerzeilen löschen
   referenzmissionen.pop(odspy.NULL)

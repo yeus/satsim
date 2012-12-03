@@ -47,7 +47,8 @@ satsize=vec(3,4,5)
 
 satgrid=np.ndarray(satsize, dtype=np.object)
 
-for pos in np.ndindex(*satsize):
+#todo orgin to middle of satellite: for pos in np.ndindex(*(satsize*(-0.5))):
+for pos in np.ndindex(*(satsize)):
   bb=copy.copy(choice(list(bausteine.values())))
   while(bb.type=="test Lageregelungsbaustein"):
     bb=copy.copy(choice(list(bausteine.values())))
@@ -73,4 +74,6 @@ def getmission():
   mission=iboss.mission("BSP_Mission")
   mission.bb=satgrid.flatten()
   return mission
-    
+
+if __name__ == "__main__":
+  mission=getmission()

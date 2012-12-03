@@ -16,20 +16,19 @@ import numpy as np
 
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector
 
-class component:
+class component(object):
   def __init__(self,name):
     self.type=name
     self.name=name
 
-class buildingblock:
+class buildingblock(object):
   def __init__(self,name):
     self.size=0.4 #0.4m
     self.name=name
     self.type=name
     self.components=[]
     self.mass=0
-    #relativ com
-    self.rcom=vec(0.5,0.5,0.5)
+    self.com=vec(0,0,0)*self.size
     
   def add_co(self,co,num=1):
     co.num=num
@@ -42,12 +41,14 @@ class buildingblock:
       self.mass+=co.mass
     return self.mass
 
-class mission:
+class mission(object):
   def __init__(self,name):
+    self.bbgap=0.1 #todo aus Tabelle abrufen
+    self.bbsize=0.4
     self.name=name
     self.mass=0
     self.type=name
-    self.bb=[]#list of building blocks
+    self._bb=[]#list of building blocks
   
   #adds a new building block to the satellite
   def add_bb(self,bb,pos,rot):
@@ -57,9 +58,21 @@ class mission:
     if "mass" in vars(bb): self.mass+=bb.mass
     self.bb.append(newbs)
     
-  #calculate Center og Gravity of a Mission
-  def updateCOM(self):
-    com=vec(0,0,0)
-    for bb in self.bb:
-      i.pos*i.mass      
-    return com
+  @property
+  def bb(self):
+    return self._bb
+  
+  @bb.setter
+  def bb(self,value):
+    self.mass=sum([bb.mass for bb in value])
+    self._bb=value
+  
+  @bb.deleter
+  def bb(self):
+    del self._bb
+    
+  #calculate Center of Gravity for a Mission
+  @property
+  def com(self):
+    self.__com=np.sum([(vec(*bb.pos)*(self.bbsize+self.bbgap))*bb.mass for bb in self.bb],axis=0)/self.mass  #2nd method
+    return self.__com
