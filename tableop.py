@@ -16,6 +16,8 @@ import numpy as np
 import iboss
 import copy
 
+nullvar=True
+
 #convert string to vector (python list)
 def str2vec(stringvec):
   return [float(i) for i in stringvec.split(",")]
@@ -42,6 +44,10 @@ def converttable():
         except ValueError:
           val=k[i+1]
         vars(newcomponent).update({bez:val}) #put new class attributes into class according to the table
+      elif nullvar: 
+        if bez=="mass": vars(newcomponent).update({bez:0})
+        else: vars(newcomponent).update({bez:odspy.NULL})
+        
     komponenten[newcomponent.name]=newcomponent
 
   #Organisierung der Bausteineigenschaften
@@ -53,12 +59,14 @@ def converttable():
     else: bs=bausteine[line[0]]
     
     #Zuordnung der Komponenten zu einzelnen Bausteinen
-    if odspy.NULL not in line[3:5]:
+    if odspy.NULL not in line[3]:
       newcomponent=copy.copy(komponenten[line[3]])
       if line[5]!=odspy.NULL: newcomponent.pos=str2vec(line[5])
+      elif nullvar: newcomponent.pos=odspy.NULL
       if line[6]!=odspy.NULL: newcomponent.th_vec=str2vec(line[6])
+      elif nullvar: newcomponent.th_vec=odspy.NULL
       #bausteine[line[0]]["Komponenten"].append(newcomponent)
-      bs.add_co(newcomponent,num=int(line[4]))
+      bs.add_co(newcomponent,num=int(line[4])) 
     #Zuordnung der restlichen Werte
     if odspy.NULL!=line[2]:
       bausteine[line[0]].Bemerkung=line[2]

@@ -1,335 +1,433 @@
-<cells>
-  <cell type="OBC/SMU-Baustein">
-    <Einsatzgebiet>GEO/LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Bausteinstruktur">1</component>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Datenschnittstelle">6</component>
-      <component type="mech. Schnittstelle">6</component>
-      <component type="Sonnensensor 1">3</component>
-      <component type="SMU">1</component>
-      <component type="elektr. Schnittstelle">48</component>
-      <component type="Versorgungsleitungen">48</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="TM&amp;TC-Baustein (S-Band; Transmitter+Receiver+SSPA)">
-    <Einsatzgebiet>GEO/LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Sonnensensor 1">3</component>
-      <component type="elektr. Schnittstelle">40</component>
-      <component type="Antenne">2</component>
-      <component type="SSPA">1</component>
-      <component type="Bausteinstruktur">1</component>
-      <component type="Versorgungsleitungen">40</component>
-      <component type="mech. Schnittstelle">5</component>
-      <component type="Receiver">1</component>
-      <component type="Datenschnittstelle">5</component>
-      <component type="Transmitter">1</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="GPS-Baustein (Standard)">
-    <Einsatzgebiet>GEO/LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Bausteinstruktur">1</component>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Datenschnittstelle">5</component>
-      <component type="mech. Schnittstelle">5</component>
-      <component type="Sonnensensor 1">3</component>
-      <component type="GNSS-Receiver 1">1</component>
-      <component type="elektr. Schnittstelle">40</component>
-      <component type="Versorgungsleitungen">40</component>
-      <component type="GPS-Antenne">1</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="Sternsensorbaustein">
-    <Einsatzgebiet>GEO/LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Bausteinstruktur">1</component>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Datenschnittstelle">3</component>
-      <component type="mech. Schnittstelle">3</component>
-      <component type="Sonnensensor 1">3</component>
-      <component type="elektr. Schnittstelle">24</component>
-      <component type="Sternsensor">1</component>
-      <component type="Versorgungsleitungen">24</component>
-    </Komponenten>
-    <Bemerkung>Sichtfeld je 20°</Bemerkung>
-  </cell>
-  <cell type="elektrischer Antriebs-Baustein">
-    <Einsatzgebiet>GEO/LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="FCU">1</component>
-      <component type="Sonnensensor 1">2</component>
-      <component type="elektr. Schnittstelle">104</component>
-      <component type="Hall Efffekt Triebwerk">1</component>
-      <component type="Bausteinstruktur">3</component>
-      <component type="Versorgungsleitungen">104</component>
-      <component type="mech. Schnittstelle">13</component>
-      <component type="Tank 1">1</component>
-      <component type="Datenschnittstelle">13</component>
-      <component type="PSCU">1</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="Magnetorquer-Baustein">
-    <Einsatzgebiet>LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Magnetometer">1</component>
-      <component type="Bausteinstruktur">1</component>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Datenschnittstelle">5</component>
-      <component type="Magnetorquer">3</component>
-      <component type="Sonnensensor 1">3</component>
-      <component type="mech. Schnittstelle">5</component>
-      <component type="elektr. Schnittstelle">40</component>
-      <component type="Versorgungsleitungen">40</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="GPS-Baustein (GPS und GLONASS)">
-    <Einsatzgebiet>LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Bausteinstruktur">1</component>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Datenschnittstelle">5</component>
-      <component type="mech. Schnittstelle">5</component>
-      <component type="Sonnensensor 1">3</component>
-      <component type="elektr. Schnittstelle">40</component>
-      <component type="Versorgungsleitungen">40</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="Inertial Measurement Unit Baustein (Standard)">
-    <Einsatzgebiet>LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Bausteinstruktur">1</component>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Datenschnittstelle">6</component>
-      <component type="mech. Schnittstelle">6</component>
-      <component type="Sonnensensor 1">3</component>
-      <component type="elektr. Schnittstelle">48</component>
-      <component type="Versorgungsleitungen">48</component>
-      <component type="IMU (Standard)">1</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="TM&amp;TC-Baustein (S-Band; Transponder+SSPA)">
-    <Einsatzgebiet>GEO/LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Bausteinstruktur">1</component>
-      <component type="Antenne">2</component>
-      <component type="Versorgungsleitungen">40</component>
-      <component type="Datenschnittstelle">5</component>
-      <component type="mech. Schnittstelle">5</component>
-      <component type="Sonnensensor 1">3</component>
-      <component type="elektr. Schnittstelle">40</component>
-      <component type="SSPA">1</component>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Transponder">1</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="Reaktionsradbaustein">
-    <Einsatzgebiet>GEO/LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Bausteinstruktur">1</component>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Versorgungsleitungen">48</component>
-      <component type="Datenschnittstelle">6</component>
-      <component type="mech. Schnittstelle">6</component>
-      <component type="Sonnensensor 1">3</component>
-      <component type="elektr. Schnittstelle">48</component>
-      <component type="Reaktionsrad">1</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="Solargeneratorbaustein (entfaltbar)">
-    <Einsatzgebiet>LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Sonnensensor 2">1</component>
-      <component type="Datenschnittstelle">1</component>
-      <component type="elektr. Schnittstelle">8</component>
-      <component type="zentrale Solarfläche">1</component>
-      <component type="Versorgungsleitungen">8</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="Inertial Measurement Unit Baustein (sehr genau)">
-    <Einsatzgebiet>LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Bausteinstruktur">2</component>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Datenschnittstelle">10</component>
-      <component type="mech. Schnittstelle">10</component>
-      <component type="Sonnensensor 1">3</component>
-      <component type="elektr. Schnittstelle">80</component>
-      <component type="IMU (sehr genau)">1</component>
-      <component type="Versorgungsleitungen">80</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="test Lageregelungsbaustein">
-    <Einsatzgebiet>GEO/LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="testdüse">1</component>
-      <component type="Bausteinstruktur">1</component>
-      <component type="Versorgungsleitungen">40</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="Batteriebaustein">
-    <Einsatzgebiet>GEO/LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Bausteinstruktur">1</component>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Datenschnittstelle">6</component>
-      <component type="Sonnensensor 1">3</component>
-      <component type="Li-Ion-Batterie">20</component>
-      <component type="mech. Schnittstelle">6</component>
-      <component type="elektr. Schnittstelle">48</component>
-      <component type="Versorgungsleitungen">48</component>
-      <component type="Batteriekontrolle">1</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="Solargeneratorbaustein (entfaltbar, nachführbar)">
-    <Einsatzgebiet>LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="SADA">1</component>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Datenschnittstelle">6</component>
-      <component type="mech. Schnittstelle">6</component>
-      <component type="Sonnensensor 1">2</component>
-      <component type="Bausteinstruktur">1</component>
-      <component type="elektr. Schnittstelle">48</component>
-      <component type="entfalt. Solarflächen 2">5</component>
-      <component type="Versorgungsleitungen">48</component>
-      <component type="entfalt. Elektronik">1</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)">
-    <Einsatzgebiet>GEO/LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Transceiver">1</component>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Versorgungsleitungen">40</component>
-      <component type="Datenschnittstelle">5</component>
-      <component type="mech. Schnittstelle">5</component>
-      <component type="Sonnensensor 1">3</component>
-      <component type="Bausteinstruktur">1</component>
-      <component type="elektr. Schnittstelle">40</component>
-      <component type="Antenne">1</component>
-      <component type="SSPA">1</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="PCU-Baustein">
-    <Einsatzgebiet>GEO/LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Bausteinstruktur">1</component>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Datenschnittstelle">6</component>
-      <component type="mech. Schnittstelle">6</component>
-      <component type="Sonnensensor 1">3</component>
-      <component type="elektr. Schnittstelle">48</component>
-      <component type="Versorgungsleitungen">48</component>
-      <component type="PCU">1</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)">
-    <Einsatzgebiet>GEO/LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Bausteinstruktur">2</component>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Tank 2">1</component>
-      <component type="mech. Schnittstelle">9</component>
-      <component type="Sonnensensor 1">2</component>
-      <component type="Monopropell.System">1</component>
-      <component type="elektr. Schnittstelle">72</component>
-      <component type="Versorgungsleitungen">72</component>
-      <component type="Datenschnittstelle">5</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="Drallradbaustein">
-    <Einsatzgebiet>GEO/LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Bausteinstruktur">1</component>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Datenschnittstelle">6</component>
-      <component type="Drallrad (inkl.Elektro.)">1</component>
-      <component type="Sonnensensor 1">3</component>
-      <component type="mech. Schnittstelle">6</component>
-      <component type="elektr. Schnittstelle">48</component>
-      <component type="Versorgungsleitungen">48</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="Kaltgasantriebs-Baustein 1">
-    <Einsatzgebiet>GEO/LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Bausteinstruktur">2</component>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Kaltgasantriebssyst.">1</component>
-      <component type="mech. Schnittstelle">9</component>
-      <component type="Sonnensensor 1">2</component>
-      <component type="Tank 1">1</component>
-      <component type="elektr. Schnittstelle">72</component>
-      <component type="Versorgungsleitungen">72</component>
-      <component type="Datenschnittstelle">5</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="Kaltgasantriebs-Baustein 2">
-    <Einsatzgebiet>GEO/LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Bausteinstruktur">2</component>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Kaltgasantriebssyst.">1</component>
-      <component type="Sonnensensor 2">2</component>
-      <component type="mech. Schnittstelle">9</component>
-      <component type="Tank 1">1</component>
-      <component type="elektr. Schnittstelle">72</component>
-      <component type="Versorgungsleitungen">72</component>
-      <component type="Datenschnittstelle">5</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="Control Momentum Gyroscope Baustein">
-    <Einsatzgebiet>GEO/LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Bausteinstruktur">2</component>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Datenschnittstelle">10</component>
-      <component type="mech. Schnittstelle">10</component>
-      <component type="Sonnensensor 1">3</component>
-      <component type="CMG-Electronics">1</component>
-      <component type="CMG">2</component>
-      <component type="elektr. Schnittstelle">80</component>
-      <component type="Versorgungsleitungen">80</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-  <cell type="Erdsensor-Baustein">
-    <Einsatzgebiet>LEO</Einsatzgebiet>
-    <Komponenten>
-      <component type="Bausteinstruktur">1</component>
-      <component type="Hardware-Stack 1">3</component>
-      <component type="Datenschnittstelle">5</component>
-      <component type="mech. Schnittstelle">5</component>
-      <component type="Sonnensensor 1">3</component>
-      <component type="elektr. Schnittstelle">40</component>
-      <component type="Erdsensor 2">1</component>
-      <component type="Versorgungsleitungen">40</component>
-    </Komponenten>
-    <Bemerkung>0</Bemerkung>
-  </cell>
-</cells>
+<?xml version="1.0" ?>
+<bausteine>
+	<buildingblock type="OBC/SMU-Baustein">
+		<property name="name" value="OBC/SMU-Baustein"/>
+		<property name="type" value="OBC/SMU-Baustein"/>
+		<property name="Einsatzgebiet" value="GEO/LEO"/>
+		<property name="mass" value="21.09"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 1"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="SMU"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="TM&amp;TC-Baustein (S-Band; Transmitter+Receiver+SSPA)">
+		<property name="name" value="TM&amp;TC-Baustein (S-Band; Transmitter+Receiver+SSPA)"/>
+		<property name="type" value="TM&amp;TC-Baustein (S-Band; Transmitter+Receiver+SSPA)"/>
+		<property name="Einsatzgebiet" value="GEO/LEO"/>
+		<property name="mass" value="15.11"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Antenne"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 1"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="SSPA"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Receiver"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Transmitter"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="GPS-Baustein (Standard)">
+		<property name="name" value="GPS-Baustein (Standard)"/>
+		<property name="type" value="GPS-Baustein (Standard)"/>
+		<property name="Einsatzgebiet" value="GEO/LEO"/>
+		<property name="mass" value="14.85"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 1"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="GNSS-Receiver 1"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="GPS-Antenne"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="Sternsensorbaustein">
+		<property name="name" value="Sternsensorbaustein"/>
+		<property name="type" value="Sternsensorbaustein"/>
+		<property name="Bemerkung" value="Sichtfeld je 20°"/>
+		<property name="Einsatzgebiet" value="GEO/LEO"/>
+		<property name="mass" value="9.42"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 1"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Sternsensor"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="elektrischer Antriebs-Baustein">
+		<property name="name" value="elektrischer Antriebs-Baustein"/>
+		<property name="type" value="elektrischer Antriebs-Baustein"/>
+		<property name="Einsatzgebiet" value="GEO/LEO"/>
+		<property name="mass" value="106.27"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="FCU"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 1"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Hall Efffekt Triebwerk"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Tank 1"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="PSCU"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="Magnetorquer-Baustein">
+		<property name="name" value="Magnetorquer-Baustein"/>
+		<property name="type" value="Magnetorquer-Baustein"/>
+		<property name="Einsatzgebiet" value="LEO"/>
+		<property name="mass" value="24.2"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Magnetometer"/>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="Magnetorquer"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 1"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="GPS-Baustein (GPS und GLONASS)">
+		<property name="name" value="GPS-Baustein (GPS und GLONASS)"/>
+		<property name="type" value="GPS-Baustein (GPS und GLONASS)"/>
+		<property name="Einsatzgebiet" value="LEO"/>
+		<property name="mass" value="10.2"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 1"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="Inertial Measurement Unit Baustein (Standard)">
+		<property name="name" value="Inertial Measurement Unit Baustein (Standard)"/>
+		<property name="type" value="Inertial Measurement Unit Baustein (Standard)"/>
+		<property name="Einsatzgebiet" value="LEO"/>
+		<property name="mass" value="15.79"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 1"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="IMU (Standard)"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="TM&amp;TC-Baustein (S-Band; Transponder+SSPA)">
+		<property name="name" value="TM&amp;TC-Baustein (S-Band; Transponder+SSPA)"/>
+		<property name="type" value="TM&amp;TC-Baustein (S-Band; Transponder+SSPA)"/>
+		<property name="Einsatzgebiet" value="GEO/LEO"/>
+		<property name="mass" value="15.31"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Antenne"/>
+			<component pos="N.A." th_vec="N.A." type="Transponder"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 1"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="SSPA"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="Reaktionsradbaustein">
+		<property name="name" value="Reaktionsradbaustein"/>
+		<property name="type" value="Reaktionsradbaustein"/>
+		<property name="Einsatzgebiet" value="GEO/LEO"/>
+		<property name="mass" value="28.09"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 1"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Reaktionsrad"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="Solargeneratorbaustein (entfaltbar)">
+		<property name="name" value="Solargeneratorbaustein (entfaltbar)"/>
+		<property name="type" value="Solargeneratorbaustein (entfaltbar)"/>
+		<property name="Einsatzgebiet" value="LEO"/>
+		<property name="mass" value="5.14"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 2"/>
+			<component pos="N.A." th_vec="N.A." type="zentrale Solarfläche"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="Inertial Measurement Unit Baustein (sehr genau)">
+		<property name="name" value="Inertial Measurement Unit Baustein (sehr genau)"/>
+		<property name="type" value="Inertial Measurement Unit Baustein (sehr genau)"/>
+		<property name="Einsatzgebiet" value="LEO"/>
+		<property name="mass" value="29.65"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 1"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="IMU (sehr genau)"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="test Lageregelungsbaustein">
+		<property name="name" value="test Lageregelungsbaustein"/>
+		<property name="type" value="test Lageregelungsbaustein"/>
+		<property name="Einsatzgebiet" value="GEO/LEO"/>
+		<property name="mass" value="4.1"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="[0.5, 0.0, 1.0]" th_vec="[0.5, 0.0, 1.0]" type="testdüse"/>
+			<component pos="[1.0, 0.5, 1.0]" th_vec="[1.0, 0.5, 1.0]" type="testdüse"/>
+			<component pos="[0.5, 1.0, 1.0]" th_vec="[0.5, 1.0, 1.0]" type="testdüse"/>
+			<component pos="[0.0, 0.5, 1.0]" th_vec="[0.0, 0.5, 1.0]" type="testdüse"/>
+			<component pos="[0.5, 0.5, 1.0]" th_vec="[0.5, 0.5, 1.0]" type="testdüse"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="Batteriebaustein">
+		<property name="name" value="Batteriebaustein"/>
+		<property name="type" value="Batteriebaustein"/>
+		<property name="Einsatzgebiet" value="GEO/LEO"/>
+		<property name="mass" value="33.79"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 1"/>
+			<component pos="N.A." th_vec="N.A." type="Li-Ion-Batterie"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Batteriekontrolle"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="Solargeneratorbaustein (entfaltbar, nachführbar)">
+		<property name="name" value="Solargeneratorbaustein (entfaltbar, nachführbar)"/>
+		<property name="type" value="Solargeneratorbaustein (entfaltbar, nachführbar)"/>
+		<property name="Einsatzgebiet" value="LEO"/>
+		<property name="mass" value="62.14"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="SADA"/>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 1"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="entfalt. Solarflächen 2"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="entfalt. Elektronik"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)">
+		<property name="name" value="TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)"/>
+		<property name="type" value="TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)"/>
+		<property name="Einsatzgebiet" value="GEO/LEO"/>
+		<property name="mass" value="13.53"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Antenne"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 1"/>
+			<component pos="N.A." th_vec="N.A." type="Transceiver"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="SSPA"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="PCU-Baustein">
+		<property name="name" value="PCU-Baustein"/>
+		<property name="type" value="PCU-Baustein"/>
+		<property name="Einsatzgebiet" value="GEO/LEO"/>
+		<property name="mass" value="36.59"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 1"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="PCU"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)">
+		<property name="name" value="Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)"/>
+		<property name="type" value="Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)"/>
+		<property name="Einsatzgebiet" value="GEO/LEO"/>
+		<property name="mass" value="85.21"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 1"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="Tank 2"/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Monopropell.System"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="Drallradbaustein">
+		<property name="name" value="Drallradbaustein"/>
+		<property name="type" value="Drallradbaustein"/>
+		<property name="Einsatzgebiet" value="GEO/LEO"/>
+		<property name="mass" value="28.09"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 1"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="Drallrad (inkl.Elektro.)"/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="Kaltgasantriebs-Baustein 1">
+		<property name="name" value="Kaltgasantriebs-Baustein 1"/>
+		<property name="type" value="Kaltgasantriebs-Baustein 1"/>
+		<property name="Einsatzgebiet" value="GEO/LEO"/>
+		<property name="mass" value="77.21"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 1"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="Kaltgasantriebssyst."/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Tank 1"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="Kaltgasantriebs-Baustein 2">
+		<property name="name" value="Kaltgasantriebs-Baustein 2"/>
+		<property name="type" value="Kaltgasantriebs-Baustein 2"/>
+		<property name="Einsatzgebiet" value="GEO/LEO"/>
+		<property name="mass" value="77.91"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 2"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="Kaltgasantriebssyst."/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Tank 1"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="Control Momentum Gyroscope Baustein">
+		<property name="name" value="Control Momentum Gyroscope Baustein"/>
+		<property name="type" value="Control Momentum Gyroscope Baustein"/>
+		<property name="Einsatzgebiet" value="GEO/LEO"/>
+		<property name="mass" value="53.75"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 1"/>
+			<component pos="N.A." th_vec="N.A." type="CMG"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="CMG-Electronics"/>
+		</components>
+	</buildingblock>
+	<buildingblock type="Erdsensor-Baustein">
+		<property name="name" value="Erdsensor-Baustein"/>
+		<property name="type" value="Erdsensor-Baustein"/>
+		<property name="Einsatzgebiet" value="LEO"/>
+		<property name="mass" value="13.7"/>
+		<property name="com" value="[ 0.  0.  0.]"/>
+		<property name="size" value="0.4"/>
+		<components>
+			<component pos="N.A." th_vec="N.A." type="Hardware-Stack 1"/>
+			<component pos="N.A." th_vec="N.A." type="Sonnensensor 1"/>
+			<component pos="N.A." th_vec="N.A." type="elektr. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Bausteinstruktur"/>
+			<component pos="N.A." th_vec="N.A." type="Versorgungsleitungen"/>
+			<component pos="N.A." th_vec="N.A." type="mech. Schnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Datenschnittstelle"/>
+			<component pos="N.A." th_vec="N.A." type="Erdsensor 2"/>
+		</components>
+	</buildingblock>
+</bausteine>
