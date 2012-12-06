@@ -57,9 +57,9 @@ komponenten, bausteine, referenzmissionen=top.converttable()
 
 XML=ibosslist2xml("components",komponenten.values())
 savexml("bausteinkatalog/komponenten.xml",XML)
-XML=ibosslist2xml("bausteine",bausteine.values())
+XML=ibosslist2xml("buildingblocks",bausteine.values())
 savexml("bausteinkatalog/bausteine.xml",XML)
-XML=ibosslist2xml("missionen",referenzmissionen.values())
+XML=ibosslist2xml("missions",referenzmissionen.values())
 savexml("bausteinkatalog/missionen.xml",XML)
 
 """def main(argv=None):

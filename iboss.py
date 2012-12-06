@@ -61,6 +61,7 @@ class buildingblock(ibossxml):
       newelem=et.Element("component")
       newelem.set("type",co.type)
       newelem.set("pos", str(co.pos))
+      newelem.set("rot", str(co.pos))
       newelem.set("th_vec", str(co.pos))
       root.append(newelem)
     return root #so the list gets serialized in xml"""

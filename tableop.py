@@ -16,7 +16,9 @@ import numpy as np
 import iboss
 import copy
 
-nullvar=True
+vec= lambda x,y,z: np.array([x,y,z])  #create a vector
+
+nullvar=False
 
 #convert string to vector (python list)
 def str2vec(stringvec):
@@ -63,8 +65,9 @@ def converttable():
       newcomponent=copy.copy(komponenten[line[3]])
       if line[5]!=odspy.NULL: newcomponent.pos=str2vec(line[5])
       elif nullvar: newcomponent.pos=odspy.NULL
-      if line[6]!=odspy.NULL: newcomponent.th_vec=str2vec(line[6])
+      if line[7]!=odspy.NULL: newcomponent.th_vec=str2vec(line[7])
       elif nullvar: newcomponent.th_vec=odspy.NULL
+      newcomponent.rot=vec(0,0,0)
       #bausteine[line[0]]["Komponenten"].append(newcomponent)
       bs.add_co(newcomponent,num=int(line[4])) 
     #Zuordnung der restlichen Werte

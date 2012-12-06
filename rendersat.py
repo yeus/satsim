@@ -28,7 +28,7 @@ mission=optsat.getmission()
 #select layer to put the satellite into:
 bpy.data.scenes['Scene'].layers=[False]*19+[True]
 
-#render satellit 
+#render satellit with forces
 mode=".transparent"  #transparent render
 for bs in mission.bb:
     if bs.name=="test Lageregelungsbaustein": newobj=cpobj("düsenbaustein"+mode)
@@ -43,7 +43,7 @@ for bs in mission.bb:
         for co in bs.components:
             if co.type=="testdüse": 
                 #newar=arrow(newobj.location-Vector((0.2,0.2,0.2))+Vector(co["pos"])*0.4,Vector(co["th_vec"])*0.1,0.1)
-                newar=arrow(-Vector((0.2,0.2,0.2))+Vector(co.pos)*0.4,Vector(co.th_vec)*0.3,0.1)
+                newar=arrow(-Vector((0.2,0.2,0.2))+Vector(co.pos)*0.4,Vector(co.th_vec).normalized()*0.3,0.1)
                 newar.name="force: {}{}".format(co.pos,co.th_vec)
                 newar.parent=newobj
 
