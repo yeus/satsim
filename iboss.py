@@ -102,6 +102,7 @@ class mission(ibossxml):
     newbs=copy(bb)
     newbs.pos=pos
     newbs.rot=rot
+    newbs.name=newbs.type
     if "mass" in vars(bb): self.mass+=bb.mass
     self.bb.append(newbs)
     

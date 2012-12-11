@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<missionen>
+<missions>
 	<mission type="GEObsp2">
 		<property name="name" value="GEObsp2"/>
 		<property name="orbparam" value="N.A."/>
@@ -8,12 +8,12 @@
 		<property name="bbgap" value="0.1"/>
 		<property name="type" value="GEObsp2"/>
 		<buildingblocks>
-			<buildingblock pos="[0.0, 0.0, 0.0]" rot="[90.0, 0.0, 0.0]" type="Drallradbaustein"/>
-			<buildingblock pos="[0.0, 0.0, 1.0]" rot="[0.0, 0.0, 0.0]" type="Drallradbaustein"/>
-			<buildingblock pos="[0.0, 0.0, 2.0]" rot="[0.0, 90.0, 0.0]" type="Solargeneratorbaustein (entfaltbar, nachführbar)"/>
-			<buildingblock pos="[1.0, 0.0, 0.0]" rot="[0.0, 0.0, 0.0]" type="Solargeneratorbaustein (entfaltbar, nachführbar)"/>
-			<buildingblock pos="[1.0, 0.0, 1.0]" rot="[0.0, 0.0, 0.0]" type="elektrischer Antriebs-Baustein"/>
-			<buildingblock pos="[1.0, 0.0, 2.0]" rot="[0.0, 0.0, 90.0]" type="elektrischer Antriebs-Baustein"/>
+                  <buildingblock pos="0.0, 0.0, 0.0" rot="90.0, 0.0, 0.0" type="Drallradbaustein" name="Drallradbaustein1"/>
+                  <buildingblock pos="0.0, 0.0, 1.0" rot="0.0, 0.0, 0.0" type="Drallradbaustein" name="Drallradbaustein2"/>
+                  <buildingblock pos="0.0, 0.0, 2.0" rot="0.0, 90.0, 0.0" type="Solargeneratorbaustein (entfaltbar, nachführbar)" name="Solargeneratorbaustein (entfaltbar, nachführbar)1"/>
+                  <buildingblock pos="1.0, 0.0, 0.0" rot="0.0, 0.0, 0.0" type="Solargeneratorbaustein (entfaltbar, nachführbar)" name="Solargeneratorbaustein (entfaltbar, nachführbar)2"/>
+                  <buildingblock pos="1.0, 0.0, 1.0" rot="0.0, 0.0, 0.0" type="elektrischer Antriebs-Baustein" name="elektrischer Antriebs-Baustein1"/>
+                  <buildingblock pos="1.0, 0.0, 2.0" rot="0.0, 0.0, 90.0" type="elektrischer Antriebs-Baustein" name="elektrischer Antriebs-Baustein2"/>
 		</buildingblocks>
 	</mission>
 	<mission type="GEObsp">
@@ -24,12 +24,12 @@
 		<property name="bbgap" value="0.1"/>
 		<property name="type" value="GEObsp"/>
 		<buildingblocks>
-			<buildingblock pos="[0.0, 0.0, 0.0]" rot="[90.0, 0.0, 0.0]" type="Drallradbaustein"/>
-			<buildingblock pos="[0.0, 0.0, 1.0]" rot="[0.0, 0.0, 0.0]" type="elektrischer Antriebs-Baustein"/>
-			<buildingblock pos="[0.0, 0.0, 2.0]" rot="[0.0, 90.0, 0.0]" type="elektrischer Antriebs-Baustein"/>
-			<buildingblock pos="[1.0, 0.0, 0.0]" rot="[0.0, 0.0, 0.0]" type="Solargeneratorbaustein (entfaltbar, nachführbar)"/>
-			<buildingblock pos="[1.0, 0.0, 1.0]" rot="[0.0, 0.0, 0.0]" type="Solargeneratorbaustein (entfaltbar, nachführbar)"/>
-			<buildingblock pos="[1.0, 0.0, 2.0]" rot="[0.0, 0.0, 90.0]" type="elektrischer Antriebs-Baustein"/>
+                  <buildingblock pos="0.0, 0.0, 0.0" rot="90.0, 0.0, 0.0" type="Drallradbaustein" name="Drallradbaustein1"/>
+                  <buildingblock pos="0.0, 0.0, 1.0" rot="0.0, 0.0, 0.0" type="elektrischer Antriebs-Baustein" name="elektrischer Antriebs-Baustein1"/>
+                  <buildingblock pos="0.0, 0.0, 2.0" rot="0.0, 90.0, 0.0" type="elektrischer Antriebs-Baustein" name="elektrischer Antriebs-Baustein2"/>
+                        <buildingblock pos="1.0, 0.0, 0.0" rot="0.0, 0.0, 0.0" type="Solargeneratorbaustein (entfaltbar, nachführbar)" name="Solargeneratorbaustein (entfaltbar, nachführbar)1"/>
+                        <buildingblock pos="1.0, 0.0, 1.0" rot="0.0, 0.0, 0.0" type="Solargeneratorbaustein (entfaltbar, nachführbar)" name="Solargeneratorbaustein (entfaltbar, nachführbar)2"/>
+                        <buildingblock pos="1.0, 0.0, 2.0" rot="0.0, 0.0, 90.0" type="elektrischer Antriebs-Baustein" name="elektrischer Antriebs-Baustein3"/>
 		</buildingblocks>
 	</mission>
-</missionen>
+</missions>
