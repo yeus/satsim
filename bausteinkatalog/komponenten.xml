@@ -1,57 +1,1797 @@
 <?xml version="1.0" ?>
 <components>
 	<component type="thermale Schnittstelle">
-		<property name="Wärmeleitfähigkeit" value="N.A."/>
-		<property name="Schaltbar" value="N.A."/>
-		<property name="Wärmekapazität" value="N.A."/>
-		<property name="mean power" value="N.A."/>
-		<property name="epsilon" value="N.A."/>
-		<property name="N.A." value="N.A."/>
-		<property name="height" value="N.A."/>
-		<property name="Dichte" value="N.A."/>
-		<property name="alpha" value="N.A."/>
-		<property name="vertr. Strahlung" value="N.A."/>
-		<property name="Impulsbit" value="N.A."/>
-		<property name="Drehmoment" value="N.A."/>
-		<property name="min. therm. Anford." value="N.A."/>
-		<property name="max. therm. Anford." value="N.A."/>
-		<property name="name" value="thermale Schnittstelle"/>
-		<property name="Bemerkungen" value="N.A."/>
-		<property name="length" value="N.A."/>
-		<property name="width" value="N.A."/>
-		<property name="Schub" value="N.A."/>
-		<property name="mass" value="0"/>
-		<property name="max_power" value="N.A."/>
-		<property name="notw. Öffnungen" value="N.A."/>
-		<property name="Oberflächenrauigkeit" value="N.A."/>
-		<property name="type" value="thermale Schnittstelle"/>
-		<property name="spez. Impuls" value="N.A."/>
+		<property>
+			<name>name</name>
+			<value>thermale Schnittstelle</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>thermale Schnittstelle</value>
+		</property>
 	</component>
 	<component type="CMG">
-		<property name="Wärmeleitfähigkeit" value="N.A."/>
-		<property name="Schaltbar" value="N.A."/>
-		<property name="Wärmekapazität" value="N.A."/>
-		<property name="mean power" value="N.A."/>
-		<property name="epsilon" value="N.A."/>
-		<property name="N.A." value="N.A."/>
-		<property name="height" value="270.0"/>
-		<property name="Dichte" value="N.A."/>
-		<property name="alpha" value="N.A."/>
-		<property name="vertr. Strahlung" value="N.A."/>
-		<property name="Impulsbit" value="N.A."/>
-		<property name="Drehmoment" value="N.A."/>
-		<property name="min. therm. Anford." value="-20.0"/>
-		<property name="max. therm. Anford." value="55.0"/>
-		<property name="name" value="CMG"/>
-		<property name="Bemerkungen" value="idealisiert nach Astrium CMG 15-45S; Drehimpuls 15 Nms, Moment 45Nm; Genauigkeit &lt;10mrad Drehimpulsstabilität &lt;0,03%, einzeln für RFS bis 1000kg bei 3°/s"/>
-		<property name="length" value="350.0"/>
-		<property name="width" value="270.0"/>
-		<property name="Schub" value="N.A."/>
-		<property name="mass" value="15.7"/>
-		<property name="max_power" value="25.0"/>
-		<property name="notw. Öffnungen" value="0.0"/>
-		<property name="Oberflächenrauigkeit" value="N.A."/>
-		<property name="type" value="CMG"/>
-		<property name="spez. Impuls" value="N.A."/>
+		<property unit="mm">
+			<name>height</name>
+			<value>270.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-20.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>CMG</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>55.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>350.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>270.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>15.7</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>25.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>CMG</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach Astrium CMG 15-45S; Drehimpuls 15 Nms, Moment 45Nm; Genauigkeit &lt;10mrad Drehimpulsstabilität &lt;0,03%, einzeln für RFS bis 1000kg bei 3°/s</value>
+		</property>
+	</component>
+	<component type="elektr. Schnittstelle">
+		<property>
+			<name>name</name>
+			<value>elektr. Schnittstelle</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>0.04</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>elektr. Schnittstelle</value>
+		</property>
+	</component>
+	<component type="entfalt. Solarflächen 2">
+		<property unit="mm">
+			<name>height</name>
+			<value>30.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>entfalt. Solarflächen 2</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>1750.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>1750.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>8.0</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>800.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>entfalt. Solarflächen 2</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>Solarzellen: GaAS-Multijunction (240W/m², 80W/kg, EOL); Anzahl der entfalt. Solarflächen variabel (abh. von max. Last) </value>
+		</property>
+	</component>
+	<component type="Antenne">
+		<property unit="mm">
+			<name>height</name>
+			<value>20.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-20.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Antenne</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>1.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>50.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>82.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>82.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>0.08</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>10.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Antenne</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach Surrey Satellite Technology Ltd. S-Band Patch Antenna; ggf. gegen andere Antenne austauschbar</value>
+		</property>
+	</component>
+	<component type="entfalt. Solarflächen 1">
+		<property unit="mm">
+			<name>height</name>
+			<value>30.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>entfalt. Solarflächen 1</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>1200.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>595.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>2.4</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>175.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>entfalt. Solarflächen 1</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>Solarzellen: GaAS-Multijunction (240W/m², 80W/kg, EOL); Anzahl der entfalt. Solarflächen variabel (abh. von max. Last), Länge ent-spricht i.M. einem </value>
+		</property>
+	</component>
+	<component type="Tank 2">
+		<property unit="mm">
+			<name>height</name>
+			<value>350.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Tank 2</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>2.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>691.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>350.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>52.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Tank 2</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>Tank idealisiert nach VEGA AVUM Gas Tank (ATK-Space Systems Inc.), Blow Down System, Leertankmasse ca. 22 kg, Treibstoffmasse ca. 30 kg (MMH, Anfangsdruck 25 bar), Tank ist in der Länge variabel</value>
+		</property>
+	</component>
+	<component type="Drallrad (inkl.Elektro.)">
+		<property unit="mm">
+			<name>height</name>
+			<value>150.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-40.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Drallrad (inkl.Elektro.)</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>70.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>300.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>300.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>16.5</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>300.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Drallrad (inkl.Elektro.)</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach Rockwell Collins Deutschland (TELDIX) MWI; max. Drehimpuls 100Nms; max. RFS-Masse 5000kg; auch als Reaktionsrad nutzbar</value>
+		</property>
+	</component>
+	<component type="Tank 1">
+		<property unit="mm">
+			<name>height</name>
+			<value>350.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Tank 1</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>1.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>700.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>350.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>44.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Tank 1</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>Tank idealisiert nach VEGA AVUM Gas Tank (ATK-Space Systems Inc.), Arbeitsdruck 310 bar, Blow Down System, Leertankmasse ca. 22 kg, Gasmasse ca. 22 kg, Tank ist in der Länge variabel</value>
+		</property>
+	</component>
+	<component type="Datenschnittstelle">
+		<property>
+			<name>name</name>
+			<value>Datenschnittstelle</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Datenschnittstelle</value>
+		</property>
+	</component>
+	<component type="PSCU">
+		<property unit="mm">
+			<name>height</name>
+			<value>350.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>PSCU</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>190.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>350.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>18.0</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>5000.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>PSCU</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert und verkleinert nach Alcatel </value>
+		</property>
+	</component>
+	<component type="Erdsensor 2">
+		<property unit="mm">
+			<name>height</name>
+			<value>175.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-20.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Erdsensor 2</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>1.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>50.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>390.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>210.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>3.5</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>8.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Erdsensor 2</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach EADS-Sodern STD 16 Earth Sensor; Ausrichtung 0,06° (bias), Rauschen 0,042° (noise); Orbitbereich 300 – 6000km</value>
+		</property>
+	</component>
+	<component type="Erdsensor 1">
+		<property unit="mm">
+			<name>height</name>
+			<value>170.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-25.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Erdsensor 1</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>1.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>55.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>210.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>210.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>3.5</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>7.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Erdsensor 1</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach EADS-Sodern STD 15 Earth Sensor; Ausrichtung 0,035° (bias), Rauschen 0,015° (noise); Orbitbereich 15000 – 140000km; ggf. Strahlungsschutz notwendig</value>
+		</property>
+	</component>
+	<component type="Magnetometer">
+		<property unit="mm">
+			<name>height</name>
+			<value>120.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-55.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Magnetometer</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>1.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>85.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>350.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>120.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>2.0</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>25.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Magnetometer</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach SpaceQuest Ltd. MAG-3; Magnetometer ist auf einem ausfahrbaren Ausleger montiert (24 W für Ausleger angenommen)</value>
+		</property>
+	</component>
+	<component type="FCU">
+		<property unit="mm">
+			<name>height</name>
+			<value>120.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>FCU</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>410.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>295.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>6.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>FCU</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>Flow Control Unit idealisiert mit High- und Low-Pressure Proportional Valve sowie Silicon Mass Flow Sensor (Thales), High Pressure Latch Valve (Marotta), Pressure Transducer, Gas Pressure Filter und Gas Fill and Drain Valve (RTG), Heizsystem noch unberücksichtigt</value>
+		</property>
+	</component>
+	<component type="testdüse">
+		<property unit="s*N">
+			<name>Impulsbit</name>
+			<value>0.01</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>testdüse</value>
+		</property>
+		<property unit="s">
+			<name>spez_impuls</name>
+			<value>220.0</value>
+		</property>
+		<property unit="N">
+			<name>Schub</name>
+			<value>1.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>testdüse</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>Testdüse zum testen von Algorithmen und programmen</value>
+		</property>
+	</component>
+	<component type="CMG-Electronics">
+		<property unit="mm">
+			<name>height</name>
+			<value>100.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-25.0</value>
+		</property>
+		<property unit="krad">
+			<name>rad_max</name>
+			<value>15.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>CMG-Electronics</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>60.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>300.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>300.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>2.7</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>CMG-Electronics</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert und verkleinert nach Astrium CMG 15-45S Elektronic; für 2 CMG; Strahlungs-schutz notwendig </value>
+		</property>
+	</component>
+	<component type="Transceiver">
+		<property unit="mm">
+			<name>height</name>
+			<value>87.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-20.0</value>
+		</property>
+		<property unit="krad">
+			<name>rad_max</name>
+			<value>20.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Transceiver</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>65.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>204.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>160.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>2.5</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>36.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Transceiver</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach General Dynamics Multi-Mode S-Band Transceiver; uplink max. 512kbps, noise figure &lt;2,5dB; down-link max. 6Mbps; Strahlungsschutz notwendig</value>
+		</property>
+	</component>
+	<component type="Versorgungsleitungen">
+		<property>
+			<name>name</name>
+			<value>Versorgungsleitungen</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>0.04</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Versorgungsleitungen</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>4 mm², pro Kontaktelement wird in der Vorauslegung ein Bedarf von 0,7 m Kabel angenommen (Vergleichskabelmasse: 0,05kg/m)</value>
+		</property>
+	</component>
+	<component type="GNSS-Receiver 2">
+		<property unit="mm">
+			<name>height</name>
+			<value>164.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-25.0</value>
+		</property>
+		<property unit="krad">
+			<name>rad_max</name>
+			<value>20.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>GNSS-Receiver 2</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>60.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>250.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>190.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>5.2</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>30.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>GNSS-Receiver 2</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach ThalesAlenia LAGRANGETM; Pos. 8m, Geschw. 0,1m/s, Zeit ±250ns; geeignet für L1 und L2</value>
+		</property>
+	</component>
+	<component type="mech. Schnittstelle">
+		<property>
+			<name>name</name>
+			<value>mech. Schnittstelle</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>0.75</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>mech. Schnittstelle</value>
+		</property>
+	</component>
+	<component type="GNSS-Receiver 1">
+		<property unit="mm">
+			<name>height</name>
+			<value>92.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-20.0</value>
+		</property>
+		<property unit="krad">
+			<name>rad_max</name>
+			<value>100.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>GNSS-Receiver 1</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>60.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>284.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>272.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>3.9</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>10.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>GNSS-Receiver 1</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach Astrium Mosaic GNSS Receiver; Pos. &lt;150m, Geschw. &lt;0,02m/s, Zeit &lt;750ns; geeignet für L1 C/A Code; ggf. Strahlungsschutz notwendig</value>
+		</property>
+	</component>
+	<component type="thermale Isolierung">
+		<property>
+			<name>name</name>
+			<value>thermale Isolierung</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>thermale Isolierung</value>
+		</property>
+	</component>
+	<component type="testdrallrad">
+		<property unit="m*N">
+			<name>Drehmoment</name>
+			<value>10.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>testdrallrad</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>testdrallrad</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>Testdüse zum testen von Algorithmen und programmen</value>
+		</property>
+	</component>
+	<component type="entfalt. Elektronik">
+		<property unit="mm">
+			<name>height</name>
+			<value>65.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>entfalt. Elektronik</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>180.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>160.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>2.0</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>50.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>entfalt. Elektronik</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach Astrium Actuator Alignment Electronic; ggf. zusätzlicher Strahlungsschutz notwendig</value>
+		</property>
+	</component>
+	<component type="Batteriekontrolle">
+		<property unit="mm">
+			<name>height</name>
+			<value>265.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Batteriekontrolle</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>250.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>53.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Batteriekontrolle</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>frei angepasst</value>
+		</property>
+	</component>
+	<component type="SMU">
+		<property unit="mm">
+			<name>height</name>
+			<value>260.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-25.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>SMU</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>60.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>290.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>280.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>9.5</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>25.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>SMU</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>Daten idealisiert nach ThalesAlenia SMU-V1; es wurde noch keine Aussage bezüglich zentrale oder dezentrale OBC/SMU getroffen </value>
+		</property>
+	</component>
+	<component type="SADA">
+		<property unit="mm">
+			<name>height</name>
+			<value>155.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>SADA</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>1.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>420.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>370.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>8.6</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>200.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>SADA</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach MOOG Type 55 Solar Array Drive Assembly </value>
+		</property>
+	</component>
+	<component type="Transmitter">
+		<property unit="mm">
+			<name>height</name>
+			<value>70.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Transmitter</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>180.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>170.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>2.1</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>30.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Transmitter</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach L-3 Communications T-710() Transmitter; downlink 1,6Mbps, RF output power &gt;3W; Strahlungs-schutz notwendig</value>
+		</property>
+	</component>
+	<component type="Strahlungsschutz">
+		<property>
+			<name>name</name>
+			<value>Strahlungsschutz</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Strahlungsschutz</value>
+		</property>
+	</component>
+	<component type="Magnetorquer">
+		<property unit="mm">
+			<name>height</name>
+			<value>100.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Magnetorquer</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>350.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>100.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>4.0</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>15.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Magnetorquer</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert und Werte abgeleitet nach ZARM-Technik MT80-1 bzw. MT250-2; magnet. Moment ca. 60-80Am² je Spule</value>
+		</property>
+	</component>
+	<component type="Li-Ion-Batterie">
+		<property unit="mm">
+			<name>height</name>
+			<value>53.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>10.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Li-Ion-Batterie</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>35.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>250.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>53.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>1.11</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Li-Ion-Batterie</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach SAFT VES 180; Zusammenschaltung für 100Ah bei 36V → jeweils 10 Batterien in Reihe</value>
+		</property>
+	</component>
+	<component type="SSPA">
+		<property unit="mm">
+			<name>height</name>
+			<value>47.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-20.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>SSPA</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>75.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>217.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>107.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>0.75</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>15.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>SSPA</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach Astrium L/S Band SSPA; nominal RF output power 15W; Strahlungsschutz notwendig</value>
+		</property>
+	</component>
+	<component type="Reaktionsrad">
+		<property unit="mm">
+			<name>height</name>
+			<value>150.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-40.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Reaktionsrad</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>70.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>300.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>300.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>16.5</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>300.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Reaktionsrad</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach Rockwell Collins Deutschland (TELDIX) MWI; max. Drehimpuls 100Nms; max. RFS-Masse 5000kg; auch als Drallrad nutzbar</value>
+		</property>
+	</component>
+	<component type="Transponder">
+		<property unit="mm">
+			<name>height</name>
+			<value>140.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-20.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Transponder</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>60.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>230.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>170.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>4.2</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>51.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Transponder</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach General Dynamics Advanced Multi-Mode Transponder (AMT-R) für Lunar Reconnais-sance Orbiter;; uplink max. 1Mbps, noise figure &lt;2,5dB; down-link max. 6Mbps; evtl. zusätzl. Strah-lungsschutz notwendig</value>
+		</property>
+	</component>
+	<component type="Bausteinstruktur">
+		<property unit="mm">
+			<name>height</name>
+			<value>400.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Bausteinstruktur</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>400.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>400.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>2.5</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Bausteinstruktur</value>
+		</property>
+	</component>
+	<component type="Receiver">
+		<property unit="mm">
+			<name>height</name>
+			<value>95.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-40.0</value>
+		</property>
+		<property unit="krad">
+			<name>rad_max</name>
+			<value>60.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Receiver</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>75.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>170.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>165.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>1.9</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>4.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Receiver</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach L-3 Communications CR-313 Receiver; uplink max. 128kbps, RF input power max. +3dBm, noise max. 4dB; Strahlungs-schutz notwendig</value>
+		</property>
+	</component>
+	<component type="IMU (Standard)">
+		<property unit="mm">
+			<name>height</name>
+			<value>160.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-25.0</value>
+		</property>
+		<property unit="krad">
+			<name>rad_max</name>
+			<value>100.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>IMU (Standard)</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>60.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>206.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>206.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>4.2</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>15.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>IMU (Standard)</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach Astrium Astrix3M²; Ausrichtung &lt;0,01°/h (bias), Stabilität &lt;0,8°/h, Rauschen &lt;0,005°/√h (noise); Werte gelten für EOL; Strahlungs-schutz notwendig</value>
+		</property>
+	</component>
+	<component type="zentrale Solarfläche">
+		<property unit="mm">
+			<name>height</name>
+			<value>30.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>zentrale Solarfläche</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>1.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>1200.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>1200.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>3.5</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>350.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>zentrale Solarfläche</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>Solarzellen: GaAS-Multijunction (240W/m², 80W/kg, EOL); Länge ent-spricht i.M. einem </value>
+		</property>
+	</component>
+	<component type="GPS-Antenne">
+		<property unit="mm">
+			<name>height</name>
+			<value>80.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>GPS-Antenne</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>1.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>200.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>200.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>0.75</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>GPS-Antenne</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach RUAG Extended GPS PEC Antenna; geeignet für L1 und L2, Platzhalter für in LAGRANGE enthaltene Antenne </value>
+		</property>
+	</component>
+	<component type="Hardware-Stack 1">
+		<property unit="mm">
+			<name>height</name>
+			<value>17.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Hardware-Stack 1</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>171.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>151.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>0.2</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Hardware-Stack 1</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>Stack angepasst an Dimensionen von Europaplatinen, Dimensionen an endgültige Platinenform anpassbar, Verwendung mehrerer Stacks möglich</value>
+		</property>
+	</component>
+	<component type="Sonnensensor 2">
+		<property unit="mm">
+			<name>height</name>
+			<value>49.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-80.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Sonnensensor 2</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>1.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>90.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>108.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>106.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>0.4</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>0.2</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Sonnensensor 2</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach Bradford Fine &amp; Coarse Sun Sensor CSS Accuracy &lt;1° (bias error &lt;0,15°)</value>
+		</property>
+	</component>
+	<component type="Sonnensensor 1">
+		<property unit="mm">
+			<name>height</name>
+			<value>14.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-50.0</value>
+		</property>
+		<property unit="krad">
+			<name>rad_max</name>
+			<value>100000.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Sonnensensor 1</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>1.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>85.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>46.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>45.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>0.05</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Sonnensensor 1</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach Miniaturised Analog Fine Sun Sensor (ISIS), Accuracy 0,3°, Blickfeld 128° x 128°</value>
+		</property>
+	</component>
+	<component type="PCU">
+		<property unit="mm">
+			<name>height</name>
+			<value>350.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-15.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>PCU</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>60.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>350.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>350.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>25.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>PCU</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>Daten idealisiert und verkleinert nach Astrium GEO Medium Power PCU; es wurde noch keine Aussage bezüglich zentrale oder dezentrale PCU getroffen </value>
+		</property>
+	</component>
+	<component type="IMU (sehr genau)">
+		<property unit="mm">
+			<name>height</name>
+			<value>280.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-10.0</value>
+		</property>
+		<property unit="krad">
+			<name>rad_max</name>
+			<value>15.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>IMU (sehr genau)</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>0.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>50.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>490.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>330.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>10.0</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>24.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>IMU (sehr genau)</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach Astrium Astrix200; Ausrichtung &lt;0,0005°/h (bias), Stabilität &lt;0,001°/h, Rauschen &lt;0,0001°/√h (noise); Werte gelten für EOL; Strahlungs-schutz notwendig</value>
+		</property>
+	</component>
+	<component type="Sternsensor">
+		<property unit="mm">
+			<name>height</name>
+			<value>375.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_min</name>
+			<value>-30.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Sternsensor</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>2.0</value>
+		</property>
+		<property unit="degC">
+			<name>temp_max</name>
+			<value>60.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>150.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>150.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>2.0</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>10.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Sternsensor</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach Jena-Optronik AstroAPS; random error &lt;1arcsec (pitch/yaw) &lt;8arcsec (roll); </value>
+		</property>
+	</component>
+	<component type="Hall Efffekt Triebwerk">
+		<property unit="mm">
+			<name>height</name>
+			<value>240.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Hall Efffekt Triebwerk</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>1.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>140.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>240.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>12.0</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>5000.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Hall Efffekt Triebwerk</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach Thales Alenia Space DS-HET, Isp 1500-3000 s, Schub 50-300 mN, max. benötigte Leistung 5000 W; anstelle von DS-HET sind auch HEMP-3050 oder RIT-22 möglich</value>
+		</property>
+	</component>
+	<component type="Kaltgasantriebssyst.">
+		<property unit="mm">
+			<name>height</name>
+			<value>400.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Kaltgasantriebssyst.</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>5.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>100.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>400.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>15.0</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>55.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Kaltgasantriebssyst.</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach RTG Aero-Hydraulic Inc. (Ventile, Filter, Druckregler, Wandler und Düsen); Schub-bereich 0,01...1,0N; Heizsystem noch unberücksichtigt</value>
+		</property>
+	</component>
+	<component type="Monopropell.System">
+		<property unit="mm">
+			<name>height</name>
+			<value>400.0</value>
+		</property>
+		<property>
+			<name>name</name>
+			<value>Monopropell.System</value>
+		</property>
+		<property>
+			<name>loopholes</name>
+			<value>5.0</value>
+		</property>
+		<property unit="mm">
+			<name>length</name>
+			<value>100.0</value>
+		</property>
+		<property unit="mm">
+			<name>width</name>
+			<value>400.0</value>
+		</property>
+		<property unit="kg">
+			<name>mass</name>
+			<value>15.0</value>
+		</property>
+		<property unit="W">
+			<name>power_max</name>
+			<value>100.0</value>
+		</property>
+		<property>
+			<name>type</name>
+			<value>Monopropell.System</value>
+		</property>
+		<property>
+			<name>Bemerkungen</name>
+			<value>idealisiert nach RTG Aero-Hydraulic Inc. (Filter, Wandler), Astrium (Düsen), VACCO (Latch Valve) Schubbereich 1,0-22N; seitliche Düsen um 90° drehbar montierbar, Heizsystem noch unberücksichtigt</value>
+		</property>
 	</component>
 </components>

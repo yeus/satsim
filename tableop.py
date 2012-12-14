@@ -15,14 +15,16 @@ from odspy import ods2table
 import numpy as np
 import iboss
 import copy
+import quantities as pq
+pq.krad=pq.UnitQuantity('kilorad', pq.rads*1000, symbol='krad')
 
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector
 
-nullvar=False
-
 #convert string to vector (python list)
 def str2vec(stringvec):
-  return [float(i) for i in stringvec.split(",")]
+  try:
+    return [float(i) for i in stringvec.split(",")]
+  except ValueError: return odspy.NULL
 
 #organisieren aller Daten in Python Klassen/Datenstrukturen:
 def converttable():
@@ -34,60 +36,55 @@ def converttable():
   komponententable=np.array(tables["Komponenten"])
   
   #todo: Option einbauen, daß immer alle Eigenschaften mit Standardwerten geladen werden.
+  komponenten=dict()
+  bausteine=dict()  
+  referenzmissionen=dict()
   
   #organisieren der Komponenten in dictionaries:
-  komponenten=dict()
   for k in komponententable[2:]:
     newcomponent=iboss.component(k[0])
-    for i,bez in enumerate(komponententable[0][1:]):
-      if(bez!=odspy.NULL and k[i+1]!=odspy.NULL): 
-        try:
-          val=float(k[i+1])
-        except ValueError:
-          val=k[i+1]
+    for i,bez in enumerate(komponententable[0,1:]):
+      if(bez!=odspy.NULL): 
+        unitstr=komponententable[1,1+i]
+        if unitstr!=odspy.NULL: unit=pq.Quantity(1,unitstr)
+        else: unit=1
+        
+        try: val=(float(k[i+1]))*unit
+        except ValueError: val=k[i+1]
         vars(newcomponent).update({bez:val}) #put new class attributes into class according to the table
-      elif nullvar: 
-        if bez=="mass": vars(newcomponent).update({bez:0})
-        else: vars(newcomponent).update({bez:odspy.NULL})
         
     komponenten[newcomponent.name]=newcomponent
 
   #Organisierung der Bausteineigenschaften
-  bausteine=dict()
-  for line in bausteinetable[3:]:
-    if line[0] not in bausteine:
+  for line in bausteinetable[2:]:
+    if line[0] not in bausteine: #hinzufügen neuer Bausteine
       bs=iboss.buildingblock(line[0])
       bausteine[line[0]]=bs
     else: bs=bausteine[line[0]]
     
-    #Zuordnung der Komponenten zu einzelnen Bausteinen
+    #Erstellen einer neuen Komponente
     if odspy.NULL not in line[3]:
       newcomponent=copy.copy(komponenten[line[3]])
-      if line[5]!=odspy.NULL: newcomponent.pos=str2vec(line[5])
-      elif nullvar: newcomponent.pos=odspy.NULL
-      if line[7]!=odspy.NULL: newcomponent.th_vec=str2vec(line[7])
-      elif nullvar: newcomponent.th_vec=odspy.NULL
-      newcomponent.rot=vec(0,0,0)
+      newcomponent.pos=str2vec(line[5])
+      newcomponent.th_vec=str2vec(line[7])
+      newcomponent.rot=str2vec(line[6])
       #bausteine[line[0]]["Komponenten"].append(newcomponent)
-      bs.add_co(newcomponent,num=int(line[4])) 
+      if odspy.NULL!=line[4]: bs.add_co(newcomponent,num=int(line[4])) 
     #Zuordnung der restlichen Werte
-    if odspy.NULL!=line[2]:
-      bausteine[line[0]].Bemerkung=line[2]
-    if odspy.NULL!=line[1]:
-      bausteine[line[0]].Einsatzgebiet=line[1]
+    if odspy.NULL!=line[2]: bausteine[line[0]].Bemerkung=line[2]
+    if odspy.NULL!=line[1]: bausteine[line[0]].Einsatzgebiet=line[1]
   #Leerzeilen löschen
   bausteine.pop(odspy.NULL)
     
   
   #Organisieren der Referenzmissionen
-  referenzmissionen=dict()
   for line in referenzmissionentable[3:]:
     if line[0] not in referenzmissionen:
       referenzmissionen[line[0]]=iboss.mission(line[0])
     
     if line[1] in bausteine.keys():
       newbb=copy.copy(bausteine[line[1]])
-      referenzmissionen[line[0]].add_bb(bb=newbb,pos=str2vec(line[2]),rot=str2vec(line[3]))
+      referenzmissionen[line[0]].add_bb(bb=newbb,pos=str2vec(line[2]),rot=str2vec(line[3])*pq.deg)
      
   #Leerzeilen löschen
   referenzmissionen.pop(odspy.NULL)

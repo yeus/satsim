@@ -17,6 +17,8 @@ import iboss
 from random import *
 from math import *
 import copy
+import quantities as pq
+import saveasxml
 
 
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector function
@@ -67,8 +69,8 @@ for pos in np.ndindex(*satsize):
   bs=satgrid[pos]
   bs.pos=pos
   if bs.type=="test Lageregelungsbaustein":
-    bs.rot=vec(0,0,0)
-  else: satgrid[pos].rot=vec(randrange(3)*90,randrange(3)*90,randrange(3))*pi/2
+    bs.rot=vec(0,0,0)*pq.deg
+  else: satgrid[pos].rot=vec(randrange(4)*90,randrange(4)*90,randrange(4)*90)*pq.deg
   
 def getmission():
   mission=iboss.mission("BSP_Mission")
@@ -77,3 +79,4 @@ def getmission():
 
 if __name__ == "__main__":
   mission=getmission()
+  saveasxml.savexml("bausteinkatalog/missionen_gen.xml",mission.xml)

@@ -18,12 +18,12 @@ import sys
 import odspy
 from odspy import ods2table
 import numpy as np
-import tableop as top
 import xml.etree.ElementTree as et
 import xml.dom.minidom
 import xml
 import string
 import codecs
+import iboss
 
 helpstring="""
 Dieses Skript speichert den Bausteinkatalog im XML-Format
@@ -52,15 +52,14 @@ def savexml(filename,xml):
   f=codecs.open(filename,"w",encoding="utf-8")
   f.write(prettyprintxml(xml))
   f.close()
-  
-komponenten, bausteine, referenzmissionen=top.converttable()
 
-XML=ibosslist2xml("components",komponenten.values())
-savexml("bausteinkatalog/komponenten.xml",XML)
-XML=ibosslist2xml("buildingblocks",bausteine.values())
-savexml("bausteinkatalog/bausteine.xml",XML)
-XML=ibosslist2xml("missions",referenzmissionen.values())
-savexml("bausteinkatalog/missionen.xml",XML)
+def saveibosslists(komponenten, bausteine, referenzmissionen):
+  katalog=et.Element("catalogue")
+  katalog.append(ibosslist2xml("components",komponenten.values()))
+  katalog.append(ibosslist2xml("buildingblocks",bausteine.values()))
+  savexml("bausteinkatalog/katalog.xml",katalog)
+  missionen=ibosslist2xml("missions",referenzmissionen.values())
+  savexml("bausteinkatalog/missionen.xml",missionen)
 
 """def main(argv=None):
   if argv is None:
@@ -72,7 +71,15 @@ savexml("bausteinkatalog/missionen.xml",XML)
       print(helpstring)    
     except:
       raise
-      return
+      return"""
+
+def genexamples():
+  pass
 
 if __name__ == "__main__":
-  main()"""
+  #main()
+  import tableop as top
+  #komponenten, bausteine, referenzmissionen=top.converttable()
+  #co=komponenten.values()[1]
+  #print(prettyprintxml(co.xml))
+  saveibosslists(*top.converttable())#"""
