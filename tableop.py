@@ -22,15 +22,10 @@ from odspy import ods2table
 import numpy as np
 import iboss
 from iboss import pq
+from iboss import str2vec
 import copy
 
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector
-
-#convert string to vector (python list)
-def str2vec(stringvec):
-  try:
-    return [float(i) for i in stringvec.split(",")]
-  except ValueError: return odspy.NULL
 
 #organisieren aller Daten in Python Klassen/Datenstrukturen:
 def converttable():
@@ -71,11 +66,12 @@ def converttable():
     #Erstellen einer neuen Komponente
     if odspy.NULL not in line[3]:
       newcomponent=copy.copy(komponenten[line[3]])
-      newcomponent.pos=str2vec(line[5])
-      newcomponent.th_vec=str2vec(line[7])
-      newcomponent.rot=str2vec(line[6])
+      if line[5]!=odspy.NULL: newcomponent.pos=str2vec(line[5])
+      if line[7]!=odspy.NULL: newcomponent.th_vec=str2vec(line[7])
+      if line[6]!=odspy.NULL: newcomponent.rot=str2vec(line[6])
       #bausteine[line[0]]["Komponenten"].append(newcomponent)
-      if odspy.NULL!=line[4]: bs.add_co(newcomponent,num=int(line[4])) 
+      if odspy.NULL!=line[4]: newcomponent.num=int(line[4]) 
+      bs.add_co(newcomponent) 
     #Zuordnung der restlichen Werte
     if odspy.NULL!=line[2]: bausteine[line[0]].Bemerkung=line[2]
     if odspy.NULL!=line[1]: bausteine[line[0]].Einsatzgebiet=line[1]

@@ -24,6 +24,7 @@ import xml
 import string
 import codecs
 import iboss
+from iboss import prettyprintxml
 
 helpstring="""
 Dieses Skript speichert den Bausteinkatalog im XML-Format
@@ -43,11 +44,6 @@ def ibosslist2xml(name,instancelist):
     root.append(i.xml)
   return root
   
-def prettyprintxml(xmltree):
-  XML=et.tostring(xmltree,encoding="utf-8")
-  XML=xml.dom.minidom.parseString(XML)
-  return XML.toprettyxml()
-
 def savexml(filename,xml):
   f=codecs.open(filename,"w",encoding="utf-8")
   f.write(prettyprintxml(xml))

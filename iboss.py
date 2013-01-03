@@ -13,7 +13,9 @@
 
 from copy import copy
 import numpy as np
-from xml.etree import ElementTree as et
+import xml.etree.ElementTree as et
+import xml.dom.minidom
+import xml
 import odspy
 import quantities as pq
 pq.krad=pq.UnitQuantity('kilorad', pq.rads*1000, symbol='krad')
@@ -21,14 +23,41 @@ pq.blocks=pq.UnitQuantity('blocks', 1, symbol='blocks')
 
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector
 
+#convert vector to string (python list)
 def vec2str(vec):
   return "{},{},{}".format(*vec)
+
+#convert string to vector (python list)
+def str2vec(stringvec):
+  return vec(*[float(i) for i in stringvec.split(",")])
+
+def prettyprintxml(xmltree):
+  XML=et.tostring(xmltree,encoding="utf-8")
+  XML=xml.dom.minidom.parseString(XML)
+  return XML.toprettyxml()
 
 class ibossxml(object):
   def xmllist(self):
     return None
   
-  def xmlproperty(self,vkey,vvalue):
+  def addxmlprop(self,xmlprop):
+    #convert to floats and vectors
+    try:
+      val=str2vec(xmlprop.text)
+    except TypeError: 
+      val=float(xmlprop.text)
+    except ValueError: 
+      val=xmlprop.text
+      
+    #find out unit
+    unit=xmlprop.get("unit")
+    if unit: 
+      unit=pq.Quantity(1,unit)
+    else: unit=1
+    
+    vars(self)[xmlprop.tag]=val*unit
+  
+  def property2xml(self,vkey,vvalue):
     newelem=et.Element(vkey)
     #newelem=et.Element("property")
     if isinstance(vvalue,pq.Quantity): 
@@ -52,12 +81,15 @@ class ibossxml(object):
     root.set("type",self.type)
     for vkey,vvalue in vars(self).items():
       if vkey not in ["components","_bb"]:  #sonderbehandlung (erstmal Auslassen) für BS-Listen
-        if vvalue!=odspy.NULL: root.append(self.xmlproperty(vkey,vvalue)) #speichern sämtlicher Klassenvariablen
+        if vvalue!=odspy.NULL: root.append(self.property2xml(vkey,vvalue)) #speichern sämtlicher Klassenvariablen
     
     xmllist=self.xmllist()  # eigentliche Sonderbehandlung von BS-Listen
     if xmllist!=None: root.append(xmllist)  
     
     return root 
+
+  @property
+  def xmlstr(self):  return prettyprintxml(self.xml)
 
 class component(ibossxml):
   def __init__(self,name):
@@ -80,21 +112,23 @@ class buildingblock(ibossxml):
     for co in self.components:
       newelem=et.Element("component")
       newelem.set("type",co.type)
-      if co.pos!=odspy.NULL: newelem.set("pos", vec2str(co.pos))
-      if co.rot!=odspy.NULL: newelem.set("rot", vec2str(co.rot.magnitude))
-      if co.th_vec!=odspy.NULL: newelem.set("th_vec", vec2str(co.th_vec))
+      if hasattr(co,"pos"): newelem.set("pos", vec2str(co.pos))
+      if hasattr(co,"rot"): newelem.set("rot", vec2str(co.rot.magnitude))
+      if hasattr(co,"th_vec"): newelem.set("th_vec", vec2str(co.th_vec))
+      if hasattr(co,"num"): 
+        if co.num!=1: newelem.set("num", unicode(co.num)) #if it is just one component number does not matter
       root.append(newelem)
     return root #so the list gets serialized in xml"""
     
-  def add_co(self,co,num=1):
-    co.num=num
+  def add_co(self,co):
     self.components.append(copy(co))
-    if "mass" in vars(co): self.mass+=co.mass*num
+    if "num" not in vars(co): co.num=1
+    if "mass" in vars(co): self.mass+=co.mass*co.num
       
   def updatemass(self):
     self.mass=0*pq.m
     for co in self.components:
-      self.mass+=co.mass
+      self.mass+=co.mass*co.num
     return self.mass
 
 class mission(ibossxml):

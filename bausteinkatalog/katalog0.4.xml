@@ -541,13 +541,13 @@
 			<type>OBC/SMU-Baustein</type>
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
-				<component type="Hardware-Stack 1"/>
-				<component type="Sonnensensor 1"/>
-				<component type="elektr. Schnittstelle"/>
+				<component num="3" type="Hardware-Stack 1"/>
+				<component num="3" type="Sonnensensor 1"/>
+				<component num="48" type="elektr. Schnittstelle"/>
 				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
-				<component type="mech. Schnittstelle"/>
-				<component type="Datenschnittstelle"/>
+				<component num="48" type="Versorgungsleitungen"/>
+				<component num="6" type="mech. Schnittstelle"/>
+				<component num="6" type="Datenschnittstelle"/>
 				<component type="SMU"/>
 			</components>
 		</buildingblock>
@@ -560,16 +560,16 @@
 			<type>TM&amp;TC-Baustein (S-Band; Transmitter+Receiver+SSPA)</type>
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
-				<component type="Antenne"/>
-				<component type="Sonnensensor 1"/>
-				<component type="elektr. Schnittstelle"/>
-				<component type="Hardware-Stack 1"/>
+				<component num="2" type="Antenne"/>
+				<component num="3" type="Sonnensensor 1"/>
+				<component num="40" type="elektr. Schnittstelle"/>
+				<component num="3" type="Hardware-Stack 1"/>
 				<component type="SSPA"/>
 				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
-				<component type="mech. Schnittstelle"/>
+				<component num="40" type="Versorgungsleitungen"/>
+				<component num="5" type="mech. Schnittstelle"/>
 				<component type="Receiver"/>
-				<component type="Datenschnittstelle"/>
+				<component num="5" type="Datenschnittstelle"/>
 				<component type="Transmitter"/>
 			</components>
 		</buildingblock>
@@ -582,14 +582,14 @@
 			<type>GPS-Baustein (Standard)</type>
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
-				<component type="Hardware-Stack 1"/>
-				<component type="Sonnensensor 1"/>
-				<component type="elektr. Schnittstelle"/>
+				<component num="3" type="Hardware-Stack 1"/>
+				<component num="3" type="Sonnensensor 1"/>
+				<component num="40" type="elektr. Schnittstelle"/>
 				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
-				<component type="mech. Schnittstelle"/>
+				<component num="40" type="Versorgungsleitungen"/>
+				<component num="5" type="mech. Schnittstelle"/>
 				<component type="GNSS-Receiver 1"/>
-				<component type="Datenschnittstelle"/>
+				<component num="5" type="Datenschnittstelle"/>
 				<component type="GPS-Antenne"/>
 			</components>
 		</buildingblock>
@@ -603,14 +603,14 @@
 			<type>Sternsensorbaustein</type>
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
-				<component type="Hardware-Stack 1"/>
-				<component type="Sonnensensor 1"/>
-				<component type="elektr. Schnittstelle"/>
+				<component num="3" type="Hardware-Stack 1"/>
+				<component num="3" type="Sonnensensor 1"/>
+				<component num="24" type="elektr. Schnittstelle"/>
 				<component type="Sternsensor"/>
 				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
-				<component type="mech. Schnittstelle"/>
-				<component type="Datenschnittstelle"/>
+				<component num="24" type="Versorgungsleitungen"/>
+				<component num="3" type="mech. Schnittstelle"/>
+				<component num="3" type="Datenschnittstelle"/>
 			</components>
 		</buildingblock>
 		<buildingblock type="elektrischer Antriebs-Baustein">
@@ -622,16 +622,16 @@
 			<type>elektrischer Antriebs-Baustein</type>
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
-				<component type="Hardware-Stack 1"/>
+				<component num="3" type="Hardware-Stack 1"/>
 				<component type="FCU"/>
-				<component type="Sonnensensor 1"/>
-				<component type="elektr. Schnittstelle"/>
+				<component num="2" type="Sonnensensor 1"/>
+				<component num="104" type="elektr. Schnittstelle"/>
 				<component type="Hall Efffekt Triebwerk"/>
-				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
-				<component type="mech. Schnittstelle"/>
+				<component num="3" type="Bausteinstruktur"/>
+				<component num="104" type="Versorgungsleitungen"/>
+				<component num="13" type="mech. Schnittstelle"/>
 				<component type="Tank 1"/>
-				<component type="Datenschnittstelle"/>
+				<component num="13" type="Datenschnittstelle"/>
 				<component type="PSCU"/>
 			</components>
 		</buildingblock>
@@ -645,14 +645,14 @@
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Magnetometer"/>
-				<component type="Hardware-Stack 1"/>
-				<component type="Magnetorquer"/>
-				<component type="Sonnensensor 1"/>
-				<component type="elektr. Schnittstelle"/>
+				<component num="3" type="Hardware-Stack 1"/>
+				<component num="3" type="Magnetorquer"/>
+				<component num="3" type="Sonnensensor 1"/>
+				<component num="40" type="elektr. Schnittstelle"/>
 				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
-				<component type="mech. Schnittstelle"/>
-				<component type="Datenschnittstelle"/>
+				<component num="40" type="Versorgungsleitungen"/>
+				<component num="5" type="mech. Schnittstelle"/>
+				<component num="5" type="Datenschnittstelle"/>
 			</components>
 		</buildingblock>
 		<buildingblock type="GPS-Baustein (GPS und GLONASS)">
@@ -664,13 +664,13 @@
 			<type>GPS-Baustein (GPS und GLONASS)</type>
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
-				<component type="Hardware-Stack 1"/>
-				<component type="Sonnensensor 1"/>
-				<component type="elektr. Schnittstelle"/>
+				<component num="3" type="Hardware-Stack 1"/>
+				<component num="3" type="Sonnensensor 1"/>
+				<component num="40" type="elektr. Schnittstelle"/>
 				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
-				<component type="mech. Schnittstelle"/>
-				<component type="Datenschnittstelle"/>
+				<component num="40" type="Versorgungsleitungen"/>
+				<component num="5" type="mech. Schnittstelle"/>
+				<component num="5" type="Datenschnittstelle"/>
 			</components>
 		</buildingblock>
 		<buildingblock type="Inertial Measurement Unit Baustein (Standard)">
@@ -682,14 +682,14 @@
 			<type>Inertial Measurement Unit Baustein (Standard)</type>
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
-				<component type="Hardware-Stack 1"/>
-				<component type="Sonnensensor 1"/>
-				<component type="elektr. Schnittstelle"/>
+				<component num="3" type="Hardware-Stack 1"/>
+				<component num="3" type="Sonnensensor 1"/>
+				<component num="48" type="elektr. Schnittstelle"/>
 				<component type="IMU (Standard)"/>
 				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
-				<component type="mech. Schnittstelle"/>
-				<component type="Datenschnittstelle"/>
+				<component num="48" type="Versorgungsleitungen"/>
+				<component num="6" type="mech. Schnittstelle"/>
+				<component num="6" type="Datenschnittstelle"/>
 			</components>
 		</buildingblock>
 		<buildingblock type="TM&amp;TC-Baustein (S-Band; Transponder+SSPA)">
@@ -701,16 +701,16 @@
 			<type>TM&amp;TC-Baustein (S-Band; Transponder+SSPA)</type>
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
-				<component type="Antenne"/>
+				<component num="2" type="Antenne"/>
 				<component type="Transponder"/>
-				<component type="Sonnensensor 1"/>
-				<component type="elektr. Schnittstelle"/>
-				<component type="Hardware-Stack 1"/>
+				<component num="3" type="Sonnensensor 1"/>
+				<component num="40" type="elektr. Schnittstelle"/>
+				<component num="3" type="Hardware-Stack 1"/>
 				<component type="SSPA"/>
 				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
-				<component type="mech. Schnittstelle"/>
-				<component type="Datenschnittstelle"/>
+				<component num="40" type="Versorgungsleitungen"/>
+				<component num="5" type="mech. Schnittstelle"/>
+				<component num="5" type="Datenschnittstelle"/>
 			</components>
 		</buildingblock>
 		<buildingblock type="Reaktionsradbaustein">
@@ -722,14 +722,14 @@
 			<type>Reaktionsradbaustein</type>
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
-				<component type="Hardware-Stack 1"/>
-				<component type="Sonnensensor 1"/>
-				<component type="elektr. Schnittstelle"/>
+				<component num="3" type="Hardware-Stack 1"/>
+				<component num="3" type="Sonnensensor 1"/>
+				<component num="48" type="elektr. Schnittstelle"/>
 				<component type="Reaktionsrad"/>
 				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
-				<component type="mech. Schnittstelle"/>
-				<component type="Datenschnittstelle"/>
+				<component num="48" type="Versorgungsleitungen"/>
+				<component num="6" type="mech. Schnittstelle"/>
+				<component num="6" type="Datenschnittstelle"/>
 			</components>
 		</buildingblock>
 		<buildingblock type="Solargeneratorbaustein (entfaltbar)">
@@ -741,11 +741,11 @@
 			<type>Solargeneratorbaustein (entfaltbar)</type>
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
-				<component type="Hardware-Stack 1"/>
+				<component num="3" type="Hardware-Stack 1"/>
 				<component type="Sonnensensor 2"/>
 				<component type="zentrale Solarfläche"/>
-				<component type="elektr. Schnittstelle"/>
-				<component type="Versorgungsleitungen"/>
+				<component num="8" type="elektr. Schnittstelle"/>
+				<component num="8" type="Versorgungsleitungen"/>
 				<component type="Datenschnittstelle"/>
 			</components>
 		</buildingblock>
@@ -758,13 +758,13 @@
 			<type>Inertial Measurement Unit Baustein (sehr genau)</type>
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
-				<component type="Hardware-Stack 1"/>
-				<component type="Sonnensensor 1"/>
-				<component type="elektr. Schnittstelle"/>
-				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
-				<component type="mech. Schnittstelle"/>
-				<component type="Datenschnittstelle"/>
+				<component num="3" type="Hardware-Stack 1"/>
+				<component num="3" type="Sonnensensor 1"/>
+				<component num="80" type="elektr. Schnittstelle"/>
+				<component num="2" type="Bausteinstruktur"/>
+				<component num="80" type="Versorgungsleitungen"/>
+				<component num="10" type="mech. Schnittstelle"/>
+				<component num="10" type="Datenschnittstelle"/>
 				<component type="IMU (sehr genau)"/>
 			</components>
 		</buildingblock>
@@ -783,7 +783,7 @@
 				<component pos="0.0,0.5,1.0" th_vec="1.0,0.0,-1.0" type="testdüse"/>
 				<component pos="0.5,0.5,1.0" th_vec="0.0,0.0,-1.0" type="testdüse"/>
 				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
+				<component num="40" type="Versorgungsleitungen"/>
 			</components>
 		</buildingblock>
 		<buildingblock type="Batteriebaustein">
@@ -795,14 +795,14 @@
 			<type>Batteriebaustein</type>
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
-				<component type="Hardware-Stack 1"/>
-				<component type="Sonnensensor 1"/>
-				<component type="Li-Ion-Batterie"/>
-				<component type="elektr. Schnittstelle"/>
+				<component num="3" type="Hardware-Stack 1"/>
+				<component num="3" type="Sonnensensor 1"/>
+				<component num="20" type="Li-Ion-Batterie"/>
+				<component num="48" type="elektr. Schnittstelle"/>
 				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
-				<component type="mech. Schnittstelle"/>
-				<component type="Datenschnittstelle"/>
+				<component num="48" type="Versorgungsleitungen"/>
+				<component num="6" type="mech. Schnittstelle"/>
+				<component num="6" type="Datenschnittstelle"/>
 				<component type="Batteriekontrolle"/>
 			</components>
 		</buildingblock>
@@ -816,14 +816,14 @@
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="SADA"/>
-				<component type="Hardware-Stack 1"/>
-				<component type="Sonnensensor 1"/>
-				<component type="elektr. Schnittstelle"/>
-				<component type="entfalt. Solarflächen 2"/>
+				<component num="3" type="Hardware-Stack 1"/>
+				<component num="2" type="Sonnensensor 1"/>
+				<component num="48" type="elektr. Schnittstelle"/>
+				<component num="5" type="entfalt. Solarflächen 2"/>
 				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
-				<component type="mech. Schnittstelle"/>
-				<component type="Datenschnittstelle"/>
+				<component num="48" type="Versorgungsleitungen"/>
+				<component num="6" type="mech. Schnittstelle"/>
+				<component num="6" type="Datenschnittstelle"/>
 				<component type="entfalt. Elektronik"/>
 			</components>
 		</buildingblock>
@@ -837,15 +837,15 @@
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Antenne"/>
-				<component type="Sonnensensor 1"/>
+				<component num="3" type="Sonnensensor 1"/>
 				<component type="Transceiver"/>
-				<component type="elektr. Schnittstelle"/>
-				<component type="Hardware-Stack 1"/>
+				<component num="40" type="elektr. Schnittstelle"/>
+				<component num="3" type="Hardware-Stack 1"/>
 				<component type="SSPA"/>
 				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
-				<component type="mech. Schnittstelle"/>
-				<component type="Datenschnittstelle"/>
+				<component num="40" type="Versorgungsleitungen"/>
+				<component num="5" type="mech. Schnittstelle"/>
+				<component num="5" type="Datenschnittstelle"/>
 			</components>
 		</buildingblock>
 		<buildingblock type="PCU-Baustein">
@@ -857,14 +857,14 @@
 			<type>PCU-Baustein</type>
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
-				<component type="Hardware-Stack 1"/>
-				<component type="Sonnensensor 1"/>
-				<component type="elektr. Schnittstelle"/>
+				<component num="3" type="Hardware-Stack 1"/>
+				<component num="3" type="Sonnensensor 1"/>
+				<component num="48" type="elektr. Schnittstelle"/>
 				<component type="PCU"/>
 				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
-				<component type="mech. Schnittstelle"/>
-				<component type="Datenschnittstelle"/>
+				<component num="48" type="Versorgungsleitungen"/>
+				<component num="6" type="mech. Schnittstelle"/>
+				<component num="6" type="Datenschnittstelle"/>
 			</components>
 		</buildingblock>
 		<buildingblock type="Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)">
@@ -876,14 +876,14 @@
 			<type>Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)</type>
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
-				<component type="Hardware-Stack 1"/>
-				<component type="Sonnensensor 1"/>
-				<component type="elektr. Schnittstelle"/>
-				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
+				<component num="3" type="Hardware-Stack 1"/>
+				<component num="2" type="Sonnensensor 1"/>
+				<component num="72" type="elektr. Schnittstelle"/>
+				<component num="2" type="Bausteinstruktur"/>
+				<component num="72" type="Versorgungsleitungen"/>
 				<component type="Tank 2"/>
-				<component type="mech. Schnittstelle"/>
-				<component type="Datenschnittstelle"/>
+				<component num="9" type="mech. Schnittstelle"/>
+				<component num="5" type="Datenschnittstelle"/>
 				<component type="Monopropell.System"/>
 			</components>
 		</buildingblock>
@@ -896,14 +896,14 @@
 			<type>Drallradbaustein</type>
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
-				<component type="Hardware-Stack 1"/>
-				<component type="Sonnensensor 1"/>
-				<component type="elektr. Schnittstelle"/>
+				<component num="3" type="Hardware-Stack 1"/>
+				<component num="3" type="Sonnensensor 1"/>
+				<component num="48" type="elektr. Schnittstelle"/>
 				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
+				<component num="48" type="Versorgungsleitungen"/>
 				<component type="Drallrad (inkl.Elektro.)"/>
-				<component type="mech. Schnittstelle"/>
-				<component type="Datenschnittstelle"/>
+				<component num="6" type="mech. Schnittstelle"/>
+				<component num="6" type="Datenschnittstelle"/>
 			</components>
 		</buildingblock>
 		<buildingblock type="Kaltgasantriebs-Baustein 1">
@@ -915,15 +915,15 @@
 			<type>Kaltgasantriebs-Baustein 1</type>
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
-				<component type="Hardware-Stack 1"/>
-				<component type="Sonnensensor 1"/>
-				<component type="elektr. Schnittstelle"/>
-				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
+				<component num="3" type="Hardware-Stack 1"/>
+				<component num="2" type="Sonnensensor 1"/>
+				<component num="72" type="elektr. Schnittstelle"/>
+				<component num="2" type="Bausteinstruktur"/>
+				<component num="72" type="Versorgungsleitungen"/>
 				<component type="Kaltgasantriebssyst."/>
-				<component type="mech. Schnittstelle"/>
+				<component num="9" type="mech. Schnittstelle"/>
 				<component type="Tank 1"/>
-				<component type="Datenschnittstelle"/>
+				<component num="5" type="Datenschnittstelle"/>
 			</components>
 		</buildingblock>
 		<buildingblock type="Kaltgasantriebs-Baustein 2">
@@ -935,15 +935,15 @@
 			<type>Kaltgasantriebs-Baustein 2</type>
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
-				<component type="Hardware-Stack 1"/>
-				<component type="Sonnensensor 2"/>
-				<component type="elektr. Schnittstelle"/>
-				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
+				<component num="3" type="Hardware-Stack 1"/>
+				<component num="2" type="Sonnensensor 2"/>
+				<component num="72" type="elektr. Schnittstelle"/>
+				<component num="2" type="Bausteinstruktur"/>
+				<component num="72" type="Versorgungsleitungen"/>
 				<component type="Kaltgasantriebssyst."/>
-				<component type="mech. Schnittstelle"/>
+				<component num="9" type="mech. Schnittstelle"/>
 				<component type="Tank 1"/>
-				<component type="Datenschnittstelle"/>
+				<component num="5" type="Datenschnittstelle"/>
 			</components>
 		</buildingblock>
 		<buildingblock type="Control Momentum Gyroscope Baustein">
@@ -955,14 +955,14 @@
 			<type>Control Momentum Gyroscope Baustein</type>
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
-				<component type="Hardware-Stack 1"/>
-				<component type="Sonnensensor 1"/>
-				<component type="CMG"/>
-				<component type="elektr. Schnittstelle"/>
-				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
-				<component type="mech. Schnittstelle"/>
-				<component type="Datenschnittstelle"/>
+				<component num="3" type="Hardware-Stack 1"/>
+				<component num="3" type="Sonnensensor 1"/>
+				<component num="2" type="CMG"/>
+				<component num="80" type="elektr. Schnittstelle"/>
+				<component num="2" type="Bausteinstruktur"/>
+				<component num="80" type="Versorgungsleitungen"/>
+				<component num="10" type="mech. Schnittstelle"/>
+				<component num="10" type="Datenschnittstelle"/>
 				<component type="CMG-Electronics"/>
 			</components>
 		</buildingblock>
@@ -975,13 +975,13 @@
 			<type>Erdsensor-Baustein</type>
 			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
-				<component type="Hardware-Stack 1"/>
-				<component type="Sonnensensor 1"/>
-				<component type="elektr. Schnittstelle"/>
+				<component num="3" type="Hardware-Stack 1"/>
+				<component num="3" type="Sonnensensor 1"/>
+				<component num="40" type="elektr. Schnittstelle"/>
 				<component type="Bausteinstruktur"/>
-				<component type="Versorgungsleitungen"/>
-				<component type="mech. Schnittstelle"/>
-				<component type="Datenschnittstelle"/>
+				<component num="40" type="Versorgungsleitungen"/>
+				<component num="5" type="mech. Schnittstelle"/>
+				<component num="5" type="Datenschnittstelle"/>
 				<component type="Erdsensor 2"/>
 			</components>
 		</buildingblock>
