@@ -49,10 +49,10 @@ class ibossxml(object):
     root=et.Element(self.__class__.__name__)
     root.set("type",self.type)
     for vkey,vvalue in vars(self).items():
-      if vkey not in ["components","_bb"]:  #Auslassen der BS-Listen
-        if vvalue!=odspy.NULL: root.append(self.xmlproperty(vkey,vvalue))
+      if vkey not in ["components","_bb"]:  #sonderbehandlung (erstmal Auslassen) für BS-Listen
+        if vvalue!=odspy.NULL: root.append(self.xmlproperty(vkey,vvalue)) #speichern sämtlicher Klassenvariablen
     
-    xmllist=self.xmllist()
+    xmllist=self.xmllist()  # eigentliche Sonderbehandlung von BS-Listen
     if xmllist!=None: root.append(xmllist)  
     
     return root 
@@ -65,12 +65,13 @@ class component(ibossxml):
 
 class buildingblock(ibossxml):
   def __init__(self,name):
-    self.size=0.4*pq.m #0.4m
+    self.blocksize=0.4*pq.m #0.4m
+    self.size=vec(1,1,1)*pq.UnitQuantity('blocks', 1, symbol='blocks')
     self.name=name
     self.type=name
     self.components=[]
     self.mass=0*pq.kg
-    self.com=vec(0,0,0)*self.size
+    self.com=vec(0,0,0)*self.blocksize
 
   def xmllist(self):
     root=et.Element("components")

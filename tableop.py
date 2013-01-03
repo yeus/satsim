@@ -9,6 +9,13 @@
 # modified:
 #	- 2012 10 25 - Thomas Meschede
 
+#pypy compatibility
+import sys
+pythonpath="/usr/lib/python2.7/dist-packages" 
+if pythonpath not in sys.path: 
+    sys.path.append(pythonpath)
+#import numpypy
+
 import sys
 import odspy
 from odspy import ods2table
@@ -17,6 +24,7 @@ import iboss
 import copy
 import quantities as pq
 pq.krad=pq.UnitQuantity('kilorad', pq.rads*1000, symbol='krad')
+pq.block=pq.UnitQuantity('blocks', 1, symbol='blocks')
 
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector
 

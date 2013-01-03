@@ -534,11 +534,12 @@
 	<buildingblocks>
 		<buildingblock type="OBC/SMU-Baustein">
 			<name>OBC/SMU-Baustein</name>
-			<type>OBC/SMU-Baustein</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>GEO/LEO</Einsatzgebiet>
 			<mass unit="kg">21.09</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>OBC/SMU-Baustein</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Hardware-Stack 1"/>
 				<component type="Sonnensensor 1"/>
@@ -552,11 +553,12 @@
 		</buildingblock>
 		<buildingblock type="TM&amp;TC-Baustein (S-Band; Transmitter+Receiver+SSPA)">
 			<name>TM&amp;TC-Baustein (S-Band; Transmitter+Receiver+SSPA)</name>
-			<type>TM&amp;TC-Baustein (S-Band; Transmitter+Receiver+SSPA)</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>GEO/LEO</Einsatzgebiet>
 			<mass unit="kg">15.11</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>TM&amp;TC-Baustein (S-Band; Transmitter+Receiver+SSPA)</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Antenne"/>
 				<component type="Sonnensensor 1"/>
@@ -573,11 +575,12 @@
 		</buildingblock>
 		<buildingblock type="GPS-Baustein (Standard)">
 			<name>GPS-Baustein (Standard)</name>
-			<type>GPS-Baustein (Standard)</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>GEO/LEO</Einsatzgebiet>
 			<mass unit="kg">14.85</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>GPS-Baustein (Standard)</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Hardware-Stack 1"/>
 				<component type="Sonnensensor 1"/>
@@ -592,12 +595,13 @@
 		</buildingblock>
 		<buildingblock type="Sternsensorbaustein">
 			<name>Sternsensorbaustein</name>
-			<type>Sternsensorbaustein</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Bemerkung>Sichtfeld je 20°</Bemerkung>
 			<Einsatzgebiet>GEO/LEO</Einsatzgebiet>
 			<mass unit="kg">9.42</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>Sternsensorbaustein</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Hardware-Stack 1"/>
 				<component type="Sonnensensor 1"/>
@@ -611,11 +615,12 @@
 		</buildingblock>
 		<buildingblock type="elektrischer Antriebs-Baustein">
 			<name>elektrischer Antriebs-Baustein</name>
-			<type>elektrischer Antriebs-Baustein</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>GEO/LEO</Einsatzgebiet>
 			<mass unit="kg">106.27</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>elektrischer Antriebs-Baustein</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Hardware-Stack 1"/>
 				<component type="FCU"/>
@@ -632,11 +637,12 @@
 		</buildingblock>
 		<buildingblock type="Magnetorquer-Baustein">
 			<name>Magnetorquer-Baustein</name>
-			<type>Magnetorquer-Baustein</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>LEO</Einsatzgebiet>
 			<mass unit="kg">24.2</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>Magnetorquer-Baustein</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Magnetometer"/>
 				<component type="Hardware-Stack 1"/>
@@ -651,11 +657,12 @@
 		</buildingblock>
 		<buildingblock type="GPS-Baustein (GPS und GLONASS)">
 			<name>GPS-Baustein (GPS und GLONASS)</name>
-			<type>GPS-Baustein (GPS und GLONASS)</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>LEO</Einsatzgebiet>
 			<mass unit="kg">10.2</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>GPS-Baustein (GPS und GLONASS)</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Hardware-Stack 1"/>
 				<component type="Sonnensensor 1"/>
@@ -668,11 +675,12 @@
 		</buildingblock>
 		<buildingblock type="Inertial Measurement Unit Baustein (Standard)">
 			<name>Inertial Measurement Unit Baustein (Standard)</name>
-			<type>Inertial Measurement Unit Baustein (Standard)</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>LEO</Einsatzgebiet>
 			<mass unit="kg">15.79</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>Inertial Measurement Unit Baustein (Standard)</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Hardware-Stack 1"/>
 				<component type="Sonnensensor 1"/>
@@ -686,11 +694,12 @@
 		</buildingblock>
 		<buildingblock type="TM&amp;TC-Baustein (S-Band; Transponder+SSPA)">
 			<name>TM&amp;TC-Baustein (S-Band; Transponder+SSPA)</name>
-			<type>TM&amp;TC-Baustein (S-Band; Transponder+SSPA)</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>GEO/LEO</Einsatzgebiet>
 			<mass unit="kg">15.31</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>TM&amp;TC-Baustein (S-Band; Transponder+SSPA)</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Antenne"/>
 				<component type="Transponder"/>
@@ -706,11 +715,12 @@
 		</buildingblock>
 		<buildingblock type="Reaktionsradbaustein">
 			<name>Reaktionsradbaustein</name>
-			<type>Reaktionsradbaustein</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>GEO/LEO</Einsatzgebiet>
 			<mass unit="kg">28.09</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>Reaktionsradbaustein</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Hardware-Stack 1"/>
 				<component type="Sonnensensor 1"/>
@@ -724,11 +734,12 @@
 		</buildingblock>
 		<buildingblock type="Solargeneratorbaustein (entfaltbar)">
 			<name>Solargeneratorbaustein (entfaltbar)</name>
-			<type>Solargeneratorbaustein (entfaltbar)</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>LEO</Einsatzgebiet>
 			<mass unit="kg">5.14</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>Solargeneratorbaustein (entfaltbar)</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Hardware-Stack 1"/>
 				<component type="Sonnensensor 2"/>
@@ -740,11 +751,12 @@
 		</buildingblock>
 		<buildingblock type="Inertial Measurement Unit Baustein (sehr genau)">
 			<name>Inertial Measurement Unit Baustein (sehr genau)</name>
-			<type>Inertial Measurement Unit Baustein (sehr genau)</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>LEO</Einsatzgebiet>
 			<mass unit="kg">29.65</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>Inertial Measurement Unit Baustein (sehr genau)</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Hardware-Stack 1"/>
 				<component type="Sonnensensor 1"/>
@@ -758,11 +770,12 @@
 		</buildingblock>
 		<buildingblock type="test Lageregelungsbaustein">
 			<name>test Lageregelungsbaustein</name>
-			<type>test Lageregelungsbaustein</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>GEO/LEO</Einsatzgebiet>
 			<mass unit="kg">4.1</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>test Lageregelungsbaustein</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component pos="0.5,0.0,1.0" th_vec="0.0,1.0,-1.0" type="testdüse"/>
 				<component pos="1.0,0.5,1.0" th_vec="-1.0,0.0,-1.0" type="testdüse"/>
@@ -775,11 +788,12 @@
 		</buildingblock>
 		<buildingblock type="Batteriebaustein">
 			<name>Batteriebaustein</name>
-			<type>Batteriebaustein</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>GEO/LEO</Einsatzgebiet>
 			<mass unit="kg">33.79</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>Batteriebaustein</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Hardware-Stack 1"/>
 				<component type="Sonnensensor 1"/>
@@ -794,11 +808,12 @@
 		</buildingblock>
 		<buildingblock type="Solargeneratorbaustein (entfaltbar, nachführbar)">
 			<name>Solargeneratorbaustein (entfaltbar, nachführbar)</name>
-			<type>Solargeneratorbaustein (entfaltbar, nachführbar)</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>LEO</Einsatzgebiet>
 			<mass unit="kg">62.14</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>Solargeneratorbaustein (entfaltbar, nachführbar)</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="SADA"/>
 				<component type="Hardware-Stack 1"/>
@@ -814,11 +829,12 @@
 		</buildingblock>
 		<buildingblock type="TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)">
 			<name>TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)</name>
-			<type>TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>GEO/LEO</Einsatzgebiet>
 			<mass unit="kg">13.53</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Antenne"/>
 				<component type="Sonnensensor 1"/>
@@ -834,11 +850,12 @@
 		</buildingblock>
 		<buildingblock type="PCU-Baustein">
 			<name>PCU-Baustein</name>
-			<type>PCU-Baustein</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>GEO/LEO</Einsatzgebiet>
 			<mass unit="kg">36.59</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>PCU-Baustein</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Hardware-Stack 1"/>
 				<component type="Sonnensensor 1"/>
@@ -852,11 +869,12 @@
 		</buildingblock>
 		<buildingblock type="Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)">
 			<name>Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)</name>
-			<type>Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>GEO/LEO</Einsatzgebiet>
 			<mass unit="kg">85.21</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Hardware-Stack 1"/>
 				<component type="Sonnensensor 1"/>
@@ -871,11 +889,12 @@
 		</buildingblock>
 		<buildingblock type="Drallradbaustein">
 			<name>Drallradbaustein</name>
-			<type>Drallradbaustein</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>GEO/LEO</Einsatzgebiet>
 			<mass unit="kg">28.09</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>Drallradbaustein</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Hardware-Stack 1"/>
 				<component type="Sonnensensor 1"/>
@@ -889,11 +908,12 @@
 		</buildingblock>
 		<buildingblock type="Kaltgasantriebs-Baustein 1">
 			<name>Kaltgasantriebs-Baustein 1</name>
-			<type>Kaltgasantriebs-Baustein 1</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>GEO/LEO</Einsatzgebiet>
 			<mass unit="kg">77.21</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>Kaltgasantriebs-Baustein 1</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Hardware-Stack 1"/>
 				<component type="Sonnensensor 1"/>
@@ -908,11 +928,12 @@
 		</buildingblock>
 		<buildingblock type="Kaltgasantriebs-Baustein 2">
 			<name>Kaltgasantriebs-Baustein 2</name>
-			<type>Kaltgasantriebs-Baustein 2</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>GEO/LEO</Einsatzgebiet>
 			<mass unit="kg">77.91</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>Kaltgasantriebs-Baustein 2</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Hardware-Stack 1"/>
 				<component type="Sonnensensor 2"/>
@@ -927,11 +948,12 @@
 		</buildingblock>
 		<buildingblock type="Control Momentum Gyroscope Baustein">
 			<name>Control Momentum Gyroscope Baustein</name>
-			<type>Control Momentum Gyroscope Baustein</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>GEO/LEO</Einsatzgebiet>
 			<mass unit="kg">53.75</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>Control Momentum Gyroscope Baustein</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Hardware-Stack 1"/>
 				<component type="Sonnensensor 1"/>
@@ -946,11 +968,12 @@
 		</buildingblock>
 		<buildingblock type="Erdsensor-Baustein">
 			<name>Erdsensor-Baustein</name>
-			<type>Erdsensor-Baustein</type>
+			<blocksize unit="m">0.4</blocksize>
 			<Einsatzgebiet>LEO</Einsatzgebiet>
 			<mass unit="kg">13.7</mass>
 			<com unit="m">0.0,0.0,0.0</com>
-			<size unit="m">0.4</size>
+			<type>Erdsensor-Baustein</type>
+			<size unit="blocks">1.0,1.0,1.0</size>
 			<components>
 				<component type="Hardware-Stack 1"/>
 				<component type="Sonnensensor 1"/>
