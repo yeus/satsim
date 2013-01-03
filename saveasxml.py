@@ -76,6 +76,7 @@ if __name__ == "__main__":
   #main()
   import tableop as top
   #komponenten, bausteine, referenzmissionen=top.converttable()
+  data=top.converttable()
   #co=komponenten.values()[1]
   #print(prettyprintxml(co.xml))
-  saveibosslists(*top.converttable())#"""
+  saveibosslists(*data)#"""

@@ -19,6 +19,7 @@ from math import *
 import copy
 import quantities as pq
 import saveasxml
+from loadfromxml import loadxmldata
 
 
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector function
@@ -29,7 +30,9 @@ def printclasslist(instance):
     for vname,vval in vars(i).items():
       print("{:30}=  {}".format(vname,vval))
 
-komponenten, bausteine, referenzmissionen=taop.converttable()
+#komponenten, bausteine, referenzmissionen=taop.converttable()
+komponenten, bausteine, referenzmissionen=loadxmldata("bausteinkatalog/katalog1.0.xml")
+
 
 #printclasslist(komponenten.values())
 #printclasslist(bausteine.values())
