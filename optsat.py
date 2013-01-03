@@ -82,4 +82,5 @@ def getmission():
 
 if __name__ == "__main__":
   mission=getmission()
+  mission.update()
   saveasxml.savexml("bausteinkatalog/missionen_gen.xml",mission.xml)

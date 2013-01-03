@@ -28,8 +28,8 @@ def vec2str(vec):
   return "{},{},{}".format(*vec)
 
 #convert string to vector (python list)
-def str2vec(stringvec):
-  return vec(*[float(i) for i in stringvec.split(",")])
+def str2vec(stringvec): return vec(*[float(i) for i in stringvec.split(",")])
+def str2vecint(stringvec): return vec(*[int(i) for i in stringvec.split(",")])
 
 def prettyprintxml(xmltree):
   XML=et.tostring(xmltree,encoding="utf-8")
@@ -80,7 +80,7 @@ class ibossxml(object):
     root=et.Element(self.__class__.__name__)
     root.set("type",self.type)
     for vkey,vvalue in vars(self).items():
-      if vkey not in ["components","_bb"]:  #sonderbehandlung (erstmal Auslassen) für BS-Listen
+      if vkey not in ["components","_bb","massgen"]:  #sonderbehandlung (erstmal Auslassen) für BS-Listen
         if vvalue!=odspy.NULL: root.append(self.property2xml(vkey,vvalue)) #speichern sämtlicher Klassenvariablen
     
     xmllist=self.xmllist()  # eigentliche Sonderbehandlung von BS-Listen
@@ -92,17 +92,17 @@ class ibossxml(object):
   def xmlstr(self):  return prettyprintxml(self.xml)
 
 class component(ibossxml):
-  def __init__(self,name):
-    self.type=name
-    self.name=name#
+  def __init__(self,cotype):
+    self.type=cotype
+    self.name=cotype#
     self.mass=0
 
 class buildingblock(ibossxml):
-  def __init__(self,name):
+  def __init__(self,bbtype):
     self.blocksize=0.4*pq.m #0.4m
     self.size=vec(1,1,1)*pq.blocks
-    self.name=name
-    self.type=name
+    self.name=bbtype
+    self.type=bbtype
     self.components=[]
     self.mass=0*pq.kg
     self.com=vec(0,0,0)*self.blocksize
@@ -120,7 +120,7 @@ class buildingblock(ibossxml):
       root.append(newelem)
     return root #so the list gets serialized in xml"""
     
-  def add_co(self,co):
+  def add_co(self,co): #todo variable length argument list
     self.components.append(copy(co))
     if "num" not in vars(co): co.num=1
     if "mass" in vars(co): self.mass+=co.mass*co.num
@@ -132,43 +132,46 @@ class buildingblock(ibossxml):
     return self.mass
 
 class mission(ibossxml):
-  def __init__(self,name):
+  def __init__(self,mitype):
     self.bbgap=0.1 *pq.m#todo aus Tabelle abrufen
     self.bbsize=0.4 *pq.m
-    self.name=name
+    self.name=mitype
     self.mass=0*pq.kg
-    self.type=name
+    self.type=mitype
     self._bb=[]#list of building blocks
-    self.orbparam=odspy.NULL
+    self.orbparam="2-line-elem"
 
   def xmllist(self):
     root=et.Element("buildingblocks")
     for bb in self.bb:
       newelem=et.Element("buildingblock")
       newelem.set("type",bb.type)
-      newelem.set("pos", vec2str(bb.pos))
+      newelem.set("pos", vec2str(bb.pos))  #is dimensionless
       newelem.set("rot", vec2str(bb.rot.magnitude))
       root.append(newelem)
     return root #so the list gets serialized in xml
     
   #adds a new building block to the satellite
-  def add_bb(self,bb,pos,rot):
+  def add_bb(self,bb,pos,rot):  #todo variable length argument list
     newbs=copy(bb)
     newbs.pos=pos
     newbs.rot=rot
     newbs.name=newbs.type
-    if "mass" in vars(bb): self.mass+=bb.mass
     self.bb.append(newbs)
+   
+  def update(self):
+    self.mass=self.massgen
+    
+  @property
+  def massgen(self):
+    return np.sum([bb.mass for bb in self.bb])*pq.kg
     
   @property
   def bb(self):
     return self._bb
-  
   @bb.setter
-  def bb(self,value):
-    self.mass=np.sum([bb.mass for bb in value])*pq.kg
+  def bb(self,value): #todo remove this function
     self._bb=value
-  
   @bb.deleter
   def bb(self):
     del self._bb
@@ -176,5 +179,5 @@ class mission(ibossxml):
   #calculate Center of Gravity for a Mission
   @property
   def com(self):
-    self.__com=np.sum([(vec(*bb.pos)*(self.bbsize+self.bbgap))*bb.mass for bb in self.bb],axis=0)*pq.kg*pq.m/self.mass  #2nd method
+    self.__com=np.sum([(vec(*bb.pos)*(self.bbsize+self.bbgap))*bb.massgen for bb in self.bb],axis=0)*pq.kg*pq.m/self.massgen  #2nd method
     return self.__com

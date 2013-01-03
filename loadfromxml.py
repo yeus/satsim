@@ -15,9 +15,9 @@
 #       - 2013 01 03 - Thomas Meschede
 
 import iboss
+from iboss import pq
 import copy
 import xml.etree.ElementTree as et
-
 
 def loadxmldata(filename='bausteinkatalog/katalog1.0.xml'):
   data = et.parse(filename)
@@ -28,14 +28,14 @@ def loadxmldata(filename='bausteinkatalog/katalog1.0.xml'):
 
   components=dict()
   for i in co_list:
-    new_co=iboss.component(i.find("name").text)
+    new_co=iboss.component(i.find("type").text)
     for xmlprop in i:  #add properties
       new_co.addxmlprop(xmlprop)
     components[new_co.name]=new_co
     
   buildingblocks=dict()
   for i in bs_list:
-    new_bs=iboss.buildingblock(i.find("name").text)
+    new_bs=iboss.buildingblock(i.find("type").text)
     for xmlprop in i:
       if xmlprop.tag=="components":
         for co in xmlprop:
@@ -50,4 +50,25 @@ def loadxmldata(filename='bausteinkatalog/katalog1.0.xml'):
   mission=dict()
   
   return components, buildingblocks, mission
-  
+
+def xml2mission(data,buildingblocks):  
+  mission=iboss.mission(data.find("type").text)
+  for xmlprop in xmlmission:
+    if xmlprop.tag=="buildingblocks":
+      for xmlbb in xmlprop:
+        newbb=copy.copy(buildingblocks[xmlbb.attrib["type"]])
+        mission.add_bb(bb=newbb,pos=iboss.str2vecint(xmlbb.attrib["pos"]),rot=iboss.str2vec(xmlbb.attrib["rot"])*pq.deg)
+    else: mission.addxmlprop(xmlprop)
+    
+  return mission
+
+
+co,bb,mn=loadxmldata()
+
+data = et.parse("bausteinkatalog/missionen_gen.xml")
+xmlmission = data.getroot()
+
+mission = xml2mission(xmlmission,bb)
+
+import saveasxml
+saveasxml.savexml("bausteinkatalog/missionen2_gen.xml",mission.xml)

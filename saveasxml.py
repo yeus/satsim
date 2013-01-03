@@ -44,6 +44,9 @@ def ibosslist2xml(name,instancelist):
     root.append(i.xml)
   return root
   
+#def savelistxml(filename,listname,xmllist):
+#  ibosslist2xml(listname,xmllist)  
+  
 def savexml(filename,xml):
   f=codecs.open(filename,"w",encoding="utf-8")
   f.write(prettyprintxml(xml))
