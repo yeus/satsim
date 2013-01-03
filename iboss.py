@@ -80,7 +80,7 @@ class ibossxml(object):
     root=et.Element(self.__class__.__name__)
     root.set("type",self.type)
     for vkey,vvalue in vars(self).items():
-      if vkey not in ["components","_bb","massgen"]:  #sonderbehandlung (erstmal Auslassen) für BS-Listen
+      if vkey not in ["components","_bb"]:  #sonderbehandlung (erstmal Auslassen) für BS-Listen
         if vvalue!=odspy.NULL: root.append(self.property2xml(vkey,vvalue)) #speichern sämtlicher Klassenvariablen
     
     xmllist=self.xmllist()  # eigentliche Sonderbehandlung von BS-Listen
