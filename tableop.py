@@ -21,10 +21,8 @@ import odspy
 from odspy import ods2table
 import numpy as np
 import iboss
+from iboss import pq
 import copy
-import quantities as pq
-pq.krad=pq.UnitQuantity('kilorad', pq.rads*1000, symbol='krad')
-pq.block=pq.UnitQuantity('blocks', 1, symbol='blocks')
 
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector
 

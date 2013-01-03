@@ -16,6 +16,8 @@ import numpy as np
 from xml.etree import ElementTree as et
 import odspy
 import quantities as pq
+pq.krad=pq.UnitQuantity('kilorad', pq.rads*1000, symbol='krad')
+pq.blocks=pq.UnitQuantity('blocks', 1, symbol='blocks')
 
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector
 
@@ -66,7 +68,7 @@ class component(ibossxml):
 class buildingblock(ibossxml):
   def __init__(self,name):
     self.blocksize=0.4*pq.m #0.4m
-    self.size=vec(1,1,1)*pq.UnitQuantity('blocks', 1, symbol='blocks')
+    self.size=vec(1,1,1)*pq.blocks
     self.name=name
     self.type=name
     self.components=[]
