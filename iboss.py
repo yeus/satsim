@@ -179,5 +179,5 @@ class mission(ibossxml):
   #calculate Center of Gravity for a Mission
   @property
   def com(self):
-    self.__com=np.sum([(vec(*bb.pos)*(self.bbsize+self.bbgap))*bb.massgen for bb in self.bb],axis=0)*pq.kg*pq.m/self.massgen  #2nd method
+    self.__com=np.sum([(vec(*bb.pos)*(self.bbsize+self.bbgap))*bb.mass for bb in self.bb],axis=0)*pq.kg*pq.m/self.massgen  #2nd method
     return self.__com

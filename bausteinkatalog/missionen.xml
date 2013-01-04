@@ -2,8 +2,9 @@
 <missions>
 	<mission type="GEObsp2">
 		<name>GEObsp2</name>
+		<orbparam>2-line-elem</orbparam>
 		<bbsize unit="m">0.4</bbsize>
-		<mass unit="kg">393.0</mass>
+		<mass unit="kg">0.0</mass>
 		<bbgap unit="m">0.1</bbgap>
 		<type>GEObsp2</type>
 		<buildingblocks>
@@ -17,8 +18,9 @@
 	</mission>
 	<mission type="GEObsp">
 		<name>GEObsp</name>
+		<orbparam>2-line-elem</orbparam>
 		<bbsize unit="m">0.4</bbsize>
-		<mass unit="kg">471.18</mass>
+		<mass unit="kg">0.0</mass>
 		<bbgap unit="m">0.1</bbgap>
 		<type>GEObsp</type>
 		<buildingblocks>
