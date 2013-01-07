@@ -1,14 +1,11 @@
 #!python
 
 #skript berechnet DH-Matrizen numerisch...
-import scipy
-sp=scipy
-np=sp
-r_=scipy.r_
+import numpy as np
+import numpy.linalg
 
-import scipy.linalg
 #from pylab import *
-norm=scipy.linalg.norm
+norm=numpy.linalg.norm
 mytype=np.float64
 cross=np.cross
 dot=np.dot
@@ -138,23 +135,30 @@ def generate_oe(r_per,r_apo):
 		'tra':0#true anomaly at epoch 
 		}
 	return oe
-	
-#halb implizite Euler Methode
-def eu(y,h,g):
+
+#propagators:
+#y: state vector
+#h: timestep dt
+#g: function to be propagated #Propagation Functions (has to be of the form: y'=f(y)  where f is the function to be propagated and y the state vector)
+
+#Euler:
+"""def eu(y,h,g):
 	yn=y+h*g(y)
 	#ddr=f(r)
 	#ndr=ddr*dt+dr
 	#nr=r+ndr*dt
 	return yn
 
+#halb implizite Euler Methode
 def ehi(y,h,g):
 	r,v=y[3:],y[:3]
 	d=norm(r)
 	a=-mu/(d**3)*r
 	v+=a*h
 	r+=v*h
-	return r_[v,r]
+	return r_[v,r]"""
 
+#Runge Kutta 4
 def RK4(y,h,g):
 	k1=g(y);
 	k2=g(y+h*.5*k1);
@@ -163,7 +167,8 @@ def RK4(y,h,g):
 	yn=y+h/6.0*(k1+2*(k2+k3)+k4)
 	return yn
 
-def kep(oe,t):
+#Kepler
+"""def kep(oe,t):
 	ecc=oe["ecc"]
 	sma=oe["sma"]
 	n=sqrt(mu/(sma**3))#mean angular velocity
@@ -173,46 +178,67 @@ def kep(oe,t):
 	r=oe2pos(oe)
 	dr=oe2vel(oe)
 	
-	return r_[dr,r]
+	return r_[dr,r]"""
 
-def g(y):
+#Propagation Functions (has to be of the form: y'=f(y)  where f is the function to be propagated and y the state vector)
+#y: state vector of an object
+#returns: y' (derivativ of state vector y)
+def grav_func(y):
+        dy=np.zeros(6)#derivative of y (function )
 	r=y[3:]
 	d=norm(r)
 	a=-mu/(d**3)*r
 	v=y[:3]
-	return r_[a,v]  
+	return np.concatenate((a,v))  
 
-h=5000
-delta=0.000 #=3m ==> realistisches scenario
-d=.1#Anzahl der zu berechnenden Tage im Orbit:
-#T=0.99*2*pi/sqrt(mu/((r_e+h)**3))	#simulation over a single orbit
-T=d*24*3600.0 #overall simulation Time
-dt=100 #in seconds
+#defines a simulation necessary variables:
+#
+#
 
-oe=generate_oe(r_e+h,r_e+h)
-y=r_[oe2vel(oe),[r_e+h,0,0]]
-ye=yk=y
+"""class simulation:
+  #def __init__(self,)
+  def run(self,time=-1)
+    currenttime=0.0
+    timemax=
+    while(currenttime<timemax)"""
+    
 
-steps=1000
-ork=np.empty((steps,6))
-oeu=np.empty((steps,6))
-okp=np.empty((steps,6))
-for i in range(steps):
-	y=RK4(y,dt,g)
-	ork[i]=y
-	
-	#ye=ehi(ye,dt,g)
-	#oeu[i]=ye	
-	
-	#yk=kep(oe,(i+1)*dt)
-	#okp[i]=yk
 
-e_rk=ork-okp
-#e_eu=oeu-okp
-import matplotlib.pyplot as plt
-#plt.plot(okp[:,3],okp[:,4],"b+")
-plt.plot(ork[:,3],ork[:,4],"r")
-#plt.plot(np.arange(steps)*dt,sqrt(e_rk[:,3]*e_rk[:,3]+e_rk[:,4]*e_rk[:,4]))
-#plt.plot(oeu[:,3],oeu[:,4],"y+")
-#plt.plot(norm(e_eu[:,3:5]))
-plt.show()
+def test():
+  h=5000
+  delta=0.000 #=3m ==> realistisches scenario
+  d=.1#Anzahl der zu berechnenden Tage im Orbit:
+  #T=0.99*2*pi/sqrt(mu/((r_e+h)**3))	#simulation over a single orbit
+  T=d*24*3600.0 #overall simulation Time
+  dt=100 #in seconds
+
+  oe=generate_oe(r_e+h,r_e+h)
+  y=np.concatenate((oe2vel(oe),[r_e+h,0,0]))
+  ye=yk=y
+
+  steps=1000
+  ork=np.empty((steps,6))
+  oeu=np.empty((steps,6))
+  okp=np.empty((steps,6))
+  for i in range(steps):
+    y=RK4(y,dt,grav_func)
+    ork[i]=y
+    
+    #ye=ehi(ye,dt,grav_func)
+    #oeu[i]=ye	
+    
+    #yk=kep(oe,(i+1)*dt)
+    #okp[i]=yk
+
+  e_rk=ork-okp
+  #e_eu=oeu-okp
+  import matplotlib.pyplot as plt
+  #plt.plot(okp[:,3],okp[:,4],"b+")
+  plt.plot(ork[:,3],ork[:,4],"r")
+  #plt.plot(np.arange(steps)*dt,sqrt(e_rk[:,3]*e_rk[:,3]+e_rk[:,4]*e_rk[:,4]))
+  #plt.plot(oeu[:,3],oeu[:,4],"y+")
+  #plt.plot(norm(e_eu[:,3:5]))
+  plt.show()
+  
+if __name__ == '__main__':
+  test()

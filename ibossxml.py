@@ -26,6 +26,7 @@ def loadxmldata(filename='bausteinkatalog/katalog1.0.xml'):
   co_list=data.find("components")
   bs_list=data.find("buildingblocks")
 
+  #todo XML load routinen in iboss Klassen verschieben
   components=dict()
   for i in co_list:
     new_co=iboss.component(i.find("type").text)
