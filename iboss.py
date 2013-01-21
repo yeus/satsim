@@ -63,17 +63,11 @@ class ibossxml(object):
     #newelem=et.Element("property")
     if isinstance(vvalue,pq.Quantity): 
       newelem.set("unit",vvalue.dimensionality.string)
-      if vvalue.size==1 :vvalue=unicode(vvalue.magnitude)
+      if vvalue.size==1 :newelem.text=unicode(vvalue.magnitude)
       else: vvalue=vec2str(vvalue.magnitude)
     else: 
-      vvalue=unicode(vvalue)
+      newelem.text=unicode(vvalue)
     
-    """xmlvalue=et.Element("value")
-    xmlvalue.text=vvalue
-    xmlkey=et.Element("name")
-    xmlkey.text=vkey
-    newelem.extend((xmlkey,xmlvalue))"""
-    newelem.text=vvalue
     return newelem
   
   @property
