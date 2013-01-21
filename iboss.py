@@ -41,6 +41,7 @@ class ibossxml(object):
   def xmllist(self):
     return None
   
+  #todo: XML vektoren einlesen
   def addxmlprop(self,xmlprop):
     #convert to floats and vectors
     try:
@@ -57,17 +58,30 @@ class ibossxml(object):
     else: unit=1
     
     vars(self)[xmlprop.tag]=val*unit
+
+  @classmethod
+  def vec2xml(cls,vec):
+    x,y,z=et.Element("x"),et.Element("y"),et.Element("z")
+    x.text=unicode(vec[0])
+    y.text=unicode(vec[1])
+    z.text=unicode(vec[2])
+    return (x,y,z)
   
-  def property2xml(self,vkey,vvalue):
+  @classmethod
+  def property2xml(cls,vkey,vvalue):
     newelem=et.Element(vkey)
     #newelem=et.Element("property")
     if isinstance(vvalue,pq.Quantity): 
       newelem.set("unit",vvalue.dimensionality.string)
       if vvalue.size==1 :newelem.text=unicode(vvalue.magnitude)
-      else: vvalue=vec2str(vvalue.magnitude)
+      else: newelem.extend(cls.vec2xml(vvalue.magnitude))#vec2str(vvalue.magnitude))
     else: 
-      newelem.text=unicode(vvalue)
-    
+      try:
+        if vvalue.size>1: newelem.extend(cls.vec2xml(vvalue))
+        else: newelem.text=unicode(vvalue)
+      except AttributeError: #in case of vvalue not beeing an array
+        newelem.text=unicode(vvalue)
+        
     return newelem
   
   @property
@@ -85,6 +99,8 @@ class ibossxml(object):
 
   @property
   def xmlstr(self):  return prettyprintxml(self.xml)
+
+#end class ibossxml
 
 class component(ibossxml):
   def __init__(self,cotype):
@@ -107,9 +123,9 @@ class buildingblock(ibossxml):
     for co in self.components:
       newelem=et.Element("component")
       newelem.set("type",co.type)
-      if hasattr(co,"pos"): newelem.set("pos", vec2str(co.pos))
-      if hasattr(co,"rot"): newelem.set("rot", vec2str(co.rot.magnitude))
-      if hasattr(co,"th_vec"): newelem.set("th_vec", vec2str(co.th_vec))
+      if hasattr(co,"pos"): newelem.append(self.property2xml("pos",co.pos))#"pos", vec2str(co.pos))
+      if hasattr(co,"rot"): newelem.append(self.property2xml("rot",co.rot))#set("rot", vec2str(co.rot.magnitude))
+      if hasattr(co,"th_vec"): newelem.append(self.property2xml("th_vec",co.th_vec))#.set("th_vec", vec2str(co.th_vec))
       if hasattr(co,"num"): 
         if co.num!=1: newelem.set("num", unicode(co.num)) #if it is just one component number does not matter
       root.append(newelem)
@@ -141,8 +157,8 @@ class mission(ibossxml):
     for bb in self.bb:
       newelem=et.Element("buildingblock")
       newelem.set("type",bb.type)
-      newelem.set("pos", vec2str(bb.pos))  #is dimensionless
-      newelem.set("rot", vec2str(bb.rot.magnitude))
+      newelem.append(self.property2xml("pos",bb.pos))#.set("pos", vec2str(bb.pos))  #is dimensionless
+      newelem.append(self.property2xml("rot",bb.rot))#.set("rot", vec2str(bb.rot.magnitude))
       root.append(newelem)
     return root #so the list gets serialized in xml
     
