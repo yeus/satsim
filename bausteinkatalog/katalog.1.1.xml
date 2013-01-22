@@ -667,10 +667,9 @@
 				<component num="2" type="Sonnensensor 1"/>
 				<component num="104" type="elektr. Schnittstelle"/>
 				<component type="Hall Efffekt Triebwerk"/>
-				<component num="3" type="Bausteinstruktur"/>
+				<component num="2" type="Bausteinstruktur"/>
 				<component num="104" type="Versorgungsleitungen"/>
 				<component num="13" type="mech. Schnittstelle"/>
-				<component type="Tank 1"/>
 				<component num="13" type="Datenschnittstelle"/>
 				<component type="PSCU"/>
 			</components>
@@ -1078,9 +1077,8 @@
 				<component num="3" type="Hardware-Stack 1"/>
 				<component num="2" type="Sonnensensor 1"/>
 				<component num="72" type="elektr. Schnittstelle"/>
-				<component num="2" type="Bausteinstruktur"/>
+				<component num="1" type="Bausteinstruktur"/>
 				<component num="72" type="Versorgungsleitungen"/>
-				<component type="Tank 2"/>
 				<component num="9" type="mech. Schnittstelle"/>
 				<component num="5" type="Datenschnittstelle"/>
 				<component type="Monopropell.System"/>
@@ -1133,11 +1131,10 @@
 				<component num="3" type="Hardware-Stack 1"/>
 				<component num="2" type="Sonnensensor 1"/>
 				<component num="72" type="elektr. Schnittstelle"/>
-				<component num="2" type="Bausteinstruktur"/>
+				<component num="1" type="Bausteinstruktur"/>
 				<component num="72" type="Versorgungsleitungen"/>
 				<component type="Kaltgasantriebssyst."/>
 				<component num="9" type="mech. Schnittstelle"/>
-				<component type="Tank 1"/>
 				<component num="5" type="Datenschnittstelle"/>
 			</components>
 		</buildingblock>
