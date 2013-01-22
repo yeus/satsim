@@ -31,7 +31,7 @@ def printclasslist(instance):
       print("{:30}=  {}".format(vname,vval))
 
 #komponenten, bausteine, referenzmissionen=taop.converttable()
-komponenten, bausteine, referenzmissionen=loadxmldata("bausteinkatalog/katalog1.0.xml")
+komponenten, bausteine, referenzmissionen=loadxmldata("bausteinkatalog/katalog.1.1.xml")
 
 
 #printclasslist(komponenten.values())
@@ -70,7 +70,7 @@ satgrid[2,3,4]=copy.copy(bausteine["test Lageregelungsbaustein"])
 #organize the grid (rotate buildingblocks, add certain attributes for them):
 for pos in np.ndindex(*satsize):
   bs=satgrid[pos]
-  bs.pos=pos
+  bs.pos=pos*pq.blocks
   if bs.type=="test Lageregelungsbaustein":
     bs.rot=vec(0,0,0)*pq.deg
   else: satgrid[pos].rot=vec(randrange(4)*90,randrange(4)*90,randrange(4)*90)*pq.deg

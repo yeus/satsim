@@ -10,6 +10,9 @@
 # modified:
 #       - created: 2013 01 20 - Thomas Meschede
 
+#####notes
+#wikipedia Gleichungen für Solarzelle sind nur Implizit vorhanden deswegen : TRW Modell aus Handbuch für Raumfahrttechnik
+
 from math import exp,log
 import numpy as np
 
@@ -25,12 +28,13 @@ N_p=100.0 #Numper of parallel solar cells per string
 N_s=25.0 #Number of series-connected solar cells per string
 phi=0.0 #Angle between the vector normal to the active PVA (Photovoltaic Solar Array) surface and the plane of the incident solar radiation.
 
-C_a=(V_mp/V_oc-1)/np.log(1-I_mp/I_sc)
+C_a=(V_mp/V_oc-1)/log(1-I_mp/I_sc)
 C_b=(1-I_mp/I_sc)*np.exp(-(V_mp/(C_a*V_oc)))
 
+#Das "TRW" Solar Cell Curve Model
 #calculate characteristic following equations of H.S.Rauschenbach
 def I_op(V_op):
-  I_op=I_sc*A_cell*N_p * (1-C_b*(np.exp(-(V_op/(C_a*V_oc*N_s)))-1))
+  I_op=I_sc*A_cell*N_p * (1-C_b*(np.exp((V_op/(C_a*V_oc*N_s)))-1))
   #print(I_op)
   return I_op
 
@@ -40,7 +44,7 @@ def I_op(V_op):
 #def I_op_wik():
 #  return I
 
-v=np.linspace(0,100,10)
+v=np.linspace(0,V_oc*N_s,1000)
 i=I_op(v)
 
 """import matplotlib.pyplot as plt
