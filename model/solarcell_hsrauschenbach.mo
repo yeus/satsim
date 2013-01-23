@@ -1,4 +1,4 @@
-model solarcell_hsrauschenbach
+model solarcell
   import Modelica.SIunits;
   import Modelica.Constants.*;
   parameter SIunits.Current I_L = 1 "photogenerated current";
@@ -13,5 +13,5 @@ model solarcell_hsrauschenbach
 equation
   //i = I_L - I_0 * (exp((q * (v + i * R_S)) / (N * k * T)) - 1) - (v + i * R_S) / R_SH;
   i = I_L - I_0 * (exp((q * (v + i * R_S)) / (N * k * T)) - 1) - (v + i * R_S) / R_SH;
-end solarcell_hsrauschenbach;
+end solarcell;
 
