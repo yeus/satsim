@@ -6,15 +6,10 @@ model buildingblock
   iboss_Int int1 annotation(Placement(visible = true, transformation(origin = {86.8458,-0.282886}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {86.8458,-0.282886}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   iboss_Int int2 annotation(Placement(visible = true, transformation(origin = {0.848659,-87.1287}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {0.848659,-87.1287}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   iboss_Int int0 annotation(Placement(visible = true, transformation(origin = {-80.9054,-1.41443}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-80.9054,-1.41443}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-  Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 1000) annotation(Placement(visible = true, transformation(origin = {-2.30853,19.3555}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-  Modelica.Electrical.Analog.Sources.ConstantVoltage constantvoltage1(V = 100) annotation(Placement(visible = true, transformation(origin = {-1.17703,-18.5511}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-  Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-44.8378,-30.6785}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 1000) annotation(Placement(visible = true, transformation(origin = {-6.1,-5.92096}, extent = {{-12,-12},{12,12}}, rotation = 0)));
 equation
-  connect(constantvoltage1.p,int2.Vcc) annotation(Line(points = {{-13.177,-18.5511},{-13.5693,-18.5511},{-13.5693,-84.9558},{-3.2249,-84.9558},{-3.2249,-84.5488}}));
-  connect(constantvoltage1.n,int2.GND) annotation(Line(points = {{10.823,-18.5511},{10.9145,-18.5511},{10.9145,-58.9971},{4.71976,-58.9971},{4.71976,-84.5827},{4.82037,-84.5827}}));
-  connect(ground1.p,constantvoltage1.p) annotation(Line(points = {{-44.8378,-18.6785},{-44.8378,-18.5841},{-13.177,-18.5841},{-13.177,-18.5511}}));
-  connect(resistor1.p,constantvoltage1.p) annotation(Line(points = {{-14.3085,19.3555},{-13.9068,19.3555},{-13.9068,-18.5511},{-13.177,-18.5511}}));
-  connect(resistor1.n,constantvoltage1.n) annotation(Line(points = {{9.69147,19.3555},{10.7042,19.3555},{10.7042,-18.5511},{10.823,-18.5511}}));
+  connect(resistor1.p,int2.Vcc) annotation(Line(points = {{-18.1,-5.92096},{-18.3254,-5.92096},{-18.3254,-84.9921},{-3.2249,-84.9921},{-3.2249,-84.5488}}));
+  connect(resistor1.n,int2.GND) annotation(Line(points = {{5.9,-5.92096},{6.00316,-5.92096},{6.00316,-84.5827},{4.82037,-84.5827}}));
   connect(int2.Vcc,int5.Vcc) annotation(Line(points = {{-3.2249,-84.5488},{-3.53982,-84.5488},{-3.53982,-73.4513},{71.1739,-73.4513},{71.1739,-72.9505}}));
   connect(int2.GND,int5.GND) annotation(Line(points = {{4.82037,-84.5827},{79.351,-84.5827},{79.351,-72.9844},{79.2192,-72.9844}}));
   connect(int1.GND,int5.GND) annotation(Line(points = {{90.8175,2.26308},{90.5233,2.26308},{90.5233,-72.7016},{79.2192,-72.7016},{79.2192,-72.9844}}));
