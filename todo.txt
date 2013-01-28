@@ -1,3 +1,13 @@
 - EVS Simulation über Modelica
 - Bei der Simulation eines einzelnen Bausteins auf Grenzwerte, wie z.B. max. Stromfluß über eine Schnittstelle achten usw...
 - Implementierung v. Unit-Tests 
+
+Experimente:
+  * Rückkopplungsverhalten bei Tag & Nachtwechsel zeigen
+  * Anzahl der Bausteine und Stabilität des EVS in Abhängigkeit der Energieerzeugung
+  * Anzahl der benötigten Batterien
+  * Anzahl der benötigten Solarzellen
+  * Maximale Verbrauchswerte für einzelne Bausteine in Abhängigkeit der Energieerzeugung (damit z.B. keine Thermalgrenzwerte überschritten werden.)
+  * Stabilität des EVS?
+  * PCU Regler testen
+  * AOCS testen
