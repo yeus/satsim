@@ -1,3 +1,7 @@
+
+PCU:
+  - DC-DC Converter: Es gibt ein ganz gutes Paper von Modelica um "solch einen" zu erstellen. ansonsten muss man sich eben mit einem simplen quasistationären Ersatzmodell behelfen (Wirkungsgrad + Spannugnsverlust)
+
 Modell-Struktur:
   - Wiederstände und andere Komponenten lassen sich über das Stichwort "replacable" parametrisieren
   - separate Modelle für Thermal, EVS, Lageregelung und dann die einzelnen Bausteinklassen in einem "Supermodell" verheiraten?
