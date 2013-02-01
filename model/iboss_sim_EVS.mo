@@ -6,11 +6,13 @@ model EVS
   buildingblock buildingblock1 annotation(Placement(visible = true, transformation(origin = {-32.5903,-3.67752}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   buildingblock buildingblock3 annotation(Placement(visible = true, transformation(origin = {-32.7968,54.5464}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   buildingblock buildingblock4 annotation(Placement(visible = true, transformation(origin = {24.6432,54.2438}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  connectionelement connectionelement5 annotation(Placement(visible = true, transformation(origin = {-62.2348,-4.24328}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   connectionelement connectionelement3 annotation(Placement(visible = true, transformation(origin = {-33.6634,27.157}, extent = {{-12,12},{12,-12}}, rotation = -90)));
   connectionelement connectionelement4 annotation(Placement(visible = true, transformation(origin = {23.1966,26.5912}, extent = {{-12,12},{12,-12}}, rotation = -90)));
-  dockinterface dockinterface1 annotation(Placement(visible = true, transformation(origin = {-32.5318,-36.4922}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  bb_solar bb_solar1 annotation(Placement(visible = true, transformation(origin = {-91.0891,-4.52617}, extent = {{12,-12},{-12,12}}, rotation = 90)));
 equation
-  connect(dockinterface1.iBoss_Int,buildingblock1.Yn) annotation(Line(points = {{-32.5697,-28.1889},{-33.3805,-28.1889},{-33.3805,-13.9337},{-33.1587,-13.9337}}));
+  connect(bb_solar1.Yn,connectionelement5.int2) annotation(Line(points = {{-79.6543,-4.5623},{-79.6543,-3.67751},{-72.7839,-3.67751},{-72.7839,-3.75989}}));
+  connect(connectionelement5.int1,buildingblock1.Xn) annotation(Line(points = {{-51.6096,-3.70014},{-44.6959,-3.70014},{-44.6959,-3.69878},{-44.6001,-3.69878}}));
   connect(connectionelement3.int2,buildingblock3.Yn) annotation(Line(points = {{-33.18,37.7061},{-33.0976,37.7061},{-33.0976,44.2902},{-33.3652,44.2902}}));
   connect(buildingblock4.Yn,connectionelement4.int2) annotation(Line(points = {{24.0748,43.9876},{23.7624,43.9876},{23.7624,37.1403},{23.68,37.1403}}));
   connect(connectionelement2.int1,buildingblock4.Xn) annotation(Line(points = {{6.38188,54.5742},{14.4272,54.5742},{14.4272,54.3923},{14.6022,54.3923}}));
