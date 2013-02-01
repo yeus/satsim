@@ -1,3 +1,12 @@
+Modell-Struktur:
+  - Wiederstände und andere Komponenten lassen sich über das Stichwort "replacable" parametrisieren
+  - separate Modelle für Thermal, EVS, Lageregelung und dann die einzelnen Bausteinklassen in einem "Supermodell" verheiraten?
+  - cardinality keyword -> feststellen, welche Schnittstellen verbunden sind, und welche nicht.
+  - connections können auch in for-loops/if Abfragen usw... deklariert werden!
+  - "terminate" Beendet Simulation nach einer vorgegeben Bedingung
+  - Record classes benutzen, um verschiedene Bausteinarten und Schnittstellenanzahl usw zu parametrisieren.
+
+
 - EVS Simulation über Modelica
 - Bei der Simulation eines einzelnen Bausteins auf Grenzwerte, wie z.B. max. Stromfluß über eine Schnittstelle achten usw...
 - Implementierung v. Unit-Tests 
