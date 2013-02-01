@@ -7,5 +7,14 @@ model buildingblock
   iboss_connector Zp annotation(Placement(visible = true, transformation(origin = {-59.084,53.9487}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-59.084,53.9487}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   iboss_connector Yp annotation(Placement(visible = true, transformation(origin = {-4.14803,88.5289}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-4.14803,88.5289}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   iboss_connector Xn annotation(Placement(visible = true, transformation(origin = {-83.6751,1.23728}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-83.6751,1.23728}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  Modelica.Electrical.Analog.Basic.Resistor resistor1 annotation(Placement(visible = true, transformation(origin = {-2.54597,-7.07214}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+equation
+  connect(Xn.GND,resistor1.n) annotation(Line(points = {{-76.4445,8.96431},{9.90099,8.96431},{9.90099,-7.07214},{9.45403,-7.07214}}));
+  connect(Xn.Vcc,resistor1.p) annotation(Line(points = {{-76.0222,-6.17297},{-14.9929,-6.17297},{-14.9929,-7.07214},{-14.546,-7.07214}}));
+  connect(Zn,Yn) annotation(Line(points = {{57.4784,-61.0104},{-5.37482,-61.0104},{-5.37482,-85.4681},{-4.73669,-85.4681}}));
+  connect(Xp,Zn) annotation(Line(points = {{85.8582,-1.93827},{57.7086,-1.93827},{57.7086,-61.0104},{57.4784,-61.0104}}));
+  connect(Yp,Xp) annotation(Line(points = {{-4.14803,88.5289},{85.9972,88.5289},{85.9972,-1.93827},{85.8582,-1.93827}}));
+  connect(Zp,Yp) annotation(Line(points = {{-59.084,53.9487},{-4.52617,53.9487},{-4.52617,88.5289},{-4.14803,88.5289}}));
+  connect(Xn,Zp) annotation(Line(points = {{-83.6751,1.23728},{-59.4059,1.23728},{-59.4059,53.9487},{-59.084,53.9487}}));
 end buildingblock;
 
