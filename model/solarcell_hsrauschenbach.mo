@@ -1,10 +1,11 @@
 model solarcell
+  //Modell nach Handbuch für Raumfahrttechnik
   import Modelica.SIunits;
   import Modelica.Constants.*;
   parameter SIunits.Voltage V_oc = 2.565 "open circuit voltage";
-  parameter SIunits.CurrentDensity I_sc = 168 "Short Circuit Current";
+  parameter SIunits.CurrentDensity I_sc = 168 "[A/m²] Short Circuit Current";
   parameter SIunits.Voltage V_mp = 2.277 "Maxium Powerpoint Voltage";
-  parameter SIunits.CurrentDensity I_mp = 160 "[Maximum Powerpoint Current";
+  parameter SIunits.CurrentDensity I_mp = 160 "[A/m²] Maximum Powerpoint Current";
   parameter Real A_cell(quantity = "Area", unit = "m2") = 0.0026 "Active area of the solar cell in cm²";
   parameter Real N_p = 100.0 "Numper of parallel solar cells per string";
   parameter Real N_s = 25.0 "Number of series-connected solar cells per string";
