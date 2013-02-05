@@ -6,10 +6,19 @@ model PCU
   Modelica.Electrical.Analog.Interfaces.PositivePin VCC3 annotation(Placement(visible = true, transformation(origin = {100.141,-23.1966}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {100.141,-23.1966}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   Modelica.Electrical.Analog.Interfaces.PositivePin VCC5 annotation(Placement(visible = true, transformation(origin = {99.8586,8.76945}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {99.8586,8.76945}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   Modelica.Electrical.Analog.Interfaces.PositivePin VCC12 annotation(Placement(visible = true, transformation(origin = {99.2928,44.6959}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {99.2928,44.6959}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  dcdc_converter dcdc_converter3(efficiency = 0.83, V_out = 3.3) annotation(Placement(visible = true, transformation(origin = {45.5446,-22.6308}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  dcdc_converter dcdc_converter2(efficiency = 0.88) annotation(Placement(visible = true, transformation(origin = {45.8274,8.76945}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  dcdc_converter dcdc_converter1(efficiency = 0.9, V_out = 12) annotation(Placement(visible = true, transformation(origin = {44.413,44.6959}, extent = {{-12,-12},{12,12}}, rotation = 0)));
 equation
-  connect(VCC3,VCC) annotation(Line(points = {{100.141,-23.1966},{65.0636,-23.1966},{65.0636,7.92079},{-100.707,7.92079},{-100.707,7.92079}}));
-  connect(VCC,VCC12) annotation(Line(points = {{-100.707,7.92079},{65.0636,7.92079},{65.0636,45.5446},{99.2928,45.5446},{99.2928,44.6959}}));
-  connect(VCC,VCC5) annotation(Line(points = {{-100.707,7.92079},{98.4441,7.92079},{98.4441,8.76945},{99.8586,8.76945}}));
-  connect(GND,gnd) annotation(Line(points = {{-100.99,-44.413},{-21.2164,-44.413},{-21.2164,-63.9321},{100.141,-63.9321},{100.141,-63.9321}}));
+  connect(dcdc_converter3.p_in,VCC) annotation(Line(points = {{33.7652,-22.3932},{-14.71,-22.3932},{-14.71,9.05233},{-100.707,9.05233},{-100.707,7.92079}}));
+  connect(dcdc_converter3.gnd,gnd) annotation(Line(points = {{38.1782,-33.1881},{25.4597,-33.1881},{25.4597,-63.9321},{100.141,-63.9321},{100.141,-63.9321}}));
+  connect(dcdc_converter1.gnd,dcdc_converter2.gnd) annotation(Line(points = {{37.0467,34.1386},{25.4597,34.1386},{25.4597,-1.69731},{38.4611,-1.69731},{38.4611,-1.78784}}));
+  connect(dcdc_converter2.gnd,dcdc_converter3.gnd) annotation(Line(points = {{38.4611,-1.78784},{25.4597,-1.78784},{25.4597,-33.0976},{38.1782,-33.0976},{38.1782,-33.1881}}));
+  connect(dcdc_converter2.p_in,VCC) annotation(Line(points = {{34.048,9.00707},{-99.0099,9.00707},{-99.0099,7.92079},{-100.707,7.92079}}));
+  connect(VCC,dcdc_converter1.p_in) annotation(Line(points = {{-100.707,7.92079},{-14.71,7.92079},{-14.71,44.9788},{32.6336,44.9788},{32.6336,44.9335}}));
+  connect(dcdc_converter3.gnd,GND) annotation(Line(points = {{38.1782,-33.1881},{-55.7284,-33.1881},{-55.7284,-44.1301},{-100.99,-44.1301},{-100.99,-44.413}}));
+  connect(VCC12,dcdc_converter1.p_out) annotation(Line(points = {{99.2928,44.6959},{56.2942,44.6959},{56.2942,44.9335},{56.8373,44.9335}}));
+  connect(VCC5,dcdc_converter2.p_out) annotation(Line(points = {{99.8586,8.76945},{57.7086,8.76945},{57.7086,9.00707},{58.2518,9.00707}}));
+  connect(dcdc_converter3.p_out,VCC3) annotation(Line(points = {{57.9689,-22.3932},{97.0297,-22.3932},{97.0297,-23.1966},{100.141,-23.1966}}));
 end PCU;
 
