@@ -3,8 +3,6 @@ model solarcell_charactristic2
   Exprgenerator exprgenerator1(alpha = 10) annotation(Placement(visible = true, transformation(origin = {58.3863,-42.6184}, extent = {{-7.45106,-7.45106},{7.45106,7.45106}}, rotation = 0)));
   Modelica.Blocks.Sources.SawTooth sawtooth2(amplitude = 1000, period = 0.1) annotation(Placement(visible = true, transformation(origin = {64.4979,-13.2956}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   Modelica.Blocks.Sources.IntegerTable integertable1(table = [0,0.1;0.1,0.01;0.2,0.001;0.3,0.0001;0.4,100]) annotation(Placement(visible = true, transformation(origin = {-84.017,62.8006}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-  solarcell solarcell1 annotation(Placement(visible = true, transformation(origin = {-38.1896,7.35503}, extent = {{12,-12},{-12,12}}, rotation = 90)));
-  Modelica.Electrical.Analog.Basic.VariableResistor variableresistor1 annotation(Placement(visible = true, transformation(origin = {25.6643,6.871}, extent = {{-12,12},{12,-12}}, rotation = -90)));
   Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {25.3756,-56.5299}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   dcdc_converter dcdc_converter1 annotation(Placement(visible = true, transformation(origin = {-7.92079,28.8543}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   Modelica.Blocks.Math.IntegerToReal integertoreal1 annotation(Placement(visible = true, transformation(origin = {-74.9646,7.07214}, extent = {{-12,-12},{12,12}}, rotation = 0)));
@@ -13,9 +11,11 @@ model solarcell_charactristic2
   Modelica.Blocks.Sources.Ramp ramp1(height = 1000, duration = 1) annotation(Placement(visible = true, transformation(origin = {-95.3324,-27.157}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   Modelica.Blocks.Sources.Constant const(k = 2) annotation(Placement(visible = true, transformation(origin = {35.0778,65.3465}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   Modelica.Blocks.Sources.Constant constant2(k = 100) annotation(Placement(visible = true, transformation(origin = {-44.413,71.57}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  solarcell solarcell1 annotation(Placement(visible = true, transformation(origin = {-38.1896,7.35503}, extent = {{12,-12},{-12,12}}, rotation = 90)));
+  Modelica.Electrical.Analog.Basic.VariableResistor variableresistor1 annotation(Placement(visible = true, transformation(origin = {25.6643,6.871}, extent = {{-12,12},{12,-12}}, rotation = -90)));
 equation
+  connect(add1.y,solarcell1.E_s) annotation(Line(points = {{-39.4167,-47.8076},{-18.9533,-47.8076},{-18.9533,-20.9335},{-56.0113,-20.9335},{-56.0113,7.07214},{-46.7094,7.07214},{-46.7094,7.20289}}));
   connect(const.y,variableresistor1.R) annotation(Line(points = {{48.2778,65.3465},{59.4059,65.3465},{59.4059,6.50636},{38.8643,6.50636},{38.8643,6.871}}));
-  connect(constant2.y,solarcell1.E_s) annotation(Line(points = {{-31.213,71.57},{-26.0255,71.57},{-26.0255,36.2093},{-56.5771,36.2093},{-56.5771,7.35502},{-46.7094,7.35502},{-46.7094,7.20289}}));
   connect(ramp1.y,add1.u1) annotation(Line(points = {{-82.1324,-27.157},{-67.6096,-27.157},{-67.6096,-40.6076},{-67.0167,-40.6076}}));
   connect(constant1.y,add1.u2) annotation(Line(points = {{-81.5666,-62.2348},{-68.4583,-62.2348},{-68.4583,-55.0076},{-67.0167,-55.0076}}));
   connect(integertable1.y,integertoreal1.u) annotation(Line(points = {{-70.817,62.8006},{-61.3861,62.8006},{-61.3861,32.5318},{-95.6153,32.5318},{-95.6153,7.07214},{-89.3646,7.07214},{-89.3646,7.07214}}));
