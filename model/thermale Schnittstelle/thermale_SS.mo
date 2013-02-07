@@ -1,4 +1,4 @@
-model thermale_SS
+model intra_BuildingBlock_connector
   Modelica.Thermal.HeatTransfer.Components.BodyRadiation bodyradiation1(Gr=Gr) annotation(Placement(visible=true, transformation(origin={-0.0,30.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalconductor1(G=G) annotation(Placement(visible=true, transformation(origin={-0.0,0.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
   annotation(Diagram(), Icon(graphics={Rectangle(rotation=0, lineColor={0,0,255}, fillColor={0,0,255}, pattern=LinePattern.Solid, fillPattern=FillPattern.None, lineThickness=0.25, extent={{-94.6355,61.8982},{96.011,-59.4223}}),Text(rotation=0, lineColor={0,0,255}, fillColor={0,0,0}, pattern=LinePattern.Solid, fillPattern=FillPattern.None, lineThickness=0.25, extent={{-141.751,112.817},{138.249,52.8171}}, textString="%name"),Text(rotation=0, lineColor={0,0,0}, fillColor={0,0,0}, pattern=LinePattern.Solid, fillPattern=FillPattern.None, lineThickness=0.25, extent={{-113.9,-19.6039},{114.1,-59.6039}}, textString="G=%G"),Text(rotation=0, lineColor={0,0,0}, fillColor={0,0,0}, pattern=LinePattern.Solid, fillPattern=FillPattern.None, lineThickness=0.25, extent={{-111.699,-59.4938},{116.301,-99.4938}}, textString="Gr=%Gr"),Text(rotation=0, lineColor={0,0,255}, fillColor={0,0,255}, pattern=LinePattern.Solid, fillPattern=FillPattern.None, lineThickness=0.25, extent={{-3.02613,8.25309},{3.55271e-15,-1.92572}}, textString="T", fontSize=24)}));
@@ -11,4 +11,4 @@ equation
   connect(port_a,bodyradiation1.port_a) annotation(Line(visible=true, origin={-5.3772,-13.7414}, points={{-94.6228,13.7414},{-58.0468,13.7414},{-58.0468,43.7414},{-23.0041,43.7414},{-6.6228,43.7414}}));
   connect(thermalconductor1.port_a,port_a) annotation(Line(visible=true, points={{-12.0,0.0},{-73.1495,0.0},{-92.1373,0.0},{-100.0,0.0}}));
   connect(thermalconductor1.port_b,port_b) annotation(Line(visible=true, points={{12.0,0.0},{51.6716,0.0},{73.7721,0.0},{100.0,0.0}}));
-end thermale_SS;
+end intra_BuildingBlock_connector;
