@@ -4,19 +4,20 @@ model dcdc_characteristic
   Modelica.Blocks.Math.Add add1(k1 = -1) annotation(Placement(visible = true, transformation(origin = {65.6294,40.4526}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp1(height = 10, duration = 1) annotation(Placement(visible = true, transformation(origin = {22.9137,69.3069}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   Modelica.Blocks.Sources.Constant const(k = 10) annotation(Placement(visible = true, transformation(origin = {22.9138,35.9265}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-  dcdc_converter dcdc_converter1 annotation(Placement(visible = true, transformation(origin = {-11.5983,5.65771}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   Modelica.Electrical.Analog.Basic.VariableResistor variableresistor1 annotation(Placement(visible = true, transformation(origin = {50.0707,-6.50636}, extent = {{-12,12},{12,-12}}, rotation = -90)));
   Modelica.Electrical.Analog.Sources.ConstantVoltage constantvoltage1(V = 20) annotation(Placement(visible = true, transformation(origin = {-78.5311,-4.30002}, extent = {{-12,12},{12,-12}}, rotation = -90)));
   Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 0.1) annotation(Placement(visible = true, transformation(origin = {12.447,-24.8939}, extent = {{12,12},{-12,-12}}, rotation = -180)));
+  dcmodel.DCtoDCModel dctodcmodel1(Vinmax = 100, Vref = 5, Pout = 10, Vinmin = 5.5, eff = 0.85) annotation(Placement(visible = true, transformation(origin = {-34.512,12.1641}, extent = {{-12,-12},{12,12}}, rotation = 0)));
 equation
-  connect(resistor1.n,dcdc_converter1.gnd) annotation(Line(points = {{0.447,-24.8939},{-5.3719,-24.8939},{-5.3719,-16.1157},{-19.0083,-16.1157},{-19.0083,-4.89958},{-18.9646,-4.89958}}));
-  connect(resistor1.p,variableresistor1.n) annotation(Line(points = {{24.447,-24.8939},{49.5868,-24.8939},{49.5868,-18.5064},{50.0707,-18.5064}}));
-  connect(dcdc_converter1.p_out,variableresistor1.p) annotation(Line(points = {{0.82602,5.89533},{50.4132,5.89533},{50.4132,5.49364},{50.0707,5.49364}}));
-  connect(dcdc_converter1.gnd,ground1.p) annotation(Line(points = {{-18.9646,-4.89958},{-19.0083,-4.89958},{-19.0083,-16.1157},{-36.7769,-16.1157},{-36.7769,-27.8868},{-36.7751,-27.8868}}));
-  connect(dcdc_converter1.p_in,constantvoltage1.p) annotation(Line(points = {{-23.3777,5.89533},{-43.8017,5.89533},{-43.8017,16.1157},{-78.5124,16.1157},{-78.5124,7.69998},{-78.5311,7.69998}}));
-  connect(constantvoltage1.n,ground1.p) annotation(Line(points = {{-78.5311,-16.3},{-36.7769,-16.3},{-36.7769,-27.8868},{-36.7751,-27.8868}}));
-  connect(add1.y,variableresistor1.R) annotation(Line(points = {{78.8294,40.4526},{85.9972,40.4526},{85.9972,-6.78925},{63.2707,-6.78925},{63.2707,-6.50636}}));
-  connect(const.y,add1.u2) annotation(Line(points = {{36.1138,35.9265},{41.867,35.9265},{41.867,33.3805},{51.2294,33.3805},{51.2294,33.2526}}));
-  connect(ramp1.y,add1.u1) annotation(Line(points = {{36.1137,69.3069},{41.0184,69.3069},{41.0184,47.8076},{51.2294,47.8076},{51.2294,47.6526}}));
+  connect(dctodcmodel1.n1,ground1.p) annotation(Line(points = {{-22.4125,5.46817},{-22.0651,5.46817},{-22.0651,-20.3678},{-36.7751,-20.3678},{-36.7751,-27.8868},{-36.7751,-27.8868}}));
+  connect(dctodcmodel1.n,ground1.p) annotation(Line(points = {{-46.5085,5.29961},{-46.959,5.29961},{-46.959,-19.5191},{-36.7751,-19.5191},{-36.7751,-27.8868},{-36.7751,-27.8868}}));
+  connect(dctodcmodel1.p1,variableresistor1.p) annotation(Line(points = {{-22.4524,17.6964},{-1.9802,17.6964},{-1.9802,5.65771},{50.0707,5.65771},{50.0707,5.49364}}));
+  connect(constantvoltage1.p,dctodcmodel1.p) annotation(Line(points = {{-78.5311,7.69998},{-78.0764,7.69998},{-78.0764,18.1047},{-46.4523,18.1047},{-46.4523,17.6566}}));
+  connect(ground1.p,constantvoltage1.n) annotation(Line(points = {{-36.7751,-27.8868},{-36.7751,-25.1768},{-78.925,-25.1768},{-78.925,-16.3},{-78.5311,-16.3}}));
+  connect(resistor1.n,ground1.p) annotation(Line(points = {{0.447,-24.8939},{-36.7751,-24.8939},{-36.7751,-27.8868},{-36.7751,-27.8868}}));
+  connect(variableresistor1.n,resistor1.p) annotation(Line(points = {{50.0707,-18.5064},{50.0707,-18.5064},{50.0707,-24.8939},{24.447,-24.8939},{24.447,-24.8939}}));
+  connect(add1.y,variableresistor1.R) annotation(Line(points = {{78.8294,40.4526},{84.2999,40.4526},{84.2999,-6.50636},{63.2707,-6.50636},{63.2707,-6.50636}}));
+  connect(const.y,add1.u2) annotation(Line(points = {{36.1138,35.9265},{49.7878,35.9265},{49.7878,33.2526},{51.2294,33.2526}}));
+  connect(ramp1.y,add1.u1) annotation(Line(points = {{36.1137,69.3069},{40.4526,69.3069},{40.4526,47.5248},{51.2294,47.5248},{51.2294,47.6526}}));
 end dcdc_characteristic;
 
