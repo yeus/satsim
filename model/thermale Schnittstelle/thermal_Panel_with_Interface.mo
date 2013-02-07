@@ -8,10 +8,10 @@ model thermal_Panel_with_Interface "Seitenpanel mit Schnittstelle"
   parameter Modelica.SIunits.ThermalConductance G_MSS "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={-16.0,-42.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
   parameter Modelica.SIunits.ThermalConductance G_ESS "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={16.0,-42.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
   parameter Modelica.SIunits.ThermalConductance G_Panel "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={49.0,-42.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
-  parameter Modelica.SIunits.ThermalConductance C_TSS "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={-48.0,-69.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
-  parameter Modelica.SIunits.ThermalConductance C_MSS "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={-16.0,-69.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
-  parameter Modelica.SIunits.ThermalConductance C_ESS "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={16.0,-69.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
-  parameter Modelica.SIunits.ThermalConductance C_Panel "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={49.0,-69.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
+  parameter Modelica.SIunits.HeatCapacity C_TSS "Heat capacity of element (= cp*m)" annotation(Placement(visible=true, transformation(origin={-48.0,-69.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
+  parameter Modelica.SIunits.HeatCapacity C_MSS "Heat capacity of element (= cp*m)" annotation(Placement(visible=true, transformation(origin={-16.0,-69.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
+  parameter Modelica.SIunits.HeatCapacity C_ESS "Heat capacity of element (= cp*m)" annotation(Placement(visible=true, transformation(origin={16.0,-69.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
+  parameter Modelica.SIunits.HeatCapacity C_Panel "Heat capacity of element (= cp*m)" annotation(Placement(visible=true, transformation(origin={49.0,-69.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
 equation 
   connect(BuildingBlock_Panel.port_b,schnittstelle1.port_a) annotation(Line(visible=true, origin={-22.5268,-0.1}, points={{-8.7804,-0.1},{-0.4732,-0.1},{-0.4732,0.1},{9.7268,0.1}}, color={191,0,0}));
   connect(schnittstelle1.thermal_connector,thermal_connector) annotation(Line(visible=true, origin={31.5,-0.0}, points={{-38.5,0.0},{38.5,-0.0}}));
