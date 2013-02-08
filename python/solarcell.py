@@ -44,7 +44,8 @@ def I_op(V_op):
 #def I_op_wik():
 #  return I
 
-v=np.linspace(0,V_oc*N_s,1000)
+v=np.linspace(-20,V_oc*N_s,1000)
+v=np.linspace(-20,V_oc*N_s*1.1,1000) #um über V_oc hinauszugehen
 i=I_op(v)
 
 """import matplotlib.pyplot as plt

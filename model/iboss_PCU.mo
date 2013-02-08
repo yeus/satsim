@@ -6,14 +6,14 @@ model PCU
   Modelica.Electrical.Analog.Interfaces.PositivePin VCC3 annotation(Placement(visible = true, transformation(origin = {100.141,-23.1966}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {100.141,-23.1966}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   Modelica.Electrical.Analog.Interfaces.PositivePin VCC5 annotation(Placement(visible = true, transformation(origin = {99.8586,8.76945}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {99.8586,8.76945}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   Modelica.Electrical.Analog.Interfaces.PositivePin VCC12 annotation(Placement(visible = true, transformation(origin = {99.2928,44.6959}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {99.2928,44.6959}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-  dcmodel.DCtoDCModel dctodcmodel2(Vinmax = 100, Vref = 5, Pout = 50, Vinmin = 5.5, eff = 0.85) annotation(Placement(visible = true, transformation(origin = {48.6563,4.80905}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  dcmodel.dcdc_ideal dctodcmodel2(Vinmax = 100, Vref = 5, Pout = 50, Vinmin = 5.5, eff = 0.85) annotation(Placement(visible = true, transformation(origin = {48.6563,4.80905}, extent = {{-12,-12},{12,12}}, rotation = 0)));
 equation
+  connect(dctodcmodel2.p,VCC) annotation(Line(points = {{36.716,10.3016},{-100.99,10.3016},{-100.99,7.92079},{-100.707,7.92079}}));
   connect(GND,gnd) annotation(Line(points = {{-100.99,-44.413},{100.141,-44.413},{100.141,-63.9321},{100.141,-63.9321}}));
   connect(dctodcmodel2.n1,gnd) annotation(Line(points = {{60.7558,-1.88685},{69.024,-1.88685},{69.024,-44.413},{100.141,-44.413},{100.141,-63.9321}}));
   connect(VCC3,dctodcmodel2.p1) annotation(Line(points = {{100.141,-23.1966},{78.0764,-23.1966},{78.0764,10.4668},{60.7159,10.4668},{60.7159,10.3414}}));
   connect(VCC12,dctodcmodel2.p1) annotation(Line(points = {{99.2928,44.6959},{78.0764,44.6959},{78.0764,10.4668},{60.7159,10.4668},{60.7159,10.3414}}));
   connect(dctodcmodel2.n,GND) annotation(Line(points = {{36.6598,-2.05542},{-78.0764,-2.05542},{-78.0764,-44.1301},{-100.99,-44.1301},{-100.99,-44.413}}));
-  connect(dctodcmodel2.p,VCC) annotation(Line(points = {{36.716,10.3016},{-102.687,10.3016},{-102.687,7.92079},{-100.707,7.92079}}));
   connect(dctodcmodel2.p1,VCC5) annotation(Line(points = {{60.7159,10.3414},{100.707,10.3414},{100.707,8.76945},{99.8586,8.76945}}));
 end PCU;
 
