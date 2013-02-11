@@ -5,9 +5,9 @@ model thermal_TIM "thermal interfacial material parameters (Conductance)"
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor Conductance_MSS(G=G_MSS) annotation(Placement(visible=true, transformation(origin={0.0,0.0}, extent={{-6.0931,-6.0931},{6.0931,6.0931}}, rotation=0)));
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor Conductance_ESS(G=G_ESS) annotation(Placement(visible=true, transformation(origin={-0.0,-20.0}, extent={{-6.1934,-6.1934},{6.1934,6.1934}}, rotation=0)));
   thermal_connector thermal_connector1 annotation(Placement(visible=true, transformation(origin={60.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-180), iconTransformation(origin={100.0,-0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-360)));
-  parameter Modelica.SIunits.ThermalConductance G_TIM_TSS "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={-32.0,-40.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
-  parameter Modelica.SIunits.ThermalConductance G_MSS "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={0.0,-40.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
-  parameter Modelica.SIunits.ThermalConductance G_ESS "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={32.0,-40.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
+  parameter Modelica.SIunits.ThermalConductance G_TIM_TSS=2000 "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={-32.0,-40.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
+  parameter Modelica.SIunits.ThermalConductance G_MSS=2 "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={0.0,-40.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
+  parameter Modelica.SIunits.ThermalConductance G_ESS=1 "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={32.0,-40.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
 equation 
   connect(Conductance_MSS.port_b,thermal_connector1.MSS) annotation(Line(visible=true, origin={29.9613,0.0}, points={{-23.8682,0.0},{27.0387,0.0}}, color={191,0,0}));
   connect(Conductance_TIM_TSS.port_b,thermal_connector1.TSS) annotation(Line(visible=true, origin={27.6809,2.0199}, points={{-21.546,19.115},{-18.546,19.115},{-18.546,-15.0199},{29.3191,-15.0199},{29.3191,-8.1904}}, color={191,0,0}));
