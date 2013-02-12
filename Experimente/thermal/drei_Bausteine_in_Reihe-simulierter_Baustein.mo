@@ -1,5 +1,6 @@
 model drei_Bausteine_in_Reihe
   annotation(Diagram(coordinateSystem(extent={{-148.5,-105.0},{148.5,105.0}}, preserveAspectRatio=true, initialScale=0.1, grid={5,5})));
+  output Modelica.SIunits.Temperature T_BB1xn=buildingBlock_thermal1.thermal_connector_xp.MSS.T "Resulting Temperature";
   Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow fixedHeatFlow1(Q_flow=100) annotation(Placement(visible=true, transformation(origin={-120.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedTemperature1(T=293) annotation(Placement(visible=true, transformation(origin={125.0,30.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-180)));
   thermal_TIM thermal_TIM1(G_TIM_TSS=160, G_MSS=0, G_ESS=0) annotation(Placement(visible=true, transformation(origin={-42.7906,68.269}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
