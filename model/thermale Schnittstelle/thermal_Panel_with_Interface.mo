@@ -12,7 +12,6 @@ model thermal_Panel_with_Interface "Seitenpanel mit Schnittstelle"
   parameter Modelica.SIunits.HeatCapacity C_MSS=130 "Heat capacity of element (= cp*m)" annotation(Placement(visible=true, transformation(origin={-16.0,51.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
   parameter Modelica.SIunits.HeatCapacity C_ESS=15 "Heat capacity of element (= cp*m)" annotation(Placement(visible=true, transformation(origin={16.0,51.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
   parameter Modelica.SIunits.HeatCapacity C_Panel=380 "Heat capacity of element (= cp*m)" annotation(Placement(visible=true, transformation(origin={49.0,51.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
-  parameter Real Gr_Rad(unit="m2")=0.01 "Net radiation conductance between two surfaces (see docu) tbd";
 equation 
   connect(thermal_connector.Rad,BuildingBlock_Panel.port_b) annotation(Line(visible=true, origin={9.0336,-6.771}, points={{57.5112,-0.6841},{57.5112,-6.229},{-37.3408,-6.229},{-37.3408,6.571},{-40.3408,6.571}}, color={191,0,0}));
   connect(schnittstelle1.TSS_IF,thermal_connector.TSS) annotation(Line(visible=true, origin={45.1253,-3.7514}, points={{-45.1253,-1.2486},{11.8747,-1.2486},{11.8747,1.2487},{21.3759,1.2487}}, color={191,0,0}));
