@@ -1,0 +1,3 @@
+- EVS Simulation über Modelica
+- Bei der Simulation eines einzelnen Bausteins auf Grenzwerte, wie z.B. max. Stromfluß über eine Schnittstelle achten usw...
+- Implementierung v. Unit-Tests 

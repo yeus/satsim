@@ -2,32 +2,166 @@
 <missions>
 	<mission type="GEObsp2">
 		<name>GEObsp2</name>
+		<orbparam>2-line-elem</orbparam>
 		<bbsize unit="m">0.4</bbsize>
-		<mass unit="kg">393.0</mass>
+		<mass unit="kg">0.0</mass>
 		<bbgap unit="m">0.1</bbgap>
 		<type>GEObsp2</type>
 		<buildingblocks>
-			<buildingblock pos="0.0,0.0,0.0" rot="90.0,0.0,0.0" type="Drallradbaustein"/>
-			<buildingblock pos="0.0,0.0,1.0" rot="0.0,0.0,0.0" type="Drallradbaustein"/>
-			<buildingblock pos="0.0,0.0,2.0" rot="0.0,90.0,0.0" type="Solargeneratorbaustein (entfaltbar, nachführbar)"/>
-			<buildingblock pos="1.0,0.0,0.0" rot="0.0,0.0,0.0" type="Solargeneratorbaustein (entfaltbar, nachführbar)"/>
-			<buildingblock pos="1.0,0.0,1.0" rot="0.0,0.0,0.0" type="elektrischer Antriebs-Baustein"/>
-			<buildingblock pos="1.0,0.0,2.0" rot="0.0,0.0,90.0" type="elektrischer Antriebs-Baustein"/>
+			<buildingblock type="Drallradbaustein">
+				<pos>
+					<x>0.0</x>
+					<y>0.0</y>
+					<z>0.0</z>
+				</pos>
+				<rot unit="deg">
+					<x>90.0</x>
+					<y>0.0</y>
+					<z>0.0</z>
+				</rot>
+			</buildingblock>
+			<buildingblock type="Drallradbaustein">
+				<pos>
+					<x>0.0</x>
+					<y>0.0</y>
+					<z>1.0</z>
+				</pos>
+				<rot unit="deg">
+					<x>0.0</x>
+					<y>0.0</y>
+					<z>0.0</z>
+				</rot>
+			</buildingblock>
+			<buildingblock type="Solargeneratorbaustein (entfaltbar, nachführbar)">
+				<pos>
+					<x>0.0</x>
+					<y>0.0</y>
+					<z>2.0</z>
+				</pos>
+				<rot unit="deg">
+					<x>0.0</x>
+					<y>90.0</y>
+					<z>0.0</z>
+				</rot>
+			</buildingblock>
+			<buildingblock type="Solargeneratorbaustein (entfaltbar, nachführbar)">
+				<pos>
+					<x>1.0</x>
+					<y>0.0</y>
+					<z>0.0</z>
+				</pos>
+				<rot unit="deg">
+					<x>0.0</x>
+					<y>0.0</y>
+					<z>0.0</z>
+				</rot>
+			</buildingblock>
+			<buildingblock type="elektrischer Antriebs-Baustein">
+				<pos>
+					<x>1.0</x>
+					<y>0.0</y>
+					<z>1.0</z>
+				</pos>
+				<rot unit="deg">
+					<x>0.0</x>
+					<y>0.0</y>
+					<z>0.0</z>
+				</rot>
+			</buildingblock>
+			<buildingblock type="elektrischer Antriebs-Baustein">
+				<pos>
+					<x>1.0</x>
+					<y>0.0</y>
+					<z>2.0</z>
+				</pos>
+				<rot unit="deg">
+					<x>0.0</x>
+					<y>0.0</y>
+					<z>90.0</z>
+				</rot>
+			</buildingblock>
 		</buildingblocks>
 	</mission>
 	<mission type="GEObsp">
 		<name>GEObsp</name>
+		<orbparam>2-line-elem</orbparam>
 		<bbsize unit="m">0.4</bbsize>
-		<mass unit="kg">471.18</mass>
+		<mass unit="kg">0.0</mass>
 		<bbgap unit="m">0.1</bbgap>
 		<type>GEObsp</type>
 		<buildingblocks>
-			<buildingblock pos="0.0,0.0,0.0" rot="90.0,0.0,0.0" type="Drallradbaustein"/>
-			<buildingblock pos="0.0,0.0,1.0" rot="0.0,0.0,0.0" type="elektrischer Antriebs-Baustein"/>
-			<buildingblock pos="0.0,0.0,2.0" rot="0.0,90.0,0.0" type="elektrischer Antriebs-Baustein"/>
-			<buildingblock pos="1.0,0.0,0.0" rot="0.0,0.0,0.0" type="Solargeneratorbaustein (entfaltbar, nachführbar)"/>
-			<buildingblock pos="1.0,0.0,1.0" rot="0.0,0.0,0.0" type="Solargeneratorbaustein (entfaltbar, nachführbar)"/>
-			<buildingblock pos="1.0,0.0,2.0" rot="0.0,0.0,90.0" type="elektrischer Antriebs-Baustein"/>
+			<buildingblock type="Drallradbaustein">
+				<pos>
+					<x>0.0</x>
+					<y>0.0</y>
+					<z>0.0</z>
+				</pos>
+				<rot unit="deg">
+					<x>90.0</x>
+					<y>0.0</y>
+					<z>0.0</z>
+				</rot>
+			</buildingblock>
+			<buildingblock type="elektrischer Antriebs-Baustein">
+				<pos>
+					<x>0.0</x>
+					<y>0.0</y>
+					<z>1.0</z>
+				</pos>
+				<rot unit="deg">
+					<x>0.0</x>
+					<y>0.0</y>
+					<z>0.0</z>
+				</rot>
+			</buildingblock>
+			<buildingblock type="elektrischer Antriebs-Baustein">
+				<pos>
+					<x>0.0</x>
+					<y>0.0</y>
+					<z>2.0</z>
+				</pos>
+				<rot unit="deg">
+					<x>0.0</x>
+					<y>90.0</y>
+					<z>0.0</z>
+				</rot>
+			</buildingblock>
+			<buildingblock type="Solargeneratorbaustein (entfaltbar, nachführbar)">
+				<pos>
+					<x>1.0</x>
+					<y>0.0</y>
+					<z>0.0</z>
+				</pos>
+				<rot unit="deg">
+					<x>0.0</x>
+					<y>0.0</y>
+					<z>0.0</z>
+				</rot>
+			</buildingblock>
+			<buildingblock type="Solargeneratorbaustein (entfaltbar, nachführbar)">
+				<pos>
+					<x>1.0</x>
+					<y>0.0</y>
+					<z>1.0</z>
+				</pos>
+				<rot unit="deg">
+					<x>0.0</x>
+					<y>0.0</y>
+					<z>0.0</z>
+				</rot>
+			</buildingblock>
+			<buildingblock type="elektrischer Antriebs-Baustein">
+				<pos>
+					<x>1.0</x>
+					<y>0.0</y>
+					<z>2.0</z>
+				</pos>
+				<rot unit="deg">
+					<x>0.0</x>
+					<y>0.0</y>
+					<z>90.0</z>
+				</rot>
+			</buildingblock>
 		</buildingblocks>
 	</mission>
 </missions>

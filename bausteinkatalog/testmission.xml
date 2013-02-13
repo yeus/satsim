@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<mission type="BSP_Mission">
+	<name>BSP_Mission</name>
+	<orbparam>2-line-elem</orbparam>
+	<bbsize unit="m">0.4</bbsize>
+	<mass unit="kg">3997.86</mass>
+	<bbgap unit="m">0.1</bbgap>
+	<type>BSP_Mission</type>
+	<buildingblocks>
+		<buildingblock pos="0,0,0" rot="0.0,0.0,180.0" type="Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)"/>
+		<buildingblock pos="0,0,1" rot="0.0,0.0,180.0" type="Reaktionsradbaustein"/>
+		<buildingblock pos="0,0,2" rot="270.0,90.0,180.0" type="TM&amp;TC-Baustein (S-Band; Transmitter+Receiver+SSPA)"/>
+		<buildingblock pos="0,0,3" rot="0.0,90.0,180.0" type="TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)"/>
+		<buildingblock pos="0,0,4" rot="0.0,0.0,0.0" type="test Lageregelungsbaustein"/>
+		<buildingblock pos="0,1,0" rot="180.0,270.0,90.0" type="Batteriebaustein"/>
+		<buildingblock pos="0,1,1" rot="270.0,0.0,270.0" type="TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)"/>
+		<buildingblock pos="0,1,2" rot="0.0,270.0,0.0" type="Erdsensor-Baustein"/>
+		<buildingblock pos="0,1,3" rot="0.0,90.0,180.0" type="PCU-Baustein"/>
+		<buildingblock pos="0,1,4" rot="270.0,0.0,0.0" type="Drallradbaustein"/>
+		<buildingblock pos="0,2,0" rot="0.0,270.0,180.0" type="Inertial Measurement Unit Baustein (Standard)"/>
+		<buildingblock pos="0,2,1" rot="90.0,180.0,0.0" type="Reaktionsradbaustein"/>
+		<buildingblock pos="0,2,2" rot="180.0,180.0,270.0" type="Inertial Measurement Unit Baustein (Standard)"/>
+		<buildingblock pos="0,2,3" rot="0.0,0.0,180.0" type="Magnetorquer-Baustein"/>
+		<buildingblock pos="0,2,4" rot="90.0,0.0,270.0" type="TM&amp;TC-Baustein (S-Band; Transmitter+Receiver+SSPA)"/>
+		<buildingblock pos="0,3,0" rot="90.0,0.0,0.0" type="TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)"/>
+		<buildingblock pos="0,3,1" rot="90.0,180.0,90.0" type="Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)"/>
+		<buildingblock pos="0,3,2" rot="270.0,0.0,90.0" type="TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)"/>
+		<buildingblock pos="0,3,3" rot="90.0,180.0,90.0" type="Erdsensor-Baustein"/>
+		<buildingblock pos="0,3,4" rot="0.0,0.0,0.0" type="test Lageregelungsbaustein"/>
+		<buildingblock pos="1,0,0" rot="0.0,0.0,270.0" type="Solargeneratorbaustein (entfaltbar)"/>
+		<buildingblock pos="1,0,1" rot="0.0,180.0,270.0" type="Drallradbaustein"/>
+		<buildingblock pos="1,0,2" rot="270.0,0.0,180.0" type="Solargeneratorbaustein (entfaltbar)"/>
+		<buildingblock pos="1,0,3" rot="0.0,180.0,90.0" type="PCU-Baustein"/>
+		<buildingblock pos="1,0,4" rot="90.0,180.0,90.0" type="GPS-Baustein (Standard)"/>
+		<buildingblock pos="1,1,0" rot="90.0,90.0,90.0" type="Kaltgasantriebs-Baustein 2"/>
+		<buildingblock pos="1,1,1" rot="180.0,0.0,90.0" type="TM&amp;TC-Baustein (S-Band; Transmitter+Receiver+SSPA)"/>
+		<buildingblock pos="1,1,2" rot="180.0,90.0,270.0" type="GPS-Baustein (Standard)"/>
+		<buildingblock pos="1,1,3" rot="90.0,0.0,270.0" type="Inertial Measurement Unit Baustein (Standard)"/>
+		<buildingblock pos="1,1,4" rot="270.0,270.0,180.0" type="Solargeneratorbaustein (entfaltbar, nachführbar)"/>
+		<buildingblock pos="1,2,0" rot="270.0,0.0,90.0" type="OBC/SMU-Baustein"/>
+		<buildingblock pos="1,2,1" rot="90.0,270.0,270.0" type="TM&amp;TC-Baustein (S-Band; Transmitter+Receiver+SSPA)"/>
+		<buildingblock pos="1,2,2" rot="180.0,90.0,180.0" type="Sternsensorbaustein"/>
+		<buildingblock pos="1,2,3" rot="90.0,0.0,180.0" type="Reaktionsradbaustein"/>
+		<buildingblock pos="1,2,4" rot="270.0,0.0,90.0" type="OBC/SMU-Baustein"/>
+		<buildingblock pos="1,3,0" rot="180.0,0.0,270.0" type="Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)"/>
+		<buildingblock pos="1,3,1" rot="180.0,270.0,270.0" type="Kaltgasantriebs-Baustein 2"/>
+		<buildingblock pos="1,3,2" rot="90.0,90.0,90.0" type="GPS-Baustein (GPS und GLONASS)"/>
+		<buildingblock pos="1,3,3" rot="270.0,180.0,270.0" type="GPS-Baustein (GPS und GLONASS)"/>
+		<buildingblock pos="1,3,4" rot="90.0,180.0,270.0" type="Drallradbaustein"/>
+		<buildingblock pos="2,0,0" rot="0.0,270.0,90.0" type="GPS-Baustein (Standard)"/>
+		<buildingblock pos="2,0,1" rot="270.0,90.0,180.0" type="GPS-Baustein (Standard)"/>
+		<buildingblock pos="2,0,2" rot="270.0,0.0,90.0" type="Drallradbaustein"/>
+		<buildingblock pos="2,0,3" rot="90.0,0.0,0.0" type="TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)"/>
+		<buildingblock pos="2,0,4" rot="0.0,0.0,0.0" type="test Lageregelungsbaustein"/>
+		<buildingblock pos="2,1,0" rot="0.0,0.0,0.0" type="Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)"/>
+		<buildingblock pos="2,1,1" rot="0.0,90.0,180.0" type="elektrischer Antriebs-Baustein"/>
+		<buildingblock pos="2,1,2" rot="90.0,90.0,90.0" type="elektrischer Antriebs-Baustein"/>
+		<buildingblock pos="2,1,3" rot="180.0,90.0,270.0" type="Inertial Measurement Unit Baustein (sehr genau)"/>
+		<buildingblock pos="2,1,4" rot="0.0,0.0,0.0" type="GPS-Baustein (GPS und GLONASS)"/>
+		<buildingblock pos="2,2,0" rot="0.0,180.0,0.0" type="Kaltgasantriebs-Baustein 2"/>
+		<buildingblock pos="2,2,1" rot="0.0,180.0,180.0" type="Magnetorquer-Baustein"/>
+		<buildingblock pos="2,2,2" rot="90.0,270.0,180.0" type="TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)"/>
+		<buildingblock pos="2,2,3" rot="0.0,270.0,0.0" type="elektrischer Antriebs-Baustein"/>
+		<buildingblock pos="2,2,4" rot="0.0,180.0,0.0" type="Kaltgasantriebs-Baustein 1"/>
+		<buildingblock pos="2,3,0" rot="270.0,270.0,0.0" type="Kaltgasantriebs-Baustein 1"/>
+		<buildingblock pos="2,3,1" rot="270.0,90.0,180.0" type="Kaltgasantriebs-Baustein 2"/>
+		<buildingblock pos="2,3,2" rot="0.0,180.0,0.0" type="Inertial Measurement Unit Baustein (sehr genau)"/>
+		<buildingblock pos="2,3,3" rot="90.0,90.0,270.0" type="TM&amp;TC-Baustein (S-Band; Transmitter+Receiver+SSPA)"/>
+		<buildingblock pos="2,3,4" rot="0.0,0.0,0.0" type="test Lageregelungsbaustein"/>
+	</buildingblocks>
+</mission>

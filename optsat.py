@@ -19,7 +19,7 @@ from math import *
 import copy
 import quantities as pq
 import saveasxml
-from loadfromxml import loadxmldata
+from ibossxml import loadxmldata
 
 
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector function
