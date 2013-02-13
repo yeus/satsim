@@ -65,10 +65,14 @@ def xml2mission(data,buildingblocks):
 
 co,bb,mn=loadxmldata()
 
-data = et.parse("bausteinkatalog/missionen_gen.xml")
-xmlmission = data.getroot()
+for BB in bb.values():
+  power=0*pq.W
+  for CO in BB.components:
+    if "power_max" in vars(CO): 
+      #print BB.name + ", " + CO.name + ", " + str(CO.power_max)
+      power+=CO.power_max*0.3
+  power+=(5*pq.W)
+  print u"{}: {}".format(BB.name,power)
 
-mission = xml2mission(xmlmission,bb)
-
-import saveasxml
-saveasxml.savexml("bausteinkatalog/missionen2_gen.xml",mission.xml)
+#import saveasxml
+#saveasxml.savexml("bausteinkatalog/missionen2_gen.xml",mission.xml)
