@@ -3,12 +3,12 @@ model connectionelement
   iboss_connector int1 annotation(Placement(visible = true, transformation(origin = {88.5431,4.52615}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {88.5431,4.52615}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   parameter Real R(final quantity = "Resistance", final unit = "Ohm") = 0.0001;
   iboss_connector int2 annotation(Placement(visible = true, transformation(origin = {-87.9095,4.02826}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-87.9095,4.02826}, extent = {{12,12},{-12,-12}}, rotation = -180)));
-  Modelica.Electrical.Analog.Basic.Resistor R_Vcc(R = R) annotation(Placement(visible = true, transformation(origin = {32.5657,-12.6506}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-  Modelica.Electrical.Analog.Basic.Resistor R_GND(R = R) annotation(Placement(visible = true, transformation(origin = {31.6492,11.9943}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  Modelica.Electrical.Analog.Basic.Resistor R_GND(R = R) annotation(Placement(visible = true, transformation(origin = {22.5969,-3.84725}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  Modelica.Electrical.Analog.Basic.Resistor R_Vcc(R = R) annotation(Placement(visible = true, transformation(origin = {23.7962,12.5262}, extent = {{-12,-12},{12,12}}, rotation = 0)));
 equation
-  connect(R_GND.n,int1.GND) annotation(Line(points = {{43.6492,11.9943},{95.3324,11.9943},{95.3324,12.2532},{95.7737,12.2532}}));
-  connect(int2.GND,R_GND.p) annotation(Line(points = {{-80.6789,11.7553},{19.5191,11.7553},{19.5191,11.9943},{19.6492,11.9943}}));
-  connect(R_Vcc.n,int1.Vcc) annotation(Line(points = {{44.5657,-12.6506},{96.181,-12.6506},{96.181,-2.8841},{96.196,-2.8841}}));
-  connect(int2.Vcc,R_Vcc.p) annotation(Line(points = {{-80.2566,-3.38199},{20.6506,-3.38199},{20.6506,-12.6506},{20.5657,-12.6506}}));
+  connect(int1.Vcc,R_Vcc.n) annotation(Line(points = {{96.0941,12.4257},{36.4922,12.4257},{36.4922,12.5262},{35.7962,12.5262}}));
+  connect(R_Vcc.p,int2.Vcc) annotation(Line(points = {{11.7962,12.5262},{-78.925,12.5262},{-78.925,11.9278},{-80.3585,11.9278}}));
+  connect(R_GND.p,int2.GND) annotation(Line(points = {{10.5969,-3.84725},{-80.9052,-3.84725},{-80.9052,-3.24896},{-80.4752,-3.24896}}));
+  connect(R_GND.n,int1.GND) annotation(Line(points = {{34.5969,-3.84725},{95.0495,-3.84725},{95.0495,-2.75107},{95.9774,-2.75107}}));
 end connectionelement;
 

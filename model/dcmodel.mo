@@ -81,11 +81,6 @@ package dcmodel
   end DCtoDCModel;
   model dcdc_ideal "DC/DC Converter Model nach Torrey, D., & Selamogullari, U. (2002). A Behavioral Model for DC-DC Converters using Modelica. modelica.org"
     //todo möglicherweise lässt sich hier noch etwas mit "smooth" machen?
-    model SignalCurrent "Generic current source using the input signal asource current"
-      extends Modelica.Electrical.Analog.Interfaces.OnePort;
-      annotation(Diagram(), Icon(graphics = {Line(points = {{-88.2603,-0.282885},{-52.6167,-0.282885},{-48.3734,-0.282885}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25),Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-42.7157,46.6761},{47.8076,-49.505}}),Line(points = {{51.4851,0.282885},{89.1089,0.565771}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25)}));
-      Modelica.Blocks.Interfaces.RealInput u annotation(Placement(visible = true, transformation(origin = {-0.565771,71.0042}, extent = {{-12,12},{12,-12}}, rotation = -90), iconTransformation(origin = {-0.565771,71.0042}, extent = {{-12,12},{12,-12}}, rotation = -90)));
-    end SignalCurrent;
     class CCS
       extends Modelica.Electrical.Analog.Interfaces.TwoPort;
       annotation(Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-91.372,71.0042},{91.372,-69.024}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-66.4781,34.2291},{66.4781,-29.703}}, textString = "CCS")}));
@@ -98,12 +93,14 @@ package dcmodel
     class LimPICont
       parameter Real Pout;
       parameter Real Vref;
+      parameter Real gain = 1;
+      parameter Real gainI = 1;
       annotation(Diagram(), Icon(graphics = {Line(points = {{-80,78},{-80,-90}}, rotation = 0, color = {192,192,192}, pattern = LinePattern.Solid, thickness = 0.25),Polygon(points = {{-80,90},{-88,68},{-72,68},{-80,90}}, rotation = 0, lineColor = {192,192,192}, fillColor = {192,192,192}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25),Line(points = {{-90,-80},{82,-80}}, rotation = 0, color = {192,192,192}, pattern = LinePattern.Solid, thickness = 0.25),Polygon(points = {{90,-80},{68,-72},{68,-88},{90,-80}}, rotation = 0, lineColor = {192,192,192}, fillColor = {192,192,192}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25),Line(points = {{-80,-80},{-80,50},{-80,-20},{30,60},{80,60}}, rotation = 0, color = {0,0,127}, pattern = LinePattern.Solid, thickness = 0.25),Text(rotation = 0, lineColor = {192,192,192}, fillColor = {0,0,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-20,-20},{80,-60}}, textString = "LimPI")}));
       Modelica.Blocks.Interfaces.RealOutput y annotation(Placement(visible = true, transformation(origin = {99.5757,5.65771}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {99.5757,5.65771}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       Modelica.Blocks.Interfaces.RealInput u annotation(Placement(visible = true, transformation(origin = {-97.3126,1.13154}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-97.3126,1.13154}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      Modelica.Blocks.Math.Gain Gain1(k = 10) annotation(Placement(visible = true, transformation(origin = {-22.3479,40.4526}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+      Modelica.Blocks.Math.Gain Gain1(k = gain) annotation(Placement(visible = true, transformation(origin = {-22.3479,40.4526}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       Modelica.Blocks.Math.Add Add1 annotation(Placement(visible = true, transformation(origin = {31.4003,5.09194}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      Modelica.Blocks.Continuous.LimIntegrator LimIntegrator1(outMax = Pout / Vref, k = 1) annotation(Placement(visible = true, transformation(origin = {-26.0255,-41.3013}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+      Modelica.Blocks.Continuous.LimIntegrator LimIntegrator1(outMax = Pout / Vref, k = gainI) annotation(Placement(visible = true, transformation(origin = {-26.0255,-41.3013}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     equation
       connect(Add1.y,y) annotation(Line(points = {{44.6003,5.09194},{91.372,5.09194},{91.372,5.65771},{99.5757,5.65771}}));
       connect(Gain1.u,u) annotation(Line(points = {{-36.7479,40.4526},{-48.9392,40.4526},{-48.9392,1.13154},{-97.3126,1.13154}}));
@@ -119,40 +116,93 @@ package dcmodel
     parameter Real eff annotation(Placement(visible = true, transformation(origin = {67.5608,79.1375}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     Modelica.Blocks.Math.Feedback Feedback1 annotation(Placement(visible = true, transformation(origin = {-52.1354,79.2469}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     Modelica.Blocks.Nonlinear.Limiter Limiter1(uMax = Pout / Vref, uMin = 0) annotation(Placement(visible = true, transformation(origin = {27.8677,79.723}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    Modelica.Blocks.Sources.Constant Constant1(k = Vref) annotation(Placement(visible = true, transformation(origin = {-80.6833,79.0128}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    LimPICont LimPI(Pout = Pout, Vref = Vref) annotation(Placement(visible = true, transformation(origin = {-16.2708,79.1807}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    CCS CCS1 annotation(Placement(visible = true, transformation(origin = {-13.4794,-3.13342}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    LimPICont LimPI(Pout = Pout, Vref = Vref, gain = 10, gainI = 1) annotation(Placement(visible = true, transformation(origin = {-16.2708,79.1807}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     Modelica.Electrical.Analog.Interfaces.NegativePin n1 annotation(Placement(visible = true, transformation(origin = {100.829,-55.7992}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {100.829,-55.7992}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     Modelica.Electrical.Analog.Interfaces.NegativePin n annotation(Placement(visible = true, transformation(origin = {-99.9705,-57.2039}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-99.9705,-57.2039}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    Modelica.Electrical.Analog.Ideal.IdealDiode Din annotation(Placement(visible = true, transformation(origin = {-82.9539,32.7429}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+    Modelica.Blocks.Logical.GreaterThreshold greaterthreshold1(threshold = Vinmin) annotation(Placement(visible = true, transformation(origin = {-27.7228,35.9264}, extent = {{-6.1579,-6.1579},{6.1579,6.1579}}, rotation = 0)));
+    Modelica.Blocks.Logical.LessThreshold lessthreshold1(threshold = Vinmax) annotation(Placement(visible = true, transformation(origin = {-27.7228,20.6506}, extent = {{-6.1579,-6.1579},{6.1579,6.1579}}, rotation = 0)));
+    Modelica.Blocks.Sources.Constant const(k = 0) annotation(Placement(visible = true, transformation(origin = {6.78922,52.3338}, extent = {{-7.45106,-7.45106},{7.45106,7.45106}}, rotation = 0)));
+    Modelica.Blocks.Logical.Nand nand1 annotation(Placement(visible = true, transformation(origin = {0,31.1174}, extent = {{-5.59809,-5.59809},{5.59809,5.59809}}, rotation = 0)));
+    Modelica.Blocks.Sources.Constant Constant1(k = Vref) annotation(Placement(visible = true, transformation(origin = {-85.2095,79.2957}, extent = {{-6.77369,-6.77369},{6.77369,6.77369}}, rotation = 0)));
+    CCS CCS1 annotation(Placement(visible = true, transformation(origin = {-13.4794,-12.1858}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     Modelica.Electrical.Analog.Sensors.CurrentSensor Amp annotation(Placement(visible = true, transformation(origin = {82.7203,25.0863}, extent = {{12,-12},{-12,12}}, rotation = -270)));
-    Modelica.Electrical.Analog.Basic.Resistor Rhk(R = 10000000) annotation(Placement(visible = true, transformation(origin = {-47.5463,-2.79786}, extent = {{-12,12},{12,-12}}, rotation = -90)));
     Modelica.Electrical.Analog.Sensors.VoltageSensor Volt annotation(Placement(visible = true, transformation(origin = {63.2416,-6.90797}, extent = {{-12,12},{12,-12}}, rotation = -90)));
     Modelica.Electrical.Analog.Ideal.IdealDiode Dout annotation(Placement(visible = true, transformation(origin = {41.0653,-5.98753}, extent = {{12,-12},{-12,12}}, rotation = 90)));
-    SignalCurrent SignalCurrent1 annotation(Placement(visible = true, transformation(origin = {17.741,-6.18603}, extent = {{12,-12},{-12,12}}, rotation = -270)));
+    Modelica.Electrical.Analog.Sensors.VoltageSensor voltagesensor1 annotation(Placement(visible = true, transformation(origin = {-61.1033,-1.41443}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+    Modelica.Electrical.Analog.Sources.SignalCurrent signalcurrent1 annotation(Placement(visible = true, transformation(origin = {23.4795,-5.9406}, extent = {{12,-12},{-12,12}}, rotation = 90)));
+    Modelica.Electrical.Analog.Ideal.IdealDiode Din annotation(Placement(visible = true, transformation(origin = {-84.9341,27.0852}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+    Modelica.Blocks.Logical.Switch switch1 annotation(Placement(visible = true, transformation(origin = {22.9137,28.8543}, extent = {{-6.1579,6.1579},{6.1579,-6.1579}}, rotation = -90)));
   equation
-    connect(Dout.n,SignalCurrent1.n) annotation(Line(points = {{41.0653,6.01247},{17.5389,6.01247},{17.5389,5.81397},{17.741,5.81397}}));
+    connect(voltagesensor1.p,CCS1.p2) annotation(Line(points = {{-61.1033,10.5856},{-1.41443,10.5856},{-1.41443,-6.1858},{-1.4794,-6.1858}}));
+    connect(CCS1.n1,n1) annotation(Line(points = {{-25.4794,-18.1858},{-37.6237,-18.1858},{-37.6237,-55.7992},{100.829,-55.7992}}));
+    connect(CCS1.n2,n) annotation(Line(points = {{-1.4794,-18.1858},{-1.69731,-18.1858},{-1.69731,-23.4795},{-72.1358,-23.4795},{-72.1358,-57.1429},{-99.9705,-57.1429},{-99.9705,-57.2039}}));
+    connect(CCS1.p1,p1) annotation(Line(points = {{-25.4794,-6.18575},{-40.4526,-6.18575},{-40.4526,46.1028},{100.497,46.1028}}));
+    connect(switch1.y,signalcurrent1.i) annotation(Line(points = {{22.9137,22.0806},{22.9137,22.0806},{22.9137,12.1641},{5.65771,12.1641},{5.65771,-5.94059},{15.0795,-5.94059},{15.0795,-5.9406}}));
+    connect(Constant1.y,Feedback1.u1) annotation(Line(points = {{-77.7584,79.2957},{-63.3663,79.2957},{-63.3663,79.2469},{-61.7354,79.2469}}));
+    connect(nand1.y,switch1.u2) annotation(Line(points = {{6.1579,31.1174},{11.3154,31.1174},{11.3154,42.4328},{22.9137,42.4328},{22.9137,36.2438},{22.9137,36.2438}}));
+    connect(greaterthreshold1.y,nand1.u1) annotation(Line(points = {{-20.9491,35.9264},{-13.2956,35.9264},{-13.2956,31.1174},{-6.71771,31.1174},{-6.71771,31.1174}}));
+    connect(lessthreshold1.y,nand1.u2) annotation(Line(points = {{-20.9491,20.6506},{-13.5785,20.6506},{-13.5785,26.8741},{-6.71771,26.8741},{-6.71771,26.6389}}));
+    connect(switch1.u3,Limiter1.y) annotation(Line(points = {{17.9874,36.2438},{18.1047,36.2438},{18.1047,57.1429},{45.8274,57.1429},{45.8274,79.7737},{41.0677,79.7737},{41.0677,79.723}}));
+    connect(const.y,switch1.u1) annotation(Line(points = {{14.9854,52.3338},{27.4399,52.3338},{27.4399,36.2438},{27.8401,36.2438}}));
+    connect(p,Din.p) annotation(Line(points = {{-99.5025,45.7711},{-83.1683,45.7711},{-83.1683,39.0852},{-84.9341,39.0852}}));
+    connect(Din.n,voltagesensor1.p) annotation(Line(points = {{-84.9341,15.0852},{-61.3861,15.0852},{-61.3861,10.5856},{-61.1033,10.5856}}));
+    connect(greaterthreshold1.u,voltagesensor1.v) annotation(Line(points = {{-35.1122,35.9264},{-48.6563,35.9264},{-48.6563,20.6506},{-72.4187,20.6506},{-72.4187,-1.41443},{-73.1033,-1.41443}}));
+    connect(lessthreshold1.u,voltagesensor1.v) annotation(Line(points = {{-35.1122,20.6506},{-72.4187,20.6506},{-72.4187,-1.41443},{-73.1033,-1.41443}}));
+    connect(signalcurrent1.p,Dout.p) annotation(Line(points = {{23.4795,-17.9406},{41.3013,-17.9406},{41.3013,-17.9875},{41.0653,-17.9875}}));
+    connect(signalcurrent1.n,Dout.n) annotation(Line(points = {{23.4795,6.0594},{40.7355,6.0594},{40.7355,6.01247},{41.0653,6.01247}}));
+    connect(voltagesensor1.n,n) annotation(Line(points = {{-61.1033,-13.4144},{-61.3861,-13.4144},{-61.3861,-57.1429},{-99.9705,-57.1429},{-99.9705,-57.2039}}));
     connect(Volt.p,Dout.n) annotation(Line(points = {{63.2416,5.09203},{41.3013,5.09203},{41.3013,6.01247},{41.0653,6.01247}}));
     connect(Dout.p,Volt.n) annotation(Line(points = {{41.0653,-17.9875},{63.3663,-17.9875},{63.3663,-18.908},{63.2416,-18.908}}));
-    connect(SignalCurrent1.p,Dout.p) annotation(Line(points = {{17.741,-18.186},{40.7355,-18.186},{40.7355,-17.9875},{41.0653,-17.9875}}));
-    connect(Limiter1.y,SignalCurrent1.u) annotation(Line(points = {{41.0677,79.723},{43.8472,79.723},{43.8472,52.8996},{5.37482,52.8996},{5.37482,-6.22348},{9.22054,-6.22348},{9.22054,-6.25392}}));
     connect(Volt.p,Amp.p) annotation(Line(points = {{63.2416,5.09203},{62.8006,5.09203},{62.8006,13.0863},{82.7203,13.0863}}));
     connect(Volt.n,n1) annotation(Line(points = {{63.2416,-18.908},{63.0835,-18.908},{63.0835,-55.7992},{100.829,-55.7992}}));
     connect(Feedback1.u2,Volt.v) annotation(Line(points = {{-52.1354,69.6469},{-52.1354,39.3211},{51.768,39.3211},{51.768,-6.90797},{51.2416,-6.90797}}));
-    connect(Rhk.n,n) annotation(Line(points = {{-47.5463,-14.7979},{-75.2475,-14.7979},{-75.2475,-57.7086},{-99.9705,-57.7086},{-99.9705,-57.2039}}));
-    connect(Din.n,Rhk.p) annotation(Line(points = {{-82.9539,20.7429},{-83.1683,20.7429},{-83.1683,9.05233},{-47.5463,9.05233},{-47.5463,9.20214}}));
-    connect(CCS1.p2,Rhk.p) annotation(Line(points = {{-1.47945,2.86658},{1.69733,2.86658},{1.69733,9.20214},{-47.5463,9.20214}}));
-    connect(CCS1.n2,Rhk.n) annotation(Line(points = {{-1.47945,-9.13342},{2.54599,-9.13342},{2.54599,-14.7979},{-47.5463,-14.7979}}));
-    connect(CCS1.n1,n1) annotation(Line(points = {{-25.4794,-9.13342},{-37.6237,-9.13342},{-37.6237,-55.7992},{100.829,-55.7992}}));
-    connect(CCS1.p1,p1) annotation(Line(points = {{-25.4794,2.86658},{-21.4993,2.86658},{-21.4993,46.1028},{100.497,46.1028}}));
     connect(Amp.n,p1) annotation(Line(points = {{82.7203,37.0863},{82.8854,37.0863},{82.8854,46.1028},{100.497,46.1028}}));
     connect(LimPI.y,Limiter1.u) annotation(Line(points = {{-4.32175,79.8596},{12.447,79.8596},{12.447,79.723},{13.4677,79.723}}));
     connect(Feedback1.y,LimPI.u) annotation(Line(points = {{-41.3354,79.2469},{-28.0057,79.2469},{-28.0057,79.3165},{-27.9484,79.3165}}));
-    connect(Constant1.y,Feedback1.u1) annotation(Line(points = {{-67.4833,79.0128},{-62.5177,79.0128},{-62.5177,79.2469},{-61.7354,79.2469}}));
-    connect(p,Din.p) annotation(Line(points = {{-99.5025,45.7711},{-83.1683,45.7711},{-83.1683,44.7429},{-82.9539,44.7429}}));
     Iout = Pout / Vref;
-    CCS1.i2 = (CCS1.v1 * Amp.i) / ((CCS1.v2 + 0.0000000001) * eff);
-    SignalCurrent1.i = if p.v > Vinmin and p.v < Vinmax then SignalCurrent1.u else 0;
+    CCS1.i2 = smooth(0, (CCS1.v1 * Amp.i) / ((CCS1.v2 + 0.0000001) * eff));
+    //SignalCurrent1.i = smooth(0, if p.v > Vinmin and p.v < Vinmax then SignalCurrent1.u else 0);
   end dcdc_ideal;
+  model DCtoPower "generic ideal DC/DC Converter with Power Output"
+    parameter Real V_in_max;
+    Modelica.Electrical.Analog.Interfaces.PositivePin p annotation(Placement(visible = true, transformation(origin = {-100.141,38.4724}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-100.141,38.4724}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    annotation(Diagram(), Icon());
+    Modelica.Electrical.Analog.Interfaces.NegativePin n annotation(Placement(visible = true, transformation(origin = {-100.141,-39.604}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-100.141,-39.604}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    dcmodel.Powerconnector powerconnector annotation(Placement(visible = true, transformation(origin = {100.99,-0.848656}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {100.99,-0.848656}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  equation
+    v = p.v - n.v;
+    0 = p.i + n.i;
+    i = p.i;
+    v * i = powerconnector.power;
+  end DCtoPower;
+  connector Powerconnector_out
+    annotation(Icon(graphics = {Polygon(points = {{-38.7553,84.2999},{34.7949,84.5827},{89.1089,3.9604},{40.4526,-86.2801},{-41.5842,-87.4116},{-88.826,6.78925},{-38.7553,84.2999}}, rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25)}), Diagram(graphics = {Polygon(points = {{-20.3678,42.7157},{22.0651,42.4328},{41.867,9.33522},{22.6308,-31.4003},{-24.0453,-31.1174},{-44.6959,5.37482},{-45.5446,7.63791},{-20.3678,42.7157}}, rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-58.8402,74.9646},{61.1033,49.7878}}, textString = "Power Connector")}));
+    flow Modelica.SIunits.Power power;
+  end Powerconnector_out;
+  connector Powerconnector_in
+    annotation(Icon(graphics = {Polygon(points = {{-38.7553,84.2999},{34.7949,84.5827},{89.1089,3.9604},{40.4526,-86.2801},{-41.5842,-87.4116},{-88.826,6.78925},{-38.7553,84.2999}}, rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25)}), Diagram(graphics = {Polygon(points = {{-20.3678,42.7157},{22.0651,42.4328},{41.867,9.33522},{22.6308,-31.4003},{-24.0453,-31.1174},{-44.6959,5.37482},{-45.5446,7.63791},{-20.3678,42.7157}}, rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-58.8402,74.9646},{61.1033,49.7878}}, textString = "Power Connector")}));
+    flow Modelica.SIunits.Power power;
+  end Powerconnector_in;
+  model dcdc_ideal_simple
+    model converter
+      parameter Real eff;
+      parameter Modelica.SIunits.Voltage V_out;
+      extends Modelica.Electrical.Analog.Interfaces.TwoPort;
+    equation
+      v2 = V_out;
+      i1 = (i2 * v2) / (v1 * eff);
+    end converter;
+    //todo möglicherweise lässt sich hier noch etwas mit "smooth" machen?
+    annotation(Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-87.6945,78.6421},{88.5431,-74.6818}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{10.4668,68.1754},{76.3791,30.2687}}, textString = "%Vref V"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-63.6492,18.9533},{57.9915,-33.0976}}, textString = "DCDC")}), Diagram());
+    extends Modelica.Electrical.Analog.Interfaces.TwoPort;
+    parameter Real eff annotation(Placement(visible = true, transformation(origin = {71.521,-76.3754}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    parameter Modelica.SIunits.Voltage V_out;
+    converter Converter1(V_out = V_out) annotation(Placement(visible = true, transformation(origin = {0.970874,4.53074}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  equation
+    connect(Converter1.p2,p2) annotation(Line(points = {{12.9709,10.5307},{14.2395,10.5307},{14.2395,49.8382},{100,49.8382},{100,50}}));
+    connect(n2,Converter1.n2) annotation(Line(points = {{100,-50},{13.9159,-50},{13.9159,-1.2945},{12.9709,-1.2945},{12.9709,-1.46926}}));
+    connect(Converter1.n1,n1) annotation(Line(points = {{-11.0291,-1.46926},{-10.6796,-1.46926},{-10.6796,-50.1618},{-100,-50.1618},{-100,-50}}));
+    connect(p1,Converter1.p1) annotation(Line(points = {{-100,50},{-11.3269,50},{-11.3269,10.5307},{-11.0291,10.5307}}));
+  end dcdc_ideal_simple;
 end dcmodel;
 
