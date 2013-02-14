@@ -1,0 +1,41 @@
+model BS2x2
+  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatcapacitor3(C = 1000) annotation(Placement(visible = true, transformation(origin = {75.3783,84.1816}, extent = {{-5,-5},{5,5}}, rotation = 0)));
+  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatcapacitor2(C = 1000) annotation(Placement(visible = true, transformation(origin = {-72.3039,83.9065}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalconductor2(G = 18) annotation(Placement(visible = true, transformation(origin = {-22.2614,44.0165}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  Modelica.Thermal.HeatTransfer.Sensors.HeatFlowSensor heatflowsensor1 annotation(Placement(visible = true, transformation(origin = {18.7071,44.5667}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  annotation(Diagram(), Icon());
+  Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperaturesensor3 annotation(Placement(visible = true, transformation(origin = {117.744,46.4924}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperaturesensor1 annotation(Placement(visible = true, transformation(origin = {114.993,-53.6451}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow fixedheatflow1(Q_flow = 100) annotation(Placement(visible = true, transformation(origin = {-117.194,17.3315}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatcapacitor4(C = 1000) annotation(Placement(visible = true, transformation(origin = {-73.1774,-81.9807}, extent = {{12,12},{-12,-12}}, rotation = -180)));
+  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatcapacitor1(C = 1000) annotation(Placement(visible = true, transformation(origin = {71.2518,-82.531}, extent = {{12,12},{-12,-12}}, rotation = -180)));
+  Modelica.Thermal.HeatTransfer.Sensors.HeatFlowSensor heatflowsensor4 annotation(Placement(visible = true, transformation(origin = {-44.5667,11.8294}, extent = {{12,-12},{-12,12}}, rotation = -270)));
+  Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalconductor4(G = 18) annotation(Placement(visible = true, transformation(origin = {-44.0165,-26.4099}, extent = {{12,-12},{-12,12}}, rotation = -270)));
+  Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalconductor1(G = 18) annotation(Placement(visible = true, transformation(origin = {42.2916,9.90371}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+  Modelica.Thermal.HeatTransfer.Sensors.HeatFlowSensor heatflowsensor2 annotation(Placement(visible = true, transformation(origin = {42.0165,-24.4842}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+  Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalconductor3(G = 18) annotation(Placement(visible = true, transformation(origin = {15.956,-53.0949}, extent = {{12,12},{-12,-12}}, rotation = -180)));
+  Modelica.Thermal.HeatTransfer.Sensors.HeatFlowSensor heatflowsensor3 annotation(Placement(visible = true, transformation(origin = {-18.4319,-53.0949}, extent = {{12,12},{-12,-12}}, rotation = -180)));
+  Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperaturesensor4 annotation(Placement(visible = true, transformation(origin = {-113.893,-53.6451}, extent = {{12,12},{-12,-12}}, rotation = -180)));
+  Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperaturesensor2 annotation(Placement(visible = true, transformation(origin = {-116.919,45.1169}, extent = {{12,12},{-12,-12}}, rotation = -180)));
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedtemperature1(T = 293) annotation(Placement(visible = true, transformation(origin = {113.618,-16.8556}, extent = {{12,12},{-12,-12}}, rotation = -180)));
+equation
+  connect(temperaturesensor4.port,heatflowsensor3.port_b) annotation(Line(points = {{-101.893,-53.6451},{-30.8116,-53.6451},{-30.8116,-53.0949},{-30.4319,-53.0949}}));
+  connect(fixedtemperature1.port,thermalconductor3.port_a) annotation(Line(points = {{101.618,-16.8556},{85.282,-16.8556},{85.282,-52.8198},{27.956,-52.8198},{27.956,-53.0949}}));
+  connect(temperaturesensor1.port,thermalconductor3.port_a) annotation(Line(points = {{102.993,-53.6451},{28.0605,-53.6451},{28.0605,-53.0949},{27.956,-53.0949}}));
+  connect(temperaturesensor3.port,heatflowsensor1.port_b) annotation(Line(points = {{105.744,46.4924},{30.8116,46.4924},{30.8116,44.5667},{30.7071,44.5667}}));
+  connect(fixedheatflow1.port,thermalconductor2.port_a) annotation(Line(points = {{-105.194,17.3315},{-63.5488,17.3315},{-63.5488,44.2916},{-34.2614,44.2916},{-34.2614,44.0165}}));
+  connect(temperaturesensor2.port,thermalconductor2.port_a) annotation(Line(points = {{-104.919,45.1169},{-34.3879,45.1169},{-34.3879,44.0165},{-34.2614,44.0165}}));
+  connect(heatcapacitor2.port,thermalconductor2.port_a) annotation(Line(points = {{-72.3039,71.9065},{-72.3039,44.0165},{-34.2614,44.0165},{-34.2614,44.0165}}));
+  connect(heatcapacitor3.port,heatflowsensor1.port_b) annotation(Line(points = {{75.3783,72.1816},{75.3783,44.5667},{30.7071,44.5667},{30.7071,44.5667}}));
+  connect(heatcapacitor1.port,thermalconductor3.port_a) annotation(Line(points = {{71.2518,-70.531},{71.2518,-52.8198},{27.956,-52.8198},{27.956,-53.0949}}));
+  connect(heatcapacitor4.port,heatflowsensor3.port_b) annotation(Line(points = {{-73.1774,-69.9807},{-73.1774,-53.0949},{-30.4319,-53.0949},{-30.4319,-53.0949}}));
+  connect(thermalconductor4.port_b,heatflowsensor4.port_a) annotation(Line(points = {{-44.0165,-14.4099},{-44.5667,-14.4099},{-44.5667,-0.170564},{-44.5667,-0.170564}}));
+  connect(heatflowsensor3.port_b,thermalconductor4.port_a) annotation(Line(points = {{-30.4319,-53.0949},{-44.0165,-53.0949},{-44.0165,-38.4099},{-44.0165,-38.4099}}));
+  connect(thermalconductor3.port_b,heatflowsensor3.port_a) annotation(Line(points = {{3.95598,-53.0949},{-5.77717,-53.0949},{-5.77717,-53.0949},{-6.43191,-53.0949}}));
+  connect(thermalconductor3.port_a,heatflowsensor2.port_b) annotation(Line(points = {{27.956,-53.0949},{41.8157,-53.0949},{41.8157,-36.4842},{42.0165,-36.4842}}));
+  connect(thermalconductor1.port_b,heatflowsensor2.port_a) annotation(Line(points = {{42.2916,-2.09629},{42.0908,-2.09629},{42.0908,-12.4842},{42.0165,-12.4842}}));
+  connect(heatflowsensor1.port_b,thermalconductor1.port_a) annotation(Line(points = {{30.7071,44.5667},{42.3659,44.5667},{42.3659,21.9037},{42.2916,21.9037}}));
+  connect(thermalconductor2.port_b,heatflowsensor1.port_a) annotation(Line(points = {{-10.2614,44.0165},{6.87758,44.0165},{6.87758,44.5667},{6.70705,44.5667}}));
+  connect(heatflowsensor4.port_b,thermalconductor2.port_a) annotation(Line(points = {{-44.5667,23.8294},{-44.5667,23.8294},{-44.5667,44.0165},{-34.2614,44.0165},{-34.2614,44.0165}}));
+end BS2x2;
+

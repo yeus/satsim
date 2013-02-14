@@ -1,0 +1,1279 @@
+<?xml version="1.0" ?>
+<catalogue>
+	<components>
+		<component type="thermale Schnittstelle">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height>N.A.</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>thermale Schnittstelle</name>
+			<loopholes>N.A.</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length>N.A.</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width>N.A.</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">0.0</mass>
+			<power_max>N.A.</power_max>
+			<type>thermale Schnittstelle</type>
+			<Bemerkungen>N.A.</Bemerkungen>
+		</component>
+		<component type="CMG">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">270.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-20.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>CMG</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">55.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">350.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">270.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">15.7</mass>
+			<power_max unit="W">25.0</power_max>
+			<type>CMG</type>
+			<Bemerkungen>idealisiert nach Astrium CMG 15-45S; Drehimpuls 15 Nms, Moment 45Nm; Genauigkeit &lt;10mrad Drehimpulsstabilität &lt;0,03%, einzeln für RFS bis 1000kg bei 3°/s</Bemerkungen>
+		</component>
+		<component type="elektr. Schnittstelle">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height>N.A.</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>elektr. Schnittstelle</name>
+			<loopholes>N.A.</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length>N.A.</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width>N.A.</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">0.04</mass>
+			<power_max>N.A.</power_max>
+			<type>elektr. Schnittstelle</type>
+			<Bemerkungen>N.A.</Bemerkungen>
+		</component>
+		<component type="entfalt. Solarflächen 2">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">30.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>entfalt. Solarflächen 2</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">1750.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">1750.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">8.0</mass>
+			<power_max unit="W">800.0</power_max>
+			<type>entfalt. Solarflächen 2</type>
+			<Bemerkungen>Solarzellen: GaAS-Multijunction (240W/m², 80W/kg, EOL); Anzahl der entfalt. Solarflächen variabel (abh. von max. Last) </Bemerkungen>
+		</component>
+		<component type="Antenne">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">20.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-20.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Antenne</name>
+			<loopholes>1.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">50.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">82.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">82.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">0.08</mass>
+			<power_max unit="W">10.0</power_max>
+			<type>Antenne</type>
+			<Bemerkungen>idealisiert nach Surrey Satellite Technology Ltd. S-Band Patch Antenna; ggf. gegen andere Antenne austauschbar</Bemerkungen>
+		</component>
+		<component type="entfalt. Solarflächen 1">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">30.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>entfalt. Solarflächen 1</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">1200.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">595.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">2.4</mass>
+			<power_max unit="W">175.0</power_max>
+			<type>entfalt. Solarflächen 1</type>
+			<Bemerkungen>Solarzellen: GaAS-Multijunction (240W/m², 80W/kg, EOL); Anzahl der entfalt. Solarflächen variabel (abh. von max. Last), Länge ent-spricht i.M. einem </Bemerkungen>
+		</component>
+		<component type="Tank 2">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">350.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Tank 2</name>
+			<loopholes>2.0</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">691.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">350.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">52.0</mass>
+			<power_max>N.A.</power_max>
+			<type>Tank 2</type>
+			<Bemerkungen>Tank idealisiert nach VEGA AVUM Gas Tank (ATK-Space Systems Inc.), Blow Down System, Leertankmasse ca. 22 kg, Treibstoffmasse ca. 30 kg (MMH, Anfangsdruck 25 bar), Tank ist in der Länge variabel</Bemerkungen>
+		</component>
+		<component type="Drallrad (inkl.Elektro.)">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">150.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-40.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Drallrad (inkl.Elektro.)</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">70.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">300.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">300.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">16.5</mass>
+			<power_max unit="W">300.0</power_max>
+			<type>Drallrad (inkl.Elektro.)</type>
+			<Bemerkungen>idealisiert nach Rockwell Collins Deutschland (TELDIX) MWI; max. Drehimpuls 100Nms; max. RFS-Masse 5000kg; auch als Reaktionsrad nutzbar</Bemerkungen>
+		</component>
+		<component type="Tank 1">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">350.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Tank 1</name>
+			<loopholes>1.0</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">700.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">350.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">44.0</mass>
+			<power_max>N.A.</power_max>
+			<type>Tank 1</type>
+			<Bemerkungen>Tank idealisiert nach VEGA AVUM Gas Tank (ATK-Space Systems Inc.), Arbeitsdruck 310 bar, Blow Down System, Leertankmasse ca. 22 kg, Gasmasse ca. 22 kg, Tank ist in der Länge variabel</Bemerkungen>
+		</component>
+		<component type="Datenschnittstelle">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height>N.A.</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Datenschnittstelle</name>
+			<loopholes>N.A.</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length>N.A.</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width>N.A.</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">0.0</mass>
+			<power_max>N.A.</power_max>
+			<type>Datenschnittstelle</type>
+			<Bemerkungen>N.A.</Bemerkungen>
+		</component>
+		<component type="PSCU">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">350.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>PSCU</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">190.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">350.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">18.0</mass>
+			<power_max unit="W">5000.0</power_max>
+			<type>PSCU</type>
+			<Bemerkungen>idealisiert und verkleinert nach Alcatel </Bemerkungen>
+		</component>
+		<component type="Erdsensor 2">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">175.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-20.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Erdsensor 2</name>
+			<loopholes>1.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">50.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">390.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">210.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">3.5</mass>
+			<power_max unit="W">8.0</power_max>
+			<type>Erdsensor 2</type>
+			<Bemerkungen>idealisiert nach EADS-Sodern STD 16 Earth Sensor; Ausrichtung 0,06° (bias), Rauschen 0,042° (noise); Orbitbereich 300 – 6000km</Bemerkungen>
+		</component>
+		<component type="Erdsensor 1">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">170.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-25.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Erdsensor 1</name>
+			<loopholes>1.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">55.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">210.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">210.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">3.5</mass>
+			<power_max unit="W">7.0</power_max>
+			<type>Erdsensor 1</type>
+			<Bemerkungen>idealisiert nach EADS-Sodern STD 15 Earth Sensor; Ausrichtung 0,035° (bias), Rauschen 0,015° (noise); Orbitbereich 15000 – 140000km; ggf. Strahlungsschutz notwendig</Bemerkungen>
+		</component>
+		<component type="Magnetometer">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">120.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-55.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Magnetometer</name>
+			<loopholes>1.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">85.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">350.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">120.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">2.0</mass>
+			<power_max unit="W">25.0</power_max>
+			<type>Magnetometer</type>
+			<Bemerkungen>idealisiert nach SpaceQuest Ltd. MAG-3; Magnetometer ist auf einem ausfahrbaren Ausleger montiert (24 W für Ausleger angenommen)</Bemerkungen>
+		</component>
+		<component type="FCU">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">120.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>FCU</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">410.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">295.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">6.0</mass>
+			<power_max>N.A.</power_max>
+			<type>FCU</type>
+			<Bemerkungen>Flow Control Unit idealisiert mit High- und Low-Pressure Proportional Valve sowie Silicon Mass Flow Sensor (Thales), High Pressure Latch Valve (Marotta), Pressure Transducer, Gas Pressure Filter und Gas Fill and Drain Valve (RTG), Heizsystem noch unberücksichtigt</Bemerkungen>
+		</component>
+		<component type="testdüse">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height>N.A.</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit unit="s*N">0.01</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>testdüse</name>
+			<loopholes>N.A.</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length>N.A.</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls unit="s">220.0</spez_impuls>
+			<width>N.A.</width>
+			<Schub unit="N">1.0</Schub>
+			<mass unit="kg">0.0</mass>
+			<power_max>N.A.</power_max>
+			<type>testdüse</type>
+			<Bemerkungen>Testdüse zum testen von Algorithmen und programmen</Bemerkungen>
+		</component>
+		<component type="CMG-Electronics">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">100.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-25.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max unit="krad">15.0</rad_max>
+			<name>CMG-Electronics</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">60.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">300.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">300.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">2.7</mass>
+			<power_max>N.A.</power_max>
+			<type>CMG-Electronics</type>
+			<Bemerkungen>idealisiert und verkleinert nach Astrium CMG 15-45S Elektronic; für 2 CMG; Strahlungs-schutz notwendig </Bemerkungen>
+		</component>
+		<component type="Transceiver">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">87.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-20.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max unit="krad">20.0</rad_max>
+			<name>Transceiver</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">65.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">204.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">160.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">2.5</mass>
+			<power_max unit="W">36.0</power_max>
+			<type>Transceiver</type>
+			<Bemerkungen>idealisiert nach General Dynamics Multi-Mode S-Band Transceiver; uplink max. 512kbps, noise figure &lt;2,5dB; down-link max. 6Mbps; Strahlungsschutz notwendig</Bemerkungen>
+		</component>
+		<component type="Versorgungsleitungen">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height>N.A.</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Versorgungsleitungen</name>
+			<loopholes>N.A.</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length>N.A.</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width>N.A.</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">0.04</mass>
+			<power_max>N.A.</power_max>
+			<type>Versorgungsleitungen</type>
+			<Bemerkungen>4 mm², pro Kontaktelement wird in der Vorauslegung ein Bedarf von 0,7 m Kabel angenommen (Vergleichskabelmasse: 0,05kg/m)</Bemerkungen>
+		</component>
+		<component type="GNSS-Receiver 2">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">164.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-25.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max unit="krad">20.0</rad_max>
+			<name>GNSS-Receiver 2</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">60.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">250.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">190.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">5.2</mass>
+			<power_max unit="W">30.0</power_max>
+			<type>GNSS-Receiver 2</type>
+			<Bemerkungen>idealisiert nach ThalesAlenia LAGRANGETM; Pos. 8m, Geschw. 0,1m/s, Zeit ±250ns; geeignet für L1 und L2</Bemerkungen>
+		</component>
+		<component type="mech. Schnittstelle">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height>N.A.</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>mech. Schnittstelle</name>
+			<loopholes>N.A.</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length>N.A.</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width>N.A.</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">0.75</mass>
+			<power_max>N.A.</power_max>
+			<type>mech. Schnittstelle</type>
+			<Bemerkungen>N.A.</Bemerkungen>
+		</component>
+		<component type="GNSS-Receiver 1">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">92.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-20.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max unit="krad">100.0</rad_max>
+			<name>GNSS-Receiver 1</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">60.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">284.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">272.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">3.9</mass>
+			<power_max unit="W">10.0</power_max>
+			<type>GNSS-Receiver 1</type>
+			<Bemerkungen>idealisiert nach Astrium Mosaic GNSS Receiver; Pos. &lt;150m, Geschw. &lt;0,02m/s, Zeit &lt;750ns; geeignet für L1 C/A Code; ggf. Strahlungsschutz notwendig</Bemerkungen>
+		</component>
+		<component type="thermale Isolierung">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height>N.A.</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>thermale Isolierung</name>
+			<loopholes>N.A.</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length>N.A.</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width>N.A.</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">0.0</mass>
+			<power_max>N.A.</power_max>
+			<type>thermale Isolierung</type>
+			<Bemerkungen>N.A.</Bemerkungen>
+		</component>
+		<component type="testdrallrad">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height>N.A.</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment unit="m*N">10.0</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>testdrallrad</name>
+			<loopholes>N.A.</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length>N.A.</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width>N.A.</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">0.0</mass>
+			<power_max>N.A.</power_max>
+			<type>testdrallrad</type>
+			<Bemerkungen>Testdüse zum testen von Algorithmen und programmen</Bemerkungen>
+		</component>
+		<component type="entfalt. Elektronik">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">65.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>entfalt. Elektronik</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">180.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">160.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">2.0</mass>
+			<power_max unit="W">50.0</power_max>
+			<type>entfalt. Elektronik</type>
+			<Bemerkungen>idealisiert nach Astrium Actuator Alignment Electronic; ggf. zusätzlicher Strahlungsschutz notwendig</Bemerkungen>
+		</component>
+		<component type="Batteriekontrolle">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">265.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Batteriekontrolle</name>
+			<loopholes>N.A.</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">250.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">53.0</width>
+			<Schub>N.A.</Schub>
+			<mass>N.A.</mass>
+			<power_max>N.A.</power_max>
+			<type>Batteriekontrolle</type>
+			<Bemerkungen>frei angepasst</Bemerkungen>
+		</component>
+		<component type="SMU">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">260.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-25.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>SMU</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">60.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">290.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">280.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">9.5</mass>
+			<power_max unit="W">25.0</power_max>
+			<type>SMU</type>
+			<Bemerkungen>Daten idealisiert nach ThalesAlenia SMU-V1; es wurde noch keine Aussage bezüglich zentrale oder dezentrale OBC/SMU getroffen </Bemerkungen>
+		</component>
+		<component type="SADA">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">155.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>SADA</name>
+			<loopholes>1.0</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">420.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">370.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">8.6</mass>
+			<power_max unit="W">200.0</power_max>
+			<type>SADA</type>
+			<Bemerkungen>idealisiert nach MOOG Type 55 Solar Array Drive Assembly </Bemerkungen>
+		</component>
+		<component type="Transmitter">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">70.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Transmitter</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">180.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">170.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">2.1</mass>
+			<power_max unit="W">30.0</power_max>
+			<type>Transmitter</type>
+			<Bemerkungen>idealisiert nach L-3 Communications T-710() Transmitter; downlink 1,6Mbps, RF output power &gt;3W; Strahlungs-schutz notwendig</Bemerkungen>
+		</component>
+		<component type="Strahlungsschutz">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height>N.A.</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Strahlungsschutz</name>
+			<loopholes>N.A.</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length>N.A.</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width>N.A.</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">0.0</mass>
+			<power_max>N.A.</power_max>
+			<type>Strahlungsschutz</type>
+			<Bemerkungen>N.A.</Bemerkungen>
+		</component>
+		<component type="Magnetorquer">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">100.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Magnetorquer</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">350.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">100.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">4.0</mass>
+			<power_max unit="W">15.0</power_max>
+			<type>Magnetorquer</type>
+			<Bemerkungen>idealisiert und Werte abgeleitet nach ZARM-Technik MT80-1 bzw. MT250-2; magnet. Moment ca. 60-80Am² je Spule</Bemerkungen>
+		</component>
+		<component type="Li-Ion-Batterie">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">53.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">10.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Li-Ion-Batterie</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">35.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">250.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">53.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">1.11</mass>
+			<power_max>N.A.</power_max>
+			<type>Li-Ion-Batterie</type>
+			<Bemerkungen>idealisiert nach SAFT VES 180; Zusammenschaltung für 100Ah bei 36V → jeweils 10 Batterien in Reihe</Bemerkungen>
+		</component>
+		<component type="SSPA">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">47.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-20.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>SSPA</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">75.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">217.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">107.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">0.75</mass>
+			<power_max unit="W">15.0</power_max>
+			<type>SSPA</type>
+			<Bemerkungen>idealisiert nach Astrium L/S Band SSPA; nominal RF output power 15W; Strahlungsschutz notwendig</Bemerkungen>
+		</component>
+		<component type="Reaktionsrad">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">150.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-40.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Reaktionsrad</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">70.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">300.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">300.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">16.5</mass>
+			<power_max unit="W">300.0</power_max>
+			<type>Reaktionsrad</type>
+			<Bemerkungen>idealisiert nach Rockwell Collins Deutschland (TELDIX) MWI; max. Drehimpuls 100Nms; max. RFS-Masse 5000kg; auch als Drallrad nutzbar</Bemerkungen>
+		</component>
+		<component type="Transponder">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">140.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-20.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Transponder</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">60.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">230.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">170.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">4.2</mass>
+			<power_max unit="W">51.0</power_max>
+			<type>Transponder</type>
+			<Bemerkungen>idealisiert nach General Dynamics Advanced Multi-Mode Transponder (AMT-R) für Lunar Reconnais-sance Orbiter;; uplink max. 1Mbps, noise figure &lt;2,5dB; down-link max. 6Mbps; evtl. zusätzl. Strah-lungsschutz notwendig</Bemerkungen>
+		</component>
+		<component type="Bausteinstruktur">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">400.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Bausteinstruktur</name>
+			<loopholes>N.A.</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">400.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">400.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">2.5</mass>
+			<power_max>N.A.</power_max>
+			<type>Bausteinstruktur</type>
+			<Bemerkungen>N.A.</Bemerkungen>
+		</component>
+		<component type="Receiver">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">95.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-40.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max unit="krad">60.0</rad_max>
+			<name>Receiver</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">75.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">170.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">165.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">1.9</mass>
+			<power_max unit="W">4.0</power_max>
+			<type>Receiver</type>
+			<Bemerkungen>idealisiert nach L-3 Communications CR-313 Receiver; uplink max. 128kbps, RF input power max. +3dBm, noise max. 4dB; Strahlungs-schutz notwendig</Bemerkungen>
+		</component>
+		<component type="IMU (Standard)">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">160.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-25.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max unit="krad">100.0</rad_max>
+			<name>IMU (Standard)</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">60.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">206.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">206.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">4.2</mass>
+			<power_max unit="W">15.0</power_max>
+			<type>IMU (Standard)</type>
+			<Bemerkungen>idealisiert nach Astrium Astrix3M²; Ausrichtung &lt;0,01°/h (bias), Stabilität &lt;0,8°/h, Rauschen &lt;0,005°/√h (noise); Werte gelten für EOL; Strahlungs-schutz notwendig</Bemerkungen>
+		</component>
+		<component type="zentrale Solarfläche">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">30.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>zentrale Solarfläche</name>
+			<loopholes>1.0</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">1200.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">1200.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">3.5</mass>
+			<power_max unit="W">350.0</power_max>
+			<type>zentrale Solarfläche</type>
+			<Bemerkungen>Solarzellen: GaAS-Multijunction (240W/m², 80W/kg, EOL); Länge ent-spricht i.M. einem </Bemerkungen>
+		</component>
+		<component type="GPS-Antenne">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">80.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>GPS-Antenne</name>
+			<loopholes>1.0</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">200.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">200.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">0.75</mass>
+			<power_max>N.A.</power_max>
+			<type>GPS-Antenne</type>
+			<Bemerkungen>idealisiert nach RUAG Extended GPS PEC Antenna; geeignet für L1 und L2, Platzhalter für in LAGRANGE enthaltene Antenne </Bemerkungen>
+		</component>
+		<component type="Hardware-Stack 1">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">17.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Hardware-Stack 1</name>
+			<loopholes>N.A.</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">171.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">151.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">0.2</mass>
+			<power_max>N.A.</power_max>
+			<type>Hardware-Stack 1</type>
+			<Bemerkungen>Stack angepasst an Dimensionen von Europaplatinen, Dimensionen an endgültige Platinenform anpassbar, Verwendung mehrerer Stacks möglich</Bemerkungen>
+		</component>
+		<component type="Sonnensensor 2">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">49.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-80.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Sonnensensor 2</name>
+			<loopholes>1.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">90.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">108.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">106.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">0.4</mass>
+			<power_max unit="W">0.2</power_max>
+			<type>Sonnensensor 2</type>
+			<Bemerkungen>idealisiert nach Bradford Fine &amp; Coarse Sun Sensor CSS Accuracy &lt;1° (bias error &lt;0,15°)</Bemerkungen>
+		</component>
+		<component type="Sonnensensor 1">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">14.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-50.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max unit="krad">100000.0</rad_max>
+			<name>Sonnensensor 1</name>
+			<loopholes>1.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">85.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">46.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">45.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">0.05</mass>
+			<power_max>N.A.</power_max>
+			<type>Sonnensensor 1</type>
+			<Bemerkungen>idealisiert nach Miniaturised Analog Fine Sun Sensor (ISIS), Accuracy 0,3°, Blickfeld 128° x 128°</Bemerkungen>
+		</component>
+		<component type="PCU">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">350.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-15.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>PCU</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">60.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">350.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">350.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">25.0</mass>
+			<power_max>N.A.</power_max>
+			<type>PCU</type>
+			<Bemerkungen>Daten idealisiert und verkleinert nach Astrium GEO Medium Power PCU; es wurde noch keine Aussage bezüglich zentrale oder dezentrale PCU getroffen </Bemerkungen>
+		</component>
+		<component type="IMU (sehr genau)">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">280.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-10.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max unit="krad">15.0</rad_max>
+			<name>IMU (sehr genau)</name>
+			<loopholes>0.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">50.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">490.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">330.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">10.0</mass>
+			<power_max unit="W">24.0</power_max>
+			<type>IMU (sehr genau)</type>
+			<Bemerkungen>idealisiert nach Astrium Astrix200; Ausrichtung &lt;0,0005°/h (bias), Stabilität &lt;0,001°/h, Rauschen &lt;0,0001°/√h (noise); Werte gelten für EOL; Strahlungs-schutz notwendig</Bemerkungen>
+		</component>
+		<component type="Sternsensor">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">375.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min unit="degC">-30.0</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Sternsensor</name>
+			<loopholes>2.0</loopholes>
+			<density>N.A.</density>
+			<temp_max unit="degC">60.0</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">150.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">150.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">2.0</mass>
+			<power_max unit="W">10.0</power_max>
+			<type>Sternsensor</type>
+			<Bemerkungen>idealisiert nach Jena-Optronik AstroAPS; random error &lt;1arcsec (pitch/yaw) &lt;8arcsec (roll); </Bemerkungen>
+		</component>
+		<component type="Hall Efffekt Triebwerk">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">240.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Hall Efffekt Triebwerk</name>
+			<loopholes>1.0</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">140.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">240.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">12.0</mass>
+			<power_max unit="W">5000.0</power_max>
+			<type>Hall Efffekt Triebwerk</type>
+			<Bemerkungen>idealisiert nach Thales Alenia Space DS-HET, Isp 1500-3000 s, Schub 50-300 mN, max. benötigte Leistung 5000 W; anstelle von DS-HET sind auch HEMP-3050 oder RIT-22 möglich</Bemerkungen>
+		</component>
+		<component type="Kaltgasantriebssyst.">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">400.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Kaltgasantriebssyst.</name>
+			<loopholes>5.0</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">100.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">400.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">15.0</mass>
+			<power_max unit="W">55.0</power_max>
+			<type>Kaltgasantriebssyst.</type>
+			<Bemerkungen>idealisiert nach RTG Aero-Hydraulic Inc. (Ventile, Filter, Druckregler, Wandler und Düsen); Schub-bereich 0,01...1,0N; Heizsystem noch unberücksichtigt</Bemerkungen>
+		</component>
+		<component type="Monopropell.System">
+			<Schaltbar>N.A.</Schaltbar>
+			<epsilon>N.A.</epsilon>
+			<height unit="mm">400.0</height>
+			<heat_conductivity>N.A.</heat_conductivity>
+			<temp_min>N.A.</temp_min>
+			<alpha>N.A.</alpha>
+			<Impulsbit>N.A.</Impulsbit>
+			<Drehmoment>N.A.</Drehmoment>
+			<rad_max>N.A.</rad_max>
+			<name>Monopropell.System</name>
+			<loopholes>5.0</loopholes>
+			<density>N.A.</density>
+			<temp_max>N.A.</temp_max>
+			<surface_roughness>N.A.</surface_roughness>
+			<heat_capacity>N.A.</heat_capacity>
+			<length unit="mm">100.0</length>
+			<power_mean>N.A.</power_mean>
+			<spez_impuls>N.A.</spez_impuls>
+			<width unit="mm">400.0</width>
+			<Schub>N.A.</Schub>
+			<mass unit="kg">15.0</mass>
+			<power_max unit="W">100.0</power_max>
+			<type>Monopropell.System</type>
+			<Bemerkungen>idealisiert nach RTG Aero-Hydraulic Inc. (Filter, Wandler), Astrium (Düsen), VACCO (Latch Valve) Schubbereich 1,0-22N; seitliche Düsen um 90° drehbar montierbar, Heizsystem noch unberücksichtigt</Bemerkungen>
+		</component>
+	</components>
+</catalogue>

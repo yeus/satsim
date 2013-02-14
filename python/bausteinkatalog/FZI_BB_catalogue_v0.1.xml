@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bbXML xmlns="http://ids.fzi.de/iboss" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ids.fzi.de/iboss bbXML.xsd">
+	<!-- COMPONENTENS -->
+	<!-- components can contain an arbitrary number of attributes, but only some of them will be parsed by the module selection and placement Software-->
+	<component_type name="Kaltgasantriebsystem">
+		<property unit="W" atomic="false">   
+			<name>power</name>
+			<value>-55</value>			
+		</property>
+		<property unit="W" atomic="false">  
+			<name>standby_power</name>
+			<value>-5</value>
+		</property>
+		<property>
+			<name>schaltbar</name>
+			<value>1</value>
+		</property>
+		<property>
+			<name>...</name>
+			<value>...</value>
+		</property>
+	</component_type>
+
+	<component_type name="Battery">
+		<!-- there might be an arbitrary number of propertys-->
+		<property unit="W" atomic="false">   
+			<name>power</name>
+			<value>3600</value>
+		</property>
+		<property unit="Ah" atomic="false">   
+			<name>capacity</name>
+			<value>150</value>
+		</property>
+		<property unit="W" atomic="false">   
+			<name>charge</name>
+			<value>-3000</value>
+		</property>
+	</component_type>
+
+	<!-- here come more components-->
+	
+
+	<!--- BLOCKS -->
+	<!--- will be here ONCE for each unique building block, this forms the building block catalogue -->
+	<!-- block_name= names one individual type=several individuals can be of the same type -->
+	<bb block_name="Lageregelungsantrieb_1" type="Lageregelungsantrieb" model="BS-Kaltgasantrieb.3ds"> 
+
+		<!-- Size is given in block sizes attribute unit might be omited but could lead to beter readability-->
+		<size unit="blocks">
+			<x>2</x>
+			<y>1</y>
+			<z>1</z>
+		</size>	
+
+		<!-- can be LEO,MEO,GEO,ANY -->
+		<orbit>ANY</orbit>  
+
+		<!-- not agregrated but set once per BB-->
+		<mass unit="kg"> 2 </mass>
+
+		<!-- needed for manipulation -->
+		<inertia_matrix>
+			<row>
+				<cln>1</cln>
+				<cln>0</cln>
+				<cln>0</cln>
+			</row>
+			<row>
+				<cln>0</cln>
+				<cln>1</cln>
+				<cln>0</cln>
+			</row>
+			<row>
+				<cln>0</cln>
+				<cln>0</cln>
+				<cln>1</cln>
+			</row>
+		</inertia_matrix>
+
+		<!-- offset given in mm? from the block center position-->
+		<center_of_mass unit="mm">
+			<x>0</x>
+			<y>0</y>
+			<z>0</z>
+		</center_of_mass>
+
+		<!-- components are defined outside of the BB, but only certain data is agregated by the block selection software-->
+		<!-- the placement of the component for example is irrelevant for block selection -->
+		<component type="Kaltgasantriebsystem" name="antrieb"/>
+
+
+		<!-- building block propertys-->
+		<property>
+			<name>Wärmekapazität</name>
+			<value>10</value>
+		</property>
+		<!-- ... arbitrary number of propertys -->
+
+	
+		<!-- defines the faces of a BB, the status information about these faces is only contained in the satellite sellection, face ids allow easy reference-->
+		<face face_id="0"  connection="blocked"> 
+			<offset unit="blocks">
+				<x>0</x>
+				<y>0</y>
+				<z>0</z>
+			</offset>
+			<axis>x</axis>
+			<direction>positive</direction>		
+		</face>
+
+		<face face_id="1" connection="valid"> 
+			<offset unit="blocks">
+				<x>0</x>
+				<y>0</y>
+				<z>0</z>
+			</offset>
+			<axis>x</axis>
+			<direction>negative</direction>		
+		</face>
+
+		<face face_id="2" connection="valid"> 
+			<offset unit="blocks">
+				<x>0</x>
+				<y>0</y>
+				<z>0</z>
+			</offset>
+			<axis>y</axis>
+			<direction>positive</direction>		
+		</face>
+
+		<face face_id="3" connection="valid"> 
+			<offset unit="blocks">
+				<x>0</x>
+				<y>0</y>
+				<z>0</z>
+			</offset>
+			<axis>y</axis>
+			<direction>negative</direction>		
+		</face>
+		<face>...</face>
+		<!-- here are the other faces....-->
+
+
+		<!-- BLOCK RULES these are BLOCK specific rules -->
+		<block_rules>
+			<fov unit="deg">
+				<face_index>5</face_index>
+				<value>50</value>
+			</fov>
+			<fov unit="deg">
+				<face_index>6</face_index>
+				<value>50</value>
+			</fov>
+			<fov unit="deg">
+				<face_index>7</face_index>
+				<value>50</value>
+			</fov>
+			<fov unit="deg">
+				<face_index>8</face_index>
+				<value>50</value>
+			</fov>
+			<fov unit="deg">
+				<face_index>9</face_index>
+				<value>50</value>
+			</fov>
+		</block_rules>
+	</bb>
+
+	<bb block_name="Batterie_1" type="Batterie" model="Batterie.3ds"> 
+		<size unit="blocks">
+			<x>1</x>
+			<y>1</y>
+			<z>1</z>
+		</size>	
+
+		<orbit>ANY</orbit>  
+		<mass unit="kg"> 2 </mass>
+
+		<inertia_matrix>
+			<row>
+				<cln>1</cln>
+				<cln>0</cln>
+				<cln>0</cln>
+			</row>
+			<row>
+				<cln>0</cln>
+				<cln>1</cln>
+				<cln>0</cln>
+			</row>
+			<row>
+				<cln>0</cln>
+				<cln>0</cln>
+				<cln>1</cln>
+			</row>
+		</inertia_matrix>
+
+
+
+		<center_of_mass unit="mm">
+			<x>0</x>
+			<y>0</y>
+			<z>0</z>
+		</center_of_mass>
+
+
+		<component type="Battery" name="Hauptbatterie"/>
+
+		<face face_id="0" connection="valid"> 
+			<offset unit="blocks">
+				<x>0</x>
+				<y>0</y>
+				<z>0</z>
+			</offset>
+			<axis>x</axis>
+			<direction>positive</direction>		
+		</face>
+
+		<face face_id="1" connection="valid"> 
+			<offset unit="blocks">
+				<x>0</x>
+				<y>0</y>
+				<z>0</z>
+			</offset>
+			<axis>x</axis>
+			<direction>negative</direction>		
+		</face>
+
+		<face face_id="2" connection="valid"> 
+			<offset unit="blocks">
+				<x>0</x>
+				<y>0</y>
+				<z>0</z>
+			</offset>
+			<axis>y</axis>
+			<direction>positive</direction>		
+		</face>
+
+		<face face_id="3" connection="valid"> 
+			<offset unit="blocks">
+				<x>0</x>
+				<y>0</y>
+				<z>0</z>
+			</offset>
+			<axis>y</axis>
+			<direction>negative</direction>		
+		</face>
+		<face face_id="4" connection="valid"> 
+			<offset unit="blocks">
+				<x>0</x>
+				<y>0</y>
+				<z>0</z>
+			</offset>
+			<axis>y</axis>
+			<direction>negative</direction>		
+		</face>
+		<face face_id="5" connection="valid"> 
+			<offset unit="blocks">
+				<x>0</x>
+				<y>0</y>
+				<z>0</z>
+			</offset>
+			<axis>y</axis>
+			<direction>negative</direction>		
+		</face>
+
+		<block_rules>
+		</block_rules>
+
+	</bb>
+</bbXML>
