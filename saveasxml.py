@@ -53,7 +53,7 @@ def savexml(filename,xml):
   f.close()
 
 def saveibosslists(komponenten, bausteine, referenzmissionen):
-  katalog=et.Element("catalogue")
+  katalog=et.Element("catalogue",version="1.1")
   katalog.append(ibosslist2xml("components",komponenten.values()))
   katalog.append(ibosslist2xml("buildingblocks",bausteine.values()))
   savexml("bausteinkatalog/katalog.xml",katalog)
