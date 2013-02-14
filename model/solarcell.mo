@@ -20,25 +20,6 @@ package solar_power
     y = exp(alpha * time) - 1;
     annotation(Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100,-100},{100,100}}, grid = {2,2}), graphics = {Line(points = {{0,-80},{0,68}}, color = {192,192,192}),Polygon(points = {{0,90},{-8,68},{8,68},{0,90}}, lineColor = {192,192,192}, fillColor = {192,192,192}, fillPattern = FillPattern.Solid),Text(extent = {{-86,50},{-14,2}}, lineColor = {192,192,192}, textString = "exp"),Line(points = {{-80,-80},{-31,-77.9},{-6.03,-74},{10.9,-68.4},{23.7,-61},{34.2,-51.6},{43,-40.3},{50.3,-27.8},{56.7,-13.5},{62.3,2.23},{67.1,18.6},{72,38.2},{76,57.6},{80,80}}, color = {0,0,0}),Line(points = {{-90,-80.3976},{68,-80.3976}}, color = {192,192,192}),Polygon(points = {{90,-80.3976},{68,-72.3976},{68,-88.3976},{90,-80.3976}}, lineColor = {192,192,192}, fillColor = {192,192,192}, fillPattern = FillPattern.Solid)}), Diagram(coordinateSystem(preserveAspectRatio = true, extent = {{-100,-100},{100,100}}, grid = {2,2}), graphics = {Line(points = {{0,80},{-8,80}}, color = {192,192,192}),Line(points = {{0,-80},{-8,-80}}, color = {192,192,192}),Line(points = {{0,-90},{0,84}}, color = {192,192,192}),Text(extent = {{9,100},{40,80}}, lineColor = {160,160,164}, textString = "y"),Polygon(points = {{0,100},{-6,84},{6,84},{0,100}}, lineColor = {192,192,192}, fillColor = {192,192,192}, fillPattern = FillPattern.Solid),Line(points = {{-100,-80.3976},{84,-80.3976}}, color = {192,192,192}),Polygon(points = {{100,-80.3976},{84,-74.3976},{84,-86.3976},{100,-80.3976}}, lineColor = {192,192,192}, fillColor = {192,192,192}, fillPattern = FillPattern.Solid),Line(points = {{-80,-80},{-31,-77.9},{-6.03,-74},{10.9,-68.4},{23.7,-61},{34.2,-51.6},{43,-40.3},{50.3,-27.8},{56.7,-13.5},{62.3,2.23},{67.1,18.6},{72,38.2},{76,57.6},{80,80}}, color = {0,0,0}),Text(extent = {{-31,72},{-11,88}}, textString = "20", lineColor = {0,0,255}),Text(extent = {{-92,-83},{-72,-103}}, textString = "-3", lineColor = {0,0,255}),Text(extent = {{70,-83},{90,-103}}, textString = "3", lineColor = {0,0,255}),Text(extent = {{-18,-53},{2,-73}}, textString = "1", lineColor = {0,0,255}),Text(extent = {{66,-52},{96,-72}}, lineColor = {160,160,164}, textString = "u")}));
   end Exprgenerator;
-  model solarcell_charactristic2
-    extends Modelica.Icons.Example;
-    Modelica.Blocks.Sources.Constant const(k = 20) annotation(Placement(visible = true, transformation(origin = {35.0778,65.3465}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-4.61025,-17.7746}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    dcmodel.DCtoDCModel dctodcmodel1(Vinmax = 100, Vref = 5, Pout = 50, Vinmin = 5.5, eff = 0.85) annotation(Placement(visible = true, transformation(origin = {-2.26308,22.3479}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    annotation(experiment(StartTime = 0.0, StopTime = 11000.0, Tolerance = 0.000001));
-    Modelica.Blocks.Sources.Trapezoid trapezoid1(amplitude = 1367, rising = 5, width = 2000, period = 5000, falling = 5) annotation(Placement(visible = true, transformation(origin = {-80.0566,7.63791}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    solarcell solarcell1 annotation(Placement(visible = true, transformation(origin = {-39.3211,7.63791}, extent = {{12,-12},{-12,12}}, rotation = 90)));
-    Modelica.Electrical.Analog.Basic.VariableResistor variableresistor1 annotation(Placement(visible = true, transformation(origin = {36.1311,6.871}, extent = {{-12,12},{12,-12}}, rotation = -90)));
-  equation
-    connect(trapezoid1.y,solarcell1.E_s) annotation(Line(points = {{-66.8566,7.63791},{-47.8076,7.63791},{-47.8076,7.48577},{-47.8409,7.48577}}));
-    connect(const.y,variableresistor1.R) annotation(Line(points = {{48.2778,65.3465},{63.3663,65.3465},{63.3663,7.07214},{49.3311,7.07214},{49.3311,6.871}}));
-    connect(dctodcmodel1.p1,variableresistor1.p) annotation(Line(points = {{9.79656,27.8803},{36.4922,27.8803},{36.4922,18.871},{36.1311,18.871}}));
-    connect(solarcell1.n,dctodcmodel1.p) annotation(Line(points = {{-39.3211,19.6379},{-39.0382,19.6379},{-39.0382,28.5714},{-14.2034,28.5714},{-14.2034,27.8405}}));
-    connect(dctodcmodel1.n1,ground1.p) annotation(Line(points = {{9.8364,15.652},{10.4668,15.652},{10.4668,-5.09194},{-4.61025,-5.09194},{-4.61025,-5.7746}}));
-    connect(dctodcmodel1.n,ground1.p) annotation(Line(points = {{-14.2595,15.4835},{-15.5587,15.4835},{-15.5587,-4.80905},{-4.61025,-4.80905},{-4.61025,-5.7746}}));
-    connect(ground1.p,solarcell1.p) annotation(Line(points = {{-4.61025,-5.7746},{-4.61025,-4.80905},{-39.3211,-4.80905},{-39.3211,-4.36209}}));
-    connect(variableresistor1.n,ground1.p) annotation(Line(points = {{36.1311,-5.129},{-4.52617,-5.129},{-4.52617,-5.7746},{-4.61025,-5.7746}}));
-  end solarcell_charactristic2;
   model solarcell_characteristic
     extends Modelica.Icons.Example;
     Exprgenerator exprgenerator1(alpha = 10) annotation(Placement(visible = true, transformation(origin = {58.3863,-42.6184}, extent = {{-7.45106,-7.45106},{7.45106,7.45106}}, rotation = 0)));
@@ -133,5 +114,50 @@ package solar_power
     i = if v < V_Sperr then I_sc_actual * A_cell * N_p * (1 - C_b * (exp(-v / (C_a * V_oc * N_s)) - 1)) else alpha + (v - V_Sperr) * 3;
     //i=10.0-0.01*(exp(v)-1);
   end solarcell;
+  model solarcell_charactristic2
+    extends Modelica.Icons.Example;
+    Modelica.Blocks.Sources.Constant const(k = 20) annotation(Placement(visible = true, transformation(origin = {54.2395,64.7477}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {14.5514,-18.3734}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    dcmodel.dcdc_ideal_simple dcdc_ideal_simple1(eff = 0.85, V_out = 5, V_in_min = 6.5, V_in_max = 100) annotation(Placement(visible = true, transformation(origin = {15.2695,21.2575}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 0.0001) annotation(Placement(visible = true, transformation(origin = {-23.9521,27.8443}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    solarcell solarcell1 annotation(Placement(visible = true, transformation(origin = {-50.3989,7.63791}, extent = {{12,-12},{-12,12}}, rotation = 90)));
+    Modelica.Electrical.Analog.Basic.VariableResistor variableresistor1 annotation(Placement(visible = true, transformation(origin = {55.2928,6.2722}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+    Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 0.0001) annotation(Placement(visible = true, transformation(origin = {-25.1497,-7.48503}, extent = {{12,12},{-12,-12}}, rotation = -180)));
+    Modelica.Blocks.Sources.Trapezoid trapezoid1(amplitude = 1367, rising = 5, width = 2000, period = 5000, falling = 5, offset = 100) annotation(Placement(visible = true, transformation(origin = {-82.3197,-20.3677}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  equation
+    connect(trapezoid1.y,solarcell1.E_s) annotation(Line(points = {{-69.1197,-20.3677},{-59.6888,-20.3677},{-59.6888,7.48577},{-58.9187,7.48577}}));
+    connect(const.y,variableresistor1.R) annotation(Line(points = {{67.4395,64.7477},{83.4512,64.7477},{83.4512,6.22348},{68.4928,6.22348},{68.4928,6.2722}}));
+    connect(dcdc_ideal_simple1.n2,ground1.p) annotation(Line(points = {{27.2695,15.2575},{27.157,15.2575},{27.157,4.24328},{14.1443,4.24328},{14.1443,-6.3734},{14.5514,-6.3734}}));
+    connect(dcdc_ideal_simple1.n1,ground1.p) annotation(Line(points = {{3.2695,15.2575},{3.11174,15.2575},{3.11174,4.24328},{14.1443,4.24328},{14.1443,-6.3734},{14.5514,-6.3734}}));
+    connect(resistor2.n,solarcell1.p) annotation(Line(points = {{-37.1497,-7.48503},{-50.3536,-7.48503},{-50.3536,-4.36209},{-50.3989,-4.36209}}));
+    connect(ground1.p,resistor2.p) annotation(Line(points = {{14.5514,-6.3734},{14.5514,-7.35502},{-13.1497,-7.35502},{-13.1497,-7.48503}}));
+    connect(variableresistor1.n,ground1.p) annotation(Line(points = {{55.2928,-5.7278},{14.71,-5.7278},{14.71,-6.3734},{14.5514,-6.3734}}));
+    connect(dcdc_ideal_simple1.p2,variableresistor1.p) annotation(Line(points = {{27.2695,27.2575},{55.7284,27.2575},{55.7284,18.2722},{55.2928,18.2722}}));
+    connect(resistor1.n,dcdc_ideal_simple1.p1) annotation(Line(points = {{-11.9521,27.8443},{2.82885,27.8443},{2.82885,27.2575},{3.2695,27.2575}}));
+    connect(solarcell1.n,resistor1.p) annotation(Line(points = {{-50.3989,19.6379},{-50.3536,19.6379},{-50.3536,28.0057},{-35.9521,28.0057},{-35.9521,27.8443}}));
+  end solarcell_charactristic2;
+  model solarcell_dcdccharactristic3
+    extends Modelica.Icons.Example;
+    Modelica.Blocks.Sources.Constant const(k = 20) annotation(Placement(visible = true, transformation(origin = {54.2395,64.7477}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 0.0001) annotation(Placement(visible = true, transformation(origin = {-23.9521,27.8443}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    Modelica.Blocks.Sources.Trapezoid trapezoid1(amplitude = 1267, rising = 5, width = 2000, period = 5000, falling = 5, offset = 100) annotation(Placement(visible = true, transformation(origin = {-83.1684,7.63796}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    annotation(experiment(StartTime = 0.0, StopTime = 11111.0, Tolerance = 0.000001));
+    Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-44.6959,-24.8939}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    dcmodel.dcdc_ideal_simple dcdc_ideal_simple1(eff = 0.85, V_out = 5, V_in_min = 6.5, V_in_max = 100) annotation(Placement(visible = true, transformation(origin = {16.9731,22.0651}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    solarcell solarcell1 annotation(Placement(visible = true, transformation(origin = {-50.3989,7.63791}, extent = {{12,-12},{-12,12}}, rotation = 90)));
+    Modelica.Electrical.Analog.Basic.VariableResistor variableresistor1 annotation(Placement(visible = true, transformation(origin = {55.2928,6.2722}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+    Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 0.0001) annotation(Placement(visible = true, transformation(origin = {-25.1497,-7.48503}, extent = {{12,12},{-12,-12}}, rotation = -180)));
+  equation
+    connect(dcdc_ideal_simple1.n1,resistor2.p) annotation(Line(points = {{4.97313,16.0651},{4.80905,16.0651},{4.80905,-7.35502},{-13.1497,-7.35502},{-13.1497,-7.48503}}));
+    connect(dcdc_ideal_simple1.n2,dcdc_ideal_simple1.n1) annotation(Line(points = {{28.9731,16.0651},{29.1372,16.0651},{29.1372,5.94059},{4.80905,5.94059},{4.80905,16.0651},{4.97313,16.0651}}));
+    connect(dcdc_ideal_simple1.p2,variableresistor1.p) annotation(Line(points = {{28.9731,28.0651},{54.8798,28.0651},{54.8798,18.2722},{55.2928,18.2722}}));
+    connect(resistor1.n,dcdc_ideal_simple1.p1) annotation(Line(points = {{-11.9521,27.8443},{4.24328,27.8443},{4.24328,28.0651},{4.97313,28.0651}}));
+    connect(resistor2.n,ground1.p) annotation(Line(points = {{-37.1497,-7.48503},{-44.6959,-7.48503},{-44.6959,-12.8939},{-44.6959,-12.8939}}));
+    connect(resistor2.p,variableresistor1.n) annotation(Line(points = {{-13.1497,-7.48503},{55.4455,-7.48503},{55.4455,-5.7278},{55.2928,-5.7278}}));
+    connect(trapezoid1.y,solarcell1.E_s) annotation(Line(points = {{-69.9684,7.63796},{-59.6888,7.63796},{-59.6888,7.48577},{-58.9187,7.48577}}));
+    connect(const.y,variableresistor1.R) annotation(Line(points = {{67.4395,64.7477},{83.4512,64.7477},{83.4512,6.22348},{68.4928,6.22348},{68.4928,6.2722}}));
+    connect(resistor2.n,solarcell1.p) annotation(Line(points = {{-37.1497,-7.48503},{-50.3536,-7.48503},{-50.3536,-4.36209},{-50.3989,-4.36209}}));
+    connect(solarcell1.n,resistor1.p) annotation(Line(points = {{-50.3989,19.6379},{-50.3536,19.6379},{-50.3536,28.0057},{-35.9521,28.0057},{-35.9521,27.8443}}));
+  end solarcell_dcdccharactristic3;
 end solar_power;
 

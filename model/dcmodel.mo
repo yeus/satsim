@@ -201,8 +201,13 @@ package dcmodel
     Boolean state(start = false);
   equation
     state = v1 < V_in_max and v1 > V_in_min;
-    v2 = if state == true then V_out else 0;
-    i1 = if state == true then (i2 * v2) / (v1 * eff) else 0;
+    if state == true then
+      v2 = V_out;
+      i1 = (-i2 * v2) / (v1 * eff);
+    else
+      v2 = 0;
+      i1 = 0;
+    end if;
   end dcdc_ideal_simple;
 end dcmodel;
 

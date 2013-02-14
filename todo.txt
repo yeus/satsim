@@ -26,7 +26,13 @@ Analyse von Simulationsergebnisse:
 ==================================
 - Python Skript für Auswertung.
 
+Bausteinkatalog
+===============
+- max_power und power, das verbraucht wird, muss überarbeitet werden (z.B. elektr. BS: PSCU und Triebwerk haben beide als power_max 5000W angegeben, es handelt sich jedoch nicht in beiden Fällen um Verbrauchswerte)
 
+XML
+===
+- Bausteine müssen angeben, wie ihre "Form" ist. z.B. in Form einer Liste von Positions-Vektoren
 
 Modell-Struktur in Modelica:
 ============================
