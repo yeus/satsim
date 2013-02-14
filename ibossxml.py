@@ -43,7 +43,7 @@ def loadxmldata(filename='bausteinkatalog/katalog.1.1.xml'):
           new_co=copy.copy(components[co.attrib["type"]])
           if co.attrib.has_key("num"): new_co.num=int(co.attrib["num"])
           for co_prop in co:
-            #new_co.addxmlprop(co_prop)
+            #new_co.addxmlprop(co_prop) #Hier immer Ergänzungen aus dem laden einer alten katalogdatei hinzufügen
             if co_prop.tag=="pos": new_co.pos=iboss.ibossxml.xml2vec(co_prop)*pq.Quantity(1,"blocks")
             if co_prop.tag=="th_vec": new_co.th_vec=iboss.ibossxml.xml2vec(co_prop)*pq.dimensionless
           new_bs.add_co(new_co)
@@ -78,14 +78,8 @@ co,bb,ms=loadxmldata()
 
 #calculate power demands for buildingblocks
 for BB in bb.values():
-  power=0*pq.W
-  for CO in BB.components:
-    if "power_max" in vars(CO): 
-      #print BB.name + ", " + CO.name + ", " + str(CO.power_max)
-      power+=CO.power_max*0.3
-  power+=(5*pq.W)
   BB.update()
-  print u"{}: {}".format(BB.name,power)
+  print u"{}: {}".format(BB.name,BB.power)
   
 def test():
   import saveasxml

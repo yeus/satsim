@@ -37,6 +37,7 @@ Usage: saveasxml <Options> <filename.xml>
 Options:
 -h display this help
 """
+Version="1.2"
 
 #todo: save int,floats  etc..  as float and not as string in xml file
 
@@ -55,10 +56,10 @@ def savexml(filename,xml):
   f.close()
 
 def saveibosslists(komponenten, bausteine, referenzmissionen):
-  katalog=et.Element("catalogue",version="1.2")
+  katalog=et.Element("catalogue",version=Version)
   katalog.append(ibosslist2xml("components",komponenten.values()))
   katalog.append(ibosslist2xml("buildingblocks",bausteine.values()))
-  savexml("bausteinkatalog/katalog.xml",katalog)
+  savexml("bausteinkatalog/katalog.{}.xml".format(Version),katalog)
   missionen=ibosslist2xml("missions",referenzmissionen.values())
   savexml("bausteinkatalog/missionen.xml",missionen)
 
