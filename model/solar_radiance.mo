@@ -3,7 +3,7 @@ model solar_radiance "Einwirkende Sonnenstrahlung auf Fläche A mit Absorptionsf
   parameter Real solar_constant=1372 "Solarkonstate in W/m²";
   parameter Modelica.SIunits.Time orbit_Period(final min=Modelica.Constants.small, start=1)=5400 "Time for one period";
   parameter Real percent_sun(final min=Modelica.Constants.small, final max=100)=66 "Width of pulse in % of period";
-  parameter Real effective_area=0.4 "von der Sonne beleuchtete Fläche";
+  parameter Real effective_area=0.4*0.4 "von der Sonne beleuchtete Fläche";
   parameter Real alpha(final min=Modelica.Constants.small, final max=1)=0.2 "Absorptionskoeffizient";
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow Solar_Power annotation(Placement(visible=true, transformation(origin={-40.0,20.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   Modelica.Blocks.Sources.Pulse Orbit(width=percent_sun, amplitude=solar_constant*effective_area*alpha, period=orbit_Period) annotation(Placement(visible=true, transformation(origin={-80.0,20.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
