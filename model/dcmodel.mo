@@ -163,48 +163,46 @@ package dcmodel
     CCS1.i2 = smooth(0, (CCS1.v1 * Amp.i) / ((CCS1.v2 + 0.0000001) * eff));
     //SignalCurrent1.i = smooth(0, if p.v > Vinmin and p.v < Vinmax then SignalCurrent1.u else 0);
   end dcdc_ideal;
-  model dcdc_ideal_simple
-    model converter
-      parameter Real eff;
-      parameter Modelica.SIunits.Voltage V_out;
-      extends Modelica.Electrical.Analog.Interfaces.TwoPort;
-    equation
-      v2 = V_out;
-      i1 = (i2 * v2) / (v1 * eff);
-    end converter;
-    //todo möglicherweise lässt sich hier noch etwas mit "smooth" machen?
-    annotation(Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-87.6945,78.6421},{88.5431,-74.6818}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{10.4668,68.1754},{76.3791,30.2687}}, textString = "%Vref V"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-63.6492,18.9533},{57.9915,-33.0976}}, textString = "DCDC")}), Diagram());
-    extends Modelica.Electrical.Analog.Interfaces.TwoPort;
-    parameter Real eff annotation(Placement(visible = true, transformation(origin = {71.521,-76.3754}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    parameter Modelica.SIunits.Voltage V_out;
-    converter Converter1(V_out = V_out) annotation(Placement(visible = true, transformation(origin = {0.970874,4.53074}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-  equation
-    connect(Converter1.p2,p2) annotation(Line(points = {{12.9709,10.5307},{14.2395,10.5307},{14.2395,49.8382},{100,49.8382},{100,50}}));
-    connect(n2,Converter1.n2) annotation(Line(points = {{100,-50},{13.9159,-50},{13.9159,-1.2945},{12.9709,-1.2945},{12.9709,-1.46926}}));
-    connect(Converter1.n1,n1) annotation(Line(points = {{-11.0291,-1.46926},{-10.6796,-1.46926},{-10.6796,-50.1618},{-100,-50.1618},{-100,-50}}));
-    connect(p1,Converter1.p1) annotation(Line(points = {{-100,50},{-11.3269,50},{-11.3269,10.5307},{-11.0291,10.5307}}));
-  end dcdc_ideal_simple;
-  connector Powerconnector_in
-    annotation(Icon(graphics = {Polygon(points = {{-38.7553,84.2999},{34.7949,84.5827},{89.1089,3.9604},{40.4526,-86.2801},{-41.5842,-87.4116},{-88.826,6.78925},{-38.7553,84.2999}}, rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25)}), Diagram(graphics = {Polygon(points = {{-20.3678,42.7157},{22.0651,42.4328},{41.867,9.33522},{22.6308,-31.4003},{-24.0453,-31.1174},{-44.6959,5.37482},{-45.5446,7.63791},{-20.3678,42.7157}}, rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-58.8402,74.9646},{61.1033,49.7878}}, textString = "Power Connector")}));
-    flow Modelica.SIunits.Power power;
-  end Powerconnector_in;
   connector Powerconnector_out
     annotation(Icon(graphics = {Polygon(points = {{-38.7553,84.2999},{34.7949,84.5827},{89.1089,3.9604},{40.4526,-86.2801},{-41.5842,-87.4116},{-88.826,6.78925},{-38.7553,84.2999}}, rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25)}), Diagram(graphics = {Polygon(points = {{-20.3678,42.7157},{22.0651,42.4328},{41.867,9.33522},{22.6308,-31.4003},{-24.0453,-31.1174},{-44.6959,5.37482},{-45.5446,7.63791},{-20.3678,42.7157}}, rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-58.8402,74.9646},{61.1033,49.7878}}, textString = "Power Connector")}));
-    flow Modelica.SIunits.Power power;
+    output Modelica.SIunits.Power power;
   end Powerconnector_out;
+  connector Powerconnector_in
+    annotation(Icon(graphics = {Polygon(points = {{-38.7553,84.2999},{34.7949,84.5827},{89.1089,3.9604},{40.4526,-86.2801},{-41.5842,-87.4116},{-88.826,6.78925},{-38.7553,84.2999}}, rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25)}), Diagram(graphics = {Polygon(points = {{-20.3678,42.7157},{22.0651,42.4328},{41.867,9.33522},{22.6308,-31.4003},{-24.0453,-31.1174},{-44.6959,5.37482},{-45.5446,7.63791},{-20.3678,42.7157}}, rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-58.8402,74.9646},{61.1033,49.7878}}, textString = "Power Connector")}));
+    input Modelica.SIunits.Power power;
+  end Powerconnector_in;
   model DCtoPower "generic ideal DC/DC Converter with Power Output"
-    parameter Real V_in_max;
+    parameter Modelica.SIunits.Voltage V_in_max;
+    parameter Modelica.SIunits.Voltage V_in_min;
+    parameter Real eff = 0.85;
     parameter Integer m(min = 1) = 3 "Number of Power Outputs";
     Modelica.Electrical.Analog.Interfaces.PositivePin p annotation(Placement(visible = true, transformation(origin = {-100.141,38.4724}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-100.141,38.4724}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     annotation(Diagram(), Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-87.9774,80.3395},{98.1612,-79.7737}})}));
     Modelica.Electrical.Analog.Interfaces.NegativePin n annotation(Placement(visible = true, transformation(origin = {-100.141,-39.604}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-100.141,-39.604}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     dcmodel.Powerconnector_out power_out[m] annotation(Placement(visible = true, transformation(origin = {100.99,-0.848656}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {100.99,-0.848656}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    Modelica.SIunits.Voltage v(start = 0);
+    Modelica.SIunits.Current i(start = 0);
+    Modelica.SIunits.Power powersum(start = 1);
   equation
     v = p.v - n.v;
     0 = p.i + n.i;
     i = p.i;
     powersum = sum(power_out.power);
-    i = powersum / v;
+    i = if v > V_in_min and v < V_in_max then powersum / (v * eff) else 0;
   end DCtoPower;
+  model dcdc_ideal_simple
+    //todo möglicherweise lässt sich hier noch etwas mit "smooth" machen?
+    annotation(Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-87.6945,78.6421},{88.5431,-74.6818}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{10.4668,68.1754},{76.3791,30.2687}}, textString = "%Vref V"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-63.6492,18.9533},{57.9915,-33.0976}}, textString = "DCDC")}), Diagram());
+    extends Modelica.Electrical.Analog.Interfaces.TwoPort;
+    parameter Real eff annotation(Placement(visible = true, transformation(origin = {71.521,-76.3754}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    parameter Modelica.SIunits.Voltage V_out;
+    parameter Modelica.SIunits.Voltage V_in_min;
+    parameter Modelica.SIunits.Voltage V_in_max;
+    Boolean state(start = false);
+  equation
+    state = v1 < V_in_max and v1 > V_in_min;
+    v2 = if state == true then V_out else 0;
+    i1 = if state == true then (i2 * v2) / (v1 * eff) else 0;
+  end dcdc_ideal_simple;
 end dcmodel;
 

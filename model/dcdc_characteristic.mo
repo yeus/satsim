@@ -4,10 +4,10 @@ model dcdc_characteristic
   Modelica.Blocks.Math.Add add1(k1 = -1) annotation(Placement(visible = true, transformation(origin = {65.6294,40.4526}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp1(height = 10, duration = 1) annotation(Placement(visible = true, transformation(origin = {22.9137,69.3069}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   Modelica.Blocks.Sources.Constant const(k = 10) annotation(Placement(visible = true, transformation(origin = {22.9138,35.9265}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  dcmodel.dcdc_ideal_simple dctodcmodel1(Vinmax = 100, Vref = 5, Pout = 10, Vinmin = 5.5, eff = 0.85) annotation(Placement(visible = true, transformation(origin = {-34.512,12.1641}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   Modelica.Electrical.Analog.Basic.VariableResistor variableresistor1 annotation(Placement(visible = true, transformation(origin = {50.0707,-6.50636}, extent = {{-12,12},{12,-12}}, rotation = -90)));
   Modelica.Electrical.Analog.Sources.ConstantVoltage constantvoltage1(V = 20) annotation(Placement(visible = true, transformation(origin = {-78.5311,-4.30002}, extent = {{-12,12},{12,-12}}, rotation = -90)));
   Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 0.1) annotation(Placement(visible = true, transformation(origin = {12.447,-24.8939}, extent = {{12,12},{-12,-12}}, rotation = -180)));
-  dcmodel.DCtoDCModel dctodcmodel1(Vinmax = 100, Vref = 5, Pout = 10, Vinmin = 5.5, eff = 0.85) annotation(Placement(visible = true, transformation(origin = {-34.512,12.1641}, extent = {{-12,-12},{12,12}}, rotation = 0)));
 equation
   connect(dctodcmodel1.n1,ground1.p) annotation(Line(points = {{-22.4125,5.46817},{-22.0651,5.46817},{-22.0651,-20.3678},{-36.7751,-20.3678},{-36.7751,-27.8868},{-36.7751,-27.8868}}));
   connect(dctodcmodel1.n,ground1.p) annotation(Line(points = {{-46.5085,5.29961},{-46.959,5.29961},{-46.959,-19.5191},{-36.7751,-19.5191},{-36.7751,-27.8868},{-36.7751,-27.8868}}));
