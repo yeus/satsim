@@ -45,11 +45,17 @@ class ibossxml(object):
   def addxmlprop(self,xmlprop):
     #convert to floats and vectors
     try:
-      val=str2vec(xmlprop.text)
-    except TypeError: 
-      val=float(xmlprop.text)
-    except ValueError: 
-      val=xmlprop.text
+      if xmlprop.tag in ["com","pos","th_vec","size"]: 
+        val=self.xml2vec(xmlprop)
+      else: 
+        try:
+          val=float(xmlprop.text)
+        except ValueError: 
+          val=xmlprop.text
+    except:
+      raise
+      print("hat nicht funktioniert",xmlprop.text)
+
       
     #find out unit
     unit=xmlprop.get("unit")
@@ -58,6 +64,13 @@ class ibossxml(object):
     else: unit=1
     
     vars(self)[xmlprop.tag]=val*unit
+  
+  @classmethod
+  def xml2vec(cls,xmlvec):
+    vec=[]
+    for i in xmlvec:
+      vec.append(float(i.text))
+    return vec 
 
   @classmethod
   def vec2xml(cls,vec):
@@ -107,6 +120,9 @@ class component(ibossxml):
     self.type=cotype
     self.name=cotype#
     self.mass=0
+  
+  #def addxmlprop(self,xmlprop):
+  #  super(FileInfo, self).addxmlprop(self,xmlprop)
 
 class buildingblock(ibossxml):
   def __init__(self,bbtype):
@@ -135,11 +151,16 @@ class buildingblock(ibossxml):
     self.components.append(copy(co))
     if "num" not in vars(co): co.num=1
     if "mass" in vars(co): self.mass+=co.mass*co.num
-      
+  
+  def update(self):
+    self.updatemass()
+  
   def updatemass(self):
-    self.mass=0*pq.m
+    self.mass=0*pq.kg
     for co in self.components:
-      self.mass+=co.mass*co.num
+      if "num" in vars(co): num=co.num
+      else: num=1
+      self.mass+=co.mass*num
     return self.mass
 
 class mission(ibossxml):

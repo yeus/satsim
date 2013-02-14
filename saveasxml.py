@@ -26,6 +26,8 @@ import codecs
 import iboss
 from iboss import prettyprintxml
 
+import operator
+
 helpstring="""
 Dieses Skript speichert den Bausteinkatalog im XML-Format
 
@@ -40,7 +42,7 @@ Options:
 
 def ibosslist2xml(name,instancelist):
   root=et.Element(name)
-  for i in instancelist:
+  for i in sorted(instancelist,key=lambda instance: instance.type.lower()): #alphabetically sorted list #operator.attrgetter('type').lower()): 
     root.append(i.xml)
   return root
   
@@ -53,7 +55,7 @@ def savexml(filename,xml):
   f.close()
 
 def saveibosslists(komponenten, bausteine, referenzmissionen):
-  katalog=et.Element("catalogue",version="1.1")
+  katalog=et.Element("catalogue",version="1.2")
   katalog.append(ibosslist2xml("components",komponenten.values()))
   katalog.append(ibosslist2xml("buildingblocks",bausteine.values()))
   savexml("bausteinkatalog/katalog.xml",katalog)
@@ -77,9 +79,10 @@ def genexamples():
 
 if __name__ == "__main__":
   #main()
-  import tableop as top
+  #import tableop as top
   #komponenten, bausteine, referenzmissionen=top.converttable()
-  data=top.converttable()
+  #data=top.converttable() #todo: this is the odl table !!!
   #co=komponenten.values()[1]
   #print(prettyprintxml(co.xml))
-  saveibosslists(*data)#"""
+  #saveibosslists(*data)#"""
+  pass

@@ -19,7 +19,7 @@ from iboss import pq
 import copy
 import xml.etree.ElementTree as et
 
-def loadxmldata(filename='bausteinkatalog/katalog1.0.xml'):
+def loadxmldata(filename='bausteinkatalog/katalog.1.1.xml'):
   data = et.parse(filename)
   data = data.getroot()
 
@@ -42,8 +42,10 @@ def loadxmldata(filename='bausteinkatalog/katalog1.0.xml'):
         for co in xmlprop:
           new_co=copy.copy(components[co.attrib["type"]])
           if co.attrib.has_key("num"): new_co.num=int(co.attrib["num"])
-          if co.attrib.has_key("pos"): new_co.pos=iboss.str2vec(co.attrib["pos"])
-          if co.attrib.has_key("th_vec"): new_co.th_vec=iboss.str2vec(co.attrib["th_vec"])
+          for co_prop in co:
+            #new_co.addxmlprop(co_prop)
+            if co_prop.tag=="pos": new_co.pos=iboss.ibossxml.xml2vec(co_prop)*pq.Quantity(1,"blocks")
+            if co_prop.tag=="th_vec": new_co.th_vec=iboss.ibossxml.xml2vec(co_prop)*pq.dimensionless
           new_bs.add_co(new_co)
       else: new_bs.addxmlprop(xmlprop)
     buildingblocks[new_bs.name]=new_bs
@@ -82,9 +84,10 @@ for BB in bb.values():
       #print BB.name + ", " + CO.name + ", " + str(CO.power_max)
       power+=CO.power_max*0.3
   power+=(5*pq.W)
+  BB.update()
   print u"{}: {}".format(BB.name,power)
   
 def test():
-  #import saveasxml
-  #saveasxml.savexml("bausteinkatalog/missionen2_gen.xml",mission.xml) #todo: implement as unittest
+  import saveasxml
+  saveasxml.saveibosslists(co,bb,ms) #todo: implement as unittest
   pass
