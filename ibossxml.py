@@ -19,7 +19,7 @@ from iboss import pq
 import copy
 import xml.etree.ElementTree as et
 
-def loadxmldata(filename='bausteinkatalog/katalog.1.1.xml'):
+def loadxmldata(filename='bausteinkatalog/katalog.1.2.xml'):
   data = et.parse(filename)
   data = data.getroot()
 
@@ -83,5 +83,6 @@ for BB in bb.values():
   
 def test():
   import saveasxml
+  saveasxml.Version="test"
   saveasxml.saveibosslists(co,bb,ms) #todo: implement as unittest
   pass
