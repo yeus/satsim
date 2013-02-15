@@ -69,20 +69,21 @@ def loadmission(filename):
     
   return mission
 
-#data = et.parse("bausteinkatalog/missionen_gen.xml")
-#xmlmission = data.getroot()
-
-#mission = xml2mission(xmlmission,bb)
-
-co,bb,ms=loadxmldata()
-
-#calculate power demands for buildingblocks
-for BB in bb.values():
-  BB.update()
-  print u"{}: {}".format(BB.name,BB.power)
-  
 def test():
   import saveasxml
   saveasxml.Version="test"
   saveasxml.saveibosslists(co,bb,ms) #todo: implement as unittest
-  pass
+
+  #calculate power demands for buildingblocks
+  for BB in bb.values():
+    BB.update()
+    print u"{}: {}".format(BB.name,BB.power)
+
+if __name__ == "__main__":
+  #data = et.parse("bausteinkatalog/missionen_gen.xml")
+  #xmlmission = data.getroot()
+  
+  #mission = xml2mission(xmlmission,bb)
+  
+  co,bb,ms=loadxmldata()
+  test()
