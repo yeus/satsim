@@ -54,3 +54,11 @@ Experimente:
   * Stabilität des EVS?
   * PCU Regler testen
   * AOCS testen
+
+
+Bausteinkatalog:
+===============
+- Verbrauch analysieren
+- dc. implementieren
+- Inhalt eines Bausteins analysieren, modifizieren
+- Verbrauch Racktionrad = Drallrad?
