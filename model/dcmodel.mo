@@ -198,10 +198,8 @@ package dcmodel
     parameter Modelica.SIunits.Voltage V_out;
     parameter Modelica.SIunits.Voltage V_in_min;
     parameter Modelica.SIunits.Voltage V_in_max;
-    Boolean state(start = false);
   equation
-    state = v1 < V_in_max and v1 > V_in_min;
-    if state == true then
+    if noEvent(v1 < V_in_max and v1 > V_in_min) then
       v2 = V_out;
       i1 = (-i2 * v2) / (v1 * eff);
     else
