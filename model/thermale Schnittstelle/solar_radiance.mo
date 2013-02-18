@@ -19,16 +19,16 @@ model solar_radiance "Einwirkende Sonnenstrahlung auf Fläche A mit Absorptionsf
   Modelica.Blocks.Sources.Pulse Orbit_TSS(width=percent_sun, amplitude=solar_constant*effective_area_TSS*alpha_TSS, period=orbit_Period) annotation(Placement(visible=true, transformation(origin={-110.0,-20.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   Modelica.Blocks.Sources.Pulse Orbit_MSS(width=percent_sun, amplitude=solar_constant*effective_area_MSS*alpha_MSS, period=orbit_Period) annotation(Placement(visible=true, transformation(origin={-110.0,20.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   Modelica.Blocks.Sources.Pulse Orbit_ESS(width=percent_sun, amplitude=solar_constant*effective_area_ESS*alpha_ESS, period=orbit_Period) annotation(Placement(visible=true, transformation(origin={-110.0,50.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  thermal_connector thermal_connector annotation(Placement(visible=true, transformation(origin={90.0,-0.0}, extent={{-42.5,-42.5},{42.5,42.5}}, rotation=-180), iconTransformation(origin={0.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
+  thermal_connector thermal_connector1 annotation(Placement(visible=true, transformation(origin={90.0,0.0}, extent={{-42.5,-42.5},{42.5,42.5}}, rotation=-180), iconTransformation(origin={0.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   space_radiator space_radiator1 annotation(Placement(visible=true, transformation(origin={90.0,-70.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
 equation 
+  connect(space_radiator1.thermal_connector1,thermal_connector1) annotation(Line(visible=true, origin={90.0,-35.0}, points={{0.0,-35.0},{0.0,35.0}}));
+  connect(thermal_connector1.Rad,Solar_Power_Rad.port) annotation(Line(visible=true, origin={40.2104,-43.8948}, points={{35.1052,12.2104},{35.1052,-6.1052},{-70.2104,-6.1052}}, color={191,0,0}));
+  connect(Solar_Power_TSS.port,thermal_connector1.TSS) annotation(Line(visible=true, origin={33.5325,-15.3182}, points={{-63.5325,-4.6818},{10.9675,-4.6818},{10.9675,4.6818},{41.5976,4.6818}}, color={191,0,0}));
+  connect(Solar_Power_MSS.port,thermal_connector1.MSS) annotation(Line(visible=true, origin={33.5003,15.386}, points={{-63.5003,4.614},{10.9997,4.614},{10.9997,-4.614},{41.5008,-4.614}}, color={191,0,0}));
+  connect(Solar_Power_ESS.port,thermal_connector1.ESS) annotation(Line(visible=true, origin={39.9335,44.0102}, points={{-69.9335,5.9898},{34.9668,5.9898},{34.9668,-11.9797}}, color={191,0,0}));
   connect(Solar_Power_ESS.Q_flow,Orbit_ESS.y) annotation(Line(visible=true, origin={-74.5,50.0}, points={{24.5,0.0},{-24.5,0.0}}, color={0,0,127}));
-  connect(Solar_Power_ESS.port,thermal_connector.ESS) annotation(Line(visible=true, origin={39.9335,44.0102}, points={{-69.9335,5.9898},{34.9668,5.9898},{34.9668,-11.9797}}, color={191,0,0}));
   connect(Solar_Power_MSS.Q_flow,Orbit_MSS.y) annotation(Line(visible=true, origin={-74.5,20.0}, points={{24.5,0.0},{-24.5,0.0}}, color={0,0,127}));
-  connect(Solar_Power_MSS.port,thermal_connector.MSS) annotation(Line(visible=true, origin={33.5003,15.386}, points={{-63.5003,4.614},{10.9997,4.614},{10.9997,-4.614},{41.5008,-4.614}}, color={191,0,0}));
-  connect(Solar_Power_TSS.port,thermal_connector.TSS) annotation(Line(visible=true, origin={33.5325,-15.3182}, points={{-63.5325,-4.6818},{10.9675,-4.6818},{10.9675,4.6818},{41.5976,4.6818}}, color={191,0,0}));
   connect(Orbit_TSS.y,Solar_Power_TSS.Q_flow) annotation(Line(visible=true, origin={-74.5,-20.0}, points={{-24.5,0.0},{24.5,0.0}}, color={0,0,127}));
   connect(Solar_Power_Rad.Q_flow,Orbit_Rad.y) annotation(Line(visible=true, origin={-74.5,-50.0}, points={{24.5,0.0},{-24.5,0.0}}, color={0,0,127}));
-  connect(thermal_connector.Rad,Solar_Power_Rad.port) annotation(Line(visible=true, origin={40.2104,-43.8948}, points={{35.1052,12.2104},{35.1052,-6.1052},{-70.2104,-6.1052}}, color={191,0,0}));
-  connect(space_radiator1.thermal_connector,thermal_connector) annotation(Line(visible=true, origin={90.0,-35.0}, points={{0.0,-35.0},{0.0,35.0}}));
 end solar_radiance;

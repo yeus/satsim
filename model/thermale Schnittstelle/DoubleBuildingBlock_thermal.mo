@@ -59,15 +59,15 @@ model DoubleBuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seite
   thermal_connector thermal_connector_zpxp annotation(Placement(visible=true, transformation(origin={-140.0,95.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-180), iconTransformation(origin={-50.0,40.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
 equation 
   connect(Panel_yp.thermal_connector1,thermal_connector_ypxp) annotation(Line(visible=true, origin={10.0,94.3333}, points={{-5.0,-11.3333},{-5.0,5.6667},{10.0,5.6667}}));
-  connect(Panel_yp.thermal_connector,thermal_connector_ypxn) annotation(Line(visible=true, origin={0.0,91.5}, points={{-5.0,-8.5},{-25.0,8.5}}));
+  connect(Panel_yp.thermal_connector2,thermal_connector_ypxn) annotation(Line(visible=true, origin={0.0,91.5}, points={{-5.0,-8.5},{-25.0,8.5}}));
   connect(Panel_zp.thermal_connector1,thermal_connector_zpxp) annotation(Line(visible=true, origin={-124.25,90.0}, points={{21.25,-5.0},{-2.75,-5.0},{-2.75,5.0},{-15.75,5.0}}));
-  connect(Panel_zp.thermal_connector,thermal_connector_zpxn) annotation(Line(visible=true, origin={-122.8785,87.5}, points={{19.8785,-12.5},{-2.1215,-12.5},{-2.1215,-12.5},{-17.1215,-29.3596}}));
+  connect(Panel_zp.thermal_connector2,thermal_connector_zpxn) annotation(Line(visible=true, origin={-122.8785,87.5}, points={{19.8785,-12.5},{-2.1215,-12.5},{-2.1215,-12.5},{-17.1215,-29.3596}}));
   connect(Panel_zn.thermal_connector1,thermal_connector_znxn) annotation(Line(visible=true, origin={124.25,-90.0}, points={{-21.25,5.0},{2.75,5.0},{2.75,-5.0},{15.75,-5.0}}));
-  connect(thermal_connector_znxp,Panel_zn.thermal_connector) annotation(Line(visible=true, origin={117.25,-88.6432}, points={{22.75,38.6432},{-2.25,38.6432},{-2.25,13.6432},{-14.25,13.6432}}, color={255,0,0}));
-  connect(thermal_connector_ynxp,Panel_yn.thermal_connector) annotation(Line(visible=true, origin={0.0,-92.3166}, points={{15.0,-7.6834},{5.0,7.6834}}, color={255,0,0}));
+  connect(thermal_connector_znxp,Panel_zn.thermal_connector2) annotation(Line(visible=true, origin={117.25,-88.6432}, points={{22.75,38.6432},{-2.25,38.6432},{-2.25,13.6432},{-14.25,13.6432}}, color={255,0,0}));
+  connect(thermal_connector_ynxp,Panel_yn.thermal_connector2) annotation(Line(visible=true, origin={0.0,-92.3166}, points={{15.0,-7.6834},{5.0,7.6834}}, color={255,0,0}));
   connect(Panel_yn.thermal_connector1,thermal_connector_ynxn) annotation(Line(visible=true, origin={-14.5,-92.3166}, points={{9.5,7.6834},{0.5,7.6834},{0.5,-7.6834},{-10.5,-7.6834}}));
-  connect(thermal_connector_xn,Panel_xn.thermal_connector) annotation(Line(visible=true, origin={-117.25,-12.5}, points={{-22.75,12.5},{-4.589,12.5},{3.9038,12.5},{14.25,12.5}}, color={255,0,0}));
-  connect(thermal_connector_xp,Panel_xp.thermal_connector) annotation(Line(visible=true, origin={121.5,-0.0}, points={{18.5,-0.0},{-18.5,0.0}}, color={255,0,0}));
+  connect(thermal_connector_xn,Panel_xn.thermal_connector1) annotation(Line(visible=true, origin={-117.25,-12.5}, points={{-22.75,12.5},{-4.589,12.5},{3.9038,12.5},{14.25,12.5}}, color={255,0,0}));
+  connect(thermal_connector_xp,Panel_xp.thermal_connector1) annotation(Line(visible=true, origin={121.5,-0.0}, points={{18.5,-0.0},{-18.5,0.0}}, color={255,0,0}));
   connect(adjoiningPanel_yp_zn.port_b,Panel_zn.port_a) annotation(Line(visible=true, origin={83.0452,-59.7588}, points={{-13.9548,34.6986},{-13.9548,-7.2287},{13.9548,-7.2287},{13.9548,-20.2412}}, color={191,0,0}));
   connect(Panel_yp.port_a,adjoiningPanel_yp_zn.port_a) annotation(Line(visible=true, origin={34.5405,11.37}, points={{-34.5405,65.63},{-34.5405,-20.8623},{34.5405,-20.8623},{34.5405,-23.9053}}, color={191,0,0}));
   connect(adjoiningPanel_yp_zp.port_a,Panel_zp.port_a) annotation(Line(visible=true, origin={-78.9894,79.5916}, points={{34.0317,-0.4084},{-8.0106,-0.4084},{-8.0106,0.4084},{-18.0106,0.4084}}, color={191,0,0}));

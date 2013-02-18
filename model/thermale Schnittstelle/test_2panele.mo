@@ -8,7 +8,7 @@ model test_2panele
   Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow fixedHeatFlow1(Q_flow=100) annotation(Placement(visible=true, transformation(origin={-120.0,26.9961}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-1080)));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedTemperature1(T=300) annotation(Placement(visible=true, transformation(origin={105.0,30.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-900)));
 equation 
-  connect(schnittstelle1.thermal_connector,thermal_TIM1.thermal_connector) annotation(Line(visible=true, origin={-10.8673,30.9723}, rotation=-630, points={{-0.1476,10.2344},{0.9331,-0.1476},{0.9331,0.1476},{0.1476,-8.3681}}));
+  connect(schnittstelle1.thermal_connector,thermal_TIM1.thermal_connector2) annotation(Line(visible=true, origin={-10.8673,30.9723}, rotation=-630, points={{-0.1476,10.2344},{0.9331,-0.1476},{0.9331,0.1476},{0.1476,-8.3681}}));
   connect(panel_links.port_b,schnittstelle1.port_a) annotation(Line(visible=true, origin={-45.8169,30.7907}, rotation=-630, points={{-0.24,19.0868},{5.3623,-0.24},{5.3623,0.24},{0.24,-8.3623}}, color={191,0,0}));
   connect(schnittstelle2.port_a,thermal_element2.port_a) annotation(Line(visible=true, origin={49.7835,29.9157}, rotation=-630, points={{-0.6197,9.7183},{2.2165,-0.6197},{2.2165,0.6197},{0.6197,-5.2853}}, color={191,0,0}));
   connect(thermal_TIM1.thermal_connector1,schnittstelle2.thermal_connector) annotation(Line(visible=true, origin={16.2249,30.2792}, rotation=-630, points={{0.7773,9.0374},{0.7751,0.7773},{0.7751,-0.7773},{-0.7773,-7.4873}}));

@@ -96,11 +96,11 @@ equation
   connect(EB_Pzp.port_a,Panel_zp.port_a) annotation(Line(visible=true, origin={-75.6733,57.2237}, points={{43.9801,-22.7763},{-11.3267,-22.7763},{-11.3267,22.7763},{-21.3267,22.7763}}, color={191,0,0}));
   connect(thermalModel_ElectronicBox1.EB_xn,EB_Pxn.port_b) annotation(Line(visible=true, origin={-35.9549,0.1721}, points={{5.9549,-0.1721},{-0.985,-0.1721},{-0.985,0.1721},{-3.985,0.1721}}, color={191,0,0}));
   connect(EB_Pxn.port_a,Panel_xn.port_a) annotation(Line(visible=true, origin={-70.4275,0.2677}, points={{17.9705,0.0669},{8.0381,0.2677},{8.0381,-0.2677},{-26.5725,-0.2677}}, color={191,0,0}));
-  connect(thermal_connector_xp,Panel_xp.thermal_connector) annotation(Line(visible=true, origin={121.5,0.0}, points={{18.5,0.0},{-18.5,0.0}}, color={255,0,0}));
-  connect(thermal_connector_zn,Panel_zn.thermal_connector) annotation(Line(visible=true, origin={117.25,-88.6432}, points={{22.75,-8.6433},{-4.25,-8.6433},{-4.25,8.6432},{-14.25,8.6432}}, color={255,0,0}));
-  connect(thermal_connector_yn,Panel_yn.thermal_connector) annotation(Line(visible=true, origin={0.0,-92.3166}, points={{0.0,-7.6834},{0.0,7.6834}}, color={255,0,0}));
-  connect(thermal_connector_xn,Panel_xn.thermal_connector) annotation(Line(visible=true, origin={-122.5455,0.0}, points={{-19.5455,0.0},{19.5455,0.0}}, color={255,0,0}));
-  connect(Panel_zp.thermal_connector,thermal_connector_zp) annotation(Line(visible=true, origin={-122.8785,87.5}, points={{19.8785,-7.5},{-2.2928,-7.5},{-2.2928,7.5},{-15.2928,7.5}}));
-  connect(Panel_yp.thermal_connector,thermal_connector_yp) annotation(Line(visible=true, origin={0.0,91.5}, points={{0.0,-8.5},{0.0,8.5}}));
+  connect(thermal_connector_xp,Panel_xp.thermal_connector1) annotation(Line(visible=true, origin={121.5,0.0}, points={{18.5,0.0},{-18.5,0.0}}, color={255,0,0}));
+  connect(thermal_connector_zn,Panel_zn.thermal_connector1) annotation(Line(visible=true, origin={117.25,-88.6432}, points={{22.75,-8.6433},{-4.25,-8.6433},{-4.25,8.6432},{-14.25,8.6432}}, color={255,0,0}));
+  connect(thermal_connector_yn,Panel_yn.thermal_connector1) annotation(Line(visible=true, origin={0.0,-92.3166}, points={{0.0,-7.6834},{0.0,7.6834}}, color={255,0,0}));
+  connect(thermal_connector_xn,Panel_xn.thermal_connector1) annotation(Line(visible=true, origin={-122.5455,0.0}, points={{-19.5455,0.0},{19.5455,0.0}}, color={255,0,0}));
+  connect(Panel_zp.thermal_connector1,thermal_connector_zp) annotation(Line(visible=true, origin={-122.8785,87.5}, points={{19.8785,-7.5},{-2.2928,-7.5},{-2.2928,7.5},{-15.2928,7.5}}));
+  connect(Panel_yp.thermal_connector1,thermal_connector_yp) annotation(Line(visible=true, origin={0.0,91.5}, points={{0.0,-8.5},{0.0,8.5}}));
   connect(port_b,thermalModel_ElectronicBox1.dissipationPower) annotation(Line(visible=true, origin={-36.0217,-40.4205}, points={{-38.9783,-34.5795},{-23.9783,-19.5795},{-3.9783,0.4205},{36.0217,40.4205}}, color={191,0,0}));
 end BuildingBlock_thermal;
