@@ -39,11 +39,6 @@ model Referenzmission_Enmap_komponenten
   solar_radiance solar_radiance3 annotation(Placement(visible=true, transformation(origin={-10.0,-68.3049}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   solar_radiance solar_radiance4 annotation(Placement(visible=true, transformation(origin={70.0,-70.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   solar_radiance solar_radiance5 annotation(Placement(visible=true, transformation(origin={130.0,-70.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  space_radiator space_radiator1 annotation(Placement(visible=true, transformation(origin={-130.0,-95.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  space_radiator space_radiator2 annotation(Placement(visible=true, transformation(origin={-67.8062,-95.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  space_radiator space_radiator3 annotation(Placement(visible=true, transformation(origin={-10.0,-95.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  space_radiator space_radiator4 annotation(Placement(visible=true, transformation(origin={70.0,-96.613}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  space_radiator space_radiator5 annotation(Placement(visible=true, transformation(origin={128.4375,-96.613}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   thermal_TIM thermal_TIM20 annotation(Placement(visible=true, transformation(origin={20.0,110.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   thermal_TIM thermal_TIM21 annotation(Placement(visible=true, transformation(origin={40.0,78.4748}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   thermal_TIM thermal_TIM22 annotation(Placement(visible=true, transformation(origin={20.0,43.4439}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
@@ -131,11 +126,6 @@ equation
   connect(thermal_TIM24.thermal_connector,TMTC_Baustein_thermal2.thermal_connector_zn) annotation(Line(visible=true, origin={-42.7776,-25.5}, points={{49.6423,10.5},{-14.2099,10.5},{-14.2099,-10.5},{-21.2224,-10.5}}));
   connect(thermal_TIM25.thermal_connector,IMU_Baustein_thermal1.thermal_connector_zn) annotation(Line(visible=true, origin={8.0063,-40.5}, points={{21.9937,-4.5},{-4.9937,-4.5},{-4.9937,4.5},{-12.0063,4.5}}));
   connect(antriebs_Baustein_thermal2.thermal_connector_zp,thermal_TIM25.thermal_connector1) annotation(Line(visible=true, origin={70.0062,-34.5}, points={{53.9938,10.5},{-16.9937,10.5},{-16.9937,-10.5},{-20.0062,-10.5}}));
-  connect(space_radiator1.thermal_connector,TMTC_Baustein_thermal1.thermal_connector_yn) annotation(Line(visible=true, origin={-130.0,-67.5}, points={{0.0,-27.5},{0.0,27.5}}));
-  connect(space_radiator2.thermal_connector,TMTC_Baustein_thermal2.thermal_connector_yn) annotation(Line(visible=true, origin={-68.9031,-55.2562}, points={{1.0969,-39.7438},{1.0969,12.2437},{-1.0969,12.2437},{-1.0969,15.2562}}));
-  connect(space_radiator3.thermal_connector,IMU_Baustein_thermal1.thermal_connector_yn) annotation(Line(visible=true, origin={-10.0,-67.5}, points={{0.0,-27.5},{0.0,27.5}}));
-  connect(space_radiator4.thermal_connector,GPS_Baustein_thermal2.thermal_connector_yn) annotation(Line(visible=true, origin={70.0,-68.3065}, points={{0.0,-28.3065},{0.0,28.3065}}));
-  connect(space_radiator5.thermal_connector,antriebs_Baustein_thermal2.thermal_connector_yn) annotation(Line(visible=true, origin={129.2188,-55.6595}, points={{-0.7812,-40.9535},{-0.7812,12.647},{0.7812,12.647},{0.7812,15.6595}}));
   connect(solar_radiance5.thermal_connector,antriebs_Baustein_thermal2.thermal_connector_yn) annotation(Line(visible=true, origin={130.0,-55.0}, points={{0.0,-15.0},{0.0,15.0}}));
   connect(solar_radiance4.thermal_connector,GPS_Baustein_thermal2.thermal_connector_yn) annotation(Line(visible=true, origin={70.0,-55.0}, points={{0.0,-15.0},{0.0,15.0}}));
   connect(solar_radiance3.thermal_connector,IMU_Baustein_thermal1.thermal_connector_yn) annotation(Line(visible=true, origin={-10.0,-54.1525}, points={{0.0,-14.1525},{0.0,14.1525}}));
