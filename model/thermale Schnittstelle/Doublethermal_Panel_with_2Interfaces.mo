@@ -18,6 +18,7 @@ model Doublethermal_Panel_with_2Interfaces "Seitenpanel mit Schnittstelle"
   thermal_connector thermal_connector1 annotation(Placement(visible=true, transformation(origin={68.5266,-77.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-180), iconTransformation(origin={30.0,-50.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductionBetweenInterfaces(G=G_p) annotation(Placement(visible=true, transformation(origin={-28.0916,-35.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-90)));
 equation 
+  connect(port_a,BuildingBlock_PanelDouble.port_a) annotation(Line(visible=true, origin={-77.3417,-36.0}, points={{-70.0251,36.0},{22.3417,36.0},{22.3417,-36.0},{25.3417,-36.0}}, color={191,0,0}));
   connect(BuildingBlock_PanelDouble.port_b,thermalConductionBetweenInterfaces.port_b) annotation(Line(visible=true, origin={-29.2611,-63.1333}, points={{-2.3389,-9.0667},{1.1695,-9.0667},{1.1695,18.1333}}, color={191,0,0}));
   connect(thermalConductionBetweenInterfaces.port_a,BuildingBlock_Panel.port_b) annotation(Line(visible=true, origin={-29.1635,-8.4667}, points={{1.0719,-16.5333},{1.0719,8.2667},{-2.1437,8.2667}}, color={191,0,0}));
   connect(schnittstelle2.ESS_IF,thermal_connector1.ESS) annotation(Line(visible=true, origin={25.6419,-67.0674}, points={{-28.2212,-1.8694},{-25.2212,-1.8694},{-25.2212,3.0674},{39.3319,3.0674},{39.3319,-2.396}}, color={191,0,0}));
@@ -25,7 +26,6 @@ equation
   connect(schnittstelle2.TSS_IF,thermal_connector1.TSS) annotation(Line(visible=true, origin={43.3755,-79.2197}, points={{-45.9548,0.283},{12.1512,0.283},{12.1512,-0.283},{21.6524,-0.283}}, color={191,0,0}));
   connect(thermal_connector1.Rad,BuildingBlock_PanelDouble.port_b) annotation(Line(visible=true, origin={8.2686,-81.771}, points={{56.8029,-2.6841},{56.8029,-8.229},{-36.8686,-8.229},{-36.8686,9.571},{-39.8686,9.571}}, color={191,0,0}));
   connect(BuildingBlock_PanelDouble.port_b,schnittstelle2.port_a) annotation(Line(visible=true, origin={-24.5345,-73.0684}, points={{-7.0655,0.8684},{-1.0448,0.8684},{-1.0448,-0.8684},{9.1552,-0.8684}}, color={191,0,0}));
-  connect(port_a,BuildingBlock_PanelDouble.port_a) annotation(Line(visible=true, origin={-77.1384,-47.0}, points={{-70.2284,47.0},{22.1384,25.0},{22.1384,-25.0},{25.1384,-25.0}}, color={191,0,0}));
   connect(schnittstelle1.ESS_IF,thermal_connector.ESS) annotation(Line(visible=true, origin={27.7788,8.7073}, points={{-27.7788,-3.7073},{-24.7788,-3.7073},{-24.7788,4.2927},{38.6683,4.2927},{38.6683,-1.1707}}, color={191,0,0}));
   connect(schnittstelle1.MSS_IF,thermal_connector.MSS) annotation(Line(visible=true, origin={45.0846,1.2362}, points={{-45.2172,-1.2984},{11.9154,-1.2984},{11.9154,1.2984},{21.3862,1.2984}}, color={191,0,0}));
   connect(schnittstelle1.TSS_IF,thermal_connector.TSS) annotation(Line(visible=true, origin={45.1253,-3.7514}, points={{-45.1253,-1.2486},{11.8747,-1.2486},{11.8747,1.2487},{21.3759,1.2487}}, color={191,0,0}));
