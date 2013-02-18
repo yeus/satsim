@@ -1,4 +1,16 @@
 package solar_power
+  model diode_characteristic
+    extends Modelica.Icons.Example;
+    Modelica.Electrical.Analog.Sources.RampVoltage rampvoltage1(V = 100, duration = 1) annotation(Placement(visible = true, transformation(origin = {-71.57,17.5389}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+    Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-27.5819,-19.9781}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    Modelica.Electrical.Analog.Semiconductors.Diode diode1(Vt = 2.25) annotation(Placement(visible = true, transformation(origin = {-31.4003,42.1499}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 0.001) annotation(Placement(visible = true, transformation(origin = {3.11174,22.3479}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+  equation
+    connect(resistor1.n,ground1.p) annotation(Line(points = {{3.11174,10.3479},{-27.4399,10.3479},{-27.4399,-7.97807},{-27.5819,-7.97807}}));
+    connect(diode1.n,resistor1.p) annotation(Line(points = {{-19.4003,42.1499},{2.54597,42.1499},{2.54597,34.3479},{3.11174,34.3479}}));
+    connect(diode1.p,rampvoltage1.p) annotation(Line(points = {{-43.4003,42.1499},{-71.2871,42.1499},{-71.2871,29.5389},{-71.57,29.5389}}));
+    connect(rampvoltage1.n,ground1.p) annotation(Line(points = {{-71.57,5.5389},{-27.4399,5.5389},{-27.4399,-7.97807},{-27.5819,-7.97807}}));
+  end diode_characteristic;
   block Exprgenerator "Generate exponential signal"
     import Modelica.Blocks.Interfaces;
     parameter Real alpha = 1;
@@ -28,14 +40,12 @@ package solar_power
     extends Modelica.Icons.Example;
     Modelica.Blocks.Sources.Constant const(k = 1367) annotation(Placement(visible = true, transformation(origin = {-72.8763,52.0374}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-3.55006,5.00759}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    Modelica.Electrical.Analog.Ideal.IdealDiode idealdiode1 annotation(Placement(visible = true, transformation(origin = {-7.43802,65.2893}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     Modelica.Electrical.Analog.Sources.ConstantVoltage constantvoltage1(V = -100) annotation(Placement(visible = true, transformation(origin = {35.9504,66.5289}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     Modelica.Electrical.Analog.Sources.RampVoltage rampvoltage1(V = 300, duration = 1) annotation(Placement(visible = true, transformation(origin = {59.5041,54.9587}, extent = {{-12,12},{12,-12}}, rotation = -90)));
     solar_power.solarcell_simple solarcell_simple1 annotation(Placement(visible = true, transformation(origin = {-37.6033,52.8926}, extent = {{12,-12},{-12,12}}, rotation = -270)));
   equation
+    connect(solarcell_simple1.n,constantvoltage1.p) annotation(Line(points = {{-37.6033,64.8926},{-37.9066,64.8926},{-37.9066,66.4781},{23.9504,66.4781},{23.9504,66.5289}}));
     connect(solarcell_simple1.p,ground1.p) annotation(Line(points = {{-37.6033,40.8926},{-3.71901,40.8926},{-3.71901,17.0076},{-3.55006,17.0076}}));
-    connect(solarcell_simple1.n,idealdiode1.p) annotation(Line(points = {{-37.6033,64.8926},{-19.8347,64.8926},{-19.8347,65.2893},{-19.438,65.2893}}));
-    connect(constantvoltage1.p,idealdiode1.n) annotation(Line(points = {{23.9504,66.5289},{4.95868,66.5289},{4.95868,65.2893},{4.56198,65.2893}}));
     connect(constantvoltage1.n,rampvoltage1.p) annotation(Line(points = {{47.9504,66.5289},{59.5041,66.5289},{59.5041,66.9587},{59.5041,66.9587}}));
     connect(ground1.p,rampvoltage1.n) annotation(Line(points = {{-3.55006,17.0076},{-3.55006,40.4959},{59.5041,40.4959},{59.5041,42.9587}}));
     annotation(experiment(StopTime = 1), Diagram(), Icon());
@@ -117,9 +127,9 @@ package solar_power
     Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {11.7392,13.6853}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     Exprgenerator exprgenerator1(alpha = 10) annotation(Placement(visible = true, transformation(origin = {42.6838,13.9932}, extent = {{-7.45106,-7.45106},{7.45106,7.45106}}, rotation = 0)));
     Modelica.Electrical.Analog.Basic.VariableResistor variableresistor1 annotation(Placement(visible = true, transformation(origin = {38.1913,52.3255}, extent = {{-12,12},{12,-12}}, rotation = -90)));
-    solar_power.solarcell_simple solarcell_simple2(Maxexp = 17, V_oc = 0.15) annotation(Placement(visible = true, transformation(origin = {-42.562,39.2562}, extent = {{12,-12},{-12,12}}, rotation = 90)));
+    solar_power.solarcell_simple solarcell_simple2(Maxexp = 17, R_sh = 10) annotation(Placement(visible = true, transformation(origin = {-42.562,39.2562}, extent = {{12,-12},{-12,12}}, rotation = 90)));
   equation
-    connect(variableresistor1.p,solarcell_simple2.n) annotation(Line(points = {{38.1913,64.3255},{-42.4328,64.3255},{-42.4328,51.2562},{-42.562,51.2562}}));
+    connect(solarcell_simple2.n,variableresistor1.p) annotation(Line(points = {{-42.562,51.2562},{-42.9986,51.2562},{-42.9986,75.5304},{38.7553,75.5304},{38.7553,64.3255},{38.1913,64.3255}}));
     connect(solarcell_simple2.p,ground1.p) annotation(Line(points = {{-42.562,27.2562},{11.9835,27.2562},{11.9835,25.6853},{11.7392,25.6853}}));
     connect(variableresistor1.R,exprgenerator1.y) annotation(Line(points = {{51.3913,52.3255},{51.3913,51.6529},{79.3388,51.6529},{79.3388,13.6364},{50.88,13.6364},{50.88,13.9932}}));
     connect(variableresistor1.n,ground1.p) annotation(Line(points = {{38.1913,40.3255},{11.5702,40.3255},{11.5702,25.6853},{11.7392,25.6853}}));
@@ -133,10 +143,11 @@ package solar_power
     annotation(Icon(graphics = {Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-48.9392,47.8076},{46.6761,-50.0707}}),Line(points = {{-78.3593,89.1089},{-41.5842,46.6761},{-43.5644,60.5375},{-41.867,46.6761},{-53.7482,50.0707}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25),Line(points = {{-56.5771,92.2207},{-26.8741,55.7284},{-37.9066,59.4059},{-27.4399,56.0113},{-27.7228,66.1952}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25),Line(points = {{-89.6747,0.282885},{-19.5191,0.282885}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25),Line(points = {{89.6747,0.282885},{5.09194,0.282885}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25),Line(points = {{-18.3876,-37.3409},{-18.3876,40.1697}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25),Line(points = {{4.24328,-17.5389},{4.24328,18.6704}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25),Line(points = {{76.9449,-20.3678},{76.9449,-52.6167}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25),Line(points = {{63.3664,-35.6436},{90.2405,-35.6436}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25),Line(points = {{-92.2207,-34.512},{-66.4781,-34.512}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25)}), Diagram());
     parameter Real N_p = 100.0 "Numper of parallel solar cells per string" annotation(Placement(visible = true, transformation(origin = {68.595,65.2893}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     parameter Real A_cell(quantity = "Area", unit = "m2") = 0.0026 "Active area of the solar cell in cm²" annotation(Placement(visible = true, transformation(origin = {71.4876,69.4215}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    parameter SIunits.Current I_mp = 160 "[A/m²] Maximum Powerpoint Current" annotation(Placement(visible = true, transformation(origin = {65.7025,64.4628}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    parameter SIunits.CurrentDensity I_mp = 160 "[A/m²] Maximum Powerpoint Current" annotation(Placement(visible = true, transformation(origin = {65.7025,64.4628}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     parameter SIunits.Voltage V_mp = 2.277 "Maxium Powerpoint Voltage" annotation(Placement(visible = true, transformation(origin = {65.2893,57.0248}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    parameter SIunits.Current I_sc = 168 "[A/m²] Short Circuit Current on Earth using solar Constant of " annotation(Placement(visible = true, transformation(origin = {63.6364,58.2645}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    parameter SIunits.CurrentDensity I_sc = 168 "[A/m²] Short Circuit Current on Earth using solar Constant of " annotation(Placement(visible = true, transformation(origin = {63.6364,58.2645}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     parameter SIunits.Voltage V_oc = 2.565 "open circuit voltage" annotation(Placement(visible = true, transformation(origin = {69.0083,71.9008}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    parameter SIunits.Resistance R_sh = 10000;
     //Real E_s(start = 1367.0, final quantity = "Power", final unit = "W") "Solarkonstante" annotation(Placement(visible = true, transformation(origin = {69.4215,65.7025}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     constant Real E0(final quantity = "Power", final unit = "W") = 1367.0 "Solarkonstante" annotation(Placement(visible = true, transformation(origin = {65.7025,66.1157}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     //SIunits.CurrentDensity i_sc_actual annotation(Placement(visible = true, transformation(origin = {65.7025,66.1157}, extent = {{-12,-12},{12,12}}, rotation = 0)));
@@ -145,11 +156,14 @@ package solar_power
     //protected
     //  SIunits.Current i_sc = A_cell * N_p annotation(Placement(visible = true, transformation(origin = {69.4215,67.7686}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     Modelica.Blocks.Sources.Constant const(k = I_sc * A_cell * N_p) annotation(Placement(visible = true, transformation(origin = {-72.7273,53.3058}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 0.01) annotation(Placement(visible = true, transformation(origin = {59.5041,8.67769}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    parameter Real Maxexp = 15 "Maximum exponent" annotation(Placement(visible = true, transformation(origin = {61.3861,65.9123}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 0.00001) annotation(Placement(visible = true, transformation(origin = {59.5041,8.67769}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    parameter Real Maxexp = 17 "Maximum exponent" annotation(Placement(visible = true, transformation(origin = {61.3861,65.9123}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    SIunits.Current i annotation(Placement(visible = true, transformation(origin = {49.7878,57.1429}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     Modelica.Electrical.Analog.Sources.SignalCurrent photoniccurrent annotation(Placement(visible = true, transformation(origin = {-41.3223,-4.54546}, extent = {{12,-12},{-12,12}}, rotation = 90)));
-    Modelica.Electrical.Analog.Semiconductors.Diode diode1(Vt = N_s * V_oc, Maxexp = Maxexp) annotation(Placement(visible = true, transformation(origin = {-4.95902,-4.54958}, extent = {{-12,12},{12,-12}}, rotation = -90)));
-    Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 1000) annotation(Placement(visible = true, transformation(origin = {25.6198,-3.71901}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+    Modelica.Electrical.Analog.Semiconductors.Diode diode1(Vt = (N_s * V_oc) / log(I_sc / Ids + 1), Maxexp = Maxexp) annotation(Placement(visible = true, transformation(origin = {-4.95902,-4.54958}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+    Modelica.Electrical.Analog.Basic.Resistor resistor2(R = R_sh) annotation(Placement(visible = true, transformation(origin = {25.6198,-3.71901}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+  protected
+    parameter SIunits.CurrentDensity Ids = 0.000001 "Diode Saturation Current" annotation(Placement(visible = true, transformation(origin = {46.6761,52.0509}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   equation
     connect(resistor2.p,diode1.p) annotation(Line(points = {{25.6198,8.28099},{-5.3719,8.28099},{-5.3719,7.45042},{-4.95902,7.45042}}));
     connect(resistor2.n,diode1.n) annotation(Line(points = {{25.6198,-15.719},{-4.13223,-15.719},{-4.13223,-16.5496},{-4.95902,-16.5496}}));
@@ -159,6 +173,7 @@ package solar_power
     connect(diode1.p,photoniccurrent.n) annotation(Line(points = {{-4.95902,7.45042},{-41.7355,7.45042},{-41.7355,7.45454},{-41.3223,7.45454}}));
     connect(photoniccurrent.p,p) annotation(Line(points = {{-41.3223,-16.5455},{-78.0992,-16.5455},{-78.0992,0.826446},{-100,0.826446},{-100,0}}));
     connect(photoniccurrent.p,diode1.n) annotation(Line(points = {{-41.3223,-16.5455},{-29.7521,-16.5455},{-29.7521,-16.5496},{-4.95902,-16.5496}}));
+    i = n.i;
     //i_sc_actual = (i_sc * E_s) / E0;
     //photoniccurrent.i = i_sc_actual;
   end solarcell_simple;
