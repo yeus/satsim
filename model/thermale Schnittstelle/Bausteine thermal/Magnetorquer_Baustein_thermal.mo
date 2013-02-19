@@ -18,6 +18,7 @@ model Magnetorquer_Baustein_thermal "thermisches model eines Bausteins mit 6 Sei
   parameter Real Gr_oP(unit="m2")=0 "Net radiation conductance between two surfaces (see docu)(opposite Panels) tbd";
   parameter Real Gr_aP(unit="m2")=0 "Net radiation conductance between two surfaces (see docu)(adjoining Panels) tbd";
   parameter Real Gr_Rad(unit="m2")=0.01 "Net radiation conductance between two surfaces (see docu) tbd";
+  parameter Modelica.SIunits.Power Magnetorquer_module_Power=17 "Leistungsbedarf des Magnetorquerbauteins";
   thermal_Panel_with_Interface Panel_xp(C_ESS=C_ESS, G_ESS=G_ESS, C_MSS=C_MSS, G_MSS=G_MSS, C_TSS=C_TSS, G_TSS=G_TSS, C_Panel=C_Panel, G_Panel=G_Panel) annotation(Placement(visible=true, transformation(origin={100.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   thermal_Panel_with_Interface Panel_xn(C_ESS=C_ESS, G_ESS=G_ESS, C_MSS=C_MSS, G_MSS=G_MSS, C_TSS=C_TSS, G_TSS=G_TSS, C_Panel=C_Panel, G_Panel=G_Panel) annotation(Placement(visible=true, transformation(origin={-100.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-180)));
   thermal_Panel_with_Interface Panel_yp(C_ESS=C_ESS, G_ESS=G_ESS, C_MSS=C_MSS, G_MSS=G_MSS, C_TSS=C_TSS, G_TSS=G_TSS, C_Panel=C_Panel, G_Panel=G_Panel) annotation(Placement(visible=true, transformation(origin={0.0,80.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-270)));

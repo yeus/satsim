@@ -18,6 +18,7 @@ model Solar_Baustein_thermal "thermisches model eines Bausteins mit 6 Seiten mit
   parameter Real Gr_oP(unit="m2")=0 "Net radiation conductance between two surfaces (see docu)(opposite Panels) tbd";
   parameter Real Gr_aP(unit="m2")=0 "Net radiation conductance between two surfaces (see docu)(adjoining Panels) tbd";
   parameter Real Gr_Rad(unit="m2")=0.01 "Net radiation conductance between two surfaces (see docu) tbd";
+  parameter Modelica.SIunits.Power Solar_module_Power=100 "Leistungsbedarf des Solarbauteins";
   thermal_Panel_with_Interface Panel_xp(C_ESS=C_ESS, G_ESS=G_ESS, C_MSS=C_MSS, G_MSS=G_MSS, C_TSS=C_TSS, G_TSS=G_TSS, C_Panel=C_Panel, G_Panel=G_Panel) annotation(Placement(visible=true, transformation(origin={100.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   thermal_Panel_with_Interface Panel_xn(C_ESS=C_ESS, G_ESS=G_ESS, C_MSS=C_MSS, G_MSS=G_MSS, C_TSS=C_TSS, G_TSS=G_TSS, C_Panel=C_Panel, G_Panel=G_Panel) annotation(Placement(visible=true, transformation(origin={-100.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-180)));
   thermal_Panel_with_Interface Panel_yp(C_ESS=C_ESS, G_ESS=G_ESS, C_MSS=C_MSS, G_MSS=G_MSS, C_TSS=C_TSS, G_TSS=G_TSS, C_Panel=C_Panel, G_Panel=G_Panel) annotation(Placement(visible=true, transformation(origin={0.0,80.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-270)));
@@ -53,7 +54,7 @@ model Solar_Baustein_thermal "thermisches model eines Bausteins mit 6 Seiten mit
   intra_BuildingBlock_connector adjoiningPanel_yn_zp(Gr=Gr_aP, G_c=G_aP, G_p=G_Panel_p) annotation(Placement(visible=true, transformation(origin={-84.222,-44.222}, extent={{-5.778,-5.778},{5.778,5.778}}, rotation=-90)));
   intra_BuildingBlock_connector adjoiningPanel_yp_zn(Gr=Gr_aP, G_c=G_aP, G_p=G_Panel_p) annotation(Placement(visible=true, transformation(origin={68.7461,-18.7461}, extent={{-6.2539,-6.2539},{6.2539,6.2539}}, rotation=-90)));
   intra_BuildingBlock_connector adjoiningPanel_yp_zp(Gr=Gr_aP, G_c=G_aP, G_p=G_Panel_p) annotation(Placement(visible=true, transformation(origin={-38.8542,78.8542}, extent={{-6.1458,-6.1458},{6.1458,6.1458}}, rotation=0)));
-  Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow Solar_Power(Q_flow=100) annotation(Placement(visible=true, transformation(origin={-132.2917,-75.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
+  Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow Solar_Power(Q_flow=Solar_module_Power) annotation(Placement(visible=true, transformation(origin={-132.2917,-75.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
 equation 
   connect(Solar_Power.port,port_b) annotation(Line(visible=true, origin={-98.6458,-75.0}, points={{-23.6458,0.0},{23.6458,0.0}}, color={191,0,0}));
   connect(adjoiningPanel_yp_zn.port_b,Panel_zn.port_a) annotation(Line(visible=true, origin={83.0452,-59.7588}, points={{-13.9548,34.6986},{-13.9548,-7.2287},{13.9548,-7.2287},{13.9548,-20.2412}}, color={191,0,0}));

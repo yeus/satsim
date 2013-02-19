@@ -18,6 +18,7 @@ model DoubleBuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seite
   parameter Real Gr_oP(unit="m2")=0 "Net radiation conductance between two surfaces (see docu)(opposite Panels) tbd";
   parameter Real Gr_aP(unit="m2")=0 "Net radiation conductance between two surfaces (see docu)(adjoining Panels) tbd";
   parameter Real Gr_Rad(unit="m2")=0.01 "Net radiation conductance between two surfaces (see docu) tbd";
+  parameter Modelica.SIunits.Power BuildingBlock_Power=5 "Leistungsbedarf des Standartbausteins";
   thermal_Panel_with_Interface Panel_xp(C_ESS=C_ESS, G_ESS=G_ESS, C_MSS=C_MSS, G_MSS=G_MSS, C_TSS=C_TSS, G_TSS=G_TSS, C_Panel=C_Panel, G_Panel=G_Panel) annotation(Placement(visible=true, transformation(origin={100.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   thermal_Panel_with_Interface Panel_xn(C_ESS=C_ESS, G_ESS=G_ESS, C_MSS=C_MSS, G_MSS=G_MSS, C_TSS=C_TSS, G_TSS=G_TSS, C_Panel=C_Panel, G_Panel=G_Panel) annotation(Placement(visible=true, transformation(origin={-100.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-180)));
   Doublethermal_Panel_with_2Interfaces Panel_yp(C_ESS=C_ESS, G_ESS=G_ESS, C_MSS=C_MSS, G_MSS=G_MSS, C_TSS=C_TSS, G_TSS=G_TSS, C_Panel=C_Panel, G_Panel=G_Panel) annotation(Placement(visible=true, transformation(origin={0.0,80.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-270)));
@@ -57,7 +58,9 @@ model DoubleBuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seite
   thermal_connector thermal_connector_ynxn annotation(Placement(visible=true, transformation(origin={-25.0,-100.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-90), iconTransformation(origin={-30.0,-70.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   thermal_connector thermal_connector_ypxp annotation(Placement(visible=true, transformation(origin={20.0,100.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-270), iconTransformation(origin={30.0,70.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   thermal_connector thermal_connector_zpxp annotation(Placement(visible=true, transformation(origin={-140.0,95.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-180), iconTransformation(origin={-50.0,40.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
+  Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow Buildingblock_Power(Q_flow=BuildingBlock_Power) annotation(Placement(visible=true, transformation(origin={-123.1456,-75.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
 equation 
+  connect(Buildingblock_Power.port,port_b) annotation(Line(visible=true, origin={-94.0728,-75.0}, points={{-19.0728,0.0},{19.0728,0.0}}, color={191,0,0}));
   connect(Panel_yp.thermal_connector1,thermal_connector_ypxp) annotation(Line(visible=true, origin={10.0,94.3333}, points={{-5.0,-11.3333},{-5.0,5.6667},{10.0,5.6667}}));
   connect(Panel_yp.thermal_connector2,thermal_connector_ypxn) annotation(Line(visible=true, origin={0.0,91.5}, points={{-5.0,-8.5},{-25.0,8.5}}));
   connect(Panel_zp.thermal_connector1,thermal_connector_zpxp) annotation(Line(visible=true, origin={-124.25,90.0}, points={{21.25,-5.0},{-2.75,-5.0},{-2.75,5.0},{-15.75,5.0}}));

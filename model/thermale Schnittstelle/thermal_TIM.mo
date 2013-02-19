@@ -5,7 +5,7 @@ model thermal_TIM "thermal interfacial material parameters (Conductance)"
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor Conductance_MSS(G=G_MSS) annotation(Placement(visible=true, transformation(origin={0.0,0.0}, extent={{-6.0931,-6.0931},{6.0931,6.0931}}, rotation=0)));
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor Conductance_ESS(G=G_ESS) annotation(Placement(visible=true, transformation(origin={-0.0,-20.0}, extent={{-6.1934,-6.1934},{6.1934,6.1934}}, rotation=0)));
   thermal_connector thermal_connector1 annotation(Placement(visible=true, transformation(origin={60.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-180), iconTransformation(origin={100.0,-0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-360)));
-  parameter Modelica.SIunits.ThermalConductance G_TIM_TSS=160 "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={-32.0,-40.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
+  parameter Modelica.SIunits.ThermalConductance G_TIM_TSS=0 "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={-32.0,-40.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
   parameter Modelica.SIunits.ThermalConductance G_MSS=2 "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={0.0,-40.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
   parameter Modelica.SIunits.ThermalConductance G_ESS=1 "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={32.0,-40.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
   parameter Real Gr_Rad(unit="m2")=0.01 "Net radiation conductance between two surfaces (see docu) tbd";
