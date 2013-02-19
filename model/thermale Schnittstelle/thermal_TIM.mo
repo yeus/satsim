@@ -8,7 +8,7 @@ model thermal_TIM "thermal interfacial material parameters (Conductance)"
   parameter Modelica.SIunits.ThermalConductance G_TIM_TSS=0 "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={-32.0,-40.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
   parameter Modelica.SIunits.ThermalConductance G_MSS=2 "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={0.0,-40.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
   parameter Modelica.SIunits.ThermalConductance G_ESS=1 "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={32.0,-40.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
-  parameter Real Gr_Rad(unit="m2")=0.01 "Net radiation conductance between two surfaces (see docu) tbd";
+  parameter Real Gr_Rad(unit="m2")=0 "Net radiation conductance between two surfaces (see docu) tbd";
   Modelica.Thermal.HeatTransfer.Components.BodyRadiation Radiator(Gr=Gr_Rad) annotation(Placement(visible=true, transformation(origin={0.0,45.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
 equation 
   connect(Conductance_MSS.port_a,thermal_connector2.MSS) annotation(Line(visible=true, origin={-29.9613,0.0}, points={{23.8682,0.0},{-26.5095,-2.5346}}, color={191,0,0}));
