@@ -8,7 +8,7 @@ model space_radiator
   parameter Modelica.SIunits.Emissivity epsilon_TSS=0.1 "Emmisionskoeffizient der thermalen Schnittstelle tbd";
   parameter Modelica.SIunits.Emissivity epsilon_MSS=0.4 "Emmisionskoeffizient der mechanischen Schnittstelle tbd";
   parameter Modelica.SIunits.Emissivity epsilon_ESS=0.3 "Emmisionskoeffizient der elektrischen Schnittstelle tbd Materialdatenbank";
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature BlackSky(T=0) annotation(Placement(visible=true, transformation(origin={-125.0,-0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature BlackSky(T=3) annotation(Placement(visible=true, transformation(origin={-125.0,-0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   Modelica.Thermal.HeatTransfer.Components.BodyRadiation bodyRadiation_Rad(Gr=epsilon_Rad*effective_area_Rad) annotation(Placement(visible=true, transformation(origin={0.0,-60.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   thermal_connector thermal_connector1 annotation(Placement(visible=true, transformation(origin={90.0,0.0}, extent={{-47.5,-47.5},{47.5,47.5}}, rotation=-180), iconTransformation(origin={0.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   Modelica.Thermal.HeatTransfer.Components.BodyRadiation bodyRadiation_TSS(Gr=epsilon_TSS*effective_area_TSS) annotation(Placement(visible=true, transformation(origin={0.0,-20.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
