@@ -26,10 +26,6 @@ Analyse von Simulationsergebnisse:
 ==================================
 - Python Skript für Auswertung.
 
-Bausteinkatalog
-===============
-- max_power und power, das verbraucht wird, muss überarbeitet werden (z.B. elektr. BS: PSCU und Triebwerk haben beide als power_max 5000W angegeben, es handelt sich jedoch nicht in beiden Fällen um Verbrauchswerte)
-
 Modell-Struktur in Modelica:
 ============================
   - Wiederstände und andere Komponenten lassen sich über das Stichwort "replacable" parametrisieren
@@ -54,6 +50,7 @@ Experimente:
 
 Bausteinkatalog/XML:
 ====================
+- max_power und power, das verbraucht wird, muss überarbeitet werden (z.B. elektr. BS: PSCU und Triebwerk haben beide als power_max 5000W angegeben, es handelt sich jedoch nicht in beiden Fällen um Verbrauchswerte)
 - Bausteine müssen angeben, wie ihre "Form" ist. z.B. in Form einer Liste von Positions-Vektoren
 - Verbrauch analysieren
 - dc. implementieren
