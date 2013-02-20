@@ -235,13 +235,13 @@ package dcmodel
   model dcdc_ideal_simple
     //todo möglicherweise lässt sich hier noch etwas mit "smooth" machen?
     import Modelica.Constants.pi;
-    annotation(Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-87.6945,78.6421},{88.5431,-74.6818}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{10.4668,68.1754},{76.3791,30.2687}}, textString = "%V_out V"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-63.6492,18.9533},{57.9915,-33.0976}}, textString = "DCDC")}), Diagram());
+    annotation(Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-87.6945,78.6421},{88.5431,-74.6818}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{10.4668,68.1754},{76.3791,30.2687}}, textString = "%V_out"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-63.6492,18.9533},{57.9915,-33.0976}}, textString = "DCDC")}), Diagram());
     extends Modelica.Electrical.Analog.Interfaces.TwoPort;
     parameter Real eff = 0.85 annotation(Placement(visible = true, transformation(origin = {71.521,-76.3754}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     parameter Modelica.SIunits.Voltage V_out = 5;
     parameter Modelica.SIunits.Voltage V_in_min = 6.5;
     parameter Modelica.SIunits.Voltage V_in_max = 100;
-    parameter Real slope = 0.1;
+    parameter Real slope = 0.01;
   equation
     if v1 < V_in_max and v1 > V_in_min + slope * 0.5 then
       v2 = V_out;
@@ -266,7 +266,7 @@ package dcmodel
   end dcdc_ideal_simple;
   model dcdc_ideal_simple_improved
     //todo möglicherweise lässt sich hier noch etwas mit "smooth" machen?
-    annotation(Diagram(), Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-87.6945,78.6421},{88.5431,-74.6818}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{10.4668,68.1754},{76.3791,30.2687}}, textString = "%V_out V"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-63.6492,18.9533},{57.9915,-33.0976}}, textString = "DCDC")}));
+    annotation(Diagram(), Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-87.6945,78.6421},{88.5431,-74.6818}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-8.48652,67.6096},{57.4258,29.7029}}, textString = "%V_out"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-63.6492,18.9533},{57.9915,-33.0976}}, textString = "DCDC"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{54.314,63.3663},{75.8133,32.8147}}, textString = "V")}));
     parameter Real eff = 0.85 annotation(Placement(visible = true, transformation(origin = {60.2546,-80.6223}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     parameter Modelica.SIunits.Voltage V_out = 5 annotation(Placement(visible = true, transformation(origin = {60.2546,-80.6223}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     parameter Modelica.SIunits.Voltage V_in_min = 6.5 annotation(Placement(visible = true, transformation(origin = {60.2546,-80.6223}, extent = {{-12,-12},{12,12}}, rotation = 0)));
@@ -280,7 +280,7 @@ package dcmodel
     Modelica.SIunits.Current i1 "Current flowing from pos. to neg. pin of the left port" annotation(Placement(visible = true, transformation(origin = {60.5375,-80.6223}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     Modelica.SIunits.Current i2 "Current flowing from pos. to neg. pin of the right port" annotation(Placement(visible = true, transformation(origin = {60.5375,-80.6223}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     dcmodel.dcdc_ideal_simple dcdc_ideal_simple1(eff = eff, V_out = V_out, V_in_max = V_in_max, V_in_min = V_in_min) annotation(Placement(visible = true, transformation(origin = {-3.67751,6.78922}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.00001) annotation(Placement(visible = true, transformation(origin = {-67.3267,12.447}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+    Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.00005) annotation(Placement(visible = true, transformation(origin = {-67.3267,12.447}, extent = {{-12,12},{12,-12}}, rotation = -90)));
   equation
     connect(capacitor1.n,n1) annotation(Line(points = {{-67.3267,0.446959},{-67.8925,0.446959},{-67.8925,-39.8868},{-92.7864,-39.8868},{-92.7864,-40.4526}}));
     connect(p1,capacitor1.p) annotation(Line(points = {{-92.2207,41.867},{-67.6096,41.867},{-67.6096,24.447},{-67.3267,24.447}}));
