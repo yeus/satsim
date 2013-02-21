@@ -28,13 +28,13 @@ package bb_catalogue
     extends buildingblock;
     annotation(experiment(StartTime = 0.0, StopTime = 11000.0, Tolerance = 0.0001));
     dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved1 annotation(Placement(visible = true, transformation(origin = {-20.9335,8.20368}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 8) annotation(Placement(visible = true, transformation(origin = {32.8147,11.3154}, extent = {{-12,12},{12,-12}}, rotation = -90)));
     dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved2(V_out = 3, V_in_min = 5) annotation(Placement(visible = true, transformation(origin = {-21.2164,31.9661}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved3(V_out = 12, V_in_min = 15) annotation(Placement(visible = true, transformation(origin = {-20.6506,-20.3678}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.0000001) annotation(Placement(visible = true, transformation(origin = {-73.2674,-47.2419}, extent = {{-12,12},{12,-12}}, rotation = -90)));
     Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-72.9845,-81.1881}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    Modelica.Electrical.Analog.Basic.Resistor resistor2 annotation(Placement(visible = true, transformation(origin = {31.6832,-25.7426}, extent = {{-12,12},{12,-12}}, rotation = -90)));
-    Modelica.Electrical.Analog.Basic.Resistor resistor3 annotation(Placement(visible = true, transformation(origin = {33.9463,46.6761}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+    Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 12.5) annotation(Placement(visible = true, transformation(origin = {32.8147,11.3154}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+    Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.0000001) annotation(Placement(visible = true, transformation(origin = {-73.2674,-47.2419}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+    Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 72) annotation(Placement(visible = true, transformation(origin = {31.6832,-25.7426}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+    Modelica.Electrical.Analog.Basic.Resistor resistor3(R = 10.89) annotation(Placement(visible = true, transformation(origin = {33.9463,46.6761}, extent = {{-12,12},{12,-12}}, rotation = -90)));
   equation
     connect(resistor2.n,dcdc_ideal_simple_improved3.n2) annotation(Line(points = {{31.6832,-37.7426},{8.48656,-37.7426},{8.48656,-25.7426},{-9.48232,-25.7426},{-9.48232,-26.0028}}));
     connect(dcdc_ideal_simple_improved3.p2,resistor2.p) annotation(Line(points = {{-9.55022,-15.2758},{31.4003,-15.2758},{31.4003,-13.7426},{31.6832,-13.7426}}));
