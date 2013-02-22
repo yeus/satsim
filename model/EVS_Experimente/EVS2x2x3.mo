@@ -32,11 +32,13 @@ model EVS2
   connectionelement conn14 annotation(Placement(visible = true, transformation(origin = {35.3959,39.1775}, extent = {{-5.08917,5.08917},{5.08917,-5.08917}}, rotation = -90)));
   connectionelement conn5 annotation(Placement(visible = true, transformation(origin = {6.66337,6.59262}, extent = {{-5.08917,5.08917},{5.08917,-5.08917}}, rotation = -90)));
   connectionelement conn2 annotation(Placement(visible = true, transformation(origin = {45.0269,7.07417}, extent = {{-5.08917,5.08917},{5.08917,-5.08917}}, rotation = -90)));
-  bb_catalogue.bb_solar bb_solar1 annotation(Placement(visible = true, transformation(origin = {-11.3292,-10.8711}, extent = {{5.08917,5.08917},{-5.08917,-5.08917}}, rotation = -180)));
-  Modelica.Blocks.Sources.Trapezoid trapezoid1(amplitude = 1367, width = 1000, period = 3000, rising = 60, falling = 60) annotation(Placement(visible = true, transformation(origin = {-48.8389,-10.7971}, extent = {{-4.20593,-4.20593},{4.20593,4.20593}}, rotation = 0)));
+  bb_catalogue.bb_solar bb_solar1 annotation(Placement(visible = true, transformation(origin = {-31.0183,-10.1803}, extent = {{5.08917,5.08917},{-5.08917,-5.08917}}, rotation = -180)));
+  Modelica.Blocks.Sources.Trapezoid trapezoid1(amplitude = 1367, width = 1000, period = 3000, rising = 60, falling = 60) annotation(Placement(visible = true, transformation(origin = {-68.528,-10.1063}, extent = {{-4.20593,-4.20593},{4.20593,4.20593}}, rotation = 0)));
+  connectionelement connectionelement1 annotation(Placement(visible = true, transformation(origin = {-11.0535,-10.7081}, extent = {{-6.77369,-6.77369},{6.77369,6.77369}}, rotation = 0)));
 equation
-  connect(trapezoid1.y,bb_solar1.u) annotation(Line(points = {{-44.2124,-10.7971},{-22.7774,-10.7971},{-22.7774,-10.8334},{-22.592,-10.8334}}));
-  connect(bb_solar1.Xn,bb11.Xn) annotation(Line(points = {{-6.23588,-10.8621},{5.50241,-10.8621},{5.50241,-10.7903},{5.67806,-10.7903}}));
+  connect(connectionelement1.int1,bb11.Xn) annotation(Line(points = {{-5.05591,-10.4015},{5.52677,-10.4015},{5.52677,-10.7903},{5.67806,-10.7903}}));
+  connect(bb_solar1.Xn,connectionelement1.int2) annotation(Line(points = {{-25.925,-10.1712},{-17.6166,-10.1712},{-17.6166,-10.4353},{-17.0083,-10.4353}}));
+  connect(trapezoid1.y,bb_solar1.u) annotation(Line(points = {{-63.9015,-10.1063},{-42.4665,-10.1063},{-42.4665,-10.1425},{-42.2811,-10.1425}}));
   connect(conn2.int1,bb1.Zn) annotation(Line(points = {{45.2572,2.56806},{45.4263,2.56806},{45.4263,-37.5609},{39.0843,-37.5609},{39.0843,-37.6733}}));
   connect(conn3.int1,bb10.Zn) annotation(Line(points = {{33.058,2.24703},{33.227,2.24703},{33.227,-3.37085},{29.0535,-3.37085},{29.0535,-16.2122},{38.6845,-16.2122},{38.6845,-13.4352},{38.6027,-13.4352}}));
   connect(conn4.int1,bb12.Zn) annotation(Line(points = {{20.0561,2.24703},{19.9041,2.24703},{19.9041,-3.69189},{16.6937,-3.69189},{16.6937,-37.5609},{13.5621,-37.5609},{13.5621,-37.5127}}));
