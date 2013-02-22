@@ -1,12 +1,20 @@
 model iboss_sat
-  parameter Integer size_x = 2,size_y = 2,size_z = 2;
-  bb_catalogue.bb_verbraucher bb[size_x,size_y,size_z] annotation(Placement(visible = true, transformation(origin = {16.9731,-61.6691}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-  connectionelement connelem[size_x - 1,size_y - 1,size_z - 1];
+  parameter Integer size_x = 4,size_y = 4;
+  bb_catalogue.bb_verbraucher bb[size_x] annotation(Placement(visible = true, transformation(origin = {16.9731,-61.6691}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  bb_catalogue.bb_solar bbs;
+  connectionelement connelem_s;
+  connectionelement connelem[size_x - 1];
+  annotation(experiment(StartTime = 0.0, StopTime = 20000.0, Tolerance = 0.000001));
+  Modelica.Blocks.Sources.Trapezoid trapezoid1(amplitude = 1367, width = 1000, period = 3000, rising = 60, falling = 60) annotation(Placement(visible = true, transformation(origin = {-71.8473,7.01273}, extent = {{-12,-12},{12,12}}, rotation = 0)));
 equation
-  for j, k, i in 1:size_x - 1 loop
-  connect(bb[i,j,k].Xp,connelem[i,j,k].int1);
+  connect(trapezoid1.y,bbs.u) annotation(Line(points = {{-58.6473,7.01273},{-17.8218,7.01273},{-17.8218,-0.0889732},{26.557,-0.0889732}}));
+  connect(bbs.Xp,connelem_s.int1);
+  connect(bb[1].Xn,connelem_s.int2);
+  //connect other buildingblocks
+  for i in 1:size_x - 1 loop
+  connect(bb[i].Xp,connelem[i].int1);
+  connect(bb[i + 1].Xn,connelem[i].int2);
 
   end for;
-  //connect(bb[i+1,j+1,k+1].Xn,connelem[i,j,k].int2);
 end iboss_sat;
 
