@@ -139,14 +139,11 @@ package solar_power
     extends Modelica.Icons.Example;
     Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {11.7392,13.6853}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     Exprgenerator exprgenerator1(alpha = 10) annotation(Placement(visible = true, transformation(origin = {42.6838,13.9932}, extent = {{-7.45106,-7.45106},{7.45106,7.45106}}, rotation = 0)));
-    Modelica.Electrical.Analog.Basic.VariableResistor variableresistor1 annotation(Placement(visible = true, transformation(origin = {38.1913,52.3255}, extent = {{-12,12},{12,-12}}, rotation = -90)));
-    solar_power.solarcell_simple solarcell_simple2(Maxexp = 16, R_sh = 10) annotation(Placement(visible = true, transformation(origin = {-42.562,39.2562}, extent = {{12,-12},{-12,12}}, rotation = 90)));
     Modelica.Blocks.Sources.Constant const(k = 1367) annotation(Placement(visible = true, transformation(origin = {-81.875,39.0625}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    solar_power.solarcell_simple solarcell_simple1 annotation(Placement(visible = true, transformation(origin = {-41.875,74.6875}, extent = {{12,-12},{-12,12}}, rotation = 90)));
+    Modelica.Electrical.Analog.Basic.VariableResistor variableresistor1 annotation(Placement(visible = true, transformation(origin = {38.1913,52.3255}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+    solar_power.solarcell_simple solarcell_simple2(Maxexp = 16, R_sh = 10, N_p = 50) annotation(Placement(visible = true, transformation(origin = {-42.562,39.2562}, extent = {{12,-12},{-12,12}}, rotation = 90)));
   equation
-    connect(const.y,solarcell_simple1.E_s) annotation(Line(points = {{-68.675,39.0625},{-63.125,39.0625},{-63.125,75},{-50.3948,75},{-50.3948,74.5354}}));
-    connect(solarcell_simple1.n,variableresistor1.p) annotation(Line(points = {{-41.875,86.6875},{38.4375,86.6875},{38.4375,64.3255},{38.1913,64.3255}}));
-    connect(solarcell_simple2.n,solarcell_simple1.p) annotation(Line(points = {{-42.562,51.2562},{-37.5,51.2562},{-37.5,62.6875},{-41.875,62.6875}}));
+    connect(solarcell_simple2.n,variableresistor1.p) annotation(Line(points = {{-42.562,51.2562},{-43.2815,51.2562},{-43.2815,65.0636},{38.1913,65.0636},{38.1913,64.3255}}));
     connect(const.y,solarcell_simple2.E_s) annotation(Line(points = {{-68.675,39.0625},{-51.25,39.0625},{-51.25,39.1041},{-51.0818,39.1041}}));
     connect(solarcell_simple2.p,ground1.p) annotation(Line(points = {{-42.562,27.2562},{11.9835,27.2562},{11.9835,25.6853},{11.7392,25.6853}}));
     connect(variableresistor1.R,exprgenerator1.y) annotation(Line(points = {{51.3913,52.3255},{51.3913,51.6529},{79.3388,51.6529},{79.3388,13.6364},{50.88,13.6364},{50.88,13.9932}}));

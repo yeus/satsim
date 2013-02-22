@@ -27,18 +27,18 @@ package dcmodel
     Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-55.7285,-43.5643}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     annotation(experiment(StartTime = 0.0, StopTime = 11000.0, Tolerance = 0.000001));
     Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 0.0001) annotation(Placement(visible = true, transformation(origin = {-16.2777,18.9533}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    dcmodel.dcdc_ideal_simple dcdc_ideal_simple1(eff = 0.85, V_out = 5, V_in_min = 6.5, V_in_max = 100) annotation(Placement(visible = true, transformation(origin = {16.4074,3.9604}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 12) annotation(Placement(visible = true, transformation(origin = {57.1428,5.9406}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+    dcmodel.dcdc_ideal_simple dcdc_ideal_simple1(eff = 0.85, V_out = 5, V_in_min = 10, V_in_max = 100, slope = 5) annotation(Placement(visible = true, transformation(origin = {16.4074,3.9604}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 100) annotation(Placement(visible = true, transformation(origin = {57.1428,5.9406}, extent = {{-12,12},{12,-12}}, rotation = -90)));
     Modelica.Electrical.Analog.Basic.Resistor resistor3(R = 0.0001) annotation(Placement(visible = true, transformation(origin = {-36.2726,-13.0493}, extent = {{12,12},{-12,-12}}, rotation = -180)));
-    Modelica.Electrical.Analog.Sources.SineVoltage sinevoltage1(V = 35, phase = 90, freqHz = 0.0002) annotation(Placement(visible = true, transformation(origin = {-78.3593,-1.69731}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+    Modelica.Electrical.Analog.Sources.RampVoltage rampvoltage1(V = 100, duration = 1) annotation(Placement(visible = true, transformation(origin = {-72.4187,7.92079}, extent = {{-12,12},{12,-12}}, rotation = -90)));
   equation
+    connect(rampvoltage1.p,resistor2.p) annotation(Line(points = {{-72.4187,19.9208},{-28.8543,19.9208},{-28.8543,18.9533},{-28.2777,18.9533}}));
+    connect(rampvoltage1.n,resistor3.n) annotation(Line(points = {{-72.4187,-4.07921},{-72.1358,-4.07921},{-72.1358,-13.2956},{-48.2726,-13.2956},{-48.2726,-13.0493}}));
     connect(dcdc_ideal_simple1.n2,dcdc_ideal_simple1.n1) annotation(Line(points = {{28.4074,-2.0396},{28.2885,-2.0396},{28.2885,-10.1839},{4.80905,-10.1839},{4.80905,-2.0396},{4.40736,-2.0396}}));
     connect(resistor1.p,dcdc_ideal_simple1.p2) annotation(Line(points = {{57.1428,17.9406},{39.3211,17.9406},{39.3211,10.1839},{28.4074,10.1839},{28.4074,9.9604}}));
     connect(dcdc_ideal_simple1.n2,resistor1.n) annotation(Line(points = {{28.4074,-2.0396},{34.7949,-2.0396},{34.7949,-6.78925},{57.1428,-6.78925},{57.1428,-6.0594}}));
     connect(dcdc_ideal_simple1.n1,resistor3.p) annotation(Line(points = {{4.40736,-2.0396},{4.52617,-2.0396},{4.52617,-13.0127},{-24.2726,-13.0127},{-24.2726,-13.0493}}));
     connect(resistor2.n,dcdc_ideal_simple1.p1) annotation(Line(points = {{-4.2777,18.9533},{4.52617,18.9533},{4.52617,9.9604},{4.40736,9.9604}}));
-    connect(sinevoltage1.p,resistor2.p) annotation(Line(points = {{-78.3593,10.3027},{-78.0764,10.3027},{-78.0764,19.2362},{-28.2777,19.2362},{-28.2777,18.9533}}));
-    connect(sinevoltage1.n,resistor3.n) annotation(Line(points = {{-78.3593,-13.6973},{-47.5248,-13.6973},{-47.5248,-13.0493},{-48.2726,-13.0493}}));
     connect(ground1.p,resistor3.n) annotation(Line(points = {{-55.7285,-31.5643},{-55.7285,-13.5785},{-48.3734,-13.5785},{-48.3734,-13.0493},{-48.2726,-13.0493}}));
   end dc_limiter_test;
   model DCtoDCModel "DC/DC Converter Model nach Torrey, D., & Selamogullari, U. (2002). A Behavioral Model for DC-DC Converters using Modelica. modelica.org"
@@ -234,20 +234,65 @@ package dcmodel
   end DCtoPower;
   model dcdc_ideal_simple
     //todo möglicherweise lässt sich hier noch etwas mit "smooth" machen?
-    annotation(Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-87.6945,78.6421},{88.5431,-74.6818}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{10.4668,68.1754},{76.3791,30.2687}}, textString = "%Vref V"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-63.6492,18.9533},{57.9915,-33.0976}}, textString = "DCDC")}), Diagram());
+    import Modelica.Constants.pi;
+    annotation(Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-87.6945,78.6421},{88.5431,-74.6818}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{10.4668,68.1754},{76.3791,30.2687}}, textString = "%V_out"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-63.6492,18.9533},{57.9915,-33.0976}}, textString = "DCDC")}), Diagram());
     extends Modelica.Electrical.Analog.Interfaces.TwoPort;
-    parameter Real eff annotation(Placement(visible = true, transformation(origin = {71.521,-76.3754}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    parameter Modelica.SIunits.Voltage V_out;
-    parameter Modelica.SIunits.Voltage V_in_min;
-    parameter Modelica.SIunits.Voltage V_in_max;
+    parameter Real eff = 0.85 annotation(Placement(visible = true, transformation(origin = {71.521,-76.3754}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    parameter Modelica.SIunits.Voltage V_out = 5;
+    parameter Modelica.SIunits.Voltage V_in_min = 6.5;
+    parameter Modelica.SIunits.Voltage V_in_max = 100;
+    parameter Real slope = 0.01;
   equation
-    if noEvent(v1 < V_in_max and v1 > V_in_min) then
+    if v1 < V_in_max and v1 > V_in_min + slope * 0.5 then
       v2 = V_out;
+      i1 = (-i2 * v2) / (v1 * eff);
+    elseif v1 >= V_in_min - slope * 0.5 then
+      v2 = smooth(1, V_out * (sin(((v1 - V_in_min - slope * 0.5) * pi * 0.5) / slope * 2 + pi * 0.5) + 1) * 0.5);
       i1 = (-i2 * v2) / (v1 * eff);
     else
       v2 = 0;
       i1 = 0;
     end if;
+    /*if v1 < V_in_max and v1 > V_in_min then
+    v2 = V_out;
+    i1 = (-i2 * v2) / v1;
+  elseif v1 >= V_in_min - slope then
+    v2 = V_out / slope * (v1 - V_in_min + slope);
+    i1 = (-i2 * v2) / v1;
+  else
+    v2 = 0;
+    i1 = 0;
+  end if;*/
   end dcdc_ideal_simple;
+  model dcdc_ideal_simple_improved
+    //todo möglicherweise lässt sich hier noch etwas mit "smooth" machen?
+    annotation(Diagram(), Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-87.6945,78.6421},{88.5431,-74.6818}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-8.48652,67.6096},{57.4258,29.7029}}, textString = "%V_out"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-63.6492,18.9533},{57.9915,-33.0976}}, textString = "DCDC"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{54.314,63.3663},{75.8133,32.8147}}, textString = "V")}));
+    parameter Real eff = 0.85 annotation(Placement(visible = true, transformation(origin = {60.2546,-80.6223}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    parameter Modelica.SIunits.Voltage V_out = 5 annotation(Placement(visible = true, transformation(origin = {60.2546,-80.6223}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    parameter Modelica.SIunits.Voltage V_in_min = 6.5 annotation(Placement(visible = true, transformation(origin = {60.2546,-80.6223}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    parameter Modelica.SIunits.Voltage V_in_max = 100 annotation(Placement(visible = true, transformation(origin = {60.2546,-80.6223}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    Modelica.Electrical.Analog.Interfaces.NegativePin n2 annotation(Placement(visible = true, transformation(origin = {93.0693,-46.959}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {93.0693,-46.959}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    Modelica.Electrical.Analog.Interfaces.NegativePin n1 annotation(Placement(visible = true, transformation(origin = {-92.7864,-40.4526}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-92.7864,-40.4526}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    Modelica.Electrical.Analog.Interfaces.PositivePin p1 annotation(Placement(visible = true, transformation(origin = {-92.2207,41.867}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-92.2207,41.867}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    Modelica.Electrical.Analog.Interfaces.PositivePin p2 annotation(Placement(visible = true, transformation(origin = {92.5035,42.4328}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {92.5035,42.4328}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    Modelica.SIunits.Voltage v1 "Voltage drop over the left port" annotation(Placement(visible = true, transformation(origin = {60.5375,-80.6223}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    Modelica.SIunits.Voltage v2 "Voltage drop over the right port" annotation(Placement(visible = true, transformation(origin = {60.5375,-80.6223}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    Modelica.SIunits.Current i1 "Current flowing from pos. to neg. pin of the left port" annotation(Placement(visible = true, transformation(origin = {60.5375,-80.6223}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    Modelica.SIunits.Current i2 "Current flowing from pos. to neg. pin of the right port" annotation(Placement(visible = true, transformation(origin = {60.5375,-80.6223}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    dcmodel.dcdc_ideal_simple dcdc_ideal_simple1(eff = eff, V_out = V_out, V_in_max = V_in_max, V_in_min = V_in_min) annotation(Placement(visible = true, transformation(origin = {-3.67751,6.78922}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.00005) annotation(Placement(visible = true, transformation(origin = {-67.3267,12.447}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+  equation
+    connect(capacitor1.n,n1) annotation(Line(points = {{-67.3267,0.446959},{-67.8925,0.446959},{-67.8925,-39.8868},{-92.7864,-39.8868},{-92.7864,-40.4526}}));
+    connect(p1,capacitor1.p) annotation(Line(points = {{-92.2207,41.867},{-67.6096,41.867},{-67.6096,24.447},{-67.3267,24.447}}));
+    connect(dcdc_ideal_simple1.n1,dcdc_ideal_simple1.n2) annotation(Line(points = {{-15.6775,0.78922},{-16.4074,0.78922},{-16.4074,-14.4272},{7.92079,-14.4272},{7.92079,0.78922},{8.32249,0.78922}}));
+    connect(dcdc_ideal_simple1.n2,n2) annotation(Line(points = {{8.32249,0.78922},{8.20368,0.78922},{8.20368,-45.2617},{93.0693,-45.2617},{93.0693,-46.959}}));
+    connect(dcdc_ideal_simple1.p2,p2) annotation(Line(points = {{8.32249,12.7892},{7.92079,12.7892},{7.92079,43.2815},{92.5035,43.2815},{92.5035,42.4328}}));
+    connect(dcdc_ideal_simple1.n1,n1) annotation(Line(points = {{-15.6775,0.78922},{-16.1245,0.78922},{-16.1245,-39.8868},{-92.7864,-39.8868},{-92.7864,-40.4526}}));
+    connect(p1,dcdc_ideal_simple1.p1) annotation(Line(points = {{-92.2207,41.867},{-15.5587,41.867},{-15.5587,12.7892},{-15.6775,12.7892}}));
+    v1 = p1.v - n1.v;
+    v2 = p2.v - n2.v;
+    i1 = p1.i;
+    i2 = p2.i;
+  end dcdc_ideal_simple_improved;
 end dcmodel;
 
