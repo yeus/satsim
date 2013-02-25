@@ -1,11 +1,11 @@
 model iboss_sat
-  parameter Integer size_x = 2,size_y = 2,size_z = 3;
+  parameter Integer size_x = 3,size_y = 1,size_z = 1;
   bb_catalogue.bb_verbraucher bb[size_x,size_y,size_z] annotation(Placement(visible = true, transformation(origin = {16.9731,-61.6691}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   bb_catalogue.bb_solar bbs;
   connectionelement connelem_s;
   connectionelement connelem_x[size_x - 1,size_y,size_z];
-  connectionelement connelem_y[size_x,size_y - 1,size_z];
-  connectionelement connelem_z[size_x,size_y,size_z - 1];
+  /*connectionelement connelem_y[size_x,size_y - 1,size_z];
+  connectionelement connelem_z[size_x,size_y,size_z - 1];*/
   annotation(experiment(StartTime = 0.0, StopTime = 20000.0, Tolerance = 0.000001));
   Modelica.Blocks.Sources.Trapezoid trapezoid1(amplitude = 1367, width = 1000, period = 3000, rising = 60, falling = 60) annotation(Placement(visible = true, transformation(origin = {-71.8473,7.01273}, extent = {{-12,-12},{12,12}}, rotation = 0)));
 equation
@@ -28,5 +28,6 @@ equation
   connect(bb[i,j,k + 1].Xn,connelem_z[i,j,k].int2);
 
   end for;
+  //*/
 end iboss_sat;
 
