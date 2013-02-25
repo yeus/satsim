@@ -11,10 +11,10 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
   parameter Modelica.SIunits.Length x_Panel=0.03 "length of Panel in m";
   parameter Modelica.SIunits.Length x_EB=0.1 "length of Electronic Box in m";
   replaceable parameter MaterialDatabase.Material material_ESS=Kupfer "Material of ESS from MaterialDataBase" annotation(choicesAllMatching=true);
-  replaceable parameter MaterialDatabase.Material material_MSS=Titan "Material of MSS from MaterialDataBase" annotation(choicesAllMatching=true);
+  replaceable parameter MaterialDatabase.Material material_MSS=Kupfer "Material of MSS from MaterialDataBase" annotation(choicesAllMatching=true);
   replaceable parameter MaterialDatabase.Material material_TSS=Kupfer "Material of TSS from MaterialDataBase" annotation(choicesAllMatching=true);
   replaceable parameter MaterialDatabase.Material material_Panel=Kupfer "Material of Panel from MaterialDataBase" annotation(choicesAllMatching=true);
-  replaceable parameter MaterialDatabase.Material material_EB=Aluminium "Material of Electronic Box from MaterialDataBase" annotation(choicesAllMatching=true);
+  replaceable parameter MaterialDatabase.Material material_EB=Kupfer "Material of Electronic Box from MaterialDataBase" annotation(choicesAllMatching=true);
   parameter Modelica.SIunits.ThermalConductance G_Panel_p=1.5 "Constant thermal conductance of material parallel to main surface (standard - near ro infinity if connected to main surface)";
   parameter Modelica.SIunits.ThermalConductance G_P_EB=350 "Constant thermal conductance between Panel - Electronic Box";
   parameter Modelica.SIunits.ThermalConductance G_oP=0 "Constant thermal conductance between two panels (opposite Panels)";
