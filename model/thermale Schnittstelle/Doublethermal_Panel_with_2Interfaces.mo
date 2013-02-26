@@ -1,20 +1,24 @@
 model Doublethermal_Panel_with_2Interfaces "Seitenpanel mit Schnittstelle"
   annotation(Icon(coordinateSystem(extent={{-100.0,-100.0},{100.0,100.0}}, preserveAspectRatio=true, initialScale=0.1, grid={10,10}), graphics={Rectangle(visible=true, origin={-10.0,0.0}, lineColor={255,0,0}, fillColor={255,255,255}, fillPattern=FillPattern.VerticalCylinder, extent={{-10.0,-100.0},{10.0,100.0}}),Rectangle(visible=true, origin={10.0,0.0}, lineColor={255,0,0}, fillColor={255,255,255}, fillPattern=FillPattern.CrossDiag, extent={{-10.0,-80.0},{10.0,80.0}}),Text(visible=true, origin={-10.0,135.6661}, fillColor={255,0,0}, fillPattern=FillPattern.Solid, extent={{-100.0,-20.0},{100.0,20.0}}, textString="%name", fontName="Arial", textStyle={TextStyle.Bold})}), Diagram(coordinateSystem(extent={{-148.5,-105.0},{148.5,105.0}}, preserveAspectRatio=true, initialScale=0.1, grid={5,5})));
-  Schnittstelle schnittstelle1(C_ESS=C_ESS, G_ESS=G_ESS, C_MSS=C_MSS, G_MSS=G_MSS, C_TSS=C_TSS, G_TSS=G_TSS) annotation(Placement(visible=true, transformation(origin={-10.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  thermal_element BuildingBlock_Panel(C=C_Panel, G=G_Panel) annotation(Placement(visible=true, transformation(origin={-41.5072,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
+  Schnittstelle schnittstelle1(A_ESS=A_ESS, x_ESS=x_ESS, material_ESS=material_ESS, A_MSS=A_MSS, x_MSS=x_MSS, material_MSS=material_MSS, A_TSS=A_TSS, x_TSS=x_TSS, material_TSS=material_TSS) annotation(Placement(visible=true, transformation(origin={-10.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
+  thermal_element BuildingBlock_Panel(A=A_Panel, x=x_Panel, material=material_Panel) annotation(Placement(visible=true, transformation(origin={-41.5072,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_a annotation(Placement(visible=true, transformation(origin={-147.3668,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0), iconTransformation(origin={-30.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   thermal_connector thermal_connector2 annotation(Placement(visible=true, transformation(origin={70.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-180), iconTransformation(origin={30.0,50.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  parameter Modelica.SIunits.ThermalConductance G_TSS=2500 "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={-48.0,78.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
-  parameter Modelica.SIunits.ThermalConductance G_MSS=33 "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={-16.0,78.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
-  parameter Modelica.SIunits.ThermalConductance G_ESS=1 "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={16.0,78.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
-  parameter Modelica.SIunits.ThermalConductance G_Panel=7500 "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={49.0,78.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
-  parameter Modelica.SIunits.HeatCapacity C_TSS=230 "Heat capacity of element (= cp*m)" annotation(Placement(visible=true, transformation(origin={-48.0,51.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
-  parameter Modelica.SIunits.HeatCapacity C_MSS=130 "Heat capacity of element (= cp*m)" annotation(Placement(visible=true, transformation(origin={-16.0,51.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
-  parameter Modelica.SIunits.HeatCapacity C_ESS=15 "Heat capacity of element (= cp*m)" annotation(Placement(visible=true, transformation(origin={16.0,51.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
-  parameter Modelica.SIunits.HeatCapacity C_Panel=380 "Heat capacity of element (= cp*m)" annotation(Placement(visible=true, transformation(origin={49.0,51.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
+  parameter Modelica.SIunits.Area A_ESS "Surface Area of ESS in m2";
+  parameter Modelica.SIunits.Area A_MSS "Surface Area of MSS in m2";
+  parameter Modelica.SIunits.Area A_TSS "Surface Area of TSS in m2";
+  parameter Modelica.SIunits.Area A_Panel "Surface Area of Panel in m2";
+  parameter Modelica.SIunits.Length x_ESS "length of ESS in m";
+  parameter Modelica.SIunits.Length x_MSS "length of MSS in m";
+  parameter Modelica.SIunits.Length x_TSS "length of TSS in m";
+  parameter Modelica.SIunits.Length x_Panel "length of Panel in m";
+  replaceable parameter MaterialDatabase.Material material_ESS "Material of ESS from MaterialDataBase" annotation(choicesAllMatching=true);
+  replaceable parameter MaterialDatabase.Material material_MSS "Material of MSS from MaterialDataBase" annotation(choicesAllMatching=true);
+  replaceable parameter MaterialDatabase.Material material_TSS "Material of TSS from MaterialDataBase" annotation(choicesAllMatching=true);
+  replaceable parameter MaterialDatabase.Material material_Panel "Material of TSS from MaterialDataBase" annotation(choicesAllMatching=true);
   parameter Modelica.SIunits.ThermalConductance G_p=130 "Constant thermal conductance of panel material parallel to main surface (near ro infinity if connected to main surface)" annotation(Placement(visible=true, transformation(origin={78.0,63.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
-  thermal_element BuildingBlock_PanelDouble(C=C_Panel, G=G_Panel) annotation(Placement(visible=true, transformation(origin={-41.8,-72.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  Schnittstelle schnittstelle2(C_ESS=C_ESS, C_MSS=C_MSS, C_TSS=C_TSS, G_ESS=G_ESS, G_MSS=G_MSS, G_TSS=G_TSS) annotation(Placement(visible=true, transformation(origin={-12.5793,-73.9367}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
+  thermal_element BuildingBlock_PanelDouble(A=A_Panel, x=x_Panel, material=material_Panel) annotation(Placement(visible=true, transformation(origin={-41.8,-72.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
+  Schnittstelle schnittstelle2(A_ESS=A_ESS, x_ESS=x_ESS, material_ESS=material_ESS, A_MSS=A_MSS, x_MSS=x_MSS, material_MSS=material_MSS, A_TSS=A_TSS, x_TSS=x_TSS, material_TSS=material_TSS) annotation(Placement(visible=true, transformation(origin={-12.5793,-73.9367}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   thermal_connector thermal_connector1 annotation(Placement(visible=true, transformation(origin={68.5266,-77.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-180), iconTransformation(origin={30.0,-50.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductionBetweenInterfaces(G=G_p) annotation(Placement(visible=true, transformation(origin={-28.0916,-35.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-90)));
 equation 
