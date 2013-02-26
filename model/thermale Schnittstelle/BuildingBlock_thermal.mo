@@ -11,13 +11,12 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
   parameter Modelica.SIunits.Length x_Panel=0.03 "length of Panel in m";
   parameter Modelica.SIunits.Length x_EB=0.1 "length of Electronic Box in m";
   replaceable parameter MaterialDatabase.Material material_ESS=Kupfer "Material of ESS from MaterialDataBase" annotation(choicesAllMatching=true);
-  replaceable parameter MaterialDatabase.Material material_MSS=Kupfer "Material of MSS from MaterialDataBase" annotation(choicesAllMatching=true);
-  replaceable parameter MaterialDatabase.Material material_TSS=Kupfer "Material of TSS from MaterialDataBase" annotation(choicesAllMatching=true);
-  replaceable parameter MaterialDatabase.Material material_Panel=Kupfer "Material of Panel from MaterialDataBase" annotation(choicesAllMatching=true);
+  replaceable parameter MaterialDatabase.Material material_MSS=Titan "Material of MSS from MaterialDataBase" annotation(choicesAllMatching=true);
+  replaceable parameter MaterialDatabase.Material material_TSS=Panel "Material of TSS from MaterialDataBase" annotation(choicesAllMatching=true);
+  replaceable parameter MaterialDatabase.Material material_Panel=Panel "Material of Panel from MaterialDataBase" annotation(choicesAllMatching=true);
   replaceable parameter MaterialDatabase.Material material_EB=Kupfer "Material of Electronic Box from MaterialDataBase" annotation(choicesAllMatching=true);
   parameter Modelica.SIunits.ThermalConductance G_Panel_p=1.5 "Constant thermal conductance of material parallel to main surface (standard - near ro infinity if connected to main surface)";
   parameter Modelica.SIunits.ThermalConductance G_P_EB=350 "Constant thermal conductance between Panel - Electronic Box";
-  parameter Modelica.SIunits.ThermalConductance G_oP=0 "Constant thermal conductance between two panels (opposite Panels)";
   parameter Modelica.SIunits.ThermalConductance G_aP=130 "Constant thermal conductance between two panels (adjoining Panels)";
   parameter Real Gr_P_EB(unit="m2")=0 "Net radiation conductance between two surfaces (see docu)(Panel - Electronic Box) tbd";
   parameter Real Gr_oP(unit="m2")=0 "Net radiation conductance between two surfaces (see docu)(opposite Panels) tbd";
@@ -44,9 +43,6 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
   intra_BuildingBlock_connector EB_Pyp(Gr=Gr_P_EB, G_c=G_P_EB/2, G_p=G_P_EB/2) annotation(Placement(visible=true, transformation(origin={-0.0,45.0}, extent={{-6.6332,-6.6332},{6.6332,6.6332}}, rotation=-90)));
   intra_BuildingBlock_connector EB_Pzp(Gr=Gr_P_EB, G_c=G_P_EB/2, G_p=G_P_EB/2) annotation(Placement(visible=true, transformation(origin={-25.8667,34.1333}, extent={{-5.8667,-5.8667},{5.8667,5.8667}}, rotation=0)));
   intra_BuildingBlock_connector EB_Pzn(Gr=Gr_P_EB, G_c=G_P_EB/2, G_p=G_P_EB/2) annotation(Placement(visible=true, transformation(origin={28.5057,-38.5057}, extent={{-6.4943,-6.4943},{6.4943,6.4943}}, rotation=0)));
-  intra_BuildingBlock_connector oppositePanel_x(Gr=Gr_oP, G_c=G_oP/2, G_p=G_oP/2) annotation(Placement(visible=true, transformation(origin={-46.3927,48.6073}, extent={{-6.3927,-6.3927},{6.3927,6.3927}}, rotation=0)));
-  intra_BuildingBlock_connector oppositePanel_z(Gr=Gr_oP, G_c=G_oP/2, G_p=G_oP/2) annotation(Placement(visible=true, transformation(origin={40.0,43.9455}, extent={{-6.0545,-6.0545},{6.0545,6.0545}}, rotation=0)));
-  intra_BuildingBlock_connector oppositePanel_y(Gr=Gr_oP, G_c=G_oP/2, G_p=G_oP/2) annotation(Placement(visible=true, transformation(origin={-58.8323,-23.8323}, extent={{-6.1677,-6.1677},{6.1677,6.1677}}, rotation=-90)));
   intra_BuildingBlock_connector adjoiningPanel_xp_yn(Gr=Gr_aP, G_c=G_aP, G_p=G_Panel_p) annotation(Placement(visible=true, transformation(origin={40.8179,-70.8179}, extent={{-5.8179,-5.8179},{5.8179,5.8179}}, rotation=0)));
   intra_BuildingBlock_connector adjoiningPanel_xp_yp(Gr=Gr_aP, G_c=G_aP, G_p=G_Panel_p) annotation(Placement(visible=true, transformation(origin={51.2693,63.7307}, extent={{-6.2693,-6.2693},{6.2693,6.2693}}, rotation=0)));
   intra_BuildingBlock_connector adjoiningPanel_xp_zn(Gr=Gr_aP, G_c=G_aP, G_p=G_Panel_p) annotation(Placement(visible=true, transformation(origin={86.7065,-27.01}, extent={{-4.7981,-4.7981},{4.7981,4.7981}}, rotation=-90)));
@@ -63,7 +59,17 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
   parameter MaterialDatabase.Kupferlegierungen_Kupfer Kupfer annotation(Placement(visible=true, transformation(origin={135.0,93.4208}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   parameter MaterialDatabase.Titanlegierungen_Handelsueblich_Rein_CP_Ti_UNS_R50700__Klasse_4_SS Titan annotation(Placement(visible=true, transformation(origin={135.0,50.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   parameter MaterialDatabase.Aluminiumlegierungen_1060_H12 Aluminium annotation(Placement(visible=true, transformation(origin={135.0,-37.2865}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
+  parameter MaterialDatabase.Kohlenstofffasern_Carbon_Panel_tbd Panel annotation(Placement(visible=true, transformation(origin={137.1914,-62.0628}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
+  Modelica.Thermal.HeatTransfer.Components.BodyRadiation oposite_Panel_x(Gr=Gr_oP) annotation(Placement(visible=true, transformation(origin={-41.7966,53.2034}, extent={{-6.7966,-6.7966},{6.7966,6.7966}}, rotation=0)));
+  Modelica.Thermal.HeatTransfer.Components.BodyRadiation oposite_Panel_z(Gr=Gr_oP) annotation(Placement(visible=true, transformation(origin={53.4182,34.4727}, extent={{-6.5818,-6.5818},{6.5818,6.5818}}, rotation=0)));
+  Modelica.Thermal.HeatTransfer.Components.BodyRadiation oposite_Panel_y(Gr=Gr_oP) annotation(Placement(visible=true, transformation(origin={-53.9828,-23.9828}, extent={{-6.0172,-6.0172},{6.0172,6.0172}}, rotation=-90)));
 equation 
+  connect(oposite_Panel_y.port_b,Panel_yn.port_a) annotation(Line(visible=true, origin={-35.9885,-62.4221}, points={{-17.9943,32.4221},{-17.9943,-16.2111},{35.9885,-16.2111}}, color={191,0,0}));
+  connect(oposite_Panel_y.port_a,Panel_yp.port_a) annotation(Line(visible=true, origin={-26.9914,48.2586}, points={{-26.9914,-66.2242},{-26.9914,18.7414},{26.9914,18.7414},{26.9914,28.7414}}, color={191,0,0}));
+  connect(oposite_Panel_z.port_b,Panel_zn.port_a) annotation(Line(visible=true, origin={84.6667,-3.6848}, points={{-24.6667,38.1576},{12.3333,38.1576},{12.3333,-76.3152}}, color={191,0,0}));
+  connect(oposite_Panel_z.port_a,Panel_zp.port_a) annotation(Line(visible=true, origin={-56.0409,57.2364}, points={{102.8773,-22.7636},{-30.9591,-22.7636},{-30.9591,22.7636},{-40.9591,22.7636}}, color={191,0,0}));
+  connect(oposite_Panel_x.port_b,Panel_xp.port_a) annotation(Line(visible=true, origin={59.0,26.6017}, points={{-94.0,26.6017},{28.0,26.6017},{28.0,-26.6017},{38.0,-26.6017}}, color={191,0,0}));
+  connect(Panel_xn.port_a,oposite_Panel_x.port_a) annotation(Line(visible=true, origin={-80.8644,35.469}, points={{-16.1356,-35.469},{-16.1356,17.7345},{32.2713,17.7345}}, color={191,0,0}));
   connect(Buildingblock_Power.port,port_b) annotation(Line(visible=true, origin={-94.0728,-75.0}, points={{-19.0728,0.0},{19.0728,0.0}}, color={191,0,0}));
   connect(adjoiningPanel_yp_zn.port_b,Panel_zn.port_a) annotation(Line(visible=true, origin={83.0452,-59.7588}, points={{-13.9548,34.6986},{-13.9548,-7.2287},{13.9548,-7.2287},{13.9548,-20.2412}}, color={191,0,0}));
   connect(Panel_yp.port_a,adjoiningPanel_yp_zn.port_a) annotation(Line(visible=true, origin={34.5405,11.37}, points={{-34.5405,65.63},{-34.5405,-20.8623},{34.5405,-20.8623},{34.5405,-23.9053}}, color={191,0,0}));
@@ -89,12 +95,6 @@ equation
   connect(Panel_yp.port_a,adjoiningPanel_xp_yp.port_a) annotation(Line(visible=true, origin={32.2608,70.5332}, points={{-32.2608,6.4668},{9.7392,6.4668},{9.7392,-6.4668},{12.7823,-6.4668}}, color={191,0,0}));
   connect(adjoiningPanel_xp_zn.port_b,Panel_zn.port_a) annotation(Line(visible=true, origin={91.9854,-61.4573}, points={{-5.0146,29.603},{-5.0146,-5.5302},{5.0146,-5.5302},{5.0146,-18.5427}}, color={191,0,0}));
   connect(Panel_xp.port_a,adjoiningPanel_xp_zn.port_a) annotation(Line(visible=true, origin={91.9817,-15.1672}, points={{5.0183,15.1672},{5.0183,-4.0447},{-5.0183,-4.0447},{-5.0183,-7.0777}}, color={191,0,0}));
-  connect(oppositePanel_y.port_b,Panel_yn.port_a) annotation(Line(visible=true, origin={-38.9951,-62.4419}, points={{-19.4976,32.3825},{-19.4976,-16.1913},{38.9951,-16.1913}}, color={191,0,0}));
-  connect(Panel_yp.port_a,oppositePanel_y.port_a) annotation(Line(visible=true, origin={-29.2511,7.4909}, points={{29.2511,69.5091},{29.2511,-22.1555},{-29.2511,-22.1555},{-29.2511,-25.198}}, color={191,0,0}));
-  connect(oppositePanel_z.port_b,Panel_zn.port_a) annotation(Line(visible=true, origin={80.0376,2.8526}, points={{-33.9248,41.4263},{16.9624,41.4263},{16.9624,-82.8526}}, color={191,0,0}));
-  connect(oppositePanel_z.port_a,Panel_zp.port_a) annotation(Line(visible=true, origin={-59.2532,62.1348}, points={{93.2403,-17.8652},{-27.7468,-17.8652},{-27.7468,17.8652},{-37.7468,17.8652}}, color={191,0,0}));
-  connect(oppositePanel_x.port_b,Panel_xp.port_a) annotation(Line(visible=true, origin={57.7654,24.4796}, points={{-97.7038,24.4796},{29.2346,24.4796},{29.2346,-24.4796},{39.2346,-24.4796}}, color={191,0,0}));
-  connect(Panel_xn.port_a,oppositePanel_x.port_a) annotation(Line(visible=true, origin={-82.2472,32.633}, points={{-14.7528,-32.633},{-14.7528,16.3165},{29.5057,16.3165}}, color={191,0,0}));
   connect(thermalModel_ElectronicBox1.EB_zn,EB_Pzn.port_a) annotation(Line(visible=true, origin={19.352,-31.4387}, points={{-1.352,13.4387},{-1.352,-6.7193},{2.704,-6.7193}}, color={191,0,0}));
   connect(EB_Pzn.port_b,Panel_zn.port_a) annotation(Line(visible=true, origin={76.5156,-59.074}, points={{-41.4531,20.926},{10.4844,20.926},{10.4844,-20.926},{20.4844,-20.926}}, color={191,0,0}));
   connect(thermalModel_ElectronicBox1.EB_yn,EB_Pyn.port_a) annotation(Line(visible=true, origin={0.1735,-34.9}, points={{-0.1735,4.9},{-0.1735,-0.6185},{0.1735,-0.6185},{0.1735,-3.6631}}, color={191,0,0}));
