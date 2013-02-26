@@ -14,7 +14,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
   replaceable parameter MaterialDatabase.Material material_MSS=Titan "Material of MSS from MaterialDataBase" annotation(choicesAllMatching=true);
   replaceable parameter MaterialDatabase.Material material_TSS=Panel "Material of TSS from MaterialDataBase" annotation(choicesAllMatching=true);
   replaceable parameter MaterialDatabase.Material material_Panel=Panel "Material of Panel from MaterialDataBase" annotation(choicesAllMatching=true);
-  replaceable parameter MaterialDatabase.Material material_EB=Kupfer "Material of Electronic Box from MaterialDataBase" annotation(choicesAllMatching=true);
+  replaceable parameter MaterialDatabase.Material material_EB=elektronik_Box_Composit1 "Material of Electronic Box from MaterialDataBase" annotation(choicesAllMatching=true);
   parameter Modelica.SIunits.ThermalConductance G_Panel_p=1.5 "Constant thermal conductance of material parallel to main surface (standard - near ro infinity if connected to main surface)";
   parameter Modelica.SIunits.ThermalConductance G_P_EB=350 "Constant thermal conductance between Panel - Electronic Box";
   parameter Modelica.SIunits.ThermalConductance G_aP=130 "Constant thermal conductance between two panels (adjoining Panels)";
@@ -60,6 +60,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
   parameter MaterialDatabase.Titanlegierungen_Handelsueblich_Rein_CP_Ti_UNS_R50700__Klasse_4_SS Titan annotation(Placement(visible=true, transformation(origin={135.0,50.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   parameter MaterialDatabase.Aluminiumlegierungen_1060_H12 Aluminium annotation(Placement(visible=true, transformation(origin={135.0,-37.2865}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   parameter MaterialDatabase.Kohlenstofffasern_Carbon_Panel_tbd Panel annotation(Placement(visible=true, transformation(origin={137.1914,-62.0628}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
+  parameter MaterialDatabase.Elektronik_Box_Composit elektronik_Box_Composit1 annotation(Placement(visible=true, transformation(origin={130.0,73.1687}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   Modelica.Thermal.HeatTransfer.Components.BodyRadiation oposite_Panel_x(Gr=Gr_oP) annotation(Placement(visible=true, transformation(origin={-41.7966,53.2034}, extent={{-6.7966,-6.7966},{6.7966,6.7966}}, rotation=0)));
   Modelica.Thermal.HeatTransfer.Components.BodyRadiation oposite_Panel_z(Gr=Gr_oP) annotation(Placement(visible=true, transformation(origin={53.4182,34.4727}, extent={{-6.5818,-6.5818},{6.5818,6.5818}}, rotation=0)));
   Modelica.Thermal.HeatTransfer.Components.BodyRadiation oposite_Panel_y(Gr=Gr_oP) annotation(Placement(visible=true, transformation(origin={-53.9828,-23.9828}, extent={{-6.0172,-6.0172},{6.0172,6.0172}}, rotation=-90)));

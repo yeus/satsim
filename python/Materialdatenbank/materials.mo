@@ -19,6 +19,10 @@ package MaterialDatabase "Base classes for Material Database"
       d=1800,
       k=300,
       c=700) "Kohlenstofffasern_Carbon_Panel_tbd";
+  record Elektronik_Box_Composit= MaterialDatabase.Generic (
+      d=1000,
+      k=100,
+      c=900) "Elektronik_Box_Composit";
   record Allgemeine_Glasfasern_A_Glasfaser= MaterialDatabase.Generic (
       d=2440,
       k=tbd,
