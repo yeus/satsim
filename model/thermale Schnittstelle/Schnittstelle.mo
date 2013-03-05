@@ -1,15 +1,18 @@
 model Schnittstelle
   annotation(Icon(coordinateSystem(extent={{-100.0,-100.0},{100.0,100.0}}, preserveAspectRatio=true, initialScale=0.1, grid={10,10}), graphics={Rectangle(visible=true, lineColor={255,0,0}, fillColor={255,255,255}, fillPattern=FillPattern.CrossDiag, extent={{-30.0,-100.0},{30.0,100.0}}),Text(visible=true, origin={0.0,118.8654}, fillColor={255,0,0}, fillPattern=FillPattern.Solid, extent={{-100.0,-18.8654},{100.0,18.8654}}, textString="%name", fontName="Arial", textStyle={TextStyle.Bold}),Text(visible=true, origin={6.7599,25.0}, fillPattern=FillPattern.Solid, extent={{-123.2401,-15.0},{123.2401,15.0}}, textString="MSS: C=%C_MSS; G=%G_MSS", fontName="Arial", textStyle={TextStyle.Bold}),Text(visible=true, origin={7.2821,75.0}, fillPattern=FillPattern.Solid, extent={{-122.7179,-15.0},{122.7179,15.0}}, textString="ESS: C=%C_ESS; G=%G_ESS", fontName="Arial", textStyle={TextStyle.Bold}),Text(visible=true, origin={6.2664,-25.0}, fillPattern=FillPattern.Solid, extent={{-122.1957,-15.0},{122.1957,15.0}}, textString="TSS: C=%C_TSS; G=%G_TSS", fontName="Arial", textStyle={TextStyle.Bold})}), Diagram());
-  parameter Modelica.SIunits.ThermalConductance G_ESS "Constant thermal conductance of material";
-  parameter Modelica.SIunits.ThermalConductance G_MSS "Constant thermal conductance of material";
-  parameter Modelica.SIunits.ThermalConductance G_TSS "Constant thermal conductance of material";
-  parameter Modelica.SIunits.HeatCapacity C_ESS "Heat capacity of element (= cp*m)";
-  parameter Modelica.SIunits.HeatCapacity C_MSS "Heat capacity of element (= cp*m)";
-  parameter Modelica.SIunits.HeatCapacity C_TSS "Heat capacity of element (= cp*m)";
+  parameter Modelica.SIunits.Area A_ESS "Surface Area of ESS in m2";
+  parameter Modelica.SIunits.Area A_MSS "Surface Area of MSS in m2";
+  parameter Modelica.SIunits.Area A_TSS "Surface Area of TSS in m2";
+  parameter Modelica.SIunits.Length x_ESS "length of ESS in m";
+  parameter Modelica.SIunits.Length x_MSS "length of MSS in m";
+  parameter Modelica.SIunits.Length x_TSS "length of TSS in m";
+  replaceable parameter MaterialDatabase.Material material_ESS "Material of ESS from MaterialDataBase" annotation(choicesAllMatching=true);
+  replaceable parameter MaterialDatabase.Material material_MSS "Material of MSS from MaterialDataBase" annotation(choicesAllMatching=true);
+  replaceable parameter MaterialDatabase.Material material_TSS "Material of TSS from MaterialDataBase" annotation(choicesAllMatching=true);
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_a annotation(Placement(visible=true, transformation(origin={-100.0,-0.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0), iconTransformation(origin={-28.0,-0.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
-  thermal_element ESS(C=C_ESS, G=G_ESS) annotation(Placement(visible=true, transformation(origin={0.0,40.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
-  thermal_element MSS(C=C_MSS, G=G_MSS) annotation(Placement(visible=true, transformation(origin={0.0,0.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
-  thermal_element TSS(C=C_TSS, G=G_TSS) annotation(Placement(visible=true, transformation(origin={-0.0,-40.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
+  thermal_element ESS(A=A_ESS, x=x_ESS, material=material_ESS) annotation(Placement(visible=true, transformation(origin={0.0,40.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
+  thermal_element MSS(A=A_MSS, x=x_MSS, material=material_ESS) annotation(Placement(visible=true, transformation(origin={0.0,0.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
+  thermal_element TSS(A=A_TSS, x=x_TSS, material=material_ESS) annotation(Placement(visible=true, transformation(origin={-0.0,-40.0}, extent={{-12.0,-12.0},{12.0,12.0}}, rotation=0)));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a ESS_IF annotation(Placement(visible=true, transformation(origin={100.0,40.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0), iconTransformation(origin={100.0,50.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a MSS_IF annotation(Placement(visible=true, transformation(origin={100.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0), iconTransformation(origin={98.674,-0.6225}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a TSS_IF annotation(Placement(visible=true, transformation(origin={100.0,-40.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0), iconTransformation(origin={100.0,-50.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
