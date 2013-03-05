@@ -41,7 +41,7 @@ def loadxmldata(filename='bausteinkatalog/katalog.1.2.xml'):
       if xmlprop.tag=="components":
         for co in xmlprop:
           new_co=copy.copy(components[co.attrib["type"]])
-          if co.attrib.has_key("num"): new_co.num=int(co.attrib["num"])
+          if "num" in co.attrib: new_co.num=int(co.attrib["num"])
           for co_prop in co:
             #new_co.addxmlprop(co_prop) #Hier immer Ergänzungen aus dem laden einer alten katalogdatei hinzufügen
             if co_prop.tag=="pos": new_co.pos=iboss.ibossxml.xml2vec(co_prop)*pq.Quantity(1,"blocks")
@@ -77,7 +77,9 @@ def test():
   #calculate power demands for buildingblocks
   for BB in bb.values():
     BB.update()
-    print u"{}: {}".format(BB.name,BB.power)
+    #print(u"{}: {}".format(BB.name,BB.power))  #python2.7 Version
+    print("{}: {}".format(BB.name,BB.power))
+    
 
 if __name__ == "__main__":
   #data = et.parse("bausteinkatalog/missionen_gen.xml")

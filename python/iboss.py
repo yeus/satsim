@@ -22,6 +22,10 @@ pq.krad=pq.UnitQuantity('kilorad', pq.rads*1000, symbol='krad')
 pq.blocks=pq.UnitQuantity('blocks', 1, symbol='blocks')
 pq.constants.E0=pq.UnitConstant('Solar constant',1367*pq.W/pq.m**2,'E0')
 
+#in python3:
+def unicode(something):
+  return str(something)
+
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector
 
 #convert vector to string (python list)

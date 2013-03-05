@@ -2,6 +2,7 @@ import bpy
 from genutils import copyobject as cpobj
 import sys
 import os
+from math import pi
 
 pythonpath="/usr/lib/python3/dist-packages" 
 if pythonpath not in sys.path: 
@@ -35,7 +36,7 @@ for bs in mission.bb:
     else: newobj=cpobj("baustein"+mode)
     newobj.location=Vector(bs.pos)*0.41
     newobj.rotation_mode="XYZ"
-    newobj.rotation_euler=bs.rot
+    newobj.rotation_euler=bs.rot*pi/180
     newobj["buildingblock"]=1
         
     #render forces
