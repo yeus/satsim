@@ -1,5 +1,5 @@
 model Enmap_Modusat
-  annotation(Diagram(coordinateSystem(extent={{-300.0,-200.0},{300.0,200.0}}, preserveAspectRatio=true, initialScale=0.1, grid={10,5})));
+  annotation(Icon(coordinateSystem(extent={{-100.0,-100.0},{100.0,100.0}}, preserveAspectRatio=true, initialScale=0.1, grid={10,10})), Diagram(coordinateSystem(extent={{-420.5,-297.0},{420.5,297.0}}, preserveAspectRatio=true, initialScale=0.1, grid={10,5}), graphics));
   IMU_Baustein_thermal bs111(IMU_module_Power=12) annotation(Placement(visible=true, transformation(origin={-240.0,155.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   Sternsensor_Baustein_thermal bs121(Starsenor_module_Power=20) annotation(Placement(visible=true, transformation(origin={-240.0,95.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
   BuildingBlock_thermal bs211 annotation(Placement(visible=true, transformation(origin={-180.0,155.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
