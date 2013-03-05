@@ -42,8 +42,11 @@ import pyfmi
 #in "assimulo_interface.py" sind die Standard Solver integriert
 #in "algorithm_drivers
 
+#solarcell=pyfmi.load_fmu("solar_power_solarcell_simple_characteristic.fmu")
 solarcell=pyfmi.load_fmu("solar_power_solarcell_simple_characteristic.fmu")
+mo=solarcell#solarcell.simulate()
 #hw=pyfmi.load_fmu("hello_world.fmu")
+#hw.simulate()
 
 #i,u=solarcell.get(["solarcell_simple2.resistor1.i","solarcell_simple2.resistor1.v"])
 
@@ -54,7 +57,7 @@ solarcell=pyfmi.load_fmu("solar_power_solarcell_simple_characteristic.fmu")
 # --> http://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.ode.html#scipy.integrate.ode
 # --> http://en.wikipedia.org/wiki/Numerical_ordinary_differential_equations
 
-model=solarcell
+#model=solarcell
 
 """def f(t, y, model):
   model.time=t
@@ -70,7 +73,7 @@ t0=0
 r = ode(f).set_integrator('vode', method='bdf', with_jacobian=False)
 r.set_initial_value(y0, t0).set_f_params(model)
 """
-t1 = 10
+"""t1 = 10
 dt = 1.0
 
 res=[]
@@ -78,7 +81,7 @@ res=[]
 while model.time<t1:
   res.append([model.time,model.save_time_point()])
   model.time+=dt
-  
+  """
 
 #res=np.array(res)
 #newsim.run()
