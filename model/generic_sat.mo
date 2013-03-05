@@ -19,13 +19,13 @@ equation
 
   end for;
   for i in 1:size_x, j in 1:size_y - 1, k in 1:size_z loop
-  connect(bb[i,j,k].Xp,connelem_y[i,j,k].int1);
-  connect(bb[i,j + 1,k].Xn,connelem_y[i,j,k].int2);
+  connect(bb[i,j,k].Yp,connelem_y[i,j,k].int1);
+  connect(bb[i,j + 1,k].Yn,connelem_y[i,j,k].int2);
 
   end for;
   for i in 1:size_x, j in 1:size_y, k in 1:size_z - 1 loop
-  connect(bb[i,j,k].Xp,connelem_z[i,j,k].int1);
-  connect(bb[i,j,k + 1].Xn,connelem_z[i,j,k].int2);
+  connect(bb[i,j,k].Zp,connelem_z[i,j,k].int1);
+  connect(bb[i,j,k + 1].Zn,connelem_z[i,j,k].int2);
 
   end for;
   //*/
