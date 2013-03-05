@@ -1,4 +1,4 @@
-model EVS2
+model EVS2x2x1
   annotation(experiment(StartTime = 0.0, StopTime = 10000.0, Tolerance = 0.000001));
   bb_catalogue.bb_verbraucher bb_verbraucher1 annotation(Placement(visible = true, transformation(origin = {36.7751,-15.2758}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   connectionelement connectionelement1 annotation(Placement(visible = true, transformation(origin = {5.94059,-14.9929}, extent = {{-12,-12},{12,12}}, rotation = 0)));
@@ -19,5 +19,5 @@ equation
   connect(bb_verbraucher2.Yn,connectionelement2.int2) annotation(Line(points = {{36.1732,29.3007},{36.1732,23.7624},{35.8441,23.7624},{35.8441,23.279}}));
   connect(connectionelement1.int2,bb_solar1.Yp) annotation(Line(points = {{-4.60855,-14.5095},{-12.447,-14.5095},{-12.447,-15.4004},{-13.3652,-15.4004}}));
   connect(connectionelement1.int1,bb_verbraucher1.Xn) annotation(Line(points = {{16.5658,-14.4498},{24.8939,-14.4498},{24.8939,-15.2971},{24.7653,-15.2971}}));
-end EVS2;
+  end EVS2x2x1;
 
