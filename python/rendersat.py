@@ -30,7 +30,7 @@ mission=optsat.getmission()
 bpy.data.scenes['Scene'].layers=[False]*19+[True]
 
 #render satellit with forces
-mode=".transparent"  #transparent render
+mode=""#".transparent"  #transparent render
 for bs in mission.bb:
     if bs.name=="test Lageregelungsbaustein": newobj=cpobj("düsenbaustein"+mode)
     else: newobj=cpobj("baustein"+mode)
