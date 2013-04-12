@@ -136,7 +136,7 @@ class buildingblock(ibossxml):
     self.type=bbtype
     self.components=[]
     self.mass=0*pq.kg
-    self.power=0*pq.W
+    self.power_max=0*pq.W
     self.com=vec(0,0,0)*self.blocksize
 
   def xmllist(self):
@@ -160,8 +160,8 @@ class buildingblock(ibossxml):
   def update(self):
     self.power=0*pq.W
     for CO in self.components:
-      if "power_max" in vars(CO): self.power+=CO.power_max*0.3
-    self.power+=(5*pq.W)
+      if "power_max" in vars(CO): self.power_max+=CO.power_max
+    self.power_max+=(5*pq.W)
     self.updatemass()
   
   def updatemass(self):
