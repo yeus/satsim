@@ -222,3 +222,9 @@ class mission(ibossxml):
   def com(self):
     self.__com=np.sum([(vec(*bb.pos)*(self.bbsize+self.bbgap))*bb.mass for bb in self.bb],axis=0)*pq.kg*pq.m/self.massgen  #2nd method
     return self.__com
+  
+def main():
+  pass
+  
+if __name__ == "__main__":
+  main()
