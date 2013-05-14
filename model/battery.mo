@@ -8,17 +8,26 @@ package batteries
     Modelica.SIunits.Current i;
     parameter Modelica.SIunits.Voltage Vnominal = 4.0;
     Modelica.Electrical.Analog.Sources.SignalVoltage voltage annotation(Placement(visible = true, transformation(origin = {-37.7358,-0.000000000000000888178}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-    Modelica.Electrical.Analog.Basic.Resistor resistor1 annotation(Placement(visible = true, transformation(origin = {27.9874,0.314465}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     parameter Real pi = 3.14159265359;
+    Modelica.Electrical.Analog.Basic.Resistor R_i(R = 20) annotation(Placement(visible = true, transformation(origin = {-2.89231,0.314465}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Resistor R_t(R = 20) annotation(Placement(visible = true, transformation(origin = {30.0879,16.0595}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Capacitor C_t(C = 100) annotation(Placement(visible = true, transformation(origin = {31.2388,-16.158}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.VariableResistor variableresistor1 annotation(Placement(visible = true, transformation(origin = {-37.3429,33.0341}, extent = {{-10,-10},{10,10}}, rotation = 0)));
   equation
+    connect(variableresistor1.p,voltage.p) annotation(Line(points = {{-47.3429,33.0341},{-47.7558,33.0341},{-47.7558,0},{-47.7558,0}}));
+    connect(variableresistor1.n,voltage.n) annotation(Line(points = {{-27.3429,33.0341},{-27.6481,33.0341},{-27.6481,0.359066},{-27.6481,0.359066}}));
+    connect(voltage.n,R_i.p) annotation(Line(points = {{-27.7358,-0.000000000000000888178},{-14.0036,-0.000000000000000888178},{-14.0036,0.359066},{-14.0036,0.359066}}));
+    connect(C_t.n,R_t.n) annotation(Line(points = {{41.2388,-16.158},{49.1921,-16.158},{49.1921,16.158},{40.2154,16.158},{40.2154,16.158}}));
+    connect(R_i.n,C_t.p) annotation(Line(points = {{7.10769,0.314465},{12.2083,0.314465},{12.2083,-16.158},{20.4668,-16.158},{20.4668,-16.158}}));
+    connect(R_t.n,n) annotation(Line(points = {{40.0879,16.0595},{59.605,16.0595},{59.605,0},{99.8205,0},{99.8205,0}}));
+    connect(R_i.n,R_t.p) annotation(Line(points = {{7.10769,0.314465},{11.8492,0.314465},{11.8492,16.5171},{20.1077,16.5171},{20.1077,16.5171}}));
     i = voltage.i;
     der(SOC) = voltage.i / capacity;
     SOD = 1 - SOC;
     voltage.v = Vnominal * (1 - SOD * 0.35 - 0.025 * sin(SOD * 2 * pi)) * (1 - 1 / (1 + exp(-100 * (SOD - 1))));
-    connect(resistor1.n,n) annotation(Line(points = {{37.9874,0.314465},{97.7987,0.314465},{97.7987,0.943396},{97.7987,0.943396}}));
-    connect(voltage.n,resistor1.p) annotation(Line(points = {{-27.7358,-0.000000000000000888178},{18.239,-0.000000000000000888178},{18.239,-0.314465},{18.239,-0.314465}}));
+    /*exp-fucntion: logistic function*/
     connect(p,voltage.p) annotation(Line(points = {{-100,0},{-48.4277,0},{-48.4277,-0.628931},{-48.4277,-0.628931}}));
-    annotation(Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100,-100},{100,100}}, grid = {1,1}), graphics = {Line(points = {{-90,0},{-10,0}}, color = {0,0,255}),Line(points = {{-10,60},{-10,-60}}, color = {0,0,255}),Line(points = {{0,30},{0,-30}}, color = {0,0,255}),Line(points = {{0,0},{90,0}}, color = {0,0,255}),Text(extent = {{-150,-112},{150,-72}}, textString = "%charge Ah", lineColor = {0,0,255}),Text(extent = {{-120,50},{-20,0}}, lineColor = {0,0,255}, textString = "+"),Text(extent = {{20,50},{120,0}}, lineColor = {0,0,255}, textString = "-")}), experiment(StartTime = 0.0, StopTime = 10000.0, Tolerance = 0.0001));
+    annotation(Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100,-100},{100,100}}, grid = {1,1}), graphics = {Line(points = {{-90,0},{-10,0}}, color = {0,0,255}),Line(points = {{-10,60},{-10,-60}}, color = {0,0,255}),Line(points = {{0,30},{0,-30}}, color = {0,0,255}),Line(points = {{0,0},{90,0}}, color = {0,0,255}),Text(extent = {{-150,-112},{150,-72}}, textString = "%capacity Ah", lineColor = {0,0,255}),Text(extent = {{-120,50},{-20,0}}, lineColor = {0,0,255}, textString = "+"),Text(extent = {{20,50},{120,0}}, lineColor = {0,0,255}, textString = "-")}), experiment(StartTime = 0.0, StopTime = 10000.0, Tolerance = 0.0001));
   end battery;
   model batteriekennlinie
     extends Modelica.Icons.Example;
@@ -33,7 +42,7 @@ package batteries
     connect(battery1.p,battery2.n) annotation(Line(points = {{-59.605,6.31976},{-59.605,20.0426},{-59.7015,20.0426},{-59.7015,20.0426}}));
     connect(ground1.p,battery1.n) annotation(Line(points = {{-16.0598,-33.6034},{-59.605,-33.6034},{-59.605,-15.386},{-59.605,-13.6802}}));
     connect(variableresistor1.n,ground1.p) annotation(Line(points = {{24.4165,-15.7451},{24.4165,-33.3932},{-16.5171,-33.3932},{-16.5171,-33.3932}}));
-    annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 1000.0, Tolerance = 0.0001));
+    annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 50, Tolerance = 0.0001));
   end batteriekennlinie;
   block Exprgenerator "Generate exponential signal"
     import Modelica.Blocks.Interfaces;
@@ -49,12 +58,12 @@ package batteries
     extends Modelica.Icons.Example;
     Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-11.3919,-34.9858}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     batteries.battery battery1(SOC(start = 0.1)) annotation(Placement(visible = true, transformation(origin = {-54.9371,4.93735}, extent = {{-10,-10},{10,10}}, rotation = -90)));
-    Modelica.Electrical.Analog.Sources.ConstantVoltage constantvoltage1(V = 4.5) annotation(Placement(visible = true, transformation(origin = {30.5206,5.02693}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+    Modelica.Electrical.Analog.Sources.ConstantVoltage constantvoltage1(V = 6) annotation(Placement(visible = true, transformation(origin = {30.5206,5.02693}, extent = {{-10,-10},{10,10}}, rotation = -90)));
   equation
     connect(constantvoltage1.p,battery1.p) annotation(Line(points = {{30.5206,15.0269},{30.5206,30.8797},{-55.2962,30.8797},{-55.2962,14.7217},{-55.2962,14.7217}}));
     connect(ground1.p,constantvoltage1.n) annotation(Line(points = {{-11.3919,-24.9858},{30.1616,-24.9858},{30.1616,-5.02693},{30.1616,-5.02693}}));
     connect(ground1.p,battery1.n) annotation(Line(points = {{-11.3919,-24.9858},{-55.2962,-24.6268},{-54.9371,-6.76841},{-54.9371,-5.06261}}));
-    annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 1000.0, Tolerance = 0.0001));
+    annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 10.0, Tolerance = 0.0001));
   end Akkuaufladung;
 end batteries;
 
