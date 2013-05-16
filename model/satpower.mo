@@ -581,19 +581,19 @@ package satpower
     model unregulated_DET
       extends Modelica.Icons.Example;
       Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-39.6389,-49.1485}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      satpower.batteries.battery battery1(Vnominal = 40) annotation(Placement(visible = true, transformation(origin = {-12.6667,-3}, extent = {{-10,-10},{10,10}}, rotation = -90)));
       Modelica.Electrical.Analog.Ideal.IdealDiode idealdiode1 annotation(Placement(visible = true, transformation(origin = {-52,28.3333}, extent = {{-10,-10},{10,10}}, rotation = 90)));
       Modelica.Blocks.Sources.Trapezoid trapezoid1(amplitude = 1367, rising = 90, width = 3600, falling = 90, period = 5000) annotation(Placement(visible = true, transformation(origin = {-84,-5}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       satpower.solar_power.solarcell_simple solarcell_simple1 annotation(Placement(visible = true, transformation(origin = {-52,-5}, extent = {{-10,-10},{10,10}}, rotation = 90)));
-      Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 10000) annotation(Placement(visible = true, transformation(origin = {36.3333,5.66667}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 500) annotation(Placement(visible = true, transformation(origin = {36.3333,5.66667}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      satpower.batteries.battery battery1(soc(start = 0.1), Vnominal = 65) annotation(Placement(visible = true, transformation(origin = {-12.3334,-3}, extent = {{-10,-10},{10,10}}, rotation = -90)));
     equation
-      connect(resistor1.n,battery1.n) annotation(Line(points = {{46.3333,5.66667},{55,5.66667},{55,-13},{-12.6667,-13},{-12.6667,-13}}));
-      connect(battery1.p,resistor1.p) annotation(Line(points = {{-12.6667,7},{-12.6667,6.33333},{26.3333,6.33333},{26.3333,6.33333}}));
-      connect(battery1.n,ground1.p) annotation(Line(points = {{-12.6667,-13},{-12.6667,-37},{-39.6667,-37},{-39.6667,-37}}));
+      connect(idealdiode1.n,battery1.p) annotation(Line(points = {{-52,38.3333},{-52,46.3333},{-12.3333,46.3333},{-12.3334,7},{-12.3334,7}}));
+      connect(battery1.n,ground1.p) annotation(Line(points = {{-12.3334,-13},{-12.3334,-37},{-39.6667,-37},{-39.6667,-37}}));
+      connect(battery1.p,resistor1.p) annotation(Line(points = {{-12.3334,7},{-12.3334,6.33333},{26.3333,6.33333},{26.3333,6.33333}}));
+      connect(resistor1.n,battery1.n) annotation(Line(points = {{46.3333,5.66667},{55,5.66667},{55,-13},{-12.6667,-13},{-12.3334,-13}}));
       connect(solarcell_simple1.p,ground1.p) annotation(Line(points = {{-52,-15},{-52,-37},{-39.6667,-37},{-39.6667,-37}}));
       connect(solarcell_simple1.n,idealdiode1.p) annotation(Line(points = {{-52,5},{-52,18},{-52,18},{-52,18}}));
       connect(trapezoid1.y,solarcell_simple1.E_s) annotation(Line(points = {{-73,-5},{-60.3333,-5},{-60.3333,-5},{-60.3333,-5}}));
-      connect(idealdiode1.n,battery1.p) annotation(Line(points = {{-52,38.3333},{-52,46.3333},{-12.3333,46.3333},{-12.3333,7},{-12.3333,7}}));
       annotation(Diagram, Icon, experiment(StartTime = 0.0, StopTime = 20000, Tolerance = 0.000001));
     end unregulated_DET;
     model PID_verbraucher
