@@ -8,29 +8,29 @@ package satpower
       parameter Modelica.SIunits.Conversions.NonSIunits.ElectricCharge_Ah capacity_Ah = 2.0;
       Modelica.SIunits.Current i;
       parameter Modelica.SIunits.Voltage Vnominal = 4.0;
-      Modelica.Electrical.Analog.Sources.SignalVoltage voltage annotation(Placement(visible = true, transformation(origin = {-37.7358,-0.000000000000000888178}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       parameter Real pi = 3.14159265359;
-      Modelica.Electrical.Analog.Basic.Resistor R_i(R = 0.005) annotation(Placement(visible = true, transformation(origin = {-2.89231,0.314465}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      Modelica.Electrical.Analog.Basic.Resistor R_t(R = 0.02) annotation(Placement(visible = true, transformation(origin = {30.0879,16.0595}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      Modelica.Electrical.Analog.Basic.VariableResistor R_overload annotation(Placement(visible = true, transformation(origin = {-37.3429,33.0341}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      Modelica.Electrical.Analog.Basic.Capacitor C_t(C = 100) annotation(Placement(visible = true, transformation(origin = {31.5979,-16.158}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Sources.SignalVoltage voltage annotation(Placement(visible = true, transformation(origin = {46.2642,-2.33333}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Resistor R_i(R = 0.005) annotation(Placement(visible = true, transformation(origin = {-8.22564,-1.68554}, extent = {{10,-10},{-10,10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Resistor R_t(R = 0.02) annotation(Placement(visible = true, transformation(origin = {-44.9121,9.39283}, extent = {{10,-10},{-10,10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Capacitor C_t(C = 100) annotation(Placement(visible = true, transformation(origin = {-44.4021,-19.4913}, extent = {{10,-10},{-10,10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.VariableResistor R_overload annotation(Placement(visible = true, transformation(origin = {44.9904,34.3674}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     protected
       parameter Modelica.SIunits.ElectricCharge capacity = capacity_Ah * 3600;
     equation
-      connect(R_i.n,C_t.p) annotation(Line(points = {{7.10769,0.314465},{12.2083,0.314465},{12.2083,-16.158},{20.4668,-16.158},{21.5979,-16.158}}));
-      connect(C_t.n,R_t.n) annotation(Line(points = {{41.5979,-16.158},{49.1921,-16.158},{49.1921,16.158},{40.2154,16.158},{40.2154,16.158}}));
-      connect(R_overload.p,voltage.p) annotation(Line(points = {{-47.3429,33.0341},{-47.7558,33.0341},{-47.7558,0},{-47.7558,0}}));
-      connect(R_overload.n,voltage.n) annotation(Line(points = {{-27.3429,33.0341},{-27.6481,33.0341},{-27.6481,0.359066},{-27.6481,0.359066}}));
-      connect(voltage.n,R_i.p) annotation(Line(points = {{-27.7358,-0.000000000000000888178},{-14.0036,-0.000000000000000888178},{-14.0036,0.359066},{-14.0036,0.359066}}));
-      connect(R_t.n,n) annotation(Line(points = {{40.0879,16.0595},{59.605,16.0595},{59.605,0},{99.8205,0},{99.8205,0}}));
-      connect(R_i.n,R_t.p) annotation(Line(points = {{7.10769,0.314465},{11.8492,0.314465},{11.8492,16.5171},{20.1077,16.5171},{20.1077,16.5171}}));
+      connect(R_overload.n,voltage.n) annotation(Line(points = {{54.9904,34.3674},{56,34.3674},{56,-2},{56,-2}}));
+      connect(R_overload.p,voltage.p) annotation(Line(points = {{34.9904,34.3674},{36.3333,34.3674},{36.3333,-2},{36.3333,-2}}));
+      connect(voltage.n,n) annotation(Line(points = {{56.2642,-2.33333},{99,-2.33333},{99,-0.333333},{99,-0.333333}}));
+      connect(R_i.p,voltage.p) annotation(Line(points = {{3.10769,-4.3522},{36,-4.3522},{36,-2.33333},{36,-2.33333}}));
+      connect(R_t.p,R_i.n) annotation(Line(points = {{-34.9121,9.39283},{-34.3333,9.39283},{-34.3333,-4.66667},{-16.6667,-4.66667},{-16.6667,-4.66667}}));
+      connect(R_t.p,C_t.p) annotation(Line(points = {{-34.9121,9.39283},{-34.3333,9.39283},{-34.3333,-19.3333},{-34.3333,-19.3333}}));
+      connect(p,C_t.n) annotation(Line(points = {{-100,0},{-54.3333,0},{-54.3333,-19.3333},{-54.3333,-19.3333}}));
+      connect(p,R_t.n) annotation(Line(points = {{-100,0},{-55,0},{-55,9.33333},{-55,9.33333}}));
       R_overload.R = 100000.0 / (1 + exp(-100.0 * SOD));
       i = voltage.i;
       der(soc) = voltage.i / capacity;
       SOD = 1 - soc;
       voltage.v = Vnominal * (1 - SOD * 0.35 - 0.025 * sin(SOD * 2 * pi)) * (1 - 1 / (1 + exp(-100 * (SOD - 1))));
       /*exp-fucntion: logistic function*/
-      connect(p,voltage.p) annotation(Line(points = {{-100,0},{-48.4277,0},{-48.4277,-0.628931},{-48.4277,-0.628931}}));
       annotation(Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100,-100},{100,100}}, grid = {1,1}), graphics = {Line(points = {{-90,0},{-10,0}}, color = {0,0,255}),Line(points = {{-10,60},{-10,-60}}, color = {0,0,255}),Line(points = {{0,30},{0,-30}}, color = {0,0,255}),Line(points = {{0,0},{90,0}}, color = {0,0,255}),Text(extent = {{-150,-112},{150,-72}}, textString = "%capacity_Ah Ah", lineColor = {0,0,255}),Text(extent = {{-120,50},{-20,0}}, lineColor = {0,0,255}, textString = "+"),Text(extent = {{20,50},{120,0}}, lineColor = {0,0,255}, textString = "-")}), experiment(StartTime = 0.0, StopTime = 10000.0, Tolerance = 0.0001));
     end battery;
     model batteriekennlinie
