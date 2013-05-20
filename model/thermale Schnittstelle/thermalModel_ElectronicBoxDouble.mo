@@ -1,53 +1,323 @@
-model thermalModel_ElectronicBoxDouble "Zentraler Knoten des Bausteinmodells mit Schnittstelle zur Elektroniksimulation. Gibt die Elektrisch erzeugte Wärmeenergie wieder"
-  annotation(Icon(coordinateSystem(extent={{-100.0,-100.0},{100.0,100.0}}, preserveAspectRatio=true, initialScale=0.1, grid={10,10}), graphics={Rectangle(visible=true, lineColor={255,0,0}, fillColor={255,255,255}, pattern=LinePattern.Dot, fillPattern=FillPattern.Sphere, extent={{-100.0,-100.0},{100.0,100.0}}),Text(visible=true, origin={77.023,0.0}, fillPattern=FillPattern.Solid, extent={{-11.0499,-8.5595},{11.0499,8.5595}}, textString="xp", fontName="Arial"),Text(visible=true, origin={-75.1195,0.0}, fillPattern=FillPattern.Solid, extent={{-11.0499,-8.5595},{11.0499,8.5595}}, textString="xn", fontName="Arial"),Text(visible=true, origin={-25.0,78.5595}, fillPattern=FillPattern.Solid, extent={{-15.0,-8.5595},{15.0,8.5595}}, textString="ypxn", fontName="Arial"),Text(visible=true, origin={-60.0,34.8863}, fillPattern=FillPattern.Solid, extent={{-13.9556,-8.5595},{13.9556,8.5595}}, textString="zpxn", fontName="Arial"),Text(visible=true, origin={0.0,22.4068}, fillPattern=FillPattern.Solid, extent={{-50.0,-12.4068},{50.0,12.4068}}, textString="electrical power", fontName="Arial"),Text(visible=true, origin={-36.0444,56.6625}, fillPattern=FillPattern.Solid, extent={{-13.9556,-8.5595},{13.9556,8.5595}}, textString="zpxp", fontName="Arial"),Text(visible=true, origin={21.9912,78.5595}, fillPattern=FillPattern.Solid, extent={{-15.0,-8.5595},{15.0,8.5595}}, textString="ypxp", fontName="Arial"),Text(visible=true, origin={31.8969,-61.4405}, fillPattern=FillPattern.Solid, extent={{-13.9556,-8.5595},{13.9556,8.5595}}, textString="znxn", fontName="Arial"),Text(visible=true, origin={53.9556,-40.0}, fillPattern=FillPattern.Solid, extent={{-13.9556,-8.5595},{13.9556,8.5595}}, textString="znxp", fontName="Arial"),Text(visible=true, origin={27.2061,-81.4405}, fillPattern=FillPattern.Solid, extent={{-15.0,-8.5595},{15.0,8.5595}}, textString="ynxp", fontName="Arial"),Text(visible=true, origin={-20.0,-81.4405}, fillPattern=FillPattern.Solid, extent={{-15.0,-8.5595},{15.0,8.5595}}, textString="ynxn", fontName="Arial")}), Diagram(coordinateSystem(extent={{-148.5,-105.0},{148.5,105.0}}, preserveAspectRatio=true, initialScale=0.1, grid={5,5})));
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_xn annotation(Placement(visible=true, transformation(origin={-80.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0), iconTransformation(origin={-100.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_xp annotation(Placement(visible=true, transformation(origin={80.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0), iconTransformation(origin={100.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_ypxn annotation(Placement(visible=true, transformation(origin={-20.0,80.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0), iconTransformation(origin={-27.5027,100.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_ynxn annotation(Placement(visible=true, transformation(origin={-20.0,-60.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0), iconTransformation(origin={-20.0,-100.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_zpxn annotation(Placement(visible=true, transformation(origin={-80.0,80.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0), iconTransformation(origin={-80.0,50.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_znxp annotation(Placement(visible=true, transformation(origin={85.0,-60.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0), iconTransformation(origin={77.7549,-57.9112}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitor1(C=C) annotation(Placement(visible=true, transformation(origin={0.0,10.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b dissipationPower annotation(Placement(visible=true, transformation(origin={-55.0,-35.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0), iconTransformation(origin={0.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor_zp(G=G/2) annotation(Placement(visible=true, transformation(origin={-50.0,51.9599}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor_ypxn(G=G/2) annotation(Placement(visible=true, transformation(origin={-20.0,50.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-90)));
-  Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor_xp(G=G/2) annotation(Placement(visible=true, transformation(origin={40.0,-0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor_xn(G=G/2) annotation(Placement(visible=true, transformation(origin={-40.0,0.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor_ynxn(G=G/2) annotation(Placement(visible=true, transformation(origin={-20.0,-30.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-90)));
-  Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor_znxp(G=G/2) annotation(Placement(visible=true, transformation(origin={60.0,-30.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_ypxp annotation(Placement(visible=true, transformation(origin={20.0,80.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0), iconTransformation(origin={21.9667,100.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor_ypxp(G=G/2) annotation(Placement(visible=true, transformation(origin={20.0,50.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-90)));
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_ynxp annotation(Placement(visible=true, transformation(origin={20.0,-60.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0), iconTransformation(origin={27.435,-100.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor_ynxp(G=G/2) annotation(Placement(visible=true, transformation(origin={20.0,-30.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=-90)));
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_zpxp annotation(Placement(visible=true, transformation(origin={82.3868,75.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0), iconTransformation(origin={-58.4156,71.9929}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor_zpxp(G=G/2) annotation(Placement(visible=true, transformation(origin={55.0,35.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_znxn annotation(Placement(visible=true, transformation(origin={-78.4414,-62.7392}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0), iconTransformation(origin={56.7003,-80.0}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductorznxn(G=G/2) annotation(Placement(visible=true, transformation(origin={-65.0,-17.6646}, extent={{-10.0,-10.0},{10.0,10.0}}, rotation=0)));
-  replaceable parameter MaterialDatabase.Material material "Material from MaterialDataBase" annotation(choicesAllMatching=true);
-  parameter Modelica.SIunits.Area A "QuerschnittstflÃ¤che des Materials/Kontaktes";
-  parameter Modelica.SIunits.Length x "LÃ¤nge des Materials in Richtung der WÃ¤rmeausbreitung";
-protected 
-  parameter Modelica.SIunits.HeatCapacity C=A*x*material.d*material.c "Heat capacity of element (= cp*m)" annotation(Placement(visible=true, transformation(origin={-26.5971,-26.5971}, extent={{-12,-12},{12,12}}, rotation=0)));
-  parameter Modelica.SIunits.ThermalConductance G=A*material.k/x "Constant thermal conductance of material" annotation(Placement(visible=true, transformation(origin={24.4842,-27.2352}, extent={{-12,-12},{12,12}}, rotation=0)));
-equation 
-  connect(thermalConductor_zpxp.port_b,EB_zpxp) annotation(Line(visible=true, origin={76.5912,48.3333}, points={{-11.5912,-13.3333},{5.7956,-13.3333},{5.7956,26.6667}}, color={191,0,0}));
-  connect(thermalConductor_zp.port_a,EB_zpxn) annotation(Line(visible=true, origin={-73.3333,61.3066}, points={{13.3333,-9.3467},{-6.6667,-9.3467},{-6.6667,18.6934}}, color={191,0,0}));
-  connect(thermalConductor_ynxn.port_b,EB_ynxn) annotation(Line(visible=true, origin={-20.0,-50.0}, points={{0.0,10.0},{0.0,-10.0}}, color={191,0,0}));
-  connect(thermalConductor_znxp.port_b,EB_znxp) annotation(Line(visible=true, origin={80.0,-40.0}, points={{-10.0,10.0},{5.0,10.0},{5.0,-20.0}}, color={191,0,0}));
-  connect(thermalConductorznxn.port_a,EB_znxn) annotation(Line(visible=true, origin={-77.2942,-32.6895}, points={{2.2942,15.0249},{-1.1471,15.0249},{-1.1471,-30.0497}}, color={191,0,0}));
-  connect(thermalConductor_ynxp.port_b,EB_ynxp) annotation(Line(visible=true, origin={20.0,-50.0}, points={{0.0,10.0},{0.0,-10.0}}, color={191,0,0}));
-  connect(thermalConductor_ypxp.port_a,EB_ypxp) annotation(Line(visible=true, origin={20.0,70.0}, points={{0.0,-10.0},{0.0,10.0}}, color={191,0,0}));
-  connect(thermalConductor_ypxn.port_a,EB_ypxn) annotation(Line(visible=true, origin={-20.0,70.0}, points={{0.0,-10.0},{0.0,10.0}}, color={191,0,0}));
-  connect(thermalConductorznxn.port_b,heatCapacitor1.port) annotation(Line(visible=true, origin={-18.3333,-11.7764}, points={{-36.6667,-5.8882},{18.3333,-5.8882},{18.3333,11.7764}}, color={191,0,0}));
-  connect(heatCapacitor1.port,thermalConductor_zpxp.port_a) annotation(Line(visible=true, origin={25.8,12.8}, points={{-25.8,-12.8},{-25.8,-15.8},{16.2,-15.8},{16.2,22.2},{19.2,22.2}}, color={191,0,0}));
-  connect(thermalConductor_znxp.port_a,heatCapacitor1.port) annotation(Line(visible=true, origin={16.6667,-20.0}, points={{33.3333,-10.0},{-16.6667,-10.0},{-16.6667,20.0}}, color={191,0,0}));
-  connect(heatCapacitor1.port,thermalConductor_ynxp.port_a) annotation(Line(visible=true, origin={10.0,-13.5}, points={{-10.0,13.5},{-10.0,-3.5},{10.0,-3.5},{10.0,-6.5}}, color={191,0,0}));
-  connect(thermalConductor_ynxn.port_a,heatCapacitor1.port) annotation(Line(visible=true, origin={-10.0,-6.5}, points={{-10.0,-13.5},{-10.0,3.5},{10.0,3.5},{10.0,6.5}}, color={191,0,0}));
-  connect(heatCapacitor1.port,thermalConductor_ypxn.port_b) annotation(Line(visible=true, origin={-10.0,8.5}, points={{10.0,-8.5},{10.0,-11.5},{-10.0,-11.5},{-10.0,31.5}}, color={191,0,0}));
-  connect(thermalConductor_ypxp.port_b,heatCapacitor1.port) annotation(Line(visible=true, origin={10.0,8.5}, points={{10.0,31.5},{10.0,-11.5},{-10.0,-11.5},{-10.0,-8.5}}, color={191,0,0}));
-  connect(thermalConductor_xp.port_b,EB_xp) annotation(Line(visible=true, origin={65.0,0.0}, points={{-15.0,-0.0},{15.0,0.0}}, color={191,0,0}));
-  connect(heatCapacitor1.port,thermalConductor_xp.port_a) annotation(Line(visible=true, origin={16.8,-1.2}, points={{-16.8,1.2},{-16.8,-1.8},{10.2,-1.8},{10.2,1.2},{13.2,1.2}}, color={191,0,0}));
-  connect(thermalConductor_xn.port_a,EB_xn) annotation(Line(visible=true, origin={-65.0,0.0}, points={{15.0,0.0},{-15.0,-0.0}}, color={191,0,0}));
-  connect(thermalConductor_xn.port_b,heatCapacitor1.port) annotation(Line(visible=true, origin={-16.8,-1.2}, points={{-13.2,1.2},{-10.2,1.2},{-10.2,-1.8},{16.8,-1.8},{16.8,1.2}}, color={191,0,0}));
-  connect(thermalConductor_zp.port_b,heatCapacitor1.port) annotation(Line(visible=true, origin={-22.8,19.584}, points={{-17.2,32.3759},{-14.2,32.3759},{-14.2,-22.584},{22.8,-22.584},{22.8,-19.584}}, color={191,0,0}));
-  connect(dissipationPower,heatCapacitor1.port) annotation(Line(visible=true, origin={-26.6667,-17.3285}, points={{-28.3333,-17.6715},{1.6667,0.3429},{26.6667,17.3285}}, color={191,0,0}));
+// CP: 65001
+// SimulationX Version: 3.5.705.14 x64
+model thermalModel_ElectronicBoxDouble "Zentraler Knoten des Doppelbausteinmodells mit Schnittstelle zur Elektroniksimulation. Gibt die Elektrisch erzeugte Waermeenergie wieder"
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_xn annotation(Placement(
+		transformation(
+			origin={-80,0},
+			extent={{-10,-10},{10,10}}),
+		iconTransformation(
+			origin={-100,0},
+			extent={{-10,-10},{10,10}})));
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_xp annotation(Placement(
+		transformation(
+			origin={80,0},
+			extent={{-10,-10},{10,10}}),
+		iconTransformation(
+			origin={100,0},
+			extent={{-10,-10},{10,10}})));
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_ypxn annotation(Placement(
+		transformation(
+			origin={-20,80},
+			extent={{-10,-10},{10,10}}),
+		iconTransformation(
+			origin={-27.5027,100},
+			extent={{-10,-10},{10,10}})));
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_ynxn annotation(Placement(
+		transformation(
+			origin={-20,-60},
+			extent={{-10,-10},{10,10}}),
+		iconTransformation(
+			origin={-20,-100},
+			extent={{-10,-10},{10,10}})));
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_zpxn annotation(Placement(
+		transformation(
+			origin={-80,80},
+			extent={{-10,-10},{10,10}}),
+		iconTransformation(
+			origin={-80,50},
+			extent={{-10,-10},{10,10}})));
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_znxp annotation(Placement(
+		transformation(
+			origin={85,-60},
+			extent={{-10,-10},{10,10}}),
+		iconTransformation(
+			origin={77.75490000000001,-57.9112},
+			extent={{-10,-10},{10,10}})));
+	Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitor1(C=C) annotation(Placement(transformation(
+		origin={0,10},
+		extent={{-10,-10},{10,10}})));
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b dissipationPower annotation(Placement(
+		transformation(
+			origin={-55,-35},
+			extent={{-10,-10},{10,10}}),
+		iconTransformation(
+			origin={0,0},
+			extent={{-10,-10},{10,10}})));
+	Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor_zp(G=G/2) annotation(Placement(transformation(
+		origin={-50,51.9599},
+		extent={{-10,-10},{10,10}})));
+	Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor_ypxn(G=G/2) annotation(Placement(transformation(
+		origin={-20,50},
+		extent={{-10,-10},{10,10}},
+		rotation=-90)));
+	Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor_xp(G=G/2) annotation(Placement(transformation(
+		origin={40,-0},
+		extent={{-10,-10},{10,10}})));
+	Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor_xn(G=G/2) annotation(Placement(transformation(
+		origin={-40,0},
+		extent={{-10,-10},{10,10}})));
+	Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor_ynxn(G=G/2) annotation(Placement(transformation(
+		origin={-20,-30},
+		extent={{-10,-10},{10,10}},
+		rotation=-90)));
+	Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor_znxp(G=G/2) annotation(Placement(transformation(
+		origin={60,-30},
+		extent={{-10,-10},{10,10}})));
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_ypxp annotation(Placement(
+		transformation(
+			origin={20,80},
+			extent={{-10,-10},{10,10}}),
+		iconTransformation(
+			origin={21.9667,100},
+			extent={{-10,-10},{10,10}})));
+	Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor_ypxp(G=G/2) annotation(Placement(transformation(
+		origin={20,50},
+		extent={{-10,-10},{10,10}},
+		rotation=-90)));
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_ynxp annotation(Placement(
+		transformation(
+			origin={20,-60},
+			extent={{-10,-10},{10,10}}),
+		iconTransformation(
+			origin={27.435,-100},
+			extent={{-10,-10},{10,10}})));
+	Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor_ynxp(G=G/2) annotation(Placement(transformation(
+		origin={20,-30},
+		extent={{-10,-10},{10,10}},
+		rotation=-90)));
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_zpxp annotation(Placement(
+		transformation(
+			origin={82.38679999999999,75},
+			extent={{-10,-10},{10,10}}),
+		iconTransformation(
+			origin={-58.4156,71.99290000000001},
+			extent={{-10,-10},{10,10}})));
+	Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor_zpxp(G=G/2) annotation(Placement(transformation(
+		origin={55,35},
+		extent={{-10,-10},{10,10}})));
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_znxn annotation(Placement(
+		transformation(
+			origin={-78.4414,-62.7392},
+			extent={{-10,-10},{10,10}}),
+		iconTransformation(
+			origin={56.7003,-80},
+			extent={{-10,-10},{10,10}})));
+	Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductorznxn(G=G/2) annotation(Placement(transformation(
+		origin={-65,-17.6646},
+		extent={{-10,-10},{10,10}})));
+	replaceable parameter MaterialDatabase.Material material "Material from MaterialDataBase" annotation(choicesAllMatching=true);
+	parameter Modelica.SIunits.Area A "QuerschnittstflÃƒÂ¤che des Materials/Kontaktes";
+	parameter Modelica.SIunits.Length x "LÃƒÂ¤nge des Materials in Richtung der WÃƒÂ¤rmeausbreitung";
+	protected
+		parameter Modelica.SIunits.HeatCapacity C=A*x*material.d*material.c "Heat capacity of element (= cp*m)" annotation(Placement(transformation(
+			origin={-26.5971,-26.5971},
+			extent={{-12,-12},{12,12}})));
+		parameter Modelica.SIunits.ThermalConductance G=A*material.k/x "Constant thermal conductance of material" annotation(Placement(transformation(
+			origin={24.4842,-27.2352},
+			extent={{-12,-12},{12,12}})));
+	equation
+		connect(thermalConductor_zpxp.port_b,EB_zpxp) annotation(Line(
+			points={{65,35},{70,35},{78,35},{78,75},{83,75}},
+			color={191,0,0},
+			visible=true,
+			origin={76.5912,48.3333}));
+		connect(thermalConductor_zp.port_a,EB_zpxn) annotation(Line(
+			points={{-60,52},{-65,52},{-75,52},{-75,80},{-80,80}},
+			color={191,0,0},
+			visible=true,
+			origin={-73.33329999999999,61.3066}));
+		connect(thermalConductor_ynxn.port_b,EB_ynxn) annotation(Line(
+			points={{-20,-40},{-20,-45},{-25,-45},{-25,-60},{-20,-60}},
+			color={191,0,0},
+			visible=true,
+			origin={-20,-50}));
+		connect(thermalConductor_znxp.port_b,EB_znxp) annotation(Line(
+			points={{70,-30},{75,-30},{80,-30},{80,-60},{85,-60}},
+			color={191,0,0},
+			visible=true,
+			origin={80,-40}));
+		connect(thermalConductorznxn.port_a,EB_znxn) annotation(Line(
+			points={{-75,-18},{-80,-18},{-80,-40},{-73,-40},{-73,-63},{-78,
+			-63}},
+			color={191,0,0},
+			visible=true,
+			origin={-77.2942,-32.6895}));
+		connect(thermalConductor_ynxp.port_b,EB_ynxp) annotation(Line(
+			points={{20,-40},{20,-45},{15,-45},{15,-60},{20,-60}},
+			color={191,0,0},
+			visible=true,
+			origin={20,-50}));
+		connect(thermalConductor_ypxp.port_a,EB_ypxp) annotation(Line(
+			points={{20,60},{20,65},{25,65},{25,80},{20,80}},
+			color={191,0,0},
+			visible=true,
+			origin={20,70}));
+		connect(thermalConductor_ypxn.port_a,EB_ypxn) annotation(Line(
+			points={{-20,60},{-20,65},{-15,65},{-15,80},{-20,80}},
+			color={191,0,0},
+			visible=true,
+			origin={-20,70}));
+		connect(thermalConductorznxn.port_b,heatCapacitor1.port) annotation(Line(
+			points={{-55,-18},{-50,-18},{0,-18},{0,-5},{0,0}},
+			color={191,0,0},
+			visible=true,
+			origin={-18.3333,-11.7764}));
+		connect(heatCapacitor1.port,thermalConductor_zpxp.port_a) annotation(Line(
+			points={{0,0},{0,-5},{20,-5},{20,35},{40,35},{45,
+			35}},
+			color={191,0,0},
+			visible=true,
+			origin={25.8,12.8}));
+		connect(thermalConductor_znxp.port_a,heatCapacitor1.port) annotation(Line(
+			points={{50,-30},{45,-30},{0,-30},{0,-5},{0,0}},
+			color={191,0,0},
+			visible=true,
+			origin={16.6667,-20}));
+		connect(heatCapacitor1.port,thermalConductor_ynxp.port_a) annotation(Line(
+			points={{0,0},{0,-5},{0,-15},{20,-15},{20,-20}},
+			color={191,0,0},
+			visible=true,
+			origin={10,-13.5}));
+		connect(thermalConductor_ynxn.port_a,heatCapacitor1.port) annotation(Line(
+			points={{-20,-20},{-20,-15},{-20,-5},{0,-5},{0,0}},
+			color={191,0,0},
+			visible=true,
+			origin={-10,-6.5}));
+		connect(heatCapacitor1.port,thermalConductor_ypxn.port_b) annotation(Line(
+			points={{0,0},{0,-5},{-20,-5},{-20,35},{-20,40}},
+			color={191,0,0},
+			visible=true,
+			origin={-10,8.5}));
+		connect(thermalConductor_ypxp.port_b,heatCapacitor1.port) annotation(Line(
+			points={{20,40},{20,35},{20,-5},{0,-5},{0,0}},
+			color={191,0,0},
+			visible=true,
+			origin={10,8.5}));
+		connect(thermalConductor_xp.port_b,EB_xp) annotation(Line(
+			points={{50,0},{55,0},{75,0},{80,0}},
+			color={191,0,0},
+			visible=true,
+			origin={65,0}));
+		connect(heatCapacitor1.port,thermalConductor_xp.port_a) annotation(Line(
+			points={{0,0},{0,-5},{13,-5},{13,0},{25,0},{30,
+			0}},
+			color={191,0,0},
+			visible=true,
+			origin={16.8,-1.2}));
+		connect(thermalConductor_xn.port_a,EB_xn) annotation(Line(
+			points={{-50,0},{-55,0},{-75,0},{-80,0}},
+			color={191,0,0},
+			visible=true,
+			origin={-65,0}));
+		connect(thermalConductor_xn.port_b,heatCapacitor1.port) annotation(Line(
+			points={{-30,0},{-25,0},{-25,-5},{0,-5},{0,0}},
+			color={191,0,0},
+			visible=true,
+			origin={-16.8,-1.2}));
+		connect(thermalConductor_zp.port_b,heatCapacitor1.port) annotation(Line(
+			points={{-40,52},{-35,52},{-35,-5},{0,-5},{0,0}},
+			color={191,0,0},
+			visible=true,
+			origin={-22.8,19.584}));
+		connect(dissipationPower,heatCapacitor1.port) annotation(Line(
+			points={{-55,-35},{-50,-35},{0,-35},{0,-5},{0,0}},
+			color={191,0,0},
+			visible=true,
+			origin={-26.6667,-17.3285}));
+	annotation(
+		viewSettings(clrRaster=8421504),
+		Icon(
+			coordinateSystem(
+				extent={{-100,-100},{100,100}},
+				grid={10,10}),
+			graphics={
+			Rectangle(
+				pattern=LinePattern.Dot,
+				lineColor={255,0,0},
+				fillColor={255,255,255},
+				fillPattern=FillPattern.Sphere,
+				extent={{-100,-100},{100,100}},
+				visible=true),
+			Text(
+				textString="xp",
+				fillPattern=FillPattern.Solid,
+				extent={{-11.0499,-8.5595},{11.0499,8.5595}},
+				visible=true,
+				origin={77.023,0}),
+			Text(
+				textString="xn",
+				fillPattern=FillPattern.Solid,
+				extent={{-11.0499,-8.5595},{11.0499,8.5595}},
+				visible=true,
+				origin={-75.1195,0}),
+			Text(
+				textString="ypxn",
+				fillPattern=FillPattern.Solid,
+				extent={{-15,-8.5595},{15,8.5595}},
+				visible=true,
+				origin={-25,78.5595}),
+			Text(
+				textString="zpxn",
+				fillPattern=FillPattern.Solid,
+				extent={{-13.9556,-8.5595},{13.9556,8.5595}},
+				visible=true,
+				origin={-60,34.8863}),
+			Text(
+				textString="electrical power",
+				fillPattern=FillPattern.Solid,
+				extent={{-50,-12.4068},{50,12.4068}},
+				visible=true,
+				origin={0,22.4068}),
+			Text(
+				textString="zpxp",
+				fillPattern=FillPattern.Solid,
+				extent={{-13.9556,-8.5595},{13.9556,8.5595}},
+				visible=true,
+				origin={-36.0444,56.6625}),
+			Text(
+				textString="ypxp",
+				fillPattern=FillPattern.Solid,
+				extent={{-15,-8.5595},{15,8.5595}},
+				visible=true,
+				origin={21.9912,78.5595}),
+			Text(
+				textString="znxn",
+				fillPattern=FillPattern.Solid,
+				extent={{-13.9556,-8.5595},{13.9556,8.5595}},
+				visible=true,
+				origin={31.8969,-61.4405}),
+			Text(
+				textString="znxp",
+				fillPattern=FillPattern.Solid,
+				extent={{-13.9556,-8.5595},{13.9556,8.5595}},
+				visible=true,
+				origin={53.9556,-40}),
+			Text(
+				textString="ynxp",
+				fillPattern=FillPattern.Solid,
+				extent={{-15,-8.5595},{15,8.5595}},
+				visible=true,
+				origin={27.2061,-81.4405}),
+			Text(
+				textString="ynxn",
+				fillPattern=FillPattern.Solid,
+				extent={{-15,-8.5595},{15,8.5595}},
+				visible=true,
+				origin={-20,-81.4405})}),
+		Diagram(coordinateSystem(
+			extent={{-148.5,-105},{148.5,105}},
+			grid={5,5})),
+		experiment(
+			StopTime=1,
+			StartTime=0));
 end thermalModel_ElectronicBoxDouble;

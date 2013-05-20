@@ -74,39 +74,40 @@ model thermalModel_ElectronicBox "Zentraler Knoten des Bausteinmodells mit Schni
 		origin={31,35},
 		extent={{-10,-10},{10,10}})));
 	replaceable parameter MaterialDatabase.Material material "Material from MaterialDataBase" annotation(choicesAllMatching=true);
-	parameter Modelica.SIunits.Area A "Querschnittstflaeche des Materials/Kontaktes";
-	parameter Modelica.SIunits.Length x "Laenge des Materials in Richtung der Waermeausbreitung";
+	parameter Modelica.SIunits.Length x "Laenge des Materials in x Richtung der Waermeausbreitung";
+	parameter Modelica.SIunits.Length y "Laenge des Materials in y Richtung der Waermeausbreitung";
+	parameter Modelica.SIunits.Length z "Laenge des Materials in z Richtung der Waermeausbreitung";
 	protected
-		parameter Modelica.SIunits.HeatCapacity C=A*x*material.d*material.c "Heat capacity of element (= cp*m)";
-		parameter Modelica.SIunits.ThermalConductance G=A*material.k/x "Constant thermal conductance of material";
+		parameter Modelica.SIunits.HeatCapacity C=x*y*z*material.d*material.c "Heat capacity of element (= cp*m)";
+		parameter Modelica.SIunits.ThermalConductance G=y*z*material.k/x "Constant thermal conductance of material";
 	equation
 		connect(thermalConductor_xp.port_b,EB_xp) annotation(Line(
-			points={{-10,0},{10,-0}},
+			points={{40,0},{45,0},{55,0},{60,0}},
 			color={191,0,0},
 			visible=true,
 			origin={50,0}));
 		connect(thermalConductor_yp.port_a,EB_yp) annotation(Line(
-			points={{0,-10.8667},{0,10.8668}},
+			points={{0,58},{0,63},{5,63},{5,80},{0,80}},
 			color={191,0,0},
 			visible=true,
 			origin={0,69.1332}));
 		connect(thermalConductor_yn.port_b,EB_yn) annotation(Line(
-			points={{0,10},{-0,-10}},
+			points={{0,-60},{0,-65},{-5,-65},{-5,-80},{0,-80}},
 			color={191,0,0},
 			visible=true,
 			origin={0,-70}));
 		connect(thermalConductor_xn.port_a,EB_xn) annotation(Line(
-			points={{10,0},{-10,-0}},
+			points={{-40,0},{-45,0},{-55,0},{-60,0}},
 			color={191,0,0},
 			visible=true,
 			origin={-50,0}));
 		connect(thermalConductor_zp.port_a,EB_zp) annotation(Line(
-			points={{-39,-35},{-44,-35},{-48,-35},{-48,-60},{-53,-60}},
+			points={{-39,-35},{-44,-35},{-49,-35},{-49,-60},{-54,-60}},
 			color={191,0,0},
 			visible=true,
 			origin={-43.3333,43.3333}));
 		connect(thermalConductor_zn.port_b,EB_zn) annotation(Line(
-			points={{41,35},{46,35},{52,35},{52,60},{57,60}},
+			points={{41,35},{46,35},{51,35},{51,60},{56,60}},
 			color={191,0,0},
 			visible=true,
 			origin={43.3333,-43.3333}));
@@ -121,28 +122,29 @@ model thermalModel_ElectronicBox "Zentraler Knoten des Bausteinmodells mit Schni
 			visible=true,
 			origin={6.6667,-20}));
 		connect(thermalConductor_yn.port_a,heatCapacitor1.port) annotation(Line(
-			points={{0,-20},{-0,20}},
+			points={{0,-40},{0,-35},{0,-5},{0,0}},
 			color={191,0,0},
 			visible=true,
 			origin={0,-20}));
 		connect(heatCapacitor1.port,thermalConductor_xp.port_a) annotation(Line(
-			points={{-10.8,1.2},{-10.8,-1.8},{6.2,-1.8},{6.2,1.2},{9.199999999999999,1.2}},
+			points={{0,0},{0,-5},{8,-5},{8,0},{15,0},{20,
+			0}},
 			color={191,0,0},
 			visible=true,
 			origin={10.8,-1.2}));
 		connect(thermalConductor_xn.port_b,heatCapacitor1.port) annotation(Line(
-			points={{-9.199999999999999,1.2},{-6.2,1.2},{-6.2,-1.8},{10.8,-1.8},{10.8,1.2}},
+			points={{-20,0},{-15,0},{-15,-5},{0,-5},{0,0}},
 			color={191,0,0},
 			visible=true,
 			origin={-10.8,-1.2}));
 		connect(heatCapacitor1.port,thermalConductor_yp.port_b) annotation(Line(
-			points={{4.3333,-17.1332},{4.3333,-20.1332},{-8.666700000000001,-20.1332},{-8.666700000000001,18.1332},{4.3333,18.1332},{4.3333,
-			21.1332}},
+			points={{0,0},{0,-5},{-10,-5},{-10,33},{0,33},{0,
+			38}},
 			color={191,0,0},
 			visible=true,
 			origin={-4.3333,17.1332}));
 		connect(dissipationPower,heatCapacitor1.port) annotation(Line(
-			points={{-38,35},{-33,35},{-33,-5},{0,-5},{0,0}},
+			points={{-39,35},{-34,35},{-34,-5},{0,-5},{0,0}},
 			color={191,0,0},
 			visible=true,
 			origin={-26.6667,-17.3285}));
