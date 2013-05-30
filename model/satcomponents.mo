@@ -768,5 +768,11 @@ package satcomponents
       annotation(Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2}), graphics = {Rectangle(origin = {1.83333,-2.83333}, extent = {{-84.1667,-92.1667},{84.1667,92.1667}}),Text(origin = {1.66667,63}, extent = {{-63.3333,10.6667},{63.3333,-10.6667}}, textString = "Verbraucher"),Text(origin = {3,-23}, extent = {{-61.3333,35.3333},{61.3333,-35.3333}}, textString = "%power_nominal W")}), experiment(StartTime = 0.0, StopTime = 100.0, Tolerance = 0.000001));
     end verbraucher;
   end power;
+  package AOCS
+    model reactionwheel
+      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
+    end reactionwheel;
+  end AOCS;
+  annotation(Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2}), graphics = {Polygon(origin = {-0.495835,-3.82998}, points = {{-11.5042,31.4966},{33.1625,8.16331},{11.8292,-31.5034},{-33.1708,-7.17002},{-11.5042,31.4966}}),Polygon(origin = {41.3475,49.7145}, fillColor = {0,0,255}, fillPattern = FillPattern.VerticalCylinder, points = {{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}}),Polygon(origin = {-23.6525,-62.9522}, fillColor = {0,0,255}, fillPattern = FillPattern.VerticalCylinder, points = {{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}}),Polygon(origin = {36.1669,-23.4602}, points = {{-8.16695,13.1269},{-13.1669,4.12686},{-0.500278,-13.5398},{13.1664,11.1269},{-8.16695,13.1269}}),Polygon(origin = {-35.7693,14.651}, points = {{16.7693,29.6823},{14.7693,5.68234},{1.10267,-18.651},{-16.8973,-29.3177},{16.7693,29.6823}})}));
 end satcomponents;
 
