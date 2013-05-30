@@ -649,7 +649,7 @@ package satcomponents
         connect(solarcell_simple1.p,ground1.p) annotation(Line(points = {{-52,-15},{-52,-37},{-39.6667,-37},{-39.6667,-37}}));
         connect(solarcell_simple1.n,idealdiode1.p) annotation(Line(points = {{-52,5},{-52,18},{-52,18},{-52,18}}));
         connect(trapezoid1.y,solarcell_simple1.E_s) annotation(Line(points = {{-73,-5},{-60.3333,-5},{-60.3333,-5},{-60.3333,-5}}));
-        annotation(Diagram, Icon, experiment(StartTime = 0.0, StopTime = 20000, Tolerance = 0.000001));
+        annotation(Diagram, Icon, experiment(StartTime = 0.0, StopTime = 40000.0, Tolerance = 0.000001));
       end unregulated_DET;
       model PID_verbraucher
         extends Modelica.Icons.Example;

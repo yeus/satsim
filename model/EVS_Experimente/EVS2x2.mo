@@ -1,8 +1,8 @@
 model EVS2x2
-  bb_catalogue.bb_verbraucher bb_verbraucher3 annotation(Placement(visible = true, transformation(origin = {-23.4795,-7.07215}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-  bb_catalogue.bb_solar bb_solar1 annotation(Placement(visible = true, transformation(origin = {14.4272,-7.35502}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-  bb_catalogue.bb_verbraucher bb_verbraucher1 annotation(Placement(visible = true, transformation(origin = {-24.0453,33.6634}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-  bb_catalogue.bb_verbraucher bb_verbraucher2 annotation(Placement(visible = true, transformation(origin = {14.1443,35.0778}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  iboss.buildingblocks.verbraucher bb_verbraucher3 annotation(Placement(visible = true, transformation(origin = {-23.4795,-7.07215}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  iboss.buildingblocks.solar bb_solar1 annotation(Placement(visible = true, transformation(origin = {14.4272,-7.35502}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  iboss.buildingblocks.verbraucher bb_verbraucher1 annotation(Placement(visible = true, transformation(origin = {-24.0453,33.6634}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+  iboss.buildingblocks.verbraucher bb_verbraucher2 annotation(Placement(visible = true, transformation(origin = {14.1443,35.0778}, extent = {{-12,-12},{12,12}}, rotation = 0)));
   Modelica.Blocks.Sources.Trapezoid trapezoid1(amplitude = 1367, width = 1000, period = 3000, rising = 60, falling = 60) annotation(Placement(visible = true, transformation(origin = {28.6717,-48.7037}, extent = {{-7.45106,-7.45106},{7.45106,7.45106}}, rotation = 0)));
 equation
   connect(bb_verbraucher1.Xp,bb_verbraucher2.Xn) annotation(Line(points = {{-12.2826,33.6684},{1.41443,33.6684},{1.41443,35.0565},{2.13446,35.0565}}));
