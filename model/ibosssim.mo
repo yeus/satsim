@@ -90,12 +90,12 @@ package iboss
     end solar;
     model battery
       extends iboss.buildingblocks.basic;
-      Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {0.565801,-28.8543}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      Modelica.Electrical.Analog.Sources.TrapezoidVoltage trapezoidvoltage1(V = 40, rising = 100, width = 1000, falling = 100, period = 3000) annotation(Placement(visible = true, transformation(origin = {-32.2489,-1.69732}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+      satcomponents.power.batteries.battery battery1(Vnominal = 70) annotation(Placement(visible = true, transformation(origin = {-27.3333,-0.666667}, extent = {{10,-10},{-10,10}}, rotation = 90)));
+      Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-32.7675,-43.1876}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     equation
-      connect(trapezoidvoltage1.n,int_Xn.gnd) annotation(Line(points = {{-32.2489,-13.6973},{-68.7412,-13.6973},{-68.7412,-6.11033},{-68.7185,-6.11033}}));
-      connect(int_Xn.vcc,trapezoidvoltage1.p) annotation(Line(points = {{-68.7524,-2.17255},{-68.1754,-2.17255},{-68.1754,10.4668},{-32.2489,10.4668},{-32.2489,10.3027}}));
-      connect(trapezoidvoltage1.n,ground1.p) annotation(Line(points = {{-32.2489,-13.6973},{0.282885,-13.6973},{0.282885,-16.8543},{0.565801,-16.8543}}));
+      connect(battery1.p,int_Xn.vcc) annotation(Line(points = {{-27.3333,9.33333},{-27.3333,9.33333},{-48,9.33333},{-48,-2},{-69,-2},{-69,-2}}));
+      connect(battery1.n,ground1.p) annotation(Line(points = {{-27.3333,-10.6667},{-27.3333,-11},{-33,-11},{-33,-31},{-33,-31}}));
+      connect(battery1.n,int_Xn.gnd) annotation(Line(points = {{-27.3333,-10.6667},{-27.3333,-11},{-56.3333,-11},{-56.3333,-6},{-68.6667,-6},{-68.6667,-6}}));
       annotation(experiment(StartTime = 0.0, StopTime = 11000.0, Tolerance = 0.0001));
     end battery;
     model verbraucher
@@ -161,26 +161,26 @@ package iboss
       annotation(experiment(StartTime = 0.0, StopTime = 20000.0, Tolerance = 0.000001));
     end generic_sat;
     model EVS2x2x1
-      iboss.buildingblocks.verbraucher bb_verbraucher1 annotation(Placement(visible = true, transformation(origin = {36.7751,-15.2758}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       iboss.components.connectionelement connectionelement1 annotation(Placement(visible = true, transformation(origin = {5.94059,-14.9929}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      iboss.buildingblocks.verbraucher bb_verbraucher2 annotation(Placement(visible = true, transformation(origin = {36.2093,40.7355}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+      iboss.buildingblocks.verbraucher v1 annotation(Placement(visible = true, transformation(origin = {36.2093,40.7355}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       iboss.components.connectionelement connectionelement3 annotation(Placement(visible = true, transformation(origin = {6.22348,41.0184}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      iboss.buildingblocks.verbraucher bb_verbraucher3 annotation(Placement(visible = true, transformation(origin = {-24.0453,41.867}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      Modelica.Blocks.Sources.Trapezoid trapezoid1(amplitude = 1367, width = 1000, period = 3000, rising = 60, falling = 60) annotation(Placement(visible = true, transformation(origin = {-72.4187,-15.5587}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      iboss.buildingblocks.solar bb_solar1 annotation(Placement(visible = true, transformation(origin = {-25.1768,-15.5587}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+      iboss.buildingblocks.verbraucher v2 annotation(Placement(visible = true, transformation(origin = {-24.0453,41.867}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+      iboss.buildingblocks.solar s1 annotation(Placement(visible = true, transformation(origin = {-25.1768,-15.5587}, extent = {{-12,12},{12,-12}}, rotation = -90)));
       iboss.components.connectionelement connectionelement2 annotation(Placement(visible = true, transformation(origin = {35.3607,12.7298}, extent = {{-12,12},{12,-12}}, rotation = -90)));
       iboss.components.connectionelement connectionelement4 annotation(Placement(visible = true, transformation(origin = {-25.1768,13.5785}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+      iboss.buildingblocks.battery b1 annotation(Placement(visible = true, transformation(origin = {34.6667,-15.6667}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Blocks.Sources.Trapezoid trapezoid1(amplitude = 1367, width = 1000, period = 3000, rising = 60, falling = 60) annotation(Placement(visible = true, transformation(origin = {-73.4187,-43.5587}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     equation
-      connect(trapezoid1.y,bb_solar1.u) annotation(Line(points = {{-59.2187,-15.5587},{-17.8218,-15.5587},{-17.8218,-21.8727},{-17.6747,-21.8727}}));
-      connect(connectionelement4.int1,bb_solar1.Xn) annotation(Line(points = {{-24.6337,2.95333},{-25.4597,2.95333},{-25.4597,-3.54886},{-25.1981,-3.54886}}));
-      connect(bb_verbraucher3.Yn,connectionelement4.int2) annotation(Line(points = {{-24.0814,30.4323},{-24.0814,24.8939},{-24.6934,24.8939},{-24.6934,24.1276}}));
-      connect(bb_verbraucher3.Xp,connectionelement3.int2) annotation(Line(points = {{-12.2826,41.8721},{-3.9604,41.8721},{-3.9604,41.5018},{-4.32566,41.5018}}));
-      connect(connectionelement3.int1,bb_verbraucher2.Xn) annotation(Line(points = {{16.8487,41.5615},{24.0453,41.5615},{24.0453,40.7142},{24.1995,40.7142}}));
-      connect(connectionelement2.int1,bb_verbraucher1.Yp) annotation(Line(points = {{35.9038,2.10467},{36.2093,2.10467},{36.2093,-3.46421},{36.6168,-3.46421}}));
-      connect(bb_verbraucher2.Yn,connectionelement2.int2) annotation(Line(points = {{36.1732,29.3007},{36.1732,23.7624},{35.8441,23.7624},{35.8441,23.279}}));
-      connect(connectionelement1.int2,bb_solar1.Yp) annotation(Line(points = {{-4.60855,-14.5095},{-12.447,-14.5095},{-12.447,-15.4004},{-13.3652,-15.4004}}));
-      connect(connectionelement1.int1,bb_verbraucher1.Xn) annotation(Line(points = {{16.5658,-14.4498},{24.8939,-14.4498},{24.8939,-15.2971},{24.7653,-15.2971}}));
-      annotation(experiment(StartTime = 0.0, StopTime = 10000.0, Tolerance = 0.000001));
+      connect(b1.Xn,connectionelement1.int1) annotation(Line(points = {{24.6585,-15.6844},{17,-15.6844},{17,-14.6667},{17,-14.6667}}));
+      connect(connectionelement2.int1,b1.Yp) annotation(Line(points = {{34.8176,2.10463},{34.8176,-5.66667},{35,-5.66667},{35,-5.66667}}));
+      connect(v1.Yn,connectionelement2.int2) annotation(Line(points = {{36.2498,29.0795},{35.6667,29.0795},{35.6667,23.6667},{35.6667,23.6667}}));
+      connect(connectionelement3.int1,v1.Xn) annotation(Line(points = {{16.8487,41.5615},{24.3333,41.5615},{24.3333,40.6667},{24.3333,40.6667}}));
+      connect(v2.Xp,connectionelement3.int2) annotation(Line(points = {{-12.0655,41.9075},{-4.66667,41.9075},{-4.66667,41},{-4.66667,41}}));
+      connect(connectionelement4.int2,v2.Yn) annotation(Line(points = {{-25.6602,24.1276},{-25.6602,30},{-24,30},{-24,30}}));
+      connect(s1.Xn,connectionelement4.int1) annotation(Line(points = {{-25.1555,-3.54886},{-25.1555,2.66667},{-25.3333,2.66667},{-25.3333,2.66667}}));
+      connect(s1.Yn,connectionelement1.int2) annotation(Line(points = {{-13.5208,-15.5992},{-13.5208,-15.3333},{-5,-15.3333},{-5,-15.3333}}));
+      connect(trapezoid1.y,s1.u) annotation(Line(points = {{-60.2187,-43.5587},{-25,-43.5587},{-25,-42.3333},{-25,-42.3333}}));
+      annotation(experiment(StartTime = 0.0, StopTime = 20000.0, Tolerance = 0.000001));
     end EVS2x2x1;
     model EVS4x1x1
       iboss.buildingblocks.solar bb_solar1 annotation(Placement(visible = true, transformation(origin = {-79.1429,-3.14286}, extent = {{-12,12},{12,-12}}, rotation = -90)));
