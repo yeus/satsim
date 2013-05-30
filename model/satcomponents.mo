@@ -79,10 +79,9 @@ package satcomponents
         annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 20000.0, Tolerance = 0.0001));
       end batteriekennlinie;
       block Exprgenerator "Generate exponential signal"
-        import Modelica.Blocks.Interfaces;
         parameter Real alpha = 1;
         parameter Real beta = 1;
-        extends Interfaces.SO;
+        extends Modelica.Blocks.Interfaces.SO;
       equation
         //y = alpha * exp(beta * time);exp function
         y = exp(alpha * time) - 1;
@@ -634,9 +633,9 @@ package satcomponents
         Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-39.6389,-49.1485}, extent = {{-12,-12},{12,12}}, rotation = 0)));
         Modelica.Electrical.Analog.Ideal.IdealDiode idealdiode1 annotation(Placement(visible = true, transformation(origin = {-52,28.3333}, extent = {{-10,-10},{10,10}}, rotation = 90)));
         Modelica.Blocks.Sources.Trapezoid trapezoid1(amplitude = 1367, rising = 90, width = 3600, falling = 90, period = 5000) annotation(Placement(visible = true, transformation(origin = {-84,-5}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-        satpower.solar_power.solarcell_simple solarcell_simple1(N_p = 1) annotation(Placement(visible = true, transformation(origin = {-52,-5}, extent = {{-10,-10},{10,10}}, rotation = 90)));
+        power.solar_power.solarcell_simple solarcell_simple1(N_p = 1) annotation(Placement(visible = true, transformation(origin = {-52,-5}, extent = {{-10,-10},{10,10}}, rotation = 90)));
         Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 500) annotation(Placement(visible = true, transformation(origin = {62.6666,5.66667}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-        satpower.batteries.battery battery1(soc(start = 0.1), Vnominal = 40) annotation(Placement(visible = true, transformation(origin = {13.9999,-3}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+        power.batteries.battery battery1(soc(start = 0.1), Vnominal = 40) annotation(Placement(visible = true, transformation(origin = {13.9999,-3}, extent = {{-10,-10},{10,10}}, rotation = -90)));
         Modelica.Electrical.Analog.Semiconductors.ZDiode zdiode1(Bv = 39) annotation(Placement(visible = true, transformation(origin = {-21.6667,-5}, extent = {{-10,-10},{10,10}}, rotation = 90)));
         Modelica.Electrical.Analog.Ideal.IdealDiode idealdiode2 annotation(Placement(visible = true, transformation(origin = {14.3333,27.3333}, extent = {{10,-10},{-10,10}}, rotation = 90)));
       equation
@@ -666,10 +665,9 @@ package satcomponents
       annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
     end examples;
     block Exprgenerator "Generate exponential signal"
-      import Modelica.Blocks.Interfaces;
       parameter Real alpha = 1;
       parameter Real beta = 1;
-      extends Interfaces.SO;
+      extends Modelica.Blocks.Interfaces.SO;
     equation
       //y = alpha * exp(beta * time);exp function
       y = exp(alpha * time) - 1;
