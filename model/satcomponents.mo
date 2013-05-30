@@ -144,10 +144,9 @@ package satcomponents
         connect(rampvoltage1.n,ground1.p) annotation(Line(points = {{-71.57,5.5389},{-27.4399,5.5389},{-27.4399,-7.97807},{-27.5819,-7.97807}}));
       end diode_characteristic;
       block Exprgenerator "Generate exponential signal"
-        import Modelica.Blocks.Interfaces;
         parameter Real alpha = 1;
         parameter Real beta = 1;
-        extends Interfaces.SO;
+        extends Modelica.Blocks.Interfaces.SO;
       equation
         //y = alpha * exp(beta * time);exp function
         y = exp(alpha * time) - 1;
