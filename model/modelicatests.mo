@@ -47,5 +47,17 @@ package modelicatests
     end when;
     annotation(experiment(StartTime = 0.0, StopTime = 20.0, Tolerance = 0.000001));
   end noise;
+  model simplependulum
+    inner Modelica.Mechanics.MultiBody.World world annotation(Placement(visible = true, transformation(origin = {-57.6667,0.666667}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Mechanics.MultiBody.Parts.Body body1(m = 0.5, r_CM = {0,-0.2,0}) annotation(Placement(visible = true, transformation(origin = {37.6667,0.333333}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Mechanics.Rotational.Components.Damper damper2(d = 0.1) annotation(Placement(visible = true, transformation(origin = {-17.3333,36}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Mechanics.MultiBody.Joints.Revolute revolute1(phi.start = 3.14159 / 2.0, n = {0,0,1}, useAxisFlange = true) annotation(Placement(visible = true, transformation(origin = {-13.6667,-0.666667}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+  equation
+    connect(world.frame_b,revolute1.frame_a) annotation(Line(points = {{-47.6667,0.666667},{-24.3333,0.666667},{-23.6667,-0.333333},{-23.6667,-0.666667}}));
+    connect(revolute1.frame_b,body1.frame_a) annotation(Line(points = {{-3.6667,-0.666667},{27.3333,-0.666667},{27.3333,0.666667},{27.3333,0.666667}}));
+    connect(damper2.flange_a,revolute1.support) annotation(Line(points = {{-27.3333,36},{-31,36},{-31,9.33333},{-20.3333,9.33333},{-19.6667,9.33333}}));
+    connect(revolute1.axis,damper2.flange_b) annotation(Line(points = {{-13.6667,9.33333},{1,9.33333},{1,36},{-7.66667,36},{-7.66667,36}}));
+    annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
+  end simplependulum;
 end modelicatests;
 
