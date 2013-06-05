@@ -48,16 +48,23 @@ package modelicatests
     annotation(experiment(StartTime = 0.0, StopTime = 20.0, Tolerance = 0.000001));
   end noise;
   model simplependulum
-    inner Modelica.Mechanics.MultiBody.World world annotation(Placement(visible = true, transformation(origin = {-57.6667,0.666667}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-    Modelica.Mechanics.MultiBody.Parts.Body body1(m = 0.5, r_CM = {0,-0.2,0}) annotation(Placement(visible = true, transformation(origin = {37.6667,0.333333}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-    Modelica.Mechanics.Rotational.Components.Damper damper2(d = 0.1) annotation(Placement(visible = true, transformation(origin = {-17.3333,36}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-    Modelica.Mechanics.MultiBody.Joints.Revolute revolute1(phi.start = 3.14159 / 2.0, n = {0,0,1}, useAxisFlange = true) annotation(Placement(visible = true, transformation(origin = {-13.6667,-0.666667}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    inner Modelica.Mechanics.MultiBody.World world annotation(Placement(visible = true, transformation(origin = {-72.0362,-1.67937}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Mechanics.Rotational.Components.Damper damper2(d = 0.1) annotation(Placement(visible = true, transformation(origin = {-31.9961,35.4135}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Mechanics.MultiBody.Joints.Revolute revolute1(phi.start = 3.14159 / 2.0, n = {0,0,1}, useAxisFlange = true) annotation(Placement(visible = true, transformation(origin = {-28.3295,-1.25318}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Mechanics.MultiBody.Parts.Body body1(m = 0.5, r_CM = {0,0,0}) annotation(Placement(visible = true, transformation(origin = {46.4644,-0.839688}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedtranslation1(r = {0,-0.2,0}) annotation(Placement(visible = true, transformation(origin = {11.1437,-0.879765}, extent = {{-10,-10},{10,10}}, rotation = 0)));
   equation
-    connect(world.frame_b,revolute1.frame_a) annotation(Line(points = {{-47.6667,0.666667},{-24.3333,0.666667},{-23.6667,-0.333333},{-23.6667,-0.666667}}));
-    connect(revolute1.frame_b,body1.frame_a) annotation(Line(points = {{-3.6667,-0.666667},{27.3333,-0.666667},{27.3333,0.666667},{27.3333,0.666667}}));
-    connect(damper2.flange_a,revolute1.support) annotation(Line(points = {{-27.3333,36},{-31,36},{-31,9.33333},{-20.3333,9.33333},{-19.6667,9.33333}}));
-    connect(revolute1.axis,damper2.flange_b) annotation(Line(points = {{-13.6667,9.33333},{1,9.33333},{1,36},{-7.66667,36},{-7.66667,36}}));
+    connect(fixedtranslation1.frame_b,body1.frame_a) annotation(Line(points = {{21.1437,-0.879765},{36.0704,-0.879765},{36.0704,-0.293255},{36.0704,-0.293255}}));
+    connect(revolute1.frame_b,fixedtranslation1.frame_a) annotation(Line(points = {{-18.3295,-1.25318},{0.58651,-1.25318},{0.58651,-1.17302},{0.58651,-1.17302}}));
+    connect(world.frame_b,revolute1.frame_a) annotation(Line(points = {{-62.0362,-1.67937},{-38.1232,-1.67937},{-38.1232,-0.879765},{-38.1232,-0.879765}}));
+    connect(revolute1.axis,damper2.flange_b) annotation(Line(points = {{-28.3295,8.74682},{-13.6628,9.04008},{-13.6628,35.7067},{-22.3294,35.7067},{-22.3294,35.4135}}));
+    connect(damper2.flange_a,revolute1.support) annotation(Line(points = {{-41.9961,35.4135},{-45.6628,35.4135},{-45.6628,8.74682},{-34.9961,8.74682},{-34.3295,8.74682}}));
     annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
   end simplependulum;
+  model Kreisel
+    inner Modelica.Mechanics.MultiBody.World world annotation(Placement(visible = true, transformation(origin = {-70.6666,-2.99997}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Mechanics.MultiBody.Parts.BodyCylinder bodycylinder1 annotation(Placement(visible = true, transformation(origin = {-3.66667,-4}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    annotation(Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2}), graphics = {Polygon(origin = {-5.1492,-15.9409}, fillColor = {192,192,255}, fillPattern = FillPattern.VerticalCylinder, points = {{-25.8508,50.9409},{51.1492,-19.0591},{-50.8508,-50.7258},{-25.8508,50.9409}}),Polygon(origin = {31.3167,27.9803}, fillPattern = FillPattern.Solid, points = {{-31.6501,-20.3137},{15.3499,33.6863},{31.6833,16.6863},{-17.3167,-33.647},{-31.6501,-20.3137}}),Polygon(origin = {-4.36176,0.25555}, fillColor = {0,128,0}, fillPattern = FillPattern.Solid, points = {{-30.3049,53.4111},{66.3618,-39.9222},{26.6951,-74.9222},{-66.3049,12.4111},{-30.3049,53.4111}})}));
+  end Kreisel;
 end modelicatests;
 

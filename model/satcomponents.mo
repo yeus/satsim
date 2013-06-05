@@ -772,6 +772,23 @@ package satcomponents
     model reactionwheel
       annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
     end reactionwheel;
+    model cubesatwith3axisreactionwheel
+      Modelica.Mechanics.MultiBody.Joints.Revolute revolute1(n = {0,0,1}) annotation(Placement(visible = true, transformation(origin = {15.9034,11.5514}, extent = {{-10,-10},{10,10}}, rotation = 180)));
+      Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedtranslation1(r = {0,0.03,0.02}) annotation(Placement(visible = true, transformation(origin = {-24.2834,11.5826}, extent = {{10,-10},{-10,10}}, rotation = 180)));
+      Modelica.Mechanics.MultiBody.Parts.BodyCylinder Reaktionsrad(r = {0,0,0.01}, diameter = 0.03) annotation(Placement(visible = true, transformation(origin = {54.2368,10.6136}, extent = {{10,-10},{-10,10}}, rotation = 180)));
+      inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(visible = true, transformation(origin = {-74.9845,45.4769}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Mechanics.MultiBody.Parts.Body Struktur(m = 1, I_11 = 0.0018, I_22 = 0.0017, I_33 = 0.0016, r_CM = {0,0,0.05}, useQuaternions = false) annotation(Placement(visible = true, transformation(origin = {-55.3209,11.2744}, extent = {{-10,-10},{10,10}}, rotation = 180)));
+    equation
+      connect(Struktur.frame_a,fixedtranslation1.frame_a) annotation(Line(points = {{-45.3209,11.2744},{-34.5298,11.2744},{-34.5298,11.2275},{-34.5298,11.2275}}));
+      connect(revolute1.frame_a,Reaktionsrad.frame_a) annotation(Line(points = {{25.9034,11.5514},{42.8443,11.3395},{44.2368,11.6728},{44.2368,10.6136}}));
+      connect(fixedtranslation1.frame_b,revolute1.frame_b) annotation(Line(points = {{-14.2834,11.5826},{5.71966,11.5826},{5.71966,11.5514},{5.90339,11.5514}}));
+      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 50.0, Tolerance = 0.0001));
+    end cubesatwith3axisreactionwheel;
+    model freerotatingcube
+      inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(visible = true, transformation(origin = {-63.3333,16.6667}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Mechanics.MultiBody.Parts.BodyBox bodybox1(r = {0,0.1,0.0}, r_shape = {0,0,0}, lengthDirection = {0,1,0}, widthDirection = {1,0,0}, length = 0.1, width = 0.2, height = 0.1, innerWidth = 0, innerHeight = 0, angles_fixed = true, w_0_fixed = true, z_0_fixed = false, mo = 1, w_0_start = {0.1,0.2,0.3}, useQuaternions = false) annotation(Placement(visible = true, transformation(origin = {10.3333,17.6667}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 500.0, Tolerance = 0.0001));
+    end freerotatingcube;
   end AOCS;
   annotation(Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2}), graphics = {Polygon(origin = {-0.495835,-3.82998}, points = {{-11.5042,31.4966},{33.1625,8.16331},{11.8292,-31.5034},{-33.1708,-7.17002},{-11.5042,31.4966}}),Polygon(origin = {41.3475,49.7145}, fillColor = {0,0,255}, fillPattern = FillPattern.VerticalCylinder, points = {{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}}),Polygon(origin = {-23.6525,-62.9522}, fillColor = {0,0,255}, fillPattern = FillPattern.VerticalCylinder, points = {{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}}),Polygon(origin = {36.1669,-23.4602}, points = {{-8.16695,13.1269},{-13.1669,4.12686},{-0.500278,-13.5398},{13.1664,11.1269},{-8.16695,13.1269}}),Polygon(origin = {-35.7693,14.651}, points = {{16.7693,29.6823},{14.7693,5.68234},{1.10267,-18.651},{-16.8973,-29.3177},{16.7693,29.6823}})}));
 end satcomponents;
