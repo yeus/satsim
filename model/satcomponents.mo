@@ -773,16 +773,24 @@ package satcomponents
       annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
     end reactionwheel;
     model cubesatwith3axisreactionwheel
-      Modelica.Mechanics.MultiBody.Joints.Revolute revolute1(n = {0,0,1}) annotation(Placement(visible = true, transformation(origin = {15.9034,11.5514}, extent = {{-10,-10},{10,10}}, rotation = 180)));
-      Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedtranslation1(r = {0,0.03,0.02}) annotation(Placement(visible = true, transformation(origin = {-24.2834,11.5826}, extent = {{10,-10},{-10,10}}, rotation = 180)));
-      Modelica.Mechanics.MultiBody.Parts.BodyCylinder Reaktionsrad(r = {0,0,0.01}, diameter = 0.03) annotation(Placement(visible = true, transformation(origin = {54.2368,10.6136}, extent = {{10,-10},{-10,10}}, rotation = 180)));
       inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(visible = true, transformation(origin = {-74.9845,45.4769}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      Modelica.Mechanics.MultiBody.Parts.Body Struktur(m = 1, I_11 = 0.0018, I_22 = 0.0017, I_33 = 0.0016, r_CM = {0,0,0.05}, useQuaternions = false) annotation(Placement(visible = true, transformation(origin = {-55.3209,11.2744}, extent = {{-10,-10},{10,10}}, rotation = 180)));
+      Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedtranslation1(r = {0,0.03,0.02}) annotation(Placement(visible = true, transformation(origin = {-34.688,0.599941}, extent = {{10,-10},{-10,10}}, rotation = 180)));
+      Modelica.Mechanics.MultiBody.Parts.BodyCylinder Reaktionsrad(r = {0,0,0.01}, diameter = 0.03) annotation(Placement(visible = true, transformation(origin = {43.8322,-0.369059}, extent = {{10,-10},{-10,10}}, rotation = 180)));
+      Modelica.Mechanics.MultiBody.Parts.Body Struktur(m = 1, I_11 = 0.0018, I_22 = 0.0017, I_33 = 0.0016, r_CM = {0,0,0.05}, useQuaternions = false) annotation(Placement(visible = true, transformation(origin = {-65.7255,0.291741}, extent = {{-10,-10},{10,10}}, rotation = 180)));
+      Modelica.Mechanics.MultiBody.Joints.Revolute revolute1(n = {0,0,1}, useAxisFlange = true) annotation(Placement(visible = true, transformation(origin = {5.49878,0.568741}, extent = {{10,-10},{-10,10}}, rotation = 180)));
+      Modelica.Mechanics.MultiBody.Joints.FreeMotion freemotion1(useQuaternions = false) annotation(Placement(visible = true, transformation(origin = {-44.2197,45.6647}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Mechanics.Rotational.Sources.Torque torque1 annotation(Placement(visible = true, transformation(origin = {2.11161,-32.8808}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Blocks.Sources.Trapezoid trapezoid1(rising = 0.5, width = 2.0, falling = 0.5, startTime = 5.0, period = 10, nperiod = 2, amplitude = 0.001) annotation(Placement(visible = true, transformation(origin = {-57.9059,-33.6468}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     equation
-      connect(Struktur.frame_a,fixedtranslation1.frame_a) annotation(Line(points = {{-45.3209,11.2744},{-34.5298,11.2744},{-34.5298,11.2275},{-34.5298,11.2275}}));
-      connect(revolute1.frame_a,Reaktionsrad.frame_a) annotation(Line(points = {{25.9034,11.5514},{42.8443,11.3395},{44.2368,11.6728},{44.2368,10.6136}}));
-      connect(fixedtranslation1.frame_b,revolute1.frame_b) annotation(Line(points = {{-14.2834,11.5826},{5.71966,11.5826},{5.71966,11.5514},{5.90339,11.5514}}));
-      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 50.0, Tolerance = 0.0001));
+      connect(trapezoid1.y,torque1.tau) annotation(Line(points = {{-46.9059,-33.6468},{-10.5581,-33.6468},{-10.5581,-33.1825},{-10.5581,-33.1825}}));
+      connect(revolute1.axis,torque1.flange) annotation(Line(points = {{5.49878,-9.43126},{22.9261,-9.43126},{22.9261,-33.1825},{12.0664,-33.1825},{12.0664,-33.1825}}));
+      connect(torque1.support,revolute1.support) annotation(Line(points = {{2.11161,-42.8808},{-20.5128,-42.8808},{-20.5128,-9.04977},{-0.603318,-9.04977},{-0.603318,-9.04977}}));
+      connect(freemotion1.frame_b,Struktur.frame_a) annotation(Line(points = {{-34.2197,45.6647},{-27.4566,45.6647},{-27.4566,23.4104},{-50,23.4104},{-50,0.289017},{-56.0694,0.289017},{-56.0694,0.289017}}));
+      connect(world.frame_b,freemotion1.frame_a) annotation(Line(points = {{-64.9845,45.4769},{-54.6243,45.4769},{-54.6243,45.6647},{-54.6243,45.6647}}));
+      connect(revolute1.frame_a,fixedtranslation1.frame_b) annotation(Line(points = {{-4.50122,0.568741},{-24.8555,0.568741},{-24.8555,0.289017},{-24.8555,0.289017}}));
+      connect(revolute1.frame_b,Reaktionsrad.frame_a) annotation(Line(points = {{15.4988,0.568741},{33.526,0.568741},{33.526,0},{33.526,0}}));
+      connect(Struktur.frame_a,fixedtranslation1.frame_a) annotation(Line(points = {{-55.7255,0.291741},{-44.9344,0.291741},{-44.9344,0.244841},{-44.9344,0.244841}}));
+      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 30, Tolerance = 0.0001));
     end cubesatwith3axisreactionwheel;
     model freerotatingcube
       inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(visible = true, transformation(origin = {-63.3333,16.6667}, extent = {{-10,-10},{10,10}}, rotation = 0)));
