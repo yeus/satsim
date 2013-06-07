@@ -770,33 +770,89 @@ package satcomponents
   end power;
   package AOCS
     model reactionwheel
-      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
+      Modelica.Mechanics.MultiBody.Joints.Revolute Gelenk(n = {0,0,1}, useAxisFlange = true) annotation(Placement(visible = true, transformation(origin = {-0.859602,-18.5064}, extent = {{10,-10},{-10,10}}, rotation = 270)));
+      Modelica.Mechanics.MultiBody.Parts.BodyCylinder Schwungmasse(r = {0,0,0.003}, diameter = 0.01) annotation(Placement(visible = true, transformation(origin = {-1.83254,27.0876}, extent = {{10,-10},{-10,10}}, rotation = 270)));
+      Modelica.Mechanics.Rotational.Sources.Torque Moment annotation(Placement(visible = true, transformation(origin = {39.3948,-16.4068}, extent = {{10,-10},{-10,10}}, rotation = 0)));
+      Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(visible = true, transformation(origin = {19.0752,-86.9942}, extent = {{-10,-10},{10,10}}, rotation = 90), iconTransformation(origin = {19,-100}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+      Modelica.Electrical.Analog.Interfaces.NegativePin pin_n annotation(Placement(visible = true, transformation(origin = {99.711,-67.6301}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {98.2659,-73.4104}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Sensors.PowerSensor powersensor1 annotation(Placement(visible = true, transformation(origin = {71.3873,-23.9884}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+      Modelica.Electrical.Analog.Basic.Resistor resistor1 annotation(Placement(visible = true, transformation(origin = {71.3873,-55.4913}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+      Modelica.Electrical.Analog.Interfaces.PositivePin pin_p annotation(Placement(visible = true, transformation(origin = {100,-34.3931}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {98.2659,-37.8613}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    equation
+      connect(powersensor1.pc,pin_p) annotation(Line(points = {{71.3873,-13.9884},{71.3873,-3.46821},{88.7283,-3.46821},{88.7283,-34.3931},{100,-34.3931},{100,-34.3931}}));
+      connect(powersensor1.pv,resistor1.p) annotation(Line(points = {{81.3873,-23.9884},{81.3873,-45.3757},{71.6763,-45.3757},{71.6763,-45.3757}}));
+      connect(powersensor1.nv,resistor1.n) annotation(Line(points = {{61.3873,-23.9884},{61.3873,-65.3179},{71.6763,-65.3179},{71.6763,-65.3179}}));
+      connect(resistor1.n,pin_n) annotation(Line(points = {{71.3873,-65.4913},{71.3873,-67.6301},{100,-67.6301},{100,-67.6301}}));
+      connect(powersensor1.nc,resistor1.p) annotation(Line(points = {{71.3873,-33.9884},{71.3873,-45.6647},{71.3873,-45.6647},{71.3873,-45.6647}}));
+      connect(powersensor1.power,Moment.tau) annotation(Line(points = {{60.3873,-15.9884},{60.3873,-16.474},{51.7341,-16.474},{51.7341,-16.474}}));
+      connect(frame_a,Gelenk.frame_a) annotation(Line(points = {{19.0752,-86.9942},{19.0752,-54.0462},{-1.15607,-54.0462},{-1.15607,-28.9017},{-1.15607,-28.9017}}));
+      connect(Moment.support,Gelenk.support) annotation(Line(points = {{39.3948,-26.4068},{20.5202,-26.4068},{20.5202,-24.8555},{9.24855,-24.8555},{9.24855,-24.8555}}));
+      connect(Moment.flange,Gelenk.axis) annotation(Line(points = {{29.3948,-16.4068},{20.5202,-16.4068},{20.5202,-18.4971},{8.3815,-18.4971},{8.3815,-18.4971}}));
+      connect(Schwungmasse.frame_a,Gelenk.frame_b) annotation(Line(points = {{-1.83254,17.0876},{-1.83254,-8.95954},{-1.44509,-8.95954},{-1.44509,-8.95954}}));
+      annotation(Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2}), graphics = {Ellipse(origin = {19.7977,-28.6127}, fillColor = {192,192,255}, fillPattern = FillPattern.Solid, extent = {{-49.5665,9.53757},{49.5665,-9.53757}}, endAngle = 360),Rectangle(origin = {19.6532,-22.5434}, fillColor = {192,192,255}, pattern = LinePattern.None, fillPattern = FillPattern.Solid, extent = {{-48.8439,6.93642},{48.8439,-6.93642}}),Ellipse(origin = {19.2775,-17.2832}, fillPattern = FillPattern.Solid, extent = {{-49.5665,9.53757},{49.5665,-9.53757}}, endAngle = 360),Text(origin = {-58.9595,39.1618}, extent = {{-38.1503,29.0462},{38.1503,-29.0462}}, textString = "1D"),Rectangle(origin = {18.0636,19.5087}, fillColor = {255,0,0}, pattern = LinePattern.None, fillPattern = FillPattern.VerticalCylinder, extent = {{-5.34682,34.5376},{5.34682,-34.5376}}),Polygon(origin = {18.1895,60.2666}, fillColor = {255,0,0}, pattern = LinePattern.None, fillPattern = FillPattern.VerticalCylinder, points = {{-1.42648,13.1438},{11.0013,-12.5788},{-10.9641,-12.5788},{-1.42648,13.1438}}),Rectangle(origin = {21.3873,-62.4277}, extent = {{-8.67052,24.2775},{2.31214,-25.7225}}),Rectangle(origin = {18.3526,-61.5607}, fillColor = {0,64,0}, fillPattern = FillPattern.VerticalCylinder, extent = {{-17.7746,11.8497},{17.7746,-11.8497}}),Line(origin = {56.9364,-46.9653}, points = {{-30.9249,-8.81503},{20.5202,-8.81503},{20.5202,8.81503},{30.9249,8.81503}}),Line(origin = {61.9942,-69.7977}, points = {{26.1561,-3.90173},{16.0405,-3.90173},{16.0405,3.90173},{-26.1561,3.90173}}),Text(origin = {82.6589,-11.5607}, extent = {{-15.896,13.0058},{15.896,-13.0058}}, textString = "+"),Text(origin = {80.2023,-95.2312}, extent = {{-18.6416,23.5549},{18.9306,-18.3526}}, textString = "-")}));
     end reactionwheel;
-    model cubesatwith3axisreactionwheel
+    model freerotatingcube
+      extends Modelica.Icons.Example;
+      inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(visible = true, transformation(origin = {-63.3333,16.6667}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Mechanics.MultiBody.Parts.BodyBox bodybox1(r = {0,0.1,0.0}, r_shape = {0,0,0}, lengthDirection = {0,1,0}, widthDirection = {1,0,0}, length = 0.1, width = 0.2, height = 0.1, innerWidth = 0, innerHeight = 0, angles_fixed = true, w_0_fixed = true, z_0_fixed = false, mo = 1, w_0_start = {0.1,0.2,0.3}, useQuaternions = false) annotation(Placement(visible = true, transformation(origin = {10.3333,17.6667}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 500.0, Tolerance = 0.0001));
+    end freerotatingcube;
+    model gyroeffects
+      extends Modelica.Icons.Example;
       inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(visible = true, transformation(origin = {-74.9845,45.4769}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedtranslation1(r = {0,0.03,0.02}) annotation(Placement(visible = true, transformation(origin = {-34.688,0.599941}, extent = {{10,-10},{-10,10}}, rotation = 180)));
       Modelica.Mechanics.MultiBody.Parts.BodyCylinder Reaktionsrad(r = {0,0,0.01}, diameter = 0.03) annotation(Placement(visible = true, transformation(origin = {43.8322,-0.369059}, extent = {{10,-10},{-10,10}}, rotation = 180)));
       Modelica.Mechanics.MultiBody.Parts.Body Struktur(m = 1, I_11 = 0.0018, I_22 = 0.0017, I_33 = 0.0016, r_CM = {0,0,0.05}, useQuaternions = false) annotation(Placement(visible = true, transformation(origin = {-65.7255,0.291741}, extent = {{-10,-10},{10,10}}, rotation = 180)));
       Modelica.Mechanics.MultiBody.Joints.Revolute revolute1(n = {0,0,1}, useAxisFlange = true) annotation(Placement(visible = true, transformation(origin = {5.49878,0.568741}, extent = {{10,-10},{-10,10}}, rotation = 180)));
-      Modelica.Mechanics.MultiBody.Joints.FreeMotion freemotion1(useQuaternions = false) annotation(Placement(visible = true, transformation(origin = {-44.2197,45.6647}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       Modelica.Mechanics.Rotational.Sources.Torque torque1 annotation(Placement(visible = true, transformation(origin = {2.11161,-32.8808}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       Modelica.Blocks.Sources.Trapezoid trapezoid1(rising = 0.5, width = 2.0, falling = 0.5, startTime = 5.0, period = 10, nperiod = 2, amplitude = 0.001) annotation(Placement(visible = true, transformation(origin = {-57.9059,-33.6468}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Mechanics.MultiBody.Joints.FreeMotion freemotion1(useQuaternions = false) annotation(Placement(visible = true, transformation(origin = {-44.2197,45.3757}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     equation
+      connect(world.frame_b,freemotion1.frame_a) annotation(Line(points = {{-64.9845,45.4769},{-54.6243,45.4769},{-54.2197,45.6647},{-54.2197,45.3757}}));
+      connect(freemotion1.frame_b,Struktur.frame_a) annotation(Line(points = {{-34.2197,45.3757},{-27.4566,45.3757},{-27.4566,23.4104},{-50,23.4104},{-50,0.289017},{-56.0694,0.289017},{-56.0694,0.289017}}));
       connect(trapezoid1.y,torque1.tau) annotation(Line(points = {{-46.9059,-33.6468},{-10.5581,-33.6468},{-10.5581,-33.1825},{-10.5581,-33.1825}}));
       connect(revolute1.axis,torque1.flange) annotation(Line(points = {{5.49878,-9.43126},{22.9261,-9.43126},{22.9261,-33.1825},{12.0664,-33.1825},{12.0664,-33.1825}}));
       connect(torque1.support,revolute1.support) annotation(Line(points = {{2.11161,-42.8808},{-20.5128,-42.8808},{-20.5128,-9.04977},{-0.603318,-9.04977},{-0.603318,-9.04977}}));
-      connect(freemotion1.frame_b,Struktur.frame_a) annotation(Line(points = {{-34.2197,45.6647},{-27.4566,45.6647},{-27.4566,23.4104},{-50,23.4104},{-50,0.289017},{-56.0694,0.289017},{-56.0694,0.289017}}));
-      connect(world.frame_b,freemotion1.frame_a) annotation(Line(points = {{-64.9845,45.4769},{-54.6243,45.4769},{-54.6243,45.6647},{-54.6243,45.6647}}));
+      connect(revolute1.frame_a,fixedtranslation1.frame_b) annotation(Line(points = {{-4.50122,0.568741},{-24.8555,0.568741},{-24.8555,0.289017},{-24.8555,0.289017}}));
+      connect(revolute1.frame_b,Reaktionsrad.frame_a) annotation(Line(points = {{15.4988,0.568741},{33.526,0.568741},{33.526,0},{33.526,0}}));
+      connect(Struktur.frame_a,fixedtranslation1.frame_a) annotation(Line(points = {{-55.7255,0.291741},{-44.9344,0.291741},{-44.9344,0.244841},{-44.9344,0.244841}}));
+      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 30, Tolerance = 0.0001));
+    end gyroeffects;
+    model cubesatwith3axisreactionwheel
+      extends Modelica.Icons.Example;
+      inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(visible = true, transformation(origin = {-74.9845,45.4769}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedtranslation1(r = {0,0.03,0.02}) annotation(Placement(visible = true, transformation(origin = {-34.688,0.599941}, extent = {{10,-10},{-10,10}}, rotation = 180)));
+      Modelica.Mechanics.MultiBody.Parts.BodyCylinder Reaktionsrad(r = {0,0,0.01}, diameter = 0.03) annotation(Placement(visible = true, transformation(origin = {43.8322,-0.369059}, extent = {{10,-10},{-10,10}}, rotation = 180)));
+      Modelica.Mechanics.MultiBody.Parts.Body Struktur(m = 1, I_11 = 0.0018, I_22 = 0.0017, I_33 = 0.0016, r_CM = {0,0,0.05}, useQuaternions = false) annotation(Placement(visible = true, transformation(origin = {-65.7255,0.291741}, extent = {{-10,-10},{10,10}}, rotation = 180)));
+      Modelica.Mechanics.MultiBody.Joints.Revolute revolute1(n = {0,0,1}, useAxisFlange = true) annotation(Placement(visible = true, transformation(origin = {5.49878,0.568741}, extent = {{10,-10},{-10,10}}, rotation = 180)));
+      Modelica.Mechanics.Rotational.Sources.Torque torque1 annotation(Placement(visible = true, transformation(origin = {2.11161,-32.8808}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Blocks.Sources.Trapezoid trapezoid1(rising = 0.5, width = 2.0, falling = 0.5, startTime = 5.0, period = 10, nperiod = 2, amplitude = 0.001) annotation(Placement(visible = true, transformation(origin = {-57.9059,-33.6468}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Mechanics.MultiBody.Joints.FreeMotion freemotion1(useQuaternions = false) annotation(Placement(visible = true, transformation(origin = {-44.2197,45.3757}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    equation
+      connect(world.frame_b,freemotion1.frame_a) annotation(Line(points = {{-64.9845,45.4769},{-54.6243,45.4769},{-54.2197,45.6647},{-54.2197,45.3757}}));
+      connect(freemotion1.frame_b,Struktur.frame_a) annotation(Line(points = {{-34.2197,45.3757},{-27.4566,45.3757},{-27.4566,23.4104},{-50,23.4104},{-50,0.289017},{-56.0694,0.289017},{-56.0694,0.289017}}));
+      connect(trapezoid1.y,torque1.tau) annotation(Line(points = {{-46.9059,-33.6468},{-10.5581,-33.6468},{-10.5581,-33.1825},{-10.5581,-33.1825}}));
+      connect(revolute1.axis,torque1.flange) annotation(Line(points = {{5.49878,-9.43126},{22.9261,-9.43126},{22.9261,-33.1825},{12.0664,-33.1825},{12.0664,-33.1825}}));
+      connect(torque1.support,revolute1.support) annotation(Line(points = {{2.11161,-42.8808},{-20.5128,-42.8808},{-20.5128,-9.04977},{-0.603318,-9.04977},{-0.603318,-9.04977}}));
       connect(revolute1.frame_a,fixedtranslation1.frame_b) annotation(Line(points = {{-4.50122,0.568741},{-24.8555,0.568741},{-24.8555,0.289017},{-24.8555,0.289017}}));
       connect(revolute1.frame_b,Reaktionsrad.frame_a) annotation(Line(points = {{15.4988,0.568741},{33.526,0.568741},{33.526,0},{33.526,0}}));
       connect(Struktur.frame_a,fixedtranslation1.frame_a) annotation(Line(points = {{-55.7255,0.291741},{-44.9344,0.291741},{-44.9344,0.244841},{-44.9344,0.244841}}));
       annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 30, Tolerance = 0.0001));
     end cubesatwith3axisreactionwheel;
-    model freerotatingcube
-      inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(visible = true, transformation(origin = {-63.3333,16.6667}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      Modelica.Mechanics.MultiBody.Parts.BodyBox bodybox1(r = {0,0.1,0.0}, r_shape = {0,0,0}, lengthDirection = {0,1,0}, widthDirection = {1,0,0}, length = 0.1, width = 0.2, height = 0.1, innerWidth = 0, innerHeight = 0, angles_fixed = true, w_0_fixed = true, z_0_fixed = false, mo = 1, w_0_start = {0.1,0.2,0.3}, useQuaternions = false) annotation(Placement(visible = true, transformation(origin = {10.3333,17.6667}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 500.0, Tolerance = 0.0001));
-    end freerotatingcube;
+    model reactionwheelexample
+      extends Modelica.Icons.Example;
+      inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(visible = true, transformation(origin = {-74.9845,45.4769}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedtranslation1(r = {0,0.03,0.02}) annotation(Placement(visible = true, transformation(origin = {-34.688,0.599941}, extent = {{10,-10},{-10,10}}, rotation = 180)));
+      Modelica.Mechanics.MultiBody.Parts.Body Struktur(m = 1, I_11 = 0.0018, I_22 = 0.0017, I_33 = 0.0016, r_CM = {0,0,0.05}, useQuaternions = false) annotation(Placement(visible = true, transformation(origin = {-65.7255,0.291741}, extent = {{-10,-10},{10,10}}, rotation = 180)));
+      Modelica.Mechanics.MultiBody.Joints.FreeMotion freemotion1(useQuaternions = false) annotation(Placement(visible = true, transformation(origin = {-44.2197,45.3757}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      satcomponents.AOCS.reactionwheel reactionwheel1 annotation(Placement(visible = true, transformation(origin = {19.711,4.27746}, extent = {{-19.0173,-19.0173},{19.0173,19.0173}}, rotation = -90)));
+    equation
+      connect(fixedtranslation1.frame_b,reactionwheel1.frame_a) annotation(Line(points = {{-24.688,0.599941},{2.60116,0.599941},{2.60116,0.867052},{2.60116,0.867052}}));
+      connect(world.frame_b,freemotion1.frame_a) annotation(Line(points = {{-64.9845,45.4769},{-54.6243,45.4769},{-54.2197,45.6647},{-54.2197,45.3757}}));
+      connect(freemotion1.frame_b,Struktur.frame_a) annotation(Line(points = {{-34.2197,45.3757},{-27.4566,45.3757},{-27.4566,23.4104},{-50,23.4104},{-50,0.289017},{-56.0694,0.289017},{-56.0694,0.289017}}));
+      connect(Struktur.frame_a,fixedtranslation1.frame_a) annotation(Line(points = {{-55.7255,0.291741},{-44.9344,0.291741},{-44.9344,0.244841},{-44.9344,0.244841}}));
+      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 30, Tolerance = 0.0001));
+    end reactionwheelexample;
   end AOCS;
   annotation(Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2}), graphics = {Polygon(origin = {-0.495835,-3.82998}, points = {{-11.5042,31.4966},{33.1625,8.16331},{11.8292,-31.5034},{-33.1708,-7.17002},{-11.5042,31.4966}}),Polygon(origin = {41.3475,49.7145}, fillColor = {0,0,255}, fillPattern = FillPattern.VerticalCylinder, points = {{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}}),Polygon(origin = {-23.6525,-62.9522}, fillColor = {0,0,255}, fillPattern = FillPattern.VerticalCylinder, points = {{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}}),Polygon(origin = {36.1669,-23.4602}, points = {{-8.16695,13.1269},{-13.1669,4.12686},{-0.500278,-13.5398},{13.1664,11.1269},{-8.16695,13.1269}}),Polygon(origin = {-35.7693,14.651}, points = {{16.7693,29.6823},{14.7693,5.68234},{1.10267,-18.651},{-16.8973,-29.3177},{16.7693,29.6823}})}));
 end satcomponents;
