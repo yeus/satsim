@@ -40,14 +40,14 @@ package iboss
     end iboss_connector_ess;
     model iboss_connector
       import Modelica.Electrical.Analog.Interfaces;
-      Modelica.Electrical.Analog.Interfaces.PositivePin Vcc;
-      Modelica.Electrical.Analog.Interfaces.NegativePin GND;
+      Modelica.Electrical.Analog.Interfaces.PositivePin Vcc annotation(Placement(visible = true, transformation(origin = {62.9251,65.8292}, extent = {{-28.2954,-28.2954},{28.2954,28.2954}}, rotation = 0)));
+      Modelica.Electrical.Analog.Interfaces.NegativePin GND annotation(Placement(visible = true, transformation(origin = {61.9524,-60.6435}, extent = {{-28.2954,-28.2954},{28.2954,28.2954}}, rotation = 0)));
       annotation(defaultComponentName = "iBoss_connector", Diagram(graphics = {Text(rotation = 0, lineColor = {0,0,0}, fillColor = {0,0,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-102.764,-102.343},{97.2356,-162.343}}, textString = "%name"),Rectangle(rotation = 0, lineColor = {0,0,0}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.CrossDiag, lineThickness = 1, extent = {{-14.1125,15.3798},{12.5283,-10.6274}})}), Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,0}, fillColor = {0,0,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.CrossDiag, lineThickness = 1, extent = {{-100,100},{100,-100}})}));
     end iboss_connector;
   end components;
   package buildingblocks
     model solar
-      extends iboss.buildingblocks.basic;
+      extends iboss.buildingblocks.basic_ess_mss;
       Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {1.41448,-39.3211}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       satcomponents.power.solar_power.solarcell solarcell1 annotation(Placement(visible = true, transformation(origin = {13.5785,-5.94055}, extent = {{12,-12},{-12,12}}, rotation = -270)));
       Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.00000001) annotation(Placement(visible = true, transformation(origin = {-31.1174,-10.1839}, extent = {{-12,12},{12,-12}}, rotation = -90)));
@@ -62,7 +62,7 @@ package iboss
       annotation(experiment(StartTime = 0.0, StopTime = 10000.0, Tolerance = 0.000001), Diagram(), Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Cross, lineThickness = 0.25, extent = {{71.8896,121.659},{356.683,-125.807}})}));
     end solar;
     model battery
-      extends iboss.buildingblocks.basic;
+      extends iboss.buildingblocks.basic_ess_mss;
       satcomponents.power.batteries.battery battery1(Vnominal = 70) annotation(Placement(visible = true, transformation(origin = {-27.3333,-0.666667}, extent = {{10,-10},{-10,10}}, rotation = 90)));
       Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-32.7675,-43.1876}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     equation
@@ -72,7 +72,7 @@ package iboss
       annotation(experiment(StartTime = 0.0, StopTime = 11000.0, Tolerance = 0.0001));
     end battery;
     model verbraucher
-      extends iboss.buildingblocks.basic;
+      extends iboss.buildingblocks.basic_ess_mss;
       import satcomponents.power.dcmodel;
       dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved1 annotation(Placement(visible = true, transformation(origin = {-20.9335,8.20368}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved2(V_out = 3, V_in_min = 5) annotation(Placement(visible = true, transformation(origin = {-21.2164,31.9661}, extent = {{-12,-12},{12,12}}, rotation = 0)));
@@ -105,21 +105,21 @@ package iboss
       iboss.components.iboss_interface int_Xn annotation(Placement(visible = true, transformation(origin = {-80.9052,0}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       iboss.components.iboss_interface int_Zp annotation(Placement(visible = true, transformation(origin = {-43.2815,61.1033}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       iboss.components.iboss_interface int_Yp annotation(Placement(visible = true, transformation(origin = {-0.848656,81.471}, extent = {{-12,12},{12,-12}}, rotation = -90)));
-      iboss.components.iboss_interface int_Zn annotation(Placement(visible = true, transformation(origin = {44.9788,-61.9519}, extent = {{12,12},{-12,-12}}, rotation = -180)));
-      iboss.components.iboss_interface int_Yn annotation(Placement(visible = true, transformation(origin = {-0.848656,-77.5106}, extent = {{12,-12},{-12,12}}, rotation = 90)));
-      iboss.components.iboss_interface int_Xp annotation(Placement(visible = true, transformation(origin = {80.3395,-0.282885}, extent = {{12,12},{-12,-12}}, rotation = -180)));
-      iboss.components.iboss_connector Zp annotation(Placement(visible = true, transformation(origin = {-55.7223,55.2872}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-55.7223,55.2872}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      iboss.components.iboss_connector Zn annotation(Placement(visible = true, transformation(origin = {52.2766,-53.6256}, extent = {{12,12},{-12,-12}}, rotation = -180), iconTransformation(origin = {52.2766,-53.6256}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      iboss.components.iboss_connector Yn annotation(Placement(visible = true, transformation(origin = {0.337268,-97.1332}, extent = {{12,-12},{-12,12}}, rotation = -270), iconTransformation(origin = {0.337268,-97.1332}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       iboss.components.iboss_connector Xp annotation(Placement(visible = true, transformation(origin = {99.8314,0.337268}, extent = {{12,12},{-12,-12}}, rotation = -180), iconTransformation(origin = {99.8314,0.337268}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       iboss.components.iboss_connector Yp annotation(Placement(visible = true, transformation(origin = {0.337268,99.4941}, extent = {{-12,12},{12,-12}}, rotation = -90), iconTransformation(origin = {0.337268,99.4941}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+      iboss.components.iboss_connector Zp annotation(Placement(visible = true, transformation(origin = {-61.7917,60.4895}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+      iboss.components.iboss_interface int_Yn annotation(Placement(visible = true, transformation(origin = {-0.848656,-72.8863}, extent = {{-12,-12},{12,12}}, rotation = 90)));
+      iboss.components.iboss_interface int_Zn annotation(Placement(visible = true, transformation(origin = {44.9788,-61.9519}, extent = {{-12,12},{12,-12}}, rotation = -180)));
+      iboss.components.iboss_interface int_Xp annotation(Placement(visible = true, transformation(origin = {80.3395,-0.282885}, extent = {{-12,12},{12,-12}}, rotation = -180)));
+      iboss.components.iboss_connector Zn annotation(Placement(visible = true, transformation(origin = {62.9702,-58.2499}, extent = {{12,12},{-12,-12}}, rotation = -180)));
+      iboss.components.iboss_connector Yn annotation(Placement(visible = true, transformation(origin = {-0.529784,-91.0638}, extent = {{12,-12},{-12,12}}, rotation = -270)));
     equation
-      connect(int_Yn.vcc,int_Xn.vcc) annotation(Line(points = {{1.3239,-65.3578},{1.13154,-65.3578},{1.13154,-59.6888},{-61.3861,-59.6888},{-61.3861,-2.26308},{-68.7524,-2.26308},{-68.7524,-2.17255}}));
-      connect(int_Zn.vcc,int_Yn.vcc) annotation(Line(points = {{32.826,-59.7793},{1.13154,-59.7793},{1.13154,-65.3578},{1.3239,-65.3578}}));
-      connect(int_Xp.vcc,int_Zn.vcc) annotation(Line(points = {{68.1867,1.88967},{63.3663,1.88967},{63.3663,-39.604},{27.7228,-39.604},{27.7228,-59.6888},{32.826,-59.6888},{32.826,-59.7793}}));
-      connect(int_Zn.gnd,int_Xp.gnd) annotation(Line(points = {{32.7921,-55.8416},{25.1768,-55.8416},{25.1768,-37.058},{61.1033,-37.058},{61.1033,6.22348},{68.1528,6.22348},{68.1528,5.82744}}));
-      connect(int_Yn.gnd,int_Zn.gnd) annotation(Line(points = {{5.26167,-65.3239},{5.37482,-65.3239},{5.37482,-58.5573},{25.1768,-58.5573},{25.1768,-55.4455},{32.7921,-55.4455},{32.7921,-55.8416}}));
-      connect(int_Xn.gnd,int_Yn.gnd) annotation(Line(points = {{-68.7185,-6.11033},{-59.1231,-6.11033},{-59.1231,-58.5573},{5.37482,-58.5573},{5.37482,-65.3239},{5.26167,-65.3239}}));
+      connect(int_Zn.gnd,int_Xp.gnd) annotation(Line(points = {{32.7921,-68.0622},{25.1768,-68.0622},{25.1768,-37.058},{61.1033,-37.058},{61.1033,6.22348},{68.1528,-6.39321},{68.1528,-6.39321}}));
+      connect(int_Xp.vcc,int_Zn.vcc) annotation(Line(points = {{68.1867,-2.45544},{63.3663,-2.45544},{63.3663,-39.604},{27.7228,-39.604},{27.7228,-59.6888},{32.826,-64.1245},{32.826,-64.1245}}));
+      connect(int_Yn.gnd,int_Zn.gnd) annotation(Line(points = {{5.26167,-60.6996},{5.26167,-65.3239},{5.37482,-58.5573},{25.1768,-58.5573},{25.1768,-55.4455},{32.7921,-55.4455},{32.7921,-68.0622}}));
+      connect(int_Zn.vcc,int_Yn.vcc) annotation(Line(points = {{32.826,-64.1245},{1.13154,-64.1245},{1.3239,-65.3578},{1.3239,-60.7336}}));
+      connect(int_Xn.gnd,int_Yn.gnd) annotation(Line(points = {{-68.7185,-6.11033},{-59.1231,-6.11033},{-59.1231,-58.5573},{5.37482,-58.5573},{5.26167,-65.3239},{5.26167,-60.6996}}));
+      connect(int_Yn.vcc,int_Xn.vcc) annotation(Line(points = {{1.3239,-60.7336},{1.3239,-65.3578},{1.13154,-59.6888},{-61.3861,-59.6888},{-61.3861,-2.26308},{-68.7524,-2.26308},{-68.7524,-2.17255}}));
       connect(int_Zp.gnd,int_Xn.gnd) annotation(Line(points = {{-31.0948,54.993},{-23.4795,54.993},{-23.4795,38.7553},{-58.8402,38.7553},{-58.8402,-6.50636},{-68.7185,-6.50636},{-68.7185,-6.11033}}));
       connect(int_Yp.gnd,int_Zp.gnd) annotation(Line(points = {{-6.95898,69.2843},{-7.35502,69.2843},{-7.35502,61.1033},{-23.1966,61.1033},{-23.1966,54.8798},{-31.0948,54.8798},{-31.0948,54.993}}));
       connect(int_Zp.vcc,int_Yp.vcc) annotation(Line(points = {{-31.1287,58.9307},{-26.5912,58.9307},{-26.5912,63.9321},{-3.67751,63.9321},{-3.67751,69.3182},{-3.02121,69.3182}}));
@@ -141,11 +141,11 @@ package iboss
       iboss.components.iboss_interface int_Zn annotation(Placement(visible = true, transformation(origin = {44.9788,-61.9519}, extent = {{12,12},{-12,-12}}, rotation = -180)));
       iboss.components.iboss_interface int_Yn annotation(Placement(visible = true, transformation(origin = {-0.848656,-77.5106}, extent = {{12,-12},{-12,12}}, rotation = 90)));
       iboss.components.iboss_interface int_Xp annotation(Placement(visible = true, transformation(origin = {80.3395,-0.282885}, extent = {{12,12},{-12,-12}}, rotation = -180)));
-      iboss.components.iboss_connector Zp annotation(Placement(visible = true, transformation(origin = {-55.7223,55.2872}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-55.7223,55.2872}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       iboss.components.iboss_connector Zn annotation(Placement(visible = true, transformation(origin = {52.2766,-53.6256}, extent = {{12,12},{-12,-12}}, rotation = -180), iconTransformation(origin = {52.2766,-53.6256}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       iboss.components.iboss_connector Yn annotation(Placement(visible = true, transformation(origin = {0.337268,-97.1332}, extent = {{12,-12},{-12,12}}, rotation = -270), iconTransformation(origin = {0.337268,-97.1332}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       iboss.components.iboss_connector Xp annotation(Placement(visible = true, transformation(origin = {99.8314,0.337268}, extent = {{12,12},{-12,-12}}, rotation = -180), iconTransformation(origin = {99.8314,0.337268}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       iboss.components.iboss_connector Yp annotation(Placement(visible = true, transformation(origin = {0.337268,99.4941}, extent = {{-12,12},{12,-12}}, rotation = -90), iconTransformation(origin = {0.337268,99.4941}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+      iboss.components.iboss_connector Zp annotation(Placement(visible = true, transformation(origin = {-60.9246,61.0675}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     equation
       connect(int_Yn.vcc,int_Xn.vcc) annotation(Line(points = {{1.3239,-65.3578},{1.13154,-65.3578},{1.13154,-59.6888},{-61.3861,-59.6888},{-61.3861,-2.26308},{-68.7524,-2.26308},{-68.7524,-2.17255}}));
       connect(int_Zn.vcc,int_Yn.vcc) annotation(Line(points = {{32.826,-59.7793},{1.13154,-59.7793},{1.13154,-65.3578},{1.3239,-65.3578}}));
