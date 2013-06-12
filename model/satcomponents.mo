@@ -1,3 +1,8 @@
+/*
+* Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)
+* Date : 10/06/2013
+* All code (c)2013 Technische Universität Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved
+*/
 package satcomponents
   package data
     model OBC

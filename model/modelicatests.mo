@@ -1,3 +1,8 @@
+/*
+* Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)
+* Date : 10/06/2013
+* All code (c)2013 Technische Universität Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved
+*/
 package modelicatests
   model test
     Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 0.1) annotation(Placement(visible = true, transformation(origin = {-58.0612,29.7164}, extent = {{-12,-12},{12,12}}, rotation = 0)));
