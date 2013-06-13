@@ -80,22 +80,22 @@ package iboss
       extends iboss.buildingblocks.basic_ess_mss;
       import satcomponents.power.dcmodel;
       satcomponents.power.PCU pcu1 annotation(Placement(visible = true, transformation(origin = {-27.7457,-1.44509}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 12.5) annotation(Placement(visible = true, transformation(origin = {32.8147,11.3154}, extent = {{-12,12},{12,-12}}, rotation = 360)));
-      Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 72) annotation(Placement(visible = true, transformation(origin = {23.0127,-19.3842}, extent = {{-12,12},{12,-12}}, rotation = 360)));
-      Modelica.Electrical.Analog.Basic.Resistor resistor3(R = 10.89) annotation(Placement(visible = true, transformation(origin = {23.2527,22.3986}, extent = {{-12,12},{12,-12}}, rotation = 360)));
       Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.0000001) annotation(Placement(visible = true, transformation(origin = {-45.5217,-26.4327}, extent = {{-12,12},{12,-12}}, rotation = -90)));
       Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-45.5278,-83.2112}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Resistor resistor1 annotation(Placement(visible = true, transformation(origin = {23.4104,20.2312}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Resistor resistor2 annotation(Placement(visible = true, transformation(origin = {22.8324,-0.289017}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Resistor resistor3 annotation(Placement(visible = true, transformation(origin = {22.8324,-20.5202}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     equation
-      connect(pcu1.VCC,capacitor1.p) annotation(Line(points = {{-37.8164,-0.653008},{-45.3757,-0.653008},{-45.3757,-14.4509},{-45.3757,-14.4509}}));
+      connect(pcu1.GND,capacitor1.p) annotation(Line(points = {{-37.8447,-5.88639},{-45.9538,-5.88639},{-45.9538,-14.1618},{-45.9538,-14.1618}}));
+      connect(pcu1.gnd,resistor2.n) annotation(Line(points = {{-17.7316,-7.8383},{32.659,-7.8383},{32.659,-0.289017},{32.659,-0.289017}}));
+      connect(resistor2.n,resistor3.n) annotation(Line(points = {{32.8324,-0.289017},{32.659,-0.289017},{32.659,-20.5202},{32.659,-20.5202}}));
+      connect(resistor1.n,resistor2.n) annotation(Line(points = {{33.4104,20.2312},{32.659,20.2312},{32.659,0},{32.659,0}}));
+      connect(resistor3.p,pcu1.VCC3) annotation(Line(points = {{12.8324,-20.5202},{0.867052,-20.5202},{0.867052,-3.46821},{-17.9191,-3.46821},{-17.9191,-3.46821}}));
+      connect(pcu1.VCC12,resistor1.p) annotation(Line(points = {{-17.8164,3.0245},{0.867052,3.0245},{0.867052,20.2312},{13.0058,20.2312},{13.0058,20.2312}}));
+      connect(pcu1.VCC5,resistor2.p) annotation(Line(points = {{-17.7598,-0.568145},{12.1387,-0.568145},{12.1387,-0.578035},{12.1387,-0.578035}}));
       connect(capacitor1.n,ground1.p) annotation(Line(points = {{-45.5217,-38.4327},{-45.5217,-71.6763},{-45.6647,-71.6763},{-45.6647,-71.6763}}));
-      connect(pcu1.gnd,resistor2.n) annotation(Line(points = {{-17.7316,-7.8383},{-17.341,-7.8383},{-17.341,-30.0578},{39.8844,-30.0578},{39.8844,-19.3642},{34.9711,-19.3642},{34.9711,-19.3642}}));
       connect(int_Xn.vcc,pcu1.VCC) annotation(Line(points = {{-68.7524,-2.17255},{-47.9769,-2.17255},{-47.9769,-0.578035},{-38.1503,-0.578035},{-38.1503,-0.578035}}));
       connect(int_Xn.gnd,pcu1.GND) annotation(Line(points = {{-68.7185,-6.11033},{-38.4393,-6.11033},{-38.4393,-6.06936},{-38.4393,-6.06936}}));
-      connect(resistor1.n,resistor2.n) annotation(Line(points = {{35.2771,-1.40136},{35.2601,-1.40136},{35.2601,-19.3642},{35.2601,-19.3642}}));
-      connect(resistor3.n,resistor1.n) annotation(Line(points = {{35.2527,22.3986},{34.9711,22.3986},{34.9711,-1.44509},{34.9711,-1.44509}}));
-      connect(pcu1.VCC3,resistor2.p) annotation(Line(points = {{-17.7316,-3.76475},{-6.93642,-3.76475},{-6.93642,-19.3642},{10.6936,-19.3642},{10.6936,-19.3642}}));
-      connect(pcu1.VCC5,resistor1.p) annotation(Line(points = {{-17.7598,-0.568142},{10.6936,-0.568142},{10.6936,-1.15607},{10.6936,-1.15607}}));
-      connect(resistor3.p,pcu1.VCC12) annotation(Line(points = {{11.2527,22.3986},{-6.35838,22.3986},{-6.35838,3.17919},{-17.6301,3.17919},{-17.6301,3.17919}}));
       annotation(experiment(StartTime = 0.0, StopTime = 11000.0, Tolerance = 0.0001));
     end verbraucher;
     model basic_ess_mss
