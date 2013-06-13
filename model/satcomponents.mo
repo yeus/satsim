@@ -30,15 +30,15 @@ package satcomponents
       satcomponents.power.dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved3(V_out = 12) annotation(Placement(visible = true, transformation(origin = {57.2254,41.0405}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.00000000001) annotation(Placement(visible = true, transformation(origin = {-61.2717,-16.763}, extent = {{-10,-10},{10,10}}, rotation = -90)));
     equation
-      connect(dcdc_ideal_simple_improved1.n2,gnd) annotation(Line(points = {{66.2433,-33.3086},{78.3237,-33.3086},{78.3237,-64.4509},{98.8439,-64.4509},{98.8439,-64.4509}}));
-      connect(dcdc_ideal_simple_improved2.n2,dcdc_ideal_simple_improved1.n2) annotation(Line(points = {{66.8214,-0.938675},{78.3237,-0.938675},{78.3237,-33.237},{66.474,-33.237},{66.474,-33.237}}));
-      connect(dcdc_ideal_simple_improved3.n2,dcdc_ideal_simple_improved2.n2) annotation(Line(points = {{66.5324,36.3446},{78.0347,36.3446},{78.0347,-0.578035},{66.763,-0.578035},{66.763,-0.578035}}));
+      connect(dcdc_ideal_simple_improved1.n2,gnd) annotation(Line(points = {{66.2433,-33.3086},{79.7688,-33.3086},{79.7688,-63.8728},{100,-63.8728},{100,-63.8728}}));
+      connect(dcdc_ideal_simple_improved3.n2,gnd) annotation(Line(points = {{66.5323,36.3446},{79.7688,36.3446},{79.7688,-63.8728},{100,-63.8728},{100,-63.8728}}));
+      connect(dcdc_ideal_simple_improved2.n2,gnd) annotation(Line(points = {{66.8214,-0.93867},{79.7688,-0.93867},{79.7688,-63.8728},{100.289,-63.8728},{100.289,-63.8728}}));
+      connect(dcdc_ideal_simple_improved3.n1,dcdc_ideal_simple_improved2.n1) annotation(Line(points = {{47.9468,36.9952},{37.2832,36.9952},{37.2832,-0.289017},{48.2659,-0.289017},{48.2659,-0.289017}}));
+      connect(dcdc_ideal_simple_improved2.n1,dcdc_ideal_simple_improved1.n1) annotation(Line(points = {{48.2359,-0.28803},{37.2832,-0.28803},{37.2832,-32.659},{47.3988,-32.659},{47.3988,-32.659}}));
       connect(dcdc_ideal_simple_improved1.p2,VCC3) annotation(Line(points = {{66.1868,-24.3694},{99.1329,-24.3694},{99.1329,-24.2775},{99.1329,-24.2775}}));
       connect(dcdc_ideal_simple_improved3.p2,VCC12) annotation(Line(points = {{66.4758,45.2837},{98.8439,45.2837},{98.8439,45.0867},{98.8439,45.0867}}));
       connect(dcdc_ideal_simple_improved2.p2,VCC5) annotation(Line(points = {{66.7648,8.00051},{98.2659,8.00051},{98.2659,7.80347},{98.2659,7.80347}}));
       connect(dcdc_ideal_simple_improved1.n1,capacitor1.n) annotation(Line(points = {{47.6578,-32.658},{-61.2717,-32.658},{-61.2717,-26.8786},{-61.5607,-26.8786},{-61.5607,-26.8786}}));
-      connect(dcdc_ideal_simple_improved2.n1,dcdc_ideal_simple_improved1.n1) annotation(Line(points = {{48.2358,-0.288034},{35.8382,-0.288034},{35.8382,-32.659},{48.2659,-32.659},{48.2659,-32.659}}));
-      connect(dcdc_ideal_simple_improved3.n1,dcdc_ideal_simple_improved2.n1) annotation(Line(points = {{47.9468,36.9952},{35.8382,36.9952},{35.8382,-0.289017},{48.2659,-0.289017},{48.2659,-0.289017}}));
       connect(dcdc_ideal_simple_improved1.p1,dcdc_ideal_simple_improved2.p1) annotation(Line(points = {{47.7143,-24.426},{28.3237,-24.426},{28.3237,8.3815},{48.5549,8.3815},{48.5549,8.3815}}));
       connect(dcdc_ideal_simple_improved2.p1,dcdc_ideal_simple_improved3.p1) annotation(Line(points = {{48.2924,7.94393},{28.3237,7.94393},{28.3237,45.6647},{47.6879,45.6647},{47.6879,45.6647}}));
       connect(capacitor1.p,dcdc_ideal_simple_improved2.p1) annotation(Line(points = {{-61.2717,-6.76301},{-61.2717,8.3815},{47.9769,8.3815},{47.9769,8.3815}}));
@@ -168,7 +168,7 @@ package satcomponents
       end Exprgenerator;
       model solarcell_characteristic
         extends Modelica.Icons.Example;
-        Exprgenerator exprgenerator1(alpha = 10) annotation(Placement(visible = true, transformation(origin = {58.3863,-42.6184}, extent = {{-7.45106,-7.45106},{7.45106,7.45106}}, rotation = 0)));
+        Exprgenerator exprgenerator1(alpha = 10) annotation(Placement(visible = true, transformation(origin = {58.3863,-42.6184}, extent = {{-7.45106,-7.45106},{7.45106,7.45106}}, rotatibe151982db6cf70df9edce98f7fde8aca304d663on = 0)));
         Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {38.5987,-59.042}, extent = {{-12,-12},{12,12}}, rotation = 0)));
         Modelica.Blocks.Sources.Constant const(k = 1367) annotation(Placement(visible = true, transformation(origin = {-72.8763,52.0374}, extent = {{-12,-12},{12,12}}, rotation = 0)));
         Modelica.Electrical.Analog.Basic.VariableResistor variableresistor1 annotation(Placement(visible = true, transformation(origin = {38.1913,52.3255}, extent = {{-12,12},{12,-12}}, rotation = -90)));
@@ -193,7 +193,7 @@ package satcomponents
         connect(solarcell_simple1.p,ground1.p) annotation(Line(points = {{-37.6033,40.8926},{-3.71901,40.8926},{-3.71901,17.0076},{-3.55006,17.0076}}));
         connect(constantvoltage1.n,rampvoltage1.p) annotation(Line(points = {{47.9504,66.5289},{59.5041,66.5289},{59.5041,66.9587},{59.5041,66.9587}}));
         connect(ground1.p,rampvoltage1.n) annotation(Line(points = {{-3.55006,17.0076},{-3.55006,40.4959},{59.5041,40.4959},{59.5041,42.9587}}));
-        annotation(experiment(StopTime = 1), Diagram, Icon);
+        annotation(experimbe151982db6cf70df9edce98f7fde8aca304d663ent(StopTime = 1), Diagram, Icon);
       end solarcell_characteristicV;
       model solarcell_charactristic2
         extends Modelica.Icons.Example;
@@ -622,7 +622,6 @@ package satcomponents
       equation
         connect(capacitor1.n,n1) annotation(Line(points = {{-67.3267,0.446959},{-67.8925,0.446959},{-67.8925,-39.8868},{-92.7864,-39.8868},{-92.7864,-40.4526}}));
         connect(p1,capacitor1.p) annotation(Line(points = {{-92.2207,41.867},{-67.6096,41.867},{-67.6096,24.447},{-67.3267,24.447}}));
-        connect(dcdc_ideal_simple1.n1,dcdc_ideal_simple1.n2) annotation(Line(points = {{-15.6775,0.78922},{-16.4074,0.78922},{-16.4074,-14.4272},{7.92079,-14.4272},{7.92079,0.78922},{8.32249,0.78922}}));
         connect(dcdc_ideal_simple1.n2,n2) annotation(Line(points = {{8.32249,0.78922},{8.20368,0.78922},{8.20368,-45.2617},{93.0693,-45.2617},{93.0693,-46.959}}));
         connect(dcdc_ideal_simple1.p2,p2) annotation(Line(points = {{8.32249,12.7892},{7.92079,12.7892},{7.92079,43.2815},{92.5035,43.2815},{92.5035,42.4328}}));
         connect(dcdc_ideal_simple1.n1,n1) annotation(Line(points = {{-15.6775,0.78922},{-16.1245,0.78922},{-16.1245,-39.8868},{-92.7864,-39.8868},{-92.7864,-40.4526}}));
@@ -748,6 +747,24 @@ package satcomponents
         connect(dcdc_ideal_simple_improved1.p2,resistor1.p) annotation(Line(points = {{35.7115,8.48656},{59.9717,8.48656},{59.9717,5.58974},{59.9359,5.58974}}));
         annotation(experiment(StartTime = 0.0, StopTime = 11000.0, Tolerance = 0.000001));
       end EVS5;
+      model PCU_example
+        extends Modelica.Icons.Example;
+        satcomponents.power.batteries.battery battery1(Vnominal = 33, soc(start = 0.9)) annotation(Placement(visible = true, transformation(origin = {-86.1272,-5.49133}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+        satcomponents.power.PCU pcu1 annotation(Placement(visible = true, transformation(origin = {-37.2832,4.04624}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 100) annotation(Placement(visible = true, transformation(origin = {23.9884,22.2543}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 100) annotation(Placement(visible = true, transformation(origin = {24.2775,1.15607}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Basic.Resistor resistor3(R = 100) annotation(Placement(visible = true, transformation(origin = {24.5665,-21.3873}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      equation
+        connect(resistor2.n,resistor1.n) annotation(Line(points = {{34.2775,1.15607},{42.4855,1.15607},{42.4855,22.2543},{34.104,22.2543},{34.104,22.2543}}));
+        connect(resistor3.n,resistor2.n) annotation(Line(points = {{34.5665,-21.3873},{42.7746,-21.3873},{42.7746,1.15607},{34.104,1.15607},{34.104,1.15607}}));
+        connect(pcu1.gnd,resistor3.n) annotation(Line(points = {{-27.2691,-2.34697},{-23.4104,-2.34697},{-23.4104,-39.8844},{43.0636,-39.8844},{43.0636,-21.3873},{34.3931,-21.3873},{34.3931,-21.3873}}));
+        connect(pcu1.VCC3,resistor3.p) annotation(Line(points = {{-27.2691,1.72658},{-15.3179,1.72658},{-15.3179,-21.3873},{14.4509,-21.3873},{14.4509,-21.3873}}));
+        connect(pcu1.VCC5,resistor2.p) annotation(Line(points = {{-27.2973,4.92318},{-12.1387,4.92318},{-12.1387,1.15607},{14.1618,1.15607},{14.1618,1.15607}}));
+        connect(resistor1.p,pcu1.VCC12) annotation(Line(points = {{13.9884,22.2543},{-12.1387,22.2543},{-12.1387,8.67052},{-27.1676,8.67052},{-27.1676,8.67052}}));
+        connect(battery1.n,pcu1.GND) annotation(Line(points = {{-86.1272,-15.4913},{-86.1272,-15.3179},{-47.3988,-15.3179},{-47.3988,-0.289017},{-47.3988,-0.289017}}));
+        connect(battery1.p,pcu1.VCC) annotation(Line(points = {{-86.1272,4.50867},{-86.1272,4.91329},{-47.3988,4.91329},{-47.3988,4.91329}}));
+        annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
+      end PCU_example;
       annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
     end examples;
     block Exprgenerator "Generate exponential signal"
