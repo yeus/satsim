@@ -1,9 +1,9 @@
-/*
+package satcomponents
+  /*
 * Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)
 * Date : 10/06/2013
 * All code (c)2013 Technische Universität Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved
 */
-package satcomponents
   package data
     model OBC
       Modelica.Electrical.Analog.Interfaces.PositivePin pin_p annotation(Placement(visible = true, transformation(origin = {-42.7157,-98.1612}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-42.7157,-98.1612}, extent = {{-12,-12},{12,12}}, rotation = 0)));
@@ -25,15 +25,23 @@ package satcomponents
       Modelica.Electrical.Analog.Interfaces.PositivePin VCC3 annotation(Placement(visible = true, transformation(origin = {100.141,-23.1966}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {100.141,-23.1966}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       Modelica.Electrical.Analog.Interfaces.PositivePin VCC5 annotation(Placement(visible = true, transformation(origin = {99.8586,8.76945}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {99.8586,8.76945}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       Modelica.Electrical.Analog.Interfaces.PositivePin VCC12 annotation(Placement(visible = true, transformation(origin = {99.2928,44.6959}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {99.2928,44.6959}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      dcmodel.dcdc_ideal dctodcmodel2(Vinmax = 100, Vref = 5, Pout = 50, Vinmin = 5.5, eff = 0.85) annotation(Placement(visible = true, transformation(origin = {48.6563,4.80905}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+      satcomponents.power.dcmodel.dcdc_ideal dcdc_ideal1(Vinmax = 100, Vref = 3.3, Pout = 50, Vinmin = 5.5, eff = 0.85) annotation(Placement(visible = true, transformation(origin = {50.1592,-29.2372}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+      dcmodel.dcdc_ideal dctodcmodel2(Vinmax = 100, Vref = 5, Pout = 50, Vinmin = 5.5, eff = 0.85) annotation(Placement(visible = true, transformation(origin = {50.1014,2.49691}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+      satcomponents.power.dcmodel.dcdc_ideal dcdc_ideal2(Vinmax = 100, Vref = 12, Pout = 50, Vinmin = 5.5, eff = 0.85) annotation(Placement(visible = true, transformation(origin = {50.4482,38.6819}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     equation
-      connect(dctodcmodel2.p,VCC) annotation(Line(points = {{36.716,10.3016},{-100.99,10.3016},{-100.99,7.92079},{-100.707,7.92079}}));
+      connect(dcdc_ideal1.n,dcdc_ideal1.n1) annotation(Line(points = {{38.1627,-36.1017},{28.6127,-36.1017},{28.6127,-44.5087},{69.0751,-44.5087},{69.0751,-35.8382},{62.1387,-35.8382},{62.1387,-35.8382}}));
+      connect(dcdc_ideal1.p1,VCC3) annotation(Line(points = {{62.2188,-23.7049},{99.422,-23.7049},{99.422,-23.1214},{99.422,-23.1214}}));
+      connect(dctodcmodel2.p1,VCC5) annotation(Line(points = {{62.161,8.02925},{98.2659,8.02925},{98.2659,8.09249},{98.2659,8.09249}}));
+      connect(dcdc_ideal2.p1,VCC12) annotation(Line(points = {{62.5078,44.2142},{98.5549,44.2142},{98.5549,44.2197},{98.5549,44.2197}}));
+      connect(dctodcmodel2.n1,dcdc_ideal1.n1) annotation(Line(points = {{62.2009,-4.19899},{69.0751,-4.19899},{69.0751,-35.8382},{62.4277,-35.8382},{62.4277,-35.8382}}));
+      connect(dcdc_ideal2.n1,dctodcmodel2.n1) annotation(Line(points = {{62.5477,31.986},{77.1676,31.986},{77.1676,-4.33526},{61.8497,-4.33526},{61.8497,-4.33526}}));
+      connect(dctodcmodel2.n,dcdc_ideal2.n) annotation(Line(points = {{38.1049,-4.36756},{28.6127,-4.36756},{28.6127,32.0809},{38.4393,32.0809},{38.4393,32.0809}}));
+      connect(dctodcmodel2.n,dcdc_ideal1.n) annotation(Line(points = {{38.1049,-4.36756},{28.6127,-4.36756},{28.6127,-36.1272},{38.1503,-36.1272},{38.1503,-36.1272}}));
+      connect(dctodcmodel2.p,dcdc_ideal2.p) annotation(Line(points = {{38.1611,7.98944},{17.6301,7.98944},{17.6301,44.5087},{38.1503,44.5087},{38.1503,44.5087}}));
+      connect(dctodcmodel2.p,dcdc_ideal1.p) annotation(Line(points = {{38.1611,7.98944},{17.6301,7.98944},{17.6301,-23.6994},{37.5723,-23.6994},{37.5723,-23.6994}}));
+      connect(dctodcmodel2.n1,gnd) annotation(Line(points = {{62.2009,-4.19899},{69.024,-4.19899},{69.024,-44.413},{100.141,-44.413},{100.141,-63.9321}}));
+      connect(dctodcmodel2.p,VCC) annotation(Line(points = {{38.1611,7.98944},{-100.99,7.98944},{-100.99,7.92079},{-100.707,7.92079}}));
       connect(GND,gnd) annotation(Line(points = {{-100.99,-44.413},{100.141,-44.413},{100.141,-63.9321},{100.141,-63.9321}}));
-      connect(dctodcmodel2.n1,gnd) annotation(Line(points = {{60.7558,-1.88685},{69.024,-1.88685},{69.024,-44.413},{100.141,-44.413},{100.141,-63.9321}}));
-      connect(VCC3,dctodcmodel2.p1) annotation(Line(points = {{100.141,-23.1966},{78.0764,-23.1966},{78.0764,10.4668},{60.7159,10.4668},{60.7159,10.3414}}));
-      connect(VCC12,dctodcmodel2.p1) annotation(Line(points = {{99.2928,44.6959},{78.0764,44.6959},{78.0764,10.4668},{60.7159,10.4668},{60.7159,10.3414}}));
-      connect(dctodcmodel2.n,GND) annotation(Line(points = {{36.6598,-2.05542},{-78.0764,-2.05542},{-78.0764,-44.1301},{-100.99,-44.1301},{-100.99,-44.413}}));
-      connect(dctodcmodel2.p1,VCC5) annotation(Line(points = {{60.7159,10.3414},{100.707,10.3414},{100.707,8.76945},{99.8586,8.76945}}));
       annotation(Diagram(), Icon(graphics = {Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-72.4187,45.5445},{24.894,-36.4922}}, textString = "PCU"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{22.9137,-45.8274},{83.7341,-80.0566}}, textString = "GND"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{34.2291,-11.3154},{78.0764,-40.4526}}, textString = "3.3V"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{31.1174,21.7822},{78.6421,-8.76945}}, textString = "5V"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{31.6832,60.8204},{76.662,26.3083}}, textString = "12V"),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-88.826,94.4837},{88.2603,-94.7666}})}));
     end PCU;
     package batteries

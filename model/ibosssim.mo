@@ -1,9 +1,9 @@
-/*
+package iboss
+  /*
 * Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)
 * Date : 10/06/2013
 * All code (c)2013 Technische Universität Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved
 */
-package iboss
   package components
     model iboss_interface
       iboss_connector iBoss_connector annotation(Placement(visible = true, transformation(origin = {-99.8586,-0.282885}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-99.8586,-0.282885}, extent = {{-12,-12},{12,12}}, rotation = 0)));
@@ -47,7 +47,7 @@ package iboss
       import Modelica.Electrical.Analog.Interfaces;
       Modelica.Electrical.Analog.Interfaces.PositivePin Vcc annotation(Placement(visible = true, transformation(origin = {62.9251,65.8292}, extent = {{-28.2954,-28.2954},{28.2954,28.2954}}, rotation = 0)));
       Modelica.Electrical.Analog.Interfaces.NegativePin GND annotation(Placement(visible = true, transformation(origin = {61.9524,-60.6435}, extent = {{-28.2954,-28.2954},{28.2954,28.2954}}, rotation = 0)));
-      annotation(defaultComponentName = "iBoss_connector", Diagram(graphics = {Text(rotation = 0, lineColor = {0,0,0}, fillColor = {0,0,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-102.764,-102.343},{97.2356,-162.343}}, textString = "%name"),Rectangle(rotation = 0, lineColor = {0,0,0}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.CrossDiag, lineThickness = 1, extent = {{-14.1125,15.3798},{12.5283,-10.6274}})}), Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2}), graphics = {Rectangle(fillColor = {255,255,255}, fillPattern = FillPattern.CrossDiag, thickness = 1, extent = {{-100,100},{100,-100}})}));
+      annotation(defaultComponentName = "iBoss_connector", Diagram(graphics = {Text(rotation = 0, lineColor = {0,0,0}, fillColor = {0,0,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-102.764,-102.343},{97.2356,-162.343}}, textString = "%name"),Rectangle(rotation = 0, lineColor = {0,0,0}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.CrossDiag, lineThickness = 1, extent = {{-14.1125,15.3798},{12.5283,-10.6274}})}), Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,0}, fillColor = {0,0,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.CrossDiag, lineThickness = 1, extent = {{-100,100},{100,-100}})}));
     end iboss_connector;
   end components;
   package buildingblocks
@@ -79,29 +79,23 @@ package iboss
     model verbraucher
       extends iboss.buildingblocks.basic_ess_mss;
       import satcomponents.power.dcmodel;
-      dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved1 annotation(Placement(visible = true, transformation(origin = {-20.9335,8.20368}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved2(V_out = 3, V_in_min = 5) annotation(Placement(visible = true, transformation(origin = {-21.2164,31.9661}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved3(V_out = 12, V_in_min = 15) annotation(Placement(visible = true, transformation(origin = {-20.6506,-20.3678}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-72.9845,-81.1881}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 12.5) annotation(Placement(visible = true, transformation(origin = {32.8147,11.3154}, extent = {{-12,12},{12,-12}}, rotation = -90)));
-      Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.0000001) annotation(Placement(visible = true, transformation(origin = {-73.2674,-47.2419}, extent = {{-12,12},{12,-12}}, rotation = -90)));
-      Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 72) annotation(Placement(visible = true, transformation(origin = {31.6832,-25.7426}, extent = {{-12,12},{12,-12}}, rotation = -90)));
-      Modelica.Electrical.Analog.Basic.Resistor resistor3(R = 10.89) annotation(Placement(visible = true, transformation(origin = {33.9463,46.6761}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+      satcomponents.power.PCU pcu1 annotation(Placement(visible = true, transformation(origin = {-27.7457,-1.44509}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 12.5) annotation(Placement(visible = true, transformation(origin = {32.8147,11.3154}, extent = {{-12,12},{12,-12}}, rotation = 360)));
+      Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 72) annotation(Placement(visible = true, transformation(origin = {23.0127,-19.3842}, extent = {{-12,12},{12,-12}}, rotation = 360)));
+      Modelica.Electrical.Analog.Basic.Resistor resistor3(R = 10.89) annotation(Placement(visible = true, transformation(origin = {23.2527,22.3986}, extent = {{-12,12},{12,-12}}, rotation = 360)));
+      Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.0000001) annotation(Placement(visible = true, transformation(origin = {-45.5217,-26.4327}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+      Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-45.5278,-83.2112}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     equation
-      connect(resistor2.n,dcdc_ideal_simple_improved3.n2) annotation(Line(points = {{31.6832,-37.7426},{8.48656,-37.7426},{8.48656,-25.7426},{-9.48232,-25.7426},{-9.48232,-26.0028}}));
-      connect(dcdc_ideal_simple_improved3.p2,resistor2.p) annotation(Line(points = {{-9.55022,-15.2758},{31.4003,-15.2758},{31.4003,-13.7426},{31.6832,-13.7426}}));
-      connect(dcdc_ideal_simple_improved2.p2,resistor3.p) annotation(Line(points = {{-10.116,37.058},{-3.39463,37.058},{-3.39463,59.1231},{33.9463,59.1231},{33.9463,58.6761}}));
-      connect(resistor3.n,dcdc_ideal_simple_improved2.n2) annotation(Line(points = {{33.9463,34.6761},{2.54597,34.6761},{2.54597,26.3083},{-10.0481,26.3083},{-10.0481,26.331}}));
-      connect(int_Xn.gnd,dcdc_ideal_simple_improved3.n1) annotation(Line(points = {{-68.7185,-6.11033},{-47.5248,-6.11033},{-47.5248,-25.4597},{-31.785,-25.4597},{-31.785,-25.2221}}));
-      connect(int_Xn.gnd,dcdc_ideal_simple_improved2.n1) annotation(Line(points = {{-68.7185,-6.11033},{-47.8076,-6.11033},{-47.8076,26.8741},{-32.3508,26.8741},{-32.3508,27.1117}}));
-      connect(dcdc_ideal_simple_improved3.p1,int_Xn.vcc) annotation(Line(points = {{-31.7171,-15.3437},{-56.2942,-15.3437},{-56.2942,-2.26308},{-68.7524,-2.26308},{-68.7524,-2.17255}}));
-      connect(capacitor1.n,ground1.p) annotation(Line(points = {{-73.2674,-59.2419},{-72.9845,-59.2419},{-72.9845,-69.1881},{-72.9845,-69.1881}}));
-      connect(capacitor1.p,dcdc_ideal_simple_improved1.n1) annotation(Line(points = {{-73.2674,-35.2419},{-47.2418,-35.2419},{-47.2418,3.34937},{-32.0679,3.34937}}));
-      connect(int_Xn.vcc,dcdc_ideal_simple_improved2.p1) annotation(Line(points = {{-68.7524,-2.17255},{-56.86,-2.17255},{-56.86,37.058},{-32.2829,37.058},{-32.2829,36.9901}}));
-      connect(dcdc_ideal_simple_improved1.n1,int_Xn.gnd) annotation(Line(points = {{-32.0679,3.34937},{-47.5248,3.34937},{-47.5248,-6.50636},{-68.7185,-6.50636},{-68.7185,-6.11033}}));
-      connect(int_Xn.vcc,dcdc_ideal_simple_improved1.p1) annotation(Line(points = {{-68.7524,-2.17255},{-56.2942,-2.17255},{-56.2942,13.8614},{-32,13.8614},{-32,13.2277}}));
-      connect(resistor1.p,dcdc_ideal_simple_improved1.p2) annotation(Line(points = {{32.8147,23.3154},{9.33522,23.3154},{9.33522,13.2956},{-9.8331,13.2956},{-9.8331,13.2956}}));
-      connect(dcdc_ideal_simple_improved1.n2,resistor1.n) annotation(Line(points = {{-9.76521,2.5686},{7.92079,2.5686},{7.92079,-1.41443},{32.8147,-1.41443},{32.8147,-0.684582}}));
+      connect(pcu1.VCC,capacitor1.p) annotation(Line(points = {{-37.8164,-0.653008},{-45.3757,-0.653008},{-45.3757,-14.4509},{-45.3757,-14.4509}}));
+      connect(capacitor1.n,ground1.p) annotation(Line(points = {{-45.5217,-38.4327},{-45.5217,-71.6763},{-45.6647,-71.6763},{-45.6647,-71.6763}}));
+      connect(pcu1.gnd,resistor2.n) annotation(Line(points = {{-17.7316,-7.8383},{-17.341,-7.8383},{-17.341,-30.0578},{39.8844,-30.0578},{39.8844,-19.3642},{34.9711,-19.3642},{34.9711,-19.3642}}));
+      connect(int_Xn.vcc,pcu1.VCC) annotation(Line(points = {{-68.7524,-2.17255},{-47.9769,-2.17255},{-47.9769,-0.578035},{-38.1503,-0.578035},{-38.1503,-0.578035}}));
+      connect(int_Xn.gnd,pcu1.GND) annotation(Line(points = {{-68.7185,-6.11033},{-38.4393,-6.11033},{-38.4393,-6.06936},{-38.4393,-6.06936}}));
+      connect(resistor1.n,resistor2.n) annotation(Line(points = {{35.2771,-1.40136},{35.2601,-1.40136},{35.2601,-19.3642},{35.2601,-19.3642}}));
+      connect(resistor3.n,resistor1.n) annotation(Line(points = {{35.2527,22.3986},{34.9711,22.3986},{34.9711,-1.44509},{34.9711,-1.44509}}));
+      connect(pcu1.VCC3,resistor2.p) annotation(Line(points = {{-17.7316,-3.76475},{-6.93642,-3.76475},{-6.93642,-19.3642},{10.6936,-19.3642},{10.6936,-19.3642}}));
+      connect(pcu1.VCC5,resistor1.p) annotation(Line(points = {{-17.7598,-0.568142},{10.6936,-0.568142},{10.6936,-1.15607},{10.6936,-1.15607}}));
+      connect(resistor3.p,pcu1.VCC12) annotation(Line(points = {{11.2527,22.3986},{-6.35838,22.3986},{-6.35838,3.17919},{-17.6301,3.17919},{-17.6301,3.17919}}));
       annotation(experiment(StartTime = 0.0, StopTime = 11000.0, Tolerance = 0.0001));
     end verbraucher;
     model basic_ess_mss
