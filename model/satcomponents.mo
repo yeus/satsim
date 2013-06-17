@@ -309,6 +309,9 @@ package satcomponents
       protected
         parameter SIunits.CurrentDensity Ids = 0.000001 "Diode Saturation Current" annotation(Placement(transformation(origin = {66.1952,63.0834}, extent = {{-12,-12},{12,12}})));
       equation
+        i = n.i;
+        i_sc_actual = (i_sc * E_s) / E0;
+        I_photonic.i = i_sc_actual;
         connect(D_shunt.p,R_shunt.p) annotation(Line(points = {{-13,15},{-13,21.2838},{21.9595,21.2838},{21.9595,14.8649},{21.9595,14.8649}}));
         connect(I_photonic.n,D_shunt.p) annotation(Line(points = {{-43,15},{-43,21.9595},{-13.1757,21.9595},{-13.1757,15.8784},{-13.1757,15.8784}}));
         connect(D_shunt.n,I_photonic.p) annotation(Line(points = {{-13,-9},{-13,-9.12162},{-43.5811,-9.12162},{-43.5811,-9.12162}}));
@@ -316,17 +319,6 @@ package satcomponents
         connect(R_shunt.p,R_series.p) annotation(Line(points = {{22,15},{22,21.2838},{45.6081,21.2838},{45.6081,-1.35135},{45.6081,-1.35135}}));
         connect(p,I_photonic.p) annotation(Line(points = {{-100,0},{-76.3514,0},{-76.3514,-9.12162},{-42.9054,-9.12162},{-42.9054,-9.12162}}));
         connect(R_series.n,n) annotation(Line(points = {{69.422,-1.93449},{98.9865,-1.93449},{98.9865,-2.36486},{98.9865,-2.36486}}));
-        i = n.i;
-        i_sc_actual = (i_sc * E_s) / E0;
-        I_photonic.i = i_sc_actual;
-      equation
-        connect(I_photonic.p,D_shunt.n) annotation(Line(points = {{-43,-9},{-43,-14},{-13,-14},{-13,-9}}, thickness = 0.0625));
-        connect(D_shunt.n,R_shunt.n) annotation(Line(points = {{-13,-9},{-13,-14},{22,-14},{22,-9}}, thickness = 0.0625));
-        connect(R_shunt.p,R_series.p) annotation(Line(points = {{22,15},{22,20},{45,20},{45,-2},{50,-2}}, thickness = 0.0625));
-        connect(R_series.n,n) annotation(Line(points = {{74,-2},{79,-2},{95,-2},{95,0},{100,0}}, thickness = 0.0625));
-        connect(R_shunt.p,D_shunt.p) annotation(Line(points = {{22,15},{22,20},{-13,20},{-13,15}}, thickness = 0.0625));
-        connect(D_shunt.p,I_photonic.n) annotation(Line(points = {{-13,15},{-13,20},{-43,20},{-43,15}}, thickness = 0.0625));
-        connect(I_photonic.p,p) annotation(Line(points = {{-43,-9},{-43,-14},{-69,-14},{-69,0},{-95,0},{-100,0}}, thickness = 0.0625));
         annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}), graphics = {Ellipse(fillColor = {0,0,255}, extent = {{-48.9392,47.8076},{46.6761,-50.0707}}),Line(points = {{-78.3593,89.1089},{-41.5842,46.6761},{-43.5644,60.5375},{-41.867,46.6761},{-53.7482,50.0707}}),Line(points = {{-56.5771,92.2207},{-26.8741,55.7284},{-37.9066,59.4059},{-27.4399,56.0113},{-27.7228,66.1952}}),Line(points = {{-89.6747,0.282885},{-19.5191,0.282885}}),Line(points = {{89.6747,0.282885},{5.09194,0.282885}}),Line(points = {{-18.3876,-37.3409},{-18.3876,40.1697}}),Line(points = {{4.24328,-17.5389},{4.24328,18.6704}}),Line(points = {{76.9449,-20.3678},{76.9449,-52.6167}}),Line(points = {{63.3664,-35.6436},{90.2405,-35.6436}}),Line(points = {{-92.2207,-34.512},{-66.4781,-34.512}})}), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}})), experiment(StopTime = 1, StartTime = 0));
       end solarcell_simple;
       model EVS4
