@@ -104,6 +104,10 @@ model thermal_Panel_with_Interface "Seitenpanel mit Schnittstelle"
 			points={{30,0},{35,0},{45,0},{45,-1},{50,-1}},
 			color={191,0,0},
 			thickness=0.0625));
+		connect(BuildingBlock_Panel.port_b_xp,thermal_connector1.Rad) annotation(Line(
+			points={{-10,0},{-5,0},{45,0},{45,-1},{50,-1}},
+			color={191,0,0},
+			thickness=0.0625));
 	annotation(
 		Icon(
 			coordinateSystem(
