@@ -309,8 +309,13 @@ package satcomponents
       protected
         parameter SIunits.CurrentDensity Ids = 0.000001 "Diode Saturation Current" annotation(Placement(transformation(origin = {66.1952,63.0834}, extent = {{-12,-12},{12,12}})));
       equation
-        connect(R_series.n,n) annotation(Line(points = {{69.422,-1.93449},{79,-1.93449},{95,-2},{95,0},{100,0}}, thickness = 0.0625));
-        connect(R_shunt.p,R_series.p) annotation(Line(points = {{22,15},{22,20},{45,20},{45.422,-2},{45.422,-1.93449}}, thickness = 0.0625));
+        connect(D_shunt.p,R_shunt.p) annotation(Line(points = {{-13,15},{-13,21.2838},{21.9595,21.2838},{21.9595,14.8649},{21.9595,14.8649}}));
+        connect(I_photonic.n,D_shunt.p) annotation(Line(points = {{-43,15},{-43,21.9595},{-13.1757,21.9595},{-13.1757,15.8784},{-13.1757,15.8784}}));
+        connect(D_shunt.n,I_photonic.p) annotation(Line(points = {{-13,-9},{-13,-9.12162},{-43.5811,-9.12162},{-43.5811,-9.12162}}));
+        connect(R_shunt.n,D_shunt.n) annotation(Line(points = {{22,-9},{22,-8.78378},{-13.1757,-8.78378},{-13.1757,-8.78378}}));
+        connect(R_shunt.p,R_series.p) annotation(Line(points = {{22,15},{22,21.2838},{45.6081,21.2838},{45.6081,-1.35135},{45.6081,-1.35135}}));
+        connect(p,I_photonic.p) annotation(Line(points = {{-100,0},{-76.3514,0},{-76.3514,-9.12162},{-42.9054,-9.12162},{-42.9054,-9.12162}}));
+        connect(R_series.n,n) annotation(Line(points = {{69.422,-1.93449},{98.9865,-1.93449},{98.9865,-2.36486},{98.9865,-2.36486}}));
         i = n.i;
         i_sc_actual = (i_sc * E_s) / E0;
         I_photonic.i = i_sc_actual;

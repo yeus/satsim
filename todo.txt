@@ -1,3 +1,7 @@
+HIL-Simulation
+==============
+- Ein Interface zwichen Rodos und Modelia
+
 Verschiedenes:
 ==============
 - EVS Simulation über Modelica
@@ -12,8 +16,8 @@ Verschiedenes:
   * All code (c)2013 Technische Universität Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved
   */
 
-Zu implementierende Komponenten:
-================================
+Liste von Komponentenmodellen
+=============================
 - PCU:
   - DCDC Converter: Es gibt ein ganz gutes Paper von Modelica um "solch einen" zu erstellen. ansonsten muss man sich eben mit einem simplen quasistationären Ersatzmodell behelfen (Wirkungsgrad + Spannugnsverlust)
     - DCDC Converter sind eine der wichtigsten Elemente im EVS. Da sollte untersucht werden, welche Vor/Nachteile verschiedene Wandler uns bringen.
@@ -21,11 +25,11 @@ Zu implementierende Komponenten:
 - OBC
   - Mit ein klein bischen zufälligem Rauschen, was die Auslastung (und damit Energieverbrauch) angeht
 - AOCS
+  - 3-Achsen Reaktionsrad
   - Drallrad
   - Gyros
   - Lagesensorik
   - Triebwerke und Düsen
-- weitere Komponenten aus Bausteinkatalog
 
 
 Analyse von Simulationsergebnisse:
