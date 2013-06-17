@@ -1,5 +1,5 @@
 // CP: 65001
-// SimulationX Version: 3.5.705.14 x64
+// SimulationX Version: 3.5.706.23 x64
 model solar_radiance "Einwirkende Sonnenstrahlung auf Flaeche A mit Absorptionsfaktor alpha"
 	parameter Real solar_constant=1372 "Solarkonstate in W/mÂ²";
 	parameter Modelica.SIunits.Time orbit_Period(
@@ -60,14 +60,7 @@ model solar_radiance "Einwirkende Sonnenstrahlung auf Flaeche A mit Absorptionsf
 		iconTransformation(
 			origin={0,0},
 			extent={{-10,-10},{10,10}})));
-	space_radiator space_radiator1 annotation(Placement(transformation(
-		origin={90,-70},
-		extent={{-10,-10},{10,10}})));
 	equation
-		connect(space_radiator1.thermal_connector1,thermal_connector1) annotation(Line(
-			points={{0,-35},{0,35}},
-			visible=true,
-			origin={90,-35}));
 		connect(thermal_connector1.Rad,Solar_Power_Rad.port) annotation(Line(
 			points={{35.1052,12.2104},{35.1052,-6.1052},{-70.21040000000001,-6.1052}},
 			color={191,0,0},
@@ -109,37 +102,36 @@ model solar_radiance "Einwirkende Sonnenstrahlung auf Flaeche A mit Absorptionsf
 			visible=true,
 			origin={-74.5,-50}));
 	annotation(
-		viewSettings(clrRaster=8421504),
 		Icon(
 			coordinateSystem(
 				extent={{-100,-100},{100,100}},
 				grid={10,10}),
 			graphics={
-			Ellipse(
-				fillColor={255,255,0},
-				fillPattern=FillPattern.Solid,
-				extent={{-99.82210000000001,-100},{99.82210000000001,100}},
-				visible=true,
-				origin={0.1779,0}),
-			Text(
-				textString="%name",
-				textStyle={TextStyle.Bold},
-				fillPattern=FillPattern.Solid,
-				extent={{-100,-19.1444},{100,19.1444}},
-				visible=true,
-				origin={-0,119.1444}),
-			Text(
-				textString="Period=%orbit_Period",
-				fillPattern=FillPattern.Solid,
-				extent={{-90,-14.5134},{90,14.5134}},
-				visible=true,
-				origin={0,25.4866}),
-			Text(
-				textString="percent_sun=%percent_sun",
-				fillPattern=FillPattern.Solid,
-				extent={{-90,-14.5134},{90,14.5134}},
-				visible=true,
-				origin={0,-24.5134})}),
+								Ellipse(
+									fillColor={255,255,0},
+									fillPattern=FillPattern.Solid,
+									extent={{-99.82210000000001,-100},{99.82210000000001,100}},
+									visible=true,
+									origin={0.1779,0}),
+								Text(
+									textString="%name",
+									textStyle={TextStyle.Bold},
+									fillPattern=FillPattern.Solid,
+									extent={{-100,-19.1444},{100,19.1444}},
+									visible=true,
+									origin={-0,119.1444}),
+								Text(
+									textString="Period=%orbit_Period",
+									fillPattern=FillPattern.Solid,
+									extent={{-90,-14.5134},{90,14.5134}},
+									visible=true,
+									origin={0,25.4866}),
+								Text(
+									textString="percent_sun=%percent_sun",
+									fillPattern=FillPattern.Solid,
+									extent={{-90,-14.5134},{90,14.5134}},
+									visible=true,
+									origin={0,-24.5134})}),
 		Diagram(coordinateSystem(
 			extent={{-148.5,-105},{148.5,105}},
 			grid={5,5})),

@@ -1,5 +1,5 @@
 // CP: 65001
-// SimulationX Version: 3.5.705.14 x64
+// SimulationX Version: 3.5.706.23 x64
 model thermal_Panel_with_Interface "Seitenpanel mit Schnittstelle"
 	Schnittstelle schnittstelle1(
 		x_ESS=x_ESS,
@@ -41,7 +41,7 @@ model thermal_Panel_with_Interface "Seitenpanel mit Schnittstelle"
 			extent={{-10,-10},{10,10}})));
 	thermal_connector thermal_connector1 annotation(Placement(
 		transformation(
-			origin={60,-0},
+			origin={50,-1},
 			extent={{-10,-10},{10,10}},
 			rotation=-180),
 		iconTransformation(
@@ -68,21 +68,6 @@ model thermal_Panel_with_Interface "Seitenpanel mit Schnittstelle"
 	replaceable parameter MaterialDatabase.Material material_TSS "Material of TSS from MaterialDataBase" annotation(choicesAllMatching=true);
 	replaceable parameter MaterialDatabase.Material material_Panel "Material of TSS from MaterialDataBase" annotation(choicesAllMatching=true);
 	equation
-		connect(schnittstelle1.TSS_IF,thermal_connector1.TSS) annotation(Line(
-			points={{30,-5},{35,-5},{55,-5},{55,0},{60,0}},
-			color={191,0,0},
-			visible=true,
-			origin={45.1253,-3.7513}));
-		connect(schnittstelle1.MSS_IF,thermal_connector1.MSS) annotation(Line(
-			points={{30,0},{35,0},{55,0},{60,0}},
-			color={191,0,0},
-			visible=true,
-			origin={45.0846,1.2362}));
-		connect(schnittstelle1.ESS_IF,thermal_connector1.ESS) annotation(Line(
-			points={{30,5},{35,5},{55,5},{55,0},{60,0}},
-			color={191,0,0},
-			visible=true,
-			origin={41.7788,8.7073}));
 		connect(BuildingBlock_Panel.port_b_xp,schnittstelle1.port_a) annotation(Line(
 			points={{-10,0},{-5,0},{12,0},{17,0}},
 			color={191,0,0},
@@ -107,34 +92,45 @@ model thermal_Panel_with_Interface "Seitenpanel mit Schnittstelle"
 			points={{-20,-6},{-20,-11},{-15,-11},{-15,-36},{-20,-36}},
 			color={191,0,0},
 			thickness=0.0625));
+		connect(schnittstelle1.ESS_IF,thermal_connector1.ESS) annotation(Line(
+			points={{30,5},{35,5},{45,5},{45,-1},{50,-1}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(schnittstelle1.TSS_IF,thermal_connector1.TSS) annotation(Line(
+			points={{30,-5},{35,-5},{45,-5},{45,-1},{50,-1}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(schnittstelle1.MSS_IF,thermal_connector1.MSS) annotation(Line(
+			points={{30,0},{35,0},{45,0},{45,-1},{50,-1}},
+			color={191,0,0},
+			thickness=0.0625));
 	annotation(
-		viewSettings(clrRaster=8421504),
 		Icon(
 			coordinateSystem(
 				extent={{-100,-100},{100,100}},
 				grid={10,10}),
 			graphics={
-			Rectangle(
-				lineColor={255,0,0},
-				fillColor={255,255,255},
-				fillPattern=FillPattern.VerticalCylinder,
-				extent={{-10,-100},{10,100}},
-				visible=true,
-				origin={-10,0}),
-			Rectangle(
-				lineColor={255,0,0},
-				fillColor={255,255,255},
-				fillPattern=FillPattern.CrossDiag,
-				extent={{-10,-50},{10,50}},
-				visible=true,
-				origin={10,0}),
-			Text(
-				textString="%name",
-				textStyle={TextStyle.Bold},
-				fillPattern=FillPattern.Solid,
-				extent={{-100,-20},{100,20}},
-				visible=true,
-				rotation=90)}),
+								Rectangle(
+									lineColor={255,0,0},
+									fillColor={255,255,255},
+									fillPattern=FillPattern.VerticalCylinder,
+									extent={{-10,-100},{10,100}},
+									visible=true,
+									origin={-10,0}),
+								Rectangle(
+									lineColor={255,0,0},
+									fillColor={255,255,255},
+									fillPattern=FillPattern.CrossDiag,
+									extent={{-10,-50},{10,50}},
+									visible=true,
+									origin={10,0}),
+								Text(
+									textString="%name",
+									textStyle={TextStyle.Bold},
+									fillPattern=FillPattern.Solid,
+									extent={{-100,-20},{100,20}},
+									visible=true,
+									rotation=90)}),
 		Diagram(coordinateSystem(
 			extent={{-105,-74},{105,74}},
 			grid={5,5})),
