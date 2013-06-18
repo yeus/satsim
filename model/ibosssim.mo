@@ -1,4 +1,9 @@
 package iboss
+  /*
+* Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)
+* Date : 10/06/2013
+* All code (c)2013 Technische Universität Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved
+*/
   package components
     model iboss_interface
       iboss_connector iBoss_connector annotation(Placement(visible = true, transformation(origin = {-99.8586,-0.282885}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-99.8586,-0.282885}, extent = {{-12,-12},{12,12}}, rotation = 0)));
@@ -32,15 +37,95 @@ package iboss
       connect(constantvoltage1.n,ground1.p) annotation(Line(points = {{12.6319,12.3223},{25.1768,12.3223},{25.1768,7.89258},{25.2765,7.89258}}));
       annotation(Icon(graphics = {Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-59.3997,67.2986},{58.1359,-72.6698}})}), Diagram(graphics = {Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-46.7615,68.8784},{46.7615,-71.406}})}));
     end dockinterface;
+    connector iboss_connector_ess
+      import Modelica.Electrical.Analog.Interfaces;
+      Modelica.Electrical.Analog.Interfaces.PositivePin Vcc annotation(Placement(visible = true, transformation(origin = {62.9251,65.8292}, extent = {{-28.2954,-28.2954},{28.2954,28.2954}}, rotation = 0)));
+      Modelica.Electrical.Analog.Interfaces.NegativePin GND annotation(Placement(visible = true, transformation(origin = {61.9524,-60.6435}, extent = {{-28.2954,-28.2954},{28.2954,28.2954}}, rotation = 0)));
+      annotation(defaultComponentName = "iBoss_connector", Diagram(graphics = {Text(rotation = 0, lineColor = {0,0,0}, fillColor = {0,0,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-102.764,-102.343},{97.2356,-162.343}}, textString = "%name"),Rectangle(rotation = 0, lineColor = {0,0,0}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.CrossDiag, lineThickness = 1, extent = {{-14.1125,15.3798},{12.5283,-10.6274}})}), Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,0}, fillColor = {0,0,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.CrossDiag, lineThickness = 1, extent = {{-100,100},{100,-100}})}));
+    end iboss_connector_ess;
     connector iboss_connector
       import Modelica.Electrical.Analog.Interfaces;
-      Modelica.Electrical.Analog.Interfaces.PositivePin Vcc annotation(Placement(visible = true, transformation(origin = {62.9251,65.8292}, extent = {{-28.2954,-28.2954},{28.2954,28.2954}}, rotation = 0), iconTransformation(origin = {62.9251,65.8292}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      Modelica.Electrical.Analog.Interfaces.NegativePin GND annotation(Placement(visible = true, transformation(origin = {61.9524,-60.6435}, extent = {{-28.2954,-28.2954},{28.2954,28.2954}}, rotation = 0), iconTransformation(origin = {61.9524,-60.6435}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+      Modelica.Electrical.Analog.Interfaces.PositivePin Vcc annotation(Placement(visible = true, transformation(origin = {62.9251,65.8292}, extent = {{-28.2954,-28.2954},{28.2954,28.2954}}, rotation = 0)));
+      Modelica.Electrical.Analog.Interfaces.NegativePin GND annotation(Placement(visible = true, transformation(origin = {61.9524,-60.6435}, extent = {{-28.2954,-28.2954},{28.2954,28.2954}}, rotation = 0)));
       annotation(defaultComponentName = "iBoss_connector", Diagram(graphics = {Text(rotation = 0, lineColor = {0,0,0}, fillColor = {0,0,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-102.764,-102.343},{97.2356,-162.343}}, textString = "%name"),Rectangle(rotation = 0, lineColor = {0,0,0}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.CrossDiag, lineThickness = 1, extent = {{-14.1125,15.3798},{12.5283,-10.6274}})}), Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,0}, fillColor = {0,0,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.CrossDiag, lineThickness = 1, extent = {{-100,100},{100,-100}})}));
     end iboss_connector;
   end components;
   package buildingblocks
-    model basic
+    model solar
+      extends iboss.buildingblocks.basic_ess_mss;
+      Modelica.Blocks.Interfaces.RealInput u annotation(Placement(visible = true, transformation(origin = {221.308,-0.741443}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {221.308,-0.741443}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+      Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-12.4277,-39.3064}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      satcomponents.power.solar_power.solarcell_simple solarcell_simple1 annotation(Placement(visible = true, transformation(origin = {1.41677,-10.1535}, extent = {{10,10},{-10,-10}}, rotation = 90)));
+    equation
+      connect(solarcell_simple1.E_s,u) annotation(Line(points = {{8.51661,-10.0267},{8.51661,-10.4598},{28.6508,-10.4598},{28.6508,40.0201},{162.809,40.0201},{162.809,-0.909549},{224.659,-0.909549},{224.659,-0.909549}}));
+      connect(solarcell_simple1.n,ground1.p) annotation(Line(points = {{1.41677,-20.1535},{1.41677,-29.1908},{-12.7168,-29.1908},{-12.7168,-29.1908}}));
+      connect(solarcell_simple1.p,int_Xn.vcc) annotation(Line(points = {{1.41677,-0.1535},{1.41677,12.4277},{-68.7861,12.4277},{-68.7861,-2.02312},{-68.7861,-2.02312}}));
+      connect(int_Xn.gnd,solarcell_simple1.n) annotation(Line(points = {{-68.7185,-6.11033},{-68.7861,-6.11033},{-68.7861,-20.5202},{1.15607,-20.1535},{1.41677,-20.1535}}));
+      annotation(experiment(StartTime = 0.0, StopTime = 10000.0, Tolerance = 0.000001), Diagram(), Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Cross, lineThickness = 0.25, extent = {{71.8896,121.659},{356.683,-125.807}})}));
+    end solar;
+    model battery
+      extends iboss.buildingblocks.basic_ess_mss;
+      satcomponents.power.batteries.battery battery1(Vnominal = 70) annotation(Placement(visible = true, transformation(origin = {-27.3333,-0.666667}, extent = {{10,-10},{-10,10}}, rotation = 90)));
+      Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-36.9942,-29.7688}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    equation
+      connect(battery1.n,ground1.p) annotation(Line(points = {{-27.3333,-10.6667},{-27.3333,-19.6532},{-36.4162,-19.6532},{-36.4162,-19.6532}}));
+      connect(battery1.p,int_Xn.vcc) annotation(Line(points = {{-27.3333,9.33333},{-27.3333,9.33333},{-48,9.33333},{-48,-2},{-69,-2},{-69,-2}}));
+      connect(battery1.n,int_Xn.gnd) annotation(Line(points = {{-27.3333,-10.6667},{-27.3333,-11},{-56.3333,-11},{-56.3333,-6},{-68.6667,-6},{-68.6667,-6}}));
+      annotation(experiment(StartTime = 0.0, StopTime = 11000.0, Tolerance = 0.0001));
+    end battery;
+    model verbraucher
+      extends iboss.buildingblocks.basic_ess_mss;
+      import satcomponents.power.dcmodel;
+      satcomponents.power.PCU pcu1 annotation(Placement(visible = true, transformation(origin = {-27.7457,-1.44509}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Resistor resistor1 annotation(Placement(visible = true, transformation(origin = {23.4104,20.2312}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Resistor resistor2 annotation(Placement(visible = true, transformation(origin = {22.8324,-0.289017}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Resistor resistor3 annotation(Placement(visible = true, transformation(origin = {22.8324,-20.5202}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    equation
+      connect(int_Xn.gnd,pcu1.gnd) annotation(Line(points = {{-68.7185,-6.11033},{-68.2081,-6.11033},{-68.2081,-20.8092},{-17.6301,-20.8092},{-17.6301,-7.80347},{-17.6301,-7.80347}}));
+      connect(pcu1.gnd,resistor2.n) annotation(Line(points = {{-17.7316,-7.8383},{32.659,-7.8383},{32.659,-0.289017},{32.659,-0.289017}}));
+      connect(resistor2.n,resistor3.n) annotation(Line(points = {{32.8324,-0.289017},{32.659,-0.289017},{32.659,-20.5202},{32.659,-20.5202}}));
+      connect(resistor1.n,resistor2.n) annotation(Line(points = {{33.4104,20.2312},{32.659,20.2312},{32.659,0},{32.659,0}}));
+      connect(resistor3.p,pcu1.VCC3) annotation(Line(points = {{12.8324,-20.5202},{0.867052,-20.5202},{0.867052,-3.46821},{-17.9191,-3.46821},{-17.9191,-3.46821}}));
+      connect(pcu1.VCC12,resistor1.p) annotation(Line(points = {{-17.8164,3.0245},{0.867052,3.0245},{0.867052,20.2312},{13.0058,20.2312},{13.0058,20.2312}}));
+      connect(pcu1.VCC5,resistor2.p) annotation(Line(points = {{-17.7598,-0.568145},{12.1387,-0.568145},{12.1387,-0.578035},{12.1387,-0.578035}}));
+      connect(int_Xn.vcc,pcu1.VCC) annotation(Line(points = {{-68.7524,-2.17255},{-47.9769,-2.17255},{-47.9769,-0.578035},{-38.1503,-0.578035},{-38.1503,-0.578035}}));
+      connect(int_Xn.gnd,pcu1.GND) annotation(Line(points = {{-68.7185,-6.11033},{-38.4393,-6.11033},{-38.4393,-6.06936},{-38.4393,-6.06936}}));
+      annotation(experiment(StartTime = 0.0, StopTime = 11000.0, Tolerance = 0.0001));
+    end verbraucher;
+    model basic_ess_mss
+      //todo: der "ideale" Baustein kann nicht mit anderen Bausteinen mehrfach vebunden werden, daher müssen kabelwiederstände berücksichtigt werden.
+      iboss.components.iboss_interface int_Xn annotation(Placement(visible = true, transformation(origin = {-80.9052,0}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+      iboss.components.iboss_interface int_Zp annotation(Placement(visible = true, transformation(origin = {-43.2815,61.1033}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+      iboss.components.iboss_interface int_Yp annotation(Placement(visible = true, transformation(origin = {-0.848656,81.471}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+      iboss.components.iboss_connector Yp annotation(Placement(visible = true, transformation(origin = {0.337268,99.4941}, extent = {{-12,12},{12,-12}}, rotation = -90), iconTransformation(origin = {0.337268,99.4941}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+      iboss.components.iboss_connector Zp annotation(Placement(visible = true, transformation(origin = {-61.7917,60.4895}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+      iboss.components.iboss_interface int_Yn annotation(Placement(visible = true, transformation(origin = {-0.848656,-72.8863}, extent = {{-12,-12},{12,12}}, rotation = 90)));
+      iboss.components.iboss_connector Xn annotation(Placement(visible = true, transformation(origin = {-101.527,-0.466164}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+      iboss.components.iboss_interface int_Zn annotation(Placement(visible = true, transformation(origin = {45.2678,-53.5704}, extent = {{-12,12},{12,-12}}, rotation = -180)));
+      iboss.components.iboss_connector Xp annotation(Placement(visible = true, transformation(origin = {99.8314,0.337268}, extent = {{-12,12},{12,-12}}, rotation = -180), iconTransformation(origin = {99.8314,0.337268}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+      iboss.components.iboss_interface int_Xp annotation(Placement(visible = true, transformation(origin = {80.3395,0.873184}, extent = {{-12,12},{12,-12}}, rotation = -180)));
+      iboss.components.iboss_connector Zn annotation(Placement(visible = true, transformation(origin = {62.9702,-53.6256}, extent = {{-12,12},{12,-12}}, rotation = -180), iconTransformation(origin = {62.9702,-58.2499}, extent = {{12,12},{-12,-12}}, rotation = -180)));
+      iboss.components.iboss_connector Yn annotation(Placement(visible = true, transformation(origin = {-0.529784,-91.0638}, extent = {{-12,-12},{12,12}}, rotation = -270), iconTransformation(origin = {-0.529784,-91.0638}, extent = {{12,-12},{-12,12}}, rotation = -270)));
+    equation
+      connect(int_Zn.gnd,int_Xp.gnd) annotation(Line(points = {{33.0811,-59.6807},{25.1768,-59.6807},{25.1768,-37.058},{61.1033,-37.058},{61.1033,6.22348},{68.1528,-5.23714},{68.1528,-5.23714}}));
+      connect(int_Xp.vcc,int_Zn.vcc) annotation(Line(points = {{68.1867,-1.29937},{63.3663,-1.29937},{63.3663,-39.604},{27.7228,-39.604},{27.7228,-59.6888},{32.826,-55.7429},{33.1151,-55.7429}}));
+      connect(int_Zn.vcc,int_Yn.vcc) annotation(Line(points = {{33.1151,-55.7429},{1.13154,-55.7429},{1.3239,-65.3578},{1.3239,-60.7336}}));
+      connect(int_Yn.gnd,int_Zn.gnd) annotation(Line(points = {{5.26167,-60.6996},{5.26167,-65.3239},{5.37482,-58.5573},{25.1768,-58.5573},{25.1768,-55.4455},{33.0811,-55.4455},{33.0811,-59.6807}}));
+      connect(int_Xn.gnd,int_Yn.gnd) annotation(Line(points = {{-68.7185,-6.11033},{-59.1231,-6.11033},{-59.1231,-58.5573},{5.37482,-58.5573},{5.26167,-65.3239},{5.26167,-60.6996}}));
+      connect(int_Yn.vcc,int_Xn.vcc) annotation(Line(points = {{1.3239,-60.7336},{1.3239,-65.3578},{1.13154,-59.6888},{-61.3861,-59.6888},{-61.3861,-2.26308},{-68.7524,-2.26308},{-68.7524,-2.17255}}));
+      connect(int_Zp.gnd,int_Xn.gnd) annotation(Line(points = {{-31.0948,54.993},{-23.4795,54.993},{-23.4795,38.7553},{-58.8402,38.7553},{-58.8402,-6.50636},{-68.7185,-6.50636},{-68.7185,-6.11033}}));
+      connect(int_Yp.gnd,int_Zp.gnd) annotation(Line(points = {{-6.95898,69.2843},{-7.35502,69.2843},{-7.35502,61.1033},{-23.1966,61.1033},{-23.1966,54.8798},{-31.0948,54.8798},{-31.0948,54.993}}));
+      connect(int_Zp.vcc,int_Yp.vcc) annotation(Line(points = {{-31.1287,58.9307},{-26.5912,58.9307},{-26.5912,63.9321},{-3.67751,63.9321},{-3.67751,69.3182},{-3.02121,69.3182}}));
+      connect(int_Xn.vcc,int_Zp.vcc) annotation(Line(points = {{-68.7524,-2.17255},{-61.3861,-2.17255},{-61.3861,41.0184},{-26.0255,41.0184},{-26.0255,59.1231},{-31.1287,59.1231},{-31.1287,58.9307}}));
+      connect(Yn,int_Yn.iBoss_connector);
+      connect(Xn,int_Xn.iBoss_connector);
+      connect(Zp,int_Zp.iBoss_connector);
+      connect(Yp,int_Yp.iBoss_connector);
+      connect(Xp,int_Xp.iBoss_connector);
+      connect(Zn,int_Zn.iBoss_connector);
+      annotation(Diagram(), Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-77.2278,76.0255},{74.9561,-75.256}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-69.5191,69.4202},{66.9674,-68.4328}}),Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-20.2122,18.7864},{19.355,-20.778}}),Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-15.3692,13.9434},{14.512,-15.6521}}),Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-1.42575,0.571424},{0.288544,-1.14286}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-74.3791,15.6917},{-79.2362,-16.0226}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-15.9916,77.1881},{15.1513,72.0453}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{73.239,13.1174},{77.5247,-13.7397}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-15.4145,-72.9759},{16.5855,-77.833}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-49.505,66.761},{55.4455,27.4399}}, textString = "%name")}));
+    end basic_ess_mss;
+    model basic_ess
       //todo: der "ideale" Baustein kann nicht mit anderen Bausteinen mehrfach vebunden werden, daher müssen kabelwiederstände berücksichtigt werden.
       iboss.components.iboss_connector Xn annotation(Placement(visible = true, transformation(origin = {-100.082,-0.177147}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-100.082,-0.177147}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       iboss.components.iboss_interface int_Xn annotation(Placement(visible = true, transformation(origin = {-80.9052,0}, extent = {{-12,-12},{12,12}}, rotation = 0)));
@@ -49,11 +134,11 @@ package iboss
       iboss.components.iboss_interface int_Zn annotation(Placement(visible = true, transformation(origin = {44.9788,-61.9519}, extent = {{12,12},{-12,-12}}, rotation = -180)));
       iboss.components.iboss_interface int_Yn annotation(Placement(visible = true, transformation(origin = {-0.848656,-77.5106}, extent = {{12,-12},{-12,12}}, rotation = 90)));
       iboss.components.iboss_interface int_Xp annotation(Placement(visible = true, transformation(origin = {80.3395,-0.282885}, extent = {{12,12},{-12,-12}}, rotation = -180)));
-      iboss.components.iboss_connector Zp annotation(Placement(visible = true, transformation(origin = {-55.7223,55.2872}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-55.7223,55.2872}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       iboss.components.iboss_connector Zn annotation(Placement(visible = true, transformation(origin = {52.2766,-53.6256}, extent = {{12,12},{-12,-12}}, rotation = -180), iconTransformation(origin = {52.2766,-53.6256}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       iboss.components.iboss_connector Yn annotation(Placement(visible = true, transformation(origin = {0.337268,-97.1332}, extent = {{12,-12},{-12,12}}, rotation = -270), iconTransformation(origin = {0.337268,-97.1332}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       iboss.components.iboss_connector Xp annotation(Placement(visible = true, transformation(origin = {99.8314,0.337268}, extent = {{12,12},{-12,-12}}, rotation = -180), iconTransformation(origin = {99.8314,0.337268}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       iboss.components.iboss_connector Yp annotation(Placement(visible = true, transformation(origin = {0.337268,99.4941}, extent = {{-12,12},{12,-12}}, rotation = -90), iconTransformation(origin = {0.337268,99.4941}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+      iboss.components.iboss_connector Zp annotation(Placement(visible = true, transformation(origin = {-60.9246,61.0675}, extent = {{-12,-12},{12,12}}, rotation = 0)));
     equation
       connect(int_Yn.vcc,int_Xn.vcc) annotation(Line(points = {{1.3239,-65.3578},{1.13154,-65.3578},{1.13154,-59.6888},{-61.3861,-59.6888},{-61.3861,-2.26308},{-68.7524,-2.26308},{-68.7524,-2.17255}}));
       connect(int_Zn.vcc,int_Yn.vcc) annotation(Line(points = {{32.826,-59.7793},{1.13154,-59.7793},{1.13154,-65.3578},{1.3239,-65.3578}}));
@@ -72,57 +157,7 @@ package iboss
       connect(Xp,int_Xp.iBoss_connector);
       connect(Zn,int_Zn.iBoss_connector);
       annotation(Diagram(), Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-77.2278,76.0255},{74.9561,-75.256}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-69.5191,69.4202},{66.9674,-68.4328}}),Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-20.2122,18.7864},{19.355,-20.778}}),Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-15.3692,13.9434},{14.512,-15.6521}}),Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-1.42575,0.571424},{0.288544,-1.14286}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-74.3791,15.6917},{-79.2362,-16.0226}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-15.9916,77.1881},{15.1513,72.0453}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{73.239,13.1174},{77.5247,-13.7397}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-15.4145,-72.9759},{16.5855,-77.833}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-49.505,66.761},{55.4455,27.4399}}, textString = "%name")}));
-    end basic;
-    model solar
-      extends iboss.buildingblocks.basic;
-      Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {1.41448,-39.3211}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      satcomponents.power.solar_power.solarcell_simple solarcell1 annotation(Placement(visible = true, transformation(origin = {13.5785,-5.94055}, extent = {{12,-12},{-12,12}}, rotation = -270)));
-      Modelica.Blocks.Interfaces.RealInput u annotation(Placement(visible = true, transformation(origin = {221.308,-0.741443}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {221.308,-0.741443}, extent = {{-12,12},{12,-12}}, rotation = -90)));
-    equation
-      connect(u,solarcell1.E_s) annotation(Line(points = {{221.308,-0.741443},{115.983,-0.741443},{115.983,-6.22348},{5.05869,-6.22348},{5.05869,-6.09269}}));
-      connect(ground1.p,int_Xn.gnd) annotation(Line(points = {{1.41448,-27.3211},{1.41448,-26.3083},{-69.5898,-26.3083},{-69.5898,-6.11033},{-68.7185,-6.11033}}));
-      connect(solarcell1.n,int_Xn.vcc) annotation(Line(points = {{13.5785,6.05945},{-69.024,6.05945},{-69.024,-2.17255},{-68.7524,-2.17255}}));
-      connect(solarcell1.p,ground1.p) annotation(Line(points = {{13.5785,-17.9405},{13.2956,-17.9405},{13.2956,-27.157},{1.41448,-27.157},{1.41448,-27.3211}}));
-      annotation(experiment(StartTime = 0.0, StopTime = 10000.0, Tolerance = 0.000001), Diagram(), Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Cross, lineThickness = 0.25, extent = {{71.8896,121.659},{356.683,-125.807}})}));
-    end solar;
-    model battery
-      extends iboss.buildingblocks.basic;
-      satcomponents.power.batteries.battery battery1(Vnominal = 70) annotation(Placement(visible = true, transformation(origin = {-27.3333,-0.666667}, extent = {{10,-10},{-10,10}}, rotation = 90)));
-      Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-32.7675,-43.1876}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-    equation
-      connect(battery1.p,int_Xn.vcc) annotation(Line(points = {{-27.3333,9.33333},{-27.3333,9.33333},{-48,9.33333},{-48,-2},{-69,-2},{-69,-2}}));
-      connect(battery1.n,ground1.p) annotation(Line(points = {{-27.3333,-10.6667},{-27.3333,-11},{-33,-11},{-33,-31},{-33,-31}}));
-      connect(battery1.n,int_Xn.gnd) annotation(Line(points = {{-27.3333,-10.6667},{-27.3333,-11},{-56.3333,-11},{-56.3333,-6},{-68.6667,-6},{-68.6667,-6}}));
-      annotation(experiment(StartTime = 0.0, StopTime = 11000.0, Tolerance = 0.0001));
-    end battery;
-    model verbraucher
-      extends iboss.buildingblocks.basic;
-      import satcomponents.power.dcmodel;
-      dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved1 annotation(Placement(visible = true, transformation(origin = {-20.9335,8.20368}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved2(V_out = 3, V_in_min = 5) annotation(Placement(visible = true, transformation(origin = {-21.2164,31.9661}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved3(V_out = 12, V_in_min = 15) annotation(Placement(visible = true, transformation(origin = {-20.6506,-20.3678}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-72.9845,-81.1881}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-      Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 12.5) annotation(Placement(visible = true, transformation(origin = {32.8147,11.3154}, extent = {{-12,12},{12,-12}}, rotation = -90)));
-      Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.0000001) annotation(Placement(visible = true, transformation(origin = {-73.2674,-47.2419}, extent = {{-12,12},{12,-12}}, rotation = -90)));
-      Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 72) annotation(Placement(visible = true, transformation(origin = {31.6832,-25.7426}, extent = {{-12,12},{12,-12}}, rotation = -90)));
-      Modelica.Electrical.Analog.Basic.Resistor resistor3(R = 10.89) annotation(Placement(visible = true, transformation(origin = {33.9463,46.6761}, extent = {{-12,12},{12,-12}}, rotation = -90)));
-    equation
-      connect(resistor2.n,dcdc_ideal_simple_improved3.n2) annotation(Line(points = {{31.6832,-37.7426},{8.48656,-37.7426},{8.48656,-25.7426},{-9.48232,-25.7426},{-9.48232,-26.0028}}));
-      connect(dcdc_ideal_simple_improved3.p2,resistor2.p) annotation(Line(points = {{-9.55022,-15.2758},{31.4003,-15.2758},{31.4003,-13.7426},{31.6832,-13.7426}}));
-      connect(dcdc_ideal_simple_improved2.p2,resistor3.p) annotation(Line(points = {{-10.116,37.058},{-3.39463,37.058},{-3.39463,59.1231},{33.9463,59.1231},{33.9463,58.6761}}));
-      connect(resistor3.n,dcdc_ideal_simple_improved2.n2) annotation(Line(points = {{33.9463,34.6761},{2.54597,34.6761},{2.54597,26.3083},{-10.0481,26.3083},{-10.0481,26.331}}));
-      connect(int_Xn.gnd,dcdc_ideal_simple_improved3.n1) annotation(Line(points = {{-68.7185,-6.11033},{-47.5248,-6.11033},{-47.5248,-25.4597},{-31.785,-25.4597},{-31.785,-25.2221}}));
-      connect(int_Xn.gnd,dcdc_ideal_simple_improved2.n1) annotation(Line(points = {{-68.7185,-6.11033},{-47.8076,-6.11033},{-47.8076,26.8741},{-32.3508,26.8741},{-32.3508,27.1117}}));
-      connect(dcdc_ideal_simple_improved3.p1,int_Xn.vcc) annotation(Line(points = {{-31.7171,-15.3437},{-56.2942,-15.3437},{-56.2942,-2.26308},{-68.7524,-2.26308},{-68.7524,-2.17255}}));
-      connect(capacitor1.n,ground1.p) annotation(Line(points = {{-73.2674,-59.2419},{-72.9845,-59.2419},{-72.9845,-69.1881},{-72.9845,-69.1881}}));
-      connect(capacitor1.p,dcdc_ideal_simple_improved1.n1) annotation(Line(points = {{-73.2674,-35.2419},{-47.2418,-35.2419},{-47.2418,3.34937},{-32.0679,3.34937}}));
-      connect(int_Xn.vcc,dcdc_ideal_simple_improved2.p1) annotation(Line(points = {{-68.7524,-2.17255},{-56.86,-2.17255},{-56.86,37.058},{-32.2829,37.058},{-32.2829,36.9901}}));
-      connect(dcdc_ideal_simple_improved1.n1,int_Xn.gnd) annotation(Line(points = {{-32.0679,3.34937},{-47.5248,3.34937},{-47.5248,-6.50636},{-68.7185,-6.50636},{-68.7185,-6.11033}}));
-      connect(int_Xn.vcc,dcdc_ideal_simple_improved1.p1) annotation(Line(points = {{-68.7524,-2.17255},{-56.2942,-2.17255},{-56.2942,13.8614},{-32,13.8614},{-32,13.2277}}));
-      connect(resistor1.p,dcdc_ideal_simple_improved1.p2) annotation(Line(points = {{32.8147,23.3154},{9.33522,23.3154},{9.33522,13.2956},{-9.8331,13.2956},{-9.8331,13.2956}}));
-      connect(dcdc_ideal_simple_improved1.n2,resistor1.n) annotation(Line(points = {{-9.76521,2.5686},{7.92079,2.5686},{7.92079,-1.41443},{32.8147,-1.41443},{32.8147,-0.684582}}));
-      annotation(experiment(StartTime = 0.0, StopTime = 11000.0, Tolerance = 0.0001));
-    end verbraucher;
+    end basic_ess;
   end buildingblocks;
   package satellites
     model generic_sat
@@ -164,9 +199,9 @@ package iboss
       iboss.buildingblocks.verbraucher v2 annotation(Placement(visible = true, transformation(origin = {-24.0453,41.867}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       iboss.buildingblocks.solar s1 annotation(Placement(visible = true, transformation(origin = {-25.1768,-15.5587}, extent = {{-12,12},{12,-12}}, rotation = -90)));
       iboss.components.connectionelement connectionelement2 annotation(Placement(visible = true, transformation(origin = {35.3607,12.7298}, extent = {{-12,12},{12,-12}}, rotation = -90)));
-      iboss.components.connectionelement connectionelement4 annotation(Placement(visible = true, transformation(origin = {-25.1768,13.5785}, extent = {{-12,12},{12,-12}}, rotation = -90)));
       iboss.buildingblocks.battery b1 annotation(Placement(visible = true, transformation(origin = {34.6667,-15.6667}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       Modelica.Blocks.Sources.Trapezoid trapezoid1(amplitude = 1367, width = 1000, period = 3000, rising = 60, falling = 60) annotation(Placement(visible = true, transformation(origin = {-73.4187,-43.5587}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+      iboss.components.connectionelement connectionelement4 annotation(Placement(visible = true, transformation(origin = {-25.1768,13.8675}, extent = {{-12,12},{12,-12}}, rotation = -90)));
     equation
       connect(b1.Xn,connectionelement1.int1) annotation(Line(points = {{24.6585,-15.6844},{17,-15.6844},{17,-14.6667},{17,-14.6667}}));
       connect(connectionelement2.int1,b1.Yp) annotation(Line(points = {{34.8176,2.10463},{34.8176,-5.66667},{35,-5.66667},{35,-5.66667}}));
