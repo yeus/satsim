@@ -32,7 +32,7 @@ model thermal_Panel_with_Interface "Seitenpanel mit Schnittstelle"
 		Placement(transformation(
 			origin={-20,-0},
 			extent={{-10,-10},{10,10}})));
-	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_a annotation(Placement(
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_xn annotation(Placement(
 		transformation(
 			origin={-55,-1},
 			extent={{-10,-10},{10,10}}),
@@ -47,10 +47,10 @@ model thermal_Panel_with_Interface "Seitenpanel mit Schnittstelle"
 		iconTransformation(
 			origin={30,0},
 			extent={{-10,-10},{10,10}})));
-	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b port_b annotation(Placement(transformation(extent={{-65,-46},{-45,-26}})));
-	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_a1 annotation(Placement(transformation(extent={{-30,-46},{-10,-26}})));
-	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b port_b1 annotation(Placement(transformation(extent={{-35,24},{-15,44}})));
-	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_a2 annotation(Placement(transformation(extent={{5,24},{25,44}})));
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b port_zp annotation(Placement(transformation(extent={{-65,-46},{-45,-26}})));
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_yn annotation(Placement(transformation(extent={{-30,-46},{-10,-26}})));
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b port_yp annotation(Placement(transformation(extent={{-35,24},{-15,44}})));
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_zn annotation(Placement(transformation(extent={{5,24},{25,44}})));
 	parameter Modelica.SIunits.Length x_ESS "length x of ESS in m";
 	parameter Modelica.SIunits.Length y_ESS "length y of ESS in m";
 	parameter Modelica.SIunits.Length z_ESS "length z of ESS in m";
@@ -72,26 +72,11 @@ model thermal_Panel_with_Interface "Seitenpanel mit Schnittstelle"
 			points={{-10,0},{-5,0},{12,0},{17,0}},
 			color={191,0,0},
 			thickness=0.0625));
-		connect(BuildingBlock_Panel.port_a_xn,port_a) annotation(Line(
-			points={{-30,0},{-35,0},{-50,0},{-50,-1},{-55,-1}},
-			color={191,0,0},
-			thickness=0.0625));
-		connect(BuildingBlock_Panel.port_b_zp,port_b) annotation(Line(
-			points={{-25,-5},{-30,-5},{-50,-5},{-50,-36},{-55,-36}},
-			color={191,0,0},
-			thickness=0.0625));
-		connect(BuildingBlock_Panel.port_b_yp,port_b1) annotation(Line(
-			points={{-20,9},{-20,14},{-20,34},{-25,34}},
-			color={191,0,0},
-			thickness=0.0625));
-		connect(BuildingBlock_Panel.port_a_zn,port_a2) annotation(Line(
-			points={{-15,7},{-15,12},{-15,34},{10,34},{15,34}},
-			color={191,0,0},
-			thickness=0.0625));
-		connect(BuildingBlock_Panel.port_a_yn,port_a1) annotation(Line(
-			points={{-20,-6},{-20,-11},{-15,-11},{-15,-36},{-20,-36}},
-			color={191,0,0},
-			thickness=0.0625));
+		
+		
+		
+		
+		
 		connect(schnittstelle1.ESS_IF,thermal_connector1.ESS) annotation(Line(
 			points={{30,5},{35,5},{45,5},{45,-1},{50,-1}},
 			color={191,0,0},
@@ -106,6 +91,26 @@ model thermal_Panel_with_Interface "Seitenpanel mit Schnittstelle"
 			thickness=0.0625));
 		connect(BuildingBlock_Panel.port_b_xp,thermal_connector1.Rad) annotation(Line(
 			points={{-10,0},{-5,0},{45,0},{45,-1},{50,-1}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(BuildingBlock_Panel.port_b_yp,port_yp) annotation(Line(
+			points={{-20,9},{-20,14},{-20,34},{-25,34}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(BuildingBlock_Panel.port_a_zn,port_zn) annotation(Line(
+			points={{-15,7},{-15,12},{-15,34},{10,34},{15,34}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(BuildingBlock_Panel.port_a_xn,port_xn) annotation(Line(
+			points={{-30,0},{-35,0},{-50,0},{-50,-1},{-55,-1}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(BuildingBlock_Panel.port_b_zp,port_zp) annotation(Line(
+			points={{-25,-5},{-30,-5},{-50,-5},{-50,-36},{-55,-36}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(BuildingBlock_Panel.port_a_yn,port_yn) annotation(Line(
+			points={{-20,-6},{-20,-11},{-15,-11},{-15,-36},{-20,-36}},
 			color={191,0,0},
 			thickness=0.0625));
 	annotation(

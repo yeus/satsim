@@ -3,14 +3,14 @@
 model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit Schnittstellen"
 	thermal_connector thermal_connector_xp "Verbindungselement fuer mehr als eine Schnittstelle" annotation(Placement(
 		transformation(
-			origin={140,0},
+			origin={250,-50},
 			extent={{-10,-10},{10,10}}),
 		iconTransformation(
 			origin={100,0},
 			extent={{-10,-10},{10,10}})));
 	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b port_b annotation(Placement(
 		transformation(
-			origin={-60,90},
+			origin={35,0},
 			extent={{-10,-10},{10,10}}),
 		iconTransformation(
 			origin={0,0},
@@ -69,8 +69,8 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		material_TSS(choicesAllMatching=true),
 		material_Panel(choicesAllMatching=true),
 		Placement(transformation(
-			origin={120,0},
-			extent={{-10,-10},{10,10}})));
+			origin={190,-60},
+			extent={{-10,-10},{25,25}})));
 	thermal_Panel_with_Interface Panel_xn(
 		x_ESS=x_ESS,
 		y_ESS=y_ESS,
@@ -101,8 +101,8 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		material_TSS(choicesAllMatching=true),
 		material_Panel(choicesAllMatching=true),
 		Placement(transformation(
-			origin={-95,0},
-			extent={{-10,-10},{10,10}},
+			origin={-10,-55},
+			extent={{-15,-20},{20,15}},
 			rotation=-180)));
 	thermal_Panel_with_Interface Panel_yp(
 		x_ESS=x_ESS,
@@ -134,8 +134,8 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		material_TSS(choicesAllMatching=true),
 		material_Panel(choicesAllMatching=true),
 		Placement(transformation(
-			origin={0,80},
-			extent={{-10,-10},{10,10}},
+			origin={85,45},
+			extent={{-15,-20},{15,15}},
 			rotation=-270)));
 	thermal_Panel_with_Interface Panel_yn(
 		x_ESS=x_ESS,
@@ -167,8 +167,8 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		material_TSS(choicesAllMatching=true),
 		material_Panel(choicesAllMatching=true),
 		Placement(transformation(
-			origin={0,-90},
-			extent={{-10,-10},{10,10}},
+			origin={80,-150},
+			extent={{-10,-10},{25,25}},
 			rotation=-90)));
 	thermal_Panel_with_Interface Panel_zn(
 		x_ESS=x_ESS,
@@ -200,8 +200,8 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		material_TSS(choicesAllMatching=true),
 		material_Panel(choicesAllMatching=true),
 		Placement(transformation(
-			origin={75,76},
-			extent={{-10,-10},{10,10}},
+			origin={210,56},
+			extent={{-10,-10},{24,24}},
 			rotation=45)));
 	thermal_Panel_with_Interface Panel_zp(
 		x_ESS=x_ESS,
@@ -233,8 +233,8 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		material_TSS(choicesAllMatching=true),
 		material_Panel(choicesAllMatching=true),
 		Placement(transformation(
-			origin={-80,-95},
-			extent={{-10,-10},{10,10}},
+			origin={-30,-179},
+			extent={{-24,-24},{10,10}},
 			rotation=-135)));
 	thermalModel_ElectronicBox thermalModel_ElectronicBox1(
 		material=material_EB,
@@ -243,8 +243,8 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		z=z_EB) annotation(
 		material(choicesAllMatching=true),
 		Placement(transformation(
-			origin={0,-0},
-			extent={{-30,-30},{30,30}})));
+			origin={75,-65},
+			extent={{-5,-5},{30,30}})));
 	intra_BuildingBlock_connector EB_Pxp(
 		Gr=Gr_P_EB,
 		material=material_EB,
@@ -252,7 +252,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		ThermalInsulance_c=ThermalInsulance_EB) annotation(
 		material(choicesAllMatching=true),
 		Placement(transformation(
-			origin={72,-2},
+			origin={132,-52},
 			extent={{-6.6332,-6.6332},{6.6332,6.6332}})));
 	intra_BuildingBlock_connector EB_Pxn(
 		Gr=Gr_P_EB,
@@ -261,8 +261,8 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		ThermalInsulance_c=ThermalInsulance_EB) annotation(
 		material(choicesAllMatching=true),
 		Placement(transformation(
-			origin={-59,-1},
-			extent={{-6.25,-6.25},{6.25,6.25}})));
+			origin={41,-51},
+			extent={{-6,-9},{6.25,6.25}})));
 	intra_BuildingBlock_connector EB_Pyn(
 		Gr=Gr_P_EB,
 		material=material_EB,
@@ -270,7 +270,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		ThermalInsulance_c=ThermalInsulance_EB) annotation(
 		material(choicesAllMatching=true),
 		Placement(transformation(
-			origin={1,-61},
+			origin={86,-96},
 			extent={{-6.4815,-6.4815},{6.4815,6.4815}},
 			rotation=-90)));
 	intra_BuildingBlock_connector EB_Pyp(
@@ -280,7 +280,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		ThermalInsulance_c=ThermalInsulance_EB) annotation(
 		material(choicesAllMatching=true),
 		Placement(transformation(
-			origin={2,53},
+			origin={87,-7},
 			extent={{-6.6332,-6.6332},{6.6332,6.6332}},
 			rotation=-90)));
 	intra_BuildingBlock_connector EB_Pzp(
@@ -290,8 +290,8 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		ThermalInsulance_c=ThermalInsulance_EB) annotation(
 		material(choicesAllMatching=true),
 		Placement(transformation(
-			origin={-49,-47},
-			extent={{-11,-9},{4,6}},
+			origin={51,-87},
+			extent={{-10,-8},{4,6}},
 			rotation=45)));
 	intra_BuildingBlock_connector EB_Pzn(
 		Gr=Gr_P_EB,
@@ -300,7 +300,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		ThermalInsulance_c=ThermalInsulance_EB) annotation(
 		material(choicesAllMatching=true),
 		Placement(transformation(
-			origin={46,44},
+			origin={126,-19},
 			extent={{-6.4943,-6.4943},{9,11}},
 			rotation=45)));
 	intra_BuildingBlock_connector adjoiningPanel_xp_yn(
@@ -310,9 +310,9 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
 		material(choicesAllMatching=true),
 		Placement(transformation(
-			origin={81,-58},
+			origin={191,-116},
 			extent={{-5.8179,-5.8179},{8,7}},
-			rotation=-135)));
+			rotation=-90)));
 	intra_BuildingBlock_connector adjoiningPanel_xp_yp(
 		Gr=Gr_aP,
 		material=material_Panel,
@@ -320,9 +320,8 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
 		material(choicesAllMatching=true),
 		Placement(transformation(
-			origin={81,44},
-			extent={{-6.2693,-6.2693},{6.2693,6.2693}},
-			rotation=-45)));
+			origin={151,44},
+			extent={{-6.2693,-6.2693},{6.2693,6.2693}})));
 	intra_BuildingBlock_connector adjoiningPanel_xp_zn(
 		Gr=Gr_aP,
 		material=material_Panel,
@@ -330,9 +329,9 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
 		material(choicesAllMatching=true),
 		Placement(transformation(
-			origin={112,50},
+			origin={200,0},
 			extent={{-4.7981,-4.7981},{4.7981,4.7981}},
-			rotation=-225)));
+			rotation=-270)));
 	intra_BuildingBlock_connector adjoiningPanel_xp_zp(
 		Gr=Gr_aP,
 		material=material_Panel,
@@ -340,9 +339,9 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
 		material(choicesAllMatching=true),
 		Placement(transformation(
-			origin={100,-76},
+			origin={177,-142},
 			extent={{-7.5,-7.5},{7.5,7.5}},
-			rotation=45)));
+			rotation=-90)));
 	intra_BuildingBlock_connector adjoiningPanel_xn_yn(
 		Gr=Gr_aP,
 		material=material_Panel,
@@ -350,9 +349,9 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
 		material(choicesAllMatching=true),
 		Placement(transformation(
-			origin={-78,-57},
+			origin={-8,-122},
 			extent={{-6.5445,-6.5445},{6.5445,6.5445}},
-			rotation=-225)));
+			rotation=-90)));
 	intra_BuildingBlock_connector adjoiningPanel_xn_yp(
 		Gr=Gr_aP,
 		material=material_Panel,
@@ -360,9 +359,9 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
 		material(choicesAllMatching=true),
 		Placement(transformation(
-			origin={-59,44},
+			origin={-9,-1},
 			extent={{-6.2294,-6.2294},{6.2294,6.2294}},
-			rotation=45)));
+			rotation=-90)));
 	intra_BuildingBlock_connector adjoiningPanel_xn_zn(
 		Gr=Gr_aP,
 		material=material_Panel,
@@ -370,9 +369,8 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
 		material(choicesAllMatching=true),
 		Placement(transformation(
-			origin={-70,56},
-			extent={{-6.3683,-6.3683},{6.3683,6.3683}},
-			rotation=45)));
+			origin={-9,59},
+			extent={{-6.3683,-6.3683},{6.3683,6.3683}})));
 	intra_BuildingBlock_connector adjoiningPanel_xn_zp(
 		Gr=Gr_aP,
 		material=material_Panel,
@@ -380,7 +378,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
 		material(choicesAllMatching=true),
 		Placement(transformation(
-			origin={-99,-61},
+			origin={-24,-106},
 			extent={{-5.8783,-5.8783},{5.8783,5.8783}},
 			rotation=-90)));
 	intra_BuildingBlock_connector adjoiningPanel_yn_zn(
@@ -390,9 +388,9 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
 		material(choicesAllMatching=true),
 		Placement(transformation(
-			origin={76,-36},
+			origin={206,-84},
 			extent={{-7,-13},{4,1}},
-			rotation=45)));
+			rotation=-270)));
 	intra_BuildingBlock_connector adjoiningPanel_yn_zp(
 		Gr=Gr_aP,
 		material=material_Panel,
@@ -400,7 +398,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
 		material(choicesAllMatching=true),
 		Placement(transformation(
-			origin={-34,-96},
+			origin={51,-139},
 			extent={{-5.778,-5.778},{4,4}})));
 	intra_BuildingBlock_connector adjoiningPanel_yp_zn(
 		Gr=Gr_aP,
@@ -409,7 +407,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
 		material(choicesAllMatching=true),
 		Placement(transformation(
-			origin={41,79},
+			origin={101,64},
 			extent={{-6.2539,-6.2539},{4,6}})));
 	intra_BuildingBlock_connector adjoiningPanel_yp_zp(
 		Gr=Gr_aP,
@@ -418,11 +416,11 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
 		material(choicesAllMatching=true),
 		Placement(transformation(
-			origin={-105,41},
-			extent={{-6.1458,-6.1458},{6.1458,6.1458}},
-			rotation=45)));
+			origin={6,-16},
+			extent={{-6.1458,-6.1458},{6,10}},
+			rotation=-90)));
 	Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow Buildingblock_Power(Q_flow=BuildingBlock_Power) annotation(Placement(transformation(
-		origin={-95,90},
+		origin={-100,30},
 		extent={{-10,-10},{10,10}})));
 	parameter MaterialDatabase.Kupferlegierungen_Kupfer Kupfer annotation(Placement(transformation(
 		origin={130,90},
@@ -440,13 +438,13 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		origin={130,60},
 		extent={{-10,-10},{10,10}})));
 	Modelica.Thermal.HeatTransfer.Components.BodyRadiation oposite_Panel_x(Gr=Gr_oP) annotation(Placement(transformation(
-		origin={17,-47},
+		origin={42,-27},
 		extent={{-6.7966,-6.7966},{6.7966,6.7966}})));
 	parameter Modelica.SIunits.ThermalInsulance ThermalInsulance_Panel=0.00003 "Thermal Insulance of Panel Surfaces";
 	parameter Modelica.SIunits.ThermalInsulance ThermalInsulance_EB=0.00003 "Thermal Insulance of Panel Electronic Box";
 	thermal_connector thermal_connector_yn annotation(Placement(
 		transformation(
-			origin={0,-110},
+			origin={85,-190},
 			extent={{-10,10},{10,-10}},
 			rotation=-90),
 		iconTransformation(
@@ -455,7 +453,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 			rotation=-90)));
 	thermal_connector thermal_connector_zp annotation(Placement(
 		transformation(
-			origin={-115,-110},
+			origin={-65,-205},
 			extent={{10,10},{-10,-10}},
 			rotation=-180),
 		iconTransformation(
@@ -464,7 +462,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 			rotation=-180)));
 	thermal_connector thermal_connector_xn annotation(Placement(
 		transformation(
-			origin={-110,0},
+			origin={-60,-50},
 			extent={{10,10},{-10,-10}},
 			rotation=-180),
 		iconTransformation(
@@ -473,7 +471,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 			rotation=-180)));
 	thermal_connector thermal_connector_yp annotation(Placement(
 		transformation(
-			origin={1.10041,98.762},
+			origin={90,80},
 			extent={{10,-10},{-10,10}},
 			rotation=-270),
 		iconTransformation(
@@ -481,285 +479,281 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 			extent={{12,-12},{-12,12}},
 			rotation=-270)));
 	Modelica.Thermal.HeatTransfer.Components.BodyRadiation oposite_Panel_z(Gr=Gr_oP) annotation(Placement(transformation(
-		origin={-55,31},
-		extent={{-10,-10},{10,10}},
-		rotation=45)));
+		origin={135,-83},
+		extent={{-10,-10},{3,3}})));
 	Modelica.Thermal.HeatTransfer.Components.BodyRadiation oposite_Panel_y(Gr=Gr_oP) annotation(Placement(transformation(
-		origin={46,-1},
+		origin={111,-116},
 		extent={{-6.0172,6.0172},{6.0172,-6.0172}},
 		rotation=-90)));
 	thermal_connector thermal_connector_zn annotation(Placement(
 		transformation(
-			origin={87.8378,87.8378},
+			origin={225,80},
 			extent={{-10,-10},{10,10}},
 			rotation=-360),
 		iconTransformation(
 			origin={87.8378,87.8378},
 			extent={{-12,-12},{12,12}})));
 	equation
-		connect(Panel_zn.port_a,EB_Pzn.port_b) annotation(
-			Line(
-				points={{73,74},{50.66667175292969,52}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
 		connect(Panel_zn.thermal_connector1,thermal_connector_zn) annotation(
 			Line(
-				points={{77,78},{90,95},{95,95}},
+				points={{213.6666564941406,69.66667175292969},{225,80}},
 				thickness=0.0625),
 			AutoRoute=false);
 		connect(EB_Pzn.port_a,thermalModel_ElectronicBox1.EB_zn) annotation(
 			Line(
-				points={{39.66667175292969,41},{27,27}},
+				points={{119.6666564941406,-22},{103.3333282470703,-36.66667175292969}},
 				color={191,0,0},
 				thickness=0.0625),
 			AutoRoute=false);
 		connect(thermalModel_ElectronicBox1.EB_zp,EB_Pzp.port_b) annotation(
 			Line(
-				points={{-27,-27},{-45,-45.33332824707031}},
+				points={{71.66667175292969,-68.33332824707031},{54.66667175292969,-85}},
 				color={191,0,0},
 				thickness=0.0625),
 			AutoRoute=false);
-		connect(Panel_zp.port_a,EB_Pzp.port_a) annotation(
-			Line(
-				points={{-78,-93},{-75,-90},{-55.66666412353516,-56}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
+		
 		connect(Panel_zp.thermal_connector1,thermal_connector_zp) annotation(
 			Line(
-				points={{-82,-97},{-85,-100},{-110,-110},{-115,-110}},
+				points={{-33.66666412353516,-172.6666564941406},{-65,-205}},
 				thickness=0.0625),
 			AutoRoute=false);
 		connect(EB_Pyn.port_a,thermalModel_ElectronicBox1.EB_yn) annotation(Line(
-			points={{1,-55},{1,-50},{1,-35},{0,-35},{0,-30}},
+			points={{86,-90},{86,-85},{86,-75},{88,-75},{88,-70}},
 			color={191,0,0},
 			thickness=0.0625));
-		connect(EB_Pyn.port_b,Panel_yn.port_a) annotation(Line(
-			points={{1,-67},{1,-72},{1,-82},{0,-82},{0,-87}},
-			color={191,0,0},
-			thickness=0.0625));
+		
 		connect(Panel_yn.thermal_connector1,thermal_connector_yn) annotation(Line(
-			points={{0,-93},{0,-98},{5,-98},{5,-110},{0,-110}},
+			points={{87,-163},{87,-168},{90,-168},{90,-190},{85,-190}},
 			thickness=0.0625));
 		connect(EB_Pxp.port_a,thermalModel_ElectronicBox1.EB_xp) annotation(Line(
-			points={{65,-2},{60,-2},{35,-2},{35,0},{30,0}},
+			points={{125,-52},{120,-52},{110,-52},{110,-53},{105,-53}},
 			color={191,0,0},
 			thickness=0.0625));
-		connect(EB_Pxp.port_b,Panel_xp.port_a) annotation(Line(
-			points={{79,-2},{84,-2},{112,-2},{112,0},{117,0}},
-			color={191,0,0},
-			thickness=0.0625));
+		
 		connect(Panel_xp.thermal_connector1,thermal_connector_xp) annotation(Line(
-			points={{123,0},{128,0},{135,0},{140,0}},
+			points={{203,-53},{208,-53},{245,-53},{245,-50},{250,-50}},
 			thickness=0.0625));
 		connect(EB_Pxn.port_b,thermalModel_ElectronicBox1.EB_xn) annotation(Line(
-			points={{-53,-1},{-48,-1},{-35,-1},{-35,0},{-30,0}},
+			points={{47,-52},{52,-52},{65,-52},{65,-53},{70,-53}},
 			color={191,0,0},
 			thickness=0.0625));
-		connect(EB_Pxn.port_a,Panel_xn.port_a) annotation(Line(
-			points={{-65,-1},{-70,-1},{-87,-1},{-87,0},{-92,0}},
-			color={191,0,0},
-			thickness=0.0625));
+		
 		connect(EB_Pyp.port_b,thermalModel_ElectronicBox1.EB_yp) annotation(Line(
-			points={{2,46},{2,41},{2,35},{0,35},{0,30}},
+			points={{87,-14},{87,-19},{87,-30},{88,-30},{88,-35}},
 			color={191,0,0},
 			thickness=0.0625));
-		connect(EB_Pyp.port_a,Panel_yp.port_a) annotation(Line(
-			points={{2,60},{2,65},{2,72},{0,72},{0,77}},
-			color={191,0,0},
-			thickness=0.0625));
+		
 		connect(Panel_yp.thermal_connector1,thermal_connector_yp) annotation(Line(
-			points={{0,83},{0,88},{-4,88},{-4,99},{1,99}},
+			points={{87,50},{87,55},{85,55},{85,80},{90,80}},
 			thickness=0.0625));
 		connect(Panel_xn.thermal_connector1,thermal_connector_xn) annotation(Line(
-			points={{-98,0},{-103,0},{-105,0},{-110,0}},
+			points={{-18,-52},{-23,-52},{-55,-52},{-55,-50},{-60,-50}},
 			thickness=0.0625));
-		connect(Panel_yp.port_b1,adjoiningPanel_xn_yp.port_b) annotation(
-			Line(
-				points={{-3.333328247070313,77.66667175292969},{-8,78},{-54.66666412353516,48.33333206176758}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(adjoiningPanel_xn_yp.port_a,Panel_xn.port_a1) annotation(
-			Line(
-				points={{-63.33333587646484,39.66666412353516},{-93,9},{-93,3.666664123535156}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(Panel_yp.port_a1,adjoiningPanel_xp_yp.port_a) annotation(
-			Line(
-				points={{3.666671752929688,78},{9,78},{76.66667175292969,48.33333206176758}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(Panel_xp.port_b1,adjoiningPanel_xp_yp.port_b) annotation(
-			Line(
-				points={{118,3},{118,8},{85,40}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(Panel_xp.port_a1,adjoiningPanel_xp_yn.port_a) annotation(
-			Line(
-				points={{118,-3.666664123535156},{118,-9},{85.66667175292969,-54.33332824707031}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(adjoiningPanel_xp_yn.port_b,Panel_yn.port_b1) annotation(
-			Line(
-				points={{75.66667175292969,-64},{8,-88},{3.333328247070313,-87.66667175292969}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(adjoiningPanel_xn_yn.port_b,Panel_xn.port_b1) annotation(
-			Line(
-				points={{-82.66666412353516,-52.33332824707031},{-93,-8},{-92.66667175292969,-3.333335876464844}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(Panel_yn.port_a1,adjoiningPanel_xn_yn.port_a) annotation(
-			Line(
-				points={{-3.666671752929688,-88},{-9,-88},{-73.33333587646484,-61.66667175292969}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(Panel_xp.port_a2,adjoiningPanel_xp_zn.port_a) annotation(
-			Line(
-				points={{121,3},{121,8},{115,47}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(adjoiningPanel_xp_zn.port_b,Panel_zn.port_b) annotation(
-			Line(
-				points={{108.6666564941406,53.33333206176758},{73.66667175292969,69.66667175292969}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(adjoiningPanel_xn_zn.port_a,Panel_xn.port_b) annotation(
-			Line(
-				points={{-74.66666412353516,51.33333206176758},{-89.33332824707031,3.666664123535156}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(Panel_zn.port_a2,adjoiningPanel_xn_zn.port_b) annotation(
-			Line(
-				points={{73.66667175292969,79.33333587646484},{45,95},{-15,90},{-55,70},{-65.33333587646484,60.66666793823242}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(Panel_xn.port_a2,adjoiningPanel_xn_zp.port_a) annotation(Line(
-			points={{-97,-3},{-97,-8},{-97,-50},{-99,-50},{-99,-55}},
-			color={191,0,0},
-			thickness=0.0625));
-		connect(adjoiningPanel_xn_zp.port_b,Panel_zp.port_b) annotation(
-			Line(
-				points={{-99,-67},{-78.66666412353516,-88.66667175292969}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(Panel_zp.port_a2,adjoiningPanel_xp_zp.port_a) annotation(
-			Line(
-				points={{-78.66666412353516,-98.33332824707031},{-40,-120},{52,-120},{94.66667175292969,-81.33332824707031}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(Panel_xp.port_b,adjoiningPanel_xp_zp.port_b) annotation(
-			Line(
-				points={{115,-4},{105,-71}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(adjoiningPanel_yp_zp.port_b,Panel_yp.port_a2) annotation(
-			Line(
-				points={{-100.6666717529297,45.33333587646484},{-80,60},{-55,75},{-8,82},{-3.333328247070313,81.66666412353516}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(adjoiningPanel_yp_zp.port_a,Panel_zp.port_a1) annotation(
-			Line(
-				points={{-109.3333282470703,36.66666412353516},{-120,15},{-130,-20},{-105,-80},{-81,-91}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(adjoiningPanel_yn_zp.port_a,Panel_zp.port_b1) annotation(
-			Line(
-				points={{-39.66666412353516,-97},{-75.66666412353516,-95.66667175292969}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(adjoiningPanel_yn_zn.port_b,Panel_zn.port_a1) annotation(
-			Line(
-				points={{83,-37},{100,-15},{100,15},{100,40},{90,60},{76,
-				72}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(Panel_zn.port_b1,adjoiningPanel_yp_zn.port_b) annotation(Line(
-			points={{71,77},{71,82},{60,82},{60,79},{50,79},{45,
-			79}},
-			color={191,0,0},
-			thickness=0.0625));
-		connect(adjoiningPanel_yp_zn.port_a,Panel_yp.port_b) annotation(
-			Line(
-				points={{35,79},{25,80},{10,75},{4,74}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(Panel_yn.port_a,oposite_Panel_y.port_b) annotation(
-			Line(
-				points={{0,-87},{46,-7}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(Panel_yp.port_a,oposite_Panel_y.port_a) annotation(
-			Line(
-				points={{0,77},{46,5}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(oposite_Panel_z.port_a,Panel_zp.port_a) annotation(
-			Line(
-				points={{-59.66666412353516,26.33333587646484},{-65,10},{-70,-25},{-78,-88},{-78,-93}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(Panel_zn.port_a,oposite_Panel_z.port_b) annotation(
-			Line(
-				points={{73,74},{-15,60},{-35,50},{-50,36}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(oposite_Panel_x.port_a,Panel_xn.port_a) annotation(
-			Line(
-				points={{10.33332824707031,-47},{5,-47},{-40,-40},{-87,0},{-92,0}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
-		connect(Panel_xp.port_a,oposite_Panel_x.port_b) annotation(
-			Line(
-				points={{117,0},{112,0},{90,-20},{70,-35},{24,-47}},
-				color={191,0,0},
-				thickness=0.0625),
-			AutoRoute=false);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		connect(Buildingblock_Power.port,port_b) annotation(Line(
-			points={{-85,90},{-80,90},{-65,90},{-60,90}},
+			points={{-90,30},{-85,30},{30,30},{30,0},{35,0}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(thermalModel_ElectronicBox1.dissipationPower,port_b) annotation(
 			Line(
-				points={{0,0},{-60,90}},
+				points={{87.66667175292969,-52.66667175292969},{35,0}},
 				color={191,0,0},
 				thickness=0.0625),
 			AutoRoute=false);
-		connect(adjoiningPanel_yn_zn.port_a,Panel_yn.port_b) annotation(Line(
-			points={{75,-45},{70,-45},{-4,-45},{-4,-79},{-4,-84}},
+		
+		connect(Panel_yp.port_xn,EB_Pyp.port_a) annotation(Line(
+			points={{87,40},{87,35},{87,5},{87,5},{87,0}},
 			color={191,0,0},
 			thickness=0.0625));
-		connect(adjoiningPanel_yn_zp.port_b,Panel_yn.port_a2) annotation(Line(
-			points={{-30,-97},{-25,-97},{-25,-94},{8,-94},{8,-91},{3,
-			-91}},
+		connect(EB_Pzn.port_b,Panel_zn.port_xn) annotation(
+			Line(
+				points={{130.6666564941406,-11},{206.3333435058594,62.33333206176758}},
+				color={191,0,0},
+				thickness=0.0625),
+			AutoRoute=false);
+		connect(EB_Pxp.port_b,Panel_xp.port_xn) annotation(Line(
+			points={{139,-52},{144,-52},{187,-52},{187,-53},{192,-53}},
 			color={191,0,0},
 			thickness=0.0625));
+		connect(Panel_yn.port_xn,EB_Pyn.port_b) annotation(Line(
+			points={{87,-152},{87,-147},{87,-107},{86,-107},{86,-102}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(Panel_zp.port_xn,EB_Pzp.port_a) annotation(
+			Line(
+				points={{-26.33333587646484,-165.3333435058594},{44.66667175292969,-94.66667175292969}},
+				color={191,0,0},
+				thickness=0.0625),
+			AutoRoute=false);
+		connect(Panel_xn.port_xn,EB_Pxn.port_a) annotation(Line(
+			points={{-7,-52},{-2,-52},{30,-52},{35,-52}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(Panel_yn.port_yp,adjoiningPanel_xp_yn.port_b) annotation(Line(
+			points={{93,-153},{98,-153},{192,-153},{192,-129},{192,-124}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(adjoiningPanel_xp_yn.port_a,Panel_xp.port_yn) annotation(Line(
+			points={{192,-110},{192,-105},{192,-64},{194,-64},{194,-59}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(adjoiningPanel_xp_yp.port_b,Panel_xp.port_yp) annotation(Line(
+			points={{157,44},{162,44},{193,44},{193,-42},{193,-47}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(Panel_yp.port_yn,adjoiningPanel_xp_yp.port_a) annotation(Line(
+			points={{94,42},{99,42},{140,42},{140,44},{145,44}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(Panel_xn.port_yn,adjoiningPanel_xn_yp.port_b) annotation(Line(
+			points={{-9,-46},{-9,-41},{-9,-12},{-9,-7}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(Panel_xn.port_yp,adjoiningPanel_xn_yn.port_a) annotation(Line(
+			points={{-8,-58},{-8,-63},{-8,-110},{-8,-115}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(adjoiningPanel_xn_yn.port_b,Panel_yn.port_yn) annotation(Line(
+			points={{-8,-129},{-8,-134},{-8,-154},{76,-154},{81,-154}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(adjoiningPanel_xn_yp.port_a,Panel_yp.port_yp) annotation(
+			Line(
+				points={{-9,5.333335876464844},{-9,10},{-9,40},{82,40},{81.66667175292969,41.33333587646484}},
+				color={191,0,0},
+				thickness=0.0625),
+			AutoRoute=false);
+		connect(Panel_zp.port_zn,adjoiningPanel_xp_zp.port_b) annotation(
+			Line(
+				points={{-27.66666412353516,-175},{180,-175},{177,-149.6666564941406}},
+				color={191,0,0},
+				thickness=0.0625),
+			AutoRoute=false);
+		connect(Panel_xp.port_zp,adjoiningPanel_xp_zp.port_a) annotation(Line(
+			points={{188,-59},{183,-59},{177,-59},{177,-129},{177,-134}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(adjoiningPanel_xp_zn.port_b,Panel_zn.port_zp) annotation(Line(
+			points={{200,5},{200,10},{200,50},{208,50},{208,55}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(Panel_xp.port_zn,adjoiningPanel_xp_zn.port_a) annotation(Line(
+			points={{200,-47},{200,-42},{200,-10},{200,-5}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(adjoiningPanel_xn_zp.port_b,Panel_zp.port_zp) annotation(Line(
+			points={{-24,-112},{-24,-117},{-24,-153},{-28,-153},{-28,-158}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(adjoiningPanel_xn_zp.port_a,Panel_xn.port_zp) annotation(Line(
+			points={{-24,-100},{-24,-95},{2,-95},{2,-46},{-3,-46}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(Panel_zn.port_zn,adjoiningPanel_xn_zn.port_b) annotation(
+			Line(
+				points={{207.6666564941406,71.66667175292969},{198,57},{198,60},{37,60},{-2.666671752929688,59}},
+				color={191,0,0},
+				thickness=0.0625),
+			AutoRoute=false);
+		connect(adjoiningPanel_xn_zn.port_a,Panel_xn.port_zn) annotation(Line(
+			points={{-15,59},{-20,59},{-20,-63},{-15,-63},{-15,-58}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(Panel_yp.port_zp,adjoiningPanel_yp_zp.port_a) annotation(
+			Line(
+				points={{93.66667175292969,36.66666412353516},{95,35},{10,35},{8,-10}},
+				color={191,0,0},
+				thickness=0.0625),
+			AutoRoute=false);
+		connect(adjoiningPanel_yp_zp.port_b,Panel_zp.port_yp) annotation(Line(
+			points={{8,-22},{8,-27},{8,-165},{-23,-165},{-23,-170}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(adjoiningPanel_yn_zp.port_a,Panel_zp.port_yn) annotation(Line(
+			points={{45,-140},{40,-140},{-32,-140},{-32,-157},{-32,-162}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(adjoiningPanel_yn_zp.port_b,Panel_yn.port_zp) annotation(Line(
+			points={{55,-140},{60,-140},{81,-140},{81,-143},{81,-148}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(Panel_zn.port_yn,adjoiningPanel_yn_zn.port_b) annotation(Line(
+			points={{212,59},{212,54},{212,-75},{212,-80}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(adjoiningPanel_yn_zn.port_a,Panel_yn.port_zn) annotation(Line(
+			points={{212,-91},{212,-96},{212,-160},{98,-160},{93,-160}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(Panel_zn.port_yp,adjoiningPanel_yp_zn.port_b) annotation(
+			Line(
+				points={{203,67},{203,65},{157,65},{157,64},{110,64},{105,
+				64}},
+				color={191,0,0},
+				thickness=0.0625),
+			AutoRoute=false);
+		connect(Panel_yp.port_zn,adjoiningPanel_yp_zn.port_a) annotation(Line(
+			points={{82,47},{77,47},{77,64},{90,64},{95,64}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(Panel_yn.port_xn,oposite_Panel_y.port_b) annotation(Line(
+			points={{87,-152},{87,-147},{87,-127},{111,-127},{111,-122}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(oposite_Panel_y.port_a,Panel_yp.port_xn) annotation(Line(
+			points={{111,-110},{111,-105},{111,35},{87,35},{87,40}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(oposite_Panel_x.port_a,Panel_xn.port_xn) annotation(Line(
+			points={{35,-27},{30,-27},{-2,-27},{-2,-52},{-7,-52}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(Panel_xp.port_xn,oposite_Panel_x.port_b) annotation(
+			Line(
+				points={{192,-53},{185,-55},{185,-30},{55,-30},{54,-27},{49,
+				-27}},
+				color={191,0,0},
+				thickness=0.0625),
+			AutoRoute=false);
+		connect(oposite_Panel_z.port_a,Panel_zp.port_xn) annotation(
+			Line(
+				points={{125,-86.66667175292969},{120,-87},{115,-87},{115,-165},{-26.33333587646484,-165.3333435058594}},
+				color={191,0,0},
+				thickness=0.0625),
+			AutoRoute=false);
+		connect(Panel_zn.port_xn,oposite_Panel_z.port_b) annotation(
+			Line(
+				points={{206,62},{165,57},{165,-87},{143,-87},{138,-87}},
+				color={191,0,0},
+				thickness=0.0625),
+			AutoRoute=false);
 	annotation(
 		Icon(
 			coordinateSystem(extent={{-100,-100},{100,100}}),
