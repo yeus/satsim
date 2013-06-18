@@ -49,6 +49,7 @@ package satcomponents
     package batteries
       model battery
         /*todo Batteriemodell ist noch "ungenau" z.B. beim Einschalten fällt die Spannung temporär, Hitzeentwicklung usw...*/
+        /*todo Batteriemodell kann noch einen unendlich hohen SOD erreichen, wenn sie an negative Spannung angeschlossen wird. aber das darf nicht sein*/
         extends Modelica.Electrical.Analog.Interfaces.TwoPin;
         Real soc(start = 1.0) "State of Charge";
         Real SOD "State of Discharge";
