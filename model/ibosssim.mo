@@ -80,8 +80,10 @@ package iboss
       Modelica.Electrical.Analog.Basic.Resistor resistor1 annotation(Placement(visible = true, transformation(origin = {23.4104,20.2312}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       Modelica.Electrical.Analog.Basic.Resistor resistor2 annotation(Placement(visible = true, transformation(origin = {22.8324,-0.289017}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       Modelica.Electrical.Analog.Basic.Resistor resistor3 annotation(Placement(visible = true, transformation(origin = {22.8324,-20.5202}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-36.9942,-38.7283}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     equation
-      connect(int_Xn.gnd,pcu1.gnd) annotation(Line(points = {{-68.7185,-6.11033},{-68.2081,-6.11033},{-68.2081,-20.8092},{-17.6301,-20.8092},{-17.6301,-7.80347},{-17.6301,-7.80347}}));
+      connect(ground1.p,pcu1.gnd) annotation(Line(points = {{-36.9942,-28.7283},{-17.341,-28.7283},{-17.341,-8.09249},{-17.341,-8.09249}}));
+      connect(pcu1.GND,ground1.p) annotation(Line(points = {{-37.8447,-5.88639},{-36.9942,-5.88639},{-36.9942,-28.3237},{-36.9942,-28.3237}}));
       connect(pcu1.gnd,resistor2.n) annotation(Line(points = {{-17.7316,-7.8383},{32.659,-7.8383},{32.659,-0.289017},{32.659,-0.289017}}));
       connect(resistor2.n,resistor3.n) annotation(Line(points = {{32.8324,-0.289017},{32.659,-0.289017},{32.659,-20.5202},{32.659,-20.5202}}));
       connect(resistor1.n,resistor2.n) annotation(Line(points = {{33.4104,20.2312},{32.659,20.2312},{32.659,0},{32.659,0}}));
