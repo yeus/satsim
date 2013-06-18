@@ -56,10 +56,10 @@ package iboss
       Modelica.Blocks.Interfaces.RealInput u annotation(Placement(visible = true, transformation(origin = {221.308,-0.741443}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {221.308,-0.741443}, extent = {{-12,12},{12,-12}}, rotation = -90)));
       satcomponents.power.solar_power.solarcell_simple solarcell_simple1 annotation(Placement(visible = true, transformation(origin = {1.41677,-10.1535}, extent = {{10,10},{-10,-10}}, rotation = 90)));
       Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-36.7052,-45.9538}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.0000001) annotation(Placement(visible = true, transformation(origin = {-15.3179,-34.9711}, extent = {{10,-10},{-10,10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.000001) annotation(Placement(visible = true, transformation(origin = {-15.3179,-34.6821}, extent = {{10,-10},{-10,10}}, rotation = 0)));
     equation
-      connect(capacitor1.p,solarcell_simple1.n) annotation(Line(points = {{-5.31792,-34.9711},{1.44509,-34.9711},{1.44509,-19.9422},{1.44509,-19.9422}}));
-      connect(capacitor1.n,ground1.p) annotation(Line(points = {{-25.3179,-34.9711},{-36.7052,-34.9711},{-36.7052,-36.1272},{-36.7052,-36.1272}}));
+      connect(capacitor1.p,solarcell_simple1.n) annotation(Line(points = {{-5.31792,-34.6821},{1.44509,-34.6821},{1.44509,-20.1535},{1.41677,-20.1535}}));
+      connect(capacitor1.n,ground1.p) annotation(Line(points = {{-25.3179,-34.6821},{-36.7052,-34.6821},{-36.7052,-35.9538},{-36.7052,-35.9538}}));
       connect(solarcell_simple1.E_s,u) annotation(Line(points = {{8.51661,-10.0267},{8.51661,-10.4598},{28.6508,-10.4598},{28.6508,40.0201},{162.809,40.0201},{162.809,-0.909549},{224.659,-0.909549},{224.659,-0.909549}}));
       connect(solarcell_simple1.p,int_Xn.vcc) annotation(Line(points = {{1.41677,-0.1535},{1.41677,12.4277},{-68.7861,12.4277},{-68.7861,-2.02312},{-68.7861,-2.02312}}));
       connect(int_Xn.gnd,solarcell_simple1.n) annotation(Line(points = {{-68.7185,-6.11033},{-68.7861,-6.11033},{-68.7861,-20.5202},{1.15607,-20.1535},{1.41677,-20.1535}}));
@@ -82,7 +82,7 @@ package iboss
       Modelica.Electrical.Analog.Basic.Resistor resistor1 annotation(Placement(visible = true, transformation(origin = {23.4104,20.2312}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       Modelica.Electrical.Analog.Basic.Resistor resistor2 annotation(Placement(visible = true, transformation(origin = {22.8324,-0.289017}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       Modelica.Electrical.Analog.Basic.Resistor resistor3 annotation(Placement(visible = true, transformation(origin = {22.8324,-20.5202}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.000000001) annotation(Placement(visible = true, transformation(origin = {-37.2832,-36.9942}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.00000001) annotation(Placement(visible = true, transformation(origin = {-37.2832,-36.9942}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-52.3121,-50.289}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     equation
       connect(capacitor1.p,ground1.p) annotation(Line(points = {{-47.2832,-36.9942},{-52.3121,-36.9942},{-52.3121,-40.7514},{-52.3121,-40.7514}}));
