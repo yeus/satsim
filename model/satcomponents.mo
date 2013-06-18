@@ -791,6 +791,32 @@ package satcomponents
         connect(trapezoid1.y,solarcell_simple1.E_s) annotation(Line(points = {{-73,-5},{-60.3333,-5},{-60.3333,-5},{-60.3333,-5}}));
         annotation(Diagram, Icon, experiment(StartTime = 0.0, StopTime = 40000.0, Tolerance = 0.000001));
       end solarpowerwithbattery;
+      model EPS_without_GND
+        satcomponents.power.solar_power.solarcell_simple solarcell_simple1 annotation(Placement(visible = true, transformation(origin = {-34.3931,-37.2832}, extent = {{10,-10},{-10,10}}, rotation = 0)));
+        satcomponents.power.batteries.battery battery1(Vnominal = 40.0) annotation(Placement(visible = true, transformation(origin = {-33.815,8.3815}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        Modelica.Blocks.Sources.Trapezoid trapezoid1(amplitude = 1367, rising = 10, width = 1200, falling = 10, period = 5000, startTime = 1000) annotation(Placement(visible = true, transformation(origin = {-82.948,-17.341}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Basic.Resistor Kontaktwiederstand(R = 0.0001) annotation(Placement(visible = true, transformation(origin = {-13.5838,29.1908}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+        Modelica.Electrical.Analog.Basic.Resistor Kontaktwiderstand2(R = 0.0001) annotation(Placement(visible = true, transformation(origin = {-13.8728,-15.6069}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+        Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {51.7341,-19.9422}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.0000000001) annotation(Placement(visible = true, transformation(origin = {11.5607,-36.4162}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Basic.Capacitor capacitor2(C = 0.0000000001) annotation(Placement(visible = true, transformation(origin = {13.2948,47.3988}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 100) annotation(Placement(visible = true, transformation(origin = {-33.237,48.5549}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      equation
+        connect(resistor1.n,resistor2.p) annotation(Line(points = {{-23.237,48.5549},{-12.4277,48.5549},{-12.4277,39.7688},{-13.5838,39.1908}}));
+        connect(battery1.p,resistor1.p) annotation(Line(points = {{-43.815,8.3815},{-58.0925,8.3815},{-57.2254,48.5549},{-43.237,48.5549},{-43.237,48.5549}}));
+        connect(capacitor2.n,ground1.p) annotation(Line(points = {{23.2948,47.3988},{51.7341,47.3988},{51.7341,-9.53757},{51.7341,-9.53757}}));
+        connect(Kontaktwiederstand.p,capacitor2.p) annotation(Line(points = {{-13.5838,39.1908},{-13.5838,47.3988},{3.17919,47.3988},{3.17919,47.3988}}));
+        connect(capacitor1.n,ground1.p) annotation(Line(points = {{21.5607,-36.4162},{28.3237,-36.4162},{28.3237,-9.82659},{51.4451,-9.82659},{51.4451,-9.82659}}));
+        connect(Kontaktwiderstand2.n,capacitor1.p) annotation(Line(points = {{-13.8728,-25.6069},{-13.8728,-36.9942},{1.44509,-36.9942},{1.44509,-36.9942}}));
+        connect(Kontaktwiederstand.n,battery1.n) annotation(Line(points = {{-13.5838,19.1908},{-13.5838,8.67052},{-23.9884,8.67052},{-23.9884,8.67052}}));
+        connect(resistor1.n,Kontaktwiederstand.p) annotation(Line(points = {{-24.104,47.9769},{-13.2948,47.9769},{-13.2948,39.3064},{-13.2948,39.3064}}));
+        connect(battery1.n,ground1.p) annotation(Line(points = {{-23.815,8.3815},{15.6069,8.3815},{51.7341,7.68786},{51.7341,-9.9422}}));
+        connect(Kontaktwiderstand2.n,solarcell_simple1.p) annotation(Line(points = {{-13.8728,-25.6069},{-13.8728,-37.2832},{-24.5665,-37.2832},{-24.5665,-37.2832}}));
+        connect(battery1.n,Kontaktwiderstand2.p) annotation(Line(points = {{-23.815,8.3815},{-14.1618,8.3815},{-14.1618,-5.20231},{-14.1618,-5.20231}}));
+        connect(trapezoid1.y,solarcell_simple1.E_s) annotation(Line(points = {{-71.948,-17.341},{-34.3931,-17.341},{-34.3931,-30.3468},{-34.3931,-30.3468}}));
+        connect(solarcell_simple1.n,battery1.p) annotation(Line(points = {{-44.3931,-37.2832},{-58.0925,-37.2832},{-58.0925,8.3815},{-43.6416,8.3815},{-43.6416,8.3815}}));
+        annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2}), graphics = {Rectangle(origin = {-35.6936,-36.5607}, extent = {{-33.9595,23.2659},{34.8266,-21.2428}}),Rectangle(origin = {-35.1156,8.95954}, extent = {{-35.1156,17.9191},{35.1156,-17.9191}}),Rectangle(origin = {-37.5723,53.4682}, extent = {{-30.6358,20.2312},{36.7052,-20.5202}}),Text(origin = {-74.8555,82.2254}, extent = {{-13.2948,5.0578},{71.0982,-10.8381}}, textString = "Verbraucherbaustein"),Text(origin = {-82.0232,33.7283}, extent = {{-13.2948,5.0578},{55.4913,-12.8612}}, textString = "Batteriebaustein"),Text(origin = {-63.4682,-61.3006}, extent = {{-13.2948,5.0578},{28.9017,-10.5491}}, textString = "Solarbaustein")}));
+      end EPS_without_GND;
       annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
     end examples;
     block Exprgenerator "Generate exponential signal"
