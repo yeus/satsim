@@ -81,10 +81,10 @@ package iboss
       Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.00000001) annotation(Placement(visible = true, transformation(origin = {-37.2832,-36.9942}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-52.3121,-50.289}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     equation
+      connect(resistor3.n,pcu1.gnd) annotation(Line(points = {{32.8324,-20.5202},{32.659,-20.5202},{32.659,-33.237},{-17.6301,-33.237},{-17.6301,-8.3815},{-17.6301,-8.3815}}));
       connect(capacitor1.n,pcu1.gnd) annotation(Line(points = {{-27.2832,-36.9942},{-17.6301,-36.9942},{-17.6301,-8.09249},{-17.6301,-8.09249}}));
       connect(capacitor1.p,ground1.p) annotation(Line(points = {{-47.2832,-36.9942},{-52.3121,-36.9942},{-52.3121,-40.7514},{-52.3121,-40.7514}}));
       connect(pcu1.GND,pcu1.gnd) annotation(Line(points = {{-37.8447,-5.88639},{-38.1503,-5.88639},{-38.1503,-23.6994},{-17.6301,-23.6994},{-17.6301,-8.3815},{-17.6301,-8.3815}}));
-      connect(pcu1.gnd,resistor2.n) annotation(Line(points = {{-17.7316,-7.8383},{32.659,-7.8383},{32.659,-0.289017},{32.659,-0.289017}}));
       connect(resistor2.n,resistor3.n) annotation(Line(points = {{32.8324,-0.289017},{32.659,-0.289017},{32.659,-20.5202},{32.659,-20.5202}}));
       connect(resistor1.n,resistor2.n) annotation(Line(points = {{33.4104,20.2312},{32.659,20.2312},{32.659,0},{32.659,0}}));
       connect(resistor3.p,pcu1.VCC3) annotation(Line(points = {{12.8324,-20.5202},{0.867052,-20.5202},{0.867052,-3.46821},{-17.9191,-3.46821},{-17.9191,-3.46821}}));

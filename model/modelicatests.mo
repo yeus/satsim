@@ -71,5 +71,39 @@ package modelicatests
     Modelica.Mechanics.MultiBody.Parts.BodyCylinder bodycylinder1 annotation(Placement(visible = true, transformation(origin = {-3.66667,-4}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     annotation(Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2}), graphics = {Polygon(origin = {-5.1492,-15.9409}, fillColor = {192,192,255}, fillPattern = FillPattern.VerticalCylinder, points = {{-25.8508,50.9409},{51.1492,-19.0591},{-50.8508,-50.7258},{-25.8508,50.9409}}),Polygon(origin = {31.3167,27.9803}, fillPattern = FillPattern.Solid, points = {{-31.6501,-20.3137},{15.3499,33.6863},{31.6833,16.6863},{-17.3167,-33.647},{-31.6501,-20.3137}}),Polygon(origin = {-4.36176,0.25555}, fillColor = {0,128,0}, fillPattern = FillPattern.Solid, points = {{-30.3049,53.4111},{66.3618,-39.9222},{26.6951,-74.9222},{-66.3049,12.4111},{-30.3049,53.4111}})}));
   end Kreisel;
+  model OpticalWireless
+    Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 120) annotation(Placement(visible = true, transformation(origin = {-49.711,-20.2312}, extent = {{-10,-10},{10,10}}, rotation = 90)));
+    Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 120) annotation(Placement(visible = true, transformation(origin = {-16.7052,-20.7514}, extent = {{-10,-10},{10,10}}, rotation = 90)));
+    Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.0000000001) annotation(Placement(visible = true, transformation(origin = {13.5838,-48.2659}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Capacitor capacitor2(C = 0.0000000001) annotation(Placement(visible = true, transformation(origin = {12.4855,-8.90173}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {53.4682,-36.9942}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Sources.ConstantVoltage constantvoltage1(V = 5) annotation(Placement(visible = true, transformation(origin = {-51.4451,73.4104}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Semiconductors.NPN npn1 annotation(Placement(visible = true, transformation(origin = {-51.1561,29.4798}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+  equation
+    connect(capacitor1.n,ground1.p) annotation(Line(points = {{23.5838,-48.2659},{33.237,-48.8439},{32.948,-26.8786},{53.7572,-27.4566},{53.4682,-26.9942}}));
+    connect(capacitor2.n,ground1.p) annotation(Line(points = {{22.4855,-8.90173},{53.4682,-8.90173},{53.4682,-26.9942},{53.4682,-26.9942}}));
+    connect(resistor2.n,capacitor2.p) annotation(Line(points = {{-16.7052,-10.7514},{-16.7052,-8.3815},{2.48555,-8.3815},{2.48555,-8.90173}}));
+    connect(resistor2.p,capacitor1.p) annotation(Line(points = {{-16.7052,-30.7514},{-16.4162,-48.5549},{-15.7803,-48.8439},{3.58381,-48.2659}}));
+    connect(resistor1.n,resistor2.n) annotation(Line(points = {{-49.711,-10.2312},{-49.711,-10.9827},{-16.4162,-10.9827},{-16.7052,-10.7514}}));
+    connect(resistor1.p,resistor2.p) annotation(Line(points = {{-49.711,-30.2312},{-49.711,-31.5029},{-16.4162,-31.5029},{-16.7052,-30.7514}}));
+    annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
+  end OpticalWireless;
+  model Transistortest
+    Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 0.1) annotation(Placement(visible = true, transformation(origin = {-12.1387,71.0983}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+    Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {42.7746,-5.49133}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Sources.ConstantVoltage constantvoltage1(V = 5) annotation(Placement(visible = true, transformation(origin = {45.6647,71.3873}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+    Modelica.Electrical.Analog.Sources.SineVoltage sinevoltage1(V = 0.1, freqHz = 10) annotation(Placement(visible = true, transformation(origin = {-57.5145,19.0751}, extent = {{10,-10},{-10,10}}, rotation = 90)));
+    Modelica.Electrical.Analog.Semiconductors.PNP pnp1 annotation(Placement(visible = true, transformation(origin = {-20.2312,36.7052}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 0.1) annotation(Placement(visible = true, transformation(origin = {-10.4046,17.6301}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+  equation
+    connect(resistor2.n,ground1.p) annotation(Line(points = {{-10.4046,7.63006},{-10.4046,4.62428},{42.7746,4.62428},{42.7746,4.62428}}));
+    connect(pnp1.E,resistor2.p) annotation(Line(points = {{-10.2312,31.7052},{-9.82659,31.7052},{-9.82659,27.4566},{-9.82659,27.4566}}));
+    connect(resistor1.n,pnp1.C) annotation(Line(points = {{-12.1387,61.0983},{-12.1387,41.6185},{-9.82659,41.6185},{-9.82659,41.6185}}));
+    connect(sinevoltage1.p,pnp1.B) annotation(Line(points = {{-57.5145,29.0751},{-57.5145,36.7052},{-30.3468,36.7052},{-30.3468,36.7052}}));
+    connect(sinevoltage1.n,ground1.p) annotation(Line(points = {{-57.5145,9.07514},{-57.5145,4.91329},{42.7746,4.91329},{42.7746,4.91329}}));
+    connect(constantvoltage1.n,ground1.p) annotation(Line(points = {{45.6647,61.3873},{45.6647,4.91329},{42.4855,4.91329},{42.4855,4.91329}}));
+    connect(resistor1.p,constantvoltage1.p) annotation(Line(points = {{-12.1387,81.0983},{-12.1387,87.5723},{45.6647,87.5723},{45.6647,81.2139},{45.6647,81.2139}}));
+    annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
+  end Transistortest;
 end modelicatests;
 
