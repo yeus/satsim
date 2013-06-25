@@ -35,12 +35,13 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 	replaceable parameter MaterialDatabase.Material material_TSS=Panel "Material of TSS from MaterialDataBase" annotation(choicesAllMatching=true);
 	replaceable parameter MaterialDatabase.Material material_Panel=Panel "Material of Panel from MaterialDataBase" annotation(choicesAllMatching=true);
 	replaceable parameter MaterialDatabase.Material material_EB=elektronik_Box_Composit1 "Material of Electronic Box from MaterialDataBase" annotation(choicesAllMatching=true);
-	parameter Real Gr_P_EB(unit="m2")=0 "Net radiation conductance between two surfaces (see docu)(Panel - Electronic Box) tbd";
-	parameter Real Gr_oP(unit="m2")=0 "Net radiation conductance between two surfaces (see docu)(opposite Panels) tbd";
-	parameter Real Gr_aP(unit="m2")=0 "Net radiation conductance between two surfaces (see docu)(adjoining Panels) tbd";
 	parameter Modelica.SIunits.Power BuildingBlock_Power=5 "Leistungsbedarf des Standartbausteins";
 	parameter Real h_Panel(unit="W/(m²·K)")=3000 "Heat transfer coefficient Panel-Panel";
 	parameter Real h_EB(unit="W/(m²·K)")=3000 "Heat transfer coefficient EB-Panel";
+	parameter Real ViewFactor_parallel=0.2 "Viewfactor of parallel Surfaces";
+	parameter Real ViewFactor_vertical=0.2 "Viewfactor of vertical Surfaces";
+	parameter Modelica.SIunits.Emissivity eps_Panel=0.5 "Emmisivity of the inner side of the panel";
+	parameter Modelica.SIunits.Emissivity eps_EB=0.5 "Emmisivity of the electronic box";
 	thermal_Panel_with_Interface Panel_xp(
 		x_ESS=x_ESS,
 		y_ESS=y_ESS,
@@ -439,6 +440,10 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		iconTransformation(
 			origin={87.8378,87.8378},
 			extent={{-12,-12},{12,12}})));
+	protected
+		parameter Real Gr_oP(unit="m2")=ViewFactor_parallel*y_Panel*z_Panel*(1/((2/eps_Panel)-1))"Net radiation conductance between two surfaces (see docu)(opposite Panels) tbd";
+		parameter Real Gr_aP(unit="m2")=ViewFactor_vertical*y_Panel*z_Panel*(1/((2/eps_Panel)-1))"Net radiation conductance between two surfaces (see docu)(adjoining Panels) tbd";
+		parameter Real Gr_P_EB(unit="m2")=x_EB*y_EB*(eps_Panel*eps_EB/(eps_Panel+eps_EB-eps_Panel*eps_EB))"Net radiation conductance between two surfaces (see docu)(Panel - Electronic Box) tbd";
 	equation
 		connect(Panel_zn.thermal_connector1,thermal_connector_zn) annotation(
 			Line(
@@ -683,7 +688,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 			thickness=0.0625));
 		connect(Panel_xp.port_xn,oposite_Panel_x.port_b) annotation(
 			Line(
-				points={{192,-53},{185,-55},{185,-30},{55,-30},{54,-27},{49,
+				points={{192.3333435058594,-52.66667175292969},{185,-55},{185,-30},{55,-30},{54,-27},{48.66667175292969,
 				-27}},
 				color={191,0,0},
 				thickness=0.0625),
@@ -696,7 +701,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 			AutoRoute=false);
 		connect(Panel_zn.port_xn,oposite_Panel_z.port_b) annotation(
 			Line(
-				points={{206,62},{165,57},{165,-87},{143,-87},{138,-87}},
+				points={{206.3333435058594,62.33333206176758},{165,57},{165,-87},{143,-87},{138,-86.66667175292969}},
 				color={191,0,0},
 				thickness=0.0625),
 			AutoRoute=false);
