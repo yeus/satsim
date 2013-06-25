@@ -30,9 +30,9 @@ model thermal_TIM "thermal interfacial material parameters (Conductance)"
 	parameter Real h_TSS(unit="W/(m²·K)")=500 "Heat transfer coefficient TSS - TSS";
 	parameter Real h_MSS(unit="W/(m²·K)")=370 "Heat transfer coefficient MSS - MSS";
 	parameter Real h_ESS(unit="W/(m²·K)")=460 "Heat transfer coefficient ESS - ESS";
-	parameter Real Gr_Rad(unit="m2")=0 "Net radiation conductance between two surfaces (see docu) tbd";
-	parameter Modelica.SIunits.Emissivity eps_Rad=0.5 "Emmisivity od the radiator";
-	Modelica.Thermal.HeatTransfer.Components.BodyRadiation Radiator(Gr=Gr_Rad)"Lumped thermal element for radiation heat transfer" annotation(Placement(transformation(
+	parameter Modelica.SIunits.Emissivity eps_Rad=0.5 "Emmisivity of the radiator";
+	parameter Real ViewFactor_Rad=0.2 "Viewfactor of Radiator";
+	Modelica.Thermal.HeatTransfer.Components.BodyRadiation Radiator(Gr=ViewFactor_Rad*A_Rad*(1/((2/eps_Rad)-1)))"Lumped thermal element for radiation heat transfer" annotation(Placement(transformation(
 		origin={0,30},
 		extent={{-6.25,-6.25},{6.25,6.25}})));
 	parameter Modelica.SIunits.Area A_ESS(unit="m2")=0.0002 "Querschnittsflaeche der ESS";

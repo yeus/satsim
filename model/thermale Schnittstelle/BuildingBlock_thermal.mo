@@ -39,6 +39,8 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 	parameter Real Gr_oP(unit="m2")=0 "Net radiation conductance between two surfaces (see docu)(opposite Panels) tbd";
 	parameter Real Gr_aP(unit="m2")=0 "Net radiation conductance between two surfaces (see docu)(adjoining Panels) tbd";
 	parameter Modelica.SIunits.Power BuildingBlock_Power=5 "Leistungsbedarf des Standartbausteins";
+	parameter Real h_Panel(unit="W/(m²·K)")=3000 "Heat transfer coefficient Panel-Panel";
+	parameter Real h_EB(unit="W/(m²·K)")=3000 "Heat transfer coefficient EB-Panel";
 	thermal_Panel_with_Interface Panel_xp(
 		x_ESS=x_ESS,
 		y_ESS=y_ESS,
@@ -247,178 +249,124 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 			extent={{-5,-5},{30,30}})));
 	intra_BuildingBlock_connector EB_Pxp(
 		Gr=Gr_P_EB,
-		material=material_EB,
 		A_cross_Panel=y_EB * z_EB,
-		ThermalInsulance_c=ThermalInsulance_EB) annotation(
-		material(choicesAllMatching=true),
-		Placement(transformation(
-			origin={132,-52},
-			extent={{-6.6332,-6.6332},{6.6332,6.6332}})));
+		h_c=h_EB) annotation(Placement(transformation(
+		origin={132,-52},
+		extent={{-6.6332,-6.6332},{6.6332,6.6332}})));
 	intra_BuildingBlock_connector EB_Pxn(
 		Gr=Gr_P_EB,
-		material=material_EB,
 		A_cross_Panel=y_EB * z_EB,
-		ThermalInsulance_c=ThermalInsulance_EB) annotation(
-		material(choicesAllMatching=true),
-		Placement(transformation(
-			origin={41,-51},
-			extent={{-6,-9},{6.25,6.25}})));
+		h_c=h_EB) annotation(Placement(transformation(
+		origin={41,-51},
+		extent={{-6,-9},{6.25,6.25}})));
 	intra_BuildingBlock_connector EB_Pyn(
 		Gr=Gr_P_EB,
-		material=material_EB,
 		A_cross_Panel=x_EB * z_EB,
-		ThermalInsulance_c=ThermalInsulance_EB) annotation(
-		material(choicesAllMatching=true),
-		Placement(transformation(
-			origin={86,-96},
-			extent={{-6.4815,-6.4815},{6.4815,6.4815}},
-			rotation=-90)));
+		h_c=h_EB) annotation(Placement(transformation(
+		origin={86,-96},
+		extent={{-6.4815,-6.4815},{6.4815,6.4815}},
+		rotation=-90)));
 	intra_BuildingBlock_connector EB_Pyp(
 		Gr=Gr_P_EB,
-		material=material_EB,
 		A_cross_Panel=x_EB * z_EB,
-		ThermalInsulance_c=ThermalInsulance_EB) annotation(
-		material(choicesAllMatching=true),
-		Placement(transformation(
-			origin={87,-7},
-			extent={{-6.6332,-6.6332},{6.6332,6.6332}},
-			rotation=-90)));
+		h_c=h_EB) annotation(Placement(transformation(
+		origin={87,-7},
+		extent={{-6.6332,-6.6332},{6.6332,6.6332}},
+		rotation=-90)));
 	intra_BuildingBlock_connector EB_Pzp(
 		Gr=Gr_P_EB,
-		material=material_EB,
 		A_cross_Panel=y_EB * x_EB,
-		ThermalInsulance_c=ThermalInsulance_EB) annotation(
-		material(choicesAllMatching=true),
-		Placement(transformation(
-			origin={51,-87},
-			extent={{-10,-8},{4,6}},
-			rotation=45)));
+		h_c=h_EB) annotation(Placement(transformation(
+		origin={51,-87},
+		extent={{-10,-8},{4,6}},
+		rotation=45)));
 	intra_BuildingBlock_connector EB_Pzn(
 		Gr=Gr_P_EB,
-		material=material_EB,
 		A_cross_Panel=y_EB * x_EB,
-		ThermalInsulance_c=ThermalInsulance_EB) annotation(
-		material(choicesAllMatching=true),
-		Placement(transformation(
-			origin={126,-19},
-			extent={{-6.4943,-6.4943},{9,11}},
-			rotation=45)));
+		h_c=h_EB) annotation(Placement(transformation(
+		origin={126,-19},
+		extent={{-6.4943,-6.4943},{9,11}},
+		rotation=45)));
 	intra_BuildingBlock_connector adjoiningPanel_xp_yn(
 		Gr=Gr_aP,
-		material=material_Panel,
 		A_cross_Panel=x_Panel * y_Panel,
-		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
-		material(choicesAllMatching=true),
-		Placement(transformation(
-			origin={191,-116},
-			extent={{-5.8179,-5.8179},{8,7}},
-			rotation=-90)));
+		h_c=h_Panel) annotation(Placement(transformation(
+		origin={191,-116},
+		extent={{-5.8179,-5.8179},{8,7}},
+		rotation=-90)));
 	intra_BuildingBlock_connector adjoiningPanel_xp_yp(
 		Gr=Gr_aP,
-		material=material_Panel,
 		A_cross_Panel=x_Panel * y_Panel,
-		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
-		material(choicesAllMatching=true),
-		Placement(transformation(
-			origin={151,44},
-			extent={{-6.2693,-6.2693},{6.2693,6.2693}})));
+		h_c=h_Panel) annotation(Placement(transformation(
+		origin={151,44},
+		extent={{-6.2693,-6.2693},{6.2693,6.2693}})));
 	intra_BuildingBlock_connector adjoiningPanel_xp_zn(
 		Gr=Gr_aP,
-		material=material_Panel,
 		A_cross_Panel=x_Panel * y_Panel,
-		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
-		material(choicesAllMatching=true),
-		Placement(transformation(
-			origin={200,0},
-			extent={{-4.7981,-4.7981},{4.7981,4.7981}},
-			rotation=-270)));
+		h_c=h_Panel) annotation(Placement(transformation(
+		origin={200,0},
+		extent={{-4.7981,-4.7981},{4.7981,4.7981}},
+		rotation=-270)));
 	intra_BuildingBlock_connector adjoiningPanel_xp_zp(
 		Gr=Gr_aP,
-		material=material_Panel,
 		A_cross_Panel=x_Panel * y_Panel,
-		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
-		material(choicesAllMatching=true),
-		Placement(transformation(
-			origin={177,-142},
-			extent={{-7.5,-7.5},{7.5,7.5}},
-			rotation=-90)));
+		h_c=h_Panel) annotation(Placement(transformation(
+		origin={177,-142},
+		extent={{-7.5,-7.5},{7.5,7.5}},
+		rotation=-90)));
 	intra_BuildingBlock_connector adjoiningPanel_xn_yn(
 		Gr=Gr_aP,
-		material=material_Panel,
 		A_cross_Panel=x_Panel * y_Panel,
-		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
-		material(choicesAllMatching=true),
-		Placement(transformation(
-			origin={-8,-122},
-			extent={{-6.5445,-6.5445},{6.5445,6.5445}},
-			rotation=-90)));
+		h_c=h_Panel) annotation(Placement(transformation(
+		origin={-8,-122},
+		extent={{-6.5445,-6.5445},{6.5445,6.5445}},
+		rotation=-90)));
 	intra_BuildingBlock_connector adjoiningPanel_xn_yp(
 		Gr=Gr_aP,
-		material=material_Panel,
 		A_cross_Panel=x_Panel * y_Panel,
-		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
-		material(choicesAllMatching=true),
-		Placement(transformation(
-			origin={-9,-1},
-			extent={{-6.2294,-6.2294},{6.2294,6.2294}},
-			rotation=-90)));
+		h_c=h_Panel) annotation(Placement(transformation(
+		origin={-9,-1},
+		extent={{-6.2294,-6.2294},{6.2294,6.2294}},
+		rotation=-90)));
 	intra_BuildingBlock_connector adjoiningPanel_xn_zn(
 		Gr=Gr_aP,
-		material=material_Panel,
 		A_cross_Panel=x_Panel * y_Panel,
-		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
-		material(choicesAllMatching=true),
-		Placement(transformation(
-			origin={-9,59},
-			extent={{-6.3683,-6.3683},{6.3683,6.3683}})));
+		h_c=h_Panel) annotation(Placement(transformation(
+		origin={-9,59},
+		extent={{-6.3683,-6.3683},{6.3683,6.3683}})));
 	intra_BuildingBlock_connector adjoiningPanel_xn_zp(
 		Gr=Gr_aP,
-		material=material_Panel,
 		A_cross_Panel=x_Panel * y_Panel,
-		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
-		material(choicesAllMatching=true),
-		Placement(transformation(
-			origin={-24,-106},
-			extent={{-5.8783,-5.8783},{5.8783,5.8783}},
-			rotation=-90)));
+		h_c=h_Panel) annotation(Placement(transformation(
+		origin={-24,-106},
+		extent={{-5.8783,-5.8783},{5.8783,5.8783}},
+		rotation=-90)));
 	intra_BuildingBlock_connector adjoiningPanel_yn_zn(
 		Gr=Gr_aP,
-		material=material_Panel,
 		A_cross_Panel=x_Panel * y_Panel,
-		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
-		material(choicesAllMatching=true),
-		Placement(transformation(
-			origin={206,-84},
-			extent={{-7,-13},{4,1}},
-			rotation=-270)));
+		h_c=h_Panel) annotation(Placement(transformation(
+		origin={206,-84},
+		extent={{-7,-13},{4,1}},
+		rotation=-270)));
 	intra_BuildingBlock_connector adjoiningPanel_yn_zp(
 		Gr=Gr_aP,
-		material=material_Panel,
 		A_cross_Panel=x_Panel * y_Panel,
-		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
-		material(choicesAllMatching=true),
-		Placement(transformation(
-			origin={51,-139},
-			extent={{-5.778,-5.778},{4,4}})));
+		h_c=h_Panel) annotation(Placement(transformation(
+		origin={51,-139},
+		extent={{-5.778,-5.778},{4,4}})));
 	intra_BuildingBlock_connector adjoiningPanel_yp_zn(
 		Gr=Gr_aP,
-		material=material_Panel,
 		A_cross_Panel=x_Panel * y_Panel,
-		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
-		material(choicesAllMatching=true),
-		Placement(transformation(
-			origin={101,64},
-			extent={{-6.2539,-6.2539},{4,6}})));
+		h_c=h_Panel) annotation(Placement(transformation(
+		origin={101,64},
+		extent={{-6.2539,-6.2539},{4,6}})));
 	intra_BuildingBlock_connector adjoiningPanel_yp_zp(
 		Gr=Gr_aP,
-		material=material_Panel,
 		A_cross_Panel=x_Panel * y_Panel,
-		ThermalInsulance_c=ThermalInsulance_Panel) annotation(
-		material(choicesAllMatching=true),
-		Placement(transformation(
-			origin={6,-16},
-			extent={{-6.1458,-6.1458},{6,10}},
-			rotation=-90)));
+		h_c=h_Panel) annotation(Placement(transformation(
+		origin={6,-16},
+		extent={{-6.1458,-6.1458},{6,10}},
+		rotation=-90)));
 	Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow Buildingblock_Power(Q_flow=BuildingBlock_Power) annotation(Placement(transformation(
 		origin={-100,30},
 		extent={{-10,-10},{10,10}})));
@@ -440,8 +388,6 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 	Modelica.Thermal.HeatTransfer.Components.BodyRadiation oposite_Panel_x(Gr=Gr_oP) annotation(Placement(transformation(
 		origin={42,-27},
 		extent={{-6.7966,-6.7966},{6.7966,6.7966}})));
-	parameter Modelica.SIunits.ThermalInsulance ThermalInsulance_Panel=0.00003 "Thermal Insulance of Panel Surfaces";
-	parameter Modelica.SIunits.ThermalInsulance ThermalInsulance_EB=0.00003 "Thermal Insulance of Panel Electronic Box";
 	thermal_connector thermal_connector_yn annotation(Placement(
 		transformation(
 			origin={85,-190},
