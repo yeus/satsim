@@ -9,6 +9,7 @@ Verschiedenes:
 - Implementierung v. Unit-Tests 
 - AOCS Simulation: Anforderungen sollen eingehalten werden, bzw. herausgefunden werden.
 - Alle Dateien mit folgender Copyright notice ausstatten:
+- Modelle auch mit anderen Solvern als DASSL zum laufen bringen (z.B. runge-kutta)
   
   /*
   * Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)

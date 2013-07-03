@@ -28,7 +28,7 @@ package satcomponents
       satcomponents.power.dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved1(V_out = 3.3, V_in_min = 5) annotation(Placement(visible = true, transformation(origin = {56.9364,-28.6127}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       satcomponents.power.dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved2 annotation(Placement(visible = true, transformation(origin = {57.5145,3.75723}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       satcomponents.power.dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved3(V_out = 12, V_in_min = 15) annotation(Placement(visible = true, transformation(origin = {57.2254,41.0405}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.00000000001) annotation(Placement(visible = true, transformation(origin = {-61.2717,-16.763}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+      Modelica.Electrical.Analog.Basic.Capacitor C1(C = 0.00000000001) annotation(Placement(visible = true, transformation(origin = {-61.2717,-16.763}, extent = {{-10,-10},{10,10}}, rotation = -90)));
     equation
       connect(dcdc_ideal_simple_improved1.n2,gnd) annotation(Line(points = {{66.2433,-33.3086},{76.8786,-33.3086},{76.8786,-63.5838},{100,-63.5838},{100,-63.5838}}));
       connect(dcdc_ideal_simple_improved2.n2,dcdc_ideal_simple_improved1.n2) annotation(Line(points = {{66.8214,-0.93867},{76.8786,-0.93867},{76.8786,-33.237},{66.474,-33.237},{66.474,-33.237}}));
@@ -38,12 +38,12 @@ package satcomponents
       connect(dcdc_ideal_simple_improved1.p2,VCC3) annotation(Line(points = {{66.1868,-24.3694},{99.1329,-24.3694},{99.1329,-24.2775},{99.1329,-24.2775}}));
       connect(dcdc_ideal_simple_improved3.p2,VCC12) annotation(Line(points = {{66.4758,45.2837},{98.8439,45.2837},{98.8439,45.0867},{98.8439,45.0867}}));
       connect(dcdc_ideal_simple_improved2.p2,VCC5) annotation(Line(points = {{66.7648,8.00051},{98.2659,8.00051},{98.2659,7.80347},{98.2659,7.80347}}));
-      connect(dcdc_ideal_simple_improved1.n1,capacitor1.n) annotation(Line(points = {{47.6578,-32.658},{-61.2717,-32.658},{-61.2717,-26.8786},{-61.5607,-26.8786},{-61.5607,-26.8786}}));
+      connect(dcdc_ideal_simple_improved1.n1,C1.n) annotation(Line(points = {{47.6578,-32.658},{-61.2717,-32.658},{-61.2717,-26.8786},{-61.5607,-26.8786},{-61.5607,-26.8786}}));
       connect(dcdc_ideal_simple_improved1.p1,dcdc_ideal_simple_improved2.p1) annotation(Line(points = {{47.7143,-24.426},{28.3237,-24.426},{28.3237,8.3815},{48.5549,8.3815},{48.5549,8.3815}}));
       connect(dcdc_ideal_simple_improved2.p1,dcdc_ideal_simple_improved3.p1) annotation(Line(points = {{48.2924,7.94393},{28.3237,7.94393},{28.3237,45.6647},{47.6879,45.6647},{47.6879,45.6647}}));
-      connect(capacitor1.p,dcdc_ideal_simple_improved2.p1) annotation(Line(points = {{-61.2717,-6.76301},{-61.2717,8.3815},{47.9769,8.3815},{47.9769,8.3815}}));
-      connect(GND,capacitor1.n) annotation(Line(points = {{-100.99,-44.413},{-61.2717,-44.413},{-61.2717,-26.8786},{-61.2717,-26.8786}}));
-      connect(capacitor1.p,VCC) annotation(Line(points = {{-61.2717,-6.76301},{-61.2717,8.3815},{-100.867,8.3815},{-100.867,8.3815}}));
+      connect(C1.p,dcdc_ideal_simple_improved2.p1) annotation(Line(points = {{-61.2717,-6.76301},{-61.2717,8.3815},{47.9769,8.3815},{47.9769,8.3815}}));
+      connect(GND,C1.n) annotation(Line(points = {{-100.99,-44.413},{-61.2717,-44.413},{-61.2717,-26.8786},{-61.2717,-26.8786}}));
+      connect(C1.p,VCC) annotation(Line(points = {{-61.2717,-6.76301},{-61.2717,8.3815},{-100.867,8.3815},{-100.867,8.3815}}));
       annotation(Diagram(), Icon(graphics = {Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-72.4187,45.5445},{24.894,-36.4922}}, textString = "PCU"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{22.9137,-45.8274},{83.7341,-80.0566}}, textString = "GND"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{34.2291,-11.3154},{78.0764,-40.4526}}, textString = "3.3V"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{31.1174,21.7822},{78.6421,-8.76945}}, textString = "5V"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{31.6832,60.8204},{76.662,26.3083}}, textString = "12V"),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-88.826,94.4837},{88.2603,-94.7666}})}));
     end PCU;
     package batteries
@@ -51,20 +51,24 @@ package satcomponents
         /*todo Batteriemodell ist noch "ungenau" z.B. beim Einschalten fällt die Spannung temporär, Hitzeentwicklung usw...*/
         /*todo Batteriemodell kann noch einen unendlich hohen SOD erreichen, wenn sie an negative Spannung angeschlossen wird. aber das darf nicht sein*/
         extends Modelica.Electrical.Analog.Interfaces.TwoPin;
-        Real soc(start = 1.0) "State of Charge";
+        parameter Real startSOC = 0.5;
+        parameter Real startSOD = 1.0 - startSOC;
+        Real soc(start = startSOC) "State of Charge";
         Real SOD "State of Discharge";
         parameter Modelica.SIunits.Conversions.NonSIunits.ElectricCharge_Ah capacity_Ah = 2.0;
         Modelica.SIunits.Current i;
         parameter Modelica.SIunits.Voltage Vnominal = 4.0;
         parameter Real pi = 3.14159265359;
-        Modelica.Electrical.Analog.Sources.SignalVoltage voltage annotation(Placement(visible = true, transformation(origin = {46.2642,-2.33333}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Sources.SignalVoltage voltage(v(start = Vnominal * (1 - startSOD * 0.35 - 0.025 * sin(startSOD * 2 * pi)) * (1 - 1 / (1 + exp(-100 * (startSOD - 1)))))) annotation(Placement(visible = true, transformation(origin = {46.2642,-2.33333}, extent = {{-10,-10},{10,10}}, rotation = 0)));
         Modelica.Electrical.Analog.Basic.Resistor R_t(R = 0.02) annotation(Placement(visible = true, transformation(origin = {-44.9121,9.39283}, extent = {{10,-10},{-10,10}}, rotation = 0)));
-        Modelica.Electrical.Analog.Basic.Capacitor C_t(C = 100) annotation(Placement(visible = true, transformation(origin = {-44.4021,-19.4913}, extent = {{10,-10},{-10,10}}, rotation = 0)));
-        Modelica.Electrical.Analog.Basic.VariableResistor R_overload annotation(Placement(visible = true, transformation(origin = {44.9904,34.3674}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Basic.Capacitor C_t(C = 100, v(start = 0.002)) annotation(Placement(visible = true, transformation(origin = {-44.4021,-19.4913}, extent = {{10,-10},{-10,10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Basic.VariableResistor R_overload(R_actual(start = 10000000.0), R(start = 1000000.0)) annotation(Placement(visible = true, transformation(origin = {44.9904,34.3674}, extent = {{-10,-10},{10,10}}, rotation = 0)));
         Modelica.Electrical.Analog.Basic.Resistor R_i(R = 0.005) annotation(Placement(visible = true, transformation(origin = {-6.89231,-3.68554}, extent = {{10,-10},{-10,10}}, rotation = 0)));
       protected
         parameter Modelica.SIunits.ElectricCharge capacity = capacity_Ah * 3600;
       equation
+        R_overload.R = 100000.0 / (1 + exp(-100.0 * SOD));
+        voltage.v = Vnominal * (1 - SOD * 0.35 - 0.025 * sin(SOD * 2 * pi)) * (1 - 1 / (1 + exp(-100 * (SOD - 1))));
         connect(R_t.p,R_i.n) annotation(Line(points = {{-34.9121,9.39283},{-34.3333,9.39283},{-34.3333,-4.66667},{-16.6667,-3.68554},{-16.8923,-3.68554}}));
         connect(R_i.p,voltage.p) annotation(Line(points = {{3.10769,-3.68554},{36,-3.68554},{36,-2.33333},{36,-2.33333}}));
         connect(R_overload.n,voltage.n) annotation(Line(points = {{54.9904,34.3674},{56,34.3674},{56,-2},{56,-2}}));
@@ -73,11 +77,9 @@ package satcomponents
         connect(R_t.p,C_t.p) annotation(Line(points = {{-34.9121,9.39283},{-34.3333,9.39283},{-34.3333,-19.3333},{-34.3333,-19.3333}}));
         connect(p,C_t.n) annotation(Line(points = {{-100,0},{-54.3333,0},{-54.3333,-19.3333},{-54.3333,-19.3333}}));
         connect(p,R_t.n) annotation(Line(points = {{-100,0},{-55,0},{-55,9.33333},{-55,9.33333}}));
-        R_overload.R = 100000.0 / (1 + exp(-100.0 * SOD));
         i = voltage.i;
         der(soc) = i / capacity;
         SOD = 1 - soc;
-        voltage.v = Vnominal * (1 - SOD * 0.35 - 0.025 * sin(SOD * 2 * pi)) * (1 - 1 / (1 + exp(-100 * (SOD - 1))));
         /*exp-fucntion: logistic function*/
         annotation(Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100,-100},{100,100}}, grid = {1,1}), graphics = {Line(points = {{-90,0},{-10,0}}, color = {0,0,255}),Line(points = {{-10,60},{-10,-60}}, color = {0,0,255}),Line(points = {{0,30},{0,-30}}, color = {0,0,255}),Line(points = {{0,0},{90,0}}, color = {0,0,255}),Text(extent = {{-150,-112},{150,-72}}, textString = "%capacity_Ah Ah", lineColor = {0,0,255}),Text(extent = {{-120,50},{-20,0}}, lineColor = {0,0,255}, textString = "+"),Text(extent = {{20,50},{120,0}}, lineColor = {0,0,255}, textString = "-")}), experiment(StartTime = 0.0, StopTime = 10000.0, Tolerance = 0.0001));
       end battery;
@@ -758,7 +760,7 @@ package satcomponents
       model PCU_example
         extends Modelica.Icons.Example;
         satcomponents.power.batteries.battery battery1(Vnominal = 20, soc(start = 0.9)) annotation(Placement(visible = true, transformation(origin = {-86.1272,-5.49133}, extent = {{-10,-10},{10,10}}, rotation = -90)));
-        satcomponents.power.PCU pcu1 annotation(Placement(visible = true, transformation(origin = {-37.2832,4.04624}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        satcomponents.power.PCU pcu1(C1.v(start = 20)) annotation(Placement(visible = true, transformation(origin = {-37.2832,4.04624}, extent = {{-10,-10},{10,10}}, rotation = 0)));
         Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 100) annotation(Placement(visible = true, transformation(origin = {23.9884,22.2543}, extent = {{-10,-10},{10,10}}, rotation = 0)));
         Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 100) annotation(Placement(visible = true, transformation(origin = {24.2775,1.15607}, extent = {{-10,-10},{10,10}}, rotation = 0)));
         Modelica.Electrical.Analog.Basic.Resistor resistor3(R = 100) annotation(Placement(visible = true, transformation(origin = {24.5665,-21.3873}, extent = {{-10,-10},{10,10}}, rotation = 0)));
@@ -803,17 +805,16 @@ package satcomponents
         Modelica.Electrical.Analog.Basic.Capacitor capacitor2(C = 0.0000000001) annotation(Placement(visible = true, transformation(origin = {13.2948,47.3988}, extent = {{-10,-10},{10,10}}, rotation = 0)));
         Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 100) annotation(Placement(visible = true, transformation(origin = {-33.237,48.5549}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       equation
-        connect(resistor1.n,resistor2.p) annotation(Line(points = {{-23.237,48.5549},{-12.4277,48.5549},{-12.4277,39.7688},{-13.5838,39.1908}}));
+        connect(Kontaktwiderstand2.n,capacitor1.p) annotation(Line(points = {{-13.8728,-25.6069},{-13.8728,-36.0606},{0.909091,-36.0606},{0.909091,-36.0606}}));
+        connect(Kontaktwiderstand2.n,solarcell_simple1.p) annotation(Line(points = {{-13.8728,-25.6069},{-13.8728,-36.9697},{-24.8485,-36.9697},{-24.8485,-36.9697}}));
+        connect(battery1.n,Kontaktwiderstand2.p) annotation(Line(points = {{-23.815,8.3815},{-13.9394,8.3815},{-13.9394,-6.06061},{-13.9394,-6.06061}}));
+        connect(Kontaktwiederstand.n,battery1.n) annotation(Line(points = {{-13.5838,19.1908},{-13.5838,8.18182},{-23.6364,8.18182},{-23.6364,8.18182}}));
+        connect(Kontaktwiederstand.p,capacitor2.p) annotation(Line(points = {{-13.5838,39.1908},{-13.5838,47.8788},{3.33333,47.8788},{3.33333,47.8788}}));
+        connect(resistor1.n,Kontaktwiederstand.p) annotation(Line(points = {{-23.237,48.5549},{-13.9394,48.5549},{-13.9394,40},{-13.9394,40}}));
         connect(battery1.p,resistor1.p) annotation(Line(points = {{-43.815,8.3815},{-58.0925,8.3815},{-57.2254,48.5549},{-43.237,48.5549},{-43.237,48.5549}}));
         connect(capacitor2.n,ground1.p) annotation(Line(points = {{23.2948,47.3988},{51.7341,47.3988},{51.7341,-9.53757},{51.7341,-9.53757}}));
-        connect(Kontaktwiederstand.p,capacitor2.p) annotation(Line(points = {{-13.5838,39.1908},{-13.5838,47.3988},{3.17919,47.3988},{3.17919,47.3988}}));
         connect(capacitor1.n,ground1.p) annotation(Line(points = {{21.5607,-36.4162},{28.3237,-36.4162},{28.3237,-9.82659},{51.4451,-9.82659},{51.4451,-9.82659}}));
-        connect(Kontaktwiderstand2.n,capacitor1.p) annotation(Line(points = {{-13.8728,-25.6069},{-13.8728,-36.9942},{1.44509,-36.9942},{1.44509,-36.9942}}));
-        connect(Kontaktwiederstand.n,battery1.n) annotation(Line(points = {{-13.5838,19.1908},{-13.5838,8.67052},{-23.9884,8.67052},{-23.9884,8.67052}}));
-        connect(resistor1.n,Kontaktwiederstand.p) annotation(Line(points = {{-24.104,47.9769},{-13.2948,47.9769},{-13.2948,39.3064},{-13.2948,39.3064}}));
         connect(battery1.n,ground1.p) annotation(Line(points = {{-23.815,8.3815},{15.6069,8.3815},{51.7341,7.68786},{51.7341,-9.9422}}));
-        connect(Kontaktwiderstand2.n,solarcell_simple1.p) annotation(Line(points = {{-13.8728,-25.6069},{-13.8728,-37.2832},{-24.5665,-37.2832},{-24.5665,-37.2832}}));
-        connect(battery1.n,Kontaktwiderstand2.p) annotation(Line(points = {{-23.815,8.3815},{-14.1618,8.3815},{-14.1618,-5.20231},{-14.1618,-5.20231}}));
         connect(trapezoid1.y,solarcell_simple1.E_s) annotation(Line(points = {{-71.948,-17.341},{-34.3931,-17.341},{-34.3931,-30.3468},{-34.3931,-30.3468}}));
         connect(solarcell_simple1.n,battery1.p) annotation(Line(points = {{-44.3931,-37.2832},{-58.0925,-37.2832},{-58.0925,8.3815},{-43.6416,8.3815},{-43.6416,8.3815}}));
         annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2}), graphics = {Rectangle(origin = {-35.6936,-36.5607}, extent = {{-33.9595,23.2659},{34.8266,-21.2428}}),Rectangle(origin = {-35.1156,8.95954}, extent = {{-35.1156,17.9191},{35.1156,-17.9191}}),Rectangle(origin = {-37.5723,53.4682}, extent = {{-30.6358,20.2312},{36.7052,-20.5202}}),Text(origin = {-74.8555,82.2254}, extent = {{-13.2948,5.0578},{71.0982,-10.8381}}, textString = "Verbraucherbaustein"),Text(origin = {-82.0232,33.7283}, extent = {{-13.2948,5.0578},{55.4913,-12.8612}}, textString = "Batteriebaustein"),Text(origin = {-63.4682,-61.3006}, extent = {{-13.2948,5.0578},{28.9017,-10.5491}}, textString = "Solarbaustein")}));
@@ -891,11 +892,11 @@ package satcomponents
       extends Modelica.Icons.Example;
       inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(visible = true, transformation(origin = {-74.9845,45.4769}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       Modelica.Mechanics.MultiBody.Joints.FreeMotion freemotion1(useQuaternions = false) annotation(Placement(visible = true, transformation(origin = {-44.2197,45.3757}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      satcomponents.Cubesatexample cubesatexample1 annotation(Placement(visible = true, transformation(origin = {7.13873,45.1734}, extent = {{-24.9422,-24.9422},{24.9422,24.9422}}, rotation = 0)));
       Modelica.Blocks.Sources.Trapezoid trapezoid1(rising = 20, width = 1000, falling = 20, startTime = 2000, period = 5000, nperiod = -1, amplitude = 1367) annotation(Placement(visible = true, transformation(origin = {-29.8712,-10.2364}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      satcomponents.Cubesat cubesat1 annotation(Placement(visible = true, transformation(origin = {-7.80347,46.2428}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     equation
-      connect(trapezoid1.y,cubesatexample1.u) annotation(Line(points = {{-18.8712,-10.2364},{7.51445,-10.2364},{7.51445,19.0751},{7.51445,19.0751}}));
-      connect(freemotion1.frame_b,cubesatexample1.frame_a) annotation(Line(points = {{-34.2197,45.3757},{-17.9191,45.3757},{-17.9191,45.9538},{-17.9191,45.9538}}));
+      connect(cubesat1.u,trapezoid1.y) annotation(Line(points = {{-7.60116,36.0983},{-7.22543,36.0983},{-7.22543,-10.4046},{-18.7861,-10.4046},{-18.7861,-10.4046}}));
+      connect(freemotion1.frame_b,cubesat1.frame_a) annotation(Line(points = {{-34.2197,45.3757},{-18.2081,45.3757},{-18.2081,46.5318},{-18.2081,46.5318}}));
       connect(world.frame_b,freemotion1.frame_a) annotation(Line(points = {{-64.9845,45.4769},{-54.6243,45.4769},{-54.2197,45.6647},{-54.2197,45.3757}}));
       annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 20000.0, Tolerance = 0.0001));
     end cubesatwith3axisreactionwheel;

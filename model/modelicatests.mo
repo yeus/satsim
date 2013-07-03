@@ -105,5 +105,33 @@ package modelicatests
     connect(resistor1.p,constantvoltage1.p) annotation(Line(points = {{-12.1387,81.0983},{-12.1387,87.5723},{45.6647,87.5723},{45.6647,81.2139},{45.6647,81.2139}}));
     annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
   end Transistortest;
+  model Capacitortest
+    Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-26.0606,-30.6061}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.1, v(start = 100)) annotation(Placement(visible = true, transformation(origin = {-53.6364,3.33333}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+    Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 100) annotation(Placement(visible = true, transformation(origin = {10.303,5.75758}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+  equation
+    connect(ground1.p,capacitor1.n) annotation(Line(points = {{-26.0606,-20.6061},{-53.3333,-20.6061},{-53.3333,-6.36364},{-53.3333,-6.36364}}));
+    connect(resistor1.n,ground1.p) annotation(Line(points = {{10.303,-4.24242},{10.303,-20.303},{-26.3636,-20.303},{-26.3636,-20.303}}));
+    connect(capacitor1.p,resistor1.p) annotation(Line(points = {{-53.6364,13.3333},{-53.6364,32.7273},{10.303,32.7273},{10.303,15.4545},{10.303,15.4545}}));
+    annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
+  end Capacitortest;
+  model variableresistortest
+    Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {12.4242,-24.8485}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Resistor resistor1 annotation(Placement(visible = true, transformation(origin = {8.78788,36.0606}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Capacitor capacitor1 annotation(Placement(visible = true, transformation(origin = {8.78788,8.48485}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Sources.SignalVoltage signalvoltage1 annotation(Placement(visible = true, transformation(origin = {-31.8182,35.7576}, extent = {{10,-10},{-10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.VariableResistor vr1 annotation(Placement(visible = true, transformation(origin = {-31.2121,66.9697}, extent = {{10,-10},{-10,10}}, rotation = 0)));
+  equation
+    connect(vr1.n,signalvoltage1.n) annotation(Line(points = {{-41.2121,66.9697},{-47.2727,66.9697},{-47.2727,35.7576},{-41.8182,35.7576},{-41.8182,35.7576}}));
+    connect(vr1.p,signalvoltage1.p) annotation(Line(points = {{-21.2121,66.9697},{-16.9697,66.9697},{-16.9697,35.4545},{-21.8182,35.4545},{-21.8182,35.4545}}));
+    signalvoltage1.v = sin(time * 0.001);
+    vr1.R = 100000.0 / (1 + exp(-100.0 * signalvoltage1.v));
+    connect(signalvoltage1.n,ground1.p) annotation(Line(points = {{-41.8182,35.7576},{-52.4242,35.7576},{-52.4242,-15.1515},{12.1212,-15.1515},{12.1212,-15.1515}}));
+    connect(signalvoltage1.p,capacitor1.p) annotation(Line(points = {{-21.8182,35.7576},{-15.1515,35.7576},{-15.1515,8.48485},{-0.606061,8.48485},{-0.606061,8.48485}}));
+    connect(signalvoltage1.p,resistor1.p) annotation(Line(points = {{-21.8182,35.7576},{-1.51515,35.7576},{-1.51515,35.7576},{-1.51515,35.7576}}));
+    connect(ground1.p,capacitor1.n) annotation(Line(points = {{12.4242,-14.8485},{24.2424,-14.8485},{24.2424,8.78788},{18.4848,8.78788},{18.4848,8.78788}}));
+    connect(resistor1.n,ground1.p) annotation(Line(points = {{18.7879,36.0606},{33.3333,36.0606},{33.3333,-15.1515},{12.4242,-15.1515},{12.4242,-15.1515}}));
+    annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
+  end variableresistortest;
 end modelicatests;
 
