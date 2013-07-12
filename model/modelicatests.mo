@@ -133,5 +133,33 @@ package modelicatests
     connect(resistor1.n,ground1.p) annotation(Line(points = {{18.7879,36.0606},{33.3333,36.0606},{33.3333,-15.1515},{12.4242,-15.1515},{12.4242,-15.1515}}));
     annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
   end variableresistortest;
+  model pChannelMOSFETtest
+    Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 500) annotation(Placement(visible = true, transformation(origin = {-30.6358,26.0116}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Resistor resistor3(R = 0.5) annotation(Placement(visible = true, transformation(origin = {65.896,13.8728}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+    Modelica.Electrical.Analog.Sources.ConstantVoltage constantvoltage1(V = 100) annotation(Placement(visible = true, transformation(origin = {-71.6763,10.9827}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+    Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {41.0405,-82.659}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.00000001) annotation(Placement(visible = true, transformation(origin = {24.5665,25.1445}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Sources.PulseVoltage pulsevoltage1(V = 50, width = 50, period = 1.0) annotation(Placement(visible = true, transformation(origin = {-47.1098,-40.4624}, extent = {{10,-10},{-10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 500) annotation(Placement(visible = true, transformation(origin = {-5.20231,-3.75723}, extent = {{10,-10},{-10,10}}, rotation = 90)));
+    Modelica.Electrical.Analog.Semiconductors.NMOS nmos1 annotation(Placement(visible = true, transformation(origin = {-16.7889,-35.5491}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Semiconductors.PMOS pmos1 annotation(Placement(visible = true, transformation(origin = {-13.2948,58.9595}, extent = {{-10,-10},{10,10}}, rotation = 90)));
+  equation
+    connect(pmos1.S,resistor3.p) annotation(Line(points = {{-8.2948,68.9595},{-8.2948,69.9213},{65.8268,69.9213},{65.8268,24.252},{65.8268,24.252}}));
+    connect(pmos1.B,pmos1.D) annotation(Line(points = {{-13.2948,68.9595},{-13.2948,83.7795},{-18.2677,83.7795},{-18.2677,69.6063},{-18.2677,69.6063}}));
+    connect(resistor1.p,constantvoltage1.p) annotation(Line(points = {{-40.6358,26.0116},{-71.811,26.0116},{-71.811,21.4173},{-71.811,21.4173}}));
+    connect(pmos1.D,resistor1.p) annotation(Line(points = {{-18.2948,68.9595},{-18.2948,70.2362},{-40.9449,70.2362},{-40.9449,25.8268},{-40.9449,25.8268}}));
+    connect(resistor1.n,pmos1.G) annotation(Line(points = {{-20.6358,26.0116},{0,26.0116},{0,48.8439},{-18.2948,48.9595},{-8.2948,48.9595}}));
+    connect(capacitor1.p,pmos1.G) annotation(Line(points = {{14.5665,25.1445},{0,25.1445},{0,48.8439},{-18.2948,48.9595},{-8.2948,48.9595}}));
+    connect(nmos1.B,nmos1.S) annotation(Line(points = {{-6.78895,-35.5491},{1.25984,-35.5491},{1.25984,-40.6299},{-6.29921,-40.6299},{-6.29921,-40.6299}}));
+    connect(nmos1.D,resistor2.n) annotation(Line(points = {{-6.78895,-30.5491},{-5.03937,-30.5491},{-5.03937,-13.8583},{-5.03937,-13.8583}}));
+    connect(nmos1.S,ground1.p) annotation(Line(points = {{-6.78895,-40.5491},{40.9449,-40.5491},{40.9449,-73.0709},{40.9449,-73.0709}}));
+    connect(pulsevoltage1.p,nmos1.G) annotation(Line(points = {{-37.1098,-40.4624},{-26.3006,-40.4624},{-26.7889,-40.5491},{-26.7889,-40.5491}}));
+    connect(resistor2.p,resistor1.n) annotation(Line(points = {{-5.20231,6.24277},{-5.20231,26.1417},{-21.1024,26.1417},{-21.1024,26.1417}}));
+    connect(capacitor1.n,resistor3.p) annotation(Line(points = {{34.5665,25.1445},{65.5118,25.1445},{65.5118,24.5669},{65.5118,24.5669}}));
+    connect(pulsevoltage1.n,constantvoltage1.n) annotation(Line(points = {{-57.1098,-40.4624},{-71.9653,-40.4624},{-71.9653,0.982659},{-71.6763,0.982659}}));
+    connect(ground1.p,constantvoltage1.n) annotation(Line(points = {{41.0405,-72.659},{-71.9653,-72.659},{-71.9653,0.578035},{-71.9653,0.578035}}));
+    connect(resistor3.n,ground1.p) annotation(Line(points = {{65.896,3.87283},{65.896,-27.1676},{40.7514,-72.659},{41.0405,-72.659}}));
+    annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 20.0, Tolerance = 0.000001));
+  end pChannelMOSFETtest;
 end modelicatests;
 
