@@ -131,6 +131,10 @@ package satcomponents
         connect(ground1.p,battery1.n) annotation(Line(points = {{-11.3919,-24.9858},{-55.2962,-24.6268},{-54.9371,-6.76841},{-54.9371,-5.06261}}));
         annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 4000.0, Tolerance = 0.0001));
       end Pulsverhalten;
+      model BDR_CDR
+        extends Modelica.Electrical.Analog.Interfaces.TwoPort;
+        annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2}), graphics = {Rectangle(origin = {-1.01156,2.89017}, extent = {{-95.5202,78.9017},{95.5202,-78.9017}}),Text(origin = {3.46821,39.0173}, extent = {{-62.4277,29.7688},{62.4277,-29.7688}}, textString = "Battery"),Text(origin = {-23.6416,-14.104}, extent = {{-62.4277,29.7688},{107.225,-3.75724}}, textString = "Charge/Discharge"),Text(origin = {2.65896,-39.8266}, extent = {{-62.4277,29.7688},{62.4277,-29.7688}}, textString = "Regulator")}));
+      end BDR_CDR;
     end batteries;
     // CP: 65001
     // SimulationX Version: 3.5.706.23 x64
@@ -819,6 +823,42 @@ package satcomponents
         connect(solarcell_simple1.n,battery1.p) annotation(Line(points = {{-44.3931,-37.2832},{-58.0925,-37.2832},{-58.0925,8.3815},{-43.6416,8.3815},{-43.6416,8.3815}}));
         annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2}), graphics = {Rectangle(origin = {-35.6936,-36.5607}, extent = {{-33.9595,23.2659},{34.8266,-21.2428}}),Rectangle(origin = {-35.1156,8.95954}, extent = {{-35.1156,17.9191},{35.1156,-17.9191}}),Rectangle(origin = {-37.5723,53.4682}, extent = {{-30.6358,20.2312},{36.7052,-20.5202}}),Text(origin = {-74.8555,82.2254}, extent = {{-13.2948,5.0578},{71.0982,-10.8381}}, textString = "Verbraucherbaustein"),Text(origin = {-82.0232,33.7283}, extent = {{-13.2948,5.0578},{55.4913,-12.8612}}, textString = "Batteriebaustein"),Text(origin = {-63.4682,-61.3006}, extent = {{-13.2948,5.0578},{28.9017,-10.5491}}, textString = "Solarbaustein")}));
       end EPS_without_GND;
+      model BDRBCRwithDET
+        extends Modelica.Icons.Example;
+        Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-41.373,-8.68607}, extent = {{-12,-12},{12,12}}, rotation = 0)));
+        Modelica.Blocks.Sources.Trapezoid trapezoid1(amplitude = 1367, rising = 90, width = 3600, falling = 90, period = 5000) annotation(Placement(visible = true, transformation(origin = {-85.7341,35.4624}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        power.solar_power.solarcell_simple solarcell_simple1(N_p = 1, N_s = 25.0) annotation(Placement(visible = true, transformation(origin = {-53.7341,35.4624}, extent = {{-10,-10},{10,10}}, rotation = 90)));
+        Modelica.Electrical.Analog.Ideal.IdealDiode idealdiode2 annotation(Placement(visible = true, transformation(origin = {2.19458,67.7957}, extent = {{10,-10},{-10,10}}, rotation = 180)));
+        Modelica.Electrical.Analog.Ideal.IdealDiode idealdiode1 annotation(Placement(visible = true, transformation(origin = {-40.7283,67.9286}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Semiconductors.ZDiode zdiode1(Bv = 39) annotation(Placement(visible = true, transformation(origin = {-18.7765,35.4624}, extent = {{-10,-10},{10,10}}, rotation = 90)));
+        satcomponents.power.PCU pcu1 annotation(Placement(visible = true, transformation(origin = {50.578,-35.5491}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 13) annotation(Placement(visible = true, transformation(origin = {79.682,-13.7861}, extent = {{-9.62429,-9.62429},{9.62429,9.62429}}, rotation = 0)));
+        Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 20) annotation(Placement(visible = true, transformation(origin = {80.0577,-34.6821}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Basic.Resistor resistor3(R = 100) annotation(Placement(visible = true, transformation(origin = {80.0578,-57.5144}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        power.batteries.battery battery1(soc(start = 0.5), Vnominal = 40) annotation(Placement(visible = true, transformation(origin = {72.0924,37.4624}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+        satcomponents.power.batteries.BDR_CDR bdr_cdr1 annotation(Placement(visible = true, transformation(origin = {40.4624,37.8613}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      equation
+        connect(bdr_cdr1.n1,pcu1.GND) annotation(Line(points = {{30.4624,32.8613},{20.2312,32.8613},{20.2312,-40.4624},{40.4624,-40.4624},{40.4624,-40.4624}}));
+        connect(bdr_cdr1.p1,pcu1.VCC) annotation(Line(points = {{30.4624,42.8613},{25.7225,42.8613},{25.7225,-34.6821},{39.8844,-34.6821},{39.8844,-34.6821}}));
+        connect(bdr_cdr1.n1,ground1.p) annotation(Line(points = {{30.4624,32.8613},{20.2312,32.8613},{20.2312,3.46821},{-41.6185,3.46821},{-41.6185,3.46821}}));
+        connect(bdr_cdr1.p1,idealdiode2.n) annotation(Line(points = {{30.4624,42.8613},{20.8092,42.8613},{20.8092,67.9191},{12.1387,67.9191},{12.1387,67.9191}}));
+        connect(battery1.n,bdr_cdr1.n2) annotation(Line(points = {{72.0924,27.4624},{72.0924,27.4566},{54.0462,27.4566},{54.0462,32.948},{50.289,32.948},{50.289,32.948}}));
+        connect(bdr_cdr1.p2,battery1.p) annotation(Line(points = {{50.4624,42.8613},{54.0462,42.8613},{54.0462,47.6879},{72.2543,47.6879},{72.2543,47.6879}}));
+        connect(pcu1.VCC3,resistor3.p) annotation(Line(points = {{60.5921,-37.8688},{69.9422,-38.4468},{69.9422,-58.0925},{69.9422,-57.5144}}));
+        connect(resistor2.n,resistor3.n) annotation(Line(points = {{90.0577,-34.6821},{90.1734,-34.6821},{90.1734,-58.0925},{90.1734,-57.5144}}));
+        connect(resistor3.n,pcu1.gnd) annotation(Line(points = {{90.0578,-57.5144},{90.1734,-58.0925},{90.1734,-78.3237},{60.6936,-78.3237},{60.6936,-42.4855},{60.6936,-41.9075}}));
+        connect(resistor2.p,pcu1.VCC5) annotation(Line(points = {{70.0577,-34.6821},{60.4046,-35.2601},{60.4046,-35.2601},{60.4046,-34.6821}}));
+        connect(resistor1.n,resistor2.n) annotation(Line(points = {{89.3063,-13.7861},{89.8844,-14.3642},{89.8844,-35.2601},{89.8844,-34.6821}}));
+        connect(resistor1.p,pcu1.VCC12) annotation(Line(points = {{70.0577,-13.7861},{69.9422,-14.3642},{69.9422,-31.5029},{60.4046,-31.5029},{60.4045,-30.9249}}));
+        connect(pcu1.gnd,pcu1.GND) annotation(Line(points = {{60.5921,-41.9423},{60.6936,-42.5204},{60.6936,-77.7456},{40.1734,-78.3237},{40.1734,-40.4624},{40.1734,-39.8844}}));
+        connect(solarcell_simple1.p,zdiode1.p) annotation(Line(points = {{-53.7341,25.4624},{-53.7341,25.4624},{-23.4008,25.4624},{-18.7765,25.4624}}));
+        connect(zdiode1.n,idealdiode2.p) annotation(Line(points = {{-18.7765,45.4624},{-18.7765,68.208},{-8.09248,68.208},{-8.09248,67.919}}));
+        connect(idealdiode1.n,zdiode1.n) annotation(Line(points = {{-30.7283,67.9286},{-18.7861,67.9286},{-18.7861,45.0867},{-18.7861,45.0867}}));
+        connect(solarcell_simple1.n,idealdiode1.p) annotation(Line(points = {{-53.7341,45.4624},{-53.7341,58.4624},{-53.7341,68.2176},{-50.7283,67.9286}}));
+        connect(trapezoid1.y,solarcell_simple1.E_s) annotation(Line(points = {{-74.7341,35.4624},{-62.0674,35.7514},{-62.0674,35.7514},{-62.0674,35.4624}}));
+        connect(solarcell_simple1.p,ground1.p) annotation(Line(points = {{-53.7341,25.4624},{-53.7341,3.46243},{-41.4008,3.46243},{-41.4008,3.46243}}));
+        annotation(Diagram, Icon, experiment(StartTime = 0.0, StopTime = 40000.0, Tolerance = 0.000001));
+      end BDRBCRwithDET;
       annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
     end examples;
     block Exprgenerator "Generate exponential signal"
