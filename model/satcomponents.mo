@@ -52,33 +52,30 @@ package satcomponents
         /*todo Batteriemodell kann noch einen unendlich hohen SOD erreichen, wenn sie an negative Spannung angeschlossen wird. aber das darf nicht sein*/
         extends Modelica.Electrical.Analog.Interfaces.TwoPin;
         parameter Real startSOC = 0.5;
-        parameter Real startSOD = 1.0 - startSOC;
         Real soc(start = startSOC) "State of Charge";
         Real SOD "State of Discharge";
         parameter Modelica.SIunits.Conversions.NonSIunits.ElectricCharge_Ah capacity_Ah = 2.0;
         Modelica.SIunits.Current i;
         parameter Modelica.SIunits.Voltage Vnominal = 4.0;
         parameter Real pi = 3.14159265359;
-        Modelica.Electrical.Analog.Sources.SignalVoltage voltage(v(start = Vnominal * (1 - startSOD * 0.35 - 0.025 * sin(startSOD * 2 * pi)) * (1 - 1 / (1 + exp(-100 * (startSOD - 1)))))) annotation(Placement(visible = true, transformation(origin = {46.2642,-2.33333}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-        Modelica.Electrical.Analog.Basic.Resistor R_t(R = 0.02) annotation(Placement(visible = true, transformation(origin = {-44.9121,9.39283}, extent = {{10,-10},{-10,10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Sources.SignalVoltage voltage(v(start = Vnominal * (1 - (1.0 - startSOC) * 0.35 - 0.025 * sin((1.0 - startSOC) * 2 * pi)) * (1 - 1 / (1 + exp(-100 * (1.0 - startSOC - 1)))))) annotation(Placement(visible = true, transformation(origin = {46.2642,-2.33333}, extent = {{-10,-10},{10,10}}, rotation = 0)));
         Modelica.Electrical.Analog.Basic.VariableResistor R_overload(R_actual(start = 10000000.0), R(start = 1000000.0)) annotation(Placement(visible = true, transformation(origin = {44.9904,34.3674}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-        Modelica.Electrical.Analog.Basic.Resistor R_i(R = 0.005) annotation(Placement(visible = true, transformation(origin = {-6.89231,-3.68554}, extent = {{10,-10},{-10,10}}, rotation = 0)));
-        Modelica.Electrical.Analog.Basic.Capacitor C_t(C = 100, v(start = 0.002)) annotation(Placement(visible = true, transformation(origin = {-44.0906,-39.1175}, extent = {{10,-10},{-10,10}}, rotation = 0)));
-        Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 0.001) annotation(Placement(visible = true, transformation(origin = {-54.8498,-19.2365}, extent = {{-10,10},{10,-10}}, rotation = -90)));
+        Modelica.Electrical.Analog.Basic.Capacitor C_t(C = 100) annotation(Placement(visible = true, transformation(origin = {-10.5646,-39.6955}, extent = {{10,-10},{-10,10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Basic.Resistor R_t(R = 0.02) annotation(Placement(visible = true, transformation(origin = {-9.65199,-2.45688}, extent = {{10,-10},{-10,10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 0.02) annotation(Placement(visible = true, transformation(origin = {-52.2531,-1.99445}, extent = {{10,-10},{-10,10}}, rotation = 0)));
       protected
         parameter Modelica.SIunits.ElectricCharge capacity = capacity_Ah * 3600;
       equation
-        connect(resistor1.n,C_t.n) annotation(Line(points = {{-54.8498,-29.2365},{-54.8498,-38.6293},{-54.5171,-38.6293},{-54.5171,-38.6293}}));
-        connect(resistor1.p,p) annotation(Line(points = {{-54.8498,-9.23645},{-54.8498,0},{-98.4424,0},{-98.4424,0}}));
-        connect(R_t.p,C_t.p) annotation(Line(points = {{-34.9121,9.39283},{-34.3333,9.39283},{-34.0906,-19.3333},{-34.0906,-39.1175}}));
+        connect(C_t.p,R_t.p) annotation(Line(points = {{-0.564587,-39.6955},{0.867052,-39.6955},{0.867052,-2.60116},{0.867052,-2.60116}}));
+        connect(R_t.n,C_t.n) annotation(Line(points = {{-19.652,-2.45688},{-21.0983,-2.45688},{-21.0983,-40.1734},{-21.0983,-40.1734}}));
+        connect(R_t.p,voltage.p) annotation(Line(points = {{0.348014,-2.45688},{36.4162,-2.45688},{36.4162,-1.7341},{36.4162,-1.7341}}));
+        connect(resistor1.p,R_t.n) annotation(Line(points = {{-42.2531,-1.99445},{-19.3642,-1.99445},{-19.3642,-1.7341},{-19.3642,-1.7341}}));
+        connect(p,resistor1.n) annotation(Line(points = {{-100,0},{-62.7168,0},{-62.7168,-1.7341},{-62.7168,-1.7341}}));
         R_overload.R = 100000.0 / (1 + exp(-100.0 * SOD));
         voltage.v = Vnominal * (1 - SOD * 0.35 - 0.025 * sin(SOD * 2 * pi)) * (1 - 1 / (1 + exp(-100 * (SOD - 1))));
-        connect(R_t.p,R_i.n) annotation(Line(points = {{-34.9121,9.39283},{-34.3333,9.39283},{-34.3333,-4.66667},{-16.6667,-3.68554},{-16.8923,-3.68554}}));
-        connect(R_i.p,voltage.p) annotation(Line(points = {{3.10769,-3.68554},{36,-3.68554},{36,-2.33333},{36,-2.33333}}));
         connect(R_overload.n,voltage.n) annotation(Line(points = {{54.9904,34.3674},{56,34.3674},{56,-2},{56,-2}}));
         connect(R_overload.p,voltage.p) annotation(Line(points = {{34.9904,34.3674},{36.3333,34.3674},{36.3333,-2},{36.3333,-2}}));
         connect(voltage.n,n) annotation(Line(points = {{56.2642,-2.33333},{99,-2.33333},{99,-0.333333},{99,-0.333333}}));
-        connect(p,R_t.n) annotation(Line(points = {{-100,0},{-55,0},{-55,9.33333},{-55,9.33333}}));
         i = voltage.i;
         der(soc) = i / capacity;
         SOD = 1 - soc;
@@ -133,7 +130,83 @@ package satcomponents
         connect(ground1.p,battery1.n) annotation(Line(points = {{-11.3919,-24.9858},{-55.2962,-24.6268},{-54.9371,-6.76841},{-54.9371,-5.06261}}));
         annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 4000.0, Tolerance = 0.000001));
       end Pulsverhalten;
-      model BDR_CDR
+      package examples
+        model battery_cross_flow
+          satcomponents.power.batteries.battery battery1 annotation(Placement(visible = true, transformation(origin = {-47.0405,-13.0841}, extent = {{10,-10},{-10,10}}, rotation = 90)));
+          satcomponents.power.batteries.battery battery2(startSOC = 0.9, Vnominal = 3.9) annotation(Placement(visible = true, transformation(origin = {-15.8255,-12.0872}, extent = {{10,-10},{-10,10}}, rotation = 90)));
+          satcomponents.power.batteries.battery battery3(startSOC = 0.3, Vnominal = 4.1) annotation(Placement(visible = true, transformation(origin = {14.7664,-12.0249}, extent = {{10,-10},{-10,10}}, rotation = 90)));
+          Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 1) annotation(Placement(visible = true, transformation(origin = {38.9408,25.2336}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+          Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {28.0374,-40.81}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        equation
+          connect(battery3.n,ground1.p) annotation(Line(points = {{14.7664,-22.0249},{14.7664,-24.9221},{28.0374,-24.9221},{28.0374,-30.5296},{28.0374,-30.5296}}));
+          connect(resistor1.n,battery3.n) annotation(Line(points = {{48.9408,25.2336},{56.6978,25.2336},{56.6978,-22.1184},{15.2648,-22.1184},{15.2648,-22.1184}}));
+          connect(battery3.p,resistor1.p) annotation(Line(points = {{14.7664,-2.02492},{14.7664,24.9221},{28.3489,24.9221},{28.3489,24.9221}}));
+          connect(battery2.n,battery1.n) annotation(Line(points = {{-15.514,-23.3333},{-15.514,-23.676},{-47.6636,-23.676},{-47.6636,-23.676}}));
+          connect(battery3.n,battery2.n) annotation(Line(points = {{14.7664,-22.0249},{14.7664,-23.676},{-15.5763,-23.676},{-15.5763,-23.676}}));
+          connect(battery2.p,battery3.p) annotation(Line(points = {{-15.514,-3.33333},{-15.514,-1.24611},{15.2648,-1.24611},{15.2648,-1.24611}}));
+          connect(battery1.p,battery2.p) annotation(Line(points = {{-47.0405,-3.08411},{-47.0405,-3.11526},{-15.5763,-3.11526},{-15.5763,-2.80374},{-15.5763,-2.80374}}));
+          annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 3000.0, Tolerance = 0.000001));
+        end battery_cross_flow;
+        model Batterycontrollertest
+          Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-47.117,-31.9605}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+          Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 3) annotation(Placement(visible = true, transformation(origin = {-41.5271,49.1044}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+          parameter Modelica.SIunits.Voltage Vmax = 4.0;
+          Modelica.Electrical.Analog.Sensors.VoltageSensor voltagesensor2 annotation(Placement(visible = true, transformation(origin = {15.4408,-3.64869}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+          Modelica.Electrical.Analog.Ideal.IdealOpeningSwitch idealopeningswitch1(control(start = false), Ron = 0.00001, Goff = 0.00001) annotation(Placement(visible = true, transformation(origin = {-7.08738,47.8045}, extent = {{10,10},{-10,-10}}, rotation = 0)));
+          Modelica.Blocks.Logical.OnOffController onoffcontroller2(bandwidth = 0.5, pre_y_start = false) annotation(Placement(visible = true, transformation(origin = {-14.6604,16.2939}, extent = {{10,-10},{-10,10}}, rotation = 0)));
+          Modelica.Blocks.Sources.Constant constant1(k = 2.9) annotation(Placement(visible = true, transformation(origin = {73.1308,23.1997}, extent = {{10,-10},{-10,10}}, rotation = 0)));
+          Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 0.02) annotation(Placement(visible = true, transformation(origin = {25.8717,48.2952}, extent = {{10,-10},{-10,10}}, rotation = 0)));
+          satcomponents.power.batteries.battery battery1(startSOC = 0.8) annotation(Placement(visible = true, transformation(origin = {49.1329,-9.53757}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+        equation
+          connect(ground1.p,voltagesensor2.n) annotation(Line(points = {{-47.117,-21.9605},{15.3179,-21.9605},{15.3179,-13.2948},{15.3179,-13.2948}}));
+          connect(battery1.n,voltagesensor2.n) annotation(Line(points = {{49.1329,-19.5376},{49.1329,-18.2081},{15.3179,-18.2081},{15.3179,-13.2948},{15.3179,-13.2948}}));
+          connect(voltagesensor2.p,battery1.p) annotation(Line(points = {{15.4408,6.35131},{15.4408,9.53757},{49.1329,9.53757},{49.1329,0},{49.1329,0}}));
+          connect(battery1.p,resistor2.p) annotation(Line(points = {{49.1329,0.462428},{49.1329,48.5549},{35.8382,48.5549},{35.8382,48.5549}}));
+          connect(idealopeningswitch1.p,resistor2.n) annotation(Line(points = {{2.91262,47.8045},{16.185,47.8045},{16.185,48.5549},{16.185,48.5549}}));
+          connect(idealopeningswitch1.n,resistor1.n) annotation(Line(points = {{-17.0874,47.8045},{-30.9249,47.8045},{-30.9249,48.8439},{-30.9249,48.8439}}));
+          connect(onoffcontroller2.y,idealopeningswitch1.control) annotation(Line(points = {{-25.6604,16.2939},{-29.1908,16.2939},{-29.1908,39.8844},{-6.35838,39.8844},{-6.35838,39.8844}}));
+          connect(onoffcontroller2.u,voltagesensor2.v) annotation(Line(points = {{-2.66042,10.2939},{1.7341,10.2939},{1.7341,-3.17919},{6.35838,-3.17919},{6.35838,-3.17919}}));
+          connect(constant1.y,onoffcontroller2.reference) annotation(Line(points = {{62.1308,23.1997},{-1.7341,23.1997},{-1.7341,22.8324},{-1.7341,22.8324}}));
+          connect(resistor1.p,ground1.p) annotation(Line(points = {{-51.5271,49.1044},{-61.285,49.1044},{-61.285,-21.4168},{-47.7759,-21.4168},{-47.7759,-21.4168}}));
+          annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 10000.0, Tolerance = 0.01));
+        end Batterycontrollertest;
+        model Batterycontrollertest2
+          Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-47.117,-31.9605}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+          Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 3) annotation(Placement(visible = true, transformation(origin = {-41.5271,49.1044}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+          parameter Modelica.SIunits.Voltage Vmax = 4.0;
+          satcomponents.power.batteries.battery battery1(startSOC = 0.8) annotation(Placement(visible = true, transformation(origin = {47.9768,15.3179}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+          satcomponents.power.batteries.BDR bdr1 annotation(Placement(visible = true, transformation(origin = {10.1156,48.5549}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        equation
+          connect(battery1.n,bdr1.pin_n) annotation(Line(points = {{47.9768,5.31792},{47.9768,5.20231},{9.24855,5.20231},{9.24855,39.8844},{9.24855,39.8844}}));
+          connect(battery1.n,ground1.p) annotation(Line(points = {{47.9768,5.31792},{47.9768,-21.6763},{-47.3988,-21.6763},{-47.3988,-21.6763}}));
+          connect(bdr1.n,battery1.p) annotation(Line(points = {{20.1156,48.5549},{47.9769,48.5549},{47.9769,25.7225},{47.9769,25.7225}}));
+          connect(bdr1.p,resistor1.n) annotation(Line(points = {{0.115607,48.5549},{-31.5029,48.5549},{-31.5029,48.8439},{-31.5029,48.8439}}));
+          connect(resistor1.p,ground1.p) annotation(Line(points = {{-51.5271,49.1044},{-61.285,49.1044},{-61.285,-21.4168},{-47.7759,-21.4168},{-47.7759,-21.4168}}));
+          annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 10000.0, Tolerance = 0.01));
+        end Batterycontrollertest2;
+        annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
+      end examples;
+      model BDR
+        extends Modelica.Electrical.Analog.Interfaces.TwoPin;
+        parameter Modelica.SIunits.Voltage Vmin = 3.3;
+        Modelica.Electrical.Analog.Basic.Resistor RS_on(R = 0.001) annotation(Placement(visible = true, transformation(origin = {46.2428,0.289017}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Interfaces.NegativePin pin_n annotation(Placement(visible = true, transformation(origin = {-8.41121,-93.7695}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {-8.41121,-93.7695}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        Modelica.Blocks.Logical.OnOffController onoffcontroller2(bandwidth = Vmin * 0.1, pre_y_start = false) annotation(Placement(visible = true, transformation(origin = {22.3338,-37.7523}, extent = {{10,-10},{-10,10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Sensors.VoltageSensor voltagesensor2 annotation(Placement(visible = true, transformation(origin = {50.4119,-43.8221}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+        Modelica.Electrical.Analog.Ideal.IdealOpeningSwitch idealopeningswitch1(control(start = false)) annotation(Placement(visible = true, transformation(origin = {-22.4053,36.2438}, extent = {{10,10},{-10,-10}}, rotation = 0)));
+        Modelica.Blocks.Sources.Constant constant1(k = Vmin) annotation(Placement(visible = true, transformation(origin = {76.021,-22.465}, extent = {{10,-10},{-10,10}}, rotation = 0)));
+      equation
+        connect(idealopeningswitch1.p,RS_on.p) annotation(Line(points = {{-12.4053,36.2438},{35.5491,36.2438},{35.5491,0.867052},{35.5491,0.867052}}));
+        connect(constant1.y,onoffcontroller2.reference) annotation(Line(points = {{65.021,-22.465},{35.5848,-22.465},{35.5848,-30.972},{35.5848,-30.972}}));
+        connect(idealopeningswitch1.n,p) annotation(Line(points = {{-32.4053,36.2438},{-54.0362,36.2438},{-54.0362,0.329489},{-99.8353,0.329489},{-99.8353,0.329489}}));
+        connect(idealopeningswitch1.control,onoffcontroller2.y) annotation(Line(points = {{-22.4053,29.2438},{2.30643,29.2438},{2.30643,-37.8913},{10.8731,-37.8913},{10.8731,-37.8913}}));
+        connect(voltagesensor2.n,pin_n) annotation(Line(points = {{50.4119,-53.8221},{50.4119,-93.9044},{-8.89621,-93.9044},{-8.89621,-93.9044}}));
+        connect(voltagesensor2.v,onoffcontroller2.u) annotation(Line(points = {{40.4119,-43.8221},{40.4119,-43.4926},{35.2554,-43.4926},{35.2554,-43.4926}}));
+        connect(voltagesensor2.p,RS_on.n) annotation(Line(points = {{50.4119,-33.8221},{50.4119,-13.8386},{56.3427,-13.8386},{56.3427,-0.329489},{56.3427,-0.329489}}));
+        connect(RS_on.n,n) annotation(Line(points = {{56.2428,0.289017},{99.422,0.289017},{99.422,0},{99.422,0}}));
+        annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2}), graphics = {Rectangle(origin = {-1.01156,2.89017}, extent = {{-95.5202,78.9017},{95.5202,-78.9017}}),Text(origin = {3.46821,39.0173}, extent = {{-62.4277,29.7688},{62.4277,-29.7688}}, textString = "Battery"),Text(origin = {-23.6416,-14.104}, extent = {{-62.4277,29.7688},{107.225,-3.75724}}, textString = "Discharge"),Text(origin = {2.65896,-39.8266}, extent = {{-62.4277,29.7688},{62.4277,-29.7688}}, textString = "Regulator")}));
+      end BDR;
+      model BCR
         extends Modelica.Electrical.Analog.Interfaces.TwoPin;
         parameter Modelica.SIunits.Voltage Vmax = 4.0;
         parameter Modelica.SIunits.Voltage Vmin = 3.3;
@@ -167,27 +240,8 @@ package satcomponents
         connect(p,voltagesensor1.p) annotation(Line(points = {{-100,0},{-64.2504,0},{-64.1734,-22.3577},{-64.1734,-22.3577}}));
         connect(voltagesensor1.n,pin_n) annotation(Line(points = {{-64.1734,-42.3577},{-64.1734,-93.7695},{-8.09969,-93.7695},{-8.09969,-93.7695}}));
         connect(RS_on.n,n) annotation(Line(points = {{56.2428,0.289017},{99.422,0.289017},{99.422,0},{99.422,0}}));
-        annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2}), graphics = {Rectangle(origin = {-1.01156,2.89017}, extent = {{-95.5202,78.9017},{95.5202,-78.9017}}),Text(origin = {3.46821,39.0173}, extent = {{-62.4277,29.7688},{62.4277,-29.7688}}, textString = "Battery"),Text(origin = {-23.6416,-14.104}, extent = {{-62.4277,29.7688},{107.225,-3.75724}}, textString = "Charge/Discharge"),Text(origin = {2.65896,-39.8266}, extent = {{-62.4277,29.7688},{62.4277,-29.7688}}, textString = "Regulator")}));
-      end BDR_CDR;
-      package examples
-        model battery_cross_flow
-          satcomponents.power.batteries.battery battery1 annotation(Placement(visible = true, transformation(origin = {-47.0405,-13.0841}, extent = {{10,-10},{-10,10}}, rotation = 90)));
-          satcomponents.power.batteries.battery battery2(startSOC = 0.9, Vnominal = 3.9) annotation(Placement(visible = true, transformation(origin = {-15.8255,-12.0872}, extent = {{10,-10},{-10,10}}, rotation = 90)));
-          satcomponents.power.batteries.battery battery3(startSOC = 0.3, Vnominal = 4.1) annotation(Placement(visible = true, transformation(origin = {14.7664,-12.0249}, extent = {{10,-10},{-10,10}}, rotation = 90)));
-          Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 1) annotation(Placement(visible = true, transformation(origin = {38.9408,25.2336}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-          Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {28.0374,-40.81}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-        equation
-          connect(battery3.n,ground1.p) annotation(Line(points = {{14.7664,-22.0249},{14.7664,-24.9221},{28.0374,-24.9221},{28.0374,-30.5296},{28.0374,-30.5296}}));
-          connect(resistor1.n,battery3.n) annotation(Line(points = {{48.9408,25.2336},{56.6978,25.2336},{56.6978,-22.1184},{15.2648,-22.1184},{15.2648,-22.1184}}));
-          connect(battery3.p,resistor1.p) annotation(Line(points = {{14.7664,-2.02492},{14.7664,24.9221},{28.3489,24.9221},{28.3489,24.9221}}));
-          connect(battery2.n,battery1.n) annotation(Line(points = {{-15.514,-23.3333},{-15.514,-23.676},{-47.6636,-23.676},{-47.6636,-23.676}}));
-          connect(battery3.n,battery2.n) annotation(Line(points = {{14.7664,-22.0249},{14.7664,-23.676},{-15.5763,-23.676},{-15.5763,-23.676}}));
-          connect(battery2.p,battery3.p) annotation(Line(points = {{-15.514,-3.33333},{-15.514,-1.24611},{15.2648,-1.24611},{15.2648,-1.24611}}));
-          connect(battery1.p,battery2.p) annotation(Line(points = {{-47.0405,-3.08411},{-47.0405,-3.11526},{-15.5763,-3.11526},{-15.5763,-2.80374},{-15.5763,-2.80374}}));
-          annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 3000.0, Tolerance = 0.000001));
-        end battery_cross_flow;
-        annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
-      end examples;
+        annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2}), graphics = {Rectangle(origin = {-1.01156,2.89017}, extent = {{-95.5202,78.9017},{95.5202,-78.9017}}),Text(origin = {3.46821,39.0173}, extent = {{-62.4277,29.7688},{62.4277,-29.7688}}, textString = "Battery"),Text(origin = {-23.6416,-14.104}, extent = {{-62.4277,29.7688},{107.225,-3.75724}}, textString = "Discharge"),Text(origin = {2.65896,-39.8266}, extent = {{-62.4277,29.7688},{62.4277,-29.7688}}, textString = "Regulator")}));
+      end BCR;
     end batteries;
     // CP: 65001
     // SimulationX Version: 3.5.706.23 x64
@@ -322,7 +376,7 @@ package satcomponents
         SIunits.Voltage V_Sperr = 20;
         Real alpha = I_sc_actual * A_cell * N_p * (1 - C_b * (exp(-V_Sperr / (C_a * V_oc * N_s)) - 1));
       equation
-        I_sc_actual = (I_sc * E_s) / E0;
+        I_sc_actual = I_sc * E_s / E0;
         i = noEvent(if v < V_Sperr then I_sc_actual * A_cell * N_p * (1 - C_b * (exp(-v / (C_a * V_oc * N_s)) - 1)) else alpha + (v - V_Sperr) * 3);
         //i=10.0-0.01*(exp(v)-1);
         annotation(Icon(graphics = {Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-48.9392,47.8076},{46.6761,-50.0707}}),Line(points = {{-78.3593,89.1089},{-41.5842,46.6761},{-43.5644,60.5375},{-41.867,46.6761},{-53.7482,50.0707}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25),Line(points = {{-56.5771,92.2207},{-26.8741,55.7284},{-37.9066,59.4059},{-27.4399,56.0113},{-27.7228,66.1952}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25),Line(points = {{-89.6747,0.282885},{-19.5191,0.282885}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25),Line(points = {{89.6747,0.282885},{5.09194,0.282885}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25),Line(points = {{-18.3876,-37.3409},{-18.3876,40.1697}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25),Line(points = {{4.24328,-17.5389},{4.24328,18.6704}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25),Line(points = {{76.9449,-20.3678},{76.9449,-52.6167}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25),Line(points = {{63.3664,-35.6436},{90.2405,-35.6436}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25),Line(points = {{-92.2207,-34.512},{-66.4781,-34.512}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25)}), Diagram);
@@ -362,7 +416,7 @@ package satcomponents
         parameter SIunits.Resistance R_sh = 10000 annotation(Placement(transformation(origin = {62.5177,58.2744}, extent = {{-12,-12},{12,12}})));
         SIunits.Current i(start = 0) annotation(Placement(transformation(origin = {65.6294,64.4979}, extent = {{-12,-12},{12,12}})));
         Modelica.Electrical.Analog.Sources.SignalCurrent I_photonic annotation(Placement(transformation(origin = {-43,3}, extent = {{12,-12},{-12,12}}, rotation = -90)));
-        Modelica.Electrical.Analog.Semiconductors.Diode D_shunt(Vt = (N_s * V_oc) / log(I_sc / Ids + 1), Maxexp = Maxexp) annotation(Placement(transformation(origin = {-13,3}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+        Modelica.Electrical.Analog.Semiconductors.Diode D_shunt(Vt = N_s * V_oc / log(I_sc / Ids + 1), Maxexp = Maxexp) annotation(Placement(transformation(origin = {-13,3}, extent = {{-12,12},{12,-12}}, rotation = -90)));
         Modelica.Electrical.Analog.Basic.Resistor R_shunt(R = R_sh) annotation(Placement(transformation(origin = {22,3}, extent = {{-12,12},{12,-12}}, rotation = -90)));
         input Modelica.Blocks.Interfaces.RealInput E_s(start = 1367.0, final quantity = "Power", final unit = "W") "Solarkonstante" annotation(Placement(transformation(origin = {-1.26783,70.9984}, extent = {{-12,12},{12,-12}}, rotation = -90), iconTransformation(origin = {-1.26783,70.9984}, extent = {{-12,12},{12,-12}}, rotation = -90)));
         Modelica.Electrical.Analog.Basic.Resistor R_series(R = 0.00001) annotation(Placement(visible = true, transformation(origin = {57.422,-1.93449}, extent = {{-12,-12},{12,12}}, rotation = 0)));
@@ -370,7 +424,7 @@ package satcomponents
         parameter SIunits.CurrentDensity Ids = 0.000001 "Diode Saturation Current" annotation(Placement(transformation(origin = {66.1952,63.0834}, extent = {{-12,-12},{12,12}})));
       equation
         i = n.i;
-        i_sc_actual = (i_sc * E_s) / E0;
+        i_sc_actual = i_sc * E_s / E0;
         I_photonic.i = i_sc_actual;
         connect(D_shunt.p,R_shunt.p) annotation(Line(points = {{-13,15},{-13,21.2838},{21.9595,21.2838},{21.9595,14.8649},{21.9595,14.8649}}));
         connect(I_photonic.n,D_shunt.p) annotation(Line(points = {{-43,15},{-43,21.9595},{-13.1757,21.9595},{-13.1757,15.8784},{-13.1757,15.8784}}));
@@ -513,7 +567,7 @@ package satcomponents
         connect(Constant1.y,Feedback1.u1) annotation(Line(points = {{-67.4833,79.0128},{-62.5177,79.0128},{-62.5177,79.2469},{-61.7354,79.2469}}));
         connect(p,Din.p) annotation(Line(points = {{-99.5025,45.7711},{-83.1683,45.7711},{-83.1683,44.7429},{-82.9539,44.7429}}));
         Iout = Pout / Vref;
-        CCS1.i2 = (CCS1.v1 * Amp.i) / ((CCS1.v2 + 0.0000000001) * eff);
+        CCS1.i2 = CCS1.v1 * Amp.i / ((CCS1.v2 + 0.0000000001) * eff);
         SignalCurrent1.i = if p.v > Vinmin and p.v < Vinmax then SignalCurrent1.u else 0;
         annotation(Diagram(), Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-87.6945,78.6421},{88.5431,-74.6818}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{10.4668,68.1754},{76.3791,30.2687}}, textString = "%Vref V"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-63.6492,18.9533},{57.9915,-33.0976}}, textString = "DCDC")}));
       end DCtoDCModel;
@@ -597,7 +651,7 @@ package satcomponents
         connect(LimPI.y,Limiter1.u) annotation(Line(points = {{-4.32175,79.8596},{12.447,79.8596},{12.447,79.723},{13.4677,79.723}}));
         connect(Feedback1.y,LimPI.u) annotation(Line(points = {{-41.3354,79.2469},{-28.0057,79.2469},{-28.0057,79.3165},{-27.9484,79.3165}}));
         Iout = Pout / Vref;
-        CCS1.i2 = smooth(0, (CCS1.v1 * Amp.i) / ((CCS1.v2 + 0.0000001) * eff));
+        CCS1.i2 = smooth(0, CCS1.v1 * Amp.i / ((CCS1.v2 + 0.0000001) * eff));
         //SignalCurrent1.i = smooth(0, if p.v > Vinmin and p.v < Vinmax then SignalCurrent1.u else 0);
         annotation(Diagram(), Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-87.6945,78.6421},{88.5431,-74.6818}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{10.4668,68.1754},{76.3791,30.2687}}, textString = "%Vref V"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-63.6492,18.9533},{57.9915,-33.0976}}, textString = "DCDC")}));
       end dcdc_ideal;
@@ -642,7 +696,7 @@ package satcomponents
           v2 = V_out;
           i1 = (-i2 * v2) / (v1 * eff);
         elseif v1 >= V_in_min - slope * 0.5 then
-          v2 = smooth(1, V_out * (sin(((v1 - V_in_min - slope * 0.5) * pi * 0.5) / slope * 2 + pi * 0.5) + 1) * 0.5);
+          v2 = smooth(1, V_out * (sin((v1 - V_in_min - slope * 0.5) * pi * 0.5 / slope * 2 + pi * 0.5) + 1) * 0.5);
           i1 = (-i2 * v2) / (v1 * eff);
         else
           v2 = 0;
@@ -889,12 +943,15 @@ package satcomponents
         Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 20) annotation(Placement(visible = true, transformation(origin = {80.0577,-34.6821}, extent = {{-10,-10},{10,10}}, rotation = 0)));
         Modelica.Electrical.Analog.Basic.Resistor resistor3(R = 100) annotation(Placement(visible = true, transformation(origin = {80.0578,-57.5144}, extent = {{-10,-10},{10,10}}, rotation = 0)));
         power.batteries.battery battery1(soc(start = 0.5), Vnominal = 40) annotation(Placement(visible = true, transformation(origin = {72.0924,37.4624}, extent = {{-10,-10},{10,10}}, rotation = -90)));
-        satcomponents.power.batteries.BDR_CDR bdr_cdr1(Vmax = 40.0, Vmin = 28) annotation(Placement(visible = true, transformation(origin = {41.3295,67.6301}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        satcomponents.power.batteries.BDR bdr(Vmin = 28) annotation(Placement(visible = true, transformation(origin = {41.3295,67.6301}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.000000001) annotation(Placement(visible = true, transformation(origin = {2.30643,13.8386}, extent = {{10,-10},{-10,10}}, rotation = 0)));
       equation
-        connect(bdr_cdr1.pin_n,battery1.n) annotation(Line(points = {{40.4884,58.2531},{40.4984,58.2531},{40.4984,27.4143},{71.3396,27.4143},{71.3396,27.4143}}));
+        connect(capacitor1.n,ground1.p) annotation(Line(points = {{-7.69358,13.8386},{-41.8451,13.8386},{-41.8451,3.95387},{-41.8451,3.95387}}));
+        connect(idealdiode2.n,capacitor1.p) annotation(Line(points = {{12.1946,67.7957},{19.4399,67.7957},{19.4399,13.8386},{12.8501,13.8386},{12.8501,13.8386}}));
+        connect(bdr.pin_n,battery1.n) annotation(Line(points = {{40.4884,58.2531},{40.4984,58.2531},{40.4984,27.4143},{71.3396,27.4143},{71.3396,27.4143}}));
         connect(idealdiode2.n,pcu1.VCC) annotation(Line(points = {{12.1946,67.7957},{19.3642,67.7957},{19.3642,-34.6821},{39.5954,-34.6821},{39.5954,-34.6821}}));
-        connect(bdr_cdr1.n,battery1.p) annotation(Line(points = {{51.3295,67.6301},{72.2543,67.6301},{72.2543,47.9769},{72.2543,47.9769}}));
-        connect(idealdiode2.n,bdr_cdr1.p) annotation(Line(points = {{12.1946,67.7957},{31.2139,67.7957},{31.2139,67.9191},{31.2139,67.9191}}));
+        connect(bdr.n,battery1.p) annotation(Line(points = {{51.3295,67.6301},{72.2543,67.6301},{72.2543,47.9769},{72.2543,47.9769}}));
+        connect(idealdiode2.n,bdr.p) annotation(Line(points = {{12.1946,67.7957},{31.2139,67.7957},{31.2139,67.9191},{31.2139,67.9191}}));
         connect(pcu1.GND,ground1.p) annotation(Line(points = {{40.479,-39.9904},{-14.7399,-39.9904},{-14.7399,3.17919},{-41.3295,3.17919},{-41.3295,3.17919}}));
         connect(battery1.n,ground1.p) annotation(Line(points = {{72.0924,27.4624},{72.0924,3.17919},{-41.3295,3.17919},{-41.3295,3.17919}}));
         connect(pcu1.VCC3,resistor3.p) annotation(Line(points = {{60.5921,-37.8688},{69.9422,-38.4468},{69.9422,-58.0925},{69.9422,-57.5144}}));
@@ -912,21 +969,6 @@ package satcomponents
         connect(solarcell_simple1.p,ground1.p) annotation(Line(points = {{-53.7341,25.4624},{-53.7341,3.46243},{-41.4008,3.46243},{-41.4008,3.46243}}));
         annotation(Diagram, Icon, experiment(StartTime = 0.0, StopTime = 40000.0, Tolerance = 0.000001));
       end BDRBCRwithDET;
-      model Batterycontrollertest
-        satcomponents.power.batteries.BDR_CDR bdr_cdr1 annotation(Placement(visible = true, transformation(origin = {1.64745,11.8616}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-        Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-47.117,-31.9605}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-        Modelica.Electrical.Analog.Sources.SineVoltage sinevoltage1(V = 6, freqHz = 0.1) annotation(Placement(visible = true, transformation(origin = {35.9143,-1.31796}, extent = {{-10,-10},{10,10}}, rotation = -90)));
-        Modelica.Electrical.Analog.Basic.Resistor resistor1 annotation(Placement(visible = true, transformation(origin = {-36.9028,11.5321}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-        Modelica.Electrical.Analog.Sources.SineVoltage sinevoltage2(V = 6, freqHz = 0.1) annotation(Placement(visible = true, transformation(origin = {-80.8237,-1.74629}, extent = {{-10,-10},{10,10}}, rotation = -90)));
-      equation
-        connect(sinevoltage2.n,ground1.p) annotation(Line(points = {{-63.3608,-10.7578},{-63.3608,-22.0758},{-47.4465,-22.0758},{-47.4465,-22.0758}}));
-        connect(resistor1.p,sinevoltage2.p) annotation(Line(points = {{-46.9028,11.5321},{-62.9325,11.5321},{-62.9325,8.89621},{-62.9325,8.89621}}));
-        connect(bdr_cdr1.p,resistor1.n) annotation(Line(points = {{-8.35255,11.8616},{-27.3476,11.8616},{-27.3476,11.8616},{-27.3476,11.8616}}));
-        connect(bdr_cdr1.pin_n,ground1.p) annotation(Line(points = {{0.806325,2.48466},{-0.329489,2.48466},{-0.329489,-14.827},{-47.4465,-14.827},{-47.4465,-21.7463},{-47.4465,-21.7463}}));
-        connect(sinevoltage1.n,ground1.p) annotation(Line(points = {{35.9143,-11.318},{35.9143,-14.827},{-47.4465,-14.827},{-47.4465,-22.0758},{-47.4465,-22.0758}}));
-        connect(sinevoltage1.p,bdr_cdr1.n) annotation(Line(points = {{35.9143,8.68204},{35.9143,12.1911},{11.8616,12.1911},{11.8616,12.1911}}));
-        annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
-      end Batterycontrollertest;
       annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
     end examples;
     block Exprgenerator "Generate exponential signal"
