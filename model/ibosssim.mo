@@ -68,8 +68,11 @@ package iboss
       extends iboss.buildingblocks.basic_ess_mss;
       satcomponents.power.batteries.battery battery1(Vnominal = 100) annotation(Placement(visible = true, transformation(origin = {22.2908,-0.967419}, extent = {{10,-10},{-10,10}}, rotation = 90)));
       Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {12.6299,-30.0696}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      satcomponents.power.batteries.BDR bdr1(Vmin = 70) annotation(Placement(visible = true, transformation(origin = {-33.0827,8.7218}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     equation
-      connect(int_Xn.vcc,battery1.p) annotation(Line(points = {{-68.7524,-2.17255},{-46.9173,-2.17255},{-46.9173,9.32331},{22.2556,9.32331},{22.2556,9.32331}}));
+      connect(bdr1.pin_n,battery1.n) annotation(Line(points = {{-33.9238,-0.655146},{-33.6842,-0.655146},{-33.6842,-11.1278},{22.5564,-11.1278},{22.5564,-11.1278}}));
+      connect(bdr1.p1,int_Xn.vcc) annotation(Line(points = {{-42.9774,8.87218},{-52.6316,8.87218},{-52.6316,-2.10526},{-68.8722,-2.10526},{-68.8722,-2.10526}}));
+      connect(battery1.p,bdr1.p2) annotation(Line(points = {{22.2908,9.03258},{22.2908,9.32331},{-23.1579,9.32331},{-23.1579,9.32331}}));
       connect(battery1.n,ground1.p) annotation(Line(points = {{22.2908,-10.9674},{22.2908,-19.9539},{13.2079,-19.9539},{13.2079,-19.9539}}));
       connect(battery1.n,int_Xn.gnd) annotation(Line(points = {{22.2908,-10.9674},{22.2908,-11},{-56.3333,-11},{-56.3333,-6},{-68.6667,-6},{-68.6667,-6}}));
       annotation(experiment(StartTime = 0.0, StopTime = 11000.0, Tolerance = 0.0001));
