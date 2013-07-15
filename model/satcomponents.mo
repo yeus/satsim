@@ -388,7 +388,7 @@ package satcomponents
         Exprgenerator exprgenerator1(alpha = 10) annotation(Placement(transformation(origin = {42.6838,13.9932}, extent = {{-7.45106,-7.45106},{7.45106,7.45106}})));
         Modelica.Blocks.Sources.Constant const(k = 1367) annotation(Placement(transformation(origin = {-81.875,39.0625}, extent = {{-12,-12},{12,12}})));
         Modelica.Electrical.Analog.Basic.VariableResistor variableresistor1 annotation(Placement(transformation(origin = {38.1913,52.3255}, extent = {{-12,12},{12,-12}}, rotation = -90)));
-        solar_power.solarcell_simple solarcell_simple2(N_p = 50, Maxexp = 16, R_sh = 10) annotation(Placement(transformation(origin = {-42.562,39.2562}, extent = {{12,-12},{-12,12}}, rotation = 90)));
+        solar_power.solarcell_simple solarcell_simple2(N_p = 50.0, Maxexp = 16, R_sh = 10, N_s = 45.0) annotation(Placement(transformation(origin = {-42.562,39.2562}, extent = {{12,-12},{-12,12}}, rotation = 90)));
       equation
         connect(solarcell_simple2.n,variableresistor1.p) annotation(Line(points = {{-42.562,51.2562},{-43.2815,51.2562},{-43.2815,65.0636},{38.1913,65.0636},{38.1913,64.3255}}));
         connect(const.y,solarcell_simple2.E_s) annotation(Line(points = {{-68.675,39.0625},{-51.25,39.0625},{-51.25,39.1041},{-51.0818,39.1041}}));
@@ -448,6 +448,21 @@ package satcomponents
         connect(sine1.y,solarcell_simple1.E_s) annotation(Line(points = {{-61.6314,-3.05553},{-39.8868,-3.05553},{-39.8868,-3.03675},{-39.6096,-3.03675}}));
         annotation(experiment(StartTime = 0.0, StopTime = 11000.0, Tolerance = 0.000001));
       end EVS4;
+      model SA_Regulator
+        extends Modelica.Electrical.Analog.Interfaces.TwoPin;
+        parameter Modelica.SIunits.Voltage Vmax = 40.0;
+        Modelica.Electrical.Analog.Ideal.IdealDiode idealdiode2 annotation(Placement(visible = true, transformation(origin = {21.0715,4.47616}, extent = {{10,-10},{-10,10}}, rotation = 180)));
+        Modelica.Electrical.Analog.Ideal.IdealDiode idealdiode1 annotation(Placement(visible = true, transformation(origin = {-21.8513,4.60906}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Semiconductors.ZDiode zdiode1(Bv = Vmax) annotation(Placement(visible = true, transformation(origin = {0.100457,-27.8571}, extent = {{-10,-10},{10,10}}, rotation = 90)));
+        Modelica.Electrical.Analog.Interfaces.NegativePin pin_n annotation(Placement(visible = true, transformation(origin = {-2.10526,-97.1429}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {-2.10526,-97.1429}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      equation
+        connect(idealdiode1.p,p) annotation(Line(points = {{-31.8513,4.60906},{-98.6466,4.60906},{-98.6466,1.20301},{-98.6466,1.20301}}));
+        connect(idealdiode2.n,n) annotation(Line(points = {{31.0715,4.47616},{100.752,4.47616},{100.752,1.80451},{100.752,1.80451}}));
+        connect(zdiode1.p,pin_n) annotation(Line(points = {{0.100457,-37.8571},{0.100457,-96.8421},{-0.601504,-96.8421},{-0.601504,-96.8421}}));
+        connect(idealdiode1.n,zdiode1.n) annotation(Line(points = {{-11.8513,4.60906},{0,4.60906},{0,-18.0451},{0,-18.0451}}));
+        connect(zdiode1.n,idealdiode2.p) annotation(Line(points = {{0.100457,-17.8571},{0.100457,4.51128},{10.8271,4.51128},{10.8271,4.51128}}));
+        annotation(Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2}), graphics = {Rectangle(origin = {0.902256,-1.50376}, extent = {{-96.2406,88.4211},{96.2406,-88.4211}}),Text(origin = {-20.0009,-4.96504}, extent = {{-81.66,72.03},{113.237,-64.5123}}, textString = "SA \n regulator")}));
+      end SA_Regulator;
     end solar_power;
     package dcmodel
       model dcdc_characteristic
@@ -770,27 +785,23 @@ package satcomponents
         extends Modelica.Icons.Example;
         Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-39.6389,-49.1485}, extent = {{-12,-12},{12,12}}, rotation = 0)));
         Modelica.Blocks.Sources.Trapezoid trapezoid1(amplitude = 1367, rising = 90, width = 3600, falling = 90, period = 5000) annotation(Placement(visible = true, transformation(origin = {-84,-5}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-        power.solar_power.solarcell_simple solarcell_simple1(N_p = 1, N_s = 25.0) annotation(Placement(visible = true, transformation(origin = {-52,-5}, extent = {{-10,-10},{10,10}}, rotation = 90)));
-        power.batteries.battery battery1(soc(start = 0.5), Vnominal = 40) annotation(Placement(visible = true, transformation(origin = {13.9999,-3}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+        power.solar_power.solarcell_simple solarcell_simple1(N_p = 2, N_s = 40.0) annotation(Placement(visible = true, transformation(origin = {-52,-5}, extent = {{-10,-10},{10,10}}, rotation = 90)));
+        power.batteries.battery battery1(soc(start = 0.5), Vnominal = 100) annotation(Placement(visible = true, transformation(origin = {13.9999,-3}, extent = {{-10,-10},{10,10}}, rotation = -90)));
         satcomponents.power.PCU pcu1 annotation(Placement(visible = true, transformation(origin = {46.8208,5.20231}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-        Modelica.Electrical.Analog.Ideal.IdealDiode idealdiode2 annotation(Placement(visible = true, transformation(origin = {3.92868,27.3333}, extent = {{10,-10},{-10,10}}, rotation = 180)));
-        Modelica.Electrical.Analog.Ideal.IdealDiode idealdiode1 annotation(Placement(visible = true, transformation(origin = {-38.9942,27.4662}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-        Modelica.Electrical.Analog.Semiconductors.ZDiode zdiode1(Bv = 39) annotation(Placement(visible = true, transformation(origin = {-17.0424,-5}, extent = {{-10,-10},{10,10}}, rotation = 90)));
         Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 13) annotation(Placement(visible = true, transformation(origin = {75.9248,26.9653}, extent = {{-9.62429,-9.62429},{9.62429,9.62429}}, rotation = 0)));
         Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 20) annotation(Placement(visible = true, transformation(origin = {76.3005,6.06937}, extent = {{-10,-10},{10,10}}, rotation = 0)));
         Modelica.Electrical.Analog.Basic.Resistor resistor3(R = 100) annotation(Placement(visible = true, transformation(origin = {76.3006,-16.763}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+        satcomponents.power.solar_power.SA_Regulator sa_regulator1(Vmax = 95) annotation(Placement(visible = true, transformation(origin = {-22.5564,24.9624}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       equation
+        connect(sa_regulator1.n,battery1.p) annotation(Line(points = {{-12.5564,24.9624},{13.8346,24.9624},{13.8346,7},{13.9999,7}}));
+        connect(sa_regulator1.pin_n,solarcell_simple1.p) annotation(Line(points = {{-22.7669,15.2481},{-22.8571,15.2481},{-22.8571,-15.0376},{-52,-15.0376},{-52,-15}}));
+        connect(solarcell_simple1.n,sa_regulator1.p) annotation(Line(points = {{-52,5},{-52,24.9624},{-32.8571,24.9624},{-32.5564,24.9624}}));
         connect(resistor3.n,pcu1.gnd) annotation(Line(points = {{86.3006,-16.763},{86.4162,-16.763},{86.4162,-36.9942},{56.9364,-36.9942},{56.9364,-1.15607},{56.9364,-1.15607}}));
         connect(resistor2.n,resistor3.n) annotation(Line(points = {{86.3005,6.06937},{86.4162,6.06937},{86.4162,-16.763},{86.4162,-16.763}}));
         connect(resistor1.n,resistor2.n) annotation(Line(points = {{85.5491,26.9653},{86.1272,26.9653},{86.1272,6.06936},{86.1272,6.06936}}));
         connect(resistor2.p,pcu1.VCC5) annotation(Line(points = {{66.3005,6.06937},{56.6474,6.06937},{56.6474,6.06936},{56.6474,6.06936}}));
         connect(pcu1.VCC3,resistor3.p) annotation(Line(points = {{56.8349,2.88265},{66.185,2.88265},{66.185,-16.763},{66.185,-16.763}}));
         connect(resistor1.p,pcu1.VCC12) annotation(Line(points = {{66.3006,26.9653},{66.185,26.9653},{66.185,9.82659},{56.6474,9.82659},{56.6474,9.82659}}));
-        connect(idealdiode1.n,zdiode1.n) annotation(Line(points = {{-28.9942,27.4662},{-17.052,27.4662},{-17.052,4.62428},{-17.052,4.62428}}));
-        connect(zdiode1.n,idealdiode2.p) annotation(Line(points = {{-17.0424,5},{-17.0424,27.4566},{-6.35838,27.4566},{-6.35838,27.4566}}));
-        connect(solarcell_simple1.p,zdiode1.p) annotation(Line(points = {{-52,-15},{-52,-15},{-21.6667,-15},{-17.0424,-15}}));
-        connect(solarcell_simple1.n,idealdiode1.p) annotation(Line(points = {{-52,5},{-52,18},{-52,27.4662},{-48.9942,27.4662}}));
-        connect(idealdiode2.n,battery1.p) annotation(Line(points = {{13.9287,27.3333},{13.9287,7.66667},{14,7.66667},{14,7.66667}}));
         connect(pcu1.GND,battery1.n) annotation(Line(points = {{36.7218,0.76101},{36.4162,0.76101},{36.4162,-36.9942},{13.8728,-36.9942},{13.8728,-12.7168},{13.8728,-12.7168}}));
         connect(pcu1.gnd,pcu1.GND) annotation(Line(points = {{56.8349,-1.1909},{56.9364,-1.1909},{56.9364,-36.9942},{36.4162,-36.9942},{36.4162,0.867052},{36.4162,0.867052}}));
         connect(battery1.p,pcu1.VCC) annotation(Line(points = {{13.9999,7},{13.9999,6.06936},{36.4162,6.06936},{36.4162,6.06936}}));

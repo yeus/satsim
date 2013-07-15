@@ -54,30 +54,33 @@ package iboss
     model solar
       extends iboss.buildingblocks.basic_ess_mss;
       Modelica.Blocks.Interfaces.RealInput u annotation(Placement(visible = true, transformation(origin = {221.308,-0.741443}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {221.308,-0.741443}, extent = {{-12,12},{12,-12}}, rotation = -90)));
-      satcomponents.power.solar_power.solarcell_simple solarcell_simple1 annotation(Placement(visible = true, transformation(origin = {1.41677,-10.1535}, extent = {{-10,10},{10,-10}}, rotation = 90)));
+      satcomponents.power.solar_power.solarcell_simple solarcell_simple1(N_p = 100.0, N_s = 45.0) annotation(Placement(visible = true, transformation(origin = {1.41677,-10.1535}, extent = {{-10,10},{10,-10}}, rotation = 90)));
+      satcomponents.power.solar_power.SA_Regulator sa_regulator1(Vmax = 100) annotation(Placement(visible = true, transformation(origin = {-32.4812,6.01504}, extent = {{10,-10},{-10,10}}, rotation = 0)));
     equation
+      connect(sa_regulator1.n,int_Xn.vcc) annotation(Line(points = {{-42.4812,6.01504},{-68.5714,6.01504},{-68.5714,-1.50376},{-68.5714,-1.50376}}));
+      connect(sa_regulator1.pin_n,solarcell_simple1.p) annotation(Line(points = {{-32.2707,-3.69925},{-33.0827,-3.69925},{-33.0827,-20.1504},{1.20301,-20.1504},{1.20301,-20.1504}}));
+      connect(sa_regulator1.p,solarcell_simple1.n) annotation(Line(points = {{-22.4812,6.01504},{1.20301,6.01504},{1.20301,0},{1.20301,0}}));
       connect(int_Xn.gnd,solarcell_simple1.p) annotation(Line(points = {{-68.7185,-6.11033},{-69.3642,-6.11033},{-69.3642,-25.4335},{1.15607,-25.4335},{1.15607,-20.2312},{1.15607,-20.2312}}));
-      connect(solarcell_simple1.n,int_Xn.vcc) annotation(Line(points = {{1.41677,-0.1535},{1.41677,6.06936},{-68.7861,6.06936},{-68.7861,-1.7341},{-68.7861,-1.7341}}));
       connect(solarcell_simple1.E_s,u) annotation(Line(points = {{8.51661,-10.2803},{8.51661,-10.4598},{28.6508,-10.4598},{28.6508,40.0201},{162.809,40.0201},{162.809,-0.909549},{224.659,-0.909549},{224.659,-0.909549}}));
       annotation(experiment(StartTime = 0.0, StopTime = 10000.0, Tolerance = 0.000001), Diagram(), Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Cross, lineThickness = 0.25, extent = {{71.8896,121.659},{356.683,-125.807}})}));
     end solar;
     model battery
       extends iboss.buildingblocks.basic_ess_mss;
-      satcomponents.power.batteries.battery battery1(Vnominal = 70) annotation(Placement(visible = true, transformation(origin = {-27.3333,-0.666667}, extent = {{10,-10},{-10,10}}, rotation = 90)));
-      Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-36.9942,-29.7688}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      satcomponents.power.batteries.battery battery1(Vnominal = 100) annotation(Placement(visible = true, transformation(origin = {22.2908,-0.967419}, extent = {{10,-10},{-10,10}}, rotation = 90)));
+      Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {12.6299,-30.0696}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     equation
-      connect(battery1.n,ground1.p) annotation(Line(points = {{-27.3333,-10.6667},{-27.3333,-19.6532},{-36.4162,-19.6532},{-36.4162,-19.6532}}));
-      connect(battery1.p,int_Xn.vcc) annotation(Line(points = {{-27.3333,9.33333},{-27.3333,9.33333},{-48,9.33333},{-48,-2},{-69,-2},{-69,-2}}));
-      connect(battery1.n,int_Xn.gnd) annotation(Line(points = {{-27.3333,-10.6667},{-27.3333,-11},{-56.3333,-11},{-56.3333,-6},{-68.6667,-6},{-68.6667,-6}}));
+      connect(int_Xn.vcc,battery1.p) annotation(Line(points = {{-68.7524,-2.17255},{-46.9173,-2.17255},{-46.9173,9.32331},{22.2556,9.32331},{22.2556,9.32331}}));
+      connect(battery1.n,ground1.p) annotation(Line(points = {{22.2908,-10.9674},{22.2908,-19.9539},{13.2079,-19.9539},{13.2079,-19.9539}}));
+      connect(battery1.n,int_Xn.gnd) annotation(Line(points = {{22.2908,-10.9674},{22.2908,-11},{-56.3333,-11},{-56.3333,-6},{-68.6667,-6},{-68.6667,-6}}));
       annotation(experiment(StartTime = 0.0, StopTime = 11000.0, Tolerance = 0.0001));
     end battery;
     model verbraucher
       extends iboss.buildingblocks.basic_ess_mss;
       import satcomponents.power.dcmodel;
       satcomponents.power.PCU pcu1 annotation(Placement(visible = true, transformation(origin = {-27.7457,-1.44509}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      Modelica.Electrical.Analog.Basic.Resistor resistor1 annotation(Placement(visible = true, transformation(origin = {23.4104,20.2312}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      Modelica.Electrical.Analog.Basic.Resistor resistor2 annotation(Placement(visible = true, transformation(origin = {22.8324,-0.289017}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      Modelica.Electrical.Analog.Basic.Resistor resistor3 annotation(Placement(visible = true, transformation(origin = {22.8324,-20.5202}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 1) annotation(Placement(visible = true, transformation(origin = {23.4104,20.2312}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 100) annotation(Placement(visible = true, transformation(origin = {22.8324,-0.289017}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Resistor resistor3(R = 100) annotation(Placement(visible = true, transformation(origin = {22.8324,-20.5202}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.00000001) annotation(Placement(visible = true, transformation(origin = {-37.2832,-36.9942}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-52.3121,-50.289}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     equation
