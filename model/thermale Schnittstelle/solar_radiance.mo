@@ -1,7 +1,7 @@
 // CP: 65001
 // SimulationX Version: 3.5.706.23 x64
 model solar_radiance "Einwirkende Sonnenstrahlung auf Flaeche A mit Absorptionsfaktor alpha"
-	parameter Real solar_constant=1372 "Solarkonstate in W/mÂ²";
+	parameter Real solar_constant=1372 "Solarkonstate in W/m²";
 	parameter Modelica.SIunits.Time orbit_Period(
 		final min=Modelica.Constants.small,
 		start=1)=5400 "Time for one period";
@@ -62,42 +62,42 @@ model solar_radiance "Einwirkende Sonnenstrahlung auf Flaeche A mit Absorptionsf
 			extent={{-10,-10},{10,10}})));
 	equation
 		connect(thermal_connector1.Rad,Solar_Power_Rad.port) annotation(Line(
-			points={{35.1052,12.2104},{35.1052,-6.1052},{-70.21040000000001,-6.1052}},
+			points={{90,0},{85,0},{-25,0},{-25,-50},{-30,-50}},
 			color={191,0,0},
 			visible=true,
 			origin={40.2104,-43.8948}));
 		connect(Solar_Power_TSS.port,thermal_connector1.TSS) annotation(Line(
-			points={{-63.5325,-4.6818},{10.9675,-4.6818},{10.9675,4.6818},{41.5976,4.6818}},
+			points={{-30,-20},{-25,-20},{85,-20},{85,0},{90,0}},
 			color={191,0,0},
 			visible=true,
 			origin={33.5325,-15.3182}));
 		connect(Solar_Power_MSS.port,thermal_connector1.MSS) annotation(Line(
-			points={{-63.5003,4.614},{10.9997,4.614},{10.9997,-4.614},{41.5008,-4.614}},
+			points={{-30,20},{-25,20},{85,20},{85,0},{90,0}},
 			color={191,0,0},
 			visible=true,
 			origin={33.5003,15.386}));
 		connect(Solar_Power_ESS.port,thermal_connector1.ESS) annotation(Line(
-			points={{-69.9335,5.9898},{34.9668,5.9898},{34.9668,-11.9797}},
+			points={{-30,50},{-25,50},{85,50},{85,0},{90,0}},
 			color={191,0,0},
 			visible=true,
 			origin={39.9335,44.0102}));
 		connect(Solar_Power_ESS.Q_flow,Orbit_ESS.y) annotation(Line(
-			points={{24.5,0},{-24.5,0}},
+			points={{-50,50},{-55,50},{-94,50},{-99,50}},
 			color={0,0,127},
 			visible=true,
 			origin={-74.5,50}));
 		connect(Solar_Power_MSS.Q_flow,Orbit_MSS.y) annotation(Line(
-			points={{24.5,0},{-24.5,0}},
+			points={{-50,20},{-55,20},{-94,20},{-99,20}},
 			color={0,0,127},
 			visible=true,
 			origin={-74.5,20}));
 		connect(Orbit_TSS.y,Solar_Power_TSS.Q_flow) annotation(Line(
-			points={{-24.5,0},{24.5,0}},
+			points={{-99,-20},{-94,-20},{-55,-20},{-50,-20}},
 			color={0,0,127},
 			visible=true,
 			origin={-74.5,-20}));
 		connect(Solar_Power_Rad.Q_flow,Orbit_Rad.y) annotation(Line(
-			points={{24.5,0},{-24.5,0}},
+			points={{-50,-50},{-55,-50},{-94,-50},{-99,-50}},
 			color={0,0,127},
 			visible=true,
 			origin={-74.5,-50}));
