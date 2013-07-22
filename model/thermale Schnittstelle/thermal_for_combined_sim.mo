@@ -1,6 +1,6 @@
 // CP: 65001
 // SimulationX Version: 3.5.706.23 x64
-model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit Schnittstellen"
+model thermal_for_combined_sim "thermisches model eines Bausteins mit 6 Seiten mit Schnittstellen für die gemeinsame Simulation"
 	thermal_connector thermal_connector_xp "Verbindungselement fuer mehr als eine Schnittstelle" annotation(Placement(
 		transformation(
 			origin={250,-50},
@@ -42,6 +42,10 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 	parameter Real ViewFactor_vertical=0.2 "Viewfactor of vertical Surfaces";
 	parameter Modelica.SIunits.Emissivity eps_Panel=0.5 "Emmisivity of the inner side of the panel";
 	parameter Modelica.SIunits.Emissivity eps_EB=0.5 "Emmisivity of the electronic box";
+	parameter Modelica.SIunits.Temp_K lower_Temp_boundary=270 "Coldest allowed temperatur in the Box";
+	parameter Modelica.SIunits.Temp_K upper_Temp_boundary=310 "highest allowed temperatur in the Box";
+	parameter Modelica.SIunits.ActivePower heating_power=100 "heat Power of the heater";
+	parameter Modelica.SIunits.ActivePower cooling_power=50 "heat Power of the cooler";
 	thermal_Panel_with_Interface Panel_xp(
 		x_ESS=x_ESS,
 		y_ESS=y_ESS,
@@ -368,9 +372,6 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		origin={6,-16},
 		extent={{-6.1458,-6.1458},{6,10}},
 		rotation=-90)));
-	Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow Buildingblock_Power(Q_flow=BuildingBlock_Power) annotation(Placement(transformation(
-		origin={-100,30},
-		extent={{-10,-10},{10,10}})));
 	parameter MaterialDatabase.Kupferlegierungen_Kupfer Kupfer annotation(Placement(transformation(
 		origin={130,90},
 		extent={{-10,-10},{10,10}})));
@@ -446,13 +447,13 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		parameter Real Gr_P_EB(unit="m2")=x_EB*y_EB*(eps_Panel*eps_EB/(eps_Panel+eps_EB-eps_Panel*eps_EB))"Net radiation conductance between two surfaces (see docu)(Panel - Electronic Box) tbd";
 	public
 		Modelica.Blocks.Logical.OnOffController onOffController1(bandwidth=2) annotation(Placement(transformation(extent={{-115,-30},{-95,-10}})));
-		Modelica.Blocks.Sources.Constant const(k=270) annotation(Placement(transformation(extent={{-150,-5},{-130,15}})));
+		Modelica.Blocks.Sources.Constant const(k=lower_Temp_boundary) annotation(Placement(transformation(extent={{-150,-5},{-130,15}})));
 		Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperature_EB annotation(Placement(transformation(
 			origin={-105,-65},
 			extent={{-10,-10},{10,10}},
 			rotation=-180)));
-		Modelica.Blocks.Math.Gain gain1(k=100) annotation(Placement(transformation(extent={{-80,-30},{-60,-10}})));
-		Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow1 annotation(Placement(transformation(extent={{-50,-30},{-30,-10}})));
+		Modelica.Blocks.Math.Gain gain1(k=heating_power) annotation(Placement(transformation(extent={{-80,-30},{-60,-10}})));
+		Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow_heater annotation(Placement(transformation(extent={{-50,-30},{-30,-10}})));
 		Modelica.Blocks.Continuous.Integrator integrator1 annotation(Placement(transformation(extent={{-60,-5},{-40,15}})));
 	equation
 		connect(Panel_zn.thermal_connector1,thermal_connector_zn) annotation(
@@ -538,10 +539,6 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		
 		
 		
-		connect(Buildingblock_Power.port,port_b) annotation(Line(
-			points={{-90,30},{-85,30},{30,30},{30,0},{35,0}},
-			color={191,0,0},
-			thickness=0.0625));
 		connect(thermalModel_ElectronicBox1.dissipationPower,port_b) annotation(
 			Line(
 				points={{87.66667175292969,-52.66667175292969},{35,0}},
@@ -731,25 +728,33 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 			points={{-94,-20},{-89,-20},{-87,-20},{-82,-20}},
 			color={255,0,255},
 			thickness=0.0625));
-		connect(gain1.y,prescribedHeatFlow1.Q_flow) annotation(Line(
-			points={{-59,-20},{-54,-20},{-55,-20},{-50,-20}},
-			color={0,0,127},
-			thickness=0.0625));
+		
 		connect(gain1.y,integrator1.u) annotation(Line(
 			points={{-59,-20},{-54,-20},{-54,-8},{-67,-8},{-67,5},{-62,
 			5}},
 			color={0,0,127},
 			thickness=0.0625));
-		connect(prescribedHeatFlow1.port,thermalModel_ElectronicBox1.dissipationPower) annotation(Line(
+		connect(gain1.y,prescribedHeatFlow_heater.Q_flow) annotation(Line(
+			points={{-59,-20},{-54,-20},{-55,-20},{-50,-20}},
+			color={0,0,127},
+			thickness=0.0625));
+		connect(prescribedHeatFlow_heater.port,thermalModel_ElectronicBox1.dissipationPower) annotation(Line(
 			points={{-30,-20},{-25,-20},{83,-20},{83,-53},{88,-53}},
 			color={191,0,0},
 			thickness=0.0625));
 	annotation(
 		const(y(flags=2)),
-		temperature_EB(T(flags=2)),
+		temperature_EB(
+			T(flags=2),
+			port(T(flags=2))),
 		gain1(y(flags=2)),
-		prescribedHeatFlow1(port(Q_flow(flags=2))),
 		integrator1(y(flags=2)),
+		viewinfo[0](
+			simViewInfos[0](
+				runtimeClass="CSimView",
+				tabGroup=0,
+				typename="ModelViewInfo"),
+			typename="ModelInfo"),
 		Icon(
 			coordinateSystem(extent={{-100,-100},{100,100}}),
 			graphics={
@@ -837,4 +842,4 @@ An approppriate simulating time would be 10 seconds.
 			StopTime=1,
 			StartTime=0,
 			Interval=0.001));
-end BuildingBlock_thermal;
+end thermal_for_combined_sim;
