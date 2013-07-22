@@ -2311,124 +2311,103 @@ package satcomponents
 					Diagram);
 			end dcdc_ideal_simple;
 			model dcdc_ideal_simple_improved
-				parameter Real eff=0.85 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={60.2546,-80.6223},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
-				parameter Modelica.SIunits.Voltage V_out=5 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={60.2546,-80.6223},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
-				parameter Modelica.SIunits.Voltage V_in_min=6.5 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={60.2546,-80.6223},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
-				parameter Modelica.SIunits.Voltage V_in_max=100 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={60.2546,-80.6223},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
+				parameter Real eff=0.85 annotation(Placement(transformation(
+					origin={60.2546,-80.6223},
+					extent={{-12,-12},{12,12}})));
+				parameter Modelica.SIunits.Voltage V_out=5 annotation(Placement(transformation(
+					origin={60.2546,-80.6223},
+					extent={{-12,-12},{12,12}})));
+				parameter Modelica.SIunits.Voltage V_in_min=6.5 annotation(Placement(transformation(
+					origin={60.2546,-80.6223},
+					extent={{-12,-12},{12,12}})));
+				parameter Modelica.SIunits.Voltage V_in_max=100 annotation(Placement(transformation(
+					origin={60.2546,-80.6223},
+					extent={{-12,-12},{12,12}})));
 				Modelica.Electrical.Analog.Interfaces.NegativePin n2 annotation(Placement(
-					visible=true,
 					transformation(
 						origin={93.0693,-46.959},
-						extent={{-12,-12},{12,12}},
-						rotation=0),
+						extent={{-12,-12},{12,12}}),
 					iconTransformation(
 						origin={93.0693,-46.959},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
+						extent={{-12,-12},{12,12}})));
 				Modelica.Electrical.Analog.Interfaces.NegativePin n1 annotation(Placement(
-					visible=true,
 					transformation(
-						origin={-92.7864,-40.4526},
-						extent={{-12,-12},{12,12}},
-						rotation=0),
+						origin={-93,-32},
+						extent={{-12,-12},{12,12}}),
 					iconTransformation(
 						origin={-92.7864,-40.4526},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
+						extent={{-12,-12},{12,12}})));
 				Modelica.Electrical.Analog.Interfaces.PositivePin p1 annotation(Placement(
-					visible=true,
 					transformation(
-						origin={-92.2207,41.867},
-						extent={{-12,-12},{12,12}},
-						rotation=0),
+						origin={-92.22069999999999,41.867},
+						extent={{-12,-12},{12,12}}),
 					iconTransformation(
-						origin={-92.2207,41.867},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
+						origin={-92.22069999999999,41.867},
+						extent={{-12,-12},{12,12}})));
 				Modelica.Electrical.Analog.Interfaces.PositivePin p2 annotation(Placement(
-					visible=true,
 					transformation(
 						origin={92.5035,42.4328},
-						extent={{-12,-12},{12,12}},
-						rotation=0),
+						extent={{-12,-12},{12,12}}),
 					iconTransformation(
 						origin={92.5035,42.4328},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
-				Modelica.SIunits.Voltage v1 "Voltage drop over the left port" annotation(Placement(
-					visible=true,
-					transformation(
-						origin={60.5375,-80.6223},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
-				Modelica.SIunits.Voltage v2 "Voltage drop over the right port" annotation(Placement(
-					visible=true,
-					transformation(
-						origin={60.5375,-80.6223},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
-				Modelica.SIunits.Current i1 "Current flowing from pos. to neg. pin of the left port" annotation(Placement(
-					visible=true,
-					transformation(
-						origin={60.5375,-80.6223},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
-				Modelica.SIunits.Current i2 "Current flowing from pos. to neg. pin of the right port" annotation(Placement(
-					visible=true,
-					transformation(
-						origin={60.5375,-80.6223},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
+						extent={{-12,-12},{12,12}})));
+				Modelica.SIunits.Voltage v1 "Voltage drop over the left port" annotation(Placement(transformation(
+					origin={60.5375,-80.6223},
+					extent={{-12,-12},{12,12}})));
+				Modelica.SIunits.Voltage v2 "Voltage drop over the right port" annotation(Placement(transformation(
+					origin={60.5375,-80.6223},
+					extent={{-12,-12},{12,12}})));
+				Modelica.SIunits.Current i1 "Current flowing from pos. to neg. pin of the left port" annotation(Placement(transformation(
+					origin={60.5375,-80.6223},
+					extent={{-12,-12},{12,12}})));
+				Modelica.SIunits.Current i2 "Current flowing from pos. to neg. pin of the right port" annotation(Placement(transformation(
+					origin={60.5375,-80.6223},
+					extent={{-12,-12},{12,12}})));
 				dcmodel.dcdc_ideal_simple dcdc_ideal_simple1(
 					eff=eff,
 					V_out=V_out,
-					V_in_max=V_in_max,
-					V_in_min=V_in_min) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-3.67751,6.78922},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C=0.0001) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-67.3267,12.447},
-						extent={{-12,12},{12,-12}},
-						rotation=-90)));
+					V_in_min=V_in_min,
+					V_in_max=V_in_max) annotation(Placement(transformation(
+					origin={-3.67751,6.78922},
+					extent={{-12,-12},{12,12}})));
 				equation
-					connect(capacitor1.n,n1) annotation(Line(points = {{-67.3267,0.446959},{-67.8925,0.446959},{-67.8925,-39.8868},{-92.7864,-39.8868},{-92.7864,-40.4526}}));
-					connect(p1,capacitor1.p) annotation(Line(points = {{-92.2207,41.867},{-67.6096,41.867},{-67.6096,24.447},{-67.3267,24.447}}));
-					connect(dcdc_ideal_simple1.n2,n2) annotation(Line(points = {{8.32249,0.78922},{8.20368,0.78922},{8.20368,-45.2617},{93.0693,-45.2617},{93.0693,-46.959}}));
-					connect(dcdc_ideal_simple1.p2,p2) annotation(Line(points = {{8.32249,12.7892},{7.92079,12.7892},{7.92079,43.2815},{92.5035,43.2815},{92.5035,42.4328}}));
-					connect(dcdc_ideal_simple1.n1,n1) annotation(Line(points = {{-15.6775,0.78922},{-16.1245,0.78922},{-16.1245,-39.8868},{-92.7864,-39.8868},{-92.7864,-40.4526}}));
-					connect(p1,dcdc_ideal_simple1.p1) annotation(Line(points = {{-92.2207,41.867},{-15.5587,41.867},{-15.5587,12.7892},{-15.6775,12.7892}}));
+					connect(p1,dcdc_ideal_simple1.p1) annotation(Line(points={{-92,42},{-87,42},{-21,42},{-21,13},{-16,13}}));
 					v1 = p1.v - n1.v;
 					v2 = p2.v - n2.v;
 					i1 = p1.i;
 					i2 = p2.i;
+					connect(dcdc_ideal_simple1.p2,p2) annotation(Line(
+						points={{8,13},{13,13},{88,13},{88,42},{93,42}},
+						thickness=0.0625));
+					connect(dcdc_ideal_simple1.n2,n2) annotation(Line(
+						points={{8,1},{13,1},{88,1},{88,-47},{93,-47}},
+						thickness=0.0625));
+					connect(dcdc_ideal_simple1.n1,n1) annotation(Line(
+						points={{-16,1},{-21,1},{-88,1},{-88,-32},{-93,-32}},
+						thickness=0.0625));
 				annotation(
-					Diagram,
-					Icon(graphics={Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-87.6945,78.6421},{88.5431,-74.6818}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-8.48652,67.6096},{57.4258,29.7029}}, textString = "%V_out"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-63.6492,18.9533},{57.9915,-33.0976}}, textString = "DCDC"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{54.314,63.3663},{75.8133,32.8147}}, textString = "V")}));
+					Icon(
+						coordinateSystem(extent={{-100,-100},{100,100}}),
+						graphics={
+											Rectangle(
+												fillColor={0,0,255},
+												extent={{-87.69450000000001,78.6421},{88.5431,-74.6818}}),
+											Text(
+												textString="%V_out",
+												fillColor={0,0,255},
+												extent={{-8.486520000000001,67.6096},{57.4258,29.7029}}),
+											Text(
+												textString="DCDC",
+												fillColor={0,0,255},
+												extent={{-63.6492,18.9533},{57.9915,-33.0976}}),
+											Text(
+												textString="V",
+												fillColor={0,0,255},
+												extent={{54.314,63.3663},{75.8133,32.8147}})}),
+					Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
+					experiment(
+						StopTime=1,
+						StartTime=0));
 			end dcdc_ideal_simple_improved;
 			package examples
 				model powerdctest
@@ -2498,92 +2477,72 @@ package satcomponents
 		package examples
 			model unregulated_DET
 				extends Modelica.Icons.Example;
-				Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-39.6389,-49.1485},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
+				Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(transformation(
+					origin={-39.6389,-49.1485},
+					extent={{-12,-12},{12,12}})));
 				Modelica.Blocks.Sources.Trapezoid trapezoid1(
 					amplitude=1367,
 					rising=90,
 					width=3600,
 					falling=90,
-					period=5000) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-84,-5},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
+					period=5000) annotation(Placement(transformation(
+					origin={-84,-5},
+					extent={{-10,-10},{10,10}})));
 				power.solar_power.solarcell_simple solarcell_simple1(
 					N_p=2,
-					N_s=40.0) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-52,-5},
-						extent={{-10,-10},{10,10}},
-						rotation=90)));
+					N_s=40.0) annotation(Placement(transformation(
+					origin={-52,-5},
+					extent={{-10,-10},{10,10}},
+					rotation=90)));
 				power.batteries.battery battery1(
 					soc(start=0.5),
-					Vnominal=100) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={13.9999,-3},
-						extent={{-10,-10},{10,10}},
-						rotation=-90)));
-				satcomponents.power.PCU pcu1 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={46.8208,5.20231},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Basic.Resistor resistor1(R=13) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={75.9248,26.9653},
-						extent={{-9.62429,-9.62429},{9.62429,9.62429}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Basic.Resistor resistor2(R=20) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={76.3005,6.06937},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Basic.Resistor resistor3(R=100) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={76.3006,-16.763},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
-				satcomponents.power.solar_power.SA_Regulator sa_regulator1(Vmax=95) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-22.5564,24.9624},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
+					Vnominal=100) annotation(Placement(transformation(
+					origin={13.9999,-3},
+					extent={{-10,-10},{10,10}},
+					rotation=-90)));
+				satcomponents.power.PCU pcu1 annotation(Placement(transformation(
+					origin={46.8208,5.20231},
+					extent={{-10,-10},{10,10}})));
+				Modelica.Electrical.Analog.Basic.Resistor resistor1(R=13) annotation(Placement(transformation(
+					origin={75.92480000000001,26.9653},
+					extent={{-9.62429,-9.62429},{9.62429,9.62429}})));
+				Modelica.Electrical.Analog.Basic.Resistor resistor2(R=20) annotation(Placement(transformation(
+					origin={76.3005,6.06937},
+					extent={{-10,-10},{10,10}})));
+				Modelica.Electrical.Analog.Basic.Resistor resistor3(R=100) annotation(Placement(transformation(
+					origin={76.3006,-16.763},
+					extent={{-10,-10},{10,10}})));
+				satcomponents.power.solar_power.SA_Regulator sa_regulator1(Vmax=95) annotation(Placement(transformation(
+					origin={-22.5564,24.9624},
+					extent={{-10,-10},{10,10}})));
 				equation
-					connect(sa_regulator1.n,battery1.p) annotation(Line(points = {{-12.5564,24.9624},{13.8346,24.9624},{13.8346,7},{13.9999,7}}));
-					connect(sa_regulator1.pin_n,solarcell_simple1.p) annotation(Line(points = {{-22.7669,15.2481},{-22.8571,15.2481},{-22.8571,-15.0376},{-52,-15.0376},{-52,-15}}));
-					connect(solarcell_simple1.n,sa_regulator1.p) annotation(Line(points = {{-52,5},{-52,24.9624},{-32.8571,24.9624},{-32.5564,24.9624}}));
-					connect(resistor3.n,pcu1.gnd) annotation(Line(points = {{86.3006,-16.763},{86.4162,-16.763},{86.4162,-36.9942},{56.9364,-36.9942},{56.9364,-1.15607},{56.9364,-1.15607}}));
-					connect(resistor2.n,resistor3.n) annotation(Line(points = {{86.3005,6.06937},{86.4162,6.06937},{86.4162,-16.763},{86.4162,-16.763}}));
-					connect(resistor1.n,resistor2.n) annotation(Line(points = {{85.5491,26.9653},{86.1272,26.9653},{86.1272,6.06936},{86.1272,6.06936}}));
-					connect(resistor2.p,pcu1.VCC5) annotation(Line(points = {{66.3005,6.06937},{56.6474,6.06937},{56.6474,6.06936},{56.6474,6.06936}}));
-					connect(pcu1.VCC3,resistor3.p) annotation(Line(points = {{56.8349,2.88265},{66.185,2.88265},{66.185,-16.763},{66.185,-16.763}}));
-					connect(resistor1.p,pcu1.VCC12) annotation(Line(points = {{66.3006,26.9653},{66.185,26.9653},{66.185,9.82659},{56.6474,9.82659},{56.6474,9.82659}}));
-					connect(pcu1.GND,battery1.n) annotation(Line(points = {{36.7218,0.76101},{36.4162,0.76101},{36.4162,-36.9942},{13.8728,-36.9942},{13.8728,-12.7168},{13.8728,-12.7168}}));
-					connect(pcu1.gnd,pcu1.GND) annotation(Line(points = {{56.8349,-1.1909},{56.9364,-1.1909},{56.9364,-36.9942},{36.4162,-36.9942},{36.4162,0.867052},{36.4162,0.867052}}));
-					connect(battery1.p,pcu1.VCC) annotation(Line(points = {{13.9999,7},{13.9999,6.06936},{36.4162,6.06936},{36.4162,6.06936}}));
-					connect(battery1.n,ground1.p) annotation(Line(points = {{13.9999,-13},{13.9999,-37},{-39.6667,-37},{-39.6667,-37}}));
-					connect(solarcell_simple1.p,ground1.p) annotation(Line(points = {{-52,-15},{-52,-37},{-39.6667,-37},{-39.6667,-37}}));
-					connect(trapezoid1.y,solarcell_simple1.E_s) annotation(Line(points = {{-73,-5},{-60.3333,-5},{-60.3333,-5},{-60.3333,-5}}));
+					connect(sa_regulator1.n,battery1.p) annotation(Line(points={{-12.5564,24.9624},{13.8346,24.9624},{13.8346,7},{13.9999,7}}));
+					connect(sa_regulator1.pin_n,solarcell_simple1.p) annotation(Line(points={{-22.7669,15.2481},{-22.8571,15.2481},{-22.8571,-15.0376},{-52,-15.0376},{-52,-15}}));
+					connect(solarcell_simple1.n,sa_regulator1.p) annotation(Line(points={{-52,5},{-52,24.9624},{-32.8571,24.9624},{-32.5564,24.9624}}));
+					connect(resistor3.n,pcu1.gnd) annotation(Line(points={{86.3006,-16.763},{86.4162,-16.763},{86.4162,-36.9942},{56.9364,-36.9942},{56.9364,-1.15607},{56.9364,
+					-1.15607}}));
+					connect(resistor2.n,resistor3.n) annotation(Line(points={{86.3005,6.06937},{86.4162,6.06937},{86.4162,-16.763},{86.4162,-16.763}}));
+					connect(resistor1.n,resistor2.n) annotation(Line(points={{85.5491,26.9653},{86.1272,26.9653},{86.1272,6.06936},{86.1272,6.06936}}));
+					connect(resistor2.p,pcu1.VCC5) annotation(Line(points={{66.3005,6.06937},{56.6474,6.06937},{56.6474,6.06936},{56.6474,6.06936}}));
+					connect(pcu1.VCC3,resistor3.p) annotation(Line(points={{56.8349,2.88265},{66.185,2.88265},{66.185,-16.763},{66.185,-16.763}}));
+					connect(resistor1.p,pcu1.VCC12) annotation(Line(points={{66.3006,26.9653},{66.185,26.9653},{66.185,9.82659},{56.6474,9.82659},{56.6474,9.82659}}));
+					connect(pcu1.GND,battery1.n) annotation(Line(points={{36.7218,0.76101},{36.4162,0.76101},{36.4162,-36.9942},{13.8728,-36.9942},{13.8728,-12.7168},{13.8728,
+					-12.7168}}));
+					connect(pcu1.gnd,pcu1.GND) annotation(Line(points={{56.8349,-1.1909},{56.9364,-1.1909},{56.9364,-36.9942},{36.4162,-36.9942},{36.4162,0.867052},{36.4162,
+					0.867052}}));
+					connect(battery1.p,pcu1.VCC) annotation(Line(points={{13.9999,7},{13.9999,6.06936},{36.4162,6.06936},{36.4162,6.06936}}));
+					connect(battery1.n,ground1.p) annotation(Line(points={{13.9999,-13},{13.9999,-37},{-39.6667,-37},{-39.6667,-37}}));
+					connect(solarcell_simple1.p,ground1.p) annotation(Line(points={{-52,-15},{-52,-37},{-39.6667,-37},{-39.6667,-37}}));
+					connect(trapezoid1.y,solarcell_simple1.E_s) annotation(Line(points={{-73,-5},{-60.3333,-5},{-60.3333,-5},{-60.3333,-5}}));
 				annotation(
-					Diagram,
-					Icon,
+					battery1(v(flags=2)),
+					resistor3(v(flags=2)),
+					Icon(coordinateSystem(extent={{-100,-100},{100,100}})),
+					Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
 					experiment(
-						StartTime=0.0,
-						StopTime=40000.0,
-						Tolerance=0.000001));
+						StopTime=40000,
+						StartTime=0,
+						Tolerance=1e-006));
 			end unregulated_DET;
 			model PID_verbraucher
 				extends Modelica.Icons.Example;
@@ -2618,104 +2577,78 @@ package satcomponents
 					Tolerance=0.000001));
 			end PID_verbraucher;
 			model EVS3
-				Modelica.Electrical.Analog.Basic.Resistor resistor1(R=25) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={59.9359,-6.41026},
-						extent={{-12,12},{12,-12}},
-						rotation=-90)));
+				Modelica.Electrical.Analog.Basic.Resistor resistor1(R=25) annotation(Placement(transformation(
+					origin={59.9359,-6.41026},
+					extent={{-12,12},{12,-12}},
+					rotation=-90)));
 				dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved1(
 					V_out=12,
-					V_in_min=15) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={24.611,3.39463},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
+					V_in_min=15) annotation(Placement(transformation(
+					origin={24.611,3.39463},
+					extent={{-12,-12},{12,12}})));
 				dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved2(
 					V_out=5,
-					V_in_min=8) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={24.611,33.3805},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
+					V_in_min=8) annotation(Placement(transformation(
+					origin={24.611,33.3805},
+					extent={{-12,-12},{12,12}})));
 				dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved3(
 					V_out=3.3,
-					V_in_min=5) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={23.4795,66.4781},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Basic.Resistor resistor2(R=25) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={59.6888,34.512},
-						extent={{-12,12},{12,-12}},
-						rotation=-90)));
-				Modelica.Electrical.Analog.Basic.Resistor resistor3(R=25) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={60.2546,67.0438},
-						extent={{-12,12},{12,-12}},
-						rotation=-90)));
+					V_in_min=5) annotation(Placement(transformation(
+					origin={23.4795,66.4781},
+					extent={{-12,-12},{12,12}})));
+				Modelica.Electrical.Analog.Basic.Resistor resistor2(R=25) annotation(Placement(transformation(
+					origin={59.6888,34.512},
+					extent={{-12,12},{12,-12}},
+					rotation=-90)));
+				Modelica.Electrical.Analog.Basic.Resistor resistor3(R=25) annotation(Placement(transformation(
+					origin={60.2546,67.04380000000001},
+					extent={{-12,12},{12,-12}},
+					rotation=-90)));
 				Modelica.Blocks.Sources.Trapezoid trapezoid1(
 					amplitude=1000,
 					rising=2,
+					width=1000,
 					falling=2,
-					period=3000,
-					width=1000) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-77.5106,-1.41443},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
-				solar_power.solarcell_simple solarcell_simple1(R_sh=100) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-44.9511,-2.60173},
-						extent={{12,-12},{-12,12}},
-						rotation=90)));
-				Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-28.0029,-43.6886},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Basic.Resistor resistor5 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-14.4272,25.1768},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Basic.Resistor resistor4 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-13.5785,-1.69731},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
+					period=3000) annotation(Placement(transformation(
+					origin={-77.5106,-1.41443},
+					extent={{-12,-12},{12,12}})));
+				solar_power.solarcell_simple solarcell_simple1(R_sh=100) annotation(Placement(transformation(
+					origin={-44.9511,-2.60173},
+					extent={{12,-12},{-12,12}},
+					rotation=90)));
+				Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(transformation(
+					origin={-28.0029,-43.6886},
+					extent={{-12,-12},{12,12}})));
+				Modelica.Electrical.Analog.Basic.Resistor resistor5 annotation(Placement(transformation(
+					origin={-14.4272,25.1768},
+					extent={{-12,-12},{12,12}})));
+				Modelica.Electrical.Analog.Basic.Resistor resistor4 annotation(Placement(transformation(
+					origin={-13.5785,-1.69731},
+					extent={{-12,-12},{12,12}})));
 				equation
-					connect(resistor5.p,solarcell_simple1.n) annotation(Line(points = {{-26.4272,25.1768},{-45.8274,25.1768},{-45.8274,9.39827},{-44.9511,9.39827}}));
-					connect(resistor4.p,ground1.p) annotation(Line(points = {{-25.5785,-1.69731},{-28.0057,-1.69731},{-28.0057,-31.6886},{-28.0029,-31.6886}}));
-					connect(resistor4.n,dcdc_ideal_simple_improved3.n1) annotation(Line(points = {{-1.5785,-1.69731},{6.22348,-1.69731},{6.22348,61.669},{12.3451,61.669},{12.3451,61.6238}}));
-					connect(resistor4.n,dcdc_ideal_simple_improved2.n1) annotation(Line(points = {{-1.5785,-1.69731},{5.94059,-1.69731},{5.94059,28.5714},{13.4767,28.5714},{13.4767,28.5262}}));
-					connect(resistor4.n,dcdc_ideal_simple_improved1.n1) annotation(Line(points = {{-1.5785,-1.69731},{13.0127,-1.69731},{13.0127,-1.45968},{13.4767,-1.45968}}));
-					connect(resistor5.n,dcdc_ideal_simple_improved1.p1) annotation(Line(points = {{-2.42716,25.1768},{-2.26308,25.1768},{-2.26308,9.05233},{13.5446,9.05233},{13.5446,8.41867}}));
-					connect(resistor5.n,dcdc_ideal_simple_improved2.p1) annotation(Line(points = {{-2.42716,25.1768},{-2.26308,25.1768},{-2.26308,38.4724},{13.5445,38.4724},{13.5445,38.4045}}));
-					connect(resistor5.n,dcdc_ideal_simple_improved3.p1) annotation(Line(points = {{-2.42716,25.1768},{-2.54597,25.1768},{-2.54597,71.57},{12.413,71.57},{12.413,71.5021}}));
-					connect(trapezoid1.y,solarcell_simple1.E_s) annotation(Line(points = {{-64.3106,-1.41443},{-54.314,-1.41443},{-54.314,-2.75387},{-53.4709,-2.75387}}));
-					connect(solarcell_simple1.p,ground1.p) annotation(Line(points = {{-44.9511,-14.6017},{-41.3362,-14.6017},{-41.3362,-31.6886},{-28.0029,-31.6886}}));
-					connect(resistor2.n,dcdc_ideal_simple_improved2.n2) annotation(Line(points = {{59.6888,22.512},{46.3932,22.512},{46.3932,28.2885},{35.7793,28.2885},{35.7793,27.7454}}));
-					connect(dcdc_ideal_simple_improved2.p2,resistor2.p) annotation(Line(points = {{35.7115,38.4724},{46.6761,38.4724},{46.6761,48.3734},{59.1231,48.3734},{59.1231,46.512},{59.6888,46.512}}));
-					connect(resistor3.n,dcdc_ideal_simple_improved3.n2) annotation(Line(points = {{60.2546,55.0438},{46.1103,55.0438},{46.1103,61.1033},{34.6478,61.1033},{34.6478,60.843}}));
-					connect(dcdc_ideal_simple_improved3.p2,resistor3.p) annotation(Line(points = {{34.5799,71.57},{43.2815,71.57},{43.2815,80.0566},{60.2546,80.0566},{60.2546,79.0438}}));
-					connect(resistor1.n,dcdc_ideal_simple_improved1.n2) annotation(Line(points = {{59.9359,-18.4103},{42.4328,-18.4103},{42.4328,-2.24045},{35.7794,-2.24045}}));
-					connect(dcdc_ideal_simple_improved1.p2,resistor1.p) annotation(Line(points = {{35.7115,8.48656},{59.9717,8.48656},{59.9717,5.58974},{59.9359,5.58974}}));
-				annotation(experiment(
-					StartTime=0.0,
-					StopTime=11000.0,
-					Tolerance=0.000001));
+					connect(resistor5.p,solarcell_simple1.n) annotation(Line(points={{-26.4272,25.1768},{-45.8274,25.1768},{-45.8274,9.39827},{-44.9511,9.39827}}));
+					connect(resistor4.p,ground1.p) annotation(Line(points={{-25.5785,-1.69731},{-28.0057,-1.69731},{-28.0057,-31.6886},{-28.0029,-31.6886}}));
+					connect(resistor4.n,dcdc_ideal_simple_improved3.n1) annotation(Line(points={{-1.5785,-1.69731},{6.22348,-1.69731},{6.22348,61.669},{12.3451,61.669},{12.3451,61.6238}}));
+					connect(resistor4.n,dcdc_ideal_simple_improved2.n1) annotation(Line(points={{-1.5785,-1.69731},{5.94059,-1.69731},{5.94059,28.5714},{13.4767,28.5714},{13.4767,28.5262}}));
+					connect(resistor4.n,dcdc_ideal_simple_improved1.n1) annotation(Line(points={{-1.5785,-1.69731},{13.0127,-1.69731},{13.0127,-1.45968},{13.4767,-1.45968}}));
+					connect(resistor5.n,dcdc_ideal_simple_improved1.p1) annotation(Line(points={{-2.42716,25.1768},{-2.26308,25.1768},{-2.26308,9.05233},{13.5446,9.05233},{13.5446,8.418670000000001}}));
+					connect(resistor5.n,dcdc_ideal_simple_improved2.p1) annotation(Line(points={{-2.42716,25.1768},{-2.26308,25.1768},{-2.26308,38.4724},{13.5445,38.4724},{13.5445,38.4045}}));
+					connect(resistor5.n,dcdc_ideal_simple_improved3.p1) annotation(Line(points={{-2.42716,25.1768},{-2.54597,25.1768},{-2.54597,71.56999999999999},{12.413,71.56999999999999},{12.413,71.5021}}));
+					connect(trapezoid1.y,solarcell_simple1.E_s) annotation(Line(points={{-64.31059999999999,-1.41443},{-54.314,-1.41443},{-54.314,-2.75387},{-53.4709,-2.75387}}));
+					connect(solarcell_simple1.p,ground1.p) annotation(Line(points={{-44.9511,-14.6017},{-41.3362,-14.6017},{-41.3362,-31.6886},{-28.0029,-31.6886}}));
+					connect(resistor2.n,dcdc_ideal_simple_improved2.n2) annotation(Line(points={{59.6888,22.512},{46.3932,22.512},{46.3932,28.2885},{35.7793,28.2885},{35.7793,27.7454}}));
+					connect(dcdc_ideal_simple_improved2.p2,resistor2.p) annotation(Line(points={{35.7115,38.4724},{46.6761,38.4724},{46.6761,48.3734},{59.1231,48.3734},{59.1231,46.512},{59.6888,
+					46.512}}));
+					connect(resistor3.n,dcdc_ideal_simple_improved3.n2) annotation(Line(points={{60.2546,55.0438},{46.1103,55.0438},{46.1103,61.1033},{34.6478,61.1033},{34.6478,60.843}}));
+					connect(dcdc_ideal_simple_improved3.p2,resistor3.p) annotation(Line(points={{34.5799,71.56999999999999},{43.2815,71.56999999999999},{43.2815,80.0566},{60.2546,80.0566},{60.2546,79.04380000000001}}));
+					connect(resistor1.n,dcdc_ideal_simple_improved1.n2) annotation(Line(points={{59.9359,-18.4103},{42.4328,-18.4103},{42.4328,-2.24045},{35.7794,-2.24045}}));
+					connect(dcdc_ideal_simple_improved1.p2,resistor1.p) annotation(Line(points={{35.7115,8.486560000000001},{59.9717,8.486560000000001},{59.9717,5.58974},{59.9359,5.58974}}));
+				annotation(
+					resistor2(v(flags=2)),
+					experiment(
+						StopTime=11000,
+						StartTime=0,
+						Tolerance=1e-006));
 			end EVS3;
 			model EVS5
 				dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved1(
@@ -3844,8 +3777,8 @@ package satcomponents
 		Icon(
 			coordinateSystem(extent={{-100,-100},{100,100}}),
 			graphics={
-								Polygon(
-									points={{-11.5042,31.4966},{33.1625,8.163309999999999},{11.8292,-31.5034},{-33.1708,-7.17002},{-11.5042,31.4966}},
+										Polygon(
+										points={{-11.5042,31.4966},{33.1625,8.163309999999999},{11.8292,-31.5034},{-33.1708,-7.17002},{-11.5042,31.4966}},
 									origin={-0.495835,-3.82998}),
 								Polygon(
 									points={{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}},
@@ -3863,5 +3796,5 @@ package satcomponents
 								Polygon(
 									points={{16.7693,29.6823},{14.7693,5.68234},{1.10267,-18.651},{-16.8973,-29.3177},{16.7693,29.6823}},
 									origin={-35.7693,14.651})}),
-		Diagram(coordinateSystem(extent={{-100,-100},{100,100}})));
+Diagram(coordinateSystem(extent={{-100,-100},{100,100}})));
 end satcomponents;
