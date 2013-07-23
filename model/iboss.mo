@@ -200,19 +200,21 @@ package iboss
 		model battery
 			extends iboss.buildingblocks.basic_ess_mss;
 			satcomponents.power.batteries.battery battery1(Vnominal=100) annotation(Placement(transformation(
-				origin={22.2908,-0.967419},
-				extent={{10,-10},{-10,10}},
-				rotation=90)));
-			Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(transformation(
-				origin={12.6299,-30.0696},
+				origin={-10,-5},
 				extent={{-10,-10},{10,10}})));
+			Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(transformation(
+				origin={35,-5},
+				extent={{-10,-10},{10,10}},
+				rotation=90)));
 			equation
-				connect(battery1.n,ground1.p) annotation(Line(points={{22,-11},{22,-16},{18,-16},{18,-15},{13,-15},{13,
-				-20}}));
-				connect(battery1.n,int_Xn.gnd) annotation(Line(points={{22,-11},{22,-16},{-21,-16},{-21,-6},{-64,-6},{-69,
-				-6}}));
-				connect(int_Xn.vcc,battery1.p) annotation(Line(
-					points={{-69,-2},{-64,-2},{-64,14},{22,14},{22,9}},
+				connect(int_Zp.gnd,battery1.n) annotation(Line(
+					points={{6,26},{6,21},{6,-5},{5,-5},{0,-5}},
+					thickness=0.0625));
+				connect(battery1.p,int_Xp.vcc) annotation(Line(
+					points={{-20,-5},{-25,-5},{-40,-5},{-40,21},{-40,26}},
+					thickness=0.0625));
+				connect(int_Zp.gnd,ground1.p) annotation(Line(
+					points={{6,26},{6,21},{6,-5},{20,-5},{25,-5}},
 					thickness=0.0625));
 			annotation(experiment(
 				StopTime=11000,
