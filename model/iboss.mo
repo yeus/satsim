@@ -223,7 +223,7 @@ model battery
 end battery;
 model verbraucher
 	import satcomponents.power.dcmodel;
-	extends iboss.buildingblocks.basic_ess_mss;
+	extends basic_ess_mss;
 	satcomponents.power.PCU pcu1 annotation(Placement(transformation(
 		origin={25,0},
 		extent={{-10,-10},{10,10}})));
@@ -249,31 +249,31 @@ model verbraucher
 		rotation=270)));
 	equation
 		connect(resistor3.n,pcu1.gnd) annotation(
-			Line(points={{80,-25},{85,-25},{85,-30},{40,-30},{35,-6}}),
+			Line(points={{80,-25},{85,-25},{85,-30},{40,-30},{35,-6.333335876464844}}),
 			AutoRoute=false);
 		connect(capacitor1.p,ground1.p) annotation(Line(points={{-50,-10},{-50,-15},{-50,-20}}));
 		connect(pcu1.GND,pcu1.gnd) annotation(
-			Line(points={{15,-5},{15,-15},{35,-15},{35,-7}}),
+			Line(points={{15,-4.333335876464844},{15,-15},{35,-15},{35,-6.333335876464844}}),
 			AutoRoute=false);
 		connect(resistor2.n,resistor3.n) annotation(Line(points={{80,-10},{85,-10},{85,-25},{80,-25}}));
 		connect(resistor1.n,resistor2.n) annotation(Line(points={{80,5},{85,5},{85,-10},{80,-10}}));
 		connect(resistor3.p,pcu1.VCC3) annotation(
-			Line(points={{60,-25},{55,-25},{50,-25},{50,-2},{35,-2}}),
+			Line(points={{60,-25},{55,-25},{50,-25},{50,-2},{35,-2.333335876464844}}),
 			AutoRoute=false);
 		connect(pcu1.VCC12,resistor1.p) annotation(Line(points={{35,4},{40,4},{55,4},{55,5},{60,5}}));
 		connect(pcu1.VCC5,resistor2.p) annotation(Line(points={{35,1},{40,1},{55,1},{55,-10},{60,-10}}));
 		connect(int_Xn.vcc,pcu1.VCC) annotation(Line(points={{35,26},{35,21},{10,21},{10,1},{15,1}}));
 		connect(int_Xn.gnd,pcu1.GND) annotation(
-			Line(points={{31,26},{31,21},{5,21},{5,-4},{15,-4}}),
+			Line(points={{31,25.66666412353516},{31,21},{5,21},{5,-4},{15,-4.333335876464844}}),
 			AutoRoute=false);
 		connect(capacitor1.n,int_Xp.gnd) annotation(Line(
 			points={{-50,10},{-50,15},{-50,21},{-44,21},{-44,26}},
 			thickness=0.0625));
 		connect(capacitor2.p,int_Yp.vcc) annotation(Line(
-			points={{-10,10},{-10,15},{-10,20},{-15,21},{-15,26}},
+			points={{-10,10},{-10,15},{-10,21},{-15,21},{-15,26}},
 			thickness=0.0625));
 		connect(capacitor2.n,int_Yp.gnd) annotation(Line(
-			points={{-10,-10},{-10,-15},{-20,-15},{-20,20},{-20,21},{-19,
+			points={{-10,-10},{-10,-15},{-20,-15},{-20,21},{-19,21},{-19,
 			26}},
 			thickness=0.0625));
 	annotation(experiment(
@@ -281,7 +281,59 @@ model verbraucher
 		StartTime=0,
 		Tolerance=0.0001));
 end verbraucher;
-model basic_ess_mss
+model basic_ess_mss "basic_ess_mss"
+	iboss.components.iboss_connector Yp annotation(Placement(
+		transformation(
+			origin={-13,63},
+			extent={{-12,-12},{12,12}},
+			rotation=-90),
+		iconTransformation(
+			origin={0.337268,99.4941},
+			extent={{-12,-12},{12,12}})));
+	iboss.components.iboss_connector Zp annotation(Placement(
+		transformation(
+			origin={12,63},
+			extent={{-12,12},{12,-12}},
+			rotation=90),
+		iconTransformation(
+			origin={-100,50},
+			extent={{-12,12},{12,-12}},
+			rotation=90)));
+	iboss.components.iboss_connector Xn annotation(Placement(
+		transformation(
+			origin={37,63},
+			extent={{-12,-12},{12,12}},
+			rotation=-90),
+		iconTransformation(
+			origin={-100,0},
+			extent={{-12,-12},{12,12}},
+			rotation=-90)));
+	iboss.components.iboss_connector Xp annotation(Placement(
+		transformation(
+			origin={-38,63},
+			extent={{-12,12},{12,-12}},
+			rotation=-270),
+		iconTransformation(
+			origin={99.8314,0.337268},
+			extent={{-12,-12},{12,12}})));
+	iboss.components.iboss_connector Zn annotation(Placement(
+		transformation(
+			origin={87,63},
+			extent={{-12,12},{12,-12}},
+			rotation=-270),
+		iconTransformation(
+			origin={100,-50},
+			extent={{12,12},{-12,-12}},
+			rotation=-180)));
+	iboss.components.iboss_connector Yn annotation(Placement(
+		transformation(
+			origin={62,63},
+			extent={{-12,-12},{12,12}},
+			rotation=-90),
+		iconTransformation(
+			origin={-0.529784,-91.0638},
+			extent={{12,-12},{-12,12}},
+			rotation=-270)));
 	iboss.components.iboss_interface int_Xn annotation(Placement(transformation(
 		origin={37,38},
 		extent={{-12,-12},{12,12}},
@@ -294,60 +346,18 @@ model basic_ess_mss
 		origin={-13,38},
 		extent={{12,12},{-12,-12}},
 		rotation=-270)));
-	iboss.components.iboss_connector Yp annotation(Placement(
-		transformation(
-			origin={-13,63},
-			extent={{-12,-12},{12,12}},
-			rotation=-90),
-		iconTransformation(
-			origin={0.337268,99.4941},
-			extent={{-12,-12},{12,12}})));
-	iboss.components.iboss_connector Zp annotation(Placement(transformation(
-		origin={12,63},
-		extent={{-12,12},{12,-12}},
-		rotation=90)));
 	iboss.components.iboss_interface int_Yn annotation(Placement(transformation(
 		origin={62,38},
-		extent={{-12,-12},{12,12}},
-		rotation=-90)));
-	iboss.components.iboss_connector Xn annotation(Placement(transformation(
-		origin={37,63},
 		extent={{-12,-12},{12,12}},
 		rotation=-90)));
 	iboss.components.iboss_interface int_Zn annotation(Placement(transformation(
 		origin={87,38},
 		extent={{12,12},{-12,-12}},
 		rotation=-270)));
-	iboss.components.iboss_connector Xp annotation(Placement(
-		transformation(
-			origin={-38,63},
-			extent={{-12,12},{12,-12}},
-			rotation=-270),
-		iconTransformation(
-			origin={99.8314,0.337268},
-			extent={{-12,-12},{12,12}})));
 	iboss.components.iboss_interface int_Xp annotation(Placement(transformation(
 		origin={-38,38},
 		extent={{12,12},{-12,-12}},
 		rotation=-270)));
-	iboss.components.iboss_connector Zn annotation(Placement(
-		transformation(
-			origin={87,63},
-			extent={{-12,12},{12,-12}},
-			rotation=-270),
-		iconTransformation(
-			origin={62.9702,-58.2499},
-			extent={{12,12},{-12,-12}},
-			rotation=-180)));
-	iboss.components.iboss_connector Yn annotation(Placement(
-		transformation(
-			origin={62,63},
-			extent={{-12,-12},{12,12}},
-			rotation=-90),
-		iconTransformation(
-			origin={-0.529784,-91.0638},
-			extent={{12,-12},{-12,12}},
-			rotation=-270)));
 	equation
 		connect(Yn,int_Yn.iBoss_connector) annotation(Line(points={{62,63},{57,63},{57,59},{62,59},{62,55},{62,
 		50}}));
@@ -405,45 +415,45 @@ model basic_ess_mss
 		Icon(
 			coordinateSystem(extent={{-100,-100},{100,100}}),
 			graphics={
-												Rectangle(
-												fillColor={0,0,255},
-											extent={{-77.2278,76.02549999999999},{74.95610000000001,-75.256}}),
-										Rectangle(
-											fillColor={0,0,255},
-											extent={{-69.5191,69.42019999999999},{66.9674,-68.4328}}),
-										Ellipse(
-											fillColor={0,0,255},
-											extent={{-20.2122,18.7864},{19.355,-20.778}}),
-										Ellipse(
-											fillColor={0,0,255},
-											extent={{-15.3692,13.9434},{14.512,-15.6521}}),
-										Ellipse(
-											fillColor={0,0,255},
-											extent={{-1.42575,0.571424},{0.288544,-1.14286}}),
-										Rectangle(
-											fillColor={255,255,255},
-											fillPattern=FillPattern.Solid,
-											extent={{-74.37909999999999,15.6917},{-79.2362,-16.0226}}),
-										Rectangle(
-											fillColor={255,255,255},
-											fillPattern=FillPattern.Solid,
-											extent={{-15.9916,77.18810000000001},{15.1513,72.0453}}),
-										Rectangle(
-											fillColor={255,255,255},
-											fillPattern=FillPattern.Solid,
-											extent={{73.239,13.1174},{77.5247,-13.7397}}),
-										Rectangle(
-											fillColor={255,255,255},
-											fillPattern=FillPattern.Solid,
-											extent={{-15.4145,-72.9759},{16.5855,-77.833}}),
-										Text(
-											textString="%name",
-											fillColor={0,0,255},
-											extent={{-49.505,66.761},{55.4455,27.4399}})}),
-Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
-experiment(
-	StopTime=1,
-	StartTime=0));
+								Rectangle(
+									fillColor={0,0,255},
+									extent={{-77.2278,76.02549999999999},{74.95610000000001,-75.256}}),
+								Rectangle(
+									fillColor={0,0,255},
+									extent={{-69.5191,69.42019999999999},{66.9674,-68.4328}}),
+								Ellipse(
+									fillColor={0,0,255},
+									extent={{-20.2122,18.7864},{19.355,-20.778}}),
+								Ellipse(
+									fillColor={0,0,255},
+									extent={{-15.3692,13.9434},{14.512,-15.6521}}),
+								Ellipse(
+									fillColor={0,0,255},
+									extent={{-1.42575,0.571424},{0.288544,-1.14286}}),
+								Rectangle(
+									fillColor={255,255,255},
+									fillPattern=FillPattern.Solid,
+									extent={{-74.37909999999999,15.6917},{-79.2362,-16.0226}}),
+								Rectangle(
+									fillColor={255,255,255},
+									fillPattern=FillPattern.Solid,
+									extent={{-15.9916,77.18810000000001},{15.1513,72.0453}}),
+								Rectangle(
+									fillColor={255,255,255},
+									fillPattern=FillPattern.Solid,
+									extent={{73.239,13.1174},{77.5247,-13.7397}}),
+								Rectangle(
+									fillColor={255,255,255},
+									fillPattern=FillPattern.Solid,
+									extent={{-15.4145,-72.9759},{16.5855,-77.833}}),
+								Text(
+									textString="%name",
+									fillColor={0,0,255},
+									extent={{-49.505,66.761},{55.4455,27.4399}})}),
+		Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
+		experiment(
+			StopTime=1,
+			StartTime=0));
 end basic_ess_mss;
 model basic_ess
 	iboss.components.iboss_connector Xn annotation(Placement(
@@ -904,15 +914,6 @@ package satellites
 		annotation(
 			bb9(int_Xn(vcc(v(flags=2)))),
 			battery1(battery1(v(flags=2))),
-			viewinfo[2](
-				staticBlocks[0](
-					frame(
-						style=0,
-						width=0,
-						color=0),
-					index=0,
-					typename="Displ"),
-				typename="ModelInfo"),
 			experiment(
 				StopTime=10000,
 				StartTime=0,
