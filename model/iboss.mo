@@ -271,114 +271,128 @@ package iboss
 				Tolerance=0.0001));
 		end verbraucher;
 		model basic_ess_mss
-			iboss.components.iboss_interface int_Xn annotation(Placement(
-				visible=true,
-				transformation(
-					origin={-80.9052,0},
-					extent={{-12,-12},{12,12}},
-					rotation=0)));
-			iboss.components.iboss_interface int_Zp annotation(Placement(
-				visible=true,
-				transformation(
-					origin={-43.2815,61.1033},
-					extent={{-12,-12},{12,12}},
-					rotation=0)));
-			iboss.components.iboss_interface int_Yp annotation(Placement(
-				visible=true,
-				transformation(
-					origin={-0.848656,81.471},
-					extent={{-12,12},{12,-12}},
-					rotation=-90)));
+			iboss.components.iboss_interface int_Xn annotation(Placement(transformation(
+				origin={37,38},
+				extent={{-12,-12},{12,12}},
+				rotation=-90)));
+			iboss.components.iboss_interface int_Zp annotation(Placement(transformation(
+				origin={12,38},
+				extent={{-12,-12},{12,12}},
+				rotation=-90)));
+			iboss.components.iboss_interface int_Yp annotation(Placement(transformation(
+				origin={-13,38},
+				extent={{12,12},{-12,-12}},
+				rotation=-270)));
 			iboss.components.iboss_connector Yp annotation(Placement(
-				visible=true,
 				transformation(
-					origin={0.337268,99.4941},
-					extent={{-12,12},{12,-12}},
+					origin={-13,63},
+					extent={{-12,-12},{12,12}},
 					rotation=-90),
 				iconTransformation(
 					origin={0.337268,99.4941},
-					extent={{-12,-12},{12,12}},
-					rotation=0)));
-			iboss.components.iboss_connector Zp annotation(Placement(
-				visible=true,
-				transformation(
-					origin={-61.7917,60.4895},
-					extent={{-12,-12},{12,12}},
-					rotation=0)));
-			iboss.components.iboss_interface int_Yn annotation(Placement(
-				visible=true,
-				transformation(
-					origin={-0.848656,-72.8863},
-					extent={{-12,-12},{12,12}},
-					rotation=90)));
-			iboss.components.iboss_connector Xn annotation(Placement(
-				visible=true,
-				transformation(
-					origin={-101.527,-0.466164},
-					extent={{-12,-12},{12,12}},
-					rotation=0)));
-			iboss.components.iboss_interface int_Zn annotation(Placement(
-				visible=true,
-				transformation(
-					origin={45.2678,-53.5704},
-					extent={{-12,12},{12,-12}},
-					rotation=-180)));
+					extent={{-12,-12},{12,12}})));
+			iboss.components.iboss_connector Zp annotation(Placement(transformation(
+				origin={12,63},
+				extent={{-12,12},{12,-12}},
+				rotation=90)));
+			iboss.components.iboss_interface int_Yn annotation(Placement(transformation(
+				origin={62,38},
+				extent={{-12,-12},{12,12}},
+				rotation=-90)));
+			iboss.components.iboss_connector Xn annotation(Placement(transformation(
+				origin={37,63},
+				extent={{-12,-12},{12,12}},
+				rotation=-90)));
+			iboss.components.iboss_interface int_Zn annotation(Placement(transformation(
+				origin={87,38},
+				extent={{12,12},{-12,-12}},
+				rotation=-270)));
 			iboss.components.iboss_connector Xp annotation(Placement(
-				visible=true,
 				transformation(
-					origin={99.8314,0.337268},
+					origin={-38,63},
 					extent={{-12,12},{12,-12}},
-					rotation=-180),
+					rotation=-270),
 				iconTransformation(
 					origin={99.8314,0.337268},
-					extent={{-12,-12},{12,12}},
-					rotation=0)));
-			iboss.components.iboss_interface int_Xp annotation(Placement(
-				visible=true,
-				transformation(
-					origin={80.3395,0.873184},
-					extent={{-12,12},{12,-12}},
-					rotation=-180)));
+					extent={{-12,-12},{12,12}})));
+			iboss.components.iboss_interface int_Xp annotation(Placement(transformation(
+				origin={-38,38},
+				extent={{12,12},{-12,-12}},
+				rotation=-270)));
 			iboss.components.iboss_connector Zn annotation(Placement(
-				visible=true,
 				transformation(
-					origin={62.9702,-53.6256},
+					origin={87,63},
 					extent={{-12,12},{12,-12}},
-					rotation=-180),
+					rotation=-270),
 				iconTransformation(
 					origin={62.9702,-58.2499},
 					extent={{12,12},{-12,-12}},
 					rotation=-180)));
 			iboss.components.iboss_connector Yn annotation(Placement(
-				visible=true,
 				transformation(
-					origin={-0.529784,-91.0638},
+					origin={62,63},
 					extent={{-12,-12},{12,12}},
-					rotation=-270),
+					rotation=-90),
 				iconTransformation(
 					origin={-0.529784,-91.0638},
 					extent={{12,-12},{-12,12}},
 					rotation=-270)));
 			equation
-				connect(int_Zn.gnd,int_Xp.gnd) annotation(Line(points = {{33.0811,-59.6807},{25.1768,-59.6807},{25.1768,-37.058},{61.1033,-37.058},{61.1033,6.22348},{68.1528,-5.23714},{68.1528,-5.23714}}));
-				connect(int_Xp.vcc,int_Zn.vcc) annotation(Line(points = {{68.1867,-1.29937},{63.3663,-1.29937},{63.3663,-39.604},{27.7228,-39.604},{27.7228,-59.6888},{32.826,-55.7429},{33.1151,-55.7429}}));
-				connect(int_Zn.vcc,int_Yn.vcc) annotation(Line(points = {{33.1151,-55.7429},{1.13154,-55.7429},{1.3239,-65.3578},{1.3239,-60.7336}}));
-				connect(int_Yn.gnd,int_Zn.gnd) annotation(Line(points = {{5.26167,-60.6996},{5.26167,-65.3239},{5.37482,-58.5573},{25.1768,-58.5573},{25.1768,-55.4455},{33.0811,-55.4455},{33.0811,-59.6807}}));
-				connect(int_Xn.gnd,int_Yn.gnd) annotation(Line(points = {{-68.7185,-6.11033},{-59.1231,-6.11033},{-59.1231,-58.5573},{5.37482,-58.5573},{5.26167,-65.3239},{5.26167,-60.6996}}));
-				connect(int_Yn.vcc,int_Xn.vcc) annotation(Line(points = {{1.3239,-60.7336},{1.3239,-65.3578},{1.13154,-59.6888},{-61.3861,-59.6888},{-61.3861,-2.26308},{-68.7524,-2.26308},{-68.7524,-2.17255}}));
-				connect(int_Zp.gnd,int_Xn.gnd) annotation(Line(points = {{-31.0948,54.993},{-23.4795,54.993},{-23.4795,38.7553},{-58.8402,38.7553},{-58.8402,-6.50636},{-68.7185,-6.50636},{-68.7185,-6.11033}}));
-				connect(int_Yp.gnd,int_Zp.gnd) annotation(Line(points = {{-6.95898,69.2843},{-7.35502,69.2843},{-7.35502,61.1033},{-23.1966,61.1033},{-23.1966,54.8798},{-31.0948,54.8798},{-31.0948,54.993}}));
-				connect(int_Zp.vcc,int_Yp.vcc) annotation(Line(points = {{-31.1287,58.9307},{-26.5912,58.9307},{-26.5912,63.9321},{-3.67751,63.9321},{-3.67751,69.3182},{-3.02121,69.3182}}));
-				connect(int_Xn.vcc,int_Zp.vcc) annotation(Line(points = {{-68.7524,-2.17255},{-61.3861,-2.17255},{-61.3861,41.0184},{-26.0255,41.0184},{-26.0255,59.1231},{-31.1287,59.1231},{-31.1287,58.9307}}));
-				connect(Yn,int_Yn.iBoss_connector);
-				connect(Xn,int_Xn.iBoss_connector);
-				connect(Zp,int_Zp.iBoss_connector);
-				connect(Yp,int_Yp.iBoss_connector);
-				connect(Xp,int_Xp.iBoss_connector);
-				connect(Zn,int_Zn.iBoss_connector);
+				connect(Yn,int_Yn.iBoss_connector) annotation(Line(points={{62,63},{57,63},{57,59},{62,59},{62,55},{62,
+				50}}));
+				connect(Xn,int_Xn.iBoss_connector) annotation(Line(points={{37,63},{32,63},{32,59},{37,59},{37,55},{37,
+				50}}));
+				connect(Zp,int_Zp.iBoss_connector) annotation(Line(points={{12,63},{7,63},{7,59},{12,59},{12,55},{12,
+				50}}));
+				connect(Yp,int_Yp.iBoss_connector) annotation(Line(points={{-13,63},{-18,63},{-18,59},{-13,59},{-13,55},{-13,
+				50}}));
+				connect(Xp,int_Xp.iBoss_connector) annotation(Line(points={{-38,63},{-43,63},{-43,59},{-38,59},{-38,55},{-38,
+				50}}));
+				connect(Zn,int_Zn.iBoss_connector) annotation(Line(points={{87,63},{82,63},{82,59},{87,59},{87,55},{87,
+				50}}));
 			annotation(
-				Diagram,
-				Icon(graphics={Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-77.2278,76.0255},{74.9561,-75.256}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-69.5191,69.4202},{66.9674,-68.4328}}),Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-20.2122,18.7864},{19.355,-20.778}}),Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-15.3692,13.9434},{14.512,-15.6521}}),Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-1.42575,0.571424},{0.288544,-1.14286}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-74.3791,15.6917},{-79.2362,-16.0226}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-15.9916,77.1881},{15.1513,72.0453}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{73.239,13.1174},{77.5247,-13.7397}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-15.4145,-72.9759},{16.5855,-77.833}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-49.505,66.761},{55.4455,27.4399}}, textString = "%name")}));
+				Icon(
+					coordinateSystem(extent={{-100,-100},{100,100}}),
+					graphics={
+										Rectangle(
+											fillColor={0,0,255},
+											extent={{-77.2278,76.02549999999999},{74.95610000000001,-75.256}}),
+										Rectangle(
+											fillColor={0,0,255},
+											extent={{-69.5191,69.42019999999999},{66.9674,-68.4328}}),
+										Ellipse(
+											fillColor={0,0,255},
+											extent={{-20.2122,18.7864},{19.355,-20.778}}),
+										Ellipse(
+											fillColor={0,0,255},
+											extent={{-15.3692,13.9434},{14.512,-15.6521}}),
+										Ellipse(
+											fillColor={0,0,255},
+											extent={{-1.42575,0.571424},{0.288544,-1.14286}}),
+										Rectangle(
+											fillColor={255,255,255},
+											fillPattern=FillPattern.Solid,
+											extent={{-74.37909999999999,15.6917},{-79.2362,-16.0226}}),
+										Rectangle(
+											fillColor={255,255,255},
+											fillPattern=FillPattern.Solid,
+											extent={{-15.9916,77.18810000000001},{15.1513,72.0453}}),
+										Rectangle(
+											fillColor={255,255,255},
+											fillPattern=FillPattern.Solid,
+											extent={{73.239,13.1174},{77.5247,-13.7397}}),
+										Rectangle(
+											fillColor={255,255,255},
+											fillPattern=FillPattern.Solid,
+											extent={{-15.4145,-72.9759},{16.5855,-77.833}}),
+										Text(
+											textString="%name",
+											fillColor={0,0,255},
+											extent={{-49.505,66.761},{55.4455,27.4399}})}),
+				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
+				experiment(
+					StopTime=1,
+					StartTime=0));
 		end basic_ess_mss;
 		model basic_ess
 			iboss.components.iboss_connector Xn annotation(Placement(
