@@ -350,6 +350,46 @@ package iboss
 				50}}));
 				connect(Zn,int_Zn.iBoss_connector) annotation(Line(points={{87,63},{82,63},{82,59},{87,59},{87,55},{87,
 				50}}));
+				connect(int_Xp.vcc,int_Yp.vcc) annotation(Line(
+					points={{-40,26},{-40,21},{-15,21},{-15,26}},
+					thickness=0.0625));
+				connect(int_Yp.vcc,int_Zp.vcc) annotation(Line(
+					points={{-15,26},{-15,21},{10,21},{10,26}},
+					thickness=0.0625));
+				connect(int_Zp.vcc,int_Xn.vcc) annotation(Line(
+					points={{10,26},{10,21},{35,21},{35,26}},
+					thickness=0.0625));
+				connect(int_Xn.vcc,int_Yn.vcc) annotation(Line(
+					points={{35,26},{35,21},{60,21},{60,26}},
+					thickness=0.0625));
+				connect(int_Yn.vcc,int_Zn.vcc) annotation(Line(
+					points={{60,26},{60,21},{85,21},{85,26}},
+					thickness=0.0625));
+				connect(int_Zn.gnd,int_Yn.gnd) annotation(
+					Line(
+						points={{81,25.66666412353516},{81,15},{56,15},{56,25.66666412353516}},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(int_Xn.gnd,int_Yn.gnd) annotation(
+					Line(
+						points={{31,25.66666412353516},{31,15},{56,15},{56,25.66666412353516}},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(int_Zp.gnd,int_Xn.gnd) annotation(
+					Line(
+						points={{6,25.66666412353516},{6,15},{31,15},{31,25.66666412353516}},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(int_Yp.gnd,int_Zp.gnd) annotation(
+					Line(
+						points={{-19,25.66666412353516},{-19,15},{6,15},{6,25.66666412353516}},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(int_Xp.gnd,int_Yp.gnd) annotation(
+					Line(
+						points={{-44,26},{-44,15},{-19,15},{-19,26}},
+						thickness=0.0625),
+					AutoRoute=false);
 			annotation(
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
