@@ -225,16 +225,16 @@ model verbraucher
 	import satcomponents.power.dcmodel;
 	extends iboss.buildingblocks.basic_ess_mss;
 	satcomponents.power.PCU pcu1 annotation(Placement(transformation(
-		origin={10,0},
+		origin={25,0},
 		extent={{-10,-10},{10,10}})));
 	Modelica.Electrical.Analog.Basic.Resistor resistor1(R=1) annotation(Placement(transformation(
-		origin={55,5},
+		origin={70,5},
 		extent={{-10,-10},{10,10}})));
 	Modelica.Electrical.Analog.Basic.Resistor resistor2(R=100) annotation(Placement(transformation(
-		origin={55,-10},
+		origin={70,-10},
 		extent={{-10,-10},{10,10}})));
 	Modelica.Electrical.Analog.Basic.Resistor resistor3(R=100) annotation(Placement(transformation(
-		origin={55,-25},
+		origin={70,-25},
 		extent={{-10,-10},{10,10}})));
 	Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C=0.00000001) annotation(Placement(transformation(
 		origin={-50,0},
@@ -249,32 +249,32 @@ model verbraucher
 		rotation=270)));
 	equation
 		connect(resistor3.n,pcu1.gnd) annotation(
-			Line(points={{65,-25},{70,-25},{70,-30},{25,-30},{20,-6}}),
+			Line(points={{80,-25},{85,-25},{85,-30},{40,-30},{35,-6}}),
 			AutoRoute=false);
 		connect(capacitor1.p,ground1.p) annotation(Line(points={{-50,-10},{-50,-15},{-50,-20}}));
 		connect(pcu1.GND,pcu1.gnd) annotation(
-			Line(points={{0,-5},{0,-10},{20,-10},{20,-7}}),
+			Line(points={{15,-5},{15,-15},{35,-15},{35,-7}}),
 			AutoRoute=false);
-		connect(resistor2.n,resistor3.n) annotation(Line(points={{65,-10},{70,-10},{70,-25},{65,-25}}));
-		connect(resistor1.n,resistor2.n) annotation(Line(points={{65,5},{70,5},{70,-10},{65,-10}}));
+		connect(resistor2.n,resistor3.n) annotation(Line(points={{80,-10},{85,-10},{85,-25},{80,-25}}));
+		connect(resistor1.n,resistor2.n) annotation(Line(points={{80,5},{85,5},{85,-10},{80,-10}}));
 		connect(resistor3.p,pcu1.VCC3) annotation(
-			Line(points={{45,-25},{40,-25},{35,-25},{35,-2},{20,-2}}),
+			Line(points={{60,-25},{55,-25},{50,-25},{50,-2},{35,-2}}),
 			AutoRoute=false);
-		connect(pcu1.VCC12,resistor1.p) annotation(Line(points={{20,4},{25,4},{40,4},{40,5},{45,5}}));
-		connect(pcu1.VCC5,resistor2.p) annotation(Line(points={{20,1},{25,1},{40,1},{40,-10},{45,-10}}));
-		connect(int_Xn.vcc,pcu1.VCC) annotation(Line(points={{35,26},{35,21},{-5,21},{-5,1},{0,1}}));
-		connect(int_Xn.gnd,pcu1.GND) annotation(Line(points={{31,26},{31,21},{-5,21},{-5,-4},{0,-4}}));
-		connect(capacitor2.p,int_Xn.vcc) annotation(Line(
-			points={{-10,10},{-10,15},{-10,21},{35,21},{35,26}},
-			thickness=0.0625));
-		connect(capacitor2.n,int_Xn.gnd) annotation(
-			Line(
-				points={{-10,-10},{-10,-15},{-25,-15},{-25,21},{31,26},{31,
-				26}},
-				thickness=0.0625),
+		connect(pcu1.VCC12,resistor1.p) annotation(Line(points={{35,4},{40,4},{55,4},{55,5},{60,5}}));
+		connect(pcu1.VCC5,resistor2.p) annotation(Line(points={{35,1},{40,1},{55,1},{55,-10},{60,-10}}));
+		connect(int_Xn.vcc,pcu1.VCC) annotation(Line(points={{35,26},{35,21},{10,21},{10,1},{15,1}}));
+		connect(int_Xn.gnd,pcu1.GND) annotation(
+			Line(points={{31,26},{31,21},{5,21},{5,-4},{15,-4}}),
 			AutoRoute=false);
 		connect(capacitor1.n,int_Xp.gnd) annotation(Line(
 			points={{-50,10},{-50,15},{-50,21},{-44,21},{-44,26}},
+			thickness=0.0625));
+		connect(capacitor2.p,int_Yp.vcc) annotation(Line(
+			points={{-10,10},{-10,15},{-10,20},{-15,21},{-15,26}},
+			thickness=0.0625));
+		connect(capacitor2.n,int_Yp.gnd) annotation(Line(
+			points={{-10,-10},{-10,-15},{-20,-15},{-20,20},{-20,21},{-19,
+			26}},
 			thickness=0.0625));
 	annotation(experiment(
 		StopTime=11000,
@@ -659,15 +659,6 @@ package satellites
 			connect(trapezoid1.y,s1.u) annotation(Line(points={{-60.2187,-43.5587},{-25,-43.5587},{-25,-42.3333},{-25,-42.3333}}));
 		annotation(
 			b1(int_Xn(vcc(v(flags=2)))),
-			viewinfo[2](
-				staticBlocks[0](
-					frame(
-						style=0,
-						width=0,
-						color=0),
-					index=0,
-					typename="Displ"),
-				typename="ModelInfo"),
 			experiment(
 				StopTime=20000,
 				StartTime=0,
@@ -737,110 +728,110 @@ package satellites
 			connect(connectionelement2.int2,bb_verbraucher1.Xp) annotation(Line(points = {{-4.26343,-3.23089},{-11.1429,-3.23089},{-11.1429,-2.85211},{-11.0945,-2.85211}}));
 	end EVS4x1x1;
 	model EVS2x2x3
-		iboss.buildingblocks.verbraucher bb9 annotation(Placement(transformation(
+		buildingblocks.verbraucher bb9 annotation(Placement(transformation(
 			origin={10.4503,24.8534},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.buildingblocks.verbraucher bb8 annotation(Placement(transformation(
+		buildingblocks.verbraucher bb8 annotation(Placement(transformation(
 			origin={35.0094,25.4955},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.buildingblocks.verbraucher bb6 annotation(Placement(transformation(
+		buildingblocks.verbraucher bb6 annotation(Placement(transformation(
 			origin={9.9688,52.1413},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.components.connectionelement conn19 annotation(Placement(transformation(
+		components.connectionelement conn19 annotation(Placement(transformation(
 			origin={22.8756,25.3731},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.components.connectionelement conn18 annotation(Placement(transformation(
+		components.connectionelement conn18 annotation(Placement(transformation(
 			origin={22.8756,51.6978},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.buildingblocks.verbraucher bb2 annotation(Placement(transformation(
+		buildingblocks.verbraucher bb2 annotation(Placement(transformation(
 			origin={-40.594,28.5453},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.buildingblocks.verbraucher bb4 annotation(Placement(transformation(
+		buildingblocks.verbraucher bb4 annotation(Placement(transformation(
 			origin={-65.31359999999999,53.1044},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.buildingblocks.verbraucher bb5 annotation(Placement(transformation(
+		buildingblocks.verbraucher bb5 annotation(Placement(transformation(
 			origin={-41.0755,52.1413},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.components.connectionelement conn16 annotation(Placement(transformation(
+		components.connectionelement conn16 annotation(Placement(transformation(
 			origin={-52.8884,52.1794},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.components.connectionelement conn17 annotation(Placement(transformation(
+		components.connectionelement conn17 annotation(Placement(transformation(
 			origin={-53.0489,28.1019},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.components.connectionelement conn9 annotation(Placement(transformation(
+		components.connectionelement conn9 annotation(Placement(transformation(
 			origin={-16.451,61.4894},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.components.connectionelement conn8 annotation(Placement(transformation(
+		components.connectionelement conn8 annotation(Placement(transformation(
 			origin={-16.13,48.648},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.components.connectionelement conn7 annotation(Placement(transformation(
+		components.connectionelement conn7 annotation(Placement(transformation(
 			origin={-16.13,35.3251},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.components.connectionelement conn6 annotation(Placement(transformation(
+		components.connectionelement conn6 annotation(Placement(transformation(
 			origin={-15.9695,22.1627},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.buildingblocks.verbraucher bb11 annotation(Placement(transformation(
+		buildingblocks.verbraucher bb11 annotation(Placement(transformation(
 			origin={10.7714,-10.7813},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.buildingblocks.verbraucher bb12 annotation(Placement(transformation(
+		buildingblocks.verbraucher bb12 annotation(Placement(transformation(
 			origin={10.4503,-34.3773},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.components.connectionelement conn20 annotation(Placement(transformation(
+		components.connectionelement conn20 annotation(Placement(transformation(
 			origin={23.3571,-10.9037},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.components.connectionelement conn1 annotation(Placement(transformation(
+		components.connectionelement conn1 annotation(Placement(transformation(
 			origin={23.6782,-34.6602},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.buildingblocks.verbraucher bb7 annotation(Placement(transformation(
+		buildingblocks.verbraucher bb7 annotation(Placement(transformation(
 			origin={35.3304,52.1413},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.buildingblocks.verbraucher bb10 annotation(Placement(transformation(
+		buildingblocks.verbraucher bb10 annotation(Placement(transformation(
 			origin={35.491,-10.2998},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.buildingblocks.verbraucher bb1 annotation(Placement(transformation(
+		buildingblocks.verbraucher bb1 annotation(Placement(transformation(
 			origin={35.9725,-34.5378},
 			extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
-		iboss.components.connectionelement conn12 annotation(Placement(transformation(
+		components.connectionelement conn12 annotation(Placement(transformation(
 			origin={10.5158,-22.6214},
 			extent={{-5.08917,5.08917},{5.08917,-5.08917}},
 			rotation=-90)));
-		iboss.components.connectionelement conn13 annotation(Placement(transformation(
+		components.connectionelement conn13 annotation(Placement(transformation(
 			origin={35.5564,-22.6214},
 			extent={{-5.08917,5.08917},{5.08917,-5.08917}},
 			rotation=-90)));
-		iboss.components.connectionelement conn15 annotation(Placement(transformation(
+		components.connectionelement conn15 annotation(Placement(transformation(
 			origin={9.552670000000001,39.9801},
 			extent={{-5.08917,5.08917},{5.08917,-5.08917}},
 			rotation=-90)));
-		iboss.components.connectionelement conn11 annotation(Placement(transformation(
+		components.connectionelement conn11 annotation(Placement(transformation(
 			origin={-41.0101,40.7827},
 			extent={{-5.08917,5.08917},{5.08917,-5.08917}},
 			rotation=-90)));
-		iboss.components.connectionelement conn10 annotation(Placement(transformation(
+		components.connectionelement conn10 annotation(Placement(transformation(
 			origin={-65.5692,40.6222},
 			extent={{-5.08917,5.08917},{5.08917,-5.08917}},
 			rotation=-90)));
-		iboss.components.connectionelement conn4 annotation(Placement(transformation(
+		components.connectionelement conn4 annotation(Placement(transformation(
 			origin={19.8257,6.75313},
 			extent={{-5.08917,5.08917},{5.08917,-5.08917}},
 			rotation=-90)));
-		iboss.components.connectionelement conn3 annotation(Placement(transformation(
+		components.connectionelement conn3 annotation(Placement(transformation(
 			origin={32.8276,6.75313},
 			extent={{-5.08917,5.08917},{5.08917,-5.08917}},
 			rotation=-90)));
-		iboss.components.connectionelement conn14 annotation(Placement(transformation(
+		components.connectionelement conn14 annotation(Placement(transformation(
 			origin={35.3959,39.1775},
 			extent={{-5.08917,5.08917},{5.08917,-5.08917}},
 			rotation=-90)));
-		iboss.components.connectionelement conn5 annotation(Placement(transformation(
+		components.connectionelement conn5 annotation(Placement(transformation(
 			origin={6.66337,6.59262},
 			extent={{-5.08917,5.08917},{5.08917,-5.08917}},
 			rotation=-90)));
-		iboss.components.connectionelement conn2 annotation(Placement(transformation(
+		components.connectionelement conn2 annotation(Placement(transformation(
 			origin={45.0269,7.07417},
 			extent={{-5.08917,5.08917},{5.08917,-5.08917}},
 			rotation=-90)));
-		iboss.buildingblocks.solar bb_solar1 annotation(Placement(transformation(
+		buildingblocks.solar bb_solar1 annotation(Placement(transformation(
 			origin={-40,-10},
 			extent={{5.08917,5.08917},{-5.08917,-5.08917}})));
 		Modelica.Blocks.Sources.Trapezoid trapezoid1(
@@ -851,10 +842,10 @@ package satellites
 			period=3000) annotation(Placement(transformation(
 			origin={-66,11},
 			extent={{-4.20593,-4.20593},{4.20593,4.20593}})));
-		iboss.components.connectionelement connectionelement1 annotation(Placement(transformation(
+		components.connectionelement connectionelement1 annotation(Placement(transformation(
 			origin={-11.0535,-10.7081},
 			extent={{-6.77369,-6.77369},{6.77369,6.77369}})));
-		iboss.buildingblocks.battery battery1 annotation(Placement(transformation(
+		buildingblocks.battery battery1 annotation(Placement(transformation(
 			origin={-66.00660000000001,27.6315},
 			extent={{-5.49199,-5.49199},{5.49199,5.49199}})));
 		equation
@@ -911,7 +902,17 @@ package satellites
 			connect(bb5.Yn,conn11.int2) annotation(Line(points={{-41.0909,47.2918},{-41.0909,45.1052},{-40.8051,45.1052},{-40.8051,45.2566}}));
 			connect(conn16.int1,bb5.Xn) annotation(Line(points={{-48.3823,52.4097},{-46.0683,52.4097},{-46.0683,52.1322},{-46.1689,52.1322}}));
 		annotation(
+			bb9(int_Xn(vcc(v(flags=2)))),
 			battery1(battery1(v(flags=2))),
+			viewinfo[2](
+				staticBlocks[0](
+					frame(
+						style=0,
+						width=0,
+						color=0),
+					index=0,
+					typename="Displ"),
+				typename="ModelInfo"),
 			experiment(
 				StopTime=10000,
 				StartTime=0,
