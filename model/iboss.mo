@@ -158,43 +158,44 @@ package iboss
 	package buildingblocks
 		model solar
 			extends iboss.buildingblocks.basic_ess_mss;
-			Modelica.Blocks.Interfaces.RealInput u annotation(Placement(
-				visible=true,
+			input Modelica.Blocks.Interfaces.RealInput u annotation(Placement(
 				transformation(
-					origin={221.308,-0.741443},
-					extent={{-12,-12},{12,12}},
-					rotation=0),
+					origin={102,-12},
+					extent={{-12,-12},{12,12}}),
 				iconTransformation(
 					origin={221.308,-0.741443},
 					extent={{-12,12},{12,-12}},
 					rotation=-90)));
 			satcomponents.power.solar_power.solarcell_simple solarcell_simple1(
 				N_p=100.0,
-				N_s=45.0) annotation(Placement(
-				visible=true,
-				transformation(
-					origin={1.41677,-10.1535},
-					extent={{-10,10},{10,-10}},
-					rotation=90)));
-			satcomponents.power.solar_power.SA_Regulator sa_regulator1(Vmax=100) annotation(Placement(
-				visible=true,
-				transformation(
-					origin={-32.4812,6.01504},
-					extent={{10,-10},{-10,10}},
-					rotation=0)));
+				N_s=45.0) annotation(Placement(transformation(
+				origin={75,-10},
+				extent={{-10,10},{10,-10}},
+				rotation=90)));
+			satcomponents.power.solar_power.SA_Regulator sa_regulator1(Vmax=100) annotation(Placement(transformation(
+				origin={50,-5},
+				extent={{10,-10},{-10,10}})));
 			equation
-				connect(sa_regulator1.n,int_Xn.vcc) annotation(Line(points = {{-42.4812,6.01504},{-68.5714,6.01504},{-68.5714,-1.50376},{-68.5714,-1.50376}}));
-				connect(sa_regulator1.pin_n,solarcell_simple1.p) annotation(Line(points = {{-32.2707,-3.69925},{-33.0827,-3.69925},{-33.0827,-20.1504},{1.20301,-20.1504},{1.20301,-20.1504}}));
-				connect(sa_regulator1.p,solarcell_simple1.n) annotation(Line(points = {{-22.4812,6.01504},{1.20301,6.01504},{1.20301,0},{1.20301,0}}));
-				connect(int_Xn.gnd,solarcell_simple1.p) annotation(Line(points = {{-68.7185,-6.11033},{-69.3642,-6.11033},{-69.3642,-25.4335},{1.15607,-25.4335},{1.15607,-20.2312},{1.15607,-20.2312}}));
-				connect(solarcell_simple1.E_s,u) annotation(Line(points = {{8.51661,-10.2803},{8.51661,-10.4598},{28.6508,-10.4598},{28.6508,40.0201},{162.809,40.0201},{162.809,-0.909549},{224.659,-0.909549},{224.659,-0.909549}}));
+				connect(sa_regulator1.n,int_Xn.vcc) annotation(Line(points={{40,-5},{35,-5},{35,-5},{35,21},{35,26}}));
+				connect(sa_regulator1.pin_n,solarcell_simple1.p) annotation(Line(points={{50,-15},{50,-20},{50,-25},{75,-25},{75,-20}}));
+				connect(sa_regulator1.p,solarcell_simple1.n) annotation(Line(points={{60,-5},{65,-5},{65,5},{75,5},{75,0}}));
+				connect(solarcell_simple1.E_s,u) annotation(Line(points={{82,-10},{87,-10},{97,-10},{97,-12},{102,-12}}));
+				connect(int_Yp.gnd,sa_regulator1.pin_n) annotation(Line(
+					points={{-19,26},{-19,21},{-19,-20},{50,-20},{50,-15}},
+					thickness=0.0625));
 			annotation(
+				Icon(
+					coordinateSystem(extent={{-100,-100},{100,100}}),
+					graphics={
+										Rectangle(
+											fillColor={0,0,255},
+											fillPattern=FillPattern.Cross,
+											extent={{71.8896,121.659},{356.683,-125.807}})}),
+				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
 				experiment(
-					StartTime=0.0,
-					StopTime=10000.0,
-					Tolerance=0.000001),
-				Diagram,
-				Icon(graphics={Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Cross, lineThickness = 0.25, extent = {{71.8896,121.659},{356.683,-125.807}})}));
+					StopTime=10000,
+					StartTime=0,
+					Tolerance=1e-006));
 		end solar;
 		model battery
 			extends iboss.buildingblocks.basic_ess_mss;
@@ -646,10 +647,21 @@ package iboss
 				connect(v2.Xp,connectionelement3.int2) annotation(Line(points={{-12.0655,41.9075},{-4.66667,41.9075},{-4.66667,41},{-4.66667,41}}));
 				connect(connectionelement4.int2,v2.Yn) annotation(Line(points={{-25.6602,24.1276},{-25.6602,30},{-24,30},{-24,30}}));
 				connect(trapezoid1.y,s1.u) annotation(Line(points={{-60.2187,-43.5587},{-25,-43.5587},{-25,-42.3333},{-25,-42.3333}}));
-			annotation(experiment(
-				StopTime=20000,
-				StartTime=0,
-				Tolerance=0.0001));
+			annotation(
+				b1(int_Xn(vcc(v(flags=2)))),
+				viewinfo[2](
+					staticBlocks[0](
+						frame(
+							style=0,
+							width=0,
+							color=0),
+						index=0,
+						typename="Displ"),
+					typename="ModelInfo"),
+				experiment(
+					StopTime=20000,
+					StartTime=0,
+					Tolerance=0.0001));
 		end EVS2x2x1;
 		model EVS4x1x1
 			iboss.components.connectionelement connectionelement1 annotation(Placement(
