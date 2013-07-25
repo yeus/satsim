@@ -160,7 +160,7 @@ package iboss
 			extends iboss.buildingblocks.basic_ess_mss;
 			input Modelica.Blocks.Interfaces.RealInput u annotation(Placement(
 				transformation(
-					origin={112,-12},
+					origin={92,-7},
 					extent={{-12,-12},{12,12}}),
 				iconTransformation(
 					origin={221.308,-0.741443},
@@ -169,40 +169,52 @@ package iboss
 			satcomponents.power.solar_power.solarcell_simple solarcell_simple1(
 				N_p=100.0,
 				N_s=45.0) annotation(Placement(transformation(
-				origin={85,-10},
+				origin={65,-5},
 				extent={{-10,10},{10,-10}},
 				rotation=90)));
-			satcomponents.power.solar_power.SA_Regulator sa_regulator1(Vmax=100) annotation(Placement(transformation(
-				origin={60,-5},
+			satcomponents.power.solar_power.SA_Regulator sa_regulator1(Vmax=99) annotation(Placement(transformation(
+				origin={25,0},
 				extent={{10,-10},{-10,10}})));
-			Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C(displayUnit="µF")=9.9999999999999991e-006) annotation(Placement(transformation(extent={{10,-15},{-10,5}})));
+			Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C(displayUnit="µF")=9.9999999999999991e-006) annotation(Placement(transformation(extent={{-25,-10},{-45,10}})));
 			Modelica.Electrical.Analog.Sensors.PowerSensor powerSensor1 annotation(Placement(transformation(
-				origin={30,-5},
+				origin={-5,0},
 				extent={{10,-10},{-10,10}})));
+			Modelica.Electrical.Analog.Basic.Capacitor capacitor2(C(displayUnit="µF")=9.9999999999999995e-007) annotation(Placement(transformation(
+				origin={50,-5},
+				extent={{10,-10},{-10,10}},
+				rotation=90)));
 			equation
-				connect(sa_regulator1.pin_n,solarcell_simple1.p) annotation(Line(points={{60,-15},{60,-20},{60,-25},{85,-25},{85,-20}}));
-				connect(sa_regulator1.p,solarcell_simple1.n) annotation(Line(points={{70,-5},{75,-5},{75,5},{85,5},{85,0}}));
-				connect(solarcell_simple1.E_s,u) annotation(Line(points={{92,-10},{97,-10},{107,-10},{107,-12},{112,-12}}));
+				connect(sa_regulator1.pin_n,solarcell_simple1.p) annotation(Line(points={{25,-10},{25,-15},{25,-20},{65,-20},{65,-15}}));
+				connect(sa_regulator1.p,solarcell_simple1.n) annotation(Line(points={{35,0},{40,0},{40,10},{65,10},{65,5}}));
+				connect(solarcell_simple1.E_s,u) annotation(Line(points={{72,-5},{77,-5},{87,-5},{87,-7},{92,-7}}));
 				connect(capacitor1.n,int_Yp.gnd) annotation(Line(
-					points={{-10,-5},{-15,-5},{-19,-5},{-19,21},{-19,26}},
+					points={{-45,0},{-50,0},{-50,10},{-19,10},{-19,21},{-19,
+					26}},
 					thickness=0.0625));
 				connect(sa_regulator1.n,powerSensor1.pc) annotation(Line(
-					points={{50,-5},{45,-5},{40,-5}},
+					points={{15,0},{10,0},{5,0}},
 					thickness=0.0625));
 				connect(powerSensor1.pv,powerSensor1.pc) annotation(Line(
-					points={{30,5},{30,10},{45,10},{45,-5},{40,-5}},
+					points={{-5,10},{-5,15},{10,15},{10,0},{5,0}},
 					thickness=0.0625));
 				connect(powerSensor1.nc,capacitor1.p) annotation(Line(
-					points={{20,-5},{15,-5},{10,-5}},
+					points={{-15,0},{-20,0},{-25,0}},
 					thickness=0.0625));
 				connect(powerSensor1.nc,int_Zp.vcc) annotation(Line(
-					points={{20,-5},{15,-5},{10,-5},{10,21},{10,26}},
+					points={{-15,0},{-20,0},{-20,10},{10,10},{10,21},{10,
+					26}},
 					thickness=0.0625));
 				connect(powerSensor1.nv,capacitor1.n) annotation(Line(
-					points={{30,-15},{30,-20},{-15,-20},{-15,-5},{-10,-5}},
+					points={{-5,-10},{-5,-15},{-50,-15},{-50,0},{-45,0}},
 					thickness=0.0625));
 				connect(powerSensor1.nv,sa_regulator1.pin_n) annotation(Line(
-					points={{30,-15},{30,-20},{60,-20},{60,-20},{60,-15}},
+					points={{-5,-10},{-5,-15},{25,-15},{25,-15},{25,-10}},
+					thickness=0.0625));
+				connect(capacitor2.p,solarcell_simple1.n) annotation(Line(
+					points={{50,5},{50,10},{65,10},{65,5}},
+					thickness=0.0625));
+				connect(solarcell_simple1.p,capacitor2.n) annotation(Line(
+					points={{65,-15},{65,-20},{50,-20},{50,-15}},
 					thickness=0.0625));
 			annotation(
 				powerSensor1(power(flags=2)),
@@ -220,12 +232,12 @@ package iboss
 					Tolerance=1e-006));
 		end solar;
 		model battery
-			Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C(displayUnit="µF")=9.9999999999999991e-006) annotation(Placement(transformation(extent={{-10,-5},{10,15}})));
 			extends iboss.buildingblocks.basic_ess_mss;
 			parameter Real SOC_start=1.0;
+			parameter Modelica.SIunits.Conversions.NonSIunits.ElectricCharge_Ah capacity=20.0;
 			satcomponents.power.batteries.battery battery1(
 				startSOC=SOC_start,
-				capacity_Ah=20.0,
+				capacity_Ah=capacity,
 				Vnominal=100) annotation(Placement(transformation(
 				origin={0,-20},
 				extent={{-10,-10},{10,10}})));
@@ -236,6 +248,7 @@ package iboss
 			Modelica.Electrical.Analog.Sensors.PowerSensor powerSensor1 annotation(Placement(transformation(
 				origin={-30,-20},
 				extent={{10,-10},{-10,10}})));
+			Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C(displayUnit="µF")=9.9999999999999991e-006) annotation(Placement(transformation(extent={{-10,-5},{10,15}})));
 			equation
 				connect(battery1.p,powerSensor1.pc) annotation(Line(
 					points={{-10,-20},{-15,-20},{-20,-20}},
@@ -280,16 +293,16 @@ package iboss
 			parameter Modelica.SIunits.Power P_payload=10;
 			parameter Modelica.SIunits.Power P_basic=5;
 			satcomponents.power.PCU pcu1 annotation(Placement(transformation(
-				origin={60,-5},
+				origin={40,0},
 				extent={{-10,-10},{10,10}})));
 			Modelica.Electrical.Analog.Basic.Resistor resistor1(R=12.0^2/P_payload) annotation(Placement(transformation(
-				origin={105,0},
+				origin={85,5},
 				extent={{-10,-10},{10,10}})));
 			Modelica.Electrical.Analog.Basic.Resistor resistor2(R=5.0^2/(P_basic-.5)) annotation(Placement(transformation(
-				origin={105,-15},
+				origin={85,-10},
 				extent={{-10,-10},{10,10}})));
 			Modelica.Electrical.Analog.Basic.Resistor resistor3(R=3.3^2/(P_basic-4.5)) annotation(Placement(transformation(
-				origin={105,-30},
+				origin={85,-25},
 				extent={{-10,-10},{10,10}})));
 			Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C(displayUnit="nF")=0.00000001) annotation(Placement(transformation(
 				origin={-50,0},
@@ -299,51 +312,58 @@ package iboss
 				origin={-50,-30},
 				extent={{-10,-10},{10,10}})));
 			Modelica.Electrical.Analog.Basic.Capacitor capacitor2(C(displayUnit="µF")=9.9999999999999995e-007) annotation(Placement(transformation(
-				origin={0,-10},
+				origin={-20,-5},
 				extent={{-10,-10},{10,10}},
 				rotation=270)));
 			Modelica.Electrical.Analog.Sensors.PowerSensor powerSensor1 annotation(Placement(transformation(
-				origin={25,-10},
+				origin={5,-5},
 				extent={{-10,-10},{10,10}})));
 			equation
 				connect(resistor3.n,pcu1.gnd) annotation(
-					Line(points={{115,-30},{120,-30},{120,-35},{75,-35},{70,-11.33333587646484}}),
+					Line(points={{95,-25},{100,-25},{100,-30},{50,-30},{50,-6}}),
 					AutoRoute=false);
 				connect(capacitor1.p,ground1.p) annotation(Line(points={{-50,-10},{-50,-15},{-50,-20}}));
 				connect(pcu1.GND,pcu1.gnd) annotation(
-					Line(points={{50,-9.333335876464844},{50,-20},{70,-20},{70,-11.33333587646484}}),
+					Line(points={{30,-4},{30,-20},{50,-20},{50,-6}}),
 					AutoRoute=false);
-				connect(resistor2.n,resistor3.n) annotation(Line(points={{115,-15},{120,-15},{120,-30},{115,-30}}));
-				connect(resistor1.n,resistor2.n) annotation(Line(points={{115,0},{120,0},{120,-15},{115,-15}}));
+				connect(resistor2.n,resistor3.n) annotation(Line(points={{95,-10},{100,-10},{100,-25},{95,-25}}));
+				connect(resistor1.n,resistor2.n) annotation(Line(points={{95,5},{100,5},{100,-10},{95,-10}}));
 				connect(resistor3.p,pcu1.VCC3) annotation(
-					Line(points={{95,-30},{90,-30},{85,-30},{85,-7},{70,-7.333335876464844}}),
+					Line(points={{75,-25},{60,-25},{55,-25},{55,-2},{50,-2}}),
 					AutoRoute=false);
-				connect(pcu1.VCC12,resistor1.p) annotation(Line(points={{70,-1},{75,-1},{90,-1},{90,0},{95,0}}));
-				connect(pcu1.VCC5,resistor2.p) annotation(Line(points={{70,-4},{75,-4},{90,-4},{90,-15},{95,-15}}));
-				connect(int_Xp.gnd,capacitor1.n) annotation(Line(
-					points={{-44,26},{-44,21},{-44,15},{-50,15},{-50,10}},
-					thickness=0.0625));
-				connect(pcu1.GND,capacitor2.n) annotation(Line(
-					points={{50,-9},{45,-9},{45,-25},{0,-25},{0,-20}},
-					thickness=0.0625));
+				connect(pcu1.VCC12,resistor1.p) annotation(Line(points={{50,4},{55,4},{70,4},{70,5},{75,5}}));
+				connect(pcu1.VCC5,resistor2.p) annotation(Line(points={{50,1},{55,1},{70,1},{70,-10},{75,-10}}));
+				connect(pcu1.GND,capacitor2.n) annotation(
+					Line(
+						points={{30,-4},{30,-20},{-20,-20},{-20,-15}},
+						thickness=0.0625),
+					AutoRoute=false);
 				connect(powerSensor1.pv,pcu1.VCC) annotation(Line(
-					points={{25,0},{25,5},{35,5},{35,-4},{45,-4},{50,
-					-4}},
+					points={{5,5},{5,10},{15,10},{15,1},{25,1},{30,
+					1}},
 					thickness=0.0625));
-				connect(pcu1.GND,powerSensor1.nv) annotation(Line(
-					points={{50,-9},{45,-9},{45,-25},{25,-25},{25,-20}},
-					thickness=0.0625));
+				connect(pcu1.GND,powerSensor1.nv) annotation(
+					Line(
+						points={{30,-4},{30,-20},{5,-20},{5,-15}},
+						thickness=0.0625),
+					AutoRoute=false);
 				connect(pcu1.VCC,powerSensor1.nc) annotation(Line(
-					points={{50,-4},{45,-4},{40,-4},{40,-10},{35,-10}},
+					points={{30,1},{25,1},{20,1},{20,-5},{15,-5}},
 					thickness=0.0625));
 				connect(powerSensor1.pc,capacitor2.p) annotation(Line(
-					points={{15,-10},{10,-10},{10,5},{0,5},{0,0}},
+					points={{-5,-5},{-10,-5},{-10,10},{-20,10},{-20,5}},
 					thickness=0.0625));
 				connect(int_Yp.vcc,capacitor2.p) annotation(Line(
-					points={{-15,26},{-15,21},{-15,5},{0,5},{0,0}},
+					points={{-15,26},{-15,21},{-15,10},{-20,10},{-20,5}},
 					thickness=0.0625));
-				connect(int_Yp.gnd,capacitor2.n) annotation(Line(
-					points={{-19,26},{-19,21},{-19,-25},{0,-25},{0,-20}},
+				connect(int_Yp.gnd,capacitor2.n) annotation(
+					Line(
+						points={{-19,26},{-19,15},{-30,15},{-30,-20},{-20,-20},{-20,
+						-15}},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(int_Xp.gnd,capacitor1.n) annotation(Line(
+					points={{-44,26},{-44,21},{-44,15},{-50,15},{-50,10}},
 					thickness=0.0625));
 			annotation(
 				powerSensor1(power(flags=2)),
@@ -486,41 +506,41 @@ package iboss
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
-										Rectangle(
-											fillColor={0,0,255},
-											extent={{-77.2278,76.02549999999999},{74.95610000000001,-75.256}}),
-										Rectangle(
-											fillColor={0,0,255},
-											extent={{-69.5191,69.42019999999999},{66.9674,-68.4328}}),
-										Ellipse(
-											fillColor={0,0,255},
-											extent={{-20.2122,18.7864},{19.355,-20.778}}),
-										Ellipse(
-											fillColor={0,0,255},
-											extent={{-15.3692,13.9434},{14.512,-15.6521}}),
-										Ellipse(
-											fillColor={0,0,255},
-											extent={{-1.42575,0.571424},{0.288544,-1.14286}}),
-										Rectangle(
-											fillColor={255,255,255},
-											fillPattern=FillPattern.Solid,
-											extent={{-74.37909999999999,15.6917},{-79.2362,-16.0226}}),
-										Rectangle(
-											fillColor={255,255,255},
-											fillPattern=FillPattern.Solid,
-											extent={{-15.9916,77.18810000000001},{15.1513,72.0453}}),
-										Rectangle(
-											fillColor={255,255,255},
-											fillPattern=FillPattern.Solid,
-											extent={{73.239,13.1174},{77.5247,-13.7397}}),
-										Rectangle(
-											fillColor={255,255,255},
-											fillPattern=FillPattern.Solid,
-											extent={{-15.4145,-72.9759},{16.5855,-77.833}}),
-										Text(
-											textString="%name",
-											fillColor={0,0,255},
-											extent={{-49.505,66.761},{55.4455,27.4399}})}),
+															Rectangle(
+																fillColor={0,0,255},
+																extent={{-77.2278,76.02549999999999},{74.95610000000001,-75.256}}),
+															Rectangle(
+																fillColor={0,0,255},
+																extent={{-69.5191,69.42019999999999},{66.9674,-68.4328}}),
+															Ellipse(
+																fillColor={0,0,255},
+																extent={{-20.2122,18.7864},{19.355,-20.778}}),
+															Ellipse(
+																fillColor={0,0,255},
+																extent={{-15.3692,13.9434},{14.512,-15.6521}}),
+															Ellipse(
+																fillColor={0,0,255},
+																extent={{-1.42575,0.571424},{0.288544,-1.14286}}),
+															Rectangle(
+																fillColor={255,255,255},
+																fillPattern=FillPattern.Solid,
+																extent={{-74.37909999999999,15.6917},{-79.2362,-16.0226}}),
+															Rectangle(
+																fillColor={255,255,255},
+																fillPattern=FillPattern.Solid,
+																extent={{-15.9916,77.18810000000001},{15.1513,72.0453}}),
+															Rectangle(
+																fillColor={255,255,255},
+																fillPattern=FillPattern.Solid,
+																extent={{73.239,13.1174},{77.5247,-13.7397}}),
+															Rectangle(
+																fillColor={255,255,255},
+																fillPattern=FillPattern.Solid,
+																extent={{-15.4145,-72.9759},{16.5855,-77.833}}),
+															Text(
+																textString="%name",
+																fillColor={0,0,255},
+																extent={{-49.505,66.761},{55.4455,27.4399}})}),
 				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
 				experiment(
 					StopTime=1,
@@ -697,11 +717,10 @@ package iboss
 					points={{-10,-10},{-10,-15},{-20,-15},{-20,21},{-19,21},{-19,
 					26}},
 					thickness=0.0625));
-			public
-				annotation(experiment(
-					StopTime=11000,
-					StartTime=0,
-					Tolerance=0.0001));
+			annotation(experiment(
+				StopTime=11000,
+				StartTime=0,
+				Tolerance=0.0001));
 		end verbraucher_nopowerbalance;
 	end buildingblocks;
 	package satellites
@@ -776,7 +795,9 @@ package iboss
 				origin={35.3607,12.7298},
 				extent={{-12,12},{12,-12}},
 				rotation=-90)));
-			buildingblocks.battery b1 annotation(Placement(transformation(
+			buildingblocks.battery b1(
+				SOC_start=0.5,
+				capacity=0.1) annotation(Placement(transformation(
 				origin={34.6667,-15.6667},
 				extent={{-10,-10},{10,10}})));
 			Modelica.Blocks.Sources.Trapezoid trapezoid1(
@@ -784,7 +805,8 @@ package iboss
 				rising=60,
 				width=1000,
 				falling=60,
-				period=3000) annotation(Placement(transformation(
+				period=3000,
+				startTime=100) annotation(Placement(transformation(
 				origin={-73.4187,-43.5587},
 				extent={{-12,-12},{12,12}})));
 			components.connectionelement connectionelement4 annotation(Placement(transformation(
@@ -792,17 +814,31 @@ package iboss
 				extent={{-12,12},{12,-12}},
 				rotation=-90)));
 			equation
-				connect(s1.Yn,connectionelement1.int2) annotation(Line(points={{-14.2491,-15.4951},{-14.2491,-14.7399},{-4.91329,-14.7399},{-4.91329,-14.7399}}));
 				connect(connectionelement4.int1,s1.Xn) annotation(Line(points={{-25.7199,3.24233},{-25.7199,-2.60116},{-25.4335,-2.60116},{-25.4335,-2.60116}}));
-				connect(b1.Xn,connectionelement1.int1) annotation(Line(points={{24.6585,-15.6844},{17,-15.6844},{17,-14.6667},{17,-14.6667}}));
+				connect(b1.Xn,connectionelement1.int1) annotation(Line(points={{25,-16},{20,-16},{20,-15},{22,-15},{22,-14},{17,
+				-14}}));
 				connect(connectionelement2.int1,b1.Yp) annotation(Line(points={{34.8176,2.10463},{34.8176,-5.66667},{35,-5.66667},{35,-5.66667}}));
 				connect(v1.Yn,connectionelement2.int2) annotation(Line(points={{36.2498,29.0795},{35.6667,29.0795},{35.6667,23.6667},{35.6667,23.6667}}));
 				connect(connectionelement3.int1,v1.Xn) annotation(Line(points={{16.8487,41.5615},{24.3333,41.5615},{24.3333,40.6667},{24.3333,40.6667}}));
 				connect(v2.Xp,connectionelement3.int2) annotation(Line(points={{-12.0655,41.9075},{-4.66667,41.9075},{-4.66667,41},{-4.66667,41}}));
 				connect(connectionelement4.int2,v2.Yn) annotation(Line(points={{-25.6602,24.1276},{-25.6602,30},{-24,30},{-24,30}}));
 				connect(trapezoid1.y,s1.u) annotation(Line(points={{-60.2187,-43.5587},{-25,-43.5587},{-25,-42.3333},{-25,-42.3333}}));
+				connect(s1.Yn,connectionelement1.int2) annotation(Line(
+					points={{-14,-15},{-9,-15},{-9,-15},{-10,-15},{-10,-15},{-5,
+					-15}},
+					color={0,0,0}));
 			annotation(
-				b1(int_Xn(vcc(v(flags=2)))),
+				v1(powerSensor1(power(flags=2))),
+				v2(powerSensor1(power(flags=2))),
+				s1(powerSensor1(power(flags=2))),
+				b1(
+					int_Xn(vcc(v(flags=2))),
+					battery1(
+						v(flags=2),
+						soc(flags=2),
+						i(flags=2)),
+					powerSensor1(power(flags=2))),
+				trapezoid1(y(flags=2)),
 				experiment(
 					StopTime=20000,
 					StartTime=0,
@@ -981,7 +1017,7 @@ package iboss
 			components.connectionelement connectionelement1 annotation(Placement(transformation(
 				origin={-11.0535,-10.7081},
 				extent={{-6.77369,-6.77369},{6.77369,6.77369}})));
-			buildingblocks.battery battery1 annotation(Placement(transformation(
+			buildingblocks.battery battery1(SOC_start=0.5) annotation(Placement(transformation(
 				origin={-70,25},
 				extent={{-5.49199,-5.49199},{5.49199,5.49199}})));
 			Modelica.Blocks.Sources.Trapezoid trapezoid1(
@@ -1091,6 +1127,15 @@ package iboss
 						i(flags=2)),
 					powerSensor1(power(flags=2))),
 				trapezoid1(y(flags=2)),
+				viewinfo[2](
+					staticBlocks[0](
+						frame(
+							style=0,
+							width=0,
+							color=0),
+						index=0,
+						typename="Displ"),
+					typename="ModelInfo"),
 				experiment(
 					StopTime=10000,
 					StartTime=0,

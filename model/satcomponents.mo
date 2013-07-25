@@ -325,6 +325,8 @@ package satcomponents
 					SOD = 1 - soc;
 					/*exp-fucntion: logistic function*/
 				annotation(
+					v(flags=2),
+					soc(flags=2),
 					Icon(
 						coordinateSystem(
 							extent={{-100,-100},{100,100}},
@@ -2489,19 +2491,19 @@ package satcomponents
 					period=5000) annotation(Placement(transformation(
 					origin={-84,-5},
 					extent={{-10,-10},{10,10}})));
-				power.solar_power.solarcell_simple solarcell_simple1(
+				solar_power.solarcell_simple solarcell_simple1(
 					N_p=2,
 					N_s=40.0) annotation(Placement(transformation(
 					origin={-52,-5},
 					extent={{-10,-10},{10,10}},
 					rotation=90)));
-				power.batteries.battery battery1(
+				batteries.battery battery1(
 					soc(start=0.5),
 					Vnominal=100) annotation(Placement(transformation(
 					origin={13.9999,-3},
 					extent={{-10,-10},{10,10}},
 					rotation=-90)));
-				satcomponents.power.PCU pcu1 annotation(Placement(transformation(
+				PCU pcu1 annotation(Placement(transformation(
 					origin={46.8208,5.20231},
 					extent={{-10,-10},{10,10}})));
 				Modelica.Electrical.Analog.Basic.Resistor resistor1(R=13) annotation(Placement(transformation(
@@ -2513,7 +2515,7 @@ package satcomponents
 				Modelica.Electrical.Analog.Basic.Resistor resistor3(R=100) annotation(Placement(transformation(
 					origin={76.3006,-16.763},
 					extent={{-10,-10},{10,10}})));
-				satcomponents.power.solar_power.SA_Regulator sa_regulator1(Vmax=95) annotation(Placement(transformation(
+				solar_power.SA_Regulator sa_regulator1(Vmax=95) annotation(Placement(transformation(
 					origin={-22.5564,24.9624},
 					extent={{-10,-10},{10,10}})));
 				equation
@@ -2536,7 +2538,9 @@ package satcomponents
 					connect(solarcell_simple1.p,ground1.p) annotation(Line(points={{-52,-15},{-52,-37},{-39.6667,-37},{-39.6667,-37}}));
 					connect(trapezoid1.y,solarcell_simple1.E_s) annotation(Line(points={{-73,-5},{-60.3333,-5},{-60.3333,-5},{-60.3333,-5}}));
 				annotation(
-					battery1(v(flags=2)),
+					battery1(
+						v(flags=2),
+						soc(flags=2)),
 					resistor3(v(flags=2)),
 					Icon(coordinateSystem(extent={{-100,-100},{100,100}})),
 					Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
