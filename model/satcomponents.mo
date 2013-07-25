@@ -289,52 +289,37 @@ package satcomponents
 				parameter Modelica.SIunits.Conversions.NonSIunits.ElectricCharge_Ah capacity_Ah=2.0;
 				Modelica.SIunits.Current i;
 				parameter Modelica.SIunits.Voltage Vnominal=4.0;
-				Modelica.Electrical.Analog.Sources.SignalVoltage voltage(v(start=Vnominal * (1 - (1.0 - startSOC) * 0.35 - 0.025 * sin((1.0 - startSOC) * 2 * pi)) * (1 - 1 / (1 + exp(-100 * (1.0 - startSOC - 1)))))) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={46.2642,-2.33333},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
+				Modelica.Electrical.Analog.Sources.SignalVoltage voltage(v(start=Vnominal * (1 - (1.0 - startSOC) * 0.35 - 0.025 * sin((1.0 - startSOC) * 2 * pi)) * (1 - 1 / (1 + exp(-100 * (1.0 - startSOC - 1)))))) annotation(Placement(transformation(
+					origin={46.2642,-2.33333},
+					extent={{-10,-10},{10,10}})));
 				Modelica.Electrical.Analog.Basic.VariableResistor R_overload(
 					R_actual(start=10000000.0),
-					R(start=1000000.0)) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={44.9904,34.3674},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Basic.Capacitor C_t(C=100) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-10.5646,-39.6955},
-						extent={{10,-10},{-10,10}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Basic.Resistor R_t(R=0.02) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-9.65199,-2.45688},
-						extent={{10,-10},{-10,10}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Basic.Resistor resistor1(R=0.02) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-52.2531,-1.99445},
-						extent={{10,-10},{-10,10}},
-						rotation=0)));
+					R(start=1000000.0)) annotation(Placement(transformation(
+					origin={44.9904,34.3674},
+					extent={{-10,-10},{10,10}})));
+				Modelica.Electrical.Analog.Basic.Capacitor C_t(C(displayUnit="F")=10) annotation(Placement(transformation(
+					origin={-10.5646,-39.6955},
+					extent={{10,-10},{-10,10}})));
+				Modelica.Electrical.Analog.Basic.Resistor R_t(R=0.02) annotation(Placement(transformation(
+					origin={-9.65199,-2.45688},
+					extent={{10,-10},{-10,10}})));
+				Modelica.Electrical.Analog.Basic.Resistor resistor1(R=0.02) annotation(Placement(transformation(
+					origin={-52.2531,-1.99445},
+					extent={{10,-10},{-10,10}})));
 				protected
 					parameter Real pi=3.14159265359;
 					parameter Modelica.SIunits.ElectricCharge capacity=capacity_Ah * 3600;
 				equation
-					connect(C_t.p,R_t.p) annotation(Line(points = {{-0.564587,-39.6955},{0.867052,-39.6955},{0.867052,-2.60116},{0.867052,-2.60116}}));
-					connect(R_t.n,C_t.n) annotation(Line(points = {{-19.652,-2.45688},{-21.0983,-2.45688},{-21.0983,-40.1734},{-21.0983,-40.1734}}));
-					connect(R_t.p,voltage.p) annotation(Line(points = {{0.348014,-2.45688},{36.4162,-2.45688},{36.4162,-1.7341},{36.4162,-1.7341}}));
-					connect(resistor1.p,R_t.n) annotation(Line(points = {{-42.2531,-1.99445},{-19.3642,-1.99445},{-19.3642,-1.7341},{-19.3642,-1.7341}}));
-					connect(p,resistor1.n) annotation(Line(points = {{-100,0},{-62.7168,0},{-62.7168,-1.7341},{-62.7168,-1.7341}}));
+					connect(C_t.p,R_t.p) annotation(Line(points={{-0.564587,-39.6955},{0.867052,-39.6955},{0.867052,-2.60116},{0.867052,-2.60116}}));
+					connect(R_t.n,C_t.n) annotation(Line(points={{-19.652,-2.45688},{-21.0983,-2.45688},{-21.0983,-40.1734},{-21.0983,-40.1734}}));
+					connect(R_t.p,voltage.p) annotation(Line(points={{0.348014,-2.45688},{36.4162,-2.45688},{36.4162,-1.7341},{36.4162,-1.7341}}));
+					connect(resistor1.p,R_t.n) annotation(Line(points={{-42.2531,-1.99445},{-19.3642,-1.99445},{-19.3642,-1.7341},{-19.3642,-1.7341}}));
+					connect(p,resistor1.n) annotation(Line(points={{-100,0},{-62.7168,0},{-62.7168,-1.7341},{-62.7168,-1.7341}}));
 					R_overload.R = 100000.0 / (1 + exp(-100.0 * SOD));
 					voltage.v = Vnominal * (1 - SOD * 0.35 - 0.025 * sin(SOD * 2 * pi)) * (1 - 1 / (1 + exp(-100 * (SOD - 1))));
-					connect(R_overload.n,voltage.n) annotation(Line(points = {{54.9904,34.3674},{56,34.3674},{56,-2},{56,-2}}));
-					connect(R_overload.p,voltage.p) annotation(Line(points = {{34.9904,34.3674},{36.3333,34.3674},{36.3333,-2},{36.3333,-2}}));
-					connect(voltage.n,n) annotation(Line(points = {{56.2642,-2.33333},{99,-2.33333},{99,-0.333333},{99,-0.333333}}));
+					connect(R_overload.n,voltage.n) annotation(Line(points={{54.9904,34.3674},{56,34.3674},{56,-2},{56,-2}}));
+					connect(R_overload.p,voltage.p) annotation(Line(points={{34.9904,34.3674},{36.3333,34.3674},{36.3333,-2},{36.3333,-2}}));
+					connect(voltage.n,n) annotation(Line(points={{56.2642,-2.33333},{99,-2.33333},{99,-0.333333},{99,-0.333333}}));
 					i = voltage.i;
 					der(soc) = i / capacity;
 					SOD = 1 - soc;
@@ -342,13 +327,29 @@ package satcomponents
 				annotation(
 					Icon(
 						coordinateSystem(
-							preserveAspectRatio=true,
 							extent={{-100,-100},{100,100}},
 							grid={1,1}),
-						graphics={Line(points = {{-90,0},{-10,0}}, color = {0,0,255}),Line(points = {{-10,60},{-10,-60}}, color = {0,0,255}),Line(points = {{0,30},{0,-30}}, color = {0,0,255}),Line(points = {{0,0},{90,0}}, color = {0,0,255}),Text(extent = {{-150,-112},{150,-72}}, textString = "%capacity_Ah Ah", lineColor = {0,0,255}),Text(extent = {{-120,50},{-20,0}}, lineColor = {0,0,255}, textString = "+"),Text(extent = {{20,50},{120,0}}, lineColor = {0,0,255}, textString = "-")}),
+						graphics={
+											Line(
+												points={{-90,0},{-10,0}}),
+											Line(
+												points={{-10,60},{-10,-60}}),
+											Line(
+												points={{0,30},{0,-30}}),
+											Line(
+												points={{0,0},{90,0}}),
+											Text(
+												textString="%capacity_Ah Ah",
+												extent={{-150,-112},{150,-72}}),
+											Text(
+												textString="+",
+												extent={{-120,50},{-20,0}}),
+											Text(
+												textString="-",
+												extent={{20,50},{120,0}})}),
 					experiment(
-						StartTime=0.0,
-						StopTime=10000.0,
+						StopTime=10000,
+						StartTime=0,
 						Tolerance=0.0001));
 			end battery;
 			model batteriekennlinie
@@ -2389,21 +2390,21 @@ package satcomponents
 					Icon(
 						coordinateSystem(extent={{-100,-100},{100,100}}),
 						graphics={
-											Rectangle(
-												fillColor={0,0,255},
-												extent={{-87.69450000000001,78.6421},{88.5431,-74.6818}}),
-											Text(
-												textString="%V_out",
-												fillColor={0,0,255},
-												extent={{-8.486520000000001,67.6096},{57.4258,29.7029}}),
-											Text(
-												textString="DCDC",
-												fillColor={0,0,255},
-												extent={{-63.6492,18.9533},{57.9915,-33.0976}}),
-											Text(
-												textString="V",
-												fillColor={0,0,255},
-												extent={{54.314,63.3663},{75.8133,32.8147}})}),
+																	Rectangle(
+																		fillColor={0,0,255},
+																		extent={{-87.69450000000001,78.6421},{88.5431,-74.6818}}),
+																	Text(
+																		textString="%V_out",
+																		fillColor={0,0,255},
+																		extent={{-8.486520000000001,67.6096},{57.4258,29.7029}}),
+																	Text(
+																		textString="DCDC",
+																		fillColor={0,0,255},
+																		extent={{-63.6492,18.9533},{57.9915,-33.0976}}),
+																	Text(
+																		textString="V",
+																		fillColor={0,0,255},
+																		extent={{54.314,63.3663},{75.8133,32.8147}})}),
 					Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
 					experiment(
 						StopTime=1,
@@ -3777,24 +3778,24 @@ package satcomponents
 		Icon(
 			coordinateSystem(extent={{-100,-100},{100,100}}),
 			graphics={
-										Polygon(
-										points={{-11.5042,31.4966},{33.1625,8.163309999999999},{11.8292,-31.5034},{-33.1708,-7.17002},{-11.5042,31.4966}},
-									origin={-0.495835,-3.82998}),
-								Polygon(
-									points={{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}},
-									fillColor={0,0,255},
-									fillPattern=FillPattern.VerticalCylinder,
-									origin={41.3475,49.7145}),
-								Polygon(
-									points={{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}},
-									fillColor={0,0,255},
-									fillPattern=FillPattern.VerticalCylinder,
-									origin={-23.6525,-62.9522}),
-								Polygon(
-									points={{-8.16695,13.1269},{-13.1669,4.12686},{-0.500278,-13.5398},{13.1664,11.1269},{-8.16695,13.1269}},
-									origin={36.1669,-23.4602}),
-								Polygon(
-									points={{16.7693,29.6823},{14.7693,5.68234},{1.10267,-18.651},{-16.8973,-29.3177},{16.7693,29.6823}},
-									origin={-35.7693,14.651})}),
-Diagram(coordinateSystem(extent={{-100,-100},{100,100}})));
+													Polygon(
+													points={{-11.5042,31.4966},{33.1625,8.163309999999999},{11.8292,-31.5034},{-33.1708,-7.17002},{-11.5042,31.4966}},
+												origin={-0.495835,-3.82998}),
+											Polygon(
+												points={{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}},
+												fillColor={0,0,255},
+												fillPattern=FillPattern.VerticalCylinder,
+												origin={41.3475,49.7145}),
+											Polygon(
+												points={{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}},
+												fillColor={0,0,255},
+												fillPattern=FillPattern.VerticalCylinder,
+												origin={-23.6525,-62.9522}),
+											Polygon(
+												points={{-8.16695,13.1269},{-13.1669,4.12686},{-0.500278,-13.5398},{13.1664,11.1269},{-8.16695,13.1269}},
+												origin={36.1669,-23.4602}),
+											Polygon(
+												points={{16.7693,29.6823},{14.7693,5.68234},{1.10267,-18.651},{-16.8973,-29.3177},{16.7693,29.6823}},
+												origin={-35.7693,14.651})}),
+		Diagram(coordinateSystem(extent={{-100,-100},{100,100}})));
 end satcomponents;
