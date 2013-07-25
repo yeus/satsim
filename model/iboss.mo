@@ -42,48 +42,48 @@ package iboss
 		end iboss_interface;
 		model connectionelement
 			iboss_connector int1 annotation(Placement(
-				visible=true,
 				transformation(
 					origin={88.5431,4.52615},
-					extent={{-12,-12},{12,12}},
-					rotation=0),
+					extent={{-12,-12},{12,12}}),
 				iconTransformation(
 					origin={88.5431,4.52615},
-					extent={{-12,-12},{12,12}},
-					rotation=0)));
+					extent={{-12,-12},{12,12}})));
 			parameter Real R(
 				final quantity="Resistance",
-				final unit="Ohm")=0.0001;
+				final unit="Ohm")=0.001;
+			Modelica.SIunits.Power LossPower;
 			iboss_connector int2 annotation(Placement(
-				visible=true,
 				transformation(
-					origin={-87.9095,4.02826},
-					extent={{-12,-12},{12,12}},
-					rotation=0),
+					origin={-87.90949999999999,4.02826},
+					extent={{-12,-12},{12,12}}),
 				iconTransformation(
-					origin={-87.9095,4.02826},
+					origin={-87.90949999999999,4.02826},
 					extent={{12,12},{-12,-12}},
 					rotation=-180)));
-			Modelica.Electrical.Analog.Basic.Resistor R_GND(R=R) annotation(Placement(
-				visible=true,
-				transformation(
-					origin={22.5969,-3.84725},
-					extent={{-12,-12},{12,12}},
-					rotation=0)));
-			Modelica.Electrical.Analog.Basic.Resistor R_Vcc(R=R) annotation(Placement(
-				visible=true,
-				transformation(
-					origin={23.7962,12.5262},
-					extent={{-12,-12},{12,12}},
-					rotation=0)));
+			Modelica.Electrical.Analog.Basic.Resistor R_GND(R=R) annotation(Placement(transformation(
+				origin={22.5969,-3.84725},
+				extent={{-12,-12},{12,12}})));
+			Modelica.Electrical.Analog.Basic.Resistor R_Vcc(R=R) annotation(Placement(transformation(
+				origin={23.7962,12.5262},
+				extent={{-12,-12},{12,12}})));
 			equation
-				connect(int1.Vcc,R_Vcc.n) annotation(Line(points = {{96.0941,12.4257},{36.4922,12.4257},{36.4922,12.5262},{35.7962,12.5262}}));
-				connect(R_Vcc.p,int2.Vcc) annotation(Line(points = {{11.7962,12.5262},{-78.925,12.5262},{-78.925,11.9278},{-80.3585,11.9278}}));
-				connect(R_GND.p,int2.GND) annotation(Line(points = {{10.5969,-3.84725},{-80.9052,-3.84725},{-80.9052,-3.24896},{-80.4752,-3.24896}}));
-				connect(R_GND.n,int1.GND) annotation(Line(points = {{34.5969,-3.84725},{95.0495,-3.84725},{95.0495,-2.75107},{95.9774,-2.75107}}));
+				LossPower=R_GND.LossPower+R_Vcc.LossPower;
+				connect(int1.Vcc,R_Vcc.n) annotation(Line(points={{89,5},{84,5},{41,5},{41,13},{36,13}}));
+				connect(R_Vcc.p,int2.Vcc) annotation(Line(points={{12,13},{7,13},{-83,13},{-83,4},{-88,4}}));
+				connect(R_GND.p,int2.GND) annotation(Line(points={{11,-4},{6,-4},{-83,-4},{-83,4},{-88,4}}));
+				connect(R_GND.n,int1.GND) annotation(Line(points={{35,-4},{40,-4},{84,-4},{84,5},{89,5}}));
 			annotation(
-				Diagram,
-				Icon(graphics={Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-85.5219,88.3168},{87.4569,-87.1287}})}));
+				LossPower(flags=2),
+				Icon(
+					coordinateSystem(extent={{-100,-100},{100,100}}),
+					graphics={
+										Rectangle(
+											fillColor={0,0,255},
+											extent={{-85.5219,88.3168},{87.45690000000001,-87.1287}})}),
+				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
+				experiment(
+					StopTime=1,
+					StartTime=0));
 		end connectionelement;
 		model dockinterface
 			iboss_connector iBoss_Int annotation(Placement(
@@ -166,8 +166,9 @@ package iboss
 					origin={221.308,-0.741443},
 					extent={{-12,12},{12,-12}},
 					rotation=-90)));
+			parameter Modelica.SIunits.Area panelarea=10;
 			satcomponents.power.solar_power.solarcell_simple solarcell_simple1(
-				N_p=100.0,
+				N_p=panelarea/1.17,
 				N_s=45.0) annotation(Placement(transformation(
 				origin={65,-5},
 				extent={{-10,10},{10,-10}},
@@ -187,15 +188,14 @@ package iboss
 				connect(sa_regulator1.pin_n,solarcell_simple1.p) annotation(Line(points={{25,-10},{25,-15},{25,-20},{65,-20},{65,-15}}));
 				connect(sa_regulator1.p,solarcell_simple1.n) annotation(Line(points={{35,0},{40,0},{40,10},{65,10},{65,5}}));
 				connect(solarcell_simple1.E_s,u) annotation(Line(points={{72,-5},{77,-5},{87,-5},{87,-7},{92,-7}}));
-				connect(capacitor1.n,int_Yp.gnd) annotation(Line(
-					points={{-45,0},{-50,0},{-50,10},{-19,10},{-19,21},{-19,
-					26}},
-					thickness=0.0625));
+				connect(capacitor1.n,int_Yp.gnd) annotation(
+					Line(
+						points={{-45,0},{-50,0},{-50,10},{-30,10},{-20,15},{-19,
+						25.66666412353516}},
+						thickness=0.0625),
+					AutoRoute=false);
 				connect(sa_regulator1.n,powerSensor1.pc) annotation(Line(
 					points={{15,0},{10,0},{5,0}},
-					thickness=0.0625));
-				connect(powerSensor1.pv,powerSensor1.pc) annotation(Line(
-					points={{-5,10},{-5,15},{10,15},{10,0},{5,0}},
 					thickness=0.0625));
 				connect(powerSensor1.nc,capacitor1.p) annotation(Line(
 					points={{-15,0},{-20,0},{-25,0}},
@@ -216,6 +216,11 @@ package iboss
 				connect(solarcell_simple1.p,capacitor2.n) annotation(Line(
 					points={{65,-15},{65,-20},{50,-20},{50,-15}},
 					thickness=0.0625));
+				connect(powerSensor1.pv,powerSensor1.pc) annotation(
+					Line(
+						points={{-5,10},{10,10},{10,0},{5,0}},
+						thickness=0.0625),
+					AutoRoute=false);
 			annotation(
 				powerSensor1(power(flags=2)),
 				Icon(
@@ -232,47 +237,53 @@ package iboss
 					Tolerance=1e-006));
 		end solar;
 		model battery
-			extends iboss.buildingblocks.basic_ess_mss;
+			extends basic_ess_mss;
 			parameter Real SOC_start=1.0;
 			parameter Modelica.SIunits.Conversions.NonSIunits.ElectricCharge_Ah capacity=20.0;
 			satcomponents.power.batteries.battery battery1(
 				startSOC=SOC_start,
 				capacity_Ah=capacity,
 				Vnominal=100) annotation(Placement(transformation(
-				origin={0,-20},
+				origin={60,-20},
 				extent={{-10,-10},{10,10}})));
 			Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(transformation(
-				origin={45,-20},
+				origin={105,-20},
 				extent={{-10,-10},{10,10}},
 				rotation=90)));
 			Modelica.Electrical.Analog.Sensors.PowerSensor powerSensor1 annotation(Placement(transformation(
-				origin={-30,-20},
+				origin={-25,-20},
 				extent={{10,-10},{-10,10}})));
-			Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C(displayUnit="µF")=9.9999999999999991e-006) annotation(Placement(transformation(extent={{-10,-5},{10,15}})));
+			Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C(displayUnit="µF")=9.9999999999999991e-006) annotation(Placement(transformation(extent={{50,-5},{70,15}})));
+			satcomponents.power.batteries.BCR ChargeRegulator annotation(Placement(transformation(extent={{0,-30},{20,-10}})));
 			equation
-				connect(battery1.p,powerSensor1.pc) annotation(Line(
-					points={{-10,-20},{-15,-20},{-20,-20}},
-					thickness=0.0625));
-				connect(int_Xp.vcc,powerSensor1.nc) annotation(Line(
-					points={{-40,26},{-40,21},{-45,21},{-45,-20},{-40,-20}},
-					thickness=0.0625));
-				connect(int_Zp.gnd,battery1.n) annotation(Line(
-					points={{6,26},{6,21},{15,21},{15,-20},{10,-20}},
-					thickness=0.0625));
+				connect(int_Zp.gnd,battery1.n) annotation(
+					Line(
+						points={{6,25.66666412353516},{6,15},{75,15},{75,-20},{70,-20}},
+						thickness=0.0625),
+					AutoRoute=false);
 				connect(ground1.p,battery1.n) annotation(Line(
-					points={{35,-20},{30,-20},{15,-20},{10,-20}},
+					points={{95,-20},{90,-20},{75,-20},{70,-20}},
 					thickness=0.0625));
 				connect(powerSensor1.nv,battery1.n) annotation(Line(
-					points={{-30,-30},{-30,-35},{15,-35},{15,-20},{10,-20}},
+					points={{-25,-30},{-25,-35},{75,-35},{75,-20},{70,-20}},
 					thickness=0.0625));
 				connect(battery1.p,powerSensor1.pv) annotation(Line(
-					points={{-10,-20},{-15,-20},{-15,-5},{-30,-5},{-30,-10}},
+					points={{50,-20},{45,-20},{45,-5},{-25,-5},{-25,-10}},
 					thickness=0.0625));
 				connect(capacitor1.n,battery1.n) annotation(Line(
-					points={{10,5},{15,5},{15,-20},{10,-20}},
+					points={{70,5},{75,5},{75,-20},{70,-20}},
 					thickness=0.0625));
 				connect(capacitor1.p,battery1.p) annotation(Line(
-					points={{-10,5},{-15,5},{-15,-20},{-10,-20}},
+					points={{50,5},{45,5},{45,-20},{50,-20}},
+					thickness=0.0625));
+				connect(powerSensor1.nc,int_Xp.vcc) annotation(Line(
+					points={{-35,-20},{-40,-20},{-40,-20},{-40,21},{-40,26}},
+					thickness=0.0625));
+				connect(powerSensor1.pc,ChargeRegulator.p) annotation(Line(
+					points={{-15,-20},{-10,-20},{-5,-20},{0,-20}},
+					thickness=0.0625));
+				connect(ChargeRegulator.n,battery1.p) annotation(Line(
+					points={{20,-20},{25,-20},{45,-20},{50,-20}},
 					thickness=0.0625));
 			annotation(
 				battery1(
@@ -963,7 +974,7 @@ package iboss
 				origin={23.6782,-34.6602},
 				extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
 			buildingblocks.verbraucher bb7 annotation(Placement(transformation(
-				origin={35.3304,52.1413},
+				origin={35,52},
 				extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
 			buildingblocks.verbraucher bb10 annotation(Placement(transformation(
 				origin={35.491,-10.2998},
@@ -1011,13 +1022,10 @@ package iboss
 				origin={45.0269,7.07417},
 				extent={{-5.08917,5.08917},{5.08917,-5.08917}},
 				rotation=-90)));
-			buildingblocks.solar bb_solar1 annotation(Placement(transformation(
-				origin={-40,-10},
-				extent={{5.08917,5.08917},{-5.08917,-5.08917}})));
 			components.connectionelement connectionelement1 annotation(Placement(transformation(
 				origin={-11.0535,-10.7081},
 				extent={{-6.77369,-6.77369},{6.77369,6.77369}})));
-			buildingblocks.battery battery1(SOC_start=0.5) annotation(Placement(transformation(
+			buildingblocks.battery battery1(SOC_start=0.94) annotation(Placement(transformation(
 				origin={-70,25},
 				extent={{-5.49199,-5.49199},{5.49199,5.49199}})));
 			Modelica.Blocks.Sources.Trapezoid trapezoid1(
@@ -1025,10 +1033,18 @@ package iboss
 				rising=60,
 				width=1000,
 				falling=60,
-				period=3000) annotation(Placement(transformation(
+				period=3000,
+				startTime=500) annotation(Placement(transformation(
 				origin={-66,11},
 				extent={{-4.20593,-4.20593},{4.20593,4.20593}})));
+			buildingblocks.solar bb_solar1(panelarea=40) annotation(Placement(transformation(
+				origin={-40,-10},
+				extent={{5.08917,5.08917},{-5.08917,-5.08917}})));
+			Modelica.SIunits.Power connectionloss;
 			equation
+				connectionloss=connectionelement1.LossPower+ conn1.LossPower+		conn2.LossPower+		conn3.LossPower+		conn4.LossPower+		conn5.LossPower+
+				conn6.LossPower+		conn7.LossPower+		conn8.LossPower+		conn9.LossPower+		conn10.LossPower+		conn11.LossPower+		conn12.LossPower+		conn13.LossPower+
+				conn14.LossPower+		conn15.LossPower+		conn16.LossPower+		conn17.LossPower+		conn18.LossPower+		conn19.LossPower;
 				connect(connectionelement1.int1,bb11.Xn) annotation(Line(points={{-5,-10},{0,-10},{1,-10},{1,-11},{6,-11}}));
 				connect(bb_solar1.Xn,connectionelement1.int2) annotation(Line(points={{-35,-10},{-30,-10},{-22,-10},{-22,-10},{-17,-10}}));
 				connect(conn2.int1,bb1.Zn) annotation(Line(points={{45,3},{45,-2},{46,-2},{46,-37},{41,-37}}));
@@ -1036,12 +1052,10 @@ package iboss
 				connect(conn4.int1,bb12.Zn) annotation(Line(points={{20,2},{20,-3},{21,-3},{21,-37},{16,-37}}));
 				connect(conn5.int1,bb11.Zn) annotation(Line(points={{6,2},{6,-3},{21,-3},{21,-13},{16,-13}}));
 				connect(conn2.int2,bb8.Zn) annotation(Line(points={{45,12},{45,17},{45,17},{45,23},{40,23}}));
-				connect(conn3.int2,bb7.Zn) annotation(Line(points={{33,11},{33,16},{45,16},{45,50},{40,50}}));
 				connect(conn4.int2,bb9.Zn) annotation(Line(points={{20,11},{20,16},{21,16},{21,22},{16,22}}));
 				connect(conn5.int2,bb6.Zn) annotation(Line(points={{6,11},{6,16},{20,16},{20,50},{15,50}}));
 				connect(conn7.int1,bb8.Zp) annotation(Line(points={{-12,36},{-7,36},{25,36},{25,28},{30,28}}));
 				connect(conn6.int1,bb9.Zp) annotation(Line(points={{-11,22},{-6,22},{0,22},{0,27},{5,27}}));
-				connect(conn9.int1,bb7.Zp) annotation(Line(points={{-12,62},{-7,62},{25,62},{25,55},{30,55}}));
 				connect(conn8.int1,bb6.Zp) annotation(Line(points={{-12,49},{-7,49},{0,49},{0,55},{5,55}}));
 				connect(bb4.Zn,conn8.int2) annotation(Line(points={{-60,51},{-55,51},{-26,51},{-26,49},{-21,49}}));
 				connect(bb2.Zn,conn7.int2) annotation(Line(points={{-36,26},{-31,26},{-26,26},{-26,36},{-21,36}}));
@@ -1063,8 +1077,6 @@ package iboss
 				25}}));
 				connect(bb8.Xn,conn19.int1) annotation(Line(points={{30,25},{25,25},{32,25},{32,26},{27,26}}));
 				connect(conn14.int1,bb8.Yp) annotation(Line(points={{35,35},{35,30},{35,36},{35,31}}));
-				connect(bb7.Yn,conn14.int2) annotation(Line(points={{35,48},{35,43},{35,49},{35,44}}));
-				connect(conn18.int1,bb7.Xn) annotation(Line(points={{27,52},{32,52},{25,52},{30,52}}));
 				connect(bb6.Xp,conn18.int2) annotation(Line(points={{15,52},{20,52},{13,52},{18,52}}));
 				connect(bb6.Yn,conn15.int2) annotation(Line(points={{10,48},{10,43},{10,43},{10,49},{9,49},{9,
 				44}}));
@@ -1091,6 +1103,18 @@ package iboss
 				connect(conn6.int2,battery1.Zn) annotation(Line(
 					points={{-20,22},{-25,22},{-60,22},{-65,22}},
 					color={0,0,0}));
+				connect(conn18.int1,bb7.Xn) annotation(Line(
+					points={{27,52},{32,52},{25,52},{30,52}},
+					color={0,0,0}));
+				connect(bb7.Yn,conn14.int2) annotation(Line(
+					points={{35,47},{35,42},{35,49},{35,49},{35,44}},
+					color={0,0,0}));
+				connect(conn3.int2,bb7.Zn) annotation(Line(
+					points={{33,11},{35,16},{45,15},{45,49},{40,49}},
+					color={0,0,0}));
+				connect(conn9.int1,bb7.Zp) annotation(Line(
+					points={{-12,62},{-7,62},{25,62},{25,55},{30,55}},
+					color={0,0,0}));
 			annotation(
 				bb9(
 					int_Xn(vcc(v(flags=2))),
@@ -1105,20 +1129,39 @@ package iboss
 					resistor3(v(flags=2)),
 					powerSensor1(power(flags=2))),
 				bb6(powerSensor1(power(flags=2))),
+				conn19(LossPower(flags=2)),
+				conn18(LossPower(flags=2)),
 				bb2(powerSensor1(power(flags=2))),
 				bb4(powerSensor1(power(flags=2))),
 				bb5(powerSensor1(power(flags=2))),
+				conn16(LossPower(flags=2)),
+				conn17(LossPower(flags=2)),
+				conn9(LossPower(flags=2)),
+				conn8(LossPower(flags=2)),
+				conn7(LossPower(flags=2)),
+				conn6(LossPower(flags=2)),
 				bb11(powerSensor1(power(flags=2))),
 				bb12(powerSensor1(power(flags=2))),
+				conn20(LossPower(flags=2)),
+				conn1(LossPower(flags=2)),
 				bb7(powerSensor1(power(flags=2))),
 				bb10(powerSensor1(power(flags=2))),
 				bb1(powerSensor1(power(flags=2))),
-				bb_solar1(
-					Yp(Vcc(v(flags=2))),
-					powerSensor1(power(flags=2))),
-				connectionelement1(R_Vcc(
-					v(flags=2),
-					i(flags=2))),
+				conn12(LossPower(flags=2)),
+				conn13(LossPower(flags=2)),
+				conn15(LossPower(flags=2)),
+				conn11(LossPower(flags=2)),
+				conn10(LossPower(flags=2)),
+				conn4(LossPower(flags=2)),
+				conn3(LossPower(flags=2)),
+				conn14(LossPower(flags=2)),
+				conn5(LossPower(flags=2)),
+				conn2(LossPower(flags=2)),
+				connectionelement1(
+					LossPower(flags=2),
+					R_Vcc(
+						v(flags=2),
+						i(flags=2))),
 				battery1(
 					battery1(
 						v(flags=2),
@@ -1127,19 +1170,27 @@ package iboss
 						i(flags=2)),
 					powerSensor1(power(flags=2))),
 				trapezoid1(y(flags=2)),
-				viewinfo[2](
-					staticBlocks[0](
-						frame(
-							style=0,
-							width=0,
-							color=0),
-						index=0,
-						typename="Displ"),
-					typename="ModelInfo"),
+				bb_solar1(
+					Yp(Vcc(v(flags=2))),
+					powerSensor1(power(flags=2))),
+				connectionloss(flags=2),
+				viewinfo[0](
+					property[0](
+						id=2004,
+						val="2005"),
+					property[1](
+						id=2012,
+						val="2013"),
+					property[2](
+						id=2017,
+						val="000000"),
+					property[3](
+						id=2018,
+						val="True"),
+					typename="3DObjectInfo"),
 				experiment(
 					StopTime=10000,
-					StartTime=0,
-					Tolerance=1e-006));
+					StartTime=0));
 		end EVS2x2x3;
 	end satellites;
 end iboss;

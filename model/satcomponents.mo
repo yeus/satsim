@@ -332,23 +332,23 @@ package satcomponents
 							extent={{-100,-100},{100,100}},
 							grid={1,1}),
 						graphics={
-											Line(
-												points={{-90,0},{-10,0}}),
-											Line(
-												points={{-10,60},{-10,-60}}),
-											Line(
-												points={{0,30},{0,-30}}),
-											Line(
-												points={{0,0},{90,0}}),
-											Text(
-												textString="%capacity_Ah Ah",
-												extent={{-150,-112},{150,-72}}),
-											Text(
-												textString="+",
-												extent={{-120,50},{-20,0}}),
-											Text(
-												textString="-",
-												extent={{20,50},{120,0}})}),
+																	Line(
+																		points={{-90,0},{-10,0}}),
+																	Line(
+																		points={{-10,60},{-10,-60}}),
+																	Line(
+																		points={{0,30},{0,-30}}),
+																	Line(
+																		points={{0,0},{90,0}}),
+																	Text(
+																		textString="%capacity_Ah Ah",
+																		extent={{-150,-112},{150,-72}}),
+																	Text(
+																		textString="+",
+																		extent={{-120,50},{-20,0}}),
+																	Text(
+																		textString="-",
+																		extent={{20,50},{120,0}})}),
 					experiment(
 						StopTime=10000,
 						StartTime=0,
@@ -821,113 +821,29 @@ package satcomponents
 						grid={2,2}),
 					graphics={Rectangle(origin = {-1.01156,2.89017}, extent = {{-95.5202,78.9017},{95.5202,-78.9017}}),Text(origin = {3.46821,39.0173}, extent = {{-62.4277,29.7688},{62.4277,-29.7688}}, textString = "Battery"),Text(origin = {-23.6416,-14.104}, extent = {{-62.4277,29.7688},{107.225,-3.75724}}, textString = "Discharge"),Text(origin = {2.65896,-39.8266}, extent = {{-62.4277,29.7688},{62.4277,-29.7688}}, textString = "Regulator")}));
 			end BDR;
-			model BCR
+			model BCR "BCR"
 				extends Modelica.Electrical.Analog.Interfaces.TwoPin;
 				parameter Modelica.SIunits.Voltage Vmax=4.0;
 				parameter Modelica.SIunits.Voltage Vmin=3.3;
-				Modelica.Electrical.Analog.Basic.Resistor RS_on(R=0.001) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={46.2428,0.289017},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Interfaces.NegativePin pin_n annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-8.41121,-93.7695},
-						extent={{-10,-10},{10,10}},
-						rotation=0),
-					iconTransformation(
-						origin={-8.41121,-93.7695},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Sensors.VoltageSensor voltagesensor1 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-64.1734,-32.3577},
-						extent={{-10,10},{10,-10}},
-						rotation=-90)));
-				Modelica.Blocks.Logical.OnOffController onoffcontroller1(bandwidth=Vmax * 0.1) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-32.8062,-26.665},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
-				Modelica.Blocks.Logical.OnOffController onoffcontroller2(
-					bandwidth=Vmin * 0.1,
-					pre_y_start=true) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={22.3338,-37.7523},
-						extent={{10,-10},{-10,10}},
-						rotation=0)));
-				Modelica.Blocks.Sources.Constant constant1(k=Vmin) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={72.0671,-30.7022},
-						extent={{10,-10},{-10,10}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Sensors.VoltageSensor voltagesensor2 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={50.4119,-43.8221},
-						extent={{-10,-10},{10,10}},
-						rotation=-90)));
-				Modelica.Blocks.Sources.Constant const(k=Vmax) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-88.839,-20.2738},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Ideal.IdealClosingSwitch idealclosingswitch1(control(start=false)) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-12.3292,0.951474},
-						extent={{-10,10},{10,-10}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Ideal.IdealDiode idealdiode1 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-41.8451,1.31796},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Ideal.IdealDiode idealdiode2 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={15.9308,35.3707},
-						extent={{10,-10},{-10,10}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Ideal.IdealOpeningSwitch idealopeningswitch1(control(start=false)) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-22.4053,36.2438},
-						extent={{10,10},{-10,-10}},
-						rotation=0)));
 				equation
-					connect(onoffcontroller1.y,idealclosingswitch1.control) annotation(Line(points = {{-21.8062,-26.665},{-12.5206,-26.665},{-12.5206,-6.91928},{-12.5206,-6.91928}}));
-					connect(idealopeningswitch1.control,onoffcontroller2.y) annotation(Line(points = {{-22.4053,29.2438},{2.30643,29.2438},{2.30643,-37.8913},{10.8731,-37.8913},{10.8731,-37.8913}}));
-					connect(idealopeningswitch1.n,idealdiode1.p) annotation(Line(points = {{-32.4053,36.2438},{-52.3888,36.2438},{-52.3888,1.31796},{-51.8451,1.31796}}));
-					connect(idealopeningswitch1.p,idealdiode2.n) annotation(Line(points = {{-12.4053,36.2438},{6.2603,36.2438},{6.2603,35.3707},{6.2603,36.0297}}));
-					connect(idealdiode2.p,RS_on.p) annotation(Line(points = {{26.2603,36.0297},{35.9143,36.0297},{35.9143,0},{35.9143,0}}));
-					connect(idealdiode1.p,voltagesensor1.p) annotation(Line(points = {{-51.8451,1.31796},{-64.2504,1.31796},{-64.2504,-22.4053},{-64.2504,-22.4053}}));
-					connect(idealclosingswitch1.p,idealdiode1.n) annotation(Line(points = {{-22.3292,0.951474},{-32.29,0.951474},{-32.29,1.31796},{-32.29,1.31796}}));
-					connect(idealclosingswitch1.n,RS_on.p) annotation(Line(points = {{-2.32916,0.951474},{36.2438,0.951474},{36.2438,0.289017},{36.2428,0.289017}}));
-					connect(const.y,onoffcontroller1.reference) annotation(Line(points = {{-77.839,-20.2738},{-51.4003,-20.2738},{-51.4003,-20.4283},{-44.8062,-20.4283},{-44.8062,-20.665}}));
-					connect(voltagesensor2.n,pin_n) annotation(Line(points = {{50.4119,-53.8221},{50.4119,-93.9044},{-8.89621,-93.9044},{-8.89621,-93.9044}}));
-					connect(voltagesensor2.v,onoffcontroller2.u) annotation(Line(points = {{40.4119,-43.8221},{40.4119,-43.4926},{35.2554,-43.4926},{35.2554,-43.4926}}));
-					connect(voltagesensor2.p,RS_on.n) annotation(Line(points = {{50.4119,-33.8221},{50.4119,-13.8386},{56.3427,-13.8386},{56.3427,-0.329489},{56.3427,-0.329489}}));
-					connect(constant1.y,onoffcontroller2.reference) annotation(Line(points = {{61.0671,-30.7022},{35.5848,-30.7022},{35.5848,-30.972},{35.5848,-30.972}}));
-					connect(voltagesensor1.v,onoffcontroller1.u) annotation(Line(points = {{-54.1734,-32.3577},{-54.1734,-32.29},{-44.8105,-32.29},{-44.8105,-32.29}}));
-					connect(p,voltagesensor1.p) annotation(Line(points = {{-100,0},{-64.2504,0},{-64.1734,-22.3577},{-64.1734,-22.3577}}));
-					connect(voltagesensor1.n,pin_n) annotation(Line(points = {{-64.1734,-42.3577},{-64.1734,-93.7695},{-8.09969,-93.7695},{-8.09969,-93.7695}}));
-					connect(RS_on.n,n) annotation(Line(points = {{56.2428,0.289017},{99.422,0.289017},{99.422,0},{99.422,0}}));
-				annotation(Icon(
-					coordinateSystem(
-						extent={{-100,-100},{100,100}},
-						preserveAspectRatio=true,
-						initialScale=0.1,
-						grid={2,2}),
-					graphics={Rectangle(origin = {-1.01156,2.89017}, extent = {{-95.5202,78.9017},{95.5202,-78.9017}}),Text(origin = {3.46821,39.0173}, extent = {{-62.4277,29.7688},{62.4277,-29.7688}}, textString = "Battery"),Text(origin = {-23.6416,-14.104}, extent = {{-62.4277,29.7688},{107.225,-3.75724}}, textString = "Discharge"),Text(origin = {2.65896,-39.8266}, extent = {{-62.4277,29.7688},{62.4277,-29.7688}}, textString = "Regulator")}));
+					connect(p,n) annotation(Line(
+						points={{-100,0},{-95,0},{95,0},{100,0}},
+						color={0,0,0},
+						thickness=0));
+				annotation(
+					Icon(
+						coordinateSystem(extent={{-100,-100},{100,100}}),
+						graphics={
+											Rectangle(
+												extent={{-95.5202,78.90170000000001},{95.5202,-78.90170000000001}},
+												origin={-1.01156,2.89017}),
+											Text(
+												textString="Battery \\n Charge \\n Regulator",
+												lineColor={0,0,0},
+												extent={{-80,63},{67,-37}})}),
+					experiment(
+						StopTime=1,
+						StartTime=0));
 			end BCR;
 		end batteries;
 		package solar_power
@@ -2392,21 +2308,21 @@ package satcomponents
 					Icon(
 						coordinateSystem(extent={{-100,-100},{100,100}}),
 						graphics={
-																	Rectangle(
-																		fillColor={0,0,255},
-																		extent={{-87.69450000000001,78.6421},{88.5431,-74.6818}}),
-																	Text(
-																		textString="%V_out",
-																		fillColor={0,0,255},
-																		extent={{-8.486520000000001,67.6096},{57.4258,29.7029}}),
-																	Text(
-																		textString="DCDC",
-																		fillColor={0,0,255},
-																		extent={{-63.6492,18.9533},{57.9915,-33.0976}}),
-																	Text(
-																		textString="V",
-																		fillColor={0,0,255},
-																		extent={{54.314,63.3663},{75.8133,32.8147}})}),
+																							Rectangle(
+																								fillColor={0,0,255},
+																								extent={{-87.69450000000001,78.6421},{88.5431,-74.6818}}),
+																							Text(
+																								textString="%V_out",
+																								fillColor={0,0,255},
+																								extent={{-8.486520000000001,67.6096},{57.4258,29.7029}}),
+																							Text(
+																								textString="DCDC",
+																								fillColor={0,0,255},
+																								extent={{-63.6492,18.9533},{57.9915,-33.0976}}),
+																							Text(
+																								textString="V",
+																								fillColor={0,0,255},
+																								extent={{54.314,63.3663},{75.8133,32.8147}})}),
 					Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
 					experiment(
 						StopTime=1,
@@ -3782,24 +3698,24 @@ package satcomponents
 		Icon(
 			coordinateSystem(extent={{-100,-100},{100,100}}),
 			graphics={
-													Polygon(
-													points={{-11.5042,31.4966},{33.1625,8.163309999999999},{11.8292,-31.5034},{-33.1708,-7.17002},{-11.5042,31.4966}},
-												origin={-0.495835,-3.82998}),
-											Polygon(
-												points={{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}},
-												fillColor={0,0,255},
-												fillPattern=FillPattern.VerticalCylinder,
-												origin={41.3475,49.7145}),
-											Polygon(
-												points={{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}},
-												fillColor={0,0,255},
-												fillPattern=FillPattern.VerticalCylinder,
-												origin={-23.6525,-62.9522}),
-											Polygon(
-												points={{-8.16695,13.1269},{-13.1669,4.12686},{-0.500278,-13.5398},{13.1664,11.1269},{-8.16695,13.1269}},
-												origin={36.1669,-23.4602}),
-											Polygon(
-												points={{16.7693,29.6823},{14.7693,5.68234},{1.10267,-18.651},{-16.8973,-29.3177},{16.7693,29.6823}},
-												origin={-35.7693,14.651})}),
+																Polygon(
+																points={{-11.5042,31.4966},{33.1625,8.163309999999999},{11.8292,-31.5034},{-33.1708,-7.17002},{-11.5042,31.4966}},
+															origin={-0.495835,-3.82998}),
+														Polygon(
+															points={{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}},
+															fillColor={0,0,255},
+															fillPattern=FillPattern.VerticalCylinder,
+															origin={41.3475,49.7145}),
+														Polygon(
+															points={{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}},
+															fillColor={0,0,255},
+															fillPattern=FillPattern.VerticalCylinder,
+															origin={-23.6525,-62.9522}),
+														Polygon(
+															points={{-8.16695,13.1269},{-13.1669,4.12686},{-0.500278,-13.5398},{13.1664,11.1269},{-8.16695,13.1269}},
+															origin={36.1669,-23.4602}),
+														Polygon(
+															points={{16.7693,29.6823},{14.7693,5.68234},{1.10267,-18.651},{-16.8973,-29.3177},{16.7693,29.6823}},
+															origin={-35.7693,14.651})}),
 		Diagram(coordinateSystem(extent={{-100,-100},{100,100}})));
 end satcomponents;
