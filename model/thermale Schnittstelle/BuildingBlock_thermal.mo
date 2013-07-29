@@ -3,14 +3,14 @@
 model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit Schnittstellen"
 	thermal_connector thermal_connector_xp "Verbindungselement fuer mehr als eine Schnittstelle" annotation(Placement(
 		transformation(
-			origin={250,-50},
+			origin={325,-95},
 			extent={{-10,-10},{10,10}}),
 		iconTransformation(
 			origin={100,0},
 			extent={{-10,-10},{10,10}})));
 	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b port_b annotation(Placement(
 		transformation(
-			origin={35,0},
+			origin={110,-45},
 			extent={{-10,-10},{10,10}}),
 		iconTransformation(
 			origin={0,0},
@@ -42,6 +42,10 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 	parameter Real ViewFactor_vertical=0.2 "Viewfactor of vertical Surfaces";
 	parameter Modelica.SIunits.Emissivity eps_Panel=0.5 "Emmisivity of the inner side of the panel";
 	parameter Modelica.SIunits.Emissivity eps_EB=0.5 "Emmisivity of the electronic box";
+	parameter Modelica.SIunits.Temp_K lower_Temp_boundary=270 "Coldest allowed temperatur in the Box";
+	parameter Modelica.SIunits.Temp_K upper_Temp_boundary=310 "highest allowed temperatur in the Box";
+	parameter Modelica.SIunits.ActivePower heating_power=100 "heat Power of the heater";
+	parameter Modelica.SIunits.ActivePower cooling_power=-100 "heat Power of the cooler";
 	thermal_Panel_with_Interface Panel_xp(
 		x_ESS=x_ESS,
 		y_ESS=y_ESS,
@@ -72,7 +76,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		material_TSS(choicesAllMatching=true),
 		material_Panel(choicesAllMatching=true),
 		Placement(transformation(
-			origin={190,-60},
+			origin={265,-105},
 			extent={{-10,-10},{25,25}})));
 	thermal_Panel_with_Interface Panel_xn(
 		x_ESS=x_ESS,
@@ -104,7 +108,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		material_TSS(choicesAllMatching=true),
 		material_Panel(choicesAllMatching=true),
 		Placement(transformation(
-			origin={-10,-55},
+			origin={65,-100},
 			extent={{-15,-20},{20,15}},
 			rotation=-180)));
 	thermal_Panel_with_Interface Panel_yp(
@@ -137,7 +141,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		material_TSS(choicesAllMatching=true),
 		material_Panel(choicesAllMatching=true),
 		Placement(transformation(
-			origin={85,45},
+			origin={160,0},
 			extent={{-15,-20},{15,15}},
 			rotation=-270)));
 	thermal_Panel_with_Interface Panel_yn(
@@ -170,7 +174,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		material_TSS(choicesAllMatching=true),
 		material_Panel(choicesAllMatching=true),
 		Placement(transformation(
-			origin={80,-150},
+			origin={155,-195},
 			extent={{-10,-10},{25,25}},
 			rotation=-90)));
 	thermal_Panel_with_Interface Panel_zn(
@@ -203,7 +207,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		material_TSS(choicesAllMatching=true),
 		material_Panel(choicesAllMatching=true),
 		Placement(transformation(
-			origin={210,56},
+			origin={285,11},
 			extent={{-10,-10},{24,24}},
 			rotation=45)));
 	thermal_Panel_with_Interface Panel_zp(
@@ -236,7 +240,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		material_TSS(choicesAllMatching=true),
 		material_Panel(choicesAllMatching=true),
 		Placement(transformation(
-			origin={-30,-179},
+			origin={45,-224},
 			extent={{-24,-24},{10,10}},
 			rotation=-135)));
 	thermalModel_ElectronicBox thermalModel_ElectronicBox1(
@@ -246,131 +250,128 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		z=z_EB) annotation(
 		material(choicesAllMatching=true),
 		Placement(transformation(
-			origin={75,-65},
+			origin={150,-110},
 			extent={{-5,-5},{30,30}})));
 	intra_BuildingBlock_connector EB_Pxp(
 		Gr=Gr_P_EB,
 		A_cross_Panel=y_EB * z_EB,
 		h_c=h_EB) annotation(Placement(transformation(
-		origin={132,-52},
+		origin={207,-97},
 		extent={{-6.6332,-6.6332},{6.6332,6.6332}})));
 	intra_BuildingBlock_connector EB_Pxn(
 		Gr=Gr_P_EB,
 		A_cross_Panel=y_EB * z_EB,
 		h_c=h_EB) annotation(Placement(transformation(
-		origin={41,-51},
+		origin={116,-96},
 		extent={{-6,-9},{6.25,6.25}})));
 	intra_BuildingBlock_connector EB_Pyn(
 		Gr=Gr_P_EB,
 		A_cross_Panel=x_EB * z_EB,
 		h_c=h_EB) annotation(Placement(transformation(
-		origin={86,-96},
+		origin={161,-141},
 		extent={{-6.4815,-6.4815},{6.4815,6.4815}},
 		rotation=-90)));
 	intra_BuildingBlock_connector EB_Pyp(
 		Gr=Gr_P_EB,
 		A_cross_Panel=x_EB * z_EB,
 		h_c=h_EB) annotation(Placement(transformation(
-		origin={87,-7},
+		origin={162,-52},
 		extent={{-6.6332,-6.6332},{6.6332,6.6332}},
 		rotation=-90)));
 	intra_BuildingBlock_connector EB_Pzp(
 		Gr=Gr_P_EB,
 		A_cross_Panel=y_EB * x_EB,
 		h_c=h_EB) annotation(Placement(transformation(
-		origin={51,-87},
+		origin={126,-132},
 		extent={{-10,-8},{4,6}},
 		rotation=45)));
 	intra_BuildingBlock_connector EB_Pzn(
 		Gr=Gr_P_EB,
 		A_cross_Panel=y_EB * x_EB,
 		h_c=h_EB) annotation(Placement(transformation(
-		origin={126,-19},
+		origin={201,-64},
 		extent={{-6.4943,-6.4943},{9,11}},
 		rotation=45)));
 	intra_BuildingBlock_connector adjoiningPanel_xp_yn(
 		Gr=Gr_aP,
 		A_cross_Panel=x_Panel * y_Panel,
 		h_c=h_Panel) annotation(Placement(transformation(
-		origin={191,-116},
+		origin={266,-161},
 		extent={{-5.8179,-5.8179},{8,7}},
 		rotation=-90)));
 	intra_BuildingBlock_connector adjoiningPanel_xp_yp(
 		Gr=Gr_aP,
 		A_cross_Panel=x_Panel * y_Panel,
 		h_c=h_Panel) annotation(Placement(transformation(
-		origin={151,44},
+		origin={226,-1},
 		extent={{-6.2693,-6.2693},{6.2693,6.2693}})));
 	intra_BuildingBlock_connector adjoiningPanel_xp_zn(
 		Gr=Gr_aP,
 		A_cross_Panel=x_Panel * y_Panel,
 		h_c=h_Panel) annotation(Placement(transformation(
-		origin={200,0},
+		origin={275,-45},
 		extent={{-4.7981,-4.7981},{4.7981,4.7981}},
 		rotation=-270)));
 	intra_BuildingBlock_connector adjoiningPanel_xp_zp(
 		Gr=Gr_aP,
 		A_cross_Panel=x_Panel * y_Panel,
 		h_c=h_Panel) annotation(Placement(transformation(
-		origin={177,-142},
+		origin={252,-187},
 		extent={{-7.5,-7.5},{7.5,7.5}},
 		rotation=-90)));
 	intra_BuildingBlock_connector adjoiningPanel_xn_yn(
 		Gr=Gr_aP,
 		A_cross_Panel=x_Panel * y_Panel,
 		h_c=h_Panel) annotation(Placement(transformation(
-		origin={-8,-122},
+		origin={67,-167},
 		extent={{-6.5445,-6.5445},{6.5445,6.5445}},
 		rotation=-90)));
 	intra_BuildingBlock_connector adjoiningPanel_xn_yp(
 		Gr=Gr_aP,
 		A_cross_Panel=x_Panel * y_Panel,
 		h_c=h_Panel) annotation(Placement(transformation(
-		origin={-9,-1},
+		origin={66,-46},
 		extent={{-6.2294,-6.2294},{6.2294,6.2294}},
 		rotation=-90)));
 	intra_BuildingBlock_connector adjoiningPanel_xn_zn(
 		Gr=Gr_aP,
 		A_cross_Panel=x_Panel * y_Panel,
 		h_c=h_Panel) annotation(Placement(transformation(
-		origin={-9,59},
+		origin={66,14},
 		extent={{-6.3683,-6.3683},{6.3683,6.3683}})));
 	intra_BuildingBlock_connector adjoiningPanel_xn_zp(
 		Gr=Gr_aP,
 		A_cross_Panel=x_Panel * y_Panel,
 		h_c=h_Panel) annotation(Placement(transformation(
-		origin={-24,-106},
+		origin={51,-151},
 		extent={{-5.8783,-5.8783},{5.8783,5.8783}},
 		rotation=-90)));
 	intra_BuildingBlock_connector adjoiningPanel_yn_zn(
 		Gr=Gr_aP,
 		A_cross_Panel=x_Panel * y_Panel,
 		h_c=h_Panel) annotation(Placement(transformation(
-		origin={206,-84},
+		origin={281,-129},
 		extent={{-7,-13},{4,1}},
 		rotation=-270)));
 	intra_BuildingBlock_connector adjoiningPanel_yn_zp(
 		Gr=Gr_aP,
 		A_cross_Panel=x_Panel * y_Panel,
 		h_c=h_Panel) annotation(Placement(transformation(
-		origin={51,-139},
+		origin={126,-184},
 		extent={{-5.778,-5.778},{4,4}})));
 	intra_BuildingBlock_connector adjoiningPanel_yp_zn(
 		Gr=Gr_aP,
 		A_cross_Panel=x_Panel * y_Panel,
 		h_c=h_Panel) annotation(Placement(transformation(
-		origin={101,64},
+		origin={176,19},
 		extent={{-6.2539,-6.2539},{4,6}})));
 	intra_BuildingBlock_connector adjoiningPanel_yp_zp(
 		Gr=Gr_aP,
 		A_cross_Panel=x_Panel * y_Panel,
 		h_c=h_Panel) annotation(Placement(transformation(
-		origin={6,-16},
+		origin={81,-61},
 		extent={{-6.1458,-6.1458},{6,10}},
 		rotation=-90)));
-	Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow Buildingblock_Power(Q_flow=BuildingBlock_Power) annotation(Placement(transformation(
-		origin={-100,30},
-		extent={{-10,-10},{10,10}})));
 	parameter MaterialDatabase.Kupferlegierungen_Kupfer Kupfer annotation(Placement(transformation(
 		origin={130,90},
 		extent={{-10,-10},{10,10}})));
@@ -387,11 +388,11 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		origin={130,60},
 		extent={{-10,-10},{10,10}})));
 	Modelica.Thermal.HeatTransfer.Components.BodyRadiation oposite_Panel_x(Gr=Gr_oP) annotation(Placement(transformation(
-		origin={42,-27},
+		origin={117,-72},
 		extent={{-6.7966,-6.7966},{6.7966,6.7966}})));
 	thermal_connector thermal_connector_yn annotation(Placement(
 		transformation(
-			origin={85,-190},
+			origin={160,-235},
 			extent={{-10,10},{10,-10}},
 			rotation=-90),
 		iconTransformation(
@@ -400,7 +401,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 			rotation=-90)));
 	thermal_connector thermal_connector_zp annotation(Placement(
 		transformation(
-			origin={-65,-205},
+			origin={10,-250},
 			extent={{10,10},{-10,-10}},
 			rotation=-180),
 		iconTransformation(
@@ -409,7 +410,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 			rotation=-180)));
 	thermal_connector thermal_connector_xn annotation(Placement(
 		transformation(
-			origin={-60,-50},
+			origin={15,-95},
 			extent={{10,10},{-10,-10}},
 			rotation=-180),
 		iconTransformation(
@@ -418,7 +419,7 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 			rotation=-180)));
 	thermal_connector thermal_connector_yp annotation(Placement(
 		transformation(
-			origin={90,80},
+			origin={165,35},
 			extent={{10,-10},{-10,10}},
 			rotation=-270),
 		iconTransformation(
@@ -426,15 +427,15 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 			extent={{12,-12},{-12,12}},
 			rotation=-270)));
 	Modelica.Thermal.HeatTransfer.Components.BodyRadiation oposite_Panel_z(Gr=Gr_oP) annotation(Placement(transformation(
-		origin={135,-83},
+		origin={210,-128},
 		extent={{-10,-10},{3,3}})));
 	Modelica.Thermal.HeatTransfer.Components.BodyRadiation oposite_Panel_y(Gr=Gr_oP) annotation(Placement(transformation(
-		origin={111,-116},
+		origin={186,-161},
 		extent={{-6.0172,6.0172},{6.0172,-6.0172}},
 		rotation=-90)));
 	thermal_connector thermal_connector_zn annotation(Placement(
 		transformation(
-			origin={225,80},
+			origin={300,35},
 			extent={{-10,-10},{10,10}},
 			rotation=-360),
 		iconTransformation(
@@ -445,70 +446,76 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		parameter Real Gr_aP(unit="m2")=ViewFactor_vertical*y_Panel*z_Panel*(1/((2/eps_Panel)-1))"Net radiation conductance between two surfaces (see docu)(adjoining Panels) tbd";
 		parameter Real Gr_P_EB(unit="m2")=x_EB*y_EB*(eps_Panel*eps_EB/(eps_Panel+eps_EB-eps_Panel*eps_EB))"Net radiation conductance between two surfaces (see docu)(Panel - Electronic Box) tbd";
 	public
-		Modelica.Blocks.Logical.OnOffController onOffController1(bandwidth=2) annotation(Placement(transformation(extent={{-115,-30},{-95,-10}})));
-		Modelica.Blocks.Sources.Constant const(k=270) annotation(Placement(transformation(extent={{-150,-5},{-130,15}})));
+		Modelica.Blocks.Logical.OnOffController onOffController1(bandwidth=2) annotation(Placement(transformation(extent={{-55,-60},{-35,-40}})));
+		Modelica.Blocks.Sources.Constant lower_Temp(k=lower_Temp_boundary) annotation(Placement(transformation(extent={{-85,-45},{-65,-25}})));
 		Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperature_EB annotation(Placement(transformation(
-			origin={-105,-65},
+			origin={-75,-80},
 			extent={{-10,-10},{10,10}},
 			rotation=-180)));
-		Modelica.Blocks.Math.Gain gain1(k=100) annotation(Placement(transformation(extent={{-80,-30},{-60,-10}})));
-		Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow1 annotation(Placement(transformation(extent={{-50,-30},{-30,-10}})));
-		Modelica.Blocks.Continuous.Integrator integrator1 annotation(Placement(transformation(extent={{-60,-5},{-40,15}})));
+		Modelica.Blocks.Math.Gain gain1(k=heating_power) annotation(Placement(transformation(extent={{-20,-60},{0,-40}})));
+		Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow heater_power annotation(Placement(transformation(extent={{10,-60},{30,-40}})));
+		Modelica.Blocks.Continuous.Integrator integrator_heater annotation(Placement(transformation(extent={{-20,-30},{0,-10}})));
+		Modelica.Blocks.Logical.OnOffController onOffController2(bandwidth=2) annotation(Placement(transformation(extent={{-55,35},{-35,55}})));
+		Modelica.Blocks.Sources.Constant upper_Temp(k=upper_Temp_boundary) annotation(Placement(transformation(extent={{-85,10},{-65,30}})));
+		Modelica.Blocks.Math.Gain gain2(k=cooling_power) annotation(Placement(transformation(extent={{-20,35},{0,55}})));
+		Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow cooler_power annotation(Placement(transformation(extent={{20,35},{40,55}})));
+		Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow fixedHeatFlow1(Q_flow=BuildingBlock_Power) annotation(Placement(transformation(extent={{0,0},{20,20}})));
+		Modelica.Blocks.Continuous.Integrator integrator_cooler annotation(Placement(transformation(extent={{-20,70},{0,90}})));
 	equation
 		connect(Panel_zn.thermal_connector1,thermal_connector_zn) annotation(
 			Line(
-				points={{213.6666564941406,69.66667175292969},{225,80}},
+				points={{288.6666564941406,24.66666412353516},{300,35}},
 				thickness=0.0625),
 			AutoRoute=false);
 		connect(EB_Pzn.port_a,thermalModel_ElectronicBox1.EB_zn) annotation(
 			Line(
-				points={{119.6666564941406,-22},{103.3333282470703,-36.66667175292969}},
+				points={{194.6666564941406,-67},{178.3333435058594,-81.66667175292969}},
 				color={191,0,0},
 				thickness=0.0625),
 			AutoRoute=false);
 		connect(thermalModel_ElectronicBox1.EB_zp,EB_Pzp.port_b) annotation(
 			Line(
-				points={{71.66667175292969,-68.33332824707031},{54.66667175292969,-85}},
+				points={{146.6666564941406,-113.3333282470703},{129.6666564941406,-130}},
 				color={191,0,0},
 				thickness=0.0625),
 			AutoRoute=false);
 		
 		connect(Panel_zp.thermal_connector1,thermal_connector_zp) annotation(
 			Line(
-				points={{-33.66666412353516,-172.6666564941406},{-65,-205}},
+				points={{41.33332824707031,-217.6666564941406},{10,-250}},
 				thickness=0.0625),
 			AutoRoute=false);
 		connect(EB_Pyn.port_a,thermalModel_ElectronicBox1.EB_yn) annotation(Line(
-			points={{86,-90},{86,-85},{86,-75},{88,-75},{88,-70}},
+			points={{161,-135},{161,-130},{161,-120},{163,-120},{163,-115}},
 			color={191,0,0},
 			thickness=0.0625));
 		
 		connect(Panel_yn.thermal_connector1,thermal_connector_yn) annotation(Line(
-			points={{87,-163},{87,-168},{90,-168},{90,-190},{85,-190}},
+			points={{162,-208},{162,-213},{165,-213},{165,-235},{160,-235}},
 			thickness=0.0625));
 		connect(EB_Pxp.port_a,thermalModel_ElectronicBox1.EB_xp) annotation(Line(
-			points={{125,-52},{120,-52},{110,-52},{110,-53},{105,-53}},
+			points={{200,-97},{195,-97},{185,-97},{185,-98},{180,-98}},
 			color={191,0,0},
 			thickness=0.0625));
 		
 		connect(Panel_xp.thermal_connector1,thermal_connector_xp) annotation(Line(
-			points={{203,-53},{208,-53},{245,-53},{245,-50},{250,-50}},
+			points={{278,-98},{283,-98},{320,-98},{320,-95},{325,-95}},
 			thickness=0.0625));
 		connect(EB_Pxn.port_b,thermalModel_ElectronicBox1.EB_xn) annotation(Line(
-			points={{47,-52},{52,-52},{65,-52},{65,-53},{70,-53}},
+			points={{122,-97},{127,-97},{140,-97},{140,-98},{145,-98}},
 			color={191,0,0},
 			thickness=0.0625));
 		
 		connect(EB_Pyp.port_b,thermalModel_ElectronicBox1.EB_yp) annotation(Line(
-			points={{87,-14},{87,-19},{87,-30},{88,-30},{88,-35}},
+			points={{162,-59},{162,-64},{162,-75},{163,-75},{163,-80}},
 			color={191,0,0},
 			thickness=0.0625));
 		
 		connect(Panel_yp.thermal_connector1,thermal_connector_yp) annotation(Line(
-			points={{87,50},{87,55},{85,55},{85,80},{90,80}},
+			points={{162,5},{162,10},{160,10},{160,35},{165,35}},
 			thickness=0.0625));
 		connect(Panel_xn.thermal_connector1,thermal_connector_xn) annotation(Line(
-			points={{-18,-52},{-23,-52},{-55,-52},{-55,-50},{-60,-50}},
+			points={{57,-97},{52,-97},{20,-97},{20,-95},{15,-95}},
 			thickness=0.0625));
 		
 		
@@ -538,218 +545,269 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		
 		
 		
-		connect(Buildingblock_Power.port,port_b) annotation(Line(
-			points={{-90,30},{-85,30},{30,30},{30,0},{35,0}},
-			color={191,0,0},
-			thickness=0.0625));
 		connect(thermalModel_ElectronicBox1.dissipationPower,port_b) annotation(
 			Line(
-				points={{87.66667175292969,-52.66667175292969},{35,0}},
+				points={{162.6666564941406,-97.66667175292969},{110,-45}},
 				color={191,0,0},
 				thickness=0.0625),
 			AutoRoute=false);
 		
 		connect(Panel_yp.port_xn,EB_Pyp.port_a) annotation(Line(
-			points={{87,40},{87,35},{87,5},{87,5},{87,0}},
+			points={{162,-5},{162,-10},{162,-40},{162,-40},{162,-45}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(EB_Pzn.port_b,Panel_zn.port_xn) annotation(
 			Line(
-				points={{130.6666564941406,-11},{206.3333435058594,62.33333206176758}},
+				points={{205.6666564941406,-56},{281.3333435058594,17.33333587646484}},
 				color={191,0,0},
 				thickness=0.0625),
 			AutoRoute=false);
 		connect(EB_Pxp.port_b,Panel_xp.port_xn) annotation(Line(
-			points={{139,-52},{144,-52},{187,-52},{187,-53},{192,-53}},
+			points={{214,-97},{219,-97},{262,-97},{262,-98},{267,-98}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(Panel_yn.port_xn,EB_Pyn.port_b) annotation(Line(
-			points={{87,-152},{87,-147},{87,-107},{86,-107},{86,-102}},
+			points={{162,-197},{162,-192},{162,-152},{161,-152},{161,-147}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(Panel_zp.port_xn,EB_Pzp.port_a) annotation(
 			Line(
-				points={{-26.33333587646484,-165.3333435058594},{44.66667175292969,-94.66667175292969}},
+				points={{48.66667175292969,-210.3333435058594},{119.6666564941406,-139.6666717529297}},
 				color={191,0,0},
 				thickness=0.0625),
 			AutoRoute=false);
 		connect(Panel_xn.port_xn,EB_Pxn.port_a) annotation(Line(
-			points={{-7,-52},{-2,-52},{30,-52},{35,-52}},
+			points={{68,-97},{73,-97},{105,-97},{110,-97}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(Panel_yn.port_yp,adjoiningPanel_xp_yn.port_b) annotation(Line(
-			points={{93,-153},{98,-153},{192,-153},{192,-129},{192,-124}},
+			points={{168,-198},{173,-198},{267,-198},{267,-174},{267,-169}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(adjoiningPanel_xp_yn.port_a,Panel_xp.port_yn) annotation(Line(
-			points={{192,-110},{192,-105},{192,-64},{194,-64},{194,-59}},
+			points={{267,-155},{267,-150},{267,-109},{269,-109},{269,-104}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(adjoiningPanel_xp_yp.port_b,Panel_xp.port_yp) annotation(Line(
-			points={{157,44},{162,44},{193,44},{193,-42},{193,-47}},
+			points={{232,-1},{237,-1},{268,-1},{268,-87},{268,-92}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(Panel_yp.port_yn,adjoiningPanel_xp_yp.port_a) annotation(Line(
-			points={{94,42},{99,42},{140,42},{140,44},{145,44}},
+			points={{169,-3},{174,-3},{215,-3},{215,-1},{220,-1}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(Panel_xn.port_yn,adjoiningPanel_xn_yp.port_b) annotation(Line(
-			points={{-9,-46},{-9,-41},{-9,-12},{-9,-7}},
+			points={{66,-91},{66,-86},{66,-57},{66,-52}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(Panel_xn.port_yp,adjoiningPanel_xn_yn.port_a) annotation(Line(
-			points={{-8,-58},{-8,-63},{-8,-110},{-8,-115}},
+			points={{67,-103},{67,-108},{67,-155},{67,-160}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(adjoiningPanel_xn_yn.port_b,Panel_yn.port_yn) annotation(Line(
-			points={{-8,-129},{-8,-134},{-8,-154},{76,-154},{81,-154}},
+			points={{67,-174},{67,-179},{67,-199},{151,-199},{156,-199}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(adjoiningPanel_xn_yp.port_a,Panel_yp.port_yp) annotation(
 			Line(
-				points={{-9,5.333335876464844},{-9,10},{-9,40},{82,40},{81.66667175292969,41.33333587646484}},
+				points={{66,-39.66667175292969},{66,-35},{66,-5},{157,-5},{156.6666564941406,-3.666664123535156}},
 				color={191,0,0},
 				thickness=0.0625),
 			AutoRoute=false);
 		connect(Panel_zp.port_zn,adjoiningPanel_xp_zp.port_b) annotation(
 			Line(
-				points={{-27.66666412353516,-175},{180,-175},{177,-149.6666564941406}},
+				points={{47.33332824707031,-220},{255,-220},{252,-194.6666564941406}},
 				color={191,0,0},
 				thickness=0.0625),
 			AutoRoute=false);
 		connect(Panel_xp.port_zp,adjoiningPanel_xp_zp.port_a) annotation(Line(
-			points={{188,-59},{183,-59},{177,-59},{177,-129},{177,-134}},
+			points={{263,-104},{258,-104},{252,-104},{252,-174},{252,-179}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(adjoiningPanel_xp_zn.port_b,Panel_zn.port_zp) annotation(Line(
-			points={{200,5},{200,10},{200,50},{208,50},{208,55}},
+			points={{275,-40},{275,-35},{275,5},{283,5},{283,10}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(Panel_xp.port_zn,adjoiningPanel_xp_zn.port_a) annotation(Line(
-			points={{200,-47},{200,-42},{200,-10},{200,-5}},
+			points={{275,-92},{275,-87},{275,-55},{275,-50}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(adjoiningPanel_xn_zp.port_b,Panel_zp.port_zp) annotation(Line(
-			points={{-24,-112},{-24,-117},{-24,-153},{-28,-153},{-28,-158}},
+			points={{51,-157},{51,-162},{51,-198},{47,-198},{47,-203}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(adjoiningPanel_xn_zp.port_a,Panel_xn.port_zp) annotation(Line(
-			points={{-24,-100},{-24,-95},{2,-95},{2,-46},{-3,-46}},
+			points={{51,-145},{51,-140},{77,-140},{77,-91},{72,-91}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(Panel_zn.port_zn,adjoiningPanel_xn_zn.port_b) annotation(
 			Line(
-				points={{207.6666564941406,71.66667175292969},{198,57},{198,60},{37,60},{-2.666671752929688,59}},
+				points={{282.6666564941406,26.66666412353516},{273,12},{273,15},{112,15},{72.33332824707031,14}},
 				color={191,0,0},
 				thickness=0.0625),
 			AutoRoute=false);
 		connect(adjoiningPanel_xn_zn.port_a,Panel_xn.port_zn) annotation(Line(
-			points={{-15,59},{-20,59},{-20,-63},{-15,-63},{-15,-58}},
+			points={{60,14},{55,14},{55,-108},{60,-108},{60,-103}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(Panel_yp.port_zp,adjoiningPanel_yp_zp.port_a) annotation(
 			Line(
-				points={{93.66667175292969,36.66666412353516},{95,35},{10,35},{8,-10}},
+				points={{168.6666564941406,-8.333335876464844},{170,-10},{85,-10},{83,-55}},
 				color={191,0,0},
 				thickness=0.0625),
 			AutoRoute=false);
 		connect(adjoiningPanel_yp_zp.port_b,Panel_zp.port_yp) annotation(Line(
-			points={{8,-22},{8,-27},{8,-165},{-23,-165},{-23,-170}},
+			points={{83,-67},{83,-72},{83,-210},{52,-210},{52,-215}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(adjoiningPanel_yn_zp.port_a,Panel_zp.port_yn) annotation(Line(
-			points={{45,-140},{40,-140},{-32,-140},{-32,-157},{-32,-162}},
+			points={{120,-185},{115,-185},{43,-185},{43,-202},{43,-207}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(adjoiningPanel_yn_zp.port_b,Panel_yn.port_zp) annotation(Line(
-			points={{55,-140},{60,-140},{81,-140},{81,-143},{81,-148}},
+			points={{130,-185},{135,-185},{156,-185},{156,-188},{156,-193}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(Panel_zn.port_yn,adjoiningPanel_yn_zn.port_b) annotation(Line(
-			points={{212,59},{212,54},{212,-75},{212,-80}},
+			points={{287,14},{287,9},{287,-120},{287,-125}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(adjoiningPanel_yn_zn.port_a,Panel_yn.port_zn) annotation(Line(
-			points={{212,-91},{212,-96},{212,-160},{98,-160},{93,-160}},
+			points={{287,-136},{287,-141},{287,-205},{173,-205},{168,-205}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(Panel_zn.port_yp,adjoiningPanel_yp_zn.port_b) annotation(
 			Line(
-				points={{203,67},{203,65},{157,65},{157,64},{110,64},{105,
-				64}},
+				points={{278,22},{278,20},{232,20},{232,19},{185,19},{180,
+				19}},
 				color={191,0,0},
 				thickness=0.0625),
 			AutoRoute=false);
 		connect(Panel_yp.port_zn,adjoiningPanel_yp_zn.port_a) annotation(Line(
-			points={{82,47},{77,47},{77,64},{90,64},{95,64}},
+			points={{157,2},{152,2},{152,19},{165,19},{170,19}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(Panel_yn.port_xn,oposite_Panel_y.port_b) annotation(Line(
-			points={{87,-152},{87,-147},{87,-127},{111,-127},{111,-122}},
+			points={{162,-197},{162,-192},{162,-172},{186,-172},{186,-167}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(oposite_Panel_y.port_a,Panel_yp.port_xn) annotation(Line(
-			points={{111,-110},{111,-105},{111,35},{87,35},{87,40}},
+			points={{186,-155},{186,-150},{186,-10},{162,-10},{162,-5}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(oposite_Panel_x.port_a,Panel_xn.port_xn) annotation(Line(
-			points={{35,-27},{30,-27},{-2,-27},{-2,-52},{-7,-52}},
+			points={{110,-72},{105,-72},{73,-72},{73,-97},{68,-97}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(Panel_xp.port_xn,oposite_Panel_x.port_b) annotation(
 			Line(
-				points={{192.3333435058594,-52.66667175292969},{185,-55},{185,-30},{55,-30},{54,-27},{48.66667175292969,
-				-27}},
+				points={{267.3333435058594,-97.66667175292969},{260,-100},{260,-75},{130,-75},{129,-72},{123.6666564941406,
+				-72}},
 				color={191,0,0},
 				thickness=0.0625),
 			AutoRoute=false);
 		connect(oposite_Panel_z.port_a,Panel_zp.port_xn) annotation(
 			Line(
-				points={{125,-86.66667175292969},{120,-87},{115,-87},{115,-165},{-26.33333587646484,-165.3333435058594}},
+				points={{200,-131.6666717529297},{195,-132},{190,-132},{190,-210},{48.66667175292969,-210.3333435058594}},
 				color={191,0,0},
 				thickness=0.0625),
 			AutoRoute=false);
 		connect(Panel_zn.port_xn,oposite_Panel_z.port_b) annotation(
 			Line(
-				points={{206.3333435058594,62.33333206176758},{165,57},{165,-87},{143,-87},{138,-86.66667175292969}},
+				points={{281.3333435058594,17.33333587646484},{240,12},{240,-132},{218,-132},{213,-131.6666717529297}},
 				color={191,0,0},
 				thickness=0.0625),
 			AutoRoute=false);
-		connect(const.y,onOffController1.reference) annotation(Line(
-			points={{-129,5},{-124,5},{-122,5},{-122,-14},{-117,-14}},
-			color={0,0,127},
-			thickness=0.0625));
+		
 		connect(temperature_EB.T,onOffController1.u) annotation(Line(
-			points={{-115,-65},{-120,-65},{-122,-65},{-122,-26},{-117,-26}},
+			points={{-85,-80},{-90,-80},{-90,-56},{-62,-56},{-57,-56}},
 			color={0,0,127},
 			thickness=0.0625));
 		connect(temperature_EB.port,thermalModel_ElectronicBox1.dissipationPower) annotation(Line(
-			points={{-95,-65},{-90,-65},{83,-65},{83,-53},{88,-53}},
+			points={{-65,-80},{-60,-80},{158,-80},{158,-98},{163,-98}},
 			color={191,0,0},
 			thickness=0.0625));
+		
+		
+		
+		
+		connect(temperature_EB.T,onOffController2.reference) annotation(Line(
+			points={{-85,-80},{-90,-80},{-90,51},{-62,51},{-57,51}},
+			color={0,0,127},
+			thickness=0.0625));
+		
+		
+		
+		connect(fixedHeatFlow1.port,port_b) annotation(Line(
+			points={{20,10},{25,10},{105,10},{105,-45},{110,-45}},
+			color={191,0,0},
+			thickness=0.0625));
+		
+		connect(gain1.y,integrator_heater.u) annotation(Line(
+			points={{1,-50},{6,-50},{6,-35},{-27,-35},{-27,-20},{-22,
+			-20}},
+			color={0,0,127},
+			thickness=0.0625));
+		connect(gain2.y,cooler_power.Q_flow) annotation(Line(
+			points={{1,45},{6,45},{15,45},{20,45}},
+			color={0,0,127},
+			thickness=0.0625));
+		connect(gain1.y,heater_power.Q_flow) annotation(Line(
+			points={{1,-50},{6,-50},{5,-50},{10,-50}},
+			color={0,0,127},
+			thickness=0.0625));
+		connect(gain2.y,integrator_cooler.u) annotation(Line(
+			points={{1,45},{6,45},{6,62},{-27,62},{-27,80},{-22,
+			80}},
+			color={0,0,127},
+			thickness=0.0625));
+		connect(lower_Temp.y,onOffController1.reference) annotation(Line(
+			points={{-64,-35},{-59,-35},{-59,-39},{-62,-39},{-62,-44},{-57,
+			-44}},
+			color={0,0,127},
+			thickness=0.0625));
+		connect(upper_Temp.y,onOffController2.u) annotation(Line(
+			points={{-64,20},{-59,20},{-59,29},{-62,29},{-62,39},{-57,
+			39}},
+			color={0,0,127},
+			thickness=0.0625));
 		connect(onOffController1.y,gain1.u) annotation(Line(
-			points={{-94,-20},{-89,-20},{-87,-20},{-82,-20}},
+			points={{-34,-50},{-29,-50},{-27,-50},{-22,-50}},
 			color={255,0,255},
 			thickness=0.0625));
-		connect(gain1.y,prescribedHeatFlow1.Q_flow) annotation(Line(
-			points={{-59,-20},{-54,-20},{-55,-20},{-50,-20}},
-			color={0,0,127},
+		connect(onOffController2.y,gain2.u) annotation(Line(
+			points={{-34,45},{-29,45},{-27,45},{-22,45}},
+			color={255,0,255},
 			thickness=0.0625));
-		connect(gain1.y,integrator1.u) annotation(Line(
-			points={{-59,-20},{-54,-20},{-54,-8},{-67,-8},{-67,5},{-62,
-			5}},
-			color={0,0,127},
+		connect(heater_power.port,port_b) annotation(Line(
+			points={{30,-50},{35,-50},{105,-50},{105,-45},{110,-45}},
+			color={191,0,0},
 			thickness=0.0625));
-		connect(prescribedHeatFlow1.port,thermalModel_ElectronicBox1.dissipationPower) annotation(Line(
-			points={{-30,-20},{-25,-20},{83,-20},{83,-53},{88,-53}},
+		connect(cooler_power.port,port_b) annotation(Line(
+			points={{40,45},{45,45},{105,45},{105,-45},{110,-45}},
 			color={191,0,0},
 			thickness=0.0625));
 	annotation(
-		const(y(flags=2)),
-		temperature_EB(T(flags=2)),
+		port_b(
+			T(flags=2),
+			Q_flow(flags=2)),
+		lower_Temp(y(flags=2)),
+		temperature_EB(
+			T(flags=2),
+			port(T(flags=2))),
 		gain1(y(flags=2)),
-		prescribedHeatFlow1(port(Q_flow(flags=2))),
-		integrator1(y(flags=2)),
+		heater_power(port(Q_flow(flags=2))),
+		integrator_heater(y(flags=2)),
+		upper_Temp(y(flags=2)),
+		gain2(y(flags=2)),
+		cooler_power(port(Q_flow(flags=2))),
+		fixedHeatFlow1(port(Q_flow(flags=2))),
+		viewinfo[0](
+			simViewInfos[0](
+				runtimeClass="CSimView",
+				tabGroup=0,
+				typename="ModelViewInfo"),
+			typename="ModelInfo"),
 		Icon(
 			coordinateSystem(extent={{-100,-100},{100,100}}),
 			graphics={

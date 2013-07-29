@@ -446,19 +446,19 @@ model thermal_for_combined_sim "thermisches model eines Bausteins mit 6 Seiten m
 		parameter Real Gr_aP(unit="m2")=ViewFactor_vertical*y_Panel*z_Panel*(1/((2/eps_Panel)-1))"Net radiation conductance between two surfaces (see docu)(adjoining Panels) tbd";
 		parameter Real Gr_P_EB(unit="m2")=x_EB*y_EB*(eps_Panel*eps_EB/(eps_Panel+eps_EB-eps_Panel*eps_EB))"Net radiation conductance between two surfaces (see docu)(Panel - Electronic Box) tbd";
 	public
-		Modelica.Blocks.Logical.OnOffController onOffController1(bandwidth=2) annotation(Placement(transformation(extent={{-110,-60},{-90,-40}})));
-		Modelica.Blocks.Sources.Constant const(k=lower_Temp_boundary) annotation(Placement(transformation(extent={{-140,-45},{-120,-25}})));
+		Modelica.Blocks.Logical.OnOffController onOffController1(bandwidth=2) annotation(Placement(transformation(extent={{-55,-60},{-35,-40}})));
+		Modelica.Blocks.Sources.Constant const(k=lower_Temp_boundary) annotation(Placement(transformation(extent={{-85,-45},{-65,-25}})));
 		Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperature_EB annotation(Placement(transformation(
-			origin={-130,-80},
+			origin={-75,-80},
 			extent={{-10,-10},{10,10}},
 			rotation=-180)));
-		Modelica.Blocks.Math.Gain gain1(k=heating_power) annotation(Placement(transformation(extent={{-75,-60},{-55,-40}})));
-		Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow_heater annotation(Placement(transformation(extent={{-45,-60},{-25,-40}})));
-		Modelica.Blocks.Continuous.Integrator integrator1 annotation(Placement(transformation(extent={{-75,-30},{-55,-10}})));
-		Modelica.Blocks.Logical.OnOffController onOffController2(bandwidth=2) annotation(Placement(transformation(extent={{-110,35},{-90,55}})));
-		Modelica.Blocks.Sources.Constant const1(k=upper_Temp_boundary) annotation(Placement(transformation(extent={{-140,10},{-120,30}})));
-		Modelica.Blocks.Math.Gain gain2(k=cooling_power) annotation(Placement(transformation(extent={{-75,35},{-55,55}})));
-		Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow_heater1 annotation(Placement(transformation(extent={{-35,35},{-15,55}})));
+		Modelica.Blocks.Math.Gain gain1(k=heating_power) annotation(Placement(transformation(extent={{-20,-60},{0,-40}})));
+		Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow_heater annotation(Placement(transformation(extent={{10,-60},{30,-40}})));
+		Modelica.Blocks.Continuous.Integrator integrator1 annotation(Placement(transformation(extent={{-20,-30},{0,-10}})));
+		Modelica.Blocks.Logical.OnOffController onOffController2(bandwidth=2) annotation(Placement(transformation(extent={{-55,35},{-35,55}})));
+		Modelica.Blocks.Sources.Constant const1(k=upper_Temp_boundary) annotation(Placement(transformation(extent={{-85,10},{-65,30}})));
+		Modelica.Blocks.Math.Gain gain2(k=cooling_power) annotation(Placement(transformation(extent={{-20,35},{0,55}})));
+		Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow_heater1 annotation(Placement(transformation(extent={{20,35},{40,55}})));
 	equation
 		connect(Panel_zn.thermal_connector1,thermal_connector_zn) annotation(
 			Line(
@@ -717,55 +717,55 @@ model thermal_for_combined_sim "thermisches model eines Bausteins mit 6 Seiten m
 				thickness=0.0625),
 			AutoRoute=false);
 		connect(const.y,onOffController1.reference) annotation(Line(
-			points={{-119,-35},{-114,-35},{-114,-39},{-117,-39},{-117,-44},{-112,
+			points={{-64,-35},{-59,-35},{-59,-39},{-62,-39},{-62,-44},{-57,
 			-44}},
 			color={0,0,127},
 			thickness=0.0625));
 		connect(temperature_EB.T,onOffController1.u) annotation(Line(
-			points={{-140,-80},{-145,-80},{-145,-56},{-117,-56},{-112,-56}},
+			points={{-85,-80},{-90,-80},{-90,-56},{-62,-56},{-57,-56}},
 			color={0,0,127},
 			thickness=0.0625));
 		connect(temperature_EB.port,thermalModel_ElectronicBox1.dissipationPower) annotation(Line(
-			points={{-120,-80},{-115,-80},{158,-80},{158,-98},{163,-98}},
+			points={{-65,-80},{-60,-80},{158,-80},{158,-98},{163,-98}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(onOffController1.y,gain1.u) annotation(Line(
-			points={{-89,-50},{-84,-50},{-82,-50},{-77,-50}},
+			points={{-34,-50},{-29,-50},{-27,-50},{-22,-50}},
 			color={255,0,255},
 			thickness=0.0625));
 		
 		connect(gain1.y,integrator1.u) annotation(Line(
-			points={{-54,-50},{-49,-50},{-49,-35},{-82,-35},{-82,-20},{-77,
+			points={{1,-50},{6,-50},{6,-35},{-27,-35},{-27,-20},{-22,
 			-20}},
 			color={0,0,127},
 			thickness=0.0625));
 		connect(gain1.y,prescribedHeatFlow_heater.Q_flow) annotation(Line(
-			points={{-54,-50},{-49,-50},{-50,-50},{-45,-50}},
+			points={{1,-50},{6,-50},{5,-50},{10,-50}},
 			color={0,0,127},
 			thickness=0.0625));
 		connect(prescribedHeatFlow_heater.port,thermalModel_ElectronicBox1.dissipationPower) annotation(Line(
-			points={{-25,-50},{-20,-50},{158,-50},{158,-98},{163,-98}},
+			points={{30,-50},{35,-50},{158,-50},{158,-98},{163,-98}},
 			color={191,0,0},
 			thickness=0.0625));
 		connect(temperature_EB.T,onOffController2.reference) annotation(Line(
-			points={{-140,-80},{-145,-80},{-145,51},{-117,51},{-112,51}},
+			points={{-85,-80},{-90,-80},{-90,51},{-62,51},{-57,51}},
 			color={0,0,127},
 			thickness=0.0625));
 		connect(const1.y,onOffController2.u) annotation(Line(
-			points={{-119,20},{-114,20},{-114,29},{-117,29},{-117,39},{-112,
+			points={{-64,20},{-59,20},{-59,29},{-62,29},{-62,39},{-57,
 			39}},
 			color={0,0,127},
 			thickness=0.0625));
 		connect(onOffController2.y,gain2.u) annotation(Line(
-			points={{-89,45},{-84,45},{-82,45},{-77,45}},
+			points={{-34,45},{-29,45},{-27,45},{-22,45}},
 			color={255,0,255},
 			thickness=0.0625));
 		connect(gain2.y,prescribedHeatFlow_heater1.Q_flow) annotation(Line(
-			points={{-54,45},{-49,45},{-40,45},{-35,45}},
+			points={{1,45},{6,45},{15,45},{20,45}},
 			color={0,0,127},
 			thickness=0.0625));
 		connect(prescribedHeatFlow_heater1.port,thermalModel_ElectronicBox1.dissipationPower) annotation(Line(
-			points={{-15,45},{-10,45},{158,45},{158,-98},{163,-98}},
+			points={{40,45},{45,45},{158,45},{158,-98},{163,-98}},
 			color={191,0,0},
 			thickness=0.0625));
 	annotation(
