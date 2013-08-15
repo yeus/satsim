@@ -1,5 +1,5 @@
 // CP: 65001
-// SimulationX Version: 3.5.706.23 x64
+// SimulationX Version: 3.5.707.15 x64
 model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit Schnittstellen"
 	thermal_connector thermal_connector_xp "Verbindungselement fuer mehr als eine Schnittstelle" annotation(Placement(
 		transformation(
@@ -46,6 +46,8 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 	parameter Modelica.SIunits.Temp_K upper_Temp_boundary=310 "highest allowed temperatur in the Box";
 	parameter Modelica.SIunits.ActivePower heating_power=100 "heat Power of the heater";
 	parameter Modelica.SIunits.ActivePower cooling_power=-100 "heat Power of the cooler";
+	parameter Real bandwidth_heater=5 "Bandwidth of the controller / K";
+	parameter Real bandwidth_cooler=5 "Bandwidth of the controller / K";
 	thermal_Panel_with_Interface Panel_xp(
 		x_ESS=x_ESS,
 		y_ESS=y_ESS,
@@ -446,21 +448,15 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 		parameter Real Gr_aP(unit="m2")=ViewFactor_vertical*y_Panel*z_Panel*(1/((2/eps_Panel)-1))"Net radiation conductance between two surfaces (see docu)(adjoining Panels) tbd";
 		parameter Real Gr_P_EB(unit="m2")=x_EB*y_EB*(eps_Panel*eps_EB/(eps_Panel+eps_EB-eps_Panel*eps_EB))"Net radiation conductance between two surfaces (see docu)(Panel - Electronic Box) tbd";
 	public
-		Modelica.Blocks.Logical.OnOffController onOffController1(bandwidth=2) annotation(Placement(transformation(extent={{-55,-60},{-35,-40}})));
-		Modelica.Blocks.Sources.Constant lower_Temp(k=lower_Temp_boundary) annotation(Placement(transformation(extent={{-85,-45},{-65,-25}})));
-		Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperature_EB annotation(Placement(transformation(
-			origin={-75,-80},
-			extent={{-10,-10},{10,10}},
-			rotation=-180)));
-		Modelica.Blocks.Math.Gain gain1(k=heating_power) annotation(Placement(transformation(extent={{-20,-60},{0,-40}})));
-		Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow heater_power annotation(Placement(transformation(extent={{10,-60},{30,-40}})));
-		Modelica.Blocks.Continuous.Integrator integrator_heater annotation(Placement(transformation(extent={{-20,-30},{0,-10}})));
-		Modelica.Blocks.Logical.OnOffController onOffController2(bandwidth=2) annotation(Placement(transformation(extent={{-55,35},{-35,55}})));
-		Modelica.Blocks.Sources.Constant upper_Temp(k=upper_Temp_boundary) annotation(Placement(transformation(extent={{-85,10},{-65,30}})));
-		Modelica.Blocks.Math.Gain gain2(k=cooling_power) annotation(Placement(transformation(extent={{-20,35},{0,55}})));
-		Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow cooler_power annotation(Placement(transformation(extent={{20,35},{40,55}})));
 		Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow fixedHeatFlow1(Q_flow=BuildingBlock_Power) annotation(Placement(transformation(extent={{0,0},{20,20}})));
-		Modelica.Blocks.Continuous.Integrator integrator_cooler annotation(Placement(transformation(extent={{-20,70},{0,90}})));
+		BB_heater bB_heater1(
+			heating_power=heating_power,
+			lower_Temp_boundary=lower_Temp_boundary,
+			bandwidth_heater=bandwidth_heater) annotation(Placement(transformation(extent={{30,-35},{50,-15}})));
+		BB_cooler bB_cooler1(
+			cooling_power=cooling_power,
+			upper_Temp_boundary=upper_Temp_boundary,
+			bandwidth_cooler=bandwidth_cooler) annotation(Placement(transformation(extent={{20,-60},{40,-40}})));
 	equation
 		connect(Panel_zn.thermal_connector1,thermal_connector_zn) annotation(
 			Line(
@@ -719,22 +715,10 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 				thickness=0.0625),
 			AutoRoute=false);
 		
-		connect(temperature_EB.T,onOffController1.u) annotation(Line(
-			points={{-85,-80},{-90,-80},{-90,-56},{-62,-56},{-57,-56}},
-			color={0,0,127},
-			thickness=0.0625));
-		connect(temperature_EB.port,thermalModel_ElectronicBox1.dissipationPower) annotation(Line(
-			points={{-65,-80},{-60,-80},{158,-80},{158,-98},{163,-98}},
-			color={191,0,0},
-			thickness=0.0625));
 		
 		
 		
 		
-		connect(temperature_EB.T,onOffController2.reference) annotation(Line(
-			points={{-85,-80},{-90,-80},{-90,51},{-62,51},{-57,51}},
-			color={0,0,127},
-			thickness=0.0625));
 		
 		
 		
@@ -743,65 +727,34 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 			color={191,0,0},
 			thickness=0.0625));
 		
-		connect(gain1.y,integrator_heater.u) annotation(Line(
-			points={{1,-50},{6,-50},{6,-35},{-27,-35},{-27,-20},{-22,
-			-20}},
-			color={0,0,127},
-			thickness=0.0625));
-		connect(gain2.y,cooler_power.Q_flow) annotation(Line(
-			points={{1,45},{6,45},{15,45},{20,45}},
-			color={0,0,127},
-			thickness=0.0625));
-		connect(gain1.y,heater_power.Q_flow) annotation(Line(
-			points={{1,-50},{6,-50},{5,-50},{10,-50}},
-			color={0,0,127},
-			thickness=0.0625));
-		connect(gain2.y,integrator_cooler.u) annotation(Line(
-			points={{1,45},{6,45},{6,62},{-27,62},{-27,80},{-22,
-			80}},
-			color={0,0,127},
-			thickness=0.0625));
-		connect(lower_Temp.y,onOffController1.reference) annotation(Line(
-			points={{-64,-35},{-59,-35},{-59,-39},{-62,-39},{-62,-44},{-57,
-			-44}},
-			color={0,0,127},
-			thickness=0.0625));
-		connect(upper_Temp.y,onOffController2.u) annotation(Line(
-			points={{-64,20},{-59,20},{-59,29},{-62,29},{-62,39},{-57,
-			39}},
-			color={0,0,127},
-			thickness=0.0625));
-		connect(onOffController1.y,gain1.u) annotation(Line(
-			points={{-34,-50},{-29,-50},{-27,-50},{-22,-50}},
-			color={255,0,255},
-			thickness=0.0625));
-		connect(onOffController2.y,gain2.u) annotation(Line(
-			points={{-34,45},{-29,45},{-27,45},{-22,45}},
-			color={255,0,255},
-			thickness=0.0625));
-		connect(heater_power.port,port_b) annotation(Line(
-			points={{30,-50},{35,-50},{105,-50},{105,-45},{110,-45}},
+		
+		connect(bB_heater1.Heater,thermalModel_ElectronicBox1.dissipationPower) annotation(Line(
+			points={{50,-25},{55,-25},{158,-25},{158,-98},{163,-98}},
 			color={191,0,0},
 			thickness=0.0625));
-		connect(cooler_power.port,port_b) annotation(Line(
-			points={{40,45},{45,45},{105,45},{105,-45},{110,-45}},
+		connect(bB_cooler1.cooler,thermalModel_ElectronicBox1.dissipationPower) annotation(Line(
+			points={{40,-50},{45,-50},{158,-50},{158,-98},{163,-98}},
 			color={191,0,0},
 			thickness=0.0625));
 	annotation(
 		port_b(
 			T(flags=2),
 			Q_flow(flags=2)),
-		lower_Temp(y(flags=2)),
-		temperature_EB(
-			T(flags=2),
-			port(T(flags=2))),
-		gain1(y(flags=2)),
-		heater_power(port(Q_flow(flags=2))),
-		integrator_heater(y(flags=2)),
-		upper_Temp(y(flags=2)),
-		gain2(y(flags=2)),
-		cooler_power(port(Q_flow(flags=2))),
 		fixedHeatFlow1(port(Q_flow(flags=2))),
+		bB_heater1(
+			lower_Temp(y(flags=2)),
+			temperature_EB(
+				T(flags=2),
+				port(T(flags=2))),
+			gain1(y(flags=2)),
+			heater_power(port(Q_flow(flags=2)))),
+		bB_cooler1(
+			upper_Temp(y(flags=2)),
+			temperature_EB(
+				T(flags=2),
+				port(T(flags=2))),
+			gain1(y(flags=2)),
+			heater_power(port(Q_flow(flags=2)))),
 		viewinfo[0](
 			simViewInfos[0](
 				runtimeClass="CSimView",

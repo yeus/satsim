@@ -459,6 +459,9 @@ model thermal_for_combined_sim "thermisches model eines Bausteins mit 6 Seiten m
 		Modelica.Blocks.Sources.Constant const1(k=upper_Temp_boundary) annotation(Placement(transformation(extent={{-85,10},{-65,30}})));
 		Modelica.Blocks.Math.Gain gain2(k=cooling_power) annotation(Placement(transformation(extent={{-20,35},{0,55}})));
 		Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow_heater1 annotation(Placement(transformation(extent={{20,35},{40,55}})));
+		output Modelica.Blocks.Interfaces.RealOutput total_heater_power annotation(Placement(transformation(extent={{20,-30},{40,-10}})));
+		output Modelica.Blocks.Interfaces.RealOutput total_cooler_power annotation(Placement(transformation(extent={{20,70},{40,90}})));
+		Modelica.Blocks.Continuous.Integrator integrator2 annotation(Placement(transformation(extent={{-20,70},{0,90}})));
 	equation
 		connect(Panel_zn.thermal_connector1,thermal_connector_zn) annotation(
 			Line(
@@ -768,6 +771,20 @@ model thermal_for_combined_sim "thermisches model eines Bausteins mit 6 Seiten m
 			points={{40,45},{45,45},{158,45},{158,-98},{163,-98}},
 			color={191,0,0},
 			thickness=0.0625));
+		connect(total_heater_power,integrator1.y) annotation(Line(
+			points={{30,-20},{25,-20},{6,-20},{1,-20}},
+			color={0,0,127},
+			thickness=0.0625));
+		connect(gain2.y,integrator2.u) annotation(Line(
+			points={{1,45},{6,45},{6,62},{-27,62},{-27,80},{-22,
+			80}},
+			color={0,0,127},
+			thickness=0.0625));
+		
+		connect(integrator2.y,total_cooler_power) annotation(Line(
+			points={{1,80},{6,80},{25,80},{30,80}},
+			color={0,0,127},
+			thickness=0.0625));
 	annotation(
 		const(y(flags=2)),
 		temperature_EB(
@@ -777,6 +794,7 @@ model thermal_for_combined_sim "thermisches model eines Bausteins mit 6 Seiten m
 		integrator1(y(flags=2)),
 		const1(y(flags=2)),
 		gain2(y(flags=2)),
+		integrator2(y(flags=2)),
 		viewinfo[0](
 			simViewInfos[0](
 				runtimeClass="CSimView",
