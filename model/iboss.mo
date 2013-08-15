@@ -77,9 +77,9 @@ package iboss
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
-										Rectangle(
-											fillColor={0,0,255},
-											extent={{-85.5219,88.3168},{87.45690000000001,-87.1287}})}),
+															Rectangle(
+																fillColor={0,0,255},
+																extent={{-85.5219,88.3168},{87.45690000000001,-87.1287}})}),
 				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
 				experiment(
 					StopTime=1,
@@ -160,7 +160,7 @@ package iboss
 			extends iboss.buildingblocks.basic_ess_mss;
 			input Modelica.Blocks.Interfaces.RealInput u annotation(Placement(
 				transformation(
-					origin={92,-7},
+					origin={112,-7},
 					extent={{-12,-12},{12,12}}),
 				iconTransformation(
 					origin={221.308,-0.741443},
@@ -170,7 +170,7 @@ package iboss
 			satcomponents.power.solar_power.solarcell_simple solarcell_simple1(
 				N_p=panelarea/1.17,
 				N_s=45.0) annotation(Placement(transformation(
-				origin={65,-5},
+				origin={85,-5},
 				extent={{-10,10},{10,-10}},
 				rotation=90)));
 			satcomponents.power.solar_power.SA_Regulator sa_regulator1(Vmax=99) annotation(Placement(transformation(
@@ -180,14 +180,16 @@ package iboss
 			Modelica.Electrical.Analog.Sensors.PowerSensor powerSensor1 annotation(Placement(transformation(
 				origin={-5,0},
 				extent={{10,-10},{-10,10}})));
-			Modelica.Electrical.Analog.Basic.Capacitor capacitor2(C(displayUnit="µF")=9.9999999999999995e-007) annotation(Placement(transformation(
-				origin={50,-5},
-				extent={{10,-10},{-10,10}},
-				rotation=90)));
+			Modelica.Electrical.Analog.Basic.Resistor resistor1 annotation(Placement(transformation(extent={{65,-5},{45,15}})));
+			Modelica.Electrical.Analog.Basic.Capacitor capacitor2(C(displayUnit="µF")=9.9999999999999991e-006) annotation(Placement(transformation(
+				origin={70,-10},
+				extent={{-10,-10},{10,10}},
+				rotation=-90)));
 			equation
-				connect(sa_regulator1.pin_n,solarcell_simple1.p) annotation(Line(points={{25,-10},{25,-15},{25,-20},{65,-20},{65,-15}}));
-				connect(sa_regulator1.p,solarcell_simple1.n) annotation(Line(points={{35,0},{40,0},{40,10},{65,10},{65,5}}));
-				connect(solarcell_simple1.E_s,u) annotation(Line(points={{72,-5},{77,-5},{87,-5},{87,-7},{92,-7}}));
+				connect(sa_regulator1.pin_n,solarcell_simple1.p) annotation(
+					Line(points={{25.33332824707031,-9.666664123535156},{25,-15},{25,-35},{85,-35},{85,-15}}),
+					AutoRoute=false);
+				connect(solarcell_simple1.E_s,u) annotation(Line(points={{92,-5},{97,-5},{107,-5},{107,-7},{112,-7}}));
 				connect(capacitor1.n,int_Yp.gnd) annotation(
 					Line(
 						points={{-45,0},{-50,0},{-50,10},{-30,10},{-20,15},{-19,
@@ -210,17 +212,23 @@ package iboss
 				connect(powerSensor1.nv,sa_regulator1.pin_n) annotation(Line(
 					points={{-5,-10},{-5,-15},{25,-15},{25,-15},{25,-10}},
 					thickness=0.0625));
-				connect(capacitor2.p,solarcell_simple1.n) annotation(Line(
-					points={{50,5},{50,10},{65,10},{65,5}},
-					thickness=0.0625));
-				connect(solarcell_simple1.p,capacitor2.n) annotation(Line(
-					points={{65,-15},{65,-20},{50,-20},{50,-15}},
-					thickness=0.0625));
 				connect(powerSensor1.pv,powerSensor1.pc) annotation(
 					Line(
 						points={{-5,10},{10,10},{10,0},{5,0}},
 						thickness=0.0625),
 					AutoRoute=false);
+				connect(resistor1.p,capacitor2.p) annotation(Line(
+					points={{65,5},{70,5},{70,0}},
+					thickness=0.0625));
+				connect(resistor1.p,solarcell_simple1.n) annotation(Line(
+					points={{65,5},{70,5},{70,10},{85,10},{85,5}},
+					thickness=0.0625));
+				connect(resistor1.n,sa_regulator1.p) annotation(Line(
+					points={{45,5},{40,5},{40,0},{35,0}},
+					thickness=0.0625));
+				connect(capacitor2.n,solarcell_simple1.p) annotation(Line(
+					points={{70,-20},{70,-25},{85,-25},{85,-20},{85,-15}},
+					thickness=0.0625));
 			annotation(
 				powerSensor1(power(flags=2)),
 				Icon(
@@ -517,41 +525,41 @@ package iboss
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
-															Rectangle(
-																fillColor={0,0,255},
-																extent={{-77.2278,76.02549999999999},{74.95610000000001,-75.256}}),
-															Rectangle(
-																fillColor={0,0,255},
-																extent={{-69.5191,69.42019999999999},{66.9674,-68.4328}}),
-															Ellipse(
-																fillColor={0,0,255},
-																extent={{-20.2122,18.7864},{19.355,-20.778}}),
-															Ellipse(
-																fillColor={0,0,255},
-																extent={{-15.3692,13.9434},{14.512,-15.6521}}),
-															Ellipse(
-																fillColor={0,0,255},
-																extent={{-1.42575,0.571424},{0.288544,-1.14286}}),
-															Rectangle(
-																fillColor={255,255,255},
-																fillPattern=FillPattern.Solid,
-																extent={{-74.37909999999999,15.6917},{-79.2362,-16.0226}}),
-															Rectangle(
-																fillColor={255,255,255},
-																fillPattern=FillPattern.Solid,
-																extent={{-15.9916,77.18810000000001},{15.1513,72.0453}}),
-															Rectangle(
-																fillColor={255,255,255},
-																fillPattern=FillPattern.Solid,
-																extent={{73.239,13.1174},{77.5247,-13.7397}}),
-															Rectangle(
-																fillColor={255,255,255},
-																fillPattern=FillPattern.Solid,
-																extent={{-15.4145,-72.9759},{16.5855,-77.833}}),
-															Text(
-																textString="%name",
-																fillColor={0,0,255},
-																extent={{-49.505,66.761},{55.4455,27.4399}})}),
+																				Rectangle(
+																					fillColor={0,0,255},
+																					extent={{-77.2278,76.02549999999999},{74.95610000000001,-75.256}}),
+																				Rectangle(
+																					fillColor={0,0,255},
+																					extent={{-69.5191,69.42019999999999},{66.9674,-68.4328}}),
+																				Ellipse(
+																					fillColor={0,0,255},
+																					extent={{-20.2122,18.7864},{19.355,-20.778}}),
+																				Ellipse(
+																					fillColor={0,0,255},
+																					extent={{-15.3692,13.9434},{14.512,-15.6521}}),
+																				Ellipse(
+																					fillColor={0,0,255},
+																					extent={{-1.42575,0.571424},{0.288544,-1.14286}}),
+																				Rectangle(
+																					fillColor={255,255,255},
+																					fillPattern=FillPattern.Solid,
+																					extent={{-74.37909999999999,15.6917},{-79.2362,-16.0226}}),
+																				Rectangle(
+																					fillColor={255,255,255},
+																					fillPattern=FillPattern.Solid,
+																					extent={{-15.9916,77.18810000000001},{15.1513,72.0453}}),
+																				Rectangle(
+																					fillColor={255,255,255},
+																					fillPattern=FillPattern.Solid,
+																					extent={{73.239,13.1174},{77.5247,-13.7397}}),
+																				Rectangle(
+																					fillColor={255,255,255},
+																					fillPattern=FillPattern.Solid,
+																					extent={{-15.4145,-72.9759},{16.5855,-77.833}}),
+																				Text(
+																					textString="%name",
+																					fillColor={0,0,255},
+																					extent={{-49.505,66.761},{55.4455,27.4399}})}),
 				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
 				experiment(
 					StopTime=1,
@@ -1188,9 +1196,145 @@ package iboss
 						id=2018,
 						val="True"),
 					typename="3DObjectInfo"),
+				viewinfo[3](
+					staticBlocks[0](
+						frame(
+							style=0,
+							width=0,
+							color=0),
+						index=0,
+						typename="Displ"),
+					typename="ModelInfo"),
 				experiment(
 					StopTime=10000,
 					StartTime=0));
 		end EVS2x2x3;
+		model EVS4x1x1batteries
+			components.connectionelement connectionelement1 annotation(Placement(transformation(
+				origin={-51.1429,-3.42857},
+				extent={{-12,-12},{12,12}})));
+			components.connectionelement connectionelement2 annotation(Placement(transformation(
+				origin={6.28571,-3.71429},
+				extent={{-12,-12},{12,12}})));
+			buildingblocks.verbraucher bb_verbraucher1 annotation(Placement(transformation(
+				origin={-22.8571,-2.85714},
+				extent={{-12,-12},{12,12}})));
+			buildingblocks.verbraucher bb_verbraucher2(P_payload=150) annotation(Placement(transformation(
+				origin={34.5714,-2.57143},
+				extent={{-12,-12},{12,12}})));
+			components.connectionelement connectionelement3 annotation(Placement(transformation(
+				origin={62,-2.85714},
+				extent={{-12,-12},{12,12}})));
+			buildingblocks.verbraucher bb_verbraucher3 annotation(Placement(transformation(
+				origin={91.7308,-2},
+				extent={{-12,-12},{12,12}})));
+			buildingblocks.solar bb_solar1 annotation(Placement(transformation(
+				origin={-83.1891,-3.43188},
+				extent={{-12,12},{12,-12}},
+				rotation=-90)));
+			Modelica.Blocks.Sources.Trapezoid trapezoid1(
+				amplitude=1367,
+				rising=60,
+				width=1000,
+				falling=60,
+				period=3000) annotation(Placement(transformation(
+				origin={-128,-82},
+				extent={{-12,-12},{12,12}})));
+			buildingblocks.battery battery1 annotation(Placement(transformation(extent={{-35,-80},{-10,-55}})));
+			components.connectionelement connectionelement4 annotation(Placement(transformation(
+				origin={-25,-35},
+				extent={{-10,-10},{10,10}},
+				rotation=-90)));
+			iboss.buildingblocks.battery battery2(SOC_start=0.5) annotation(Placement(transformation(extent={{25,-80},{50,-55}})));
+			iboss.components.connectionelement connectionelement5 annotation(Placement(transformation(
+				origin={35,-35},
+				extent={{-10,-10},{10,10}},
+				rotation=-90)));
+			iboss.buildingblocks.solar bb_solar2 annotation(Placement(transformation(
+				origin={-128,-2},
+				extent={{-12,12},{12,-12}},
+				rotation=-90)));
+			iboss.buildingblocks.battery battery3(SOC_start=0.7) annotation(Placement(transformation(extent={{80,-80},{105,-55}})));
+			iboss.components.connectionelement connectionelement6 annotation(Placement(transformation(
+				origin={90,-35},
+				extent={{-10,-10},{10,10}},
+				rotation=-90)));
+			equation
+				connect(trapezoid1.y,bb_solar1.u) annotation(Line(points={{-115,-82},{-110,-82},{-78,-82},{-78,-30},{-83,-30}}));
+				connect(bb_solar1.Yn,connectionelement1.int2) annotation(Line(points={{-72,-3},{-67,-3},{-67,-3},{-67,-3},{-62,-3}}));
+				connect(bb_verbraucher3.Xn,connectionelement3.int1) annotation(Line(points={{80,-2},{75,-2},{78,-2},{78,-2},{73,-2}}));
+				connect(connectionelement3.int2,bb_verbraucher2.Xp) annotation(Line(points={{51,-2},{46,-2},{52,-2},{52,-3},{47,-3}}));
+				connect(bb_verbraucher2.Xn,connectionelement2.int1) annotation(Line(points={{23,-3},{18,-3},{18,-3},{22,-3},{22,-3},{17,
+				-3}}));
+				connect(bb_verbraucher1.Xn,connectionelement1.int1) annotation(Line(points={{-35,-3},{-40,-3},{-36,-3},{-41,-3}}));
+				connect(connectionelement2.int2,bb_verbraucher1.Xp) annotation(Line(points={{-4,-3},{-9,-3},{-9,-3},{-6,-3},{-6,-3},{-11,
+				-3}}));
+				connect(bb_verbraucher1.Yn,connectionelement4.int2) annotation(Line(
+					points={{-23,-14},{-23,-19},{-23,-21},{-25,-21},{-25,-26}},
+					color={0,0,0}));
+				connect(connectionelement4.int1,battery1.Yp) annotation(Line(
+					points={{-25,-44},{-25,-49},{-25,-50},{-22,-50},{-22,-55}},
+					color={0,0,0}));
+				connect(connectionelement5.int1,battery2.Yp) annotation(Line(
+					points={{35,-44},{35,-49},{35,-50},{38,-50},{38,-55}},
+					color={0,0,0}));
+				connect(bb_verbraucher2.Yn,connectionelement5.int2) annotation(Line(
+					points={{35,-13},{35,-18},{35,-21},{35,-21},{35,-26}},
+					color={0,0,0}));
+				connect(battery1.Xp,battery2.Xn) annotation(Line(
+					points={{-10,-67},{-5,-67},{20,-67},{20,-68},{25,-68}},
+					color={0,0,0}));
+				connect(bb_solar2.Yn,bb_solar1.Yp) annotation(Line(
+					points={{-117,-2},{-112,-2},{-100,-2},{-100,-3},{-95,-3}},
+					color={0,0,0}));
+				connect(bb_solar2.u,trapezoid1.y) annotation(Line(
+					points={{-128,-29},{-128,-34},{-110,-34},{-110,-82},{-115,-82}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(connectionelement6.int1,battery3.Yp) annotation(Line(
+					points={{90,-44},{90,-49},{90,-50},{93,-50},{93,-55}},
+					color={0,0,0}));
+				connect(bb_verbraucher3.Yn,connectionelement6.int2) annotation(Line(
+					points={{92,-13},{92,-18},{92,-21},{90,-21},{90,-26}},
+					color={0,0,0}));
+				connect(battery2.Xp,battery3.Xn) annotation(Line(
+					points={{50,-67},{55,-67},{75,-67},{75,-68},{80,-68}},
+					color={0,0,0}));
+			public
+				annotation(
+					connectionelement1(LossPower(flags=2)),
+					connectionelement2(LossPower(flags=2)),
+					bb_verbraucher1(powerSensor1(power(flags=2))),
+					bb_verbraucher2(powerSensor1(power(flags=2))),
+					connectionelement3(LossPower(flags=2)),
+					bb_verbraucher3(powerSensor1(power(flags=2))),
+					bb_solar1(powerSensor1(power(flags=2))),
+					trapezoid1(y(flags=2)),
+					battery1(
+						battery1(
+							v(flags=2),
+							soc(flags=2),
+							i(flags=2)),
+						powerSensor1(power(flags=2))),
+					connectionelement4(LossPower(flags=2)),
+					battery2(
+						battery1(
+							v(flags=2),
+							soc(flags=2),
+							i(flags=2)),
+						powerSensor1(power(flags=2))),
+					connectionelement5(LossPower(flags=2)),
+					bb_solar2(powerSensor1(power(flags=2))),
+					battery3(
+						battery1(
+							v(flags=2),
+							soc(flags=2),
+							i(flags=2)),
+						powerSensor1(power(flags=2))),
+					connectionelement6(LossPower(flags=2)),
+					experiment(
+						StopTime=50000,
+						StartTime=0));
+		end EVS4x1x1batteries;
 	end satellites;
 end iboss;
