@@ -1,5 +1,5 @@
 // CP: 65001
-// SimulationX Version: 3.5.705.14 x64
+// SimulationX Version: 3.5.706.23 x64
 model thermal_element
 	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_a_xn annotation(Placement(
 		transformation(
@@ -51,7 +51,7 @@ model thermal_element
 	protected
 		parameter Modelica.SIunits.ThermalConductance Gx=y*z*material.k/x "Constant thermal conductance of material in x direction";
 		parameter Modelica.SIunits.ThermalConductance Gy=x*z*material.k/y "Constant thermal conductance of material in x direction";
-		parameter Modelica.SIunits.ThermalConductance Gz=y*y*material.k/z "Constant thermal conductance of material in x direction";
+		parameter Modelica.SIunits.ThermalConductance Gz=y*x*material.k/z "Constant thermal conductance of material in x direction";
 		parameter Modelica.SIunits.HeatCapacity C=x*y*z*material.d*material.c "Heat capacity of element (= cp*m)";
 	equation
 		connect(thermalConductorlinks_x.port_a,port_a_xn) annotation(Line(
@@ -106,33 +106,32 @@ model thermal_element
 			color={191,0,0},
 			thickness=0.0625));
 	annotation(
-		viewSettings(clrRaster=8421504),
 		Icon(
 			coordinateSystem(
 				extent={{-100,-100},{100,100}},
 				grid={10,10}),
 			graphics={
-			Rectangle(
-				lineColor={255,0,0},
-				fillColor={255,255,255},
-				fillPattern=FillPattern.HorizontalCylinder,
-				extent={{-94.63549999999999,-59.4223},{96.011,61.8982}},
-				visible=true,
-				origin={-0.6878,-1.238}),
-			Text(
-				textString="%name",
-				textStyle={TextStyle.Bold},
-				fillPattern=FillPattern.Solid,
-				extent={{-101.2507,52.8171},{98.74930000000001,112.8171}},
-				visible=true,
-				origin={82.8171,1.2507},
-				rotation=90),
-			Text(
-				textString="thermal element",
-				fontSize=16,
-				fillColor={0,0,255},
-				extent={{-3,-2},{0,9}},
-				visible=true)}),
+								Rectangle(
+									lineColor={255,0,0},
+									fillColor={255,255,255},
+									fillPattern=FillPattern.HorizontalCylinder,
+									extent={{-94.63549999999999,-59.4223},{96.011,61.8982}},
+									visible=true,
+									origin={-0.6878,-1.238}),
+								Text(
+									textString="%name",
+									textStyle={TextStyle.Bold},
+									fillPattern=FillPattern.Solid,
+									extent={{-101.2507,52.8171},{98.74930000000001,112.8171}},
+									visible=true,
+									origin={82.8171,1.2507},
+									rotation=90),
+								Text(
+									textString="thermal element",
+									fontSize=16,
+									fillColor={0,0,255},
+									extent={{-3,-2},{0,9}},
+									visible=true)}),
 		Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
 		experiment(
 			StopTime=1,
