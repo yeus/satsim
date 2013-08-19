@@ -174,111 +174,136 @@ package satcomponents
 	package power
 		model PCU
 			Modelica.Electrical.Analog.Interfaces.NegativePin gnd annotation(Placement(
-				visible=true,
 				transformation(
 					origin={100.141,-63.9321},
-					extent={{-12,-12},{12,12}},
-					rotation=0),
+					extent={{-12,-12},{12,12}}),
 				iconTransformation(
 					origin={100.141,-63.9321},
-					extent={{-12,-12},{12,12}},
-					rotation=0)));
+					extent={{-12,-12},{12,12}})));
 			Modelica.Electrical.Analog.Interfaces.NegativePin GND annotation(Placement(
-				visible=true,
 				transformation(
 					origin={-100.99,-44.413},
-					extent={{-12,-12},{12,12}},
-					rotation=0),
+					extent={{-12,-12},{12,12}}),
 				iconTransformation(
 					origin={-100.99,-44.413},
-					extent={{-12,-12},{12,12}},
-					rotation=0)));
+					extent={{-12,-12},{12,12}})));
 			Modelica.Electrical.Analog.Interfaces.PositivePin VCC annotation(Placement(
-				visible=true,
 				transformation(
 					origin={-100.707,7.92079},
-					extent={{-12,-12},{12,12}},
-					rotation=0),
+					extent={{-12,-12},{12,12}}),
 				iconTransformation(
 					origin={-100.707,7.92079},
-					extent={{-12,-12},{12,12}},
-					rotation=0)));
+					extent={{-12,-12},{12,12}})));
 			Modelica.Electrical.Analog.Interfaces.PositivePin VCC3 annotation(Placement(
-				visible=true,
 				transformation(
 					origin={100.141,-23.1966},
-					extent={{-12,-12},{12,12}},
-					rotation=0),
+					extent={{-12,-12},{12,12}}),
 				iconTransformation(
 					origin={100.141,-23.1966},
-					extent={{-12,-12},{12,12}},
-					rotation=0)));
+					extent={{-12,-12},{12,12}})));
 			Modelica.Electrical.Analog.Interfaces.PositivePin VCC5 annotation(Placement(
-				visible=true,
 				transformation(
-					origin={99.8586,8.76945},
-					extent={{-12,-12},{12,12}},
-					rotation=0),
+					origin={99.8586,8.769450000000001},
+					extent={{-12,-12},{12,12}}),
 				iconTransformation(
-					origin={99.8586,8.76945},
-					extent={{-12,-12},{12,12}},
-					rotation=0)));
+					origin={99.8586,8.769450000000001},
+					extent={{-12,-12},{12,12}})));
 			Modelica.Electrical.Analog.Interfaces.PositivePin VCC12 annotation(Placement(
-				visible=true,
 				transformation(
 					origin={99.2928,44.6959},
-					extent={{-12,-12},{12,12}},
-					rotation=0),
+					extent={{-12,-12},{12,12}}),
 				iconTransformation(
 					origin={99.2928,44.6959},
-					extent={{-12,-12},{12,12}},
-					rotation=0)));
+					extent={{-12,-12},{12,12}})));
 			satcomponents.power.dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved1(
 				V_out=3.3,
-				V_in_min=5) annotation(Placement(
-				visible=true,
-				transformation(
-					origin={56.9364,-28.6127},
-					extent={{-10,-10},{10,10}},
-					rotation=0)));
-			satcomponents.power.dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved2 annotation(Placement(
-				visible=true,
-				transformation(
-					origin={57.5145,3.75723},
-					extent={{-10,-10},{10,10}},
-					rotation=0)));
+				V_in_min=5) annotation(Placement(transformation(
+				origin={56.9364,-28.6127},
+				extent={{-10,-10},{10,10}})));
+			satcomponents.power.dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved2 annotation(Placement(transformation(
+				origin={57.5145,3.75723},
+				extent={{-10,-10},{10,10}})));
 			satcomponents.power.dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved3(
 				V_out=12,
-				V_in_min=15) annotation(Placement(
-				visible=true,
-				transformation(
-					origin={57.2254,41.0405},
-					extent={{-10,-10},{10,10}},
-					rotation=0)));
-			Modelica.Electrical.Analog.Basic.Capacitor C1(C=0.00000000001) annotation(Placement(
-				visible=true,
-				transformation(
-					origin={-61.2717,-16.763},
-					extent={{-10,-10},{10,10}},
-					rotation=-90)));
+				V_in_min=15) annotation(Placement(transformation(
+				origin={57.2254,41.0405},
+				extent={{-10,-10},{10,10}})));
+			Modelica.Electrical.Analog.Basic.Capacitor C1(C(displayUnit="nF")=1.0000000000000001e-007) annotation(Placement(transformation(
+				origin={-30,-15},
+				extent={{-10,-10},{10,10}},
+				rotation=-90)));
+			Modelica.Electrical.Analog.Basic.Resistor resistor1(R=0.01) annotation(Placement(transformation(extent={{-10,-10},{10,10}})));
+			Modelica.Electrical.Analog.Basic.Resistor resistor2(R=0.01) annotation(Placement(transformation(extent={{-75,-10},{-55,10}})));
+			Modelica.Electrical.Analog.Basic.Resistor resistor3(R=0.01) annotation(Placement(transformation(extent={{-55,-45},{-75,-25}})));
+			Modelica.Electrical.Analog.Basic.Resistor resistor4(R=0.01) annotation(Placement(transformation(extent={{10,-45},{-10,-25}})));
 			equation
-				connect(dcdc_ideal_simple_improved1.n2,gnd) annotation(Line(points = {{66.2433,-33.3086},{76.8786,-33.3086},{76.8786,-63.5838},{100,-63.5838},{100,-63.5838}}));
-				connect(dcdc_ideal_simple_improved2.n2,dcdc_ideal_simple_improved1.n2) annotation(Line(points = {{66.8214,-0.93867},{76.8786,-0.93867},{76.8786,-33.237},{66.474,-33.237},{66.474,-33.237}}));
-				connect(dcdc_ideal_simple_improved3.n2,dcdc_ideal_simple_improved2.n2) annotation(Line(points = {{66.5323,36.3446},{77.1676,36.3446},{77.1676,-0.578035},{66.763,-0.578035},{66.763,-0.578035}}));
-				connect(dcdc_ideal_simple_improved3.n1,dcdc_ideal_simple_improved2.n1) annotation(Line(points = {{47.9468,36.9952},{37.2832,36.9952},{37.2832,-0.289017},{48.2659,-0.289017},{48.2659,-0.289017}}));
-				connect(dcdc_ideal_simple_improved2.n1,dcdc_ideal_simple_improved1.n1) annotation(Line(points = {{48.2359,-0.28803},{37.2832,-0.28803},{37.2832,-32.659},{47.3988,-32.659},{47.3988,-32.659}}));
-				connect(dcdc_ideal_simple_improved1.p2,VCC3) annotation(Line(points = {{66.1868,-24.3694},{99.1329,-24.3694},{99.1329,-24.2775},{99.1329,-24.2775}}));
-				connect(dcdc_ideal_simple_improved3.p2,VCC12) annotation(Line(points = {{66.4758,45.2837},{98.8439,45.2837},{98.8439,45.0867},{98.8439,45.0867}}));
-				connect(dcdc_ideal_simple_improved2.p2,VCC5) annotation(Line(points = {{66.7648,8.00051},{98.2659,8.00051},{98.2659,7.80347},{98.2659,7.80347}}));
-				connect(dcdc_ideal_simple_improved1.n1,C1.n) annotation(Line(points = {{47.6578,-32.658},{-61.2717,-32.658},{-61.2717,-26.8786},{-61.5607,-26.8786},{-61.5607,-26.8786}}));
-				connect(dcdc_ideal_simple_improved1.p1,dcdc_ideal_simple_improved2.p1) annotation(Line(points = {{47.7143,-24.426},{28.3237,-24.426},{28.3237,8.3815},{48.5549,8.3815},{48.5549,8.3815}}));
-				connect(dcdc_ideal_simple_improved2.p1,dcdc_ideal_simple_improved3.p1) annotation(Line(points = {{48.2924,7.94393},{28.3237,7.94393},{28.3237,45.6647},{47.6879,45.6647},{47.6879,45.6647}}));
-				connect(C1.p,dcdc_ideal_simple_improved2.p1) annotation(Line(points = {{-61.2717,-6.76301},{-61.2717,8.3815},{47.9769,8.3815},{47.9769,8.3815}}));
-				connect(GND,C1.n) annotation(Line(points = {{-100.99,-44.413},{-61.2717,-44.413},{-61.2717,-26.8786},{-61.2717,-26.8786}}));
-				connect(C1.p,VCC) annotation(Line(points = {{-61.2717,-6.76301},{-61.2717,8.3815},{-100.867,8.3815},{-100.867,8.3815}}));
+				connect(dcdc_ideal_simple_improved1.n2,gnd) annotation(Line(points={{66.24330000000001,-33.3086},{76.87860000000001,-33.3086},{76.87860000000001,-63.5838},{100,-63.5838},{100,-63.5838}}));
+				connect(dcdc_ideal_simple_improved2.n2,dcdc_ideal_simple_improved1.n2) annotation(Line(points={{66.8214,-0.93867},{76.87860000000001,-0.93867},{76.87860000000001,-33.237},{66.474,-33.237},{66.474,-33.237}}));
+				connect(dcdc_ideal_simple_improved3.n2,dcdc_ideal_simple_improved2.n2) annotation(Line(points={{66.53230000000001,36.3446},{77.16759999999999,36.3446},{77.16759999999999,-0.578035},{66.76300000000001,-0.578035},{66.76300000000001,-0.578035}}));
+				connect(dcdc_ideal_simple_improved3.n1,dcdc_ideal_simple_improved2.n1) annotation(Line(points={{47.9468,36.9952},{37.2832,36.9952},{37.2832,-0.289017},{48.2659,-0.289017},{48.2659,-0.289017}}));
+				connect(dcdc_ideal_simple_improved2.n1,dcdc_ideal_simple_improved1.n1) annotation(Line(points={{48.2359,-0.28803},{37.2832,-0.28803},{37.2832,-32.659},{47.3988,-32.659},{47.3988,-32.659}}));
+				connect(dcdc_ideal_simple_improved1.p2,VCC3) annotation(Line(points={{66.18680000000001,-24.3694},{99.13290000000001,-24.3694},{99.13290000000001,-24.2775},{99.13290000000001,-24.2775}}));
+				connect(dcdc_ideal_simple_improved3.p2,VCC12) annotation(Line(points={{66.47580000000001,45.2837},{98.84390000000001,45.2837},{98.84390000000001,45.0867},{98.84390000000001,45.0867}}));
+				connect(dcdc_ideal_simple_improved2.p2,VCC5) annotation(Line(points={{66.76479999999999,8.00051},{98.2659,8.00051},{98.2659,7.80347},{98.2659,7.80347}}));
+				connect(dcdc_ideal_simple_improved1.p1,dcdc_ideal_simple_improved2.p1) annotation(Line(points={{47.7143,-24.426},{28.3237,-24.426},{28.3237,8.381500000000001},{48.5549,8.381500000000001},{48.5549,8.381500000000001}}));
+				connect(dcdc_ideal_simple_improved2.p1,dcdc_ideal_simple_improved3.p1) annotation(Line(points={{48.2924,7.94393},{28.3237,7.94393},{28.3237,45.6647},{47.6879,45.6647},{47.6879,45.6647}}));
+				connect(resistor2.p,VCC) annotation(Line(
+					points={{-75,0},{-80,0},{-96,0},{-96,8},{-101,8}},
+					thickness=0.0625));
+				connect(resistor3.n,GND) annotation(Line(
+					points={{-75,-35},{-80,-35},{-96,-35},{-96,-44},{-101,-44}},
+					thickness=0.0625));
+				connect(resistor3.p,resistor4.n) annotation(Line(
+					points={{-55,-35},{-50,-35},{-15,-35},{-10,-35}},
+					thickness=0.0625));
+				connect(dcdc_ideal_simple_improved2.n1,resistor4.p) annotation(
+					Line(
+						points={{48,0},{43,0},{20,0},{20,-35},{10,-35}},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(dcdc_ideal_simple_improved2.p1,resistor1.n) annotation(Line(
+					points={{48,8},{43,8},{15,8},{15,0},{10,0}},
+					thickness=0.0625));
+				connect(resistor1.p,resistor2.n) annotation(Line(
+					points={{-10,0},{-15,0},{-50,0},{-55,0}},
+					thickness=0.0625));
+				connect(resistor1.p,C1.p) annotation(Line(
+					points={{-10,0},{-15,0},{-30,0},{-30,-5}},
+					thickness=0.0625));
+				connect(resistor4.n,C1.n) annotation(Line(
+					points={{-10,-35},{-15,-35},{-30,-35},{-30,-30},{-30,-25}},
+					thickness=0.0625));
 			annotation(
-				Diagram,
-				Icon(graphics={Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-72.4187,45.5445},{24.894,-36.4922}}, textString = "PCU"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{22.9137,-45.8274},{83.7341,-80.0566}}, textString = "GND"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{34.2291,-11.3154},{78.0764,-40.4526}}, textString = "3.3V"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{31.1174,21.7822},{78.6421,-8.76945}}, textString = "5V"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{31.6832,60.8204},{76.662,26.3083}}, textString = "12V"),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-88.826,94.4837},{88.2603,-94.7666}})}));
+				Icon(
+					coordinateSystem(extent={{-100,-100},{100,100}}),
+					graphics={
+															Text(
+																textString="PCU",
+																fillColor={0,0,255},
+																extent={{-72.4187,45.5445},{24.894,-36.4922}}),
+															Text(
+																textString="GND",
+																fillColor={0,0,255},
+																extent={{22.9137,-45.8274},{83.7341,-80.0566}}),
+															Text(
+																textString="3.3V",
+																fillColor={0,0,255},
+																extent={{34.2291,-11.3154},{78.07640000000001,-40.4526}}),
+															Text(
+																textString="5V",
+																fillColor={0,0,255},
+																extent={{31.1174,21.7822},{78.6421,-8.769450000000001}}),
+															Text(
+																textString="12V",
+																fillColor={0,0,255},
+																extent={{31.6832,60.8204},{76.66200000000001,26.3083}}),
+															Rectangle(
+																fillColor={0,0,255},
+																extent={{-88.82599999999999,94.4837},{88.2603,-94.7666}})}),
+				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
+				experiment(
+					StopTime=1,
+					StartTime=0));
 		end PCU;
 		package batteries
 			model battery
@@ -332,23 +357,23 @@ package satcomponents
 							extent={{-100,-100},{100,100}},
 							grid={1,1}),
 						graphics={
-																	Line(
-																		points={{-90,0},{-10,0}}),
-																	Line(
-																		points={{-10,60},{-10,-60}}),
-																	Line(
-																		points={{0,30},{0,-30}}),
-																	Line(
-																		points={{0,0},{90,0}}),
-																	Text(
-																		textString="%capacity_Ah Ah",
-																		extent={{-150,-112},{150,-72}}),
-																	Text(
-																		textString="+",
-																		extent={{-120,50},{-20,0}}),
-																	Text(
-																		textString="-",
-																		extent={{20,50},{120,0}})}),
+																												Line(
+																												points={{-90,0},{-10,0}}),
+																										Line(
+																										points={{-10,60},{-10,-60}}),
+																								Line(
+																								points={{0,30},{0,-30}}),
+																							Line(
+																								points={{0,0},{90,0}}),
+																							Text(
+																								textString="%capacity_Ah Ah",
+																								extent={{-150,-112},{150,-72}}),
+																							Text(
+																								textString="+",
+																								extent={{-120,50},{-20,0}}),
+																							Text(
+																								textString="-",
+																								extent={{20,50},{120,0}})}),
 					experiment(
 						StopTime=10000,
 						StartTime=0,
@@ -834,13 +859,13 @@ package satcomponents
 					Icon(
 						coordinateSystem(extent={{-100,-100},{100,100}}),
 						graphics={
-											Rectangle(
-												extent={{-95.5202,78.90170000000001},{95.5202,-78.90170000000001}},
-												origin={-1.01156,2.89017}),
-											Text(
-												textString="Battery \\n Charge \\n Regulator",
-												lineColor={0,0,0},
-												extent={{-80,63},{67,-37}})}),
+																			Rectangle(
+																			extent={{-95.5202,78.90170000000001},{95.5202,-78.90170000000001}},
+																		origin={-1.01156,2.89017}),
+																	Text(
+																		textString="Battery \\n Charge \\n Regulator",
+																		lineColor={0,0,0},
+																		extent={{-80,63},{67,-37}})}),
 					experiment(
 						StopTime=1,
 						StartTime=0));
@@ -2194,12 +2219,9 @@ package satcomponents
 			model dcdc_ideal_simple
 				import Modelica.Constants.pi;
 				extends Modelica.Electrical.Analog.Interfaces.TwoPort;
-				parameter Real eff=0.85 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={71.521,-76.3754},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
+				parameter Real eff=0.85 annotation(Placement(transformation(
+					origin={71.521,-76.3754},
+					extent={{-12,-12},{12,12}})));
 				parameter Modelica.SIunits.Voltage V_out=5;
 				parameter Modelica.SIunits.Voltage V_in_min=6.5;
 				parameter Modelica.SIunits.Voltage V_in_max=100;
@@ -2209,7 +2231,7 @@ package satcomponents
 					        v2 = V_out;
 					        i1 = (-i2 * v2) / (v1 * eff);
 					      elseif v1 >= V_in_min - slope * 0.5 then
-					        v2 = smooth(1, V_out * (sin((v1 - V_in_min - slope * 0.5) * pi * 0.5 / slope * 2 + pi * 0.5) + 1) * 0.5);
+					        v2 = V_out * (sin((v1 - V_in_min - slope * 0.5) * pi * 0.5 / slope * 2 + pi * 0.5) + 1) * 0.5;
 					        i1 = (-i2 * v2) / (v1 * eff);
 					      else
 					        v2 = 0;
@@ -2226,8 +2248,23 @@ package satcomponents
 					  i1 = 0;
 					end if;*/
 				annotation(
-					Icon(graphics={Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-87.6945,78.6421},{88.5431,-74.6818}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{10.4668,68.1754},{76.3791,30.2687}}, textString = "%V_out"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-63.6492,18.9533},{57.9915,-33.0976}}, textString = "DCDC")}),
-					Diagram);
+					Icon(
+						coordinateSystem(extent={{-100,-100},{100,100}}),
+						graphics={
+															Rectangle(
+																fillColor={0,0,255},
+																extent={{-87.69450000000001,78.6421},{88.5431,-74.6818}}),
+															Text(
+																textString="%V_out",
+																fillColor={0,0,255},
+																extent={{10.4668,68.1754},{76.37909999999999,30.2687}}),
+															Text(
+																textString="DCDC",
+																fillColor={0,0,255},
+																extent={{-63.6492,18.9533},{57.9915,-33.0976}})}),
+					experiment(
+						StopTime=1,
+						StartTime=0));
 			end dcdc_ideal_simple;
 			model dcdc_ideal_simple_improved
 				parameter Real eff=0.85 annotation(Placement(transformation(
@@ -2308,21 +2345,21 @@ package satcomponents
 					Icon(
 						coordinateSystem(extent={{-100,-100},{100,100}}),
 						graphics={
-																							Rectangle(
-																								fillColor={0,0,255},
-																								extent={{-87.69450000000001,78.6421},{88.5431,-74.6818}}),
-																							Text(
-																								textString="%V_out",
-																								fillColor={0,0,255},
-																								extent={{-8.486520000000001,67.6096},{57.4258,29.7029}}),
-																							Text(
-																								textString="DCDC",
-																								fillColor={0,0,255},
-																								extent={{-63.6492,18.9533},{57.9915,-33.0976}}),
-																							Text(
-																								textString="V",
-																								fillColor={0,0,255},
-																								extent={{54.314,63.3663},{75.8133,32.8147}})}),
+																																Rectangle(
+																																fillColor={0,0,255},
+																															extent={{-87.69450000000001,78.6421},{88.5431,-74.6818}}),
+																													Text(
+																														textString="%V_out",
+																														fillColor={0,0,255},
+																														extent={{-8.486520000000001,67.6096},{57.4258,29.7029}}),
+																													Text(
+																														textString="DCDC",
+																														fillColor={0,0,255},
+																														extent={{-63.6492,18.9533},{57.9915,-33.0976}}),
+																													Text(
+																														textString="V",
+																														fillColor={0,0,255},
+																														extent={{54.314,63.3663},{75.8133,32.8147}})}),
 					Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
 					experiment(
 						StopTime=1,
@@ -2391,7 +2428,361 @@ package satcomponents
 						StopTime=11000.0,
 						Tolerance=0.000001));
 				end powerdctest;
+				model dcdc_pid_characteristic
+					extends Modelica.Icons.Example;
+					Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(transformation(
+						origin={-36.7751,-39.8868},
+						extent={{-12,-12},{12,12}})));
+					Modelica.Blocks.Math.Add add1(k1=-1) annotation(Placement(transformation(
+						origin={47,53},
+						extent={{-12,-12},{12,12}})));
+					Modelica.Blocks.Sources.Ramp ramp1(
+						height=10,
+						duration=1) annotation(Placement(transformation(
+						origin={7,83},
+						extent={{-12,-12},{12,12}})));
+					Modelica.Blocks.Sources.Constant const(k=10) annotation(Placement(transformation(
+						origin={7,48},
+						extent={{-12,-12},{12,12}})));
+					Modelica.Electrical.Analog.Basic.VariableResistor variableresistor1 annotation(Placement(transformation(
+						origin={50.0707,-6.50636},
+						extent={{-12,-12},{12,12}},
+						rotation=-90)));
+					Modelica.Electrical.Analog.Sources.ConstantVoltage constantvoltage1(V=20) annotation(Placement(transformation(
+						origin={-78.5311,-4.30002},
+						extent={{-12,12},{12,-12}},
+						rotation=-90)));
+					Modelica.Electrical.Analog.Basic.Resistor resistor1(R=0.1) annotation(Placement(transformation(
+						origin={12.447,-24.8939},
+						extent={{-12,12},{12,-12}},
+						rotation=-180)));
+					dcdc_pid dcdc_pid1 annotation(Placement(transformation(extent={{-40,10},{-20,30}})));
+					equation
+						connect(ground1.p,constantvoltage1.n) annotation(Line(points={{-37,-28},{-37,-23},{-37,-21},{-79,-21},{-79,-16}}));
+						connect(resistor1.n,ground1.p) annotation(Line(points={{0,-25},{-5,-25},{-5,-23},{-37,-23},{-37,-28}}));
+						connect(variableresistor1.n,resistor1.p) annotation(Line(points={{50,-19},{50,-24},{50,-25},{29,-25},{24,-25}}));
+						connect(add1.y,variableresistor1.R) annotation(Line(points={{60,53},{65,53},{68,53},{68,-7},{63,-7}}));
+						connect(const.y,add1.u2) annotation(Line(points={{20,48},{34,48},{34,45},{35,45}}));
+						connect(ramp1.y,add1.u1) annotation(Line(points={{20,83},{24,83},{24,61},{35,61},{35,61}}));
+						connect(constantvoltage1.p,dcdc_pid1.p1) annotation(Line(
+							points={{-79,8},{-79,13},{-79,24},{-44,24},{-39,24}},
+							thickness=0.0625));
+						connect(dcdc_pid1.p2,variableresistor1.p) annotation(
+							Line(
+								points={{-20.66667175292969,24.33333587646484},{-16,20},{50,20},{50,10},{50,5.333335876464844}},
+								thickness=0.0625),
+							AutoRoute=false);
+						connect(dcdc_pid1.n2,dcdc_pid1.n1) annotation(
+							Line(
+								points={{-21,15},{-16,15},{-16,5},{-44,5},{-44,16},{-39,
+								16}},
+								thickness=0.0625),
+							AutoRoute=false);
+						connect(dcdc_pid1.n1,ground1.p) annotation(Line(
+							points={{-39,16},{-44,16},{-44,-3},{-37,-3},{-37,-23},{-37,
+							-28}},
+							thickness=0.0625));
+					public
+						annotation(
+							variableresistor1(
+								v(flags=2),
+								i(flags=2),
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								LossPower(flags=2),
+								T_heatPort(flags=2),
+								R_actual(flags=2)),
+							dcdc_pid1(
+								v1(flags=2),
+								v2(flags=2)),
+							Diagram(
+								coordinateSystem(extent={{-100,-100},{100,100}}),
+								graphics={
+									Line(
+										points={{10,75}})}),
+							experiment(
+								StopTime=1,
+								StartTime=0,
+								Tolerance=1e-006));
+				end dcdc_pid_characteristic;
+				model dcdc_pid_jump
+					extends Modelica.Icons.Example;
+					Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(transformation(
+						origin={-36.7751,-39.8868},
+						extent={{-12,-12},{12,12}})));
+					Modelica.Electrical.Analog.Basic.Resistor resistor1(R=2) annotation(Placement(transformation(
+						origin={12,-7},
+						extent={{-12,12},{12,-12}},
+						rotation=-180)));
+					dcdc_pid dcdc_pid1(
+						P_out=100,
+						V_out=20,
+						V_in_min=22) annotation(Placement(transformation(extent={{-40,10},{-20,30}})));
+					Modelica.Electrical.Analog.Sources.TrapezoidVoltage trapezoidVoltage1(
+						V=100,
+						rising=0.5,
+						width=3,
+						falling=0.5,
+						period=10,
+						startTime=2) annotation(Placement(transformation(
+						origin={-70,15},
+						extent={{-10,-10},{10,10}},
+						rotation=-90)));
+					equation
+						connect(resistor1.n,ground1.p) annotation(Line(points={{0,-7},{-5,-7},{-37,-7},{-37,-23},{-37,-28}}));
+						connect(dcdc_pid1.n2,dcdc_pid1.n1) annotation(
+							Line(
+								points={{-20.66667175292969,15.33333587646484},{-16,15},{-16,5},{-44,5},{-44,16},{-39.33333587646484,
+								16}},
+								thickness=0.0625),
+							AutoRoute=false);
+						connect(dcdc_pid1.n1,ground1.p) annotation(Line(
+							points={{-39,16},{-44,16},{-44,-3},{-37,-3},{-37,-23},{-37,
+							-28}},
+							thickness=0.0625));
+						connect(dcdc_pid1.p2,resistor1.p) annotation(Line(
+							points={{-21,24},{-16,24},{29,24},{29,-7},{24,-7}},
+							thickness=0.0625));
+						connect(trapezoidVoltage1.p,dcdc_pid1.p1) annotation(Line(
+							points={{-70,25},{-70,30},{-57,30},{-57,24},{-44,24},{-39,
+							24}},
+							thickness=0.0625));
+						connect(dcdc_pid1.n1,trapezoidVoltage1.n) annotation(Line(
+							points={{-39,16},{-44,16},{-44,0},{-70,0},{-70,5}},
+							thickness=0.0625));
+					public
+						annotation(
+							resistor1(
+								v(flags=2),
+								i(flags=2),
+								LossPower(flags=2)),
+							dcdc_pid1(
+								v1(flags=2),
+								v2(flags=2),
+								onOffController1(y(flags=2)),
+								voltageSensor1(
+									p(
+										v(flags=2),
+										i(flags=2)),
+									n(
+										v(flags=2),
+										i(flags=2)),
+									v(flags=2))),
+							Diagram(
+								coordinateSystem(extent={{-100,-100},{100,100}}),
+								graphics={
+									Line(
+										points={{10,75}})}),
+							experiment(
+								StopTime=100,
+								StartTime=0,
+								Tolerance=1e-006));
+				end dcdc_pid_jump;
 			end examples;
+			model dcdc_pid
+				parameter Modelica.SIunits.Power P_out=100;
+				parameter Real eff=0.85 annotation(Placement(transformation(
+					origin={60.2546,-80.6223},
+					extent={{-12,-12},{12,12}})));
+				parameter Modelica.SIunits.Voltage V_out=5 annotation(Placement(transformation(
+					origin={60.2546,-80.6223},
+					extent={{-12,-12},{12,12}})));
+				parameter Modelica.SIunits.Voltage V_in_min=6.5 annotation(Placement(transformation(
+					origin={60.2546,-80.6223},
+					extent={{-12,-12},{12,12}})));
+				parameter Modelica.SIunits.Voltage V_in_max=100 annotation(Placement(transformation(
+					origin={60.2546,-80.6223},
+					extent={{-12,-12},{12,12}})));
+				Modelica.Electrical.Analog.Interfaces.NegativePin n2 annotation(Placement(
+					transformation(
+						origin={93.0693,-46.959},
+						extent={{-12,-12},{12,12}}),
+					iconTransformation(
+						origin={93.0693,-46.959},
+						extent={{-12,-12},{12,12}})));
+				Modelica.Electrical.Analog.Interfaces.NegativePin n1 annotation(Placement(
+					transformation(
+						origin={-93,-47},
+						extent={{-12,-12},{12,12}}),
+					iconTransformation(
+						origin={-92.7864,-40.4526},
+						extent={{-12,-12},{12,12}})));
+				Modelica.Electrical.Analog.Interfaces.PositivePin p1 annotation(Placement(
+					transformation(
+						origin={-92.22069999999999,41.867},
+						extent={{-12,-12},{12,12}}),
+					iconTransformation(
+						origin={-92.22069999999999,41.867},
+						extent={{-12,-12},{12,12}})));
+				Modelica.Electrical.Analog.Interfaces.PositivePin p2 annotation(Placement(
+					transformation(
+						origin={92.5035,42.4328},
+						extent={{-12,-12},{12,12}}),
+					iconTransformation(
+						origin={92.5035,42.4328},
+						extent={{-12,-12},{12,12}})));
+				Modelica.SIunits.Voltage v1 "Voltage drop over the left port" annotation(Placement(transformation(
+					origin={60.5375,-80.6223},
+					extent={{-12,-12},{12,12}})));
+				Modelica.SIunits.Voltage v2 "Voltage drop over the right port" annotation(Placement(transformation(
+					origin={60.5375,-80.6223},
+					extent={{-12,-12},{12,12}})));
+				Modelica.SIunits.Current i1 "Current flowing from pos. to neg. pin of the left port" annotation(Placement(transformation(
+					origin={60.5375,-80.6223},
+					extent={{-12,-12},{12,12}})));
+				Modelica.SIunits.Current i2 "Current flowing from pos. to neg. pin of the right port" annotation(Placement(transformation(
+					origin={60.5375,-80.6223},
+					extent={{-12,-12},{12,12}})));
+				Modelica.Electrical.Analog.Sensors.VoltageSensor voltagesens annotation(Placement(transformation(
+					origin={70,0},
+					extent={{-10,-10},{10,10}},
+					rotation=-90)));
+				Modelica.Electrical.Analog.Sources.SignalCurrent I1 annotation(Placement(transformation(
+					origin={-55,0},
+					extent={{-10,-10},{10,10}},
+					rotation=-90)));
+				Modelica.Electrical.Analog.Sources.SignalCurrent I2 annotation(Placement(transformation(
+					origin={50,0},
+					extent={{-10,-10},{10,10}},
+					rotation=90)));
+				Modelica.Blocks.Continuous.LimPID pID(
+					controllerType=Modelica.Blocks.Types.SimpleController.PD,
+					k=10000,
+					yMax=P_out/V_out,
+					yMin=0,
+					initType=Modelica.Blocks.Types.InitPID.NoInit) annotation(Placement(transformation(extent={{-25,45},{-5,65}})));
+				Modelica.Blocks.Sources.Constant const(k=V_out) annotation(Placement(transformation(extent={{-65,45},{-45,65}})));
+				Modelica.Blocks.Logical.OnOffController onOffController1 annotation(Placement(transformation(extent={{-15,-5},{0,10}})));
+				Modelica.Electrical.Analog.Sensors.VoltageSensor voltageSensor1 annotation(Placement(transformation(
+					origin={-35,0},
+					extent={{10,-10},{-10,10}},
+					rotation=90)));
+				Modelica.Blocks.Sources.Constant const1(k=V_in_min) annotation(Placement(transformation(extent={{-45,20},{-25,40}})));
+				Modelica.Blocks.Math.Product product1 annotation(Placement(transformation(extent={{20,0},{35,15}})));
+				Modelica.Blocks.MathBoolean.Not nor1 annotation(Placement(transformation(extent={{5,-20},{15,-10}})));
+				Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C(displayUnit="nF")=1.0000000000000001e-007) annotation(Placement(transformation(
+					origin={-75,0},
+					extent={{-10,-10},{10,10}},
+					rotation=-90)));
+				Modelica.Electrical.Analog.Basic.Capacitor capacitor2(C(displayUnit="nF")=1.0000000000000001e-007) annotation(Placement(transformation(
+					origin={90,0},
+					extent={{-10,-10},{10,10}},
+					rotation=-90)));
+				equation
+					v1 = p1.v - n1.v;
+					v2 = p2.v - n2.v;
+					i1 = p1.i;
+					i2 = p2.i;
+					//I2.i= if v1 > V_in_min and v1< V_in_max then pID.y else 0;
+					I1.i =(I2.i * I2.v) / ((I1.v+1e-10) * eff);
+				equation
+					connect(I2.p,n2) annotation(Line(
+						points={{50,-10},{50,-15},{50,-47},{88,-47},{93,-47}},
+						thickness=0.0625));
+							
+					connect(I2.n,p2) annotation(Line(
+						points={{50,10},{50,15},{50,42},{88,42},{93,42}},
+						thickness=0.0625));
+					connect(I2.p,voltagesens.n) annotation(Line(
+						points={{50,-10},{50,-15},{70,-15},{70,-10}},
+						thickness=0.0625));
+					connect(voltagesens.p,I2.n) annotation(Line(
+						points={{70,10},{70,15},{50,15},{50,10}},
+						thickness=0.0625));
+					connect(pID.u_m,voltagesens.v) annotation(
+						Line(
+							points={{-15,43},{-15,38},{-15,35},{60,35},{60,0}},
+							color={0,0,127},
+							thickness=0.0625),
+						AutoRoute=false);
+					connect(const.y,pID.u_s) annotation(Line(
+						points={{-44,55},{-39,55},{-32,55},{-27,55}},
+						color={0,0,127},
+						thickness=0.0625));
+					connect(I1.n,n1) annotation(Line(
+						points={{-55,-10},{-55,-15},{-55,-47},{-88,-47},{-93,-47}},
+						thickness=0.0625));
+					connect(I1.p,p1) annotation(
+						Line(
+							points={{-55,10},{-55,15},{-55,20},{-87,20},{-92.33332824707031,42}},
+							thickness=0.0625),
+						AutoRoute=false);
+					connect(voltageSensor1.v,onOffController1.u) annotation(Line(
+						points={{-25,0},{-20,0},{-20,-1},{-22,-1},{-22,-2},{-17,
+						-2}},
+						color={0,0,127},
+						thickness=0.0625));
+					connect(const1.y,onOffController1.reference) annotation(Line(
+						points={{-24,30},{-19,30},{-19,19},{-22,19},{-22,7},{-17,
+						7}},
+						color={0,0,127},
+						thickness=0.0625));
+					connect(pID.y,product1.u1) annotation(Line(
+						points={{-4,55},{1,55},{13,55},{13,12},{18,12}},
+						color={0,0,127},
+						thickness=0.0625));
+					connect(product1.y,I2.i) annotation(Line(
+						points={{36,7},{41,7},{41,4},{38,4},{38,0},{43,
+						0}},
+						color={0,0,127},
+						thickness=0.0625));
+					connect(onOffController1.y,nor1.u) annotation(Line(
+						points={{1,2},{6,2},{6,-6},{-2,-6},{-2,-15},{3,
+						-15}},
+						color={255,0,255},
+						thickness=0.0625));
+					connect(nor1.y,product1.u2) annotation(Line(
+						points={{16,-15},{21,-15},{21,-6},{13,-6},{13,3},{18,
+						3}},
+						color={255,0,255},
+						thickness=0.0625));
+					connect(voltageSensor1.n,I1.n) annotation(Line(
+						points={{-35,-10},{-35,-15},{-55,-15},{-55,-10}},
+						thickness=0.0625));
+					connect(voltageSensor1.p,I1.p) annotation(Line(
+						points={{-35,10},{-35,15},{-55,15},{-55,10}},
+						thickness=0.0625));
+					connect(voltagesens.p,capacitor2.p) annotation(Line(
+						points={{70,10},{70,15},{90,15},{90,10}},
+						thickness=0.0625));
+					connect(capacitor2.n,voltagesens.n) annotation(Line(
+						points={{90,-10},{90,-15},{70,-15},{70,-10}},
+						thickness=0.0625));
+					connect(capacitor1.p,I1.p) annotation(Line(
+						points={{-75,10},{-75,15},{-55,15},{-55,10}},
+						thickness=0.0625));
+					connect(I1.n,capacitor1.n) annotation(Line(
+						points={{-55,-10},{-55,-15},{-75,-15},{-75,-10}},
+						thickness=0.0625));
+				public
+					annotation(
+						Icon(
+							coordinateSystem(extent={{-100,-100},{100,100}}),
+							graphics={
+								Rectangle(
+									fillColor={0,0,255},
+									extent={{-87.69450000000001,78.6421},{88.5431,-74.6818}}),
+								Text(
+									textString="%V_out",
+									fillColor={0,0,255},
+									extent={{-8.486520000000001,67.6096},{57.4258,29.7029}}),
+								Text(
+									textString="DCDC",
+									fillColor={0,0,255},
+									extent={{-63.6492,18.9533},{57.9915,-33.0976}}),
+								Text(
+									textString="V",
+									fillColor={0,0,255},
+									extent={{54.314,63.3663},{75.8133,32.8147}})}),
+						Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
+						experiment(
+							StopTime=1,
+							StartTime=0));
+			end dcdc_pid;
 		end dcmodel;
 		package examples
 			model unregulated_DET
@@ -2419,7 +2810,7 @@ package satcomponents
 					origin={13.9999,-3},
 					extent={{-10,-10},{10,10}},
 					rotation=-90)));
-				PCU pcu1 annotation(Placement(transformation(
+				PCU_pid pcu1 annotation(Placement(transformation(
 					origin={46.8208,5.20231},
 					extent={{-10,-10},{10,10}})));
 				Modelica.Electrical.Analog.Basic.Resistor resistor1(R=13) annotation(Placement(transformation(
@@ -2435,28 +2826,36 @@ package satcomponents
 					origin={-22.5564,24.9624},
 					extent={{-10,-10},{10,10}})));
 				equation
-					connect(sa_regulator1.n,battery1.p) annotation(Line(points={{-12.5564,24.9624},{13.8346,24.9624},{13.8346,7},{13.9999,7}}));
-					connect(sa_regulator1.pin_n,solarcell_simple1.p) annotation(Line(points={{-22.7669,15.2481},{-22.8571,15.2481},{-22.8571,-15.0376},{-52,-15.0376},{-52,-15}}));
-					connect(solarcell_simple1.n,sa_regulator1.p) annotation(Line(points={{-52,5},{-52,24.9624},{-32.8571,24.9624},{-32.5564,24.9624}}));
-					connect(resistor3.n,pcu1.gnd) annotation(Line(points={{86.3006,-16.763},{86.4162,-16.763},{86.4162,-36.9942},{56.9364,-36.9942},{56.9364,-1.15607},{56.9364,
-					-1.15607}}));
-					connect(resistor2.n,resistor3.n) annotation(Line(points={{86.3005,6.06937},{86.4162,6.06937},{86.4162,-16.763},{86.4162,-16.763}}));
-					connect(resistor1.n,resistor2.n) annotation(Line(points={{85.5491,26.9653},{86.1272,26.9653},{86.1272,6.06936},{86.1272,6.06936}}));
-					connect(resistor2.p,pcu1.VCC5) annotation(Line(points={{66.3005,6.06937},{56.6474,6.06937},{56.6474,6.06936},{56.6474,6.06936}}));
-					connect(pcu1.VCC3,resistor3.p) annotation(Line(points={{56.8349,2.88265},{66.185,2.88265},{66.185,-16.763},{66.185,-16.763}}));
-					connect(resistor1.p,pcu1.VCC12) annotation(Line(points={{66.3006,26.9653},{66.185,26.9653},{66.185,9.82659},{56.6474,9.82659},{56.6474,9.82659}}));
-					connect(pcu1.GND,battery1.n) annotation(Line(points={{36.7218,0.76101},{36.4162,0.76101},{36.4162,-36.9942},{13.8728,-36.9942},{13.8728,-12.7168},{13.8728,
-					-12.7168}}));
-					connect(pcu1.gnd,pcu1.GND) annotation(Line(points={{56.8349,-1.1909},{56.9364,-1.1909},{56.9364,-36.9942},{36.4162,-36.9942},{36.4162,0.867052},{36.4162,
-					0.867052}}));
-					connect(battery1.p,pcu1.VCC) annotation(Line(points={{13.9999,7},{13.9999,6.06936},{36.4162,6.06936},{36.4162,6.06936}}));
-					connect(battery1.n,ground1.p) annotation(Line(points={{13.9999,-13},{13.9999,-37},{-39.6667,-37},{-39.6667,-37}}));
-					connect(solarcell_simple1.p,ground1.p) annotation(Line(points={{-52,-15},{-52,-37},{-39.6667,-37},{-39.6667,-37}}));
-					connect(trapezoid1.y,solarcell_simple1.E_s) annotation(Line(points={{-73,-5},{-60.3333,-5},{-60.3333,-5},{-60.3333,-5}}));
+					connect(sa_regulator1.n,battery1.p) annotation(Line(points={{-13,25},{-8,25},{14,25},{14,12},{14,7}}));
+					connect(sa_regulator1.pin_n,solarcell_simple1.p) annotation(Line(points={{-23,15},{-23,10},{-23,-20},{-52,-20},{-52,-15}}));
+					connect(solarcell_simple1.n,sa_regulator1.p) annotation(Line(points={{-52,5},{-52,10},{-52,25},{-38,25},{-33,25}}));
+					connect(resistor3.n,pcu1.gnd) annotation(Line(points={{86,-17},{91,-17},{91,-1},{62,-1},{57,-1}}));
+					connect(resistor2.n,resistor3.n) annotation(Line(points={{86,6},{91,6},{91,-17},{86,-17}}));
+					connect(resistor1.n,resistor2.n) annotation(Line(points={{86,27},{91,27},{91,27},{91,6},{86,6}}));
+					connect(resistor2.p,pcu1.VCC5) annotation(Line(points={{66,6},{61,6},{62,6},{57,6}}));
+					connect(pcu1.VCC3,resistor3.p) annotation(Line(points={{57,3},{62,3},{62,-7},{61,-7},{61,-17},{66,
+					-17}}));
+					connect(resistor1.p,pcu1.VCC12) annotation(Line(points={{66,27},{61,27},{61,18},{62,18},{62,10},{57,
+					10}}));
+					connect(pcu1.GND,battery1.n) annotation(Line(points={{37,1},{32,1},{32,-18},{14,-18},{14,-13}}));
+					connect(pcu1.gnd,pcu1.GND) annotation(
+						Line(points={{57,-1},{62,-1},{62,-10},{32,-10},{32,1},{37,
+						1}}),
+						AutoRoute=false);
+					connect(battery1.p,pcu1.VCC) annotation(Line(points={{14,7},{14,12},{23,12},{23,6},{32,6},{37,
+					6}}));
+					connect(battery1.n,ground1.p) annotation(Line(points={{14,-13},{14,-18},{14,-32},{-40,-32},{-40,-37}}));
+					connect(solarcell_simple1.p,ground1.p) annotation(Line(points={{-52,-15},{-52,-20},{-52,-32},{-40,-32},{-40,-37}}));
+					connect(trapezoid1.y,solarcell_simple1.E_s) annotation(Line(points={{-73,-5},{-68,-5},{-64,-5},{-59,-5}}));
 				annotation(
 					battery1(
 						v(flags=2),
 						soc(flags=2)),
+					pcu1(
+						V_in(flags=2),
+						V_3(flags=2),
+						V_5(flags=2),
+						V_12(flags=2)),
 					resistor3(v(flags=2)),
 					Icon(coordinateSystem(extent={{-100,-100},{100,100}})),
 					Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
@@ -2978,6 +3377,97 @@ package satcomponents
 					connect(trapezoid1.y,solarcell_simple1.E_s) annotation(Line(points = {{-74.7341,35.4624},{-62.0674,35.7514},{-62.0674,35.7514},{-62.0674,35.4624}}));
 					connect(solarcell_simple1.p,ground1.p) annotation(Line(points = {{-53.7341,25.4624},{-53.7341,3.46243},{-41.4008,3.46243},{-41.4008,3.46243}}));
 			end BDRBCRwithDET;
+			model PCU_pid_example
+				extends Modelica.Icons.Example;
+				batteries.battery battery1(
+					soc(start=0.9),
+					Vnominal=20) annotation(Placement(transformation(
+					origin={-86.1272,-5.49133},
+					extent={{-10,-10},{10,10}},
+					rotation=-90)));
+				PCU_pid pcu1(C1(v(start=20))) annotation(Placement(transformation(
+					origin={-37.2832,4.04624},
+					extent={{-10,-10},{10,10}})));
+				Modelica.Electrical.Analog.Basic.Resistor resistor1(R=100) annotation(Placement(transformation(
+					origin={23.9884,22.2543},
+					extent={{-10,-10},{10,10}})));
+				Modelica.Electrical.Analog.Basic.Resistor resistor2(R=100) annotation(Placement(transformation(
+					origin={24.2775,1.15607},
+					extent={{-10,-10},{10,10}})));
+				Modelica.Electrical.Analog.Basic.Resistor resistor3(R=100) annotation(Placement(transformation(
+					origin={24.5665,-21.3873},
+					extent={{-10,-10},{10,10}})));
+				Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(transformation(
+					origin={-63.2948,-24.2775},
+					extent={{-10,-10},{10,10}})));
+				equation
+					connect(pcu1.GND,pcu1.gnd) annotation(Line(points={{-47,0},{-52,0},{-52,-10},{-22,-10},{-22,-2},{-27,
+					-2}}));
+					connect(ground1.p,pcu1.GND) annotation(Line(points={{-63,-14},{-63,-9},{-63,0},{-52,0},{-47,0}}));
+					connect(battery1.n,ground1.p) annotation(Line(points={{-86,-15},{-86,-20},{-75,-20},{-75,-9},{-63,-9},{-63,
+					-14}}));
+					connect(battery1.p,pcu1.VCC) annotation(Line(points={{-86,5},{-86,10},{-69,10},{-69,5},{-52,5},{-47,
+					5}}));
+					connect(pcu1.gnd,resistor3.n) annotation(
+						Line(points={{-27,-2},{-22,-30},{40,-30},{40,-21},{35,-21}}),
+						AutoRoute=false);
+					connect(resistor2.n,resistor1.n) annotation(Line(points={{34,1},{39,1},{39,22},{39,22},{34,22}}));
+					connect(resistor3.n,resistor2.n) annotation(Line(points={{35,-21},{40,-21},{40,1},{39,1},{34,1}}));
+					connect(pcu1.VCC3,resistor3.p) annotation(Line(points={{-27,2},{-22,2},{10,2},{10,-21},{15,-21}}));
+					connect(pcu1.VCC5,resistor2.p) annotation(Line(points={{-27,5},{-22,5},{9,5},{9,1},{14,1}}));
+					connect(resistor1.p,pcu1.VCC12) annotation(Line(points={{14,22},{9,22},{-22,22},{-22,9},{-27,9}}));
+				public
+					annotation(
+						battery1(
+							v(flags=2),
+							soc(flags=2)),
+						pcu1(
+							V_in(flags=2),
+							V_3(flags=2),
+							V_5(flags=2),
+							V_12(flags=2)),
+						resistor1(
+							v(flags=2),
+							i(flags=2),
+							p(
+								v(flags=2),
+								i(flags=2)),
+							n(
+								v(flags=2),
+								i(flags=2)),
+							LossPower(flags=2),
+							T_heatPort(flags=2),
+							R_actual(flags=2)),
+						resistor2(
+							v(flags=2),
+							i(flags=2),
+							p(
+								v(flags=2),
+								i(flags=2)),
+							n(
+								v(flags=2),
+								i(flags=2)),
+							LossPower(flags=2),
+							T_heatPort(flags=2),
+							R_actual(flags=2)),
+						resistor3(
+							v(flags=2),
+							i(flags=2),
+							p(
+								v(flags=2),
+								i(flags=2)),
+							n(
+								v(flags=2),
+								i(flags=2)),
+							LossPower(flags=2),
+							T_heatPort(flags=2),
+							R_actual(flags=2)),
+						Icon(coordinateSystem(extent={{-100,-100},{100,100}})),
+						Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
+						experiment(
+							StopTime=100000,
+							StartTime=0));
+			end PCU_pid_example;
 			annotation(
 				Icon(coordinateSystem(
 					extent={{-100,-100},{100,100}},
@@ -3148,6 +3638,184 @@ package satcomponents
 					StopTime=100.0,
 					Tolerance=0.000001));
 		end verbraucher;
+		model PCU_pid
+			Modelica.SIunits.Voltage V_in;
+			Modelica.SIunits.Voltage V_3;
+			Modelica.SIunits.Voltage V_5;
+			Modelica.SIunits.Voltage V_12;
+			Modelica.Electrical.Analog.Interfaces.NegativePin gnd annotation(Placement(
+				transformation(
+					origin={100.141,-63.9321},
+					extent={{-12,-12},{12,12}}),
+				iconTransformation(
+					origin={100.141,-63.9321},
+					extent={{-12,-12},{12,12}})));
+			Modelica.Electrical.Analog.Interfaces.NegativePin GND annotation(Placement(
+				transformation(
+					origin={-100.99,-44.413},
+					extent={{-12,-12},{12,12}}),
+				iconTransformation(
+					origin={-100.99,-44.413},
+					extent={{-12,-12},{12,12}})));
+			Modelica.Electrical.Analog.Interfaces.PositivePin VCC annotation(Placement(
+				transformation(
+					origin={-100.707,7.92079},
+					extent={{-12,-12},{12,12}}),
+				iconTransformation(
+					origin={-100.707,7.92079},
+					extent={{-12,-12},{12,12}})));
+			Modelica.Electrical.Analog.Interfaces.PositivePin VCC3 annotation(Placement(
+				transformation(
+					origin={100.141,-23.1966},
+					extent={{-12,-12},{12,12}}),
+				iconTransformation(
+					origin={100.141,-23.1966},
+					extent={{-12,-12},{12,12}})));
+			Modelica.Electrical.Analog.Interfaces.PositivePin VCC5 annotation(Placement(
+				transformation(
+					origin={99.8586,8.769450000000001},
+					extent={{-12,-12},{12,12}}),
+				iconTransformation(
+					origin={99.8586,8.769450000000001},
+					extent={{-12,-12},{12,12}})));
+			Modelica.Electrical.Analog.Interfaces.PositivePin VCC12 annotation(Placement(
+				transformation(
+					origin={99.2928,44.6959},
+					extent={{-12,-12},{12,12}}),
+				iconTransformation(
+					origin={99.2928,44.6959},
+					extent={{-12,-12},{12,12}})));
+			dcmodel.dcdc_ideal_simple_improved dcdc_pid3(
+				V_out=3.3,
+				V_in_min=5) annotation(Placement(transformation(
+				origin={57,-29},
+				extent={{-10,-10},{10,10}})));
+			dcmodel.dcdc_ideal_simple_improved dcdc_pid5 annotation(Placement(transformation(
+				origin={57.5145,3.75723},
+				extent={{-10,-10},{10,10}})));
+			dcmodel.dcdc_ideal_simple_improved dcdc_pid12(
+				V_out=12,
+				V_in_min=15) annotation(Placement(transformation(
+				origin={57.2254,41.0405},
+				extent={{-10,-10},{10,10}})));
+			Modelica.Electrical.Analog.Basic.Capacitor C1(C(displayUnit="nF")=1.0000000000000001e-007) annotation(Placement(transformation(
+				origin={-30,-15},
+				extent={{-10,-10},{10,10}},
+				rotation=-90)));
+			Modelica.Electrical.Analog.Basic.Resistor resistor1(R=0.01) annotation(Placement(transformation(extent={{-10,-10},{10,10}})));
+			Modelica.Electrical.Analog.Basic.Resistor resistor2(R=0.01) annotation(Placement(transformation(extent={{-75,-10},{-55,10}})));
+			Modelica.Electrical.Analog.Basic.Resistor resistor3(R=0.01) annotation(Placement(transformation(extent={{-55,-45},{-75,-25}})));
+			Modelica.Electrical.Analog.Basic.Resistor resistor4(R=0.01) annotation(Placement(transformation(extent={{10,-45},{-10,-25}})));
+			equation
+					V_in=VCC.v-GND.v;
+					V_3=VCC3.v-GND.v;
+					V_5=VCC5.v-GND.v;
+					V_12=VCC12.v-GND.v;
+				
+				
+					connect(resistor2.p,VCC) annotation(Line(
+					points={{-75,0},{-80,0},{-96,0},{-96,8},{-101,8}},
+					thickness=0.0625));
+					connect(resistor3.n,GND) annotation(Line(
+					points={{-75,-35},{-80,-35},{-96,-35},{-96,-44},{-101,-44}},
+					thickness=0.0625));
+					connect(resistor3.p,resistor4.n) annotation(Line(
+					points={{-55,-35},{-50,-35},{-15,-35},{-10,-35}},
+					thickness=0.0625));
+					
+					
+					connect(resistor1.p,resistor2.n) annotation(Line(
+					points={{-10,0},{-15,0},{-50,0},{-55,0}},
+					thickness=0.0625));
+					connect(resistor1.p,C1.p) annotation(Line(
+					points={{-10,0},{-15,0},{-30,0},{-30,-5}},
+					thickness=0.0625));
+					connect(resistor4.n,C1.n) annotation(Line(
+					points={{-10,-35},{-15,-35},{-30,-35},{-30,-30},{-30,-25}},
+					thickness=0.0625));
+					connect(resistor1.n,dcdc_pid12.p1) annotation(
+					Line(
+						points={{10,0},{25,0},{25,45},{48,45}},
+						thickness=0.0625),
+					AutoRoute=false);
+					connect(dcdc_pid5.p1,resistor1.n) annotation(
+					Line(
+						points={{48.33332824707031,8},{43,8},{25,8},{25,0},{10,0}},
+						thickness=0.0625),
+					AutoRoute=false);
+					connect(resistor1.n,dcdc_pid3.p1) annotation(
+					Line(
+						points={{10,0},{15,0},{25,0},{25,-25},{47.66667175292969,-24.66667175292969}},
+						thickness=0.0625),
+					AutoRoute=false);
+					connect(dcdc_pid5.n1,resistor4.p) annotation(
+					Line(
+						points={{48.33332824707031,-0.3333358764648438},{43,0},{35,0},{35,-35},{10,-35}},
+						thickness=0.0625),
+					AutoRoute=false);
+					connect(dcdc_pid12.n1,resistor4.p) annotation(
+					Line(
+						points={{48,37},{43,37},{35,37},{35,-35},{10,-35}},
+						thickness=0.0625),
+					AutoRoute=false);
+					connect(dcdc_pid3.n1,resistor4.p) annotation(
+					Line(
+						points={{47.66667175292969,-33},{43,-33},{35,-33},{35,-35},{10,-35}},
+						thickness=0.0625),
+					AutoRoute=false);
+					connect(dcdc_pid12.p2,VCC12) annotation(Line(
+					points={{66,45},{71,45},{94,45},{94,45},{99,45}},
+					thickness=0.0625));
+					connect(dcdc_pid5.p2,VCC5) annotation(Line(
+					points={{67,8},{72,8},{95,8},{95,9},{100,9}},
+					thickness=0.0625));
+					connect(dcdc_pid3.p2,VCC3) annotation(Line(
+					points={{66,-25},{71,-25},{95,-25},{95,-23},{100,-23}},
+					thickness=0.0625));
+					connect(dcdc_pid12.n2,dcdc_pid5.n2) annotation(Line(
+					points={{67,36},{72,36},{72,-1},{67,-1}},
+					thickness=0.0625));
+					connect(dcdc_pid5.n2,dcdc_pid3.n2) annotation(Line(
+					points={{67,-1},{72,-1},{72,-34},{71,-34},{66,-34}},
+					thickness=0.0625));
+					connect(dcdc_pid3.n2,gnd) annotation(
+					Line(
+						points={{66,-34},{71,-34},{85,-34},{85,-64},{100,-64}},
+						thickness=0.0625),
+					AutoRoute=false);
+			public
+				annotation(
+					Icon(
+						coordinateSystem(extent={{-100,-100},{100,100}}),
+						graphics={
+							Text(
+								textString="PCU",
+								fillColor={0,0,255},
+								extent={{-72.4187,45.5445},{24.894,-36.4922}}),
+							Text(
+								textString="GND",
+								fillColor={0,0,255},
+								extent={{22.9137,-45.8274},{83.7341,-80.0566}}),
+							Text(
+								textString="3.3V",
+								fillColor={0,0,255},
+								extent={{34.2291,-11.3154},{78.07640000000001,-40.4526}}),
+							Text(
+								textString="5V",
+								fillColor={0,0,255},
+								extent={{31.1174,21.7822},{78.6421,-8.769450000000001}}),
+							Text(
+								textString="12V",
+								fillColor={0,0,255},
+								extent={{31.6832,60.8204},{76.66200000000001,26.3083}}),
+							Rectangle(
+								fillColor={0,0,255},
+								extent={{-88.82599999999999,94.4837},{88.2603,-94.7666}})}),
+					Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
+					experiment(
+						StopTime=1,
+						StartTime=0));
+		end PCU_pid;
 	end power;
 	package AOCS
 		model freerotatingcube
@@ -3698,24 +4366,24 @@ package satcomponents
 		Icon(
 			coordinateSystem(extent={{-100,-100},{100,100}}),
 			graphics={
-																Polygon(
-																points={{-11.5042,31.4966},{33.1625,8.163309999999999},{11.8292,-31.5034},{-33.1708,-7.17002},{-11.5042,31.4966}},
-															origin={-0.495835,-3.82998}),
-														Polygon(
-															points={{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}},
-															fillColor={0,0,255},
-															fillPattern=FillPattern.VerticalCylinder,
-															origin={41.3475,49.7145}),
-														Polygon(
-															points={{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}},
-															fillColor={0,0,255},
-															fillPattern=FillPattern.VerticalCylinder,
-															origin={-23.6525,-62.9522}),
-														Polygon(
-															points={{-8.16695,13.1269},{-13.1669,4.12686},{-0.500278,-13.5398},{13.1664,11.1269},{-8.16695,13.1269}},
-															origin={36.1669,-23.4602}),
-														Polygon(
-															points={{16.7693,29.6823},{14.7693,5.68234},{1.10267,-18.651},{-16.8973,-29.3177},{16.7693,29.6823}},
-															origin={-35.7693,14.651})}),
+																				Polygon(
+																			points={{-11.5042,31.4966},{33.1625,8.163309999999999},{11.8292,-31.5034},{-33.1708,-7.17002},{-11.5042,31.4966}},
+																		origin={-0.495835,-3.82998}),
+																	Polygon(
+																		points={{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}},
+																		fillColor={0,0,255},
+																		fillPattern=FillPattern.VerticalCylinder,
+																		origin={41.3475,49.7145}),
+																	Polygon(
+																		points={{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}},
+																		fillColor={0,0,255},
+																		fillPattern=FillPattern.VerticalCylinder,
+																		origin={-23.6525,-62.9522}),
+																	Polygon(
+																		points={{-8.16695,13.1269},{-13.1669,4.12686},{-0.500278,-13.5398},{13.1664,11.1269},{-8.16695,13.1269}},
+																		origin={36.1669,-23.4602}),
+																	Polygon(
+																		points={{16.7693,29.6823},{14.7693,5.68234},{1.10267,-18.651},{-16.8973,-29.3177},{16.7693,29.6823}},
+																		origin={-35.7693,14.651})}),
 		Diagram(coordinateSystem(extent={{-100,-100},{100,100}})));
 end satcomponents;
