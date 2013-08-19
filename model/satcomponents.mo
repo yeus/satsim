@@ -277,29 +277,29 @@ package satcomponents
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
-															Text(
-																textString="PCU",
-																fillColor={0,0,255},
-																extent={{-72.4187,45.5445},{24.894,-36.4922}}),
-															Text(
-																textString="GND",
-																fillColor={0,0,255},
-																extent={{22.9137,-45.8274},{83.7341,-80.0566}}),
-															Text(
-																textString="3.3V",
-																fillColor={0,0,255},
-																extent={{34.2291,-11.3154},{78.07640000000001,-40.4526}}),
-															Text(
-																textString="5V",
-																fillColor={0,0,255},
-																extent={{31.1174,21.7822},{78.6421,-8.769450000000001}}),
-															Text(
-																textString="12V",
-																fillColor={0,0,255},
-																extent={{31.6832,60.8204},{76.66200000000001,26.3083}}),
-															Rectangle(
-																fillColor={0,0,255},
-																extent={{-88.82599999999999,94.4837},{88.2603,-94.7666}})}),
+																				Text(
+																					textString="PCU",
+																					fillColor={0,0,255},
+																					extent={{-72.4187,45.5445},{24.894,-36.4922}}),
+																				Text(
+																					textString="GND",
+																					fillColor={0,0,255},
+																					extent={{22.9137,-45.8274},{83.7341,-80.0566}}),
+																				Text(
+																					textString="3.3V",
+																					fillColor={0,0,255},
+																					extent={{34.2291,-11.3154},{78.07640000000001,-40.4526}}),
+																				Text(
+																					textString="5V",
+																					fillColor={0,0,255},
+																					extent={{31.1174,21.7822},{78.6421,-8.769450000000001}}),
+																				Text(
+																					textString="12V",
+																					fillColor={0,0,255},
+																					extent={{31.6832,60.8204},{76.66200000000001,26.3083}}),
+																				Rectangle(
+																					fillColor={0,0,255},
+																					extent={{-88.82599999999999,94.4837},{88.2603,-94.7666}})}),
 				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
 				experiment(
 					StopTime=1,
@@ -357,23 +357,23 @@ package satcomponents
 							extent={{-100,-100},{100,100}},
 							grid={1,1}),
 						graphics={
-																												Line(
-																												points={{-90,0},{-10,0}}),
-																										Line(
-																										points={{-10,60},{-10,-60}}),
-																								Line(
-																								points={{0,30},{0,-30}}),
-																							Line(
-																								points={{0,0},{90,0}}),
-																							Text(
-																								textString="%capacity_Ah Ah",
-																								extent={{-150,-112},{150,-72}}),
-																							Text(
-																								textString="+",
-																								extent={{-120,50},{-20,0}}),
-																							Text(
-																								textString="-",
-																								extent={{20,50},{120,0}})}),
+																																		Line(
+																																		points={{-90,0},{-10,0}}),
+																																Line(
+																																points={{-10,60},{-10,-60}}),
+																														Line(
+																														points={{0,30},{0,-30}}),
+																													Line(
+																														points={{0,0},{90,0}}),
+																													Text(
+																														textString="%capacity_Ah Ah",
+																														extent={{-150,-112},{150,-72}}),
+																													Text(
+																														textString="+",
+																														extent={{-120,50},{-20,0}}),
+																													Text(
+																														textString="-",
+																														extent={{20,50},{120,0}})}),
 					experiment(
 						StopTime=10000,
 						StartTime=0,
@@ -859,13 +859,13 @@ package satcomponents
 					Icon(
 						coordinateSystem(extent={{-100,-100},{100,100}}),
 						graphics={
-																			Rectangle(
-																			extent={{-95.5202,78.90170000000001},{95.5202,-78.90170000000001}},
-																		origin={-1.01156,2.89017}),
-																	Text(
-																		textString="Battery \\n Charge \\n Regulator",
-																		lineColor={0,0,0},
-																		extent={{-80,63},{67,-37}})}),
+																									Rectangle(
+																									extent={{-95.5202,78.90170000000001},{95.5202,-78.90170000000001}},
+																								origin={-1.01156,2.89017}),
+																							Text(
+																								textString="Battery \\n Charge \\n Regulator",
+																								lineColor={0,0,0},
+																								extent={{-80,63},{67,-37}})}),
 					experiment(
 						StopTime=1,
 						StartTime=0));
@@ -2251,17 +2251,17 @@ package satcomponents
 					Icon(
 						coordinateSystem(extent={{-100,-100},{100,100}}),
 						graphics={
-															Rectangle(
-																fillColor={0,0,255},
-																extent={{-87.69450000000001,78.6421},{88.5431,-74.6818}}),
-															Text(
-																textString="%V_out",
-																fillColor={0,0,255},
-																extent={{10.4668,68.1754},{76.37909999999999,30.2687}}),
-															Text(
-																textString="DCDC",
-																fillColor={0,0,255},
-																extent={{-63.6492,18.9533},{57.9915,-33.0976}})}),
+																					Rectangle(
+																						fillColor={0,0,255},
+																						extent={{-87.69450000000001,78.6421},{88.5431,-74.6818}}),
+																					Text(
+																						textString="%V_out",
+																						fillColor={0,0,255},
+																						extent={{10.4668,68.1754},{76.37909999999999,30.2687}}),
+																					Text(
+																						textString="DCDC",
+																						fillColor={0,0,255},
+																						extent={{-63.6492,18.9533},{57.9915,-33.0976}})}),
 					experiment(
 						StopTime=1,
 						StartTime=0));
@@ -2345,21 +2345,21 @@ package satcomponents
 					Icon(
 						coordinateSystem(extent={{-100,-100},{100,100}}),
 						graphics={
-																																Rectangle(
-																																fillColor={0,0,255},
-																															extent={{-87.69450000000001,78.6421},{88.5431,-74.6818}}),
-																													Text(
-																														textString="%V_out",
-																														fillColor={0,0,255},
-																														extent={{-8.486520000000001,67.6096},{57.4258,29.7029}}),
-																													Text(
-																														textString="DCDC",
-																														fillColor={0,0,255},
-																														extent={{-63.6492,18.9533},{57.9915,-33.0976}}),
-																													Text(
-																														textString="V",
-																														fillColor={0,0,255},
-																														extent={{54.314,63.3663},{75.8133,32.8147}})}),
+																																						Rectangle(
+																																						fillColor={0,0,255},
+																																					extent={{-87.69450000000001,78.6421},{88.5431,-74.6818}}),
+																																			Text(
+																																				textString="%V_out",
+																																				fillColor={0,0,255},
+																																				extent={{-8.486520000000001,67.6096},{57.4258,29.7029}}),
+																																			Text(
+																																				textString="DCDC",
+																																				fillColor={0,0,255},
+																																				extent={{-63.6492,18.9533},{57.9915,-33.0976}}),
+																																			Text(
+																																				textString="V",
+																																				fillColor={0,0,255},
+																																				extent={{54.314,63.3663},{75.8133,32.8147}})}),
 					Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
 					experiment(
 						StopTime=1,
@@ -2482,32 +2482,31 @@ package satcomponents
 							points={{-39,16},{-44,16},{-44,-3},{-37,-3},{-37,-23},{-37,
 							-28}},
 							thickness=0.0625));
-					public
-						annotation(
-							variableresistor1(
+					annotation(
+						variableresistor1(
+							v(flags=2),
+							i(flags=2),
+							p(
 								v(flags=2),
-								i(flags=2),
-								p(
-									v(flags=2),
-									i(flags=2)),
-								n(
-									v(flags=2),
-									i(flags=2)),
-								LossPower(flags=2),
-								T_heatPort(flags=2),
-								R_actual(flags=2)),
-							dcdc_pid1(
-								v1(flags=2),
-								v2(flags=2)),
-							Diagram(
-								coordinateSystem(extent={{-100,-100},{100,100}}),
-								graphics={
-									Line(
-										points={{10,75}})}),
-							experiment(
-								StopTime=1,
-								StartTime=0,
-								Tolerance=1e-006));
+								i(flags=2)),
+							n(
+								v(flags=2),
+								i(flags=2)),
+							LossPower(flags=2),
+							T_heatPort(flags=2),
+							R_actual(flags=2)),
+						dcdc_pid1(
+							v1(flags=2),
+							v2(flags=2)),
+						Diagram(
+							coordinateSystem(extent={{-100,-100},{100,100}}),
+							graphics={
+																Line(
+																	points={{10,75}})}),
+						experiment(
+							StopTime=1,
+							StartTime=0,
+							Tolerance=1e-006));
 				end dcdc_pid_characteristic;
 				model dcdc_pid_jump
 					extends Modelica.Icons.Example;
@@ -2554,33 +2553,32 @@ package satcomponents
 						connect(dcdc_pid1.n1,trapezoidVoltage1.n) annotation(Line(
 							points={{-39,16},{-44,16},{-44,0},{-70,0},{-70,5}},
 							thickness=0.0625));
-					public
-						annotation(
-							resistor1(
-								v(flags=2),
-								i(flags=2),
-								LossPower(flags=2)),
-							dcdc_pid1(
-								v1(flags=2),
-								v2(flags=2),
-								onOffController1(y(flags=2)),
-								voltageSensor1(
-									p(
-										v(flags=2),
-										i(flags=2)),
-									n(
-										v(flags=2),
-										i(flags=2)),
-									v(flags=2))),
-							Diagram(
-								coordinateSystem(extent={{-100,-100},{100,100}}),
-								graphics={
-									Line(
-										points={{10,75}})}),
-							experiment(
-								StopTime=100,
-								StartTime=0,
-								Tolerance=1e-006));
+					annotation(
+						resistor1(
+							v(flags=2),
+							i(flags=2),
+							LossPower(flags=2)),
+						dcdc_pid1(
+							v1(flags=2),
+							v2(flags=2),
+							onOffController1(y(flags=2)),
+							voltageSensor1(
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								v(flags=2))),
+						Diagram(
+							coordinateSystem(extent={{-100,-100},{100,100}}),
+							graphics={
+																Line(
+																	points={{10,75}})}),
+						experiment(
+							StopTime=100,
+							StartTime=0,
+							Tolerance=1e-006));
 				end dcdc_pid_jump;
 			end examples;
 			model dcdc_pid
@@ -2758,30 +2756,29 @@ package satcomponents
 					connect(I1.n,capacitor1.n) annotation(Line(
 						points={{-55,-10},{-55,-15},{-75,-15},{-75,-10}},
 						thickness=0.0625));
-				public
-					annotation(
-						Icon(
-							coordinateSystem(extent={{-100,-100},{100,100}}),
-							graphics={
-								Rectangle(
-									fillColor={0,0,255},
-									extent={{-87.69450000000001,78.6421},{88.5431,-74.6818}}),
-								Text(
-									textString="%V_out",
-									fillColor={0,0,255},
-									extent={{-8.486520000000001,67.6096},{57.4258,29.7029}}),
-								Text(
-									textString="DCDC",
-									fillColor={0,0,255},
-									extent={{-63.6492,18.9533},{57.9915,-33.0976}}),
-								Text(
-									textString="V",
-									fillColor={0,0,255},
-									extent={{54.314,63.3663},{75.8133,32.8147}})}),
-						Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
-						experiment(
-							StopTime=1,
-							StartTime=0));
+				annotation(
+					Icon(
+						coordinateSystem(extent={{-100,-100},{100,100}}),
+						graphics={
+														Rectangle(
+															fillColor={0,0,255},
+															extent={{-87.69450000000001,78.6421},{88.5431,-74.6818}}),
+														Text(
+															textString="%V_out",
+															fillColor={0,0,255},
+															extent={{-8.486520000000001,67.6096},{57.4258,29.7029}}),
+														Text(
+															textString="DCDC",
+															fillColor={0,0,255},
+															extent={{-63.6492,18.9533},{57.9915,-33.0976}}),
+														Text(
+															textString="V",
+															fillColor={0,0,255},
+															extent={{54.314,63.3663},{75.8133,32.8147}})}),
+					Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
+					experiment(
+						StopTime=1,
+						StartTime=0));
 			end dcdc_pid;
 		end dcmodel;
 		package examples
@@ -3275,107 +3272,87 @@ package satcomponents
 			end EPS_without_GND;
 			model BDRBCRwithDET
 				extends Modelica.Icons.Example;
-				Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-41.373,-8.68607},
-						extent={{-12,-12},{12,12}},
-						rotation=0)));
+				Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(transformation(
+					origin={-41.373,-8.686070000000001},
+					extent={{-12,-12},{12,12}})));
 				Modelica.Blocks.Sources.Trapezoid trapezoid1(
 					amplitude=1367,
 					rising=90,
 					width=3600,
 					falling=90,
-					period=5000) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-85.7341,35.4624},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
-				power.solar_power.solarcell_simple solarcell_simple1(
+					period=5000) annotation(Placement(transformation(
+					origin={-85.7341,35.4624},
+					extent={{-10,-10},{10,10}})));
+				solar_power.solarcell_simple solarcell_simple1(
 					N_p=1,
-					N_s=25.0) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-53.7341,35.4624},
-						extent={{-10,-10},{10,10}},
-						rotation=90)));
-				Modelica.Electrical.Analog.Ideal.IdealDiode idealdiode2 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={2.19458,67.7957},
-						extent={{10,-10},{-10,10}},
-						rotation=180)));
-				Modelica.Electrical.Analog.Ideal.IdealDiode idealdiode1 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-40.7283,67.9286},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Semiconductors.ZDiode zdiode1(Bv=39) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-18.7765,35.4624},
-						extent={{-10,-10},{10,10}},
-						rotation=90)));
-				satcomponents.power.PCU pcu1 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={50.578,-35.5491},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Basic.Resistor resistor1(R=13) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={79.682,-13.7861},
-						extent={{-9.62429,-9.62429},{9.62429,9.62429}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Basic.Resistor resistor2(R=20) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={80.0577,-34.6821},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Basic.Resistor resistor3(R=100) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={80.0578,-57.5144},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
-				power.batteries.battery battery1(
+					N_s=25.0) annotation(Placement(transformation(
+					origin={-53.7341,35.4624},
+					extent={{-10,-10},{10,10}},
+					rotation=90)));
+				Modelica.Electrical.Analog.Ideal.IdealDiode idealdiode2 annotation(Placement(transformation(
+					origin={2.19458,67.7957},
+					extent={{10,-10},{-10,10}},
+					rotation=180)));
+				Modelica.Electrical.Analog.Ideal.IdealDiode idealdiode1 annotation(Placement(transformation(
+					origin={-40.7283,67.9286},
+					extent={{-10,-10},{10,10}})));
+				Modelica.Electrical.Analog.Semiconductors.ZDiode zdiode1(Bv=39) annotation(Placement(transformation(
+					origin={-18.7765,35.4624},
+					extent={{-10,-10},{10,10}},
+					rotation=90)));
+				PCU_pid pcu1 annotation(Placement(transformation(
+					origin={50.578,-35.5491},
+					extent={{-10,-10},{10,10}})));
+				Modelica.Electrical.Analog.Basic.Resistor resistor1(R=13) annotation(Placement(transformation(
+					origin={79.682,-13.7861},
+					extent={{-9.62429,-9.62429},{9.62429,9.62429}})));
+				Modelica.Electrical.Analog.Basic.Resistor resistor2(R=20) annotation(Placement(transformation(
+					origin={80.0577,-34.6821},
+					extent={{-10,-10},{10,10}})));
+				Modelica.Electrical.Analog.Basic.Resistor resistor3(R=100) annotation(Placement(transformation(
+					origin={80.0578,-57.5144},
+					extent={{-10,-10},{10,10}})));
+				batteries.battery battery1(
 					soc(start=0.5),
-					Vnominal=40) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={72.0924,37.4624},
-						extent={{-10,-10},{10,10}},
-						rotation=-90)));
-				satcomponents.power.batteries.BDR bdr(Vmin=28) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={41.3295,67.6301},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
+					Vnominal=40) annotation(Placement(transformation(
+					origin={72.0924,37.4624},
+					extent={{-10,-10},{10,10}},
+					rotation=-90)));
+				batteries.BDR bdr(Vmin=28) annotation(Placement(transformation(
+					origin={41.3295,67.6301},
+					extent={{-10,-10},{10,10}})));
 				equation
-					connect(battery1.p,bdr.p2) annotation(Line(points = {{72.0924,47.4624},{72.0924,68.8722},{51.7293,68.8722},{51.7293,68.8722}}));
-					connect(bdr.pin_n,battery1.n) annotation(Line(points = {{40.4884,58.2531},{40.9023,58.2531},{40.9023,27.0677},{71.8797,27.0677},{71.8797,27.0677}}));
-					connect(idealdiode2.n,bdr.p1) annotation(Line(points = {{12.1946,67.7957},{30.6767,67.7957},{30.6767,67.9699},{30.6767,67.9699}}));
-					connect(idealdiode2.n,pcu1.VCC) annotation(Line(points = {{12.1946,67.7957},{19.3642,67.7957},{19.3642,-34.6821},{39.5954,-34.6821},{39.5954,-34.6821}}));
-					connect(pcu1.GND,ground1.p) annotation(Line(points = {{40.479,-39.9904},{-14.7399,-39.9904},{-14.7399,3.17919},{-41.3295,3.17919},{-41.3295,3.17919}}));
-					connect(battery1.n,ground1.p) annotation(Line(points = {{72.0924,27.4624},{72.0924,3.17919},{-41.3295,3.17919},{-41.3295,3.17919}}));
-					connect(pcu1.VCC3,resistor3.p) annotation(Line(points = {{60.5921,-37.8688},{69.9422,-38.4468},{69.9422,-58.0925},{69.9422,-57.5144}}));
-					connect(resistor2.n,resistor3.n) annotation(Line(points = {{90.0577,-34.6821},{90.1734,-34.6821},{90.1734,-58.0925},{90.1734,-57.5144}}));
-					connect(resistor3.n,pcu1.gnd) annotation(Line(points = {{90.0578,-57.5144},{90.1734,-58.0925},{90.1734,-78.3237},{60.6936,-78.3237},{60.6936,-42.4855},{60.6936,-41.9075}}));
-					connect(resistor2.p,pcu1.VCC5) annotation(Line(points = {{70.0577,-34.6821},{60.4046,-35.2601},{60.4046,-35.2601},{60.4046,-34.6821}}));
-					connect(resistor1.n,resistor2.n) annotation(Line(points = {{89.3063,-13.7861},{89.8844,-14.3642},{89.8844,-35.2601},{89.8844,-34.6821}}));
-					connect(resistor1.p,pcu1.VCC12) annotation(Line(points = {{70.0577,-13.7861},{69.9422,-14.3642},{69.9422,-31.5029},{60.4046,-31.5029},{60.4045,-30.9249}}));
-					connect(pcu1.gnd,pcu1.GND) annotation(Line(points = {{60.5921,-41.9423},{60.6936,-42.5204},{60.6936,-77.7456},{40.1734,-78.3237},{40.1734,-40.4624},{40.1734,-39.8844}}));
-					connect(solarcell_simple1.p,zdiode1.p) annotation(Line(points = {{-53.7341,25.4624},{-53.7341,25.4624},{-23.4008,25.4624},{-18.7765,25.4624}}));
-					connect(zdiode1.n,idealdiode2.p) annotation(Line(points = {{-18.7765,45.4624},{-18.7765,68.208},{-8.09248,68.208},{-8.09248,67.919}}));
-					connect(idealdiode1.n,zdiode1.n) annotation(Line(points = {{-30.7283,67.9286},{-18.7861,67.9286},{-18.7861,45.0867},{-18.7861,45.0867}}));
-					connect(solarcell_simple1.n,idealdiode1.p) annotation(Line(points = {{-53.7341,45.4624},{-53.7341,58.4624},{-53.7341,68.2176},{-50.7283,67.9286}}));
-					connect(trapezoid1.y,solarcell_simple1.E_s) annotation(Line(points = {{-74.7341,35.4624},{-62.0674,35.7514},{-62.0674,35.7514},{-62.0674,35.4624}}));
-					connect(solarcell_simple1.p,ground1.p) annotation(Line(points = {{-53.7341,25.4624},{-53.7341,3.46243},{-41.4008,3.46243},{-41.4008,3.46243}}));
+					connect(battery1.p,bdr.p2) annotation(Line(points={{72,47},{72,52},{72,68},{56,68},{51,68}}));
+					connect(bdr.pin_n,battery1.n) annotation(Line(points={{40,58},{40,53},{40,22},{72,22},{72,27}}));
+					connect(idealdiode2.n,bdr.p1) annotation(Line(points={{12,68},{17,68},{26,68},{31,68}}));
+					connect(idealdiode2.n,pcu1.VCC) annotation(
+						Line(points={{12,68},{17,68},{20,68},{20,-35},{41,-35}}),
+						AutoRoute=false);
+					connect(pcu1.GND,ground1.p) annotation(Line(points={{40,-40},{35,-40},{35,8},{-41,8},{-41,3}}));
+					connect(battery1.n,ground1.p) annotation(Line(points={{72,27},{72,22},{72,8},{-41,8},{-41,3}}));
+					connect(pcu1.VCC3,resistor3.p) annotation(Line(points={{61,-38},{66,-38},{66,-48},{65,-48},{65,-58},{70,
+					-58}}));
+					connect(resistor2.n,resistor3.n) annotation(Line(points={{90,-35},{95,-35},{95,-58},{90,-58}}));
+					connect(resistor3.n,pcu1.gnd) annotation(Line(points={{90,-58},{95,-58},{95,-42},{66,-42},{61,-42}}));
+					connect(resistor2.p,pcu1.VCC5) annotation(Line(points={{70,-35},{65,-35},{66,-35},{61,-35}}));
+					connect(resistor1.n,resistor2.n) annotation(Line(points={{89,-14},{94,-14},{95,-14},{95,-35},{90,-35}}));
+					connect(resistor1.p,pcu1.VCC12) annotation(Line(points={{70,-14},{65,-14},{65,-22},{66,-22},{66,-31},{61,
+					-31}}));
+					connect(pcu1.gnd,pcu1.GND) annotation(Line(points={{61,-42},{66,-42},{66,-32},{35,-32},{35,-40},{40,
+					-40}}));
+					connect(solarcell_simple1.p,zdiode1.p) annotation(Line(points={{-54,25},{-54,20},{-19,20},{-19,25}}));
+					connect(zdiode1.n,idealdiode2.p) annotation(Line(points={{-19,45},{-19,50},{-19,68},{-13,68},{-8,68}}));
+					connect(idealdiode1.n,zdiode1.n) annotation(Line(points={{-31,68},{-26,68},{-19,68},{-19,50},{-19,45}}));
+					connect(solarcell_simple1.n,idealdiode1.p) annotation(Line(points={{-54,45},{-54,50},{-56,50},{-56,68},{-51,68}}));
+					connect(trapezoid1.y,solarcell_simple1.E_s) annotation(Line(points={{-75,35},{-70,35},{-66,35},{-61,35}}));
+					connect(solarcell_simple1.p,ground1.p) annotation(Line(points={{-54,25},{-54,20},{-54,8},{-41,8},{-41,3}}));
+				annotation(
+					battery1(
+						v(flags=2),
+						soc(flags=2)),
+					experiment(
+						StopTime=1,
+						StartTime=0));
 			end BDRBCRwithDET;
 			model PCU_pid_example
 				extends Modelica.Icons.Example;
@@ -3416,57 +3393,56 @@ package satcomponents
 					connect(pcu1.VCC3,resistor3.p) annotation(Line(points={{-27,2},{-22,2},{10,2},{10,-21},{15,-21}}));
 					connect(pcu1.VCC5,resistor2.p) annotation(Line(points={{-27,5},{-22,5},{9,5},{9,1},{14,1}}));
 					connect(resistor1.p,pcu1.VCC12) annotation(Line(points={{14,22},{9,22},{-22,22},{-22,9},{-27,9}}));
-				public
-					annotation(
-						battery1(
+				annotation(
+					battery1(
+						v(flags=2),
+						soc(flags=2)),
+					pcu1(
+						V_in(flags=2),
+						V_3(flags=2),
+						V_5(flags=2),
+						V_12(flags=2)),
+					resistor1(
+						v(flags=2),
+						i(flags=2),
+						p(
 							v(flags=2),
-							soc(flags=2)),
-						pcu1(
-							V_in(flags=2),
-							V_3(flags=2),
-							V_5(flags=2),
-							V_12(flags=2)),
-						resistor1(
+							i(flags=2)),
+						n(
 							v(flags=2),
-							i(flags=2),
-							p(
-								v(flags=2),
-								i(flags=2)),
-							n(
-								v(flags=2),
-								i(flags=2)),
-							LossPower(flags=2),
-							T_heatPort(flags=2),
-							R_actual(flags=2)),
-						resistor2(
+							i(flags=2)),
+						LossPower(flags=2),
+						T_heatPort(flags=2),
+						R_actual(flags=2)),
+					resistor2(
+						v(flags=2),
+						i(flags=2),
+						p(
 							v(flags=2),
-							i(flags=2),
-							p(
-								v(flags=2),
-								i(flags=2)),
-							n(
-								v(flags=2),
-								i(flags=2)),
-							LossPower(flags=2),
-							T_heatPort(flags=2),
-							R_actual(flags=2)),
-						resistor3(
+							i(flags=2)),
+						n(
 							v(flags=2),
-							i(flags=2),
-							p(
-								v(flags=2),
-								i(flags=2)),
-							n(
-								v(flags=2),
-								i(flags=2)),
-							LossPower(flags=2),
-							T_heatPort(flags=2),
-							R_actual(flags=2)),
-						Icon(coordinateSystem(extent={{-100,-100},{100,100}})),
-						Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
-						experiment(
-							StopTime=100000,
-							StartTime=0));
+							i(flags=2)),
+						LossPower(flags=2),
+						T_heatPort(flags=2),
+						R_actual(flags=2)),
+					resistor3(
+						v(flags=2),
+						i(flags=2),
+						p(
+							v(flags=2),
+							i(flags=2)),
+						n(
+							v(flags=2),
+							i(flags=2)),
+						LossPower(flags=2),
+						T_heatPort(flags=2),
+						R_actual(flags=2)),
+					Icon(coordinateSystem(extent={{-100,-100},{100,100}})),
+					Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
+					experiment(
+						StopTime=100000,
+						StartTime=0));
 			end PCU_pid_example;
 			annotation(
 				Icon(coordinateSystem(
@@ -3783,38 +3759,37 @@ package satcomponents
 						points={{66,-34},{71,-34},{85,-34},{85,-64},{100,-64}},
 						thickness=0.0625),
 					AutoRoute=false);
-			public
-				annotation(
-					Icon(
-						coordinateSystem(extent={{-100,-100},{100,100}}),
-						graphics={
-							Text(
-								textString="PCU",
-								fillColor={0,0,255},
-								extent={{-72.4187,45.5445},{24.894,-36.4922}}),
-							Text(
-								textString="GND",
-								fillColor={0,0,255},
-								extent={{22.9137,-45.8274},{83.7341,-80.0566}}),
-							Text(
-								textString="3.3V",
-								fillColor={0,0,255},
-								extent={{34.2291,-11.3154},{78.07640000000001,-40.4526}}),
-							Text(
-								textString="5V",
-								fillColor={0,0,255},
-								extent={{31.1174,21.7822},{78.6421,-8.769450000000001}}),
-							Text(
-								textString="12V",
-								fillColor={0,0,255},
-								extent={{31.6832,60.8204},{76.66200000000001,26.3083}}),
-							Rectangle(
-								fillColor={0,0,255},
-								extent={{-88.82599999999999,94.4837},{88.2603,-94.7666}})}),
-					Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
-					experiment(
-						StopTime=1,
-						StartTime=0));
+			annotation(
+				Icon(
+					coordinateSystem(extent={{-100,-100},{100,100}}),
+					graphics={
+												Text(
+													textString="PCU",
+													fillColor={0,0,255},
+													extent={{-72.4187,45.5445},{24.894,-36.4922}}),
+												Text(
+													textString="GND",
+													fillColor={0,0,255},
+													extent={{22.9137,-45.8274},{83.7341,-80.0566}}),
+												Text(
+													textString="3.3V",
+													fillColor={0,0,255},
+													extent={{34.2291,-11.3154},{78.07640000000001,-40.4526}}),
+												Text(
+													textString="5V",
+													fillColor={0,0,255},
+													extent={{31.1174,21.7822},{78.6421,-8.769450000000001}}),
+												Text(
+													textString="12V",
+													fillColor={0,0,255},
+													extent={{31.6832,60.8204},{76.66200000000001,26.3083}}),
+												Rectangle(
+													fillColor={0,0,255},
+													extent={{-88.82599999999999,94.4837},{88.2603,-94.7666}})}),
+				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
+				experiment(
+					StopTime=1,
+					StartTime=0));
 		end PCU_pid;
 	end power;
 	package AOCS
@@ -4366,24 +4341,24 @@ package satcomponents
 		Icon(
 			coordinateSystem(extent={{-100,-100},{100,100}}),
 			graphics={
+																							Polygon(
+																						points={{-11.5042,31.4966},{33.1625,8.163309999999999},{11.8292,-31.5034},{-33.1708,-7.17002},{-11.5042,31.4966}},
+																					origin={-0.495835,-3.82998}),
 																				Polygon(
-																			points={{-11.5042,31.4966},{33.1625,8.163309999999999},{11.8292,-31.5034},{-33.1708,-7.17002},{-11.5042,31.4966}},
-																		origin={-0.495835,-3.82998}),
-																	Polygon(
-																		points={{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}},
-																		fillColor={0,0,255},
-																		fillPattern=FillPattern.VerticalCylinder,
-																		origin={41.3475,49.7145}),
-																	Polygon(
-																		points={{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}},
-																		fillColor={0,0,255},
-																		fillPattern=FillPattern.VerticalCylinder,
-																		origin={-23.6525,-62.9522}),
-																	Polygon(
-																		points={{-8.16695,13.1269},{-13.1669,4.12686},{-0.500278,-13.5398},{13.1664,11.1269},{-8.16695,13.1269}},
-																		origin={36.1669,-23.4602}),
-																	Polygon(
-																		points={{16.7693,29.6823},{14.7693,5.68234},{1.10267,-18.651},{-16.8973,-29.3177},{16.7693,29.6823}},
-																		origin={-35.7693,14.651})}),
+																					points={{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}},
+																					fillColor={0,0,255},
+																					fillPattern=FillPattern.VerticalCylinder,
+																					origin={41.3475,49.7145}),
+																				Polygon(
+																					points={{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}},
+																					fillColor={0,0,255},
+																					fillPattern=FillPattern.VerticalCylinder,
+																					origin={-23.6525,-62.9522}),
+																				Polygon(
+																					points={{-8.16695,13.1269},{-13.1669,4.12686},{-0.500278,-13.5398},{13.1664,11.1269},{-8.16695,13.1269}},
+																					origin={36.1669,-23.4602}),
+																				Polygon(
+																					points={{16.7693,29.6823},{14.7693,5.68234},{1.10267,-18.651},{-16.8973,-29.3177},{16.7693,29.6823}},
+																					origin={-35.7693,14.651})}),
 		Diagram(coordinateSystem(extent={{-100,-100},{100,100}})));
 end satcomponents;

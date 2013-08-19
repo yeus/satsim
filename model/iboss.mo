@@ -4,41 +4,76 @@ package iboss
 	package components
 		model iboss_interface
 			iboss_connector iBoss_connector annotation(Placement(
-				visible=true,
 				transformation(
 					origin={-99.8586,-0.282885},
-					extent={{-12,-12},{12,12}},
-					rotation=0),
+					extent={{-12,-12},{12,12}}),
 				iconTransformation(
 					origin={-99.8586,-0.282885},
-					extent={{-12,-12},{12,12}},
-					rotation=0)));
+					extent={{-12,-12},{12,12}})));
 			Modelica.Electrical.Analog.Interfaces.NegativePin gnd annotation(Placement(
-				visible=true,
 				transformation(
 					origin={101.556,-50.9194},
-					extent={{-12,-12},{12,12}},
-					rotation=0),
+					extent={{-12,-12},{12,12}}),
 				iconTransformation(
 					origin={101.556,-50.9194},
-					extent={{-12,-12},{12,12}},
-					rotation=0)));
+					extent={{-12,-12},{12,12}})));
 			Modelica.Electrical.Analog.Interfaces.PositivePin vcc annotation(Placement(
-				visible=true,
 				transformation(
 					origin={101.273,-18.1046},
-					extent={{-12,-12},{12,12}},
-					rotation=0),
+					extent={{-12,-12},{12,12}}),
 				iconTransformation(
 					origin={101.273,-18.1046},
-					extent={{-12,-12},{12,12}},
-					rotation=0)));
+					extent={{-12,-12},{12,12}})));
+			Modelica.Electrical.Analog.Sensors.VoltageSensor voltageSensor1 annotation(Placement(transformation(
+				origin={35,-20},
+				extent={{-10,-10},{10,10}},
+				rotation=-90)));
 			equation
-				connect(gnd,iBoss_connector.GND) annotation(Line(points = {{101.556,-50.9194},{-8.20368,-50.9194},{-8.20368,-7.92079},{-92.4243,-7.92079},{-92.4243,-7.56011}}));
-				connect(iBoss_connector.Vcc,vcc) annotation(Line(points = {{-92.3076,7.61662},{-1.9802,7.61662},{-1.9802,-16.6902},{101.273,-16.6902},{101.273,-18.1046}}));
+				connect(gnd,iBoss_connector.GND) annotation(Line(points={{102,-51},{97,-51},{-95,-51},{-95,0},{-100,0}}));
+				connect(iBoss_connector.Vcc,vcc) annotation(Line(points={{-100,0},{-95,0},{96,0},{96,-18},{101,-18}}));
+				connect(voltageSensor1.p,vcc) annotation(Line(
+					points={{35,-10},{35,-5},{66,-5},{66,-18},{96,-18},{101,
+					-18}},
+					thickness=0.0625));
+				connect(voltageSensor1.n,gnd) annotation(Line(
+					points={{35,-30},{35,-35},{35,-51},{97,-51},{102,-51}},
+					thickness=0.0625));
 			annotation(
-				Diagram,
-				Icon(graphics={Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-16.6902,93.6351},{7.63791,-93.3522}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-22.0651,48.0905},{-16.6902,-49.2221}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-33.9463,21.2164},{15.8416,-22.9137}}),Rectangle(rotation = 0, lineColor = {0,0,0}, fillColor = {0,0,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{24.0453,66.1952},{1.41443,15.8416}}),Rectangle(rotation = 0, lineColor = {0,0,0}, fillColor = {0,0,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{1.9802,-9.6181},{25.1768,-61.9519}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{39.0382,-33.9463},{85.7143,-64.7807}}, textString = "GND"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{41.5842,-0.282893},{80.3395,-33.6634}}, textString = "VCC")}));
+				Icon(
+					coordinateSystem(extent={{-100,-100},{100,100}}),
+					graphics={
+										Rectangle(
+											fillColor={0,0,255},
+											fillPattern=FillPattern.Solid,
+											extent={{-16.6902,93.63509999999999},{7.63791,-93.3522}}),
+										Rectangle(
+											fillColor={0,0,255},
+											fillPattern=FillPattern.Solid,
+											extent={{-22.0651,48.0905},{-16.6902,-49.2221}}),
+										Rectangle(
+											fillColor={0,0,255},
+											fillPattern=FillPattern.Solid,
+											extent={{-33.9463,21.2164},{15.8416,-22.9137}}),
+										Rectangle(
+											lineColor={0,0,0},
+											fillPattern=FillPattern.Solid,
+											extent={{24.0453,66.1952},{1.41443,15.8416}}),
+										Rectangle(
+											lineColor={0,0,0},
+											fillPattern=FillPattern.Solid,
+											extent={{1.9802,-9.6181},{25.1768,-61.9519}}),
+										Text(
+											textString="GND",
+											fillColor={0,0,255},
+											extent={{39.0382,-33.9463},{85.71429999999999,-64.7807}}),
+										Text(
+											textString="VCC",
+											fillColor={0,0,255},
+											extent={{41.5842,-0.282893},{80.3395,-33.6634}})}),
+				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
+				experiment(
+					StopTime=1,
+					StartTime=0));
 		end iboss_interface;
 		model connectionelement
 			iboss_connector int1 annotation(Placement(
@@ -77,9 +112,9 @@ package iboss
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
-																												Rectangle(
-																											fillColor={0,0,255},
-																									extent={{-85.5219,88.3168},{87.45690000000001,-87.1287}})}),
+																																	Rectangle(
+																																fillColor={0,0,255},
+																														extent={{-85.5219,88.3168},{87.45690000000001,-87.1287}})}),
 				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
 				experiment(
 					StopTime=1,
@@ -289,10 +324,10 @@ package iboss
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
-										Rectangle(
-											fillColor={0,0,255},
-											fillPattern=FillPattern.Cross,
-											extent={{71.8896,121.659},{356.683,-125.807}})}),
+															Rectangle(
+																fillColor={0,0,255},
+																fillPattern=FillPattern.Cross,
+																extent={{71.8896,121.659},{356.683,-125.807}})}),
 				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
 				experiment(
 					StopTime=10000,
@@ -406,6 +441,8 @@ package iboss
 				Tolerance=0.0001));
 		end verbraucher;
 		model basic_ess_mss "basic_ess_mss"
+			parameter Modelica.SIunits.Time shortcircuitproblem=10e99;
+			Modelica.SIunits.Voltage Vcc;
 			iboss.components.iboss_connector Yp annotation(Placement(
 				transformation(
 					origin={-13,63},
@@ -488,72 +525,89 @@ package iboss
 				origin={-110,15},
 				extent={{-10,-10},{10,10}},
 				rotation=90)));
+			Modelica.Electrical.Analog.Ideal.IdealClosingSwitch idealClosingSwitch1 annotation(Placement(transformation(
+				origin={-50,-10},
+				extent={{-10,-10},{10,10}},
+				rotation=-180)));
+			Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime=shortcircuitproblem) annotation(Placement(transformation(extent={{-90,-50},{-70,-30}})));
 			equation
-				connect(Yn,int_Yn.iBoss_connector) annotation(Line(points={{62,63},{57,63},{57,59},{62,59},{62,55},{62,
+					Vcc=int_Xn.voltageSensor1.v;
+					
+					connect(Yn,int_Yn.iBoss_connector) annotation(Line(points={{62,63},{57,63},{57,59},{62,59},{62,55},{62,
 				50}}));
-				connect(Xn,int_Xn.iBoss_connector) annotation(Line(points={{37,63},{32,63},{32,59},{37,59},{37,55},{37,
+					connect(Xn,int_Xn.iBoss_connector) annotation(Line(points={{37,63},{32,63},{32,59},{37,59},{37,55},{37,
 				50}}));
-				connect(Zp,int_Zp.iBoss_connector) annotation(Line(points={{12,63},{7,63},{7,59},{12,59},{12,55},{12,
+					connect(Zp,int_Zp.iBoss_connector) annotation(Line(points={{12,63},{7,63},{7,59},{12,59},{12,55},{12,
 				50}}));
-				connect(Yp,int_Yp.iBoss_connector) annotation(Line(points={{-13,63},{-18,63},{-18,59},{-13,59},{-13,55},{-13,
+					connect(Yp,int_Yp.iBoss_connector) annotation(Line(points={{-13,63},{-18,63},{-18,59},{-13,59},{-13,55},{-13,
 				50}}));
-				connect(Xp,int_Xp.iBoss_connector) annotation(Line(points={{-38,63},{-43,63},{-43,59},{-38,59},{-38,55},{-38,
+					connect(Xp,int_Xp.iBoss_connector) annotation(Line(points={{-38,63},{-43,63},{-43,59},{-38,59},{-38,55},{-38,
 				50}}));
-				connect(Zn,int_Zn.iBoss_connector) annotation(Line(points={{87,63},{82,63},{82,59},{87,59},{87,55},{87,
+					connect(Zn,int_Zn.iBoss_connector) annotation(Line(points={{87,63},{82,63},{82,59},{87,59},{87,55},{87,
 				50}}));
-				connect(int_Xp.vcc,int_Yp.vcc) annotation(Line(
+					connect(int_Xp.vcc,int_Yp.vcc) annotation(Line(
 					points={{-40,26},{-40,21},{-15,21},{-15,26}},
 					thickness=0.0625));
-				connect(int_Yp.vcc,int_Zp.vcc) annotation(Line(
+					connect(int_Yp.vcc,int_Zp.vcc) annotation(Line(
 					points={{-15,26},{-15,21},{10,21},{10,26}},
 					thickness=0.0625));
-				connect(int_Zp.vcc,int_Xn.vcc) annotation(Line(
+					connect(int_Zp.vcc,int_Xn.vcc) annotation(Line(
 					points={{10,26},{10,21},{35,21},{35,26}},
 					thickness=0.0625));
-				connect(int_Xn.vcc,int_Yn.vcc) annotation(Line(
+					connect(int_Xn.vcc,int_Yn.vcc) annotation(Line(
 					points={{35,26},{35,21},{60,21},{60,26}},
 					thickness=0.0625));
-				connect(int_Yn.vcc,int_Zn.vcc) annotation(Line(
+					connect(int_Yn.vcc,int_Zn.vcc) annotation(Line(
 					points={{60,26},{60,21},{85,21},{85,26}},
 					thickness=0.0625));
-				connect(int_Zn.gnd,int_Yn.gnd) annotation(
+					connect(int_Zn.gnd,int_Yn.gnd) annotation(
 					Line(
 						points={{81,25.66666412353516},{81,15},{56,15},{56,25.66666412353516}},
 						thickness=0.0625),
 					AutoRoute=false);
-				connect(int_Xn.gnd,int_Yn.gnd) annotation(
+					connect(int_Xn.gnd,int_Yn.gnd) annotation(
 					Line(
 						points={{31,25.66666412353516},{31,15},{56,15},{56,25.66666412353516}},
 						thickness=0.0625),
 					AutoRoute=false);
-				connect(int_Zp.gnd,int_Xn.gnd) annotation(
+					connect(int_Zp.gnd,int_Xn.gnd) annotation(
 					Line(
 						points={{6,25.66666412353516},{6,15},{31,15},{31,25.66666412353516}},
 						thickness=0.0625),
 					AutoRoute=false);
-				connect(int_Yp.gnd,int_Zp.gnd) annotation(
+					connect(int_Yp.gnd,int_Zp.gnd) annotation(
 					Line(
 						points={{-19,25.66666412353516},{-19,15},{6,15},{6,25.66666412353516}},
 						thickness=0.0625),
 					AutoRoute=false);
-				connect(int_Xp.gnd,int_Yp.gnd) annotation(
+					connect(int_Xp.gnd,int_Yp.gnd) annotation(
 					Line(
 						points={{-44,25.66666412353516},{-44,15},{-19,15},{-19,25.66666412353516}},
 						thickness=0.0625),
 					AutoRoute=false);
-				connect(resistor1.p,capacitor1.n) annotation(Line(
+					connect(resistor1.p,capacitor1.n) annotation(Line(
 					points={{-90,25},{-95,25},{-95,30},{-110,30},{-110,25}},
 					thickness=0.0625));
-				connect(capacitor1.p,resistor2.n) annotation(Line(
+					connect(capacitor1.p,resistor2.n) annotation(Line(
 					points={{-110,5},{-110,0},{-103,0},{-103,5},{-95,5},{-90,
 					5}},
 					thickness=0.0625));
-				connect(int_Xp.gnd,resistor1.n) annotation(Line(
+					connect(int_Xp.gnd,resistor1.n) annotation(Line(
 					points={{-44,26},{-44,21},{-54,21},{-54,25},{-65,25},{-70,
 					25}},
 					thickness=0.0625));
-				connect(resistor2.p,int_Xp.vcc) annotation(Line(
+					connect(resistor2.p,int_Xp.vcc) annotation(Line(
 					points={{-70,5},{-65,5},{-40,5},{-40,21},{-40,26}},
+					thickness=0.0625));
+					connect(int_Xp.vcc,idealClosingSwitch1.p) annotation(Line(
+					points={{-40,26},{-40,21},{-35,21},{-35,-10},{-40,-10}},
+					thickness=0.0625));
+					connect(int_Xp.gnd,idealClosingSwitch1.n) annotation(Line(
+					points={{-44,26},{-44,21},{-65,21},{-65,-10},{-60,-10}},
+					thickness=0.0625));
+					connect(booleanStep1.y,idealClosingSwitch1.control) annotation(Line(
+					points={{-69,-40},{-64,-40},{-50,-40},{-50,-22},{-50,-17}},
+					color={255,0,255},
 					thickness=0.0625));
 			annotation(
 				Icon(
@@ -837,7 +891,7 @@ package iboss
 			components.connectionelement connectionelement3 annotation(Placement(transformation(
 				origin={6.22348,41.0184},
 				extent={{-12,-12},{12,12}})));
-			buildingblocks.verbraucher v2 annotation(Placement(transformation(
+			buildingblocks.verbraucher v2(shortcircuitproblem=15000) annotation(Placement(transformation(
 				origin={-24.0453,41.867},
 				extent={{-12,-12},{12,12}})));
 			buildingblocks.solar s1 annotation(Placement(transformation(
@@ -883,6 +937,7 @@ package iboss
 			annotation(
 				connectionelement1(LossPower(flags=2)),
 				v1(
+					Vcc(flags=2),
 					resistor3(
 						v(flags=2),
 						i(flags=2),
@@ -921,6 +976,7 @@ package iboss
 						R_actual(flags=2))),
 				connectionelement3(LossPower(flags=2)),
 				v2(
+					Vcc(flags=2),
 					capacitor1(
 						v(flags=2),
 						i(flags=2),
@@ -930,12 +986,14 @@ package iboss
 						n(
 							v(flags=2),
 							i(flags=2))),
+					booleanStep1(y(flags=2)),
 					pCU1(
 						V_in(flags=2),
 						V_3(flags=2),
 						V_5(flags=2),
 						V_12(flags=2))),
 				s1(
+					Vcc(flags=2),
 					solarcell_simple1(
 						v(flags=2),
 						p(
@@ -993,6 +1051,7 @@ package iboss
 					powerSensor1(power(flags=2))),
 				connectionelement2(LossPower(flags=2)),
 				b1(
+					Vcc(flags=2),
 					int_Xn(vcc(v(flags=2))),
 					battery1(
 						v(flags=2),
@@ -1001,22 +1060,6 @@ package iboss
 					powerSensor1(power(flags=2))),
 				trapezoid1(y(flags=2)),
 				connectionelement4(LossPower(flags=2)),
-				viewinfo[2](
-					staticBlocks[0](
-						frame(
-							style=0,
-							width=0,
-							color=0),
-						index=0,
-						typename="Displ"),
-					staticBlocks[1](
-						frame(
-							style=0,
-							width=0,
-							color=0),
-						index=1,
-						typename="Displ"),
-					typename="ModelInfo"),
 				experiment(
 					StopTime=20000,
 					StartTime=0,
@@ -1209,8 +1252,8 @@ package iboss
 					StartTime=0));
 		end EVS4x1x1;
 		model EVS2x2x3
-			buildingblocks.verbraucher bb9 annotation(Placement(transformation(
-				origin={10.4503,24.8534},
+			buildingblocks.verbraucher bb9(shortcircuitproblem=10e90) annotation(Placement(transformation(
+				origin={10,25},
 				extent={{-5.08917,-5.08917},{5.08917,5.08917}})));
 			buildingblocks.verbraucher bb8 annotation(Placement(transformation(
 				origin={35.0094,25.4955},
@@ -1342,10 +1385,10 @@ package iboss
 				connect(conn4.int1,bb12.Zn) annotation(Line(points={{20,2},{20,-3},{21,-3},{21,-37},{16,-37}}));
 				connect(conn5.int1,bb11.Zn) annotation(Line(points={{6,2},{6,-3},{21,-3},{21,-13},{16,-13}}));
 				connect(conn2.int2,bb8.Zn) annotation(Line(points={{45,12},{45,17},{45,17},{45,23},{40,23}}));
-				connect(conn4.int2,bb9.Zn) annotation(Line(points={{20,11},{20,16},{21,16},{21,22},{16,22}}));
+				connect(conn4.int2,bb9.Zn) annotation(Line(points={{20,11},{20,16},{20,16},{20,22},{15,22}}));
 				connect(conn5.int2,bb6.Zn) annotation(Line(points={{6,11},{6,16},{20,16},{20,50},{15,50}}));
 				connect(conn7.int1,bb8.Zp) annotation(Line(points={{-12,36},{-7,36},{25,36},{25,28},{30,28}}));
-				connect(conn6.int1,bb9.Zp) annotation(Line(points={{-11,22},{-6,22},{0,22},{0,27},{5,27}}));
+				connect(conn6.int1,bb9.Zp) annotation(Line(points={{-11,22},{-6,22},{0,22},{0,28},{5,28}}));
 				connect(conn8.int1,bb6.Zp) annotation(Line(points={{-12,49},{-7,49},{0,49},{0,55},{5,55}}));
 				connect(bb4.Zn,conn8.int2) annotation(Line(points={{-60,51},{-55,51},{-26,51},{-26,49},{-21,49}}));
 				connect(bb2.Zn,conn7.int2) annotation(Line(points={{-36,26},{-31,26},{-26,26},{-26,36},{-21,36}}));
@@ -1363,7 +1406,7 @@ package iboss
 				-19}}));
 				connect(bb9.Yp,conn15.int1) annotation(Line(points={{10,30},{10,35},{10,35},{10,30},{9,30},{9,
 				35}}));
-				connect(conn19.int2,bb9.Xp) annotation(Line(points={{18,26},{13,26},{13,25},{21,25},{21,25},{16,
+				connect(conn19.int2,bb9.Xp) annotation(Line(points={{18,26},{13,26},{13,25},{20,25},{20,25},{15,
 				25}}));
 				connect(bb8.Xn,conn19.int1) annotation(Line(points={{30,25},{25,25},{32,25},{32,26},{27,26}}));
 				connect(conn14.int1,bb8.Yp) annotation(Line(points={{35,35},{35,30},{35,36},{35,31}}));
@@ -1407,6 +1450,7 @@ package iboss
 					color={0,0,0}));
 			annotation(
 				bb9(
+					Vcc(flags=2),
 					int_Xn(vcc(v(flags=2))),
 					resistor1(v(flags=2)),
 					pCU1(
@@ -1415,19 +1459,29 @@ package iboss
 						V_5(flags=2),
 						V_12(flags=2))),
 				bb8(
+					Vcc(flags=2),
 					resistor1(v(flags=2)),
 					resistor2(v(flags=2)),
 					resistor3(v(flags=2))),
+				bb6(Vcc(flags=2)),
 				conn19(LossPower(flags=2)),
 				conn18(LossPower(flags=2)),
+				bb2(Vcc(flags=2)),
+				bb4(Vcc(flags=2)),
+				bb5(Vcc(flags=2)),
 				conn16(LossPower(flags=2)),
 				conn17(LossPower(flags=2)),
 				conn9(LossPower(flags=2)),
 				conn8(LossPower(flags=2)),
 				conn7(LossPower(flags=2)),
 				conn6(LossPower(flags=2)),
+				bb11(Vcc(flags=2)),
+				bb12(Vcc(flags=2)),
 				conn20(LossPower(flags=2)),
 				conn1(LossPower(flags=2)),
+				bb7(Vcc(flags=2)),
+				bb10(Vcc(flags=2)),
+				bb1(Vcc(flags=2)),
 				conn12(LossPower(flags=2)),
 				conn13(LossPower(flags=2)),
 				conn15(LossPower(flags=2)),
@@ -1444,6 +1498,7 @@ package iboss
 						v(flags=2),
 						i(flags=2))),
 				battery1(
+					Vcc(flags=2),
 					battery1(
 						v(flags=2),
 						soc(flags=2),
@@ -1452,6 +1507,7 @@ package iboss
 					powerSensor1(power(flags=2))),
 				trapezoid1(y(flags=2)),
 				bb_solar1(
+					Vcc(flags=2),
 					Yp(Vcc(v(flags=2))),
 					solarcell_simple1(
 						v(flags=2),
@@ -1523,22 +1579,6 @@ package iboss
 						id=2018,
 						val="True"),
 					typename="3DObjectInfo"),
-				viewinfo[3](
-					staticBlocks[0](
-						frame(
-							style=0,
-							width=0,
-							color=0),
-						index=0,
-						typename="Displ"),
-					staticBlocks[1](
-						frame(
-							style=0,
-							width=0,
-							color=0),
-						index=1,
-						typename="Displ"),
-					typename="ModelInfo"),
 				experiment(
 					StopTime=10000,
 					StartTime=0));
@@ -1637,11 +1677,63 @@ package iboss
 			annotation(
 				connectionelement1(LossPower(flags=2)),
 				connectionelement2(LossPower(flags=2)),
-				bb_verbraucher1(powerSensor1(power(flags=2))),
-				bb_verbraucher2(powerSensor1(power(flags=2))),
 				connectionelement3(LossPower(flags=2)),
-				bb_verbraucher3(powerSensor1(power(flags=2))),
-				bb_solar1(powerSensor1(power(flags=2))),
+				bb_solar1(
+					solarcell_simple1(
+						v(flags=2),
+						p(
+							v(flags=2),
+							i(flags=2)),
+						n(
+							v(flags=2),
+							i(flags=2)),
+						i_sc_actual(flags=2),
+						i_sc(flags=2),
+						i(flags=2),
+						I_photonic(
+							p(
+								v(flags=2),
+								i(flags=2)),
+							n(
+								v(flags=2),
+								i(flags=2)),
+							v(flags=2)),
+						D_shunt(
+							v(flags=2),
+							i(flags=2),
+							p(
+								v(flags=2),
+								i(flags=2)),
+							n(
+								v(flags=2),
+								i(flags=2)),
+							LossPower(flags=2),
+							T_heatPort(flags=2)),
+						R_shunt(
+							v(flags=2),
+							i(flags=2),
+							p(
+								v(flags=2),
+								i(flags=2)),
+							n(
+								v(flags=2),
+								i(flags=2)),
+							LossPower(flags=2),
+							T_heatPort(flags=2),
+							R_actual(flags=2)),
+						R_series(
+							v(flags=2),
+							i(flags=2),
+							p(
+								v(flags=2),
+								i(flags=2)),
+							n(
+								v(flags=2),
+								i(flags=2)),
+							LossPower(flags=2),
+							T_heatPort(flags=2),
+							R_actual(flags=2))),
+					powerSensor1(power(flags=2))),
 				trapezoid1(y(flags=2)),
 				battery1(
 					battery1(
@@ -1657,7 +1749,62 @@ package iboss
 						i(flags=2)),
 					powerSensor1(power(flags=2))),
 				connectionelement5(LossPower(flags=2)),
-				bb_solar2(powerSensor1(power(flags=2))),
+				bb_solar2(
+					solarcell_simple1(
+						v(flags=2),
+						p(
+							v(flags=2),
+							i(flags=2)),
+						n(
+							v(flags=2),
+							i(flags=2)),
+						i_sc_actual(flags=2),
+						i_sc(flags=2),
+						i(flags=2),
+						I_photonic(
+							p(
+								v(flags=2),
+								i(flags=2)),
+							n(
+								v(flags=2),
+								i(flags=2)),
+							v(flags=2)),
+						D_shunt(
+							v(flags=2),
+							i(flags=2),
+							p(
+								v(flags=2),
+								i(flags=2)),
+							n(
+								v(flags=2),
+								i(flags=2)),
+							LossPower(flags=2),
+							T_heatPort(flags=2)),
+						R_shunt(
+							v(flags=2),
+							i(flags=2),
+							p(
+								v(flags=2),
+								i(flags=2)),
+							n(
+								v(flags=2),
+								i(flags=2)),
+							LossPower(flags=2),
+							T_heatPort(flags=2),
+							R_actual(flags=2)),
+						R_series(
+							v(flags=2),
+							i(flags=2),
+							p(
+								v(flags=2),
+								i(flags=2)),
+							n(
+								v(flags=2),
+								i(flags=2)),
+							LossPower(flags=2),
+							T_heatPort(flags=2),
+							R_actual(flags=2))),
+					powerSensor1(power(flags=2))),
 				battery3(
 					battery1(
 						v(flags=2),
@@ -1853,29 +2000,28 @@ package iboss
 				connect(connectionelement2.int1,verbraucher2.Yp) annotation(Line(
 					points={{15,-44},{15,-49},{15,-45},{15,-45},{15,-50}},
 					color={0,0,0}));
-			public
-				annotation(
+			annotation(
+				battery1(
 					battery1(
-						battery1(
-							v(flags=2),
-							soc(flags=2),
-							i(flags=2)),
-						powerSensor1(power(flags=2))),
-					verbraucher1(pCU1(
-						V_in(flags=2),
-						V_3(flags=2),
-						V_5(flags=2),
-						V_12(flags=2))),
-					connectionelement1(LossPower(flags=2)),
-					verbraucher2(pCU1(
-						V_in(flags=2),
-						V_3(flags=2),
-						V_5(flags=2),
-						V_12(flags=2))),
-					connectionelement2(LossPower(flags=2)),
-					experiment(
-						StopTime=100000,
-						StartTime=0));
+						v(flags=2),
+						soc(flags=2),
+						i(flags=2)),
+					powerSensor1(power(flags=2))),
+				verbraucher1(pCU1(
+					V_in(flags=2),
+					V_3(flags=2),
+					V_5(flags=2),
+					V_12(flags=2))),
+				connectionelement1(LossPower(flags=2)),
+				verbraucher2(pCU1(
+					V_in(flags=2),
+					V_3(flags=2),
+					V_5(flags=2),
+					V_12(flags=2))),
+				connectionelement2(LossPower(flags=2)),
+				experiment(
+					StopTime=100000,
+					StartTime=0));
 		end EVS1x1x1battery;
 		model EVS1x1x1solar
 			buildingblocks.solar solar1 annotation(Placement(transformation(extent={{-25,-25},{-5,-5}})));
@@ -1892,73 +2038,72 @@ package iboss
 					points={{34,-12},{29,-12},{12,-12},{12,-15},{7,-15}},
 					color={0,0,127},
 					thickness=0.0625));
-			public
-				annotation(
-					solar1(
-						capacitor1(v(flags=2)),
-						solarcell_simple1(
+			annotation(
+				solar1(
+					capacitor1(v(flags=2)),
+					solarcell_simple1(
+						v(flags=2),
+						p(
 							v(flags=2),
+							i(flags=2)),
+						n(
+							v(flags=2),
+							i(flags=2)),
+						i_sc_actual(flags=2),
+						i_sc(flags=2),
+						i(flags=2),
+						I_photonic(
 							p(
 								v(flags=2),
 								i(flags=2)),
 							n(
 								v(flags=2),
 								i(flags=2)),
-							i_sc_actual(flags=2),
-							i_sc(flags=2),
+							v(flags=2)),
+						D_shunt(
+							v(flags=2),
 							i(flags=2),
-							I_photonic(
-								p(
-									v(flags=2),
-									i(flags=2)),
-								n(
-									v(flags=2),
-									i(flags=2)),
-								v(flags=2)),
-							D_shunt(
+							p(
 								v(flags=2),
-								i(flags=2),
-								p(
-									v(flags=2),
-									i(flags=2)),
-								n(
-									v(flags=2),
-									i(flags=2)),
-								LossPower(flags=2),
-								T_heatPort(flags=2)),
-							R_shunt(
+								i(flags=2)),
+							n(
 								v(flags=2),
-								i(flags=2),
-								p(
-									v(flags=2),
-									i(flags=2)),
-								n(
-									v(flags=2),
-									i(flags=2)),
-								LossPower(flags=2),
-								T_heatPort(flags=2),
-								R_actual(flags=2)),
-							R_series(
+								i(flags=2)),
+							LossPower(flags=2),
+							T_heatPort(flags=2)),
+						R_shunt(
+							v(flags=2),
+							i(flags=2),
+							p(
 								v(flags=2),
-								i(flags=2),
-								p(
-									v(flags=2),
-									i(flags=2)),
-								n(
-									v(flags=2),
-									i(flags=2)),
-								LossPower(flags=2),
-								T_heatPort(flags=2),
-								R_actual(flags=2))),
-						powerSensor1(power(flags=2)),
-						resistor3(v(flags=2)),
-						resistor4(v(flags=2)),
-						resistor5(v(flags=2)),
-						capacitor2(v(flags=2))),
-					trapezoid1(y(flags=2)),
-					experiment(
-						StopTime=10000,
-						StartTime=0));
+								i(flags=2)),
+							n(
+								v(flags=2),
+								i(flags=2)),
+							LossPower(flags=2),
+							T_heatPort(flags=2),
+							R_actual(flags=2)),
+						R_series(
+							v(flags=2),
+							i(flags=2),
+							p(
+								v(flags=2),
+								i(flags=2)),
+							n(
+								v(flags=2),
+								i(flags=2)),
+							LossPower(flags=2),
+							T_heatPort(flags=2),
+							R_actual(flags=2))),
+					powerSensor1(power(flags=2)),
+					resistor3(v(flags=2)),
+					resistor4(v(flags=2)),
+					resistor5(v(flags=2)),
+					capacitor2(v(flags=2))),
+				trapezoid1(y(flags=2)),
+				experiment(
+					StopTime=10000,
+					StartTime=0));
 		end EVS1x1x1solar;
 	end satellites;
 end iboss;
