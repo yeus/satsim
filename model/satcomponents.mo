@@ -3707,10 +3707,10 @@ package satcomponents
 			Modelica.Electrical.Analog.Basic.Resistor resistor3(R=0.01) annotation(Placement(transformation(extent={{-55,-45},{-75,-25}})));
 			Modelica.Electrical.Analog.Basic.Resistor resistor4(R=0.01) annotation(Placement(transformation(extent={{10,-45},{-10,-25}})));
 			equation
-					V_in=VCC.v;
-					V_3=VCC3.v;
-					V_5=VCC5.v;
-					V_12=VCC12.v;
+					V_in=VCC.v-GND.v;
+					V_3=VCC3.v-GND.v;
+					V_5=VCC5.v-GND.v;
+					V_12=VCC12.v-GND.v;
 				
 				
 					connect(resistor2.p,VCC) annotation(Line(
