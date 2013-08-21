@@ -1,13 +1,24 @@
+HIL-Simulation
+==============
+- Ein Interface zwichen Rodos und Modelia
+
 Verschiedenes:
 ==============
 - EVS Simulation über Modelica
 - Bei der Simulation eines einzelnen Bausteins auf Grenzwerte, wie z.B. max. Stromfluß über eine Schnittstelle achten usw...
 - Implementierung v. Unit-Tests 
 - AOCS Simulation: Anforderungen sollen eingehalten werden, bzw. herausgefunden werden.
+- Alle Dateien mit folgender Copyright notice ausstatten:
+- Modelle auch mit anderen Solvern als DASSL zum laufen bringen (z.B. runge-kutta)
+  
+  /*
+  * Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)
+  * Date : 10/06/2013
+  * All code (c)2013 Technische Universität Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved
+  */
 
-
-Zu implementierende Komponenten:
-================================
+Liste von Komponentenmodellen
+=============================
 - PCU:
   - DCDC Converter: Es gibt ein ganz gutes Paper von Modelica um "solch einen" zu erstellen. ansonsten muss man sich eben mit einem simplen quasistationären Ersatzmodell behelfen (Wirkungsgrad + Spannugnsverlust)
     - DCDC Converter sind eine der wichtigsten Elemente im EVS. Da sollte untersucht werden, welche Vor/Nachteile verschiedene Wandler uns bringen.
@@ -15,11 +26,11 @@ Zu implementierende Komponenten:
 - OBC
   - Mit ein klein bischen zufälligem Rauschen, was die Auslastung (und damit Energieverbrauch) angeht
 - AOCS
+  - 3-Achsen Reaktionsrad
   - Drallrad
   - Gyros
   - Lagesensorik
   - Triebwerke und Düsen
-- weitere Komponenten aus Bausteinkatalog
 
 
 Analyse von Simulationsergebnisse:
