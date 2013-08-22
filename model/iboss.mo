@@ -1,6 +1,7 @@
 // CP: 65001
-// SimulationX Version: 3.5.706.23 x64
-package iboss
+// SimulationX Version: 3.5.707.15 x64
+package iboss "iboss"
+	import MaterialDatabase.*;
 	package components
 		model iboss_interface
 			iboss_connector iBoss_connector annotation(Placement(
@@ -77,9 +78,9 @@ package iboss
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
-																												Rectangle(
-																											fillColor={0,0,255},
-																									extent={{-85.5219,88.3168},{87.45690000000001,-87.1287}})}),
+																																					Rectangle(
+																																			fillColor={0,0,255},
+																																extent={{-85.5219,88.3168},{87.45690000000001,-87.1287}})}),
 				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
 				experiment(
 					StopTime=1,
@@ -289,10 +290,10 @@ package iboss
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
-										Rectangle(
-											fillColor={0,0,255},
-											fillPattern=FillPattern.Cross,
-											extent={{71.8896,121.659},{356.683,-125.807}})}),
+																		Rectangle(
+																		fillColor={0,0,255},
+																	fillPattern=FillPattern.Cross,
+																extent={{71.8896,121.659},{356.683,-125.807}})}),
 				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
 				experiment(
 					StopTime=10000,
@@ -559,41 +560,41 @@ package iboss
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
-										Rectangle(
-											fillColor={0,0,255},
-											extent={{-77.2278,76.02549999999999},{74.95610000000001,-75.256}}),
-										Rectangle(
-											fillColor={0,0,255},
-											extent={{-69.5191,69.42019999999999},{66.9674,-68.4328}}),
-										Ellipse(
-											fillColor={0,0,255},
-											extent={{-20.2122,18.7864},{19.355,-20.778}}),
-										Ellipse(
-											fillColor={0,0,255},
-											extent={{-15.3692,13.9434},{14.512,-15.6521}}),
-										Ellipse(
-											fillColor={0,0,255},
-											extent={{-1.42575,0.571424},{0.288544,-1.14286}}),
-										Rectangle(
-											fillColor={255,255,255},
-											fillPattern=FillPattern.Solid,
-											extent={{-74.37909999999999,15.6917},{-79.2362,-16.0226}}),
-										Rectangle(
-											fillColor={255,255,255},
-											fillPattern=FillPattern.Solid,
-											extent={{-15.9916,77.18810000000001},{15.1513,72.0453}}),
-										Rectangle(
-											fillColor={255,255,255},
-											fillPattern=FillPattern.Solid,
-											extent={{73.239,13.1174},{77.5247,-13.7397}}),
-										Rectangle(
-											fillColor={255,255,255},
-											fillPattern=FillPattern.Solid,
-											extent={{-15.4145,-72.9759},{16.5855,-77.833}}),
-										Text(
-											textString="%name",
-											fillColor={0,0,255},
-											extent={{-49.505,66.761},{55.4455,27.4399}})}),
+																	Rectangle(
+																	fillColor={0,0,255},
+																extent={{-77.2278,76.02549999999999},{74.95610000000001,-75.256}}),
+															Rectangle(
+																fillColor={0,0,255},
+																extent={{-69.5191,69.42019999999999},{66.9674,-68.4328}}),
+															Ellipse(
+																fillColor={0,0,255},
+																extent={{-20.2122,18.7864},{19.355,-20.778}}),
+															Ellipse(
+																fillColor={0,0,255},
+																extent={{-15.3692,13.9434},{14.512,-15.6521}}),
+															Ellipse(
+																fillColor={0,0,255},
+																extent={{-1.42575,0.571424},{0.288544,-1.14286}}),
+															Rectangle(
+																fillColor={255,255,255},
+																fillPattern=FillPattern.Solid,
+																extent={{-74.37909999999999,15.6917},{-79.2362,-16.0226}}),
+															Rectangle(
+																fillColor={255,255,255},
+																fillPattern=FillPattern.Solid,
+																extent={{-15.9916,77.18810000000001},{15.1513,72.0453}}),
+															Rectangle(
+																fillColor={255,255,255},
+																fillPattern=FillPattern.Solid,
+																extent={{73.239,13.1174},{77.5247,-13.7397}}),
+															Rectangle(
+																fillColor={255,255,255},
+																fillPattern=FillPattern.Solid,
+																extent={{-15.4145,-72.9759},{16.5855,-77.833}}),
+															Text(
+																textString="%name",
+																fillColor={0,0,255},
+																extent={{-49.505,66.761},{55.4455,27.4399}})}),
 				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
 				experiment(
 					StopTime=1,
@@ -1853,29 +1854,28 @@ package iboss
 				connect(connectionelement2.int1,verbraucher2.Yp) annotation(Line(
 					points={{15,-44},{15,-49},{15,-45},{15,-45},{15,-50}},
 					color={0,0,0}));
-			public
-				annotation(
+			annotation(
+				battery1(
 					battery1(
-						battery1(
-							v(flags=2),
-							soc(flags=2),
-							i(flags=2)),
-						powerSensor1(power(flags=2))),
-					verbraucher1(pCU1(
-						V_in(flags=2),
-						V_3(flags=2),
-						V_5(flags=2),
-						V_12(flags=2))),
-					connectionelement1(LossPower(flags=2)),
-					verbraucher2(pCU1(
-						V_in(flags=2),
-						V_3(flags=2),
-						V_5(flags=2),
-						V_12(flags=2))),
-					connectionelement2(LossPower(flags=2)),
-					experiment(
-						StopTime=100000,
-						StartTime=0));
+						v(flags=2),
+						soc(flags=2),
+						i(flags=2)),
+					powerSensor1(power(flags=2))),
+				verbraucher1(pCU1(
+					V_in(flags=2),
+					V_3(flags=2),
+					V_5(flags=2),
+					V_12(flags=2))),
+				connectionelement1(LossPower(flags=2)),
+				verbraucher2(pCU1(
+					V_in(flags=2),
+					V_3(flags=2),
+					V_5(flags=2),
+					V_12(flags=2))),
+				connectionelement2(LossPower(flags=2)),
+				experiment(
+					StopTime=100000,
+					StartTime=0));
 		end EVS1x1x1battery;
 		model EVS1x1x1solar
 			buildingblocks.solar solar1 annotation(Placement(transformation(extent={{-25,-25},{-5,-5}})));
@@ -1892,73 +1892,72 @@ package iboss
 					points={{34,-12},{29,-12},{12,-12},{12,-15},{7,-15}},
 					color={0,0,127},
 					thickness=0.0625));
-			public
-				annotation(
-					solar1(
-						capacitor1(v(flags=2)),
-						solarcell_simple1(
+			annotation(
+				solar1(
+					capacitor1(v(flags=2)),
+					solarcell_simple1(
+						v(flags=2),
+						p(
 							v(flags=2),
+							i(flags=2)),
+						n(
+							v(flags=2),
+							i(flags=2)),
+						i_sc_actual(flags=2),
+						i_sc(flags=2),
+						i(flags=2),
+						I_photonic(
 							p(
 								v(flags=2),
 								i(flags=2)),
 							n(
 								v(flags=2),
 								i(flags=2)),
-							i_sc_actual(flags=2),
-							i_sc(flags=2),
+							v(flags=2)),
+						D_shunt(
+							v(flags=2),
 							i(flags=2),
-							I_photonic(
-								p(
-									v(flags=2),
-									i(flags=2)),
-								n(
-									v(flags=2),
-									i(flags=2)),
-								v(flags=2)),
-							D_shunt(
+							p(
 								v(flags=2),
-								i(flags=2),
-								p(
-									v(flags=2),
-									i(flags=2)),
-								n(
-									v(flags=2),
-									i(flags=2)),
-								LossPower(flags=2),
-								T_heatPort(flags=2)),
-							R_shunt(
+								i(flags=2)),
+							n(
 								v(flags=2),
-								i(flags=2),
-								p(
-									v(flags=2),
-									i(flags=2)),
-								n(
-									v(flags=2),
-									i(flags=2)),
-								LossPower(flags=2),
-								T_heatPort(flags=2),
-								R_actual(flags=2)),
-							R_series(
+								i(flags=2)),
+							LossPower(flags=2),
+							T_heatPort(flags=2)),
+						R_shunt(
+							v(flags=2),
+							i(flags=2),
+							p(
 								v(flags=2),
-								i(flags=2),
-								p(
-									v(flags=2),
-									i(flags=2)),
-								n(
-									v(flags=2),
-									i(flags=2)),
-								LossPower(flags=2),
-								T_heatPort(flags=2),
-								R_actual(flags=2))),
-						powerSensor1(power(flags=2)),
-						resistor3(v(flags=2)),
-						resistor4(v(flags=2)),
-						resistor5(v(flags=2)),
-						capacitor2(v(flags=2))),
-					trapezoid1(y(flags=2)),
-					experiment(
-						StopTime=10000,
-						StartTime=0));
+								i(flags=2)),
+							n(
+								v(flags=2),
+								i(flags=2)),
+							LossPower(flags=2),
+							T_heatPort(flags=2),
+							R_actual(flags=2)),
+						R_series(
+							v(flags=2),
+							i(flags=2),
+							p(
+								v(flags=2),
+								i(flags=2)),
+							n(
+								v(flags=2),
+								i(flags=2)),
+							LossPower(flags=2),
+							T_heatPort(flags=2),
+							R_actual(flags=2))),
+					powerSensor1(power(flags=2)),
+					resistor3(v(flags=2)),
+					resistor4(v(flags=2)),
+					resistor5(v(flags=2)),
+					capacitor2(v(flags=2))),
+				trapezoid1(y(flags=2)),
+				experiment(
+					StopTime=10000,
+					StartTime=0));
 		end EVS1x1x1solar;
 	end satellites;
 end iboss;
