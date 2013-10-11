@@ -1,6 +1,8 @@
 // CP: 65001
 // SimulationX Version: 3.5.706.23 x64
 model Modell "2x2x3_mit_regelung.ism"
+	import iboss_thermal.components.*;
+	import iboss_thermal.buildingblocks.*;
 	extends SimModel(
 		tStop=54000,
 		absTol=1e-003,
