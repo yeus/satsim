@@ -807,12 +807,6 @@ package iboss_thermal
 					port(T(flags=2))),
 				gain1(y(flags=2)),
 				heater_power(port(Q_flow(flags=2))),
-				viewinfo[0](
-					simViewInfos[0](
-						runtimeClass="CSimXModelicaView",
-						tabGroup=0,
-						typename="ViewInfo"),
-					typename="ModelInfo"),
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
@@ -905,12 +899,6 @@ An approppriate simulating time would be 10 seconds.
 					port(T(flags=2))),
 				gain1(y(flags=2)),
 				heater_power(port(Q_flow(flags=2))),
-				viewinfo[0](
-					simViewInfos[0](
-						runtimeClass="CSimView",
-						tabGroup=0,
-						typename="ModelViewInfo"),
-					typename="ModelInfo"),
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
@@ -2074,12 +2062,6 @@ An approppriate simulating time would be 10 seconds.
 						port(T(flags=2))),
 					gain1(y(flags=2)),
 					heater_power(port(Q_flow(flags=2)))),
-				viewinfo[0](
-					simViewInfos[0](
-						runtimeClass="CSimView",
-						tabGroup=0,
-						typename="ModelViewInfo"),
-					typename="ModelInfo"),
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
@@ -2916,12 +2898,6 @@ An approppriate simulating time would be 10 seconds.
 						port(T(flags=2))),
 					gain1(y(flags=2)),
 					heater_power(port(Q_flow(flags=2)))),
-				viewinfo[0](
-					simViewInfos[0](
-						runtimeClass="CSimView",
-						tabGroup=0,
-						typename="ModelViewInfo"),
-					typename="ModelInfo"),
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
@@ -3011,10 +2987,4 @@ An approppriate simulating time would be 10 seconds.
 					Interval=0.001));
 		end thermal_for_combined_sim;
 	end buildingblocks;
-	annotation(__iti_viewinfo[2](
-		simViewInfos[0](
-			runtimeClass="CSimXModelicaView",
-			tabGroup=0,
-			typename="ViewInfo"),
-		typename="ModelInfo"));
 end iboss_thermal;
