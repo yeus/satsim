@@ -25,6 +25,7 @@ from iboss_catalogue import pq
 from iboss_catalogue import str2vec
 import copy
 import iboss_xml_load
+import iboss_odt2xml
 
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector
 
@@ -89,14 +90,17 @@ Options:
 
 "w": report2file(writereport())
 "p": print(writereport())
+"odt": first convert *.odt catalogue to xml
 """
 
 def main(argv=None):
   if argv is None:
     argv = sys.argv
     try:
-      if argv[1]=="w": report2file(writereport())
-      if argv[1]=="p": print(writereport())
+      if "odt" in argv:
+         iboss_odt2xml.save_catalogue()
+      if "w" in argv: report2file(writereport())
+      if "p" in argv: print(writereport())
     except IndexError:
       print(helpstring)    
     except:
@@ -105,4 +109,4 @@ def main(argv=None):
 
 if __name__ == "__main__":
   main()
-  komponenten, bausteine, referenzmissionen=iboss_xml_load.loadxmldata("bausteinkatalog/katalog.1.1.xml")
+  #komponenten, bausteine, referenzmissionen=iboss_xml_load.loadxmldata("bausteinkatalog/katalog.xml")

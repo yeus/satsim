@@ -93,6 +93,9 @@ def converttable():
   
   return komponenten, bausteine, referenzmissionen
 
-komponenten, bausteine, referenzmissionen=converttable()
-
-iboss_xml_save.saveibosslists(komponenten, bausteine, referenzmissionen)
+def save_catalogue():
+    komponenten, bausteine, referenzmissionen=converttable()
+    iboss_xml_save.saveibosslists(komponenten, bausteine, referenzmissionen)
+    
+if __name__ == "__main__":
+    save_catalogue()
