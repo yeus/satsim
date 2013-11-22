@@ -17,14 +17,14 @@ if pythonpath not in sys.path:
 #import numpypy
 
 import sys
-import odspy
-from odspy import ods2table
+import utils.odspy
+from utils.odspy import ods2table
 import numpy as np
-import iboss
-from iboss import pq
-from iboss import str2vec
+import iboss_catalogue
+from iboss_catalogue import pq
+from iboss_catalogue import str2vec
 import copy
-import ibossxml
+import iboss_xml_load
 
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector
 
@@ -37,7 +37,7 @@ def set2str(dt):
   return out
 
 def writereport():
-  komponenten, bausteine, referenzmissionen=ibossxml.loadxmldata("bausteinkatalog/katalog.1.1.xml")
+  komponenten, bausteine, referenzmissionen=iboss_xml_load.loadxmldata("bausteinkatalog/katalog.1.1.xml")
   
   for bs in bausteine.values():
     bs.update()
@@ -105,4 +105,4 @@ def main(argv=None):
 
 if __name__ == "__main__":
   main()
-  komponenten, bausteine, referenzmissionen=ibossxml.loadxmldata("bausteinkatalog/katalog.1.1.xml")
+  komponenten, bausteine, referenzmissionen=iboss_xml_load.loadxmldata("bausteinkatalog/katalog.1.1.xml")
