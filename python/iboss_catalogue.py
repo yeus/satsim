@@ -16,7 +16,7 @@ import numpy as np
 import xml.etree.ElementTree as et
 import xml.dom.minidom
 import xml
-import odspy
+from utils import odspy
 import quantities as pq
 pq.krad=pq.UnitQuantity('kilorad', pq.rads*1000, symbol='krad')
 pq.blocks=pq.UnitQuantity('blocks', 1, symbol='blocks')

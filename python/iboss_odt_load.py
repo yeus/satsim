@@ -11,18 +11,17 @@
 
 #pypy compatibility
 import sys
-pythonpath="/usr/lib/python2.7/dist-packages" 
-if pythonpath not in sys.path: 
-    sys.path.append(pythonpath)
+#pythonpath="/usr/lib/python2.7/dist-packages" 
+#if pythonpath not in sys.path: 
+#    sys.path.append(pythonpath)
 #import numpypy
 
-import sys
-import odspy
-from odspy import ods2table
+import utils
+from utils.odspy import ods2table
 import numpy as np
-import iboss
-from iboss import pq
-from iboss import str2vec
+import iboss_catalogue
+from iboss_catalogue import pq
+from iboss_catalogue import str2vec
 import copy
 
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector
@@ -43,11 +42,11 @@ def converttable():
   
   #organisieren der Komponenten in dictionaries:
   for k in komponententable[2:]:
-    newcomponent=iboss.component(k[0])
+    newcomponent=iboss_catalogue.component(k[0])
     for i,bez in enumerate(komponententable[0,1:]):
-      if(bez!=odspy.NULL): 
+      if(bez!=utils.odspy.NULL): 
         unitstr=komponententable[1,1+i]
-        if unitstr!=odspy.NULL: unit=pq.Quantity(1,unitstr)
+        if unitstr!=utils.odspy.NULL: unit=pq.Quantity(1,unitstr)
         else: unit=1
         
         try: val=(float(k[i+1]))*unit
@@ -59,37 +58,37 @@ def converttable():
   #Organisierung der Bausteineigenschaften
   for line in bausteinetable[2:]:
     if line[0] not in bausteine: #hinzufügen neuer Bausteine
-      bs=iboss.buildingblock(line[0])
+      bs=iboss_catalogue.buildingblock(line[0])
       bausteine[line[0]]=bs
     else: bs=bausteine[line[0]]
     
     #Erstellen einer neuen Komponente
-    if odspy.NULL not in line[3]:
+    if utils.odspy.NULL not in line[3]:
       newcomponent=copy.copy(komponenten[line[3]])
-      if line[5]!=odspy.NULL: newcomponent.pos=str2vec(line[5])
-      if line[7]!=odspy.NULL: newcomponent.th_vec=str2vec(line[7])
-      if line[6]!=odspy.NULL: newcomponent.rot=str2vec(line[6])
+      if line[5]!=utils.odspy.NULL: newcomponent.pos=str2vec(line[5])
+      if line[7]!=utils.odspy.NULL: newcomponent.th_vec=str2vec(line[7])
+      if line[6]!=utils.odspy.NULL: newcomponent.rot=str2vec(line[6])
       #bausteine[line[0]]["Komponenten"].append(newcomponent)
-      if odspy.NULL!=line[4]: newcomponent.num=int(line[4]) 
+      if utils.odspy.NULL!=line[4]: newcomponent.num=int(line[4]) 
       bs.add_co(newcomponent) 
     #Zuordnung der restlichen Werte
-    if odspy.NULL!=line[2]: bausteine[line[0]].Bemerkung=line[2]
-    if odspy.NULL!=line[1]: bausteine[line[0]].Einsatzgebiet=line[1]
+    if utils.odspy.NULL!=line[2]: bausteine[line[0]].Bemerkung=line[2]
+    if utils.odspy.NULL!=line[1]: bausteine[line[0]].Einsatzgebiet=line[1]
   #Leerzeilen löschen
-  bausteine.pop(odspy.NULL)
+  bausteine.pop(utils.odspy.NULL)
     
   
   #Organisieren der Referenzmissionen
   for line in referenzmissionentable[3:]:
     if line[0] not in referenzmissionen:
-      referenzmissionen[line[0]]=iboss.mission(line[0])
+      referenzmissionen[line[0]]=iboss_catalogue.mission(line[0])
     
     if line[1] in bausteine.keys():
       newbb=copy.copy(bausteine[line[1]])
       referenzmissionen[line[0]].add_bb(bb=newbb,pos=str2vec(line[2]),rot=str2vec(line[3])*pq.deg)
      
   #Leerzeilen löschen
-  referenzmissionen.pop(odspy.NULL)
+  referenzmissionen.pop(utils.odspy.NULL)
   
   return komponenten, bausteine, referenzmissionen
 
