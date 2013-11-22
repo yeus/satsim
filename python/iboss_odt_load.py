@@ -29,7 +29,7 @@ vec= lambda x,y,z: np.array([x,y,z])  #create a vector
 #organisieren aller Daten in Python Klassen/Datenstrukturen:
 def converttable():
   #laden der Tabellen aus *.ods Datei
-  tables=ods2table('bausteinkatalog.ods')
+  tables=ods2table('bausteinkatalog/bausteinkatalog.ods')
   
   referenzmissionentable=np.array(tables["Referenzmissionen"])
   bausteinetable=np.array(tables["Bausteine"])
@@ -91,67 +91,6 @@ def converttable():
   referenzmissionen.pop(utils.odspy.NULL)
   
   return komponenten, bausteine, referenzmissionen
-
-def set2str(dt):
-  out=("="*59)+" "+"="*33+"\n"
-  for line in dt:
-    out+="{:60}{:30.2f} kg\n".format(line[0].encode("utf-8"),line[1])
-    #out+=line[0].encode("utf-8")+str(line[1])
-  out+=("="*59)+" "+"="*33+"\n"
-  return out
-
-def writereport():
-  komponenten, bausteine, referenzmissionen=converttable()
-  
-  def listbsmass(bausteine):
-    bsmasslist=set((key, value.mass) for key,value in bausteine.items())
-    return sorted(bsmasslist, key=lambda bs: -bs[1])
-  
-  def listmsmass(referenzmissionen):
-    msmasslist=set((key, value.mass) for key,value in referenzmissionen.items())
-    return sorted(msmasslist, key=lambda ms: -ms[1])
-  
-  report="""
-Bausteinreport:
-===============
-
-Referenzmissionen:
-------------------
-
-{0}
-
-Bausteinmassen:
----------------
-
-{1}""".format(set2str(listmsmass(referenzmissionen)),set2str(listbsmass(bausteine)))
-
-  return report
-
-def report2file(report):
-  reportfile=open("./Bausteinreport.rst","w")
-  reportfile.write(report)
-  reportfile.close()
-
-helpstring="""
-Usage: katalogreport <Options>
-
-Options:
-
-"w": report2file(writereport())
-"p": print(writereport())
-"""
-
-def main(argv=None):
-  if argv is None:
-    argv = sys.argv
-    try:
-      if argv[1]=="w": report2file(writereport())
-      if argv[1]=="p": print(writereport())
-    except IndexError:
-      print(helpstring)    
-    except:
-      raise
-      return
 
 if __name__ == "__main__":
   main()
