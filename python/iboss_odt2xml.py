@@ -10,7 +10,7 @@
 #	- 2012 10 25 - Thomas Meschede
 
 #pypy compatibility
-import sys
+#import sys
 #pythonpath="/usr/lib/python2.7/dist-packages" 
 #if pythonpath not in sys.path: 
 #    sys.path.append(pythonpath)
@@ -22,6 +22,7 @@ import numpy as np
 import iboss_catalogue
 from iboss_catalogue import pq
 from iboss_catalogue import str2vec
+import iboss_xml_save
 import copy
 
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector
@@ -92,6 +93,6 @@ def converttable():
   
   return komponenten, bausteine, referenzmissionen
 
-if __name__ == "__main__":
-  main()
-  komponenten, bausteine, referenzmissionen=converttable()
+komponenten, bausteine, referenzmissionen=converttable()
+
+iboss_xml_save.saveibosslists(komponenten, bausteine, referenzmissionen)

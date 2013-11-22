@@ -23,8 +23,10 @@ pq.blocks=pq.UnitQuantity('blocks', 1, symbol='blocks')
 pq.constants.E0=pq.UnitConstant('Solar constant',1367*pq.W/pq.m**2,'E0')
 
 #in python3:
-def unicode(something):
-  return str(something)
+import sys
+if sys.version_info.major > 2:
+    def unicode(something): #define a unicode function to make python2/3 scripts compatible
+      return str(something)
 
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector
 

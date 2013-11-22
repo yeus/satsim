@@ -15,16 +15,16 @@
 #	- 2012 11 22 - Thomas Meschede
 
 import sys
-import odspy
-from odspy import ods2table
+import utils.odspy
+from utils.odspy import ods2table
 import numpy as np
 import xml.etree.ElementTree as et
 import xml.dom.minidom
 import xml
 import string
 import codecs
-import iboss
-from iboss import prettyprintxml
+import iboss_catalogue
+from iboss_catalogue import prettyprintxml
 
 import operator
 
@@ -59,7 +59,7 @@ def saveibosslists(komponenten, bausteine, referenzmissionen):
   katalog=et.Element("catalogue",version=Version)
   katalog.append(ibosslist2xml("components",komponenten.values()))
   katalog.append(ibosslist2xml("buildingblocks",bausteine.values()))
-  savexml("bausteinkatalog/katalog.{}.xml".format(Version),katalog)
+  savexml("bausteinkatalog/katalog.xml".format(Version),katalog)
   missionen=ibosslist2xml("missions",referenzmissionen.values())
   savexml("bausteinkatalog/missionen.xml",missionen)
 
