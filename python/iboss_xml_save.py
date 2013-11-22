@@ -14,19 +14,10 @@
 # modified:
 #	- 2012 11 22 - Thomas Meschede
 
-import sys
-import utils.odspy
-from utils.odspy import ods2table
-import numpy as np
 import xml.etree.ElementTree as et
-import xml.dom.minidom
-import xml
-import string
 import codecs
-import iboss_catalogue
 from iboss_catalogue import prettyprintxml
-
-import operator
+import time
 
 helpstring="""
 Dieses Skript speichert den Bausteinkatalog im XML-Format
@@ -50,8 +41,15 @@ def ibosslist2xml(name,instancelist):
 #def savelistxml(filename,listname,xmllist):
 #  ibosslist2xml(listname,xmllist)  
   
+initstr=u"""
+* Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)
+* Date : {}
+* All code (c)2013 Technische Universität Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved
+""".format(time.strftime("%Y/%m/%d"))
+  
 def savexml(filename,xml):
   f=codecs.open(filename,"w",encoding="utf-8")
+  xml.insert(0,et.Comment(initstr))
   f.write(prettyprintxml(xml))
   f.close()
 
