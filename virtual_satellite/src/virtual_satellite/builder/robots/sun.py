@@ -1,14 +1,14 @@
 from morse.builder import *
 
-class Earth(Robot):
+class Sun(Robot):
     """
-    A template robot model for earth, with a motion controller and a pose sensor.
+    A template robot model for sun, with a motion controller and a pose sensor.
     """
     def __init__(self, name = None, debug = True):
 
-        # earth.blend is located in the data/robots directory
-        Robot.__init__(self, 'virtual_satellite/robots/earth.blend', name)
-        self.properties(classpath = "virtual_satellite.robots.earth.Earth")
+        # sun.blend is located in the data/robots directory
+        Robot.__init__(self, 'virtual_satellite/robots/sun.blend', name)
+        self.properties(classpath = "virtual_satellite.robots.sun.Sun")
 
         ###################################
         # Actuators
