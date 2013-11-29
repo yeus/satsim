@@ -7,7 +7,7 @@ Feel free to edit this template as you like!
 
 import morse
 from morse.builder import *
-from virtual_satellite.builder.robots import Cubesat
+from virtual_satellite.builder.robots import Cubesat, Earth
 
 from math import pi
 
@@ -24,11 +24,13 @@ import numpy as np
 
 cubesat = Cubesat()
 
+earth = Earth()
+
 # The list of the main methods to manipulate your components
 # is here: http://www.openrobots.org/morse/doc/stable/user/builder_overview.html
-position=np.array([0.0,9.0e3,0.0])
+position=np.array([0.0,9.0,0.0])
 #position=vec3d(*position)
-cubesat.translate(*position)
+earth.translate(*position)
 
 # Add a motion controller
 # Check here the other available actuators:
@@ -72,7 +74,7 @@ cubesat.add_default_interface('socket')
 
 
 # set 'fastmode' to True to switch to wireframe mode
-env = Environment('earth.blend', fastmode = False)
+env = Environment('stars.blend', fastmode = False)
 #env.set_material_mode(material_mode='GLSL')
 #Material mode to use for rendering
 #
@@ -96,6 +98,9 @@ env = Environment('earth.blend', fastmode = False)
 
 env.place_camera(position+np.array([1.0,2.0,1.0]))
 env.aim_camera([pi*0.4,0.0,pi*0.9])
-env.set_camera_clip(1.0,50000.0e3)
+env.set_camera_clip(1.0,50.0e3)
+env.set_camera_speed(10.0)
 env.set_gravity(gravity=0.0)
 env.set_horizon_color(color=(0.0, 0.0, 0.0))
+#bpymorse.fullscreen()
+#env.fullscreen(fullscreen=True)

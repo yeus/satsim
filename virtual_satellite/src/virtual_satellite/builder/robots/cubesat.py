@@ -18,8 +18,17 @@ class Cubesat(Robot):
         # (v,w) motion controller
         # Check here the other available actuators:
         # http://www.openrobots.org/morse/doc/stable/components_library.html#actuators
-        self.motion = MotionVW()
-        self.append(self.motion)
+        #self.motion = MotionVW()
+        #self.append(self.motion)
+
+#        # creates a new instance of the sensor
+#        self.videocamera = VideoCamera()
+#        
+#        # place your component at the correct location
+#        self.videocamera.translate(0,0,0)
+#        self.videocamera.rotate(0,0,0)
+#        
+#        self.append(self.videocamera)
 
         # Optionally allow to move the robot with the keyboard
         if debug:
@@ -30,6 +39,6 @@ class Cubesat(Robot):
         # Sensors
         ###################################
 
-        self.pose = Pose()
-        self.append(self.pose)
+        #self.pose = Pose()
+        #self.append(self.pose)
 
