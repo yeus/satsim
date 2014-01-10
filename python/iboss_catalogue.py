@@ -55,7 +55,7 @@ Version="1.3"
 
 #convert vector to string (python list)
 def vec2str(vec):
-  return "{},{},{}".format(*vec)
+  return "{} {} {}".format(*vec)
 
 #convert string to vector (python list)
 def str2vec(stringvec): 
@@ -64,16 +64,23 @@ def str2vec(stringvec):
 def str2vecint(stringvec): return vec(*[int(i) for i in stringvec.split(",")])
 
 def prettyprintxml(xmltree):
+  doc = xml.dom.minidom.Document()
+  el = doc.createElementNS('http://www.VEROSIM.de/namespaces/VSD', 'VSD')
   XML=et.tostring(xmltree,encoding="utf-8")
+  #http://stackoverflow.com/questions/863774/how-to-generate-xml-documents-with-namespaces-in-python
   try:
     XML=xml.dom.minidom.parseString(XML)
   except xml.parsers.expat.ExpatError as EE:
     traceback.print_exc()
-    print("\n{}".format(XML))
+    #print("\n{}".format(XML))
     
+  #print("\n" + str(type(XML)) + "\n")  
   return XML.toprettyxml()
 
 class ibossxml(object):
+  def __init__(self):
+    xmlprops=[]
+  
   def xmllist(self):
     return None
   
@@ -118,26 +125,33 @@ class ibossxml(object):
   
   @classmethod
   def property2xml(cls,vkey,vvalue):
+    if vkey=="name": vkey = "VSD:name"
     newelem=et.Element(vkey)
     #newelem=et.Element("property")
     if isinstance(vvalue,pq.Quantity): 
       newelem.set("unit",vvalue.dimensionality.string)
       if vvalue.size==1 :newelem.text=unicode(vvalue.magnitude)
-      else: newelem.extend(cls.vec2xml(vvalue.magnitude))#vec2str(vvalue.magnitude))
-    else: 
+      #else: newelem.extend(cls.vec2xml(vvalue.magnitude))
+      else: newelem.text = vec2str(vvalue.magnitude)
+    else:
       try:
-        if vvalue.size>1: newelem.extend(cls.vec2xml(vvalue))
-        else: newelem.text=unicode(vvalue)
+        #if vvalue.size>1: newelem.extend(cls.vec2xml(vvalue.magnitude))
+        if vvalue.size>1: newelem.text = vec2str(vvalue.magnitude)
+        else: newelem.text = unicode(vvalue)
       except AttributeError: #in case of vvalue not beeing an array
-        newelem.text=unicode(vvalue)
+        newelem.text = unicode(vvalue)
         
     return newelem
   
   @property
   def xml(self):
-    root=et.Element(self.__class__.__name__)
-    root.set("type",self.type)
-    for vkey,vvalue in vars(self).items():
+    root=et.Element("VSD:"+self.__class__.__name__)
+    #root=et.Element(self.__class__.__name__)
+    #root.set("type",self.type)
+    root.set("xmlns:VSD","http://www.VEROSIM.de/namespaces/VSD") #muss möglicherweise für andere Klassen geändert werden.
+    root.set("xmlns:xlink","http://www.w3.org/1999/xlink")
+    #for vkey,vvalue in vars(self).items(): #check all variables in the class
+    for vkey,vvalue in self.xmlprops.items(): 
       if vkey not in ["components","_bb"]:  #sonderbehandlung (erstmal Auslassen) für BS-Listen
         if vvalue!=utils.odspy.EMPTY: root.append(self.property2xml(vkey,vvalue)) #speichern sämtlicher Klassenvariablen
     
@@ -203,31 +217,38 @@ class buildingblock(ibossxml):
       self.mass+=co.mass*num
     return self.mass
 
-class mission(ibossxml):
+class Satellite(ibossxml):
   def __init__(self,mitype):
-    self.bbgap=0.1 *pq.m#todo aus Tabelle abrufen
+    self.bbgap=0.01 *pq.m#todo aus Tabelle abrufen
     self.bbsize=0.4 *pq.m
     self.name=mitype
+    self.orbit="LEO"
     self.mass=0*pq.kg
     self.type=mitype
     self._bb=[]#list of building blocks
-    self.orbparam="2-line-elem"
+    #self.orbparam="2-line-elem"
+    self.xmlprops={"name":self.name,"orbit":self.orbit}
 
   def xmllist(self):
-    root=et.Element("buildingblocks")
+    root=et.Element("buildingBlocks")
     for bb in self.bb:
-      newelem=et.Element("buildingblock")
-      newelem.set("type",bb.type)
-      newelem.append(self.property2xml("pos",bb.pos))#.set("pos", vec2str(bb.pos))  #is dimensionless
-      newelem.append(self.property2xml("rot",bb.rot))#.set("rot", vec2str(bb.rot.magnitude))
+      newelem=et.Element("BuildingBlock")
+      newelem.set("VSD:id","id"+"TODO welche iD??")#"".join([str(int(i)) for i in bb.pos]))
+      #newelem.set("type",bb.type)
+      newelem.append(self.property2xml("VSD:name",bb.name))
+      newelem.append(self.property2xml("position",bb.pos*(self.bbsize+self.bbgap)))
+      newelem.append(self.property2xml("orientation",bb.orientation))
+      newelem2=et.Element("definition")
+      newelem2.set("xlink:href","TODO id required??")#"../Catalogs/bbcatalog.xml#idXXXTODO")
+      newelem.append(newelem2)
       root.append(newelem)
     return root #so the list gets serialized in xml
     
   #adds a new building block to the satellite
-  def add_bb(self,bb,pos,rot):  #todo variable length argument list
+  def add_bb(self,bb,pos,orientation):  #todo variable length argument list
     newbs=copy(bb)
     newbs.pos=pos
-    newbs.rot=rot
+    newbs.orientation=orientation
     newbs.name=newbs.type
     self.bb.append(newbs)
    
@@ -248,7 +269,7 @@ class mission(ibossxml):
   def bb(self):
     del self._bb
     
-  #calculate Center of Gravity for a Mission
+  #calculate Center of Gravity for a satellite
   @property
   def com(self):
     self.__com=np.sum([(vec(*bb.pos)*(self.bbsize+self.bbgap))*bb.mass for bb in self.bb],axis=0)*pq.kg*pq.m/self.massgen  #2nd method
@@ -269,7 +290,7 @@ def savexml(filename,xml):
         * Version: {}
         * All code (c)2013 Technische Universität Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved""")
 
-  print(type(initstr))
+  #print(type(initstr))
   f=codecs.open(filename,"w",encoding="utf-8")
   xml.insert(0,et.Comment(initstr.format(time.strftime("%Y/%m/%d"), Version)))
   f.write(prettyprintxml(xml))
@@ -280,8 +301,9 @@ def saveibosslists(komponenten, bausteine, referenzmissionen):
   #katalog.append(ibosslist2xml("components",komponenten.values()))
   #katalog.append(ibosslist2xml("buildingblocks",bausteine.values()))
   #savexml("bausteinkatalog/katalog.xml".format(Version),katalog)
-  missionen=ibosslist2xml("missions",referenzmissionen.values())
-  savexml("bausteinkatalog/missionen.xml",missionen)
+  for vkeys,vvalues in referenzmissionen.items():
+    #missionen=ibosslist2xml("Satellites",referenzmissionen.values())
+    savexml("bausteinkatalog/"+vkeys,vvalues.xml)
   
 def main():
   pass

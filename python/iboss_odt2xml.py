@@ -90,7 +90,7 @@ def converttable():
     
     if line[0] not in referenzmissionen:
       print("adding mission:"+str(line[0]))
-      referenzmissionen[line[0]]=iboss_catalogue.mission(line[0])
+      referenzmissionen[line[0]]=iboss_catalogue.Satellite(line[0])
     
     if line[1] in bausteine.keys():
       try:
@@ -100,7 +100,7 @@ def converttable():
         if pos==utils.odspy.EMPTY or pos=="/" or pos=="nicht vorhanden":
             pos="0,0,0"
         
-        referenzmissionen[line[0]].add_bb(bb=newbb,pos=str2vec(pos),rot=str2vec(line[3])*pq.deg)
+        referenzmissionen[line[0]].add_bb(bb=newbb,pos=str2vec(pos),orientation=str2vec(line[3])*pq.deg)
       except ValueError as VE:
         traceback.print_exc()
         print("\nline {}: {}".format(linenumber+startline+1,line))
