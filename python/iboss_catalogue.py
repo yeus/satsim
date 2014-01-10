@@ -16,8 +16,13 @@ import numpy as np
 import xml.etree.ElementTree as et
 import xml.dom.minidom
 import xml
-from utils import odspy
+import utils
 import quantities as pq
+import xml.etree.ElementTree as et
+import codecs
+import time
+import traceback
+
 pq.krad=pq.UnitQuantity('kilorad', pq.rads*1000, symbol='krad')
 pq.blocks=pq.UnitQuantity('blocks', 1, symbol='blocks')
 pq.constants.E0=pq.UnitConstant('Solar constant',1367*pq.W/pq.m**2,'E0')
@@ -25,22 +30,47 @@ pq.constants.E0=pq.UnitConstant('Solar constant',1367*pq.W/pq.m**2,'E0')
 #in python3:
 import sys
 if sys.version_info.major > 2:
+    #convert numbers into text
     def unicode(something): #define a unicode function to make python2/3 scripts compatible
-      return str(something)
+      #try:
+        return str(something)
+      #except UnicodeDecodeError:
+      #  traceback.print_exc()
+      #  print(something)
 
+    def u(x):
+        return x
+else:
+    import codecs
+    def u(x):
+        return codecs.unicode_escape_decode(x)[0]
+
+        
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector
+
+helpstring="""
+Dieses Skript speichert den Bausteinkatalog im XML-Format
+"""
+Version="1.3"
 
 #convert vector to string (python list)
 def vec2str(vec):
   return "{},{},{}".format(*vec)
 
 #convert string to vector (python list)
-def str2vec(stringvec): return vec(*[float(i) for i in stringvec.split(",")])
+def str2vec(stringvec): 
+    return vec(*[float(i) for i in stringvec.split(",")])
+  
 def str2vecint(stringvec): return vec(*[int(i) for i in stringvec.split(",")])
 
 def prettyprintxml(xmltree):
   XML=et.tostring(xmltree,encoding="utf-8")
-  XML=xml.dom.minidom.parseString(XML)
+  try:
+    XML=xml.dom.minidom.parseString(XML)
+  except xml.parsers.expat.ExpatError as EE:
+    traceback.print_exc()
+    print("\n{}".format(XML))
+    
   return XML.toprettyxml()
 
 class ibossxml(object):
@@ -109,7 +139,7 @@ class ibossxml(object):
     root.set("type",self.type)
     for vkey,vvalue in vars(self).items():
       if vkey not in ["components","_bb"]:  #sonderbehandlung (erstmal Auslassen) für BS-Listen
-        if vvalue!=odspy.NULL: root.append(self.property2xml(vkey,vvalue)) #speichern sämtlicher Klassenvariablen
+        if vvalue!=utils.odspy.EMPTY: root.append(self.property2xml(vkey,vvalue)) #speichern sämtlicher Klassenvariablen
     
     xmllist=self.xmllist()  # eigentliche Sonderbehandlung von BS-Listen
     if xmllist!=None: root.append(xmllist)  
@@ -118,7 +148,6 @@ class ibossxml(object):
 
   @property
   def xmlstr(self):  return prettyprintxml(self.xml)
-
 #end class ibossxml
 
 class component(ibossxml):
@@ -224,6 +253,35 @@ class mission(ibossxml):
   def com(self):
     self.__com=np.sum([(vec(*bb.pos)*(self.bbsize+self.bbgap))*bb.mass for bb in self.bb],axis=0)*pq.kg*pq.m/self.massgen  #2nd method
     return self.__com
+
+#todo: save int,floats  etc..  as float and not as string in xml file
+#converts a list of "ibossxml" objects to xml
+def ibosslist2xml(name,instancelist):
+  root=et.Element(name)
+  for i in sorted(instancelist,key=lambda instance: instance.type.lower()): #alphabetically sorted list #operator.attrgetter('type').lower()): 
+    root.append(i.xml)
+  return root
+ 
+def savexml(filename,xml):
+  initstr=u("""
+        * Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)
+        * Date : {}
+        * Version: {}
+        * All code (c)2013 Technische Universität Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved""")
+
+  print(type(initstr))
+  f=codecs.open(filename,"w",encoding="utf-8")
+  xml.insert(0,et.Comment(initstr.format(time.strftime("%Y/%m/%d"), Version)))
+  f.write(prettyprintxml(xml))
+  f.close()
+
+def saveibosslists(komponenten, bausteine, referenzmissionen):
+  #katalog=et.Element("catalogue",version=Version)
+  #katalog.append(ibosslist2xml("components",komponenten.values()))
+  #katalog.append(ibosslist2xml("buildingblocks",bausteine.values()))
+  #savexml("bausteinkatalog/katalog.xml".format(Version),katalog)
+  missionen=ibosslist2xml("missions",referenzmissionen.values())
+  savexml("bausteinkatalog/missionen.xml",missionen)
   
 def main():
   pass

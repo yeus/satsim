@@ -6,6 +6,8 @@
 # filename: katalogreport.py
 # author: - Thomas Meschede
 #
+# load iboss odt table into python structure and convert save it to xml
+#
 # modified:
 #	- 2012 10 25 - Thomas Meschede
 
@@ -22,8 +24,8 @@ import numpy as np
 import iboss_catalogue
 from iboss_catalogue import pq
 from iboss_catalogue import str2vec
-import iboss_xml_save
 import copy
+import traceback
 
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector
 
@@ -45,9 +47,9 @@ def converttable():
   for k in komponententable[2:]:
     newcomponent=iboss_catalogue.component(k[0])
     for i,bez in enumerate(komponententable[0,1:]):
-      if(bez!=utils.odspy.NULL): 
+      if(bez!=utils.odspy.EMPTY): 
         unitstr=komponententable[1,1+i]
-        if unitstr!=utils.odspy.NULL: unit=pq.Quantity(1,unitstr)
+        if unitstr!=utils.odspy.EMPTY: unit=pq.Quantity(1,unitstr)
         else: unit=1
         
         try: val=(float(k[i+1]))*unit
@@ -64,38 +66,54 @@ def converttable():
     else: bs=bausteine[line[0]]
     
     #Erstellen einer neuen Komponente
-    if utils.odspy.NULL not in line[3]:
+    if utils.odspy.EMPTY not in line[3]:
       newcomponent=copy.copy(komponenten[line[3]])
-      if line[5]!=utils.odspy.NULL: newcomponent.pos=str2vec(line[5])
-      if line[7]!=utils.odspy.NULL: newcomponent.th_vec=str2vec(line[7])
-      if line[6]!=utils.odspy.NULL: newcomponent.rot=str2vec(line[6])
+      if line[5]!=utils.odspy.EMPTY: newcomponent.pos=str2vec(line[5])
+      if line[7]!=utils.odspy.EMPTY: newcomponent.th_vec=str2vec(line[7])
+      if line[6]!=utils.odspy.EMPTY: newcomponent.rot=str2vec(line[6])
       #bausteine[line[0]]["Komponenten"].append(newcomponent)
-      if utils.odspy.NULL!=line[4]: newcomponent.num=int(line[4]) 
+      if utils.odspy.EMPTY!=line[4]: newcomponent.num=int(line[4]) 
       bs.add_co(newcomponent) 
     #Zuordnung der restlichen Werte
-    if utils.odspy.NULL!=line[2]: bausteine[line[0]].Bemerkung=line[2]
-    if utils.odspy.NULL!=line[1]: bausteine[line[0]].Einsatzgebiet=line[1]
+    if utils.odspy.EMPTY!=line[2]: bausteine[line[0]].Bemerkung=line[2]
+    if utils.odspy.EMPTY!=line[1]: bausteine[line[0]].Einsatzgebiet=line[1]
   #Leerzeilen löschen
-  bausteine.pop(utils.odspy.NULL)
+  bausteine.pop(utils.odspy.EMPTY)
     
   
+
   #Organisieren der Referenzmissionen
-  for line in referenzmissionentable[3:]:
+  startline=3
+  quantity_names=referenzmissionentable[0] #wird gerade nicht benutzt, da eine Mission nur aus Bausteinen besteht
+  for linenumber, line in enumerate(referenzmissionentable[startline:]):
+    if line[0] == utils.odspy.EMPTY: continue
+    
     if line[0] not in referenzmissionen:
+      print("adding mission:"+str(line[0]))
       referenzmissionen[line[0]]=iboss_catalogue.mission(line[0])
     
     if line[1] in bausteine.keys():
-      newbb=copy.copy(bausteine[line[1]])
-      referenzmissionen[line[0]].add_bb(bb=newbb,pos=str2vec(line[2]),rot=str2vec(line[3])*pq.deg)
-     
-  #Leerzeilen löschen
-  referenzmissionen.pop(utils.odspy.NULL)
-  
+      try:
+        newbb=copy.copy(bausteine[line[1]])
+
+        pos=line[2].split(";")[0]
+        if pos==utils.odspy.EMPTY or pos=="/" or pos=="nicht vorhanden":
+            pos="0,0,0"
+        
+        referenzmissionen[line[0]].add_bb(bb=newbb,pos=str2vec(pos),rot=str2vec(line[3])*pq.deg)
+      except ValueError as VE:
+        traceback.print_exc()
+        print("\nline {}: {}".format(linenumber+startline+1,line))
+        return None
+    
   return komponenten, bausteine, referenzmissionen
 
 def save_catalogue():
-    komponenten, bausteine, referenzmissionen=converttable()
-    iboss_xml_save.saveibosslists(komponenten, bausteine, referenzmissionen)
+    data=converttable() #todo: this is the odl table !!!
+    if data==None:
+      print("something went wrong")
+      return
+    iboss_catalogue.saveibosslists(*data)#"""
     
 if __name__ == "__main__":
     save_catalogue()
