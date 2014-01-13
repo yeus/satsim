@@ -55,7 +55,7 @@ Version="1.3"
 
 #convert vector to string (python list)
 def vec2str(vec):
-  return "{} {} {}".format(*vec)
+  return "{:.8} {:.8} {:.8}".format(*vec)
 
 #convert string to vector (python list)
 def str2vec(stringvec): 
@@ -64,10 +64,7 @@ def str2vec(stringvec):
 def str2vecint(stringvec): return vec(*[int(i) for i in stringvec.split(",")])
 
 def prettyprintxml(xmltree):
-  doc = xml.dom.minidom.Document()
-  el = doc.createElementNS('http://www.VEROSIM.de/namespaces/VSD', 'VSD')
   XML=et.tostring(xmltree,encoding="utf-8")
-  #http://stackoverflow.com/questions/863774/how-to-generate-xml-documents-with-namespaces-in-python
   try:
     XML=xml.dom.minidom.parseString(XML)
   except xml.parsers.expat.ExpatError as EE:
@@ -79,7 +76,11 @@ def prettyprintxml(xmltree):
 
 class ibossxml(object):
   def __init__(self):
-    xmlprops=[]
+    self.xmltype=self.__class__.__name__
+
+  @property
+  def xmlmapping(self):
+    return {}
   
   def xmllist(self):
     return None
@@ -125,7 +126,6 @@ class ibossxml(object):
   
   @classmethod
   def property2xml(cls,vkey,vvalue):
-    if vkey=="name": vkey = "VSD:name"
     newelem=et.Element(vkey)
     #newelem=et.Element("property")
     if isinstance(vvalue,pq.Quantity): 
@@ -145,13 +145,11 @@ class ibossxml(object):
   
   @property
   def xml(self):
-    root=et.Element("VSD:"+self.__class__.__name__)
-    #root=et.Element(self.__class__.__name__)
+    root=et.Element(self.xmltype)
+    root.set("VSD:id","TODO...")
     #root.set("type",self.type)
-    root.set("xmlns:VSD","http://www.VEROSIM.de/namespaces/VSD") #muss möglicherweise für andere Klassen geändert werden.
-    root.set("xmlns:xlink","http://www.w3.org/1999/xlink")
     #for vkey,vvalue in vars(self).items(): #check all variables in the class
-    for vkey,vvalue in self.xmlprops.items(): 
+    for vkey,vvalue in self.xmlmapping.items(): 
       if vkey not in ["components","_bb"]:  #sonderbehandlung (erstmal Auslassen) für BS-Listen
         if vvalue!=utils.odspy.EMPTY: root.append(self.property2xml(vkey,vvalue)) #speichern sämtlicher Klassenvariablen
     
@@ -164,8 +162,11 @@ class ibossxml(object):
   def xmlstr(self):  return prettyprintxml(self.xml)
 #end class ibossxml
 
+#TODO: Kernstruktur irgendwie definieren
 class component(ibossxml):
   def __init__(self,cotype):
+    super(component, self).__init__()
+    
     self.type=cotype
     self.name=cotype#
     self.mass=0
@@ -173,16 +174,39 @@ class component(ibossxml):
   #def addxmlprop(self,xmlprop):
   #  super(FileInfo, self).addxmlprop(self,xmlprop)
 
+
+
 class buildingblock(ibossxml):
   def __init__(self,bbtype):
+    super(buildingblock, self).__init__()
+    
     self.blocksize=0.4*pq.m #0.4m
-    self.size=vec(1,1,1)*pq.blocks
+    gap=0.01*pq.m
+    self.size=vec(self.blocksize+gap,self.blocksize+gap,self.blocksize+gap)*pq.m
     self.name=bbtype
     self.type=bbtype
     self.components=[]
     self.mass=0*pq.kg
     self.power_max=0*pq.W
     self.com=vec(0,0,0)*self.blocksize
+    self.heatcapacity=10*pq.J/pq.K
+    self.inertia=((0.85,0.0,0.0),
+                  (0.0,0.85,0.0),
+                  (0.0,0.0,0.85),)*pq.kg*pq.m**2
+    self.geometry="../../Models/Library/BuildingBlocks/EnMAP_Frame.mod"+"TODO: lieber so, als mit \"geometry xlink:href=\""
+    
+    self.xmltype="BuildingBlockDef"
+
+  @property
+  def xmlmapping(self):
+    props={"VSD:name":self.name, "size":self.size, "mass": self.mass,
+                   "heatCapacity":self.heatcapacity,
+                   "geometry":self.geometry,
+                   "centerOfMass":self.com, #vector3d
+                   "inertiaTensor":self.inertia, #matrix3d
+                   "orbit":"ANY",
+                   "maxPowerConsumption":self.power_max}
+    return props
 
   def xmllist(self):
     root=et.Element("components")
@@ -219,6 +243,8 @@ class buildingblock(ibossxml):
 
 class Satellite(ibossxml):
   def __init__(self,mitype):
+    super(Satellite, self).__init__()
+    
     self.bbgap=0.01 *pq.m#todo aus Tabelle abrufen
     self.bbsize=0.4 *pq.m
     self.name=mitype
@@ -227,7 +253,10 @@ class Satellite(ibossxml):
     self.type=mitype
     self._bb=[]#list of building blocks
     #self.orbparam="2-line-elem"
-    self.xmlprops={"name":self.name,"orbit":self.orbit}
+    
+  @property
+  def xmlmapping(self): #maps values to xml class
+    return {"VSD:name":self.name,"orbit":self.orbit}
 
   def xmllist(self):
     root=et.Element("buildingBlocks")
@@ -292,15 +321,25 @@ def savexml(filename,xml):
 
   #print(type(initstr))
   f=codecs.open(filename,"w",encoding="utf-8")
+  xml.set("xmlns:VSD","http://www.VEROSIM.de/namespaces/VSD") #muss möglicherweise für andere Klassen geändert werden.
+  xml.set("xmlns:xlink","http://www.w3.org/1999/xlink")
+  xml.set("xmlns:xsi","http://www.w3.org/2001/XMLSchema-instance")
+  xml.set("xmlns","http://www.VEROSIM.de/namespaces/IBOSS")
+  xml.set("xsi:schemaLocation","http://www.VEROSIM.de/namespaces/IBOSS ../XSD/iboss.xsd")
   xml.insert(0,et.Comment(initstr.format(time.strftime("%Y/%m/%d"), Version)))
   f.write(prettyprintxml(xml))
   f.close()
 
 def saveibosslists(komponenten, bausteine, referenzmissionen):
-  #katalog=et.Element("catalogue",version=Version)
-  #katalog.append(ibosslist2xml("components",komponenten.values()))
-  #katalog.append(ibosslist2xml("buildingblocks",bausteine.values()))
-  #savexml("bausteinkatalog/katalog.xml".format(Version),katalog)
+  katalog=et.Element("Catalog",version=Version)
+  #katalog.append(ibosslist2xml("componentDefs",komponenten.values()))
+  katalog.append(et.Element("componentDefs"))
+  katalog.append(ibosslist2xml("buildingBlockDefs",bausteine.values()))
+  
+  print("saving buildingblock catalog")
+  savexml("bausteinkatalog/catalog.{}.xml".format(Version),katalog)
+  
+  print("saving satellite configurations")
   for vkeys,vvalues in referenzmissionen.items():
     #missionen=ibosslist2xml("Satellites",referenzmissionen.values())
     savexml("bausteinkatalog/"+vkeys,vvalues.xml)
