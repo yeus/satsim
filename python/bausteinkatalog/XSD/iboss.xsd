@@ -199,6 +199,34 @@
     <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
   </xs:complexType>
 
+
+<!-- =========================================================== -->
+  
+  <xs:element name="GenericComponent" type="GenericComponentType" substitutionGroup="Component"/>
+  <xs:complexType name="GenericComponentType">
+    <xs:complexContent>
+      <xs:extension base="ComponentType">
+        <xs:sequence>
+          <xs:element name="definition" type="GenericComponentDefCompositionType"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:element name="GenericComponentDef" type="GenericComponentDefType" substitutionGroup="ComponentDef"/>
+  <xs:complexType name="GenericComponentDefType">
+    <xs:complexContent>
+      <xs:extension base="ComponentDefType">
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericComponentDefCompositionType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="GenericComponentDef" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+  
   <!-- =========================================================== -->
   
   <xs:element name="Structure" type="StructureType" substitutionGroup="Component"/>
