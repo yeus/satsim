@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.VEROSIM.de/namespaces/IBOSS"
+  xmlns:VSM="http://www.VEROSIM.de/namespaces/VSM"
+  xmlns:VSD="http://www.VEROSIM.de/namespaces/VSD"
+  xmlns:VSD3D="http://www.VEROSIM.de/namespaces/VSD3D"
+  xmlns:VSDMeasure="http://www.VEROSIM.de/namespaces/VSDMeasure"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://www.VEROSIM.de/namespaces/IBOSS"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified">
+
+  <xs:import namespace="http://www.VEROSIM.de/namespaces/VSM" schemaLocation="VSM.xsd"/>
+  <xs:import namespace="http://www.VEROSIM.de/namespaces/VSD" schemaLocation="VSD.xsd"/>
+  <xs:import namespace="http://www.VEROSIM.de/namespaces/VSD3D" schemaLocation="VSD3D.xsd"/>
+  <xs:import namespace="http://www.VEROSIM.de/namespaces/VSDMeasure" schemaLocation="VSDMeasure.xsd"/>
+
+  <!-- ====================================================================================================================== -->
+  <!-- basic type definitions -->
+  <!-- ====================================================================================================================== -->
+
+  <xs:simpleType name="Orbit">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LEO"/>
+      <xs:enumeration value="MEO"/>
+      <xs:enumeration value="GEO"/>
+      <xs:enumeration value="ANY"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Connection">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None"/>
+      <!-- There exists no connection at the bb => bb with no connection can be placed next to this side -->
+      <xs:enumeration value="Valid"/>
+      <!-- There exists a vaild connection at the bb -->
+      <xs:enumeration value="Blocked"/>
+      <!-- Side is blocked by a sensor => no other bb can be placed next to this side -->
+      <xs:enumeration value="Locked"/>
+      <!-- There exists a vaild connection at the bb and in the satellite instance, this connection is closed-->
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Axis">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="X"/>
+      <xs:enumeration value="Y"/>
+      <xs:enumeration value="Z"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Direction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Positive"/>
+      <xs:enumeration value="Negative"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- ====================================================================================================================== -->
+  <!-- Interfaces -->
+  <!-- ====================================================================================================================== -->
+
+  <xs:element name="Interface" type="InterfaceType"/>
+  <xs:complexType name="InterfaceType">
+    <xs:complexContent>
+      <xs:extension base="BodyType">
+        <xs:sequence>
+          <xs:element name="faceId" type="xs:int"/>
+          <xs:element name="Connection" type="Connection"/>
+          <xs:element name="Offset" type="VSDMeasure:Vector3Length"/>
+          <xs:element name="Axis" type="Axis"/>
+          <xs:element name="Direction" type="Direction"/>
+          <xs:element name="neighbor" type="VSD:ReferenceType" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:appinfo>
+                <targetElement>Interface</targetElement>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="gripFrame" type="VSD3D:NodeCompositionType" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="gripperFrame" type="VSD3D:NodeCompositionType" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="InterfaceCompositionType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="Interface" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+  <xs:complexType name="InterfaceCompositionListType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="Interface" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+
+  <!-- ====================================================================================================================== -->
+  <!-- Satellite -->
+  <!-- ====================================================================================================================== -->
+
+  <xs:element name="Satellite" type="SatelliteType"/>
+  <xs:complexType name="SatelliteType">
+    <xs:complexContent>
+      <xs:extension base="VSD3D:NodeType">
+        <xs:sequence>
+          <xs:element name="orbit" type="Orbit"/>
+          <xs:element name="buildingBlocks" type="BuildingBlockCompositionListType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SatelliteCompositionType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="Satellite" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+  <xs:complexType name="SatelliteCompositionListType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="Satellite" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+  
+  <!-- ====================================================================================================================== -->
+  <!-- Body base class -->
+  <!-- ====================================================================================================================== -->
+
+  <xs:element name="Body" type="BodyType" abstract="true"/>
+  <xs:complexType name="BodyType" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="VSD3D:NodeType">
+        <xs:sequence>
+          <xs:element name="position" type="VSDMeasure:Vector3Length"/>
+          <xs:element name="orientation" type="VSDMeasure:Vector3Angle"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="BodyDef" type="BodyDefType" abstract="true"/>
+  <xs:complexType name="BodyDefType" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="VSD:ModelNodeType">
+        <xs:sequence>
+          <xs:element name="size" type="VSDMeasure:Vector3Length" minOccurs="0"/>
+          <xs:element name="mass" type="VSDMeasure:Mass" minOccurs="0"/>
+          <xs:element name="heatCapacity" type="VSDMeasure:HeatCapacity" minOccurs="0"/>
+          <xs:element name="centerOfMass" type="VSDMeasure:Vector3Length" minOccurs="0"/>
+          <xs:element name="inertiaTensor" type="VSDMeasure:InertiaTensor" minOccurs="0"/>
+          <xs:element name="geometry" type="VSD:ModelNodeCompositionType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- ====================================================================================================================== -->
+  <!-- Components -->
+  <!-- ====================================================================================================================== -->
+
+  <xs:element name="Component" type="ComponentType" abstract="true"/>
+  <xs:complexType name="ComponentType" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="BodyType"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ComponentCompositionType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="Component" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+  <xs:complexType name="ComponentCompositionListType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="Component" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+
+  <xs:element name="ComponentDef" type="ComponentDefType" abstract="true"/>
+  <xs:complexType name="ComponentDefType" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="BodyDefType">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ComponentDefCompositionType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="ComponentDef" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+  <xs:complexType name="ComponentDefCompositionListType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="ComponentDef" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+
+  <!-- =========================================================== -->
+  
+  <xs:element name="Structure" type="StructureType" substitutionGroup="Component"/>
+  <xs:complexType name="StructureType">
+    <xs:complexContent>
+      <xs:extension base="ComponentType">
+        <xs:sequence>
+          <xs:element name="definition" type="StructureDefCompositionType"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:element name="StructureDef" type="StructureDefType" substitutionGroup="ComponentDef"/>
+  <xs:complexType name="StructureDefType">
+    <xs:complexContent>
+      <xs:extension base="ComponentDefType">
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="StructureDefCompositionType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="StructureDef" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+  
+  <!-- =========================================================== -->
+
+  <xs:element name="PC" type="PCType" substitutionGroup="Component"/>
+  <xs:complexType name="PCType">
+    <xs:complexContent>
+      <xs:extension base="ComponentType">
+        <xs:sequence>
+          <xs:element name="currentPowerConsumption" type="VSDMeasure:Power"/>
+          <xs:element name="switchedOn" type="xs:boolean"/>
+          <xs:element name="definition" type="PCDefCompositionType"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="PCDef" type="PCDefType" substitutionGroup="ComponentDef"/>
+  <xs:complexType name="PCDefType">
+    <xs:complexContent>
+      <xs:extension base="ComponentDefType">
+        <xs:sequence>
+          <xs:element name="maxPowerConsumption" type="VSDMeasure:Power"/>
+          <xs:element name="standbyPowerConsumption" type="VSDMeasure:Power"/>
+          <xs:element name="switchable" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PCDefCompositionType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="PCDef" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+
+  <!-- =========================================================== -->
+
+  <xs:element name="NetGear" type="NetGearType" substitutionGroup="Component"/>
+  <xs:complexType name="NetGearType">
+    <xs:complexContent>
+      <xs:extension base="ComponentType">
+        <xs:sequence>
+          <xs:element name="currentPowerConsumption" type="VSDMeasure:Power"/>
+          <xs:element name="switchedOn" type="xs:boolean"/>
+          <xs:element name="definition" type="NetGearDefCompositionType"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="NetGearDef" type="NetGearDefType" substitutionGroup="ComponentDef"/>
+  <xs:complexType name="NetGearDefType">
+    <xs:complexContent>
+      <xs:extension base="ComponentDefType">
+        <xs:sequence>
+          <xs:element name="maxPowerConsumption" type="VSDMeasure:Power"/>
+          <xs:element name="standbyPowerConsumption" type="VSDMeasure:Power"/>
+          <xs:element name="switchable" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NetGearDefCompositionType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="NetGearDef" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+
+  <!-- =========================================================== -->
+
+  <xs:element name="Fan" type="FanType" substitutionGroup="Component"/>
+  <xs:complexType name="FanType">
+    <xs:complexContent>
+      <xs:extension base="ComponentType">
+        <xs:sequence>
+          <xs:element name="currentPowerConsumption" type="VSDMeasure:Power"/>
+          <xs:element name="switchedOn" type="xs:boolean"/>
+          <xs:element name="definition" type="ThrusterDefCompositionType"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="FanDef" type="FanDefType" substitutionGroup="ComponentDef"/>
+  <xs:complexType name="FanDefType">
+    <xs:complexContent>
+      <xs:extension base="ComponentDefType">
+        <xs:sequence>
+          <xs:element name="maxPowerConsumption" type="VSDMeasure:Power"/>
+          <xs:element name="standbyPowerConsumption" type="VSDMeasure:Power"/>
+          <xs:element name="switchable" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FanDefCompositionType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="FanDef" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+
+  <!-- =========================================================== -->
+
+  <xs:element name="Thruster" type="ThrusterType" substitutionGroup="Component"/>
+  <xs:complexType name="ThrusterType">
+    <xs:complexContent>
+      <xs:extension base="ComponentType">
+        <xs:sequence>
+          <xs:element name="currentPowerConsumption" type="VSDMeasure:Power"/>
+          <xs:element name="switchedOn" type="xs:boolean"/>
+          <xs:element name="definition" type="ThrusterDefCompositionType"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="ThrusterDef" type="ThrusterDefType" substitutionGroup="ComponentDef"/>
+  <xs:complexType name="ThrusterDefType">
+    <xs:complexContent>
+      <xs:extension base="ComponentDefType">
+        <xs:sequence>
+          <xs:element name="maxPowerConsumption" type="VSDMeasure:Power"/>
+          <xs:element name="standbyPowerConsumption" type="VSDMeasure:Power"/>
+          <xs:element name="switchable" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ThrusterDefCompositionType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="ThrusterDef" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+
+  <!-- =========================================================== -->
+
+  <xs:element name="Antenna" type="AntennaType" substitutionGroup="Component"/>
+  <xs:complexType name="AntennaType">
+    <xs:complexContent>
+      <xs:extension base="ComponentType">
+        <xs:sequence>
+          <xs:element name="definition" type="AntennaDefCompositionType"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="AntennaDef" type="AntennaDefType" substitutionGroup="ComponentDef"/>
+  <xs:complexType name="AntennaDefType">
+    <xs:complexContent>
+      <xs:extension base="ComponentDefType"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AntennaDefCompositionType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="AntennaDef" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+
+  <!-- =========================================================== -->
+
+  <xs:element name="MomentumWheel" type="MomentumWheelType" substitutionGroup="Component"/>
+  <xs:complexType name="MomentumWheelType">
+    <xs:complexContent>
+      <xs:extension base="ComponentType">
+        <xs:sequence>
+          <xs:element name="definition" type="MomentumWheelDefCompositionType"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="MomentumWheelDef" type="MomentumWheelDefType" substitutionGroup="ComponentDef"/>
+  <xs:complexType name="MomentumWheelDefType">
+    <xs:complexContent>
+      <xs:extension base="ComponentDefType"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="MomentumWheelDefCompositionType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="MomentumWheelDef" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+
+  <!-- =========================================================== -->
+
+  <xs:element name="StorageTank" type="StorageTankType" substitutionGroup="Component"/>
+  <xs:complexType name="StorageTankType">
+    <xs:complexContent>
+      <xs:extension base="ComponentType">
+        <xs:sequence>
+          <xs:element name="fillLevel" type="VSDMeasure:Volume"/>
+          <xs:element name="definition" type="StorageTankDefCompositionType"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="StorageTankDef" type="StorageTankDefType" substitutionGroup="ComponentDef"/>
+  <xs:complexType name="StorageTankDefType">
+    <xs:complexContent>
+      <xs:extension base="ComponentDefType">
+        <xs:sequence>
+          <xs:element name="volume" type="VSDMeasure:Volume"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="StorageTankDefCompositionType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="StorageTankDef" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+
+  <!-- =========================================================== -->
+
+  <xs:element name="Battery" type="BatteryType" substitutionGroup="Component"/>
+  <xs:complexType name="BatteryType">
+    <xs:complexContent>
+      <xs:extension base="ComponentType">
+        <xs:sequence>
+          <xs:element name="charge" type="VSDMeasure:Charge"/>
+          <xs:element name="definition" type="BatteryDefCompositionType"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="BatteryDef" type="BatteryDefType" substitutionGroup="ComponentDef"/>
+  <xs:complexType name="BatteryDefType">
+    <xs:complexContent>
+      <xs:extension base="ComponentDefType">
+        <xs:sequence>
+          <xs:element name="power" type="VSDMeasure:Power"/>
+          <xs:element name="capacity" type="VSDMeasure:Charge"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BatteryDefCompositionType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="BatteryDef" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+
+  <!-- ====================================================================================================================== -->
+  <!-- BuildingBlocks -->
+  <!-- ====================================================================================================================== -->
+
+  <xs:element name="BuildingBlock" type="BuildingBlockType" abstract="false"/>
+  <xs:complexType name="BuildingBlockType">
+    <xs:complexContent>
+      <xs:extension base="BodyType">
+        <xs:sequence>
+          <xs:element name="definition" type="BuildingBlockDefCompositionType"/>
+          <xs:element name="interfaces" type="InterfaceCompositionListType" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="currentPowerConsumption" type="VSDMeasure:Power" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BuildingBlockCompositionType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="BuildingBlock" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute ref="VSD:id" use="optional"/>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+  <xs:complexType name="BuildingBlockCompositionListType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="BuildingBlock" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute ref="VSD:id" use="optional"/>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+
+  <xs:element name="BuildingBlockDef" type="BuildingBlockDefType" abstract="false"/>
+  <xs:complexType name="BuildingBlockDefType">
+    <xs:complexContent>
+      <xs:extension base="BodyDefType">
+        <xs:sequence>
+          <xs:element name="components" type="ComponentCompositionListType" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="orbit" type="Orbit"/>
+          <xs:element name="maxPowerConsumption" type="VSDMeasure:Power"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BuildingBlockDefCompositionType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="BuildingBlockDef" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute ref="VSD:id" use="optional"/>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+  <xs:complexType name="BuildingBlockDefCompositionListType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="BuildingBlockDef" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute ref="VSD:id" use="optional"/>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+
+  <!-- ====================================================================================================================== -->
+  <!-- Catalog -->
+  <!-- ====================================================================================================================== -->
+
+  <xs:element name="Catalog" type="CatalogType"/>
+  <xs:complexType name="CatalogType">
+    <xs:complexContent>
+      <xs:extension base="VSD:ModelInstanceType">
+        <xs:sequence>
+          <xs:element name="componentDefs" type="ComponentDefCompositionListType" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="buildingBlockDefs" type="BuildingBlockDefCompositionListType"
+            minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- ====================================================================================================================== -->
+  <!-- Reconfiguration -->
+  <!-- ====================================================================================================================== -->
+
+	<xs:element name="ReconfigurationPlan" type="ReconfigurationPlanType"/>
+	<xs:complexType name="ReconfigurationPlanType">
+		<xs:complexContent>
+			<xs:extension base="VSD:NodeType">
+				<xs:sequence>
+					<xs:element name="initialState" type="VSD:ReferenceType">
+						<xs:annotation>
+							<xs:appinfo>
+								<targetElement>Satellite</targetElement>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="finalState" type="VSD:ReferenceType">
+						<xs:annotation>
+							<xs:appinfo>
+								<targetElement>Satellite</targetElement>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="satellites" type="SatelliteCompositionListType" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="actions" type="ActionCompositionListType" minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ActionCompositionListType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="Action" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+	</xs:complexType>
+
+
+	<xs:element name="Action" type="ActionType" abstract="true"/>
+	<xs:complexType name="ActionType" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="VSD:NamedModelInstanceType">
+				<xs:sequence>
+					<xs:element name="startState" type="VSD:ReferenceType">
+						<xs:annotation>
+							<xs:appinfo>
+								<targetElement>Satellite</targetElement>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="targetState" type="VSD:ReferenceType">
+						<xs:annotation>
+							<xs:appinfo>
+								<targetElement>Satellite</targetElement>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:element name="MoveBlockAction" type="MoveBlockActionType" substitutionGroup="Action" abstract="true"/>
+	<xs:complexType name="MoveBlockActionType" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="ActionType">
+				<xs:sequence>
+					<xs:element name="BuildingBlock" type="VSD:ReferenceType">
+						<xs:annotation>
+							<xs:appinfo>
+								<targetElement>BuildingBlock</targetElement>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Interface" type="VSD:ReferenceType">
+						<xs:annotation>
+							<xs:appinfo>
+								<targetElement>Interface</targetElement>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+
+	<xs:element name="ActionApproachTake" type="ActionApproachTakeType"	substitutionGroup="Action"/>
+	<xs:complexType name="ActionApproachTakeType">
+		<xs:complexContent>
+			<xs:extension base="MoveBlockActionType"/>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="ActionDeproachTake" type="ActionDeproachTakeType" substitutionGroup="MoveBlockAction"/>
+	<xs:complexType name="ActionDeproachTakeType">
+		<xs:complexContent>
+			<xs:extension base="MoveBlockActionType">
+				<xs:sequence>
+					<xs:element name="targetPosition" type="VSDMeasure:Vector3Length"/>
+					<xs:element name="targetOrientation" type="VSDMeasure:Vector3Angle"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="ActionApproachPlace" type="ActionApproachPlaceType"
+		substitutionGroup="MoveBlockAction"/>
+	<xs:complexType name="ActionApproachPlaceType">
+		<xs:complexContent>
+			<xs:extension base="MoveBlockActionType">
+				<xs:sequence>
+					<xs:element name="targetPosition" type="VSDMeasure:Vector3Length"/>
+					<xs:element name="targetOrientation" type="VSDMeasure:Vector3Angle"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="ActionDeproachPlace" type="ActionDeproachPlaceType"	substitutionGroup="MoveBlockAction"/>
+	<xs:complexType name="ActionDeproachPlaceType">
+		<xs:complexContent>
+			<xs:extension base="MoveBlockActionType">
+				<xs:sequence>
+					<xs:element name="targetPosition" type="VSDMeasure:Vector3Length"/>
+					<xs:element name="tagretOrientation" type="VSDMeasure:Vector3Angle"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="ActionDockingBase" type="ActionDockingBaseType" substitutionGroup="Action" abstract="true"/>
+	<xs:complexType name="ActionDockingBaseType" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="ActionType">
+				<xs:sequence>
+				  <!-- entweder als Komposition -->				  
+				  <xs:element name="actionParticipants" type="ActionParticipantCompositionType" minOccurs="2" maxOccurs="2" />
+				  <!-- oder als Verweis (kann nur funktionieren, wenn die participants anderswo leben)-->
+<!--				  <xs:element name="actionParticipants" type="VSD:ReferenceType" minOccurs="2" maxOccurs="2">
+				    <xs:annotation>
+				      <xs:appinfo>
+				        <targetElement>ActionParticipant</targetElement>
+				      </xs:appinfo>
+				    </xs:annotation>
+				  </xs:element>
+-->				  <!-- Vorschlag: die participants sind immer interfaces und ein Manipulator muss ja auch eins haben -->				  
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="ActionUndock" type="ActionUndockType" substitutionGroup="ActionDockingBase"/>
+	<xs:complexType name="ActionUndockType">
+		<xs:complexContent>
+			<xs:extension base="ActionDockingBaseType"/>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="ActionDock" type="ActionDockType"	substitutionGroup="ActionDockingBase"/>
+	<xs:complexType name="ActionDockType">
+		<xs:complexContent>
+			<xs:extension base="ActionDockingBaseType"/>
+		</xs:complexContent>
+	</xs:complexType>
+
+  <xs:element name="ActionParticipant" type="ActionParticipantType" abstract="true"/>
+	<xs:complexType name="ActionParticipantType" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="VSD:NamedModelInstanceType"/>
+    </xs:complexContent>
+	</xs:complexType>      
+  <xs:complexType name="ActionParticipantCompositionType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="ActionParticipant" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+  <xs:complexType name="ActionParticipantCompositionListType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="ActionParticipant" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+  
+
+	<xs:element name="ActionParticipantManipulator" type="ActionParticipantManipulatorType" substitutionGroup="ActionParticipant"/>
+	<xs:complexType name="ActionParticipantManipulatorType">
+		<xs:complexContent>
+			<xs:extension base="ActionParticipantType"/>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="ActionParticipantInterface" type="ActionParticipantInterfaceType" substitutionGroup="ActionParticipant"/>
+	<xs:complexType name="ActionParticipantInterfaceType">
+		<xs:complexContent>
+			<xs:extension base="ActionParticipantType">
+				<xs:sequence>
+					<xs:element name="BuildingBlock" type="VSD:ReferenceType">
+						<xs:annotation>
+							<xs:appinfo>
+								<targetElement>BuildingBlock</targetElement>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Interface" type="VSD:ReferenceType">
+						<xs:annotation>
+							<xs:appinfo>
+								<targetElement>Interface</targetElement>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+</xs:schema>
