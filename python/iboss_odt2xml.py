@@ -22,7 +22,7 @@ import utils
 from utils.odspy import ods2table
 import numpy as np
 import iboss_catalogue
-from iboss_catalogue import pq
+from iboss_catalogue import pq, u
 from iboss_catalogue import str2vec
 import copy
 import traceback
@@ -105,7 +105,10 @@ def converttable():
         traceback.print_exc()
         print("\nline {}: {}".format(linenumber+startline+1,line))
         return None
-    
+    else:
+      print("not in catalog: {}".format(line[1]))
+  
+  print("odt loading finished!\n\n")
   return komponenten, bausteine, referenzmissionen
 
 def save_catalogue():
