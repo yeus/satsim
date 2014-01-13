@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Satellite VSD:id="id10" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:xlink="http://www.w3.org/1999/xlink" 
+	xmlns:VSD="http://www.VEROSIM.de/namespaces/VSD" 
+	xmlns="http://www.VEROSIM.de/namespaces/IBOSS" 
+	xsi:schemaLocation="http://www.VEROSIM.de/namespaces/IBOSS ../XSD/iboss.xsd">
+	
+	<VSD:name>EnMAP Demo Satellite</VSD:name>
+	<orbit>LEO</orbit>
+	<buildingBlocks>
+		<BuildingBlock VSD:id="id11">
+			<VSD:name>EnMAP Core Element</VSD:name>
+			<position unit="cm">0 0 0</position>
+			<orientation unit="rad">0 0 0</orientation>
+		    <definition xlink:href="../Catalogs/bbcatalog.xml#id101"/>
+		</BuildingBlock>
+
+		<!-- Ebene 0  -->
+		<BuildingBlock VSD:id="id1">
+			<!-- ThrusterElement  -->
+			<VSD:name>EnMAP Thruster 0-01</VSD:name>
+			<position unit="m">0.615 -0.205 0.205</position>
+			<orientation unit="rad">0 0 0</orientation>
+		    <definition xlink:href="../Catalogs/bbcatalog.xml#id8"/>
+		</BuildingBlock>
+	
+		<BuildingBlock VSD:id="id2">
+			<!-- IMUElement  -->
+			<VSD:name>EnMAP IMU 0-02</VSD:name>
+			<position unit="m">0.615 0.205 0.205</position>
+			<orientation unit="deg">0 90 0</orientation>
+		    <definition xlink:href="../Catalogs/bbcatalog.xml#id4"/>
+		</BuildingBlock>
+
+		<BuildingBlock VSD:id="id3">
+			<!-- BatteryElement  -->
+			<VSD:name>EnMAP Battery 0-03</VSD:name>
+			<position unit="m">0.615 -0.205 -0.205</position>
+			<orientation unit="rad">0 0 0</orientation>
+		    <definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
+		</BuildingBlock>
+
+		<!--  Element 4 is covered by IMU (which coveres 02 and 04)
+			<BuildingBlock VSD:id="id4">
+				<VSD:name>EnMAP Frame 0-01</VSD:name>
+				<position unit="m">0.615 0.205 -0.205</position>
+				<orientation unit="rad">0 0 0</orientation>
+				<definition xlink:href="../Catalogs/bbcatalog.xml#id1"/>
+			</BuildingBlock>
+		-->
+		
+		<!-- Ebene 1 -->
+		<BuildingBlock VSD:id="id105">
+			<!-- MagnetoMeterElement  -->
+			<VSD:name>EnMAP MagnetoMeter 1-05</VSD:name>
+			<position unit="m">0.205 -0.205 0.615</position>
+			<orientation unit="rad">0 0 0</orientation>
+		    <definition xlink:href="../Catalogs/bbcatalog.xml#id5"/>
+		</BuildingBlock>
+	
+		<BuildingBlock VSD:id="id106">
+			<!-- GPSElement  -->
+			<VSD:name>EnMAP GPS 1-06</VSD:name>
+			<position unit="m">0.205 0.205 0.615</position>
+			<orientation unit="rad">0 0 0</orientation>
+		    <definition xlink:href="../Catalogs/bbcatalog.xml#id3"/>
+		</BuildingBlock>
+
+		<BuildingBlock VSD:id="id107">
+		<!-- TM_TCElement  -->
+			<VSD:name>EnMAP TM_TC 1-07</VSD:name>
+			<position unit="m">0.205 -0.205 -0.615</position>
+			<orientation unit="rad">0 0 0</orientation>
+		    <definition xlink:href="../Catalogs/bbcatalog.xml#id1"/>
+		</BuildingBlock>
+
+		<BuildingBlock VSD:id="id108">
+		<!-- StarSensorElement  -->
+			<VSD:name>EnMAP StarSensor 1-08</VSD:name>
+			<position unit="m">0.205 0.205 -0.615</position>
+			<orientation unit="deg">180 0 0</orientation>
+		    <definition xlink:href="../Catalogs/bbcatalog.xml#id7"/>
+		</BuildingBlock>
+	
+		<!--Ebene 2 -->
+		<BuildingBlock VSD:id="id209">
+			<!-- ReactionWheelElement  -->
+			<VSD:name>EnMAP ReactionWheel 2-09</VSD:name>
+			<position unit="m">-0.205 -0.205 0.615</position>
+			<orientation unit="rad">0 0 0</orientation>
+		    <definition xlink:href="../Catalogs/bbcatalog.xml#id6"/>
+		</BuildingBlock>
+
+		<BuildingBlock VSD:id="id210">
+			<!-- TM_TCElement  -->
+			<VSD:name>EnMAP TM_TC 2-10</VSD:name>
+			<position unit="m">-0.205 0.205 0.615</position>
+			<orientation unit="rad">0 0 0</orientation>
+		    <definition xlink:href="../Catalogs/bbcatalog.xml#id9"/>
+		</BuildingBlock>
+
+		<BuildingBlock VSD:id="id211">
+			<!-- SolarPanelElement  -->
+			<VSD:name>EnMAP SolarPanel 2-11</VSD:name>
+			<position unit="m">-0.205 -0.205 -0.615</position>
+			<orientation unit="rad">0 1.57 -1.57</orientation>
+		    <definition xlink:href="../Catalogs/bbcatalog.xml#id10"/>
+		</BuildingBlock>
+
+		<BuildingBlock VSD:id="id212">
+			<!-- GPSElement  -->
+			<VSD:name>EnMAP GPS 2-12</VSD:name>
+			<position unit="m">-0.205 0.205 -0.615</position>
+			<orientation unit="rad">0 0 0</orientation>
+		    <definition xlink:href="../Catalogs/bbcatalog.xml#id3"/>
+		</BuildingBlock>
+		
+		<!-- Ebene 3 -->
+		<BuildingBlock VSD:id="id313">
+			<!-- BatteryElement  -->
+			<VSD:name>EnMAP Battery 3-13</VSD:name>
+			<position unit="m">-0.615 -0.205 0.205</position>
+			<orientation unit="rad">0 0 0</orientation>
+		    <definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
+		</BuildingBlock>
+		
+		<BuildingBlock VSD:id="id314">
+			<!-- ReactionWheelElement  -->
+			<VSD:name>EnMAP ReactionWheel 3-14</VSD:name>
+			<position unit="m">-0.615 0.205 0.205</position>
+			<orientation unit="rad">0 0 0</orientation>
+		    <definition xlink:href="../Catalogs/bbcatalog.xml#id6"/>
+		</BuildingBlock>
+		
+		<BuildingBlock VSD:id="id315">
+			<!-- ThrusterElement  -->
+			<VSD:name>EnMAP Thruster 3-15</VSD:name>
+			<position unit="m">-0.615 -0.205 -0.205</position>
+			<orientation unit="deg">0 90 -90</orientation>
+		    <definition xlink:href="../Catalogs/bbcatalog.xml#id8"/>
+		</BuildingBlock>
+		
+		<BuildingBlock VSD:id="id316">
+			<!-- ReactionWheelElement  -->
+			<VSD:name>EnMAP ReactionWheel 3-16</VSD:name>
+			<position unit="m">-0.615 0.205 -0.205</position>
+			<orientation unit="rad">0 0 0</orientation>
+		    <definition xlink:href="../Catalogs/bbcatalog.xml#id6"/>
+		</BuildingBlock>
+
+		<BuildingBlock VSD:id="id400">
+			<!-- PayloadElement  -->
+			<VSD:name>EnMAP Payload Block 4-00</VSD:name>
+			<position unit="m">0.430 0.657 0.025</position>
+			<orientation unit="deg">0 90 0</orientation>
+		    <definition xlink:href="../Catalogs/bbcatalog.xml#id100"/>
+		</BuildingBlock>
+		
+	</buildingBlocks>
+</Satellite>
