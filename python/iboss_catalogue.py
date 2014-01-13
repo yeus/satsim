@@ -57,6 +57,9 @@ Version="1.3"
 def vec2str(vec):
   return "{:.8} {:.8} {:.8}".format(*vec)
 
+def mat2str(mat):
+  return "\n\t\t\t\t\t".join(["{:.8} {:.8} {:.8}".format(*vec) for vec in mat])
+
 #convert string to vector (python list)
 def str2vec(stringvec): 
     return vec(*[float(i) for i in stringvec.split(",")])
@@ -75,8 +78,13 @@ def prettyprintxml(xmltree):
   return XML.toprettyxml()
 
 class ibossxml(object):
+  idcounter = 0  #counts individual ids
+  
   def __init__(self):
     self.xmltype=self.__class__.__name__
+    
+    ibossxml.idcounter += 1
+    self.id = "id"+str(ibossxml.idcounter)
 
   @property
   def xmlmapping(self):
@@ -132,7 +140,8 @@ class ibossxml(object):
       newelem.set("unit",vvalue.dimensionality.string)
       if vvalue.size==1 :newelem.text=unicode(vvalue.magnitude)
       #else: newelem.extend(cls.vec2xml(vvalue.magnitude))
-      else: newelem.text = vec2str(vvalue.magnitude)
+      elif vvalue.size<=3: newelem.text = vec2str(vvalue.magnitude)
+      else: newelem.text = mat2str(vvalue.magnitude)
     else:
       try:
         #if vvalue.size>1: newelem.extend(cls.vec2xml(vvalue.magnitude))
@@ -146,7 +155,7 @@ class ibossxml(object):
   @property
   def xml(self):
     root=et.Element(self.xmltype)
-    root.set("VSD:id","TODO...")
+    root.set("VSD:id",self.id)
     #root.set("type",self.type)
     #for vkey,vvalue in vars(self).items(): #check all variables in the class
     for vkey,vvalue in self.xmlmapping.items(): 
@@ -211,10 +220,10 @@ class buildingblock(ibossxml):
   def xmllist(self):
     root=et.Element("components")
     for co in self.components:
-      newelem=et.Element("component")
-      newelem.set("type",co.type)
-      if hasattr(co,"pos"): newelem.append(self.property2xml("pos",co.pos))#"pos", vec2str(co.pos))
-      if hasattr(co,"rot"): newelem.append(self.property2xml("rot",co.rot))#set("rot", vec2str(co.rot.magnitude))
+      newelem=et.Element("GenericComponent")
+      newelem.set("VSD:id","id"+"TODO welche iD??")#"".join([str(int(i)) for i in bb.pos]))
+      if hasattr(co,"pos"): newelem.append(self.property2xml("position",co.pos))
+      if hasattr(co,"rot"): newelem.append(self.property2xml("orientation",co.rot)) # TODO. rotation to "oriantation"
       if hasattr(co,"th_vec"): newelem.append(self.property2xml("th_vec",co.th_vec))#.set("th_vec", vec2str(co.th_vec))
       if hasattr(co,"num"): 
         if co.num!=1: newelem.set("num", unicode(co.num)) #if it is just one component number does not matter
