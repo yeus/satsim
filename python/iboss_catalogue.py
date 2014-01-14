@@ -87,6 +87,7 @@ def prettyprintxml(xmltree):
   except xml.parsers.expat.ExpatError as EE:
     traceback.print_exc()
     #print("\n{}".format(XML))
+    sys.exit()
     
   #print("\n" + str(type(XML)) + "\n")  
   return XML.toprettyxml()
@@ -95,8 +96,8 @@ class ibossxml(object):
   idcounter = 0  #counts individual ids
   
   def __init__(self):
-    self.xmltype=self.__class__.__name__
-    self.id = ibossxml.getid()
+    self._xmltype=self.__class__.__name__
+    self._id = ibossxml.getid()
 
   @staticmethod
   def getid():
@@ -171,8 +172,8 @@ class ibossxml(object):
   
   @property
   def xml(self):
-    root=et.Element(self.xmltype)
-    root.set("VSD:id",self.id)
+    root=et.Element(self._xmltype)
+    root.set("VSD:id",self._id)
     #root.set("type",self.type)
     #for vkey,vvalue in vars(self).items(): #check all variables in the class
     for vkey,vvalue in self.xmlmapping.items(): 
@@ -197,11 +198,18 @@ class component(ibossxml):
     self.name=cotype#
     self.mass=0
     
-    self.xmltype="GenericComponent"
+    self._xmltype="GenericComponent"
     
-  #@property
-  #def xmlmapping(self): #maps values to xml class
-  #  return vars(self)
+  @property
+  def xmlmapping(self): #maps values to xml class
+    variables={}
+    counter=0
+    for key,value in vars(self).items():
+      counter+=1
+      if key.startswith("_"): continue
+      variables.update({key:value})
+    #print(variables)
+    return variables
   
   #def addxmlprop(self,xmlprop):
   #  super(FileInfo, self).addxmlprop(self,xmlprop)
@@ -227,7 +235,7 @@ class buildingblock(ibossxml):
                   (0.0,0.0,0.85),)*pq.kg*pq.m**2
     self.geometry="../../Models/Library/BuildingBlocks/EnMAP_Frame.mod"+"TODO: lieber so, als mit \"geometry xlink:href=\""
     
-    self.xmltype="BuildingBlockDef"
+    self._xmltype="BuildingBlockDef"
 
   @property
   def xmlmapping(self):
@@ -251,7 +259,7 @@ class buildingblock(ibossxml):
         if co.num!=1: newelem.append(self.property2xml("num", co.num)) #if it is just one component number does not matter
       root.append(newelem)
       newelem2=et.Element("definition")
-      newelem2.set("xlink:href","../Catalogs/catalog.xml#"+str(co.id))
+      newelem2.set("xlink:href","../Catalogs/catalog.xml#"+str(co._id))
       newelem.append(newelem2)
     return root #so the list gets serialized in xml"""
     
@@ -303,7 +311,7 @@ class Satellite(ibossxml):
       newelem.append(self.property2xml("position",bb.pos*(self.bbsize+self.bbgap)))
       newelem.append(self.property2xml("orientation",bb.orientation))
       newelem2=et.Element("definition")
-      newelem2.set("xlink:href","../Catalogs/catalog.xml#"+str(bb.id))
+      newelem2.set("xlink:href","../Catalogs/catalog.xml#"+str(bb._id))
       newelem.append(newelem2)
       root.append(newelem)
     return root #so the list gets serialized in xml
@@ -369,7 +377,6 @@ def savexml(filename,xml):
 def saveibosslists(komponenten, bausteine, referenzmissionen):
   katalog=et.Element("Catalog",version=Version)
   katalog.append(ibosslist2xml("componentDefs",komponenten.values()))
-  katalog.append(et.Element("componentDefs"))
   katalog.append(ibosslist2xml("buildingBlockDefs",bausteine.values()))
   
   print("saving buildingblock catalog")

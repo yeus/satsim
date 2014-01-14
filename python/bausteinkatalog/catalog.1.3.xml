@@ -1,0 +1,2140 @@
+<?xml version="1.0" ?>
+<Catalog version="1.3" xmlns="http://www.VEROSIM.de/namespaces/IBOSS" xmlns:VSD="http://www.VEROSIM.de/namespaces/VSD" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.VEROSIM.de/namespaces/IBOSS ../XSD/iboss.xsd">
+	<!--
+        * Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)
+        * Date : 2014/01/14
+        * Version: 1.3
+        * All code (c)2013 Technische UniversitÃ¤t Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved-->
+	<componentDefs>
+		<GenericComponent VSD:id="id6">
+			<rad_max>Min 5</rad_max>
+			<name>Antenne</name>
+			<loopholes>1.0</loopholes>
+			<temp_max unit="degC">50.0</temp_max>
+			<height unit="mm">20.0</height>
+			<width unit="mm">82.0</width>
+			<length unit="mm">82.0</length>
+			<mass unit="kg">0.08</mass>
+			<power_max unit="W">10.0</power_max>
+			<temp_min unit="degC">-20.0</temp_min>
+			<supply_voltage unit="V">28.0</supply_voltage>
+			<type>Antenne</type>
+			<Lebensdauer>7 (LEO)</Lebensdauer>
+			<Bemerkungen>idealisiert nach Surrey Satellite Technology Ltd. S-Band Patch Antenna; ggf. gegen andere Antenne austauschbar</Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id7">
+			<width unit="mm">53.0</width>
+			<length unit="mm">250.0</length>
+			<mass unit="kg">0.0</mass>
+			<name>Batteriekontrolle</name>
+			<type>Batteriekontrolle</type>
+			<Bemerkungen>frei angepasst</Bemerkungen>
+			<height unit="mm">265.0</height>
+		</GenericComponent>
+		<GenericComponent VSD:id="id2">
+			<width unit="mm">400.0</width>
+			<length unit="mm">400.0</length>
+			<mass unit="kg">2.5</mass>
+			<name>Bausteinstruktur</name>
+			<type>Bausteinstruktur</type>
+			<height unit="mm">400.0</height>
+		</GenericComponent>
+		<GenericComponent VSD:id="id8">
+			<name>CMG</name>
+			<loopholes>0.0</loopholes>
+			<Drehimpuls unit="m*s*N">15.0</Drehimpuls>
+			<temp_max unit="degC">55.0</temp_max>
+			<height unit="mm">270.0</height>
+			<width unit="mm">270.0</width>
+			<length unit="mm">350.0</length>
+			<mass unit="kg">15.7</mass>
+			<power_max unit="W">25.0</power_max>
+			<temp_min unit="degC">-20.0</temp_min>
+			<supply_voltage>22-37</supply_voltage>
+			<type>CMG</type>
+			<Lebensdauer unit="yr">5.0</Lebensdauer>
+			<Bemerkungen>idealisiert nach Astrium CMG 15-45S; Drehimpuls 15 Nms, Moment 45Nm; Genauigkeit &lt;10mrad Drehimpulsstabilität &lt;0,03%, einzeln für RFS bis 1000kg bei 3°/s</Bemerkungen>
+			<Drehmoment unit="m*N">45.0</Drehmoment>
+		</GenericComponent>
+		<GenericComponent VSD:id="id9">
+			<rad_max unit="krad">15.0</rad_max>
+			<name>CMG-Electronics</name>
+			<loopholes>0.0</loopholes>
+			<temp_max unit="degC">60.0</temp_max>
+			<height unit="mm">100.0</height>
+			<width unit="mm">300.0</width>
+			<length unit="mm">300.0</length>
+			<mass unit="kg">2.7</mass>
+			<temp_min unit="degC">-25.0</temp_min>
+			<supply_voltage>22-37</supply_voltage>
+			<type>CMG-Electronics</type>
+			<Lebensdauer unit="yr">5.0</Lebensdauer>
+			<Bemerkungen>idealisiert und verkleinert nach Astrium CMG 15-45S Elektronic; für 2 CMG; Strahlungs-schutz notwendig </Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id10">
+			<rad_max>COTS electronics shielded by 25 mm Al equivalent, equipped with EDAC, LU-protection. Optional: rad-hard electronics </rad_max>
+			<name>Drallrad (inkl.Elektro.)</name>
+			<loopholes>0.0</loopholes>
+			<Drehimpuls>Max 100</Drehimpuls>
+			<temp_max unit="degC">70.0</temp_max>
+			<height unit="mm">150.0</height>
+			<width unit="mm">300.0</width>
+			<length unit="mm">300.0</length>
+			<mass unit="kg">16.5</mass>
+			<power_max unit="W">300.0</power_max>
+			<temp_min unit="degC">-40.0</temp_min>
+			<supply_voltage>23-37</supply_voltage>
+			<power_mean unit="W">10.0</power_mean>
+			<type>Drallrad (inkl.Elektro.)</type>
+			<Lebensdauer unit="yr">20.0</Lebensdauer>
+			<Bemerkungen>idealisiert nach Rockwell Collins Deutschland (TELDIX) MWI; max. Drehimpuls 100Nms; max. RFS-Masse 5000kg; auch als Reaktionsrad nutzbar</Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id11">
+			<Bemerkungen>idealisiert nach Astrium Actuator Alignment Electronic; ggf. zusätzlicher Strahlungsschutz notwendig</Bemerkungen>
+			<width unit="mm">160.0</width>
+			<length unit="mm">180.0</length>
+			<mass unit="kg">2.0</mass>
+			<name>entfalt. Elektronik</name>
+			<loopholes>0.0</loopholes>
+			<type>entfalt. Elektronik</type>
+			<power_max unit="W">50.0</power_max>
+			<height unit="mm">65.0</height>
+		</GenericComponent>
+		<GenericComponent VSD:id="id12">
+			<Bemerkungen>Solarzellen: GaAS-Multijunction (240W/m², 80W/kg, EOL); Anzahl der entfalt. Solarflächen variabel (abh. von max. Last), Länge ent-spricht i.M. einem </Bemerkungen>
+			<width unit="mm">595.0</width>
+			<length unit="mm">1200.0</length>
+			<mass unit="kg">2.4</mass>
+			<name>entfalt. Solarflächen 1</name>
+			<loopholes>0.0</loopholes>
+			<type>entfalt. Solarflächen 1</type>
+			<power_max unit="W">175.0</power_max>
+			<height unit="mm">30.0</height>
+		</GenericComponent>
+		<GenericComponent VSD:id="id13">
+			<Bemerkungen>Solarzellen: GaAS-Multijunction (240W/m², 80W/kg, EOL); Anzahl der entfalt. Solarflächen variabel (abh. von max. Last) </Bemerkungen>
+			<width unit="mm">1750.0</width>
+			<length unit="mm">1750.0</length>
+			<mass unit="kg">8.0</mass>
+			<name>entfalt. Solarflächen 2</name>
+			<loopholes>0.0</loopholes>
+			<type>entfalt. Solarflächen 2</type>
+			<power_max unit="W">800.0</power_max>
+			<height unit="mm">30.0</height>
+		</GenericComponent>
+		<GenericComponent VSD:id="id14">
+			<name>Erdsensor 1</name>
+			<loopholes>1.0</loopholes>
+			<temp_max unit="degC">55.0</temp_max>
+			<height unit="mm">170.0</height>
+			<width unit="mm">210.0</width>
+			<length unit="mm">210.0</length>
+			<mass unit="kg">3.5</mass>
+			<power_max unit="W">7.0</power_max>
+			<temp_min unit="degC">-25.0</temp_min>
+			<supply_voltage>22-55</supply_voltage>
+			<type>Erdsensor 1</type>
+			<Lebensdauer>15 (GEO)</Lebensdauer>
+			<Bemerkungen>idealisiert nach EADS-Sodern STD 15 Earth Sensor; Ausrichtung 0,035° (bias), Rauschen 0,015° (noise); Orbitbereich 15000 – 140000km; ggf. Strahlungsschutz notwendig</Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id15">
+			<name>Erdsensor 2</name>
+			<loopholes>1.0</loopholes>
+			<temp_max unit="degC">50.0</temp_max>
+			<height unit="mm">175.0</height>
+			<width unit="mm">210.0</width>
+			<length unit="mm">390.0</length>
+			<mass unit="kg">3.5</mass>
+			<power_max unit="W">8.0</power_max>
+			<temp_min unit="degC">-20.0</temp_min>
+			<supply_voltage>22-52</supply_voltage>
+			<type>Erdsensor 2</type>
+			<Lebensdauer>5 (LEO)</Lebensdauer>
+			<Bemerkungen>idealisiert nach EADS-Sodern STD 16 Earth Sensor; Ausrichtung 0,06° (bias), Rauschen 0,042° (noise); Orbitbereich 300 – 6000km</Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id16">
+			<name>FCU</name>
+			<loopholes>0.0</loopholes>
+			<temp_max unit="degC">50.0</temp_max>
+			<height unit="mm">120.0</height>
+			<width unit="mm">295.0</width>
+			<length unit="mm">410.0</length>
+			<mass unit="kg">6.0</mass>
+			<temp_min unit="degC">-40.0</temp_min>
+			<supply_voltage>24-32</supply_voltage>
+			<type>FCU</type>
+			<Bemerkungen>Flow Control Unit idealisiert mit High- und Low-Pressure Proportional Valve sowie Silicon Mass Flow Sensor (Thales), High Pressure Latch Valve (Marotta), Pressure Transducer, Gas Pressure Filter und Gas Fill and Drain Valve (RTG), Heizsystem noch unberücksichtigt</Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id17">
+			<rad_max unit="krad">100.0</rad_max>
+			<name>GNSS-Receiver 1</name>
+			<loopholes>0.0</loopholes>
+			<temp_max unit="degC">60.0</temp_max>
+			<height unit="mm">92.0</height>
+			<width unit="mm">272.0</width>
+			<length unit="mm">284.0</length>
+			<mass unit="kg">3.9</mass>
+			<power_max unit="W">10.0</power_max>
+			<temp_min unit="degC">-20.0</temp_min>
+			<supply_voltage>24-35, 35-52</supply_voltage>
+			<type>GNSS-Receiver 1</type>
+			<Lebensdauer unit="yr">15.0</Lebensdauer>
+			<Bemerkungen>idealisiert nach Astrium Mosaic GNSS Receiver; Pos. &lt;150m, Geschw. &lt;0,02m/s, Zeit &lt;750ns; geeignet für L1 C/A Code; ggf. Strahlungsschutz notwendig</Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id18">
+			<rad_max unit="krad">20.0</rad_max>
+			<name>GNSS-Receiver 2</name>
+			<loopholes>0.0</loopholes>
+			<temp_max unit="degC">60.0</temp_max>
+			<height unit="mm">164.0</height>
+			<width unit="mm">190.0</width>
+			<length unit="mm">250.0</length>
+			<mass unit="kg">5.2</mass>
+			<power_max unit="W">30.0</power_max>
+			<temp_min unit="degC">-25.0</temp_min>
+			<type>GNSS-Receiver 2</type>
+			<Bemerkungen>idealisiert nach ThalesAlenia LAGRANGETM; Pos. 8m, Geschw. 0,1m/s, Zeit ±250ns; geeignet für L1 und L2</Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id19">
+			<width unit="mm">200.0</width>
+			<length unit="mm">200.0</length>
+			<mass unit="kg">0.75</mass>
+			<name>GPS-Antenne</name>
+			<loopholes>1.0</loopholes>
+			<type>GPS-Antenne</type>
+			<Bemerkungen>idealisiert nach RUAG Extended GPS PEC Antenna; geeignet für L1 und L2, Platzhalter für in LAGRANGE enthaltene Antenne </Bemerkungen>
+			<height unit="mm">80.0</height>
+		</GenericComponent>
+		<GenericComponent VSD:id="id20">
+			<Bemerkungen>idealisiert nach Thales Alenia Space DS-HET, Isp 1500-3000 s, Schub 50-300 mN, max. benötigte Leistung 5000 W; anstelle von DS-HET sind auch HEMP-3050 oder RIT-22 möglich</Bemerkungen>
+			<width unit="mm">240.0</width>
+			<length unit="mm">140.0</length>
+			<mass unit="kg">12.0</mass>
+			<name>Hall Efffekt Triebwerk</name>
+			<loopholes>1.0</loopholes>
+			<type>Hall Efffekt Triebwerk</type>
+			<power_max unit="W">5000.0</power_max>
+			<height unit="mm">240.0</height>
+		</GenericComponent>
+		<GenericComponent VSD:id="id21">
+			<width unit="mm">151.0</width>
+			<length unit="mm">171.0</length>
+			<mass unit="kg">0.2</mass>
+			<name>Hardware-Stack 1</name>
+			<type>Hardware-Stack 1</type>
+			<Bemerkungen>Stack angepasst an Dimensionen von Europaplatinen, Dimensionen an endgültige Platinenform anpassbar, Verwendung mehrerer Stacks möglich</Bemerkungen>
+			<height unit="mm">17.0</height>
+		</GenericComponent>
+		<GenericComponent VSD:id="id22">
+			<rad_max unit="krad">15.0</rad_max>
+			<name>IMU (sehr genau)</name>
+			<loopholes>0.0</loopholes>
+			<temp_max unit="degC">50.0</temp_max>
+			<height unit="mm">280.0</height>
+			<width unit="mm">330.0</width>
+			<length unit="mm">490.0</length>
+			<mass unit="kg">10.0</mass>
+			<power_max unit="W">24.0</power_max>
+			<temp_min unit="degC">-10.0</temp_min>
+			<supply_voltage>22-50</supply_voltage>
+			<type>IMU (sehr genau)</type>
+			<Lebensdauer>Max 15 </Lebensdauer>
+			<Bemerkungen>idealisiert nach Astrium Astrix200; Ausrichtung &lt;0,0005°/h (bias), Stabilität &lt;0,001°/h, Rauschen &lt;0,0001°/√h (noise); Werte gelten für EOL; Strahlungs-schutz notwendig</Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id23">
+			<rad_max unit="krad">100.0</rad_max>
+			<name>IMU (Standard)</name>
+			<loopholes>0.0</loopholes>
+			<temp_max unit="degC">60.0</temp_max>
+			<height unit="mm">160.0</height>
+			<width unit="mm">206.0</width>
+			<length unit="mm">206.0</length>
+			<mass unit="kg">4.2</mass>
+			<power_max unit="W">15.0</power_max>
+			<temp_min unit="degC">-25.0</temp_min>
+			<supply_voltage>22-50/100</supply_voltage>
+			<type>IMU (Standard)</type>
+			<Lebensdauer>Max 15 </Lebensdauer>
+			<Bemerkungen>idealisiert nach Astrium Astrix3M²; Ausrichtung &lt;0,01°/h (bias), Stabilität &lt;0,8°/h, Rauschen &lt;0,005°/√h (noise); Werte gelten für EOL; Strahlungs-schutz notwendig</Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id24">
+			<Bemerkungen>idealisiert nach RTG Aero-Hydraulic Inc. (Ventile, Filter, Druckregler, Wandler und Düsen); Schub-bereich 0,01...1,0N; Heizsystem noch unberücksichtigt</Bemerkungen>
+			<width unit="mm">400.0</width>
+			<length unit="mm">100.0</length>
+			<mass unit="kg">15.0</mass>
+			<name>Kaltgasantriebssyst.</name>
+			<loopholes>5.0</loopholes>
+			<type>Kaltgasantriebssyst.</type>
+			<power_max unit="W">55.0</power_max>
+			<height unit="mm">400.0</height>
+		</GenericComponent>
+		<GenericComponent VSD:id="id25">
+			<width unit="mm">53.0</width>
+			<length unit="mm">250.0</length>
+			<mass unit="kg">1.11</mass>
+			<name>Li-Ion-Batterie</name>
+			<loopholes>0.0</loopholes>
+			<temp_min unit="degC">10.0</temp_min>
+			<temp_max unit="degC">35.0</temp_max>
+			<type>Li-Ion-Batterie</type>
+			<Bemerkungen>idealisiert nach SAFT VES 180; Zusammenschaltung für 100Ah bei 36V → jeweils 10 Batterien in Reihe</Bemerkungen>
+			<height unit="mm">53.0</height>
+		</GenericComponent>
+		<GenericComponent VSD:id="id26">
+			<name>Magnetometer</name>
+			<loopholes>1.0</loopholes>
+			<temp_max unit="degC">85.0</temp_max>
+			<height unit="mm">120.0</height>
+			<width unit="mm">120.0</width>
+			<length unit="mm">350.0</length>
+			<mass unit="kg">2.0</mass>
+			<power_max unit="W">25.0</power_max>
+			<temp_min unit="degC">-55.0</temp_min>
+			<supply_voltage>15-34</supply_voltage>
+			<type>Magnetometer</type>
+			<Bemerkungen>idealisiert nach SpaceQuest Ltd. MAG-3; Magnetometer ist auf einem ausfahrbaren Ausleger montiert (24 W für Ausleger angenommen)</Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id27">
+			<Bemerkungen>idealisiert und Werte abgeleitet nach ZARM-Technik MT80-1 bzw. MT250-2; magnet. Moment ca. 60-80Am² je Spule</Bemerkungen>
+			<width unit="mm">100.0</width>
+			<length unit="mm">350.0</length>
+			<mass unit="kg">4.0</mass>
+			<name>Magnetorquer</name>
+			<loopholes>0.0</loopholes>
+			<supply_voltage unit="V">10.0</supply_voltage>
+			<type>Magnetorquer</type>
+			<power_max unit="W">15.0</power_max>
+			<height unit="mm">100.0</height>
+		</GenericComponent>
+		<GenericComponent VSD:id="id28">
+			<Bemerkungen>idealisiert nach RTG Aero-Hydraulic Inc. (Filter, Wandler), Astrium (Düsen), VACCO (Latch Valve) Schubbereich 1,0-22N; seitliche Düsen um 90° drehbar montierbar, Heizsystem noch unberücksichtigt</Bemerkungen>
+			<width unit="mm">400.0</width>
+			<length unit="mm">100.0</length>
+			<mass unit="kg">15.0</mass>
+			<name>Monopropell.System</name>
+			<loopholes>5.0</loopholes>
+			<type>Monopropell.System</type>
+			<power_max unit="W">100.0</power_max>
+			<height unit="mm">400.0</height>
+		</GenericComponent>
+		<GenericComponent VSD:id="id29">
+			<width unit="mm">350.0</width>
+			<length unit="mm">350.0</length>
+			<mass unit="kg">25.0</mass>
+			<name>PCU</name>
+			<loopholes>0.0</loopholes>
+			<temp_min unit="degC">-15.0</temp_min>
+			<temp_max unit="degC">60.0</temp_max>
+			<type>PCU</type>
+			<Bemerkungen>Daten idealisiert und verkleinert nach Astrium GEO Medium Power PCU; es wurde noch keine Aussage bezüglich zentrale oder dezentrale PCU getroffen </Bemerkungen>
+			<height unit="mm">350.0</height>
+		</GenericComponent>
+		<GenericComponent VSD:id="id30">
+			<Bemerkungen>idealisiert und verkleinert nach Alcatel </Bemerkungen>
+			<width unit="mm">350.0</width>
+			<length unit="mm">190.0</length>
+			<mass unit="kg">18.0</mass>
+			<name>PSCU</name>
+			<loopholes>0.0</loopholes>
+			<type>PSCU</type>
+			<power_max unit="W">5000.0</power_max>
+			<height unit="mm">350.0</height>
+		</GenericComponent>
+		<GenericComponent VSD:id="id31">
+			<rad_max>COTS electronics shielded by 25 mm Al equivalent, equipped with EDAC, LU-protection. Optional: rad-hard electronics </rad_max>
+			<name>Reaktionsrad</name>
+			<loopholes>0.0</loopholes>
+			<temp_max unit="degC">70.0</temp_max>
+			<height unit="mm">150.0</height>
+			<width unit="mm">300.0</width>
+			<length unit="mm">300.0</length>
+			<mass unit="kg">16.5</mass>
+			<power_max unit="W">300.0</power_max>
+			<temp_min unit="degC">-40.0</temp_min>
+			<supply_voltage>23-37</supply_voltage>
+			<power_mean unit="W">10.0</power_mean>
+			<type>Reaktionsrad</type>
+			<Lebensdauer unit="yr">20.0</Lebensdauer>
+			<Bemerkungen>idealisiert nach Rockwell Collins Deutschland (TELDIX) MWI; max. Drehimpuls 100Nms; max. RFS-Masse 5000kg; auch als Drallrad nutzbar</Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id32">
+			<rad_max unit="krad">60.0</rad_max>
+			<name>Receiver</name>
+			<loopholes>0.0</loopholes>
+			<temp_max unit="degC">75.0</temp_max>
+			<height unit="mm">95.0</height>
+			<width unit="mm">165.0</width>
+			<length unit="mm">170.0</length>
+			<mass unit="kg">1.9</mass>
+			<power_max unit="W">4.0</power_max>
+			<temp_min unit="degC">-40.0</temp_min>
+			<supply_voltage unit="V">28.0</supply_voltage>
+			<type>Receiver</type>
+			<Bemerkungen>idealisiert nach L-3 Communications CR-313 Receiver; uplink max. 128kbps, RF input power max. +3dBm, noise max. 4dB; Strahlungs-schutz notwendig</Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id33">
+			<Bemerkungen>idealisiert nach MOOG Type 55 Solar Array Drive Assembly </Bemerkungen>
+			<width unit="mm">370.0</width>
+			<length unit="mm">420.0</length>
+			<mass unit="kg">8.6</mass>
+			<name>SADA</name>
+			<loopholes>1.0</loopholes>
+			<supply_voltage unit="V">65.0</supply_voltage>
+			<type>SADA</type>
+			<power_max unit="W">200.0</power_max>
+			<height unit="mm">155.0</height>
+		</GenericComponent>
+		<GenericComponent VSD:id="id1">
+			<Kosten>1000.0</Kosten>
+			<power_max unit="W">20.0</power_max>
+			<mass unit="kg">1.0</mass>
+			<name>Schnittstelle</name>
+			<temp_min unit="degC">-50.0</temp_min>
+			<temp_max unit="degC">100.0</temp_max>
+			<type>Schnittstelle</type>
+			<power_mean unit="W">0.5</power_mean>
+		</GenericComponent>
+		<GenericComponent VSD:id="id34">
+			<name>SMU</name>
+			<loopholes>0.0</loopholes>
+			<temp_max unit="degC">60.0</temp_max>
+			<height unit="mm">260.0</height>
+			<width unit="mm">280.0</width>
+			<length unit="mm">290.0</length>
+			<mass unit="kg">9.5</mass>
+			<power_max unit="W">25.0</power_max>
+			<temp_min unit="degC">-25.0</temp_min>
+			<type>SMU</type>
+			<Bemerkungen>Daten idealisiert nach ThalesAlenia SMU-V1; es wurde noch keine Aussage bezüglich zentrale oder dezentrale OBC/SMU getroffen </Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id35">
+			<rad_max unit="krad">100000.0</rad_max>
+			<name>Sonnensensor 1</name>
+			<loopholes>1.0</loopholes>
+			<temp_max unit="degC">85.0</temp_max>
+			<height unit="mm">14.0</height>
+			<width unit="mm">45.0</width>
+			<length unit="mm">46.0</length>
+			<mass unit="kg">0.05</mass>
+			<temp_min unit="degC">-50.0</temp_min>
+			<type>Sonnensensor 1</type>
+			<Bemerkungen>idealisiert nach Miniaturised Analog Fine Sun Sensor (ISIS), Accuracy 0,3°, Blickfeld 128° x 128°</Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id36">
+			<name>Sonnensensor 2</name>
+			<loopholes>1.0</loopholes>
+			<temp_max unit="degC">90.0</temp_max>
+			<height unit="mm">49.0</height>
+			<width unit="mm">106.0</width>
+			<length unit="mm">108.0</length>
+			<mass unit="kg">0.4</mass>
+			<power_max unit="W">0.2</power_max>
+			<temp_min unit="degC">-80.0</temp_min>
+			<type>Sonnensensor 2</type>
+			<Bemerkungen>idealisiert nach Bradford Fine &amp; Coarse Sun Sensor CSS Accuracy &lt;1° (bias error &lt;0,15°)</Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id37">
+			<name>SSPA</name>
+			<loopholes>0.0</loopholes>
+			<temp_max unit="degC">75.0</temp_max>
+			<height unit="mm">47.0</height>
+			<width unit="mm">107.0</width>
+			<length unit="mm">217.0</length>
+			<mass unit="kg">0.75</mass>
+			<power_max unit="W">15.0</power_max>
+			<temp_min unit="degC">-20.0</temp_min>
+			<type>SSPA</type>
+			<Bemerkungen>idealisiert nach Astrium L/S Band SSPA; nominal RF output power 15W; Strahlungsschutz notwendig</Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id38">
+			<rad_max>Für 25 Jahre GEO Environment ausgelegt</rad_max>
+			<name>Sternsensor</name>
+			<loopholes>2.0</loopholes>
+			<temp_max unit="degC">60.0</temp_max>
+			<height unit="mm">375.0</height>
+			<width unit="mm">150.0</width>
+			<length unit="mm">150.0</length>
+			<mass unit="kg">2.0</mass>
+			<power_max unit="W">10.0</power_max>
+			<temp_min unit="degC">-30.0</temp_min>
+			<supply_voltage>5, 28 -100</supply_voltage>
+			<type>Sternsensor</type>
+			<Lebensdauer>&gt; 18 </Lebensdauer>
+			<Bemerkungen>idealisiert nach Jena-Optronik AstroAPS; random error &lt;1arcsec (pitch/yaw) &lt;8arcsec (roll); </Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id4">
+			<type>Strahlungsschutz</type>
+			<mass unit="kg">0.0</mass>
+			<name>Strahlungsschutz</name>
+		</GenericComponent>
+		<GenericComponent VSD:id="id39">
+			<width unit="mm">350.0</width>
+			<length unit="mm">700.0</length>
+			<mass unit="kg">44.0</mass>
+			<name>Tank 1</name>
+			<loopholes>1.0</loopholes>
+			<type>Tank 1</type>
+			<Bemerkungen>Tank idealisiert nach VEGA AVUM Gas Tank (ATK-Space Systems Inc.), Arbeitsdruck 310 bar, Blow Down System, Leertankmasse ca. 22 kg, Gasmasse ca. 22 kg, Tank ist in der Länge variabel</Bemerkungen>
+			<height unit="mm">350.0</height>
+		</GenericComponent>
+		<GenericComponent VSD:id="id40">
+			<width unit="mm">350.0</width>
+			<length unit="mm">691.0</length>
+			<mass unit="kg">52.0</mass>
+			<name>Tank 2</name>
+			<loopholes>2.0</loopholes>
+			<type>Tank 2</type>
+			<Bemerkungen>Tank idealisiert nach VEGA AVUM Gas Tank (ATK-Space Systems Inc.), Blow Down System, Leertankmasse ca. 22 kg, Treibstoffmasse ca. 30 kg (MMH, Anfangsdruck 25 bar), Tank ist in der Länge variabel</Bemerkungen>
+			<height unit="mm">350.0</height>
+		</GenericComponent>
+		<GenericComponent VSD:id="id42">
+			<type>Tank 3 (Hydrazin)</type>
+			<mass unit="kg">50.0</mass>
+			<name>Tank 3 (Hydrazin)</name>
+			<m0>350.0</m0>
+		</GenericComponent>
+		<GenericComponent VSD:id="id41">
+			<type>Tank 3 (Xenon)</type>
+			<mass unit="kg">50.0</mass>
+			<name>Tank 3 (Xenon)</name>
+			<m0>550.0</m0>
+		</GenericComponent>
+		<GenericComponent VSD:id="id48">
+			<type>testdrallrad</type>
+			<mass unit="kg">0.0</mass>
+			<name>testdrallrad</name>
+			<Bemerkungen>Testdüse zum testen von Algorithmen und programmen</Bemerkungen>
+			<Drehmoment unit="m*N">10.0</Drehmoment>
+		</GenericComponent>
+		<GenericComponent VSD:id="id47">
+			<spez_impuls unit="s">220.0</spez_impuls>
+			<Schub unit="N">1.0</Schub>
+			<mass unit="kg">0.0</mass>
+			<name>testdüse</name>
+			<type>testdüse</type>
+			<Impulsbit unit="s*N">0.01</Impulsbit>
+			<Bemerkungen>Testdüse zum testen von Algorithmen und programmen</Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id3">
+			<type>thermale Isolierung</type>
+			<mass unit="kg">0.0</mass>
+			<name>thermale Isolierung</name>
+		</GenericComponent>
+		<GenericComponent VSD:id="id43">
+			<rad_max unit="krad">20.0</rad_max>
+			<name>Transceiver</name>
+			<loopholes>0.0</loopholes>
+			<temp_max unit="degC">65.0</temp_max>
+			<height unit="mm">87.0</height>
+			<width unit="mm">160.0</width>
+			<length unit="mm">204.0</length>
+			<mass unit="kg">2.5</mass>
+			<power_max unit="W">36.0</power_max>
+			<temp_min unit="degC">-20.0</temp_min>
+			<type>Transceiver</type>
+			<Bemerkungen>idealisiert nach General Dynamics Multi-Mode S-Band Transceiver; uplink max. 512kbps, noise figure &lt;2,5dB; down-link max. 6Mbps; Strahlungsschutz notwendig</Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id44">
+			<Bemerkungen>idealisiert nach L-3 Communications T-710() Transmitter; downlink 1,6Mbps, RF output power &gt;3W; Strahlungs-schutz notwendig</Bemerkungen>
+			<width unit="mm">170.0</width>
+			<length unit="mm">180.0</length>
+			<mass unit="kg">2.1</mass>
+			<name>Transmitter</name>
+			<loopholes>0.0</loopholes>
+			<supply_voltage>22-38</supply_voltage>
+			<type>Transmitter</type>
+			<power_max unit="W">30.0</power_max>
+			<height unit="mm">70.0</height>
+		</GenericComponent>
+		<GenericComponent VSD:id="id45">
+			<name>Transponder</name>
+			<loopholes>0.0</loopholes>
+			<temp_max unit="degC">60.0</temp_max>
+			<height unit="mm">140.0</height>
+			<width unit="mm">170.0</width>
+			<length unit="mm">230.0</length>
+			<mass unit="kg">4.2</mass>
+			<power_max unit="W">51.0</power_max>
+			<temp_min unit="degC">-20.0</temp_min>
+			<supply_voltage>21-35</supply_voltage>
+			<type>Transponder</type>
+			<Bemerkungen>idealisiert nach General Dynamics Advanced Multi-Mode Transponder (AMT-R) für Lunar Reconnais-sance Orbiter;; uplink max. 1Mbps, noise figure &lt;2,5dB; down-link max. 6Mbps; evtl. zusätzl. Strah-lungsschutz notwendig</Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id5">
+			<type>Versorgungsleitungen</type>
+			<mass unit="kg">0.04</mass>
+			<name>Versorgungsleitungen</name>
+			<Bemerkungen>4 mm², pro Kontaktelement wird in der Vorauslegung ein Bedarf von 0,7 m Kabel angenommen (Vergleichskabelmasse: 0,05kg/m)</Bemerkungen>
+		</GenericComponent>
+		<GenericComponent VSD:id="id46">
+			<Bemerkungen>Solarzellen: GaAS-Multijunction (240W/m², 80W/kg, EOL); Länge ent-spricht i.M. einem </Bemerkungen>
+			<width unit="mm">1200.0</width>
+			<length unit="mm">1200.0</length>
+			<mass unit="kg">3.5</mass>
+			<name>zentrale Solarfläche</name>
+			<loopholes>1.0</loopholes>
+			<type>zentrale Solarfläche</type>
+			<power_max unit="W">350.0</power_max>
+			<height unit="mm">30.0</height>
+		</GenericComponent>
+	</componentDefs>
+	<buildingBlockDefs>
+		<BuildingBlockDef VSD:id="id65">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>Batteriebaustein</VSD:name>
+			<mass unit="kg">33.37</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>20</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id25"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>20</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id25"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id7"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id7"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id73">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>Control Momentum Gyroscope Baustein</VSD:name>
+			<mass unit="kg">53.05</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id8"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id8"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>80</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>80</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>10</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>10</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id9"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id9"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id70">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>Drallradbaustein</VSD:name>
+			<mass unit="kg">27.67</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id10"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id10"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id57">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>elektrischer Antriebs-Baustein</VSD:name>
+			<mass unit="kg">105.36</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id20"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id20"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>104</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>104</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>13</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>13</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id39"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id39"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id30"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id30"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id74">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>Erdsensor-Baustein</VSD:name>
+			<mass unit="kg">13.35</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id15"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id15"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id59">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>GPS-Baustein (GPS und GLONASS)</VSD:name>
+			<mass unit="kg">9.85</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id54">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>GPS-Baustein (Standard)</VSD:name>
+			<mass unit="kg">14.5</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id17"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id17"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id19"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id19"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id64">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>Inertial Measurement Unit Baustein (sehr genau)</VSD:name>
+			<mass unit="kg">28.95</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>80</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>80</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>10</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>10</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id22"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id22"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id60">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>Inertial Measurement Unit Baustein (Standard)</VSD:name>
+			<mass unit="kg">15.37</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id23"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id23"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id71">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>Kaltgasantriebs-Baustein 1</VSD:name>
+			<mass unit="kg">76.58</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>72</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>72</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id24"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id24"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>9</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>9</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id39"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id39"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id72">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>Kaltgasantriebs-Baustein 2</VSD:name>
+			<mass unit="kg">77.28</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id36"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id36"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>72</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>72</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id24"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id24"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>9</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>9</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id39"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id39"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id51">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>Kernstruktur2x2x2</VSD:name>
+			<mass unit="kg">80.0</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id42"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id42"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>12</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>12</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id52">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>Kernstruktur2x2x3</VSD:name>
+			<mass unit="kg">80.0</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id42"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id42"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>12</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>12</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id58">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>Magnetorquer-Baustein</VSD:name>
+			<mass unit="kg">23.85</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id26"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id26"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id27"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id27"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id69">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)</VSD:name>
+			<mass unit="kg">84.58</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>72</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>72</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id40"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id40"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>9</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>9</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id28"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id28"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id49">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>OBC/SMU-Baustein</VSD:name>
+			<mass unit="kg">20.67</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id34"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id34"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id68">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>PCU-Baustein</VSD:name>
+			<mass unit="kg">36.17</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id29"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id29"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id62">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>Reaktionsradbaustein</VSD:name>
+			<mass unit="kg">27.67</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id31"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id31"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id63">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>Solargeneratorbaustein (entfaltbar)</VSD:name>
+			<mass unit="kg">5.82</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id36"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id36"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id46"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id46"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>8</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>8</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id66">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>Solargeneratorbaustein (entfaltbar, nachführbar)</VSD:name>
+			<mass unit="kg">61.72</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id33"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id33"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id13"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id13"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id11"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id11"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id55">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>Sternsensorbaustein</VSD:name>
+			<mass unit="kg">9.21</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id38"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id38"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>24</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>24</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id56">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>test Lageregelungsbaustein</VSD:name>
+			<mass unit="kg">4.1</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<position unit="m">0.5 0.0 1.0</position>
+					<th_vec unit="m">0.0 1.0 -1.0</th_vec>
+					<definition xlink:href="../Catalogs/catalog.xml#id47"/>
+				</GenericComponent>
+				<GenericComponent>
+					<position unit="m">0.5 0.0 1.0</position>
+					<th_vec unit="m">0.0 1.0 -1.0</th_vec>
+					<definition xlink:href="../Catalogs/catalog.xml#id47"/>
+				</GenericComponent>
+				<GenericComponent>
+					<position unit="m">1.0 0.5 1.0</position>
+					<th_vec unit="m">-1.0 0.0 -1.0</th_vec>
+					<definition xlink:href="../Catalogs/catalog.xml#id47"/>
+				</GenericComponent>
+				<GenericComponent>
+					<position unit="m">1.0 0.5 1.0</position>
+					<th_vec unit="m">-1.0 0.0 -1.0</th_vec>
+					<definition xlink:href="../Catalogs/catalog.xml#id47"/>
+				</GenericComponent>
+				<GenericComponent>
+					<position unit="m">0.5 1.0 1.0</position>
+					<th_vec unit="m">0.0 -1.0 -1.0</th_vec>
+					<definition xlink:href="../Catalogs/catalog.xml#id47"/>
+				</GenericComponent>
+				<GenericComponent>
+					<position unit="m">0.5 1.0 1.0</position>
+					<th_vec unit="m">0.0 -1.0 -1.0</th_vec>
+					<definition xlink:href="../Catalogs/catalog.xml#id47"/>
+				</GenericComponent>
+				<GenericComponent>
+					<position unit="m">0.0 0.5 1.0</position>
+					<th_vec unit="m">1.0 0.0 -1.0</th_vec>
+					<definition xlink:href="../Catalogs/catalog.xml#id47"/>
+				</GenericComponent>
+				<GenericComponent>
+					<position unit="m">0.0 0.5 1.0</position>
+					<th_vec unit="m">1.0 0.0 -1.0</th_vec>
+					<definition xlink:href="../Catalogs/catalog.xml#id47"/>
+				</GenericComponent>
+				<GenericComponent>
+					<position unit="m">0.5 0.5 1.0</position>
+					<th_vec unit="m">0.0 0.0 -1.0</th_vec>
+					<definition xlink:href="../Catalogs/catalog.xml#id47"/>
+				</GenericComponent>
+				<GenericComponent>
+					<position unit="m">0.5 0.5 1.0</position>
+					<th_vec unit="m">0.0 0.0 -1.0</th_vec>
+					<definition xlink:href="../Catalogs/catalog.xml#id47"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id67">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)</VSD:name>
+			<mass unit="kg">13.18</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id6"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id6"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id43"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id43"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id37"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id37"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id53">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>TM&amp;TC-Baustein (S-Band; Transmitter+Receiver+SSPA)</VSD:name>
+			<mass unit="kg">14.76</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id6"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id6"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id37"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id37"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id32"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id32"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id44"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id44"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id61">
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg*m**2">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<VSD:name>TM&amp;TC-Baustein (S-Band; Transponder+SSPA)</VSD:name>
+			<mass unit="kg">14.96</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+			<size unit="m">0.41 0.41 0.41</size>
+			<components>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id6"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id6"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id45"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id45"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id37"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id37"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+				</GenericComponent>
+			</components>
+		</BuildingBlockDef>
+	</buildingBlockDefs>
+</Catalog>

@@ -56,7 +56,7 @@ def converttable():
         try: val=(float(k[i+1]))*unit
         except ValueError: 
           val=k[i+1]
-        if val!= utils.odspy.EMPTY: vars(newcomponent).update({bez:val}) #put new class attributes into class according to the table
+        if val!= utils.odspy.EMPTY: vars(newcomponent).update({bez.replace(" ","_"):val}) #put new class attributes into class according to the table
         
     komponenten[newcomponent.name]=newcomponent
 
@@ -71,8 +71,8 @@ def converttable():
     #Erstellen einer neuen Komponente
     if utils.odspy.EMPTY not in line[3]:
       try:
-        #newcomponent=copy.copy(komponenten[line[3]])
-        newcomponent=komponenten[line[3]]
+        newcomponent=copy.copy(komponenten[line[3]])
+        #newcomponent=komponenten[line[3]]
       except KeyError:
         print("Komponente: "+line[3]+" existiert nicht!")
         return
@@ -103,8 +103,8 @@ def converttable():
     
     if line[1] in bausteine.keys():
       try:
-        #newbb=copy.copy(bausteine[line[1]])
-        newbb=bausteine[line[1]]
+        newbb=copy.copy(bausteine[line[1]])
+        #newbb=bausteine[line[1]]
 
         pos=line[2].split(";")[0]
         if pos==utils.odspy.EMPTY or pos=="/" or pos=="nicht vorhanden":
