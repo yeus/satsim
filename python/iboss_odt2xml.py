@@ -22,6 +22,7 @@ import utils
 from utils.odspy import ods2table
 import numpy as np
 import iboss_catalogue
+from iboss_catalogue import *
 from iboss_catalogue import pq, u
 from iboss_catalogue import str2vec
 import copy
@@ -53,11 +54,13 @@ def converttable():
         else: unit=1
         
         try: val=(float(k[i+1]))*unit
-        except ValueError: val=k[i+1]
-        vars(newcomponent).update({bez:val}) #put new class attributes into class according to the table
+        except ValueError: 
+          val=k[i+1]
+        if val!= utils.odspy.EMPTY: vars(newcomponent).update({bez:val}) #put new class attributes into class according to the table
         
     komponenten[newcomponent.name]=newcomponent
 
+  print("read bausteine liste")
   #Organisierung der Bausteineigenschaften
   for line in bausteinetable[2:]:
     if line[0] not in bausteine: #hinzufügen neuer Bausteine
@@ -67,10 +70,16 @@ def converttable():
     
     #Erstellen einer neuen Komponente
     if utils.odspy.EMPTY not in line[3]:
-      newcomponent=copy.copy(komponenten[line[3]])
-      if line[5]!=utils.odspy.EMPTY: newcomponent.pos=str2vec(line[5])
-      if line[7]!=utils.odspy.EMPTY: newcomponent.th_vec=str2vec(line[7])
-      if line[6]!=utils.odspy.EMPTY: newcomponent.rot=str2vec(line[6])
+      try:
+        #newcomponent=copy.copy(komponenten[line[3]])
+        newcomponent=komponenten[line[3]]
+      except KeyError:
+        print("Komponente: "+line[3]+" existiert nicht!")
+        return
+        
+      if line[5]!=utils.odspy.EMPTY: newcomponent.pos=str2vec(line[5])*pq.m
+      if line[7]!=utils.odspy.EMPTY: newcomponent.th_vec=str2vec(line[7])*pq.m
+      if line[6]!=utils.odspy.EMPTY: newcomponent.rot=str2vec(line[6])*pq.deg
       #bausteine[line[0]]["Komponenten"].append(newcomponent)
       if utils.odspy.EMPTY!=line[4]: newcomponent.num=int(line[4]) 
       bs.add_co(newcomponent) 
@@ -94,7 +103,8 @@ def converttable():
     
     if line[1] in bausteine.keys():
       try:
-        newbb=copy.copy(bausteine[line[1]])
+        #newbb=copy.copy(bausteine[line[1]])
+        newbb=bausteine[line[1]]
 
         pos=line[2].split(";")[0]
         if pos==utils.odspy.EMPTY or pos=="/" or pos=="nicht vorhanden":
@@ -110,6 +120,9 @@ def converttable():
   
   print("odt loading finished!\n\n")
   return komponenten, bausteine, referenzmissionen
+
+def getdata():
+  return converttable()
 
 def save_catalogue():
     data=converttable() #todo: this is the odl table !!!

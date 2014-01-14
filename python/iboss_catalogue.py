@@ -45,7 +45,16 @@ else:
     def u(x):
         return codecs.unicode_escape_decode(x)[0]
 
-        
+#TODO: Die Speicherung als "pickle", oder json Objekt räumt die Möglichkeit ein, zwei separate Datenbasen zu erhalten.
+#              -> die XML Datenbasis ist dabei eine "Untermenge" der json Datenbasis
+#TODO: Kommentare in XML einbauen.
+#TODO: Möglichkeit des Speicherns in json Dateien, oder pickle-Objects. -> z.B. zur Umwandlung von einem XML Format in ein anderes
+#TODO: die letzte Version des odt-Katalogs in json Format abspeichern, damit man es immer direkt aufrufen kann, und keine Daten verloren gehen.
+#  -> vorher noch die Daten von Cem mit einarbeiten
+#TODO: bestimmte Werte, die momentan noch für die XML umgewandelt werden (z.B. bausteinposition usw..) "nativ" in die korrekte Position umwandeln
+# --> Vorgehen: XML deserialisieren (in unser Katalogformat), --> XML wieder speichern, so lange, bis kein unterschied mehr zwischen beiden XML versionen mehr bemerkbar ist
+#TODO: zwei separate Datenbanken lassen sich leicht unterhalten, wenn man für die Zahlwerte innerhalb der Datenbank dict.update() verwendet (einfach innerhalb ibossxml für alle Klassenvariablen und Methoden implementieren)
+
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector
 
 helpstring="""
@@ -61,8 +70,13 @@ def mat2str(mat):
   return "\n\t\t\t\t\t".join(["{:.8} {:.8} {:.8}".format(*vec) for vec in mat])
 
 #convert string to vector (python list)
-def str2vec(stringvec): 
-    return vec(*[float(i) for i in stringvec.split(",")])
+def str2vec(stringvec):
+  try:  
+    val = vec(*[float(i) for i in stringvec.split(",")])
+    return val 
+  except ValueError:
+    traceback.print_exc()
+    print("could not convert {} to float".format(stringvec))
   
 def str2vecint(stringvec): return vec(*[int(i) for i in stringvec.split(",")])
 
@@ -82,9 +96,12 @@ class ibossxml(object):
   
   def __init__(self):
     self.xmltype=self.__class__.__name__
-    
-    ibossxml.idcounter += 1
-    self.id = "id"+str(ibossxml.idcounter)
+    self.id = ibossxml.getid()
+
+  @staticmethod
+  def getid():
+    ibossxml.idcounter+=1
+    return "id"+str(ibossxml.idcounter)
 
   @property
   def xmlmapping(self):
@@ -179,6 +196,12 @@ class component(ibossxml):
     self.type=cotype
     self.name=cotype#
     self.mass=0
+    
+    self.xmltype="GenericComponent"
+    
+  #@property
+  #def xmlmapping(self): #maps values to xml class
+  #  return vars(self)
   
   #def addxmlprop(self,xmlprop):
   #  super(FileInfo, self).addxmlprop(self,xmlprop)
@@ -221,17 +244,20 @@ class buildingblock(ibossxml):
     root=et.Element("components")
     for co in self.components:
       newelem=et.Element("GenericComponent")
-      newelem.set("VSD:id","id"+"TODO welche iD??")#"".join([str(int(i)) for i in bb.pos]))
       if hasattr(co,"pos"): newelem.append(self.property2xml("position",co.pos))
       if hasattr(co,"rot"): newelem.append(self.property2xml("orientation",co.rot)) # TODO. rotation to "oriantation"
       if hasattr(co,"th_vec"): newelem.append(self.property2xml("th_vec",co.th_vec))#.set("th_vec", vec2str(co.th_vec))
       if hasattr(co,"num"): 
-        if co.num!=1: newelem.set("num", unicode(co.num)) #if it is just one component number does not matter
+        if co.num!=1: newelem.append(self.property2xml("num", co.num)) #if it is just one component number does not matter
       root.append(newelem)
+      newelem2=et.Element("definition")
+      newelem2.set("xlink:href","../Catalogs/catalog.xml#"+str(co.id))
+      newelem.append(newelem2)
     return root #so the list gets serialized in xml"""
     
   def add_co(self,co): #todo variable length argument list
     self.components.append(copy(co))
+    self.components.append(co)
     if "num" not in vars(co): co.num=1
     if "mass" in vars(co): self.mass+=co.mass*co.num
   
@@ -271,13 +297,13 @@ class Satellite(ibossxml):
     root=et.Element("buildingBlocks")
     for bb in self.bb:
       newelem=et.Element("BuildingBlock")
-      newelem.set("VSD:id","id"+"TODO welche iD??")#"".join([str(int(i)) for i in bb.pos]))
+      newelem.set("VSD:id",ibossxml.getid())#"".join([str(int(i)) for i in bb.pos]))
       #newelem.set("type",bb.type)
       newelem.append(self.property2xml("VSD:name",bb.name))
       newelem.append(self.property2xml("position",bb.pos*(self.bbsize+self.bbgap)))
       newelem.append(self.property2xml("orientation",bb.orientation))
       newelem2=et.Element("definition")
-      newelem2.set("xlink:href","TODO id required??")#"../Catalogs/bbcatalog.xml#idXXXTODO")
+      newelem2.set("xlink:href","../Catalogs/catalog.xml#"+str(bb.id))
       newelem.append(newelem2)
       root.append(newelem)
     return root #so the list gets serialized in xml
@@ -285,6 +311,7 @@ class Satellite(ibossxml):
   #adds a new building block to the satellite
   def add_bb(self,bb,pos,orientation):  #todo variable length argument list
     newbs=copy(bb)
+    newbs=bb
     newbs.pos=pos
     newbs.orientation=orientation
     newbs.name=newbs.type
@@ -317,7 +344,7 @@ class Satellite(ibossxml):
 #converts a list of "ibossxml" objects to xml
 def ibosslist2xml(name,instancelist):
   root=et.Element(name)
-  for i in sorted(instancelist,key=lambda instance: instance.type.lower()): #alphabetically sorted list #operator.attrgetter('type').lower()): 
+  for i in sorted(instancelist,key=lambda instance: instance.name.lower()): #alphabetically sorted list #operator.attrgetter('type').lower()): 
     root.append(i.xml)
   return root
  
@@ -341,7 +368,7 @@ def savexml(filename,xml):
 
 def saveibosslists(komponenten, bausteine, referenzmissionen):
   katalog=et.Element("Catalog",version=Version)
-  #katalog.append(ibosslist2xml("componentDefs",komponenten.values()))
+  katalog.append(ibosslist2xml("componentDefs",komponenten.values()))
   katalog.append(et.Element("componentDefs"))
   katalog.append(ibosslist2xml("buildingBlockDefs",bausteine.values()))
   
@@ -352,6 +379,27 @@ def saveibosslists(komponenten, bausteine, referenzmissionen):
   for vkeys,vvalues in referenzmissionen.items():
     #missionen=ibosslist2xml("Satellites",referenzmissionen.values())
     savexml("bausteinkatalog/"+vkeys,vvalues.xml)
+
+def savedata(data, filename = "./bausteinkatalog/katalogdata.iboss"):
+  import pickle
+  datafile = open(filename,"w")
+  pickle.dump(data, datafile)  
+  datafile.close()
+
+#Probleme mit der Objektserialisierung
+#die Referenzen zwischen den Objekten müssen geklärt werden.
+#warscheinlich müssen die drei listen hierarchisch geladen werden. also erst co, dann bb, dann sats
+#unter zurhilfenahme des pickle Objekts
+#http://stackoverflow.com/questions/6376081/pickle-linked-objects
+##### !!!!! warschinlich ist das durch das copy.copy-Konstrukt verursacht worden!!!
+def loaddata(filename="./bausteinkatalog/katalogdata.iboss"):
+  import pickle
+  datafile = open(filename,"r")
+  data = pickle.load(datafile)
+  datafile.close()
+  return data
+  
+  
   
 def main():
   pass
