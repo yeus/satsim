@@ -389,7 +389,7 @@ def saveibosslists(komponenten, bausteine, referenzmissionen):
 
 def savedata(data, filename = "./bausteinkatalog/katalogdata.iboss"):
   import pickle
-  datafile = open(filename,"w")
+  datafile = open(filename,"wb",2)
   pickle.dump(data, datafile)  
   datafile.close()
 
@@ -401,7 +401,7 @@ def savedata(data, filename = "./bausteinkatalog/katalogdata.iboss"):
 ##### !!!!! warschinlich ist das durch das copy.copy-Konstrukt verursacht worden!!!
 def loaddata(filename="./bausteinkatalog/katalogdata.iboss"):
   import pickle
-  datafile = open(filename,"r")
+  datafile = open(filename,"rb")
   data = pickle.load(datafile)
   datafile.close()
   return data
@@ -409,6 +409,7 @@ def loaddata(filename="./bausteinkatalog/katalogdata.iboss"):
   
   
 def main():
+  loaddata()
   pass
   
 if __name__ == "__main__":
