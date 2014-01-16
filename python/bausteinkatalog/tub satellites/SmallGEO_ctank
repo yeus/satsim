@@ -1,0 +1,120 @@
+<?xml version="1.0" ?>
+<Satellite VSD:id="id199" xmlns="http://www.VEROSIM.de/namespaces/IBOSS" xmlns:VSD="http://www.VEROSIM.de/namespaces/VSD" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.VEROSIM.de/namespaces/IBOSS ../XSD/iboss.xsd">
+	<!--
+        * Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)
+        * Date : 2014/01/16
+        * Version: 1.3
+        * All code (c)2013 Technische UniversitÃ¤t Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved-->
+	<VSD:name>SmallGEO_ctank</VSD:name>
+	<orbit>LEO</orbit>
+	<buildingBlocks>
+		<BuildingBlock VSD:id="id203">
+			<VSD:name>GPS-Baustein (Standard)</VSD:name>
+			<position unit="m">0.0 0.0 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id176"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id204">
+			<VSD:name>GPS-Baustein (Standard)</VSD:name>
+			<position unit="m">0.0 0.0 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id176"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id205">
+			<VSD:name>Sternsensorbaustein</VSD:name>
+			<position unit="m">0.0 0.0 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id177"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id206">
+			<VSD:name>Sternsensorbaustein</VSD:name>
+			<position unit="m">0.0 0.0 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id177"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id207">
+			<VSD:name>Inertial Measurement Unit Baustein (sehr genau)</VSD:name>
+			<position unit="m">0.0 0.0 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id186"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id208">
+			<VSD:name>Reaktionsradbaustein</VSD:name>
+			<position unit="m">0.0 0.0 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id184"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id209">
+			<VSD:name>Reaktionsradbaustein</VSD:name>
+			<position unit="m">0.0 0.0 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id184"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id210">
+			<VSD:name>Reaktionsradbaustein</VSD:name>
+			<position unit="m">0.0 0.0 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id184"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id211">
+			<VSD:name>TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)</VSD:name>
+			<position unit="m">0.0 0.0 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id189"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id212">
+			<VSD:name>TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)</VSD:name>
+			<position unit="m">0.0 0.0 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id189"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id213">
+			<VSD:name>Solargeneratorbaustein (entfaltbar, nachführbar)</VSD:name>
+			<position unit="m">0.0 0.0 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id188"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id214">
+			<VSD:name>Solargeneratorbaustein (entfaltbar, nachführbar)</VSD:name>
+			<position unit="m">0.0 0.0 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id188"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id215">
+			<VSD:name>Batteriebaustein</VSD:name>
+			<position unit="m">0.0 0.0 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id187"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id216">
+			<VSD:name>elektrischer Antriebs-Baustein</VSD:name>
+			<position unit="m">0.0 0.0 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id179"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id217">
+			<VSD:name>elektrischer Antriebs-Baustein</VSD:name>
+			<position unit="m">0.0 0.0 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id179"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id218">
+			<VSD:name>elektrischer Antriebs-Baustein</VSD:name>
+			<position unit="m">0.0 0.0 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id179"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id219">
+			<VSD:name>elektrischer Antriebs-Baustein</VSD:name>
+			<position unit="m">0.0 0.0 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id179"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id220">
+			<VSD:name>Kernstruktur2x2x2</VSD:name>
+			<position unit="m">0.0 0.0 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id173"/>
+		</BuildingBlock>
+	</buildingBlocks>
+</Satellite>
