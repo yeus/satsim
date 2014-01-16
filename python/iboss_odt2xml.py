@@ -74,7 +74,7 @@ def converttable():
         newcomponent=copy.copy(komponenten[line[3]])
         #newcomponent=komponenten[line[3]]
       except KeyError:
-        print("Komponente: "+line[3]+" existiert nicht!")
+        print("Komponente: "+line[3]+" existiert nicht!\n"+str(line))
         return
         
       if line[5]!=utils.odspy.EMPTY: newcomponent.pos=str2vec(line[5])*pq.m
