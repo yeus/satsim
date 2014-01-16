@@ -2,7 +2,7 @@
 <Catalog version="1.3" xmlns="http://www.VEROSIM.de/namespaces/IBOSS" xmlns:VSD="http://www.VEROSIM.de/namespaces/VSD" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.VEROSIM.de/namespaces/IBOSS ../XSD/iboss.xsd">
 	<!--
         * Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)
-        * Date : 2014/01/15
+        * Date : 2014/01/16
         * Version: 1.3
         * All code (c)2013 Technische UniversitÃ¤t Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved-->
 	<componentDefs>
@@ -565,7 +565,7 @@
 			<mass unit="kg">3.9</mass>
 			<power_max unit="W">10.0</power_max>
 			<temp_min unit="degC">-20.0</temp_min>
-			<type>GNSS-Receiver 1</type>
+			<type>ACS (Sens.)</type>
 			<Lebensdauer unit="yr">15.0</Lebensdauer>
 			<Bemerkungen>idealisiert nach Astrium Mosaic GNSS Receiver; Pos. &lt;150m, Geschw. &lt;0,02m/s, Zeit &lt;750ns; geeignet für L1 C/A Code; ggf. Strahlungsschutz notwendig</Bemerkungen>
 			<supply_voltage_min unit="V">24.0</supply_voltage_min>
@@ -581,7 +581,7 @@
 			<mass unit="kg">5.2</mass>
 			<power_max unit="W">30.0</power_max>
 			<temp_min unit="degC">-25.0</temp_min>
-			<type>GNSS-Receiver 2</type>
+			<type>ACS (Sens.)</type>
 			<Bemerkungen>idealisiert nach ThalesAlenia LAGRANGETM; Pos. 8m, Geschw. 0,1m/s, Zeit ±250ns; geeignet für L1 und L2</Bemerkungen>
 		</GenericComponent>
 		<GenericComponent VSD:id="id141">
@@ -627,7 +627,7 @@
 			<mass unit="kg">0.75</mass>
 			<name>GPS-Antenne</name>
 			<loopholes>1.0</loopholes>
-			<type>GPS-Antenne</type>
+			<type>ACS (Sens.)</type>
 			<Bemerkungen>idealisiert nach RUAG Extended GPS PEC Antenna; geeignet für L1 und L2, Platzhalter für in LAGRANGE enthaltene Antenne </Bemerkungen>
 			<height unit="mm">80.0</height>
 		</GenericComponent>
@@ -647,7 +647,7 @@
 			<length unit="mm">171.0</length>
 			<mass unit="kg">0.2</mass>
 			<name>Hardware-Stack 1</name>
-			<type>Hardware-Stack 1</type>
+			<type>TM &amp; TC</type>
 			<Bemerkungen>Stack angepasst an Dimensionen von Europaplatinen, Dimensionen an endgültige Platinenform anpassbar, Verwendung mehrerer Stacks möglich</Bemerkungen>
 			<height unit="mm">17.0</height>
 		</GenericComponent>
@@ -894,7 +894,7 @@
 			<loopholes>0.0</loopholes>
 			<temp_min unit="degC">10.0</temp_min>
 			<temp_max unit="degC">35.0</temp_max>
-			<type>Li-Ion-Batterie</type>
+			<type>Power</type>
 			<Bemerkungen>idealisiert nach SAFT VES 180; Zusammenschaltung für 100Ah bei 36V → jeweils 10 Batterien in Reihe</Bemerkungen>
 			<height unit="mm">53.0</height>
 		</GenericComponent>
@@ -1284,7 +1284,7 @@
 			<power_max unit="W">300.0</power_max>
 			<temp_min unit="degC">-40.0</temp_min>
 			<power_mean unit="W">10.0</power_mean>
-			<type>Reactionwheel</type>
+			<type>ACS (Akt.)</type>
 			<Lebensdauer unit="yr">20.0</Lebensdauer>
 			<Bemerkungen>idealisiert nach Rockwell Collins Deutschland (TELDIX) MWI; max. Drehimpuls 100Nms; max. RFS-Masse 5000kg; auch als Drallrad nutzbar</Bemerkungen>
 			<supply_voltage_min unit="V">23.0</supply_voltage_min>
@@ -1301,7 +1301,7 @@
 			<mass unit="kg">1.9</mass>
 			<power_max unit="W">4.0</power_max>
 			<temp_min unit="degC">-40.0</temp_min>
-			<type>Receiver</type>
+			<type>TM &amp; TC</type>
 			<Bemerkungen>idealisiert nach L-3 Communications CR-313 Receiver; uplink max. 128kbps, RF input power max. +3dBm, noise max. 4dB; Strahlungs-schutz notwendig</Bemerkungen>
 		</GenericComponent>
 		<GenericComponent VSD:id="id118">
@@ -1387,7 +1387,7 @@
 			<name>SADA</name>
 			<loopholes>1.0</loopholes>
 			<supply_voltage_max unit="V">65.0</supply_voltage_max>
-			<type>SADA</type>
+			<type>Hardware</type>
 			<power_max unit="W">200.0</power_max>
 			<height unit="mm">155.0</height>
 		</GenericComponent>
@@ -1532,7 +1532,7 @@
 			<mass unit="kg">9.5</mass>
 			<power_max unit="W">25.0</power_max>
 			<temp_min unit="degC">-25.0</temp_min>
-			<type>SMU</type>
+			<type>Hardware</type>
 			<Bemerkungen>Daten idealisiert nach ThalesAlenia SMU-V1; es wurde noch keine Aussage bezüglich zentrale oder dezentrale OBC/SMU getroffen </Bemerkungen>
 		</GenericComponent>
 		<GenericComponent VSD:id="id57">
@@ -1739,7 +1739,7 @@
 			<m0>550.0</m0>
 		</GenericComponent>
 		<GenericComponent VSD:id="id48">
-			<type>Reactionwheel</type>
+			<type>ACS (Akt.)</type>
 			<mass unit="kg">0.0</mass>
 			<name>testdrallrad</name>
 			<Bemerkungen>Testdüse zum testen von Algorithmen und programmen</Bemerkungen>
@@ -1750,7 +1750,7 @@
 			<Schub unit="N">1.0</Schub>
 			<mass unit="kg">0.0</mass>
 			<name>testdüse</name>
-			<type>Thruster</type>
+			<type>ACS (Akt.)</type>
 			<Impulsbit unit="s*N">0.01</Impulsbit>
 			<Bemerkungen>Testdüse zum testen von Algorithmen und programmen</Bemerkungen>
 		</GenericComponent>
@@ -1783,7 +1783,7 @@
 			<mass unit="kg">2.5</mass>
 			<power_max unit="W">36.0</power_max>
 			<temp_min unit="degC">-20.0</temp_min>
-			<type>Transceiver</type>
+			<type>TM &amp; TC</type>
 			<Bemerkungen>idealisiert nach General Dynamics Multi-Mode S-Band Transceiver; uplink max. 512kbps, noise figure &lt;2,5dB; down-link max. 6Mbps; Strahlungsschutz notwendig</Bemerkungen>
 		</GenericComponent>
 		<GenericComponent VSD:id="id44">
@@ -1796,7 +1796,7 @@
 			<length unit="mm">180.0</length>
 			<mass unit="kg">2.1</mass>
 			<power_max unit="W">30.0</power_max>
-			<type>Transmitter</type>
+			<type>TM &amp; TC</type>
 			<Bemerkungen>idealisiert nach L-3 Communications T-710() Transmitter; downlink 1,6Mbps, RF output power &gt;3W; Strahlungs-schutz notwendig</Bemerkungen>
 		</GenericComponent>
 		<GenericComponent VSD:id="id45">
@@ -1810,7 +1810,7 @@
 			<mass unit="kg">4.2</mass>
 			<power_max unit="W">51.0</power_max>
 			<temp_min unit="degC">-20.0</temp_min>
-			<type>Transponder</type>
+			<type>TM &amp; TC</type>
 			<Bemerkungen>idealisiert nach General Dynamics Advanced Multi-Mode Transponder (AMT-R) für Lunar Reconnais-sance Orbiter;; uplink max. 1Mbps, noise figure &lt;2,5dB; down-link max. 6Mbps; evtl. zusätzl. Strah-lungsschutz notwendig</Bemerkungen>
 			<supply_voltage_min unit="V">21.0</supply_voltage_min>
 		</GenericComponent>
