@@ -36,6 +36,7 @@ def converttable():
   tables=ods2table('bausteinkatalog/bausteinkatalog.ods')
   
   referenzmissionentable=np.array(tables["Referenzmissionen"])
+  missionsdaten=np.array(tables["Missionsdaten"])
   bausteinetable=np.array(tables["Bausteine"])
   komponententable=np.array(tables["Komponenten"])
   
@@ -117,6 +118,26 @@ def converttable():
         return None
     else:
       print("not in catalog: {}".format(line[1]))
+  
+  #laden der Missionsdaten für die Satelliten
+  print("\n\n")
+  print("length of table: {}".format(len(missionsdaten)))
+  for line in missionsdaten[2:]:
+    for i in ["","_ctank"]:
+      if line[0] == utils.odspy.EMPTY: continue
+      print(line[0]+i)
+      mis=referenzmissionen[line[0]+i]
+      mis.Anwendung   =line[1]
+      mis.mission_objective=line[2]
+      mis.Nutzlast   =line[3]   
+      mis.Orbithoehe   = float(line[4])  *pq.km  
+      mis.Orbitart    = line[5]    
+      if line[6]!=utils.odspy.EMPTY: mis.Inklination = float(line[6])    *pq.deg
+      if line[7]!=utils.odspy.EMPTY: mis.Umlaufzeit  = float(line[7])    *pq.h
+      if line[8]!=utils.odspy.EMPTY: mis.semimajor_axis = float(line[8]) *pq.km
+      if line[9]!=utils.odspy.EMPTY: mis.Lebensdauer     = line[9]
+      mis.Bodensegment    = line[10]
+      mis.Launchtime      = line[11]
   
   print("odt loading finished!\n\n")
   return komponenten, bausteine, referenzmissionen
