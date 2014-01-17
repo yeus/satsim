@@ -99,6 +99,7 @@ class ibossxml(object):
   def __init__(self):
     self._xmltype=self.__class__.__name__
     self._id = ibossxml.getid()
+    self._refid=None
 
   @staticmethod
   def getid():
@@ -306,13 +307,13 @@ class Satellite(ibossxml):
     root=et.Element("buildingBlocks")
     for bb in self.bb:
       newelem=et.Element("BuildingBlock")
-      newelem.set("VSD:id",bb.getid())#"".join([str(int(i)) for i in bb.pos]))
+      newelem.set("VSD:id",bb._id)#"".join([str(int(i)) for i in bb.pos]))
       #newelem.set("type",bb.type)
       newelem.append(self.property2xml("VSD:name",bb.name))
       newelem.append(self.property2xml("position",bb.pos*(self.bbsize+self.bbgap)))
       newelem.append(self.property2xml("orientation",bb.orientation))
       newelem2=et.Element("definition")
-      newelem2.set("xlink:href","../Catalogs/catalog.xml#"+str(bb._id))
+      newelem2.set("xlink:href","../Catalogs/catalog.xml#"+str(bb._refid))
       newelem.append(newelem2)
       root.append(newelem)
     return root #so the list gets serialized in xml
@@ -355,14 +356,27 @@ class Satellite(ibossxml):
 
 class Catalog(object):
   def __init__(self):
-      self.bb={}
       self.co={}
+      self.bb={}
       self.sat={}
       
   def make_consistent(self):
-    #max
-    #for satname,sat in self.sat.items():
-    #  sat.bb
+    ibossxml.idcounter=0
+
+    #give parts new ids:
+    for co in sorted(self.co.values(),key=lambda instance: instance.name.lower()):
+      co._id=ibossxml.getid()
+      
+    for bb in sorted(self.bb.values(),key=lambda instance: instance.name.lower()):
+      bb._id=ibossxml.getid()
+    
+    for sat in sorted(self.sat.values(),key=lambda instance: instance.name.lower()):
+      sat._id=ibossxml.getid()
+      for bb in sorted(sat.bb,key=lambda instance: instance.name.lower()):
+        bb._id = ibossxml.getid()
+        bb._refid = self.bb[bb.name]._id
+    
+    #check if new Version string is required
     pass
 
 #todo: save int,floats  etc..  as float and not as string in xml file
@@ -414,13 +428,12 @@ def loaddata(filename="./bausteinkatalog/katalogdata.iboss"):
   return cat
 
 def savedata(data, filename = "./bausteinkatalog/katalogdata.iboss"):
-  datafile = open(filename,"wb",2)
+  datafile = open(filename,"wb")
   pickle.dump(data, datafile)  
   datafile.close()
   
 def main():
   cat=loaddata()
-  cat.version=Version
   cat.make_consistent()
   
   saveibosslists(cat)

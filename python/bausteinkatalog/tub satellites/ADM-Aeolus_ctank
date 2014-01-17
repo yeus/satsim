@@ -1,122 +1,122 @@
 <?xml version="1.0" ?>
-<Satellite VSD:id="id197" xmlns="http://www.VEROSIM.de/namespaces/IBOSS" xmlns:VSD="http://www.VEROSIM.de/namespaces/VSD" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.VEROSIM.de/namespaces/IBOSS ../XSD/iboss.xsd">
+<Satellite VSD:id="id207" xmlns="http://www.VEROSIM.de/namespaces/IBOSS" xmlns:VSD="http://www.VEROSIM.de/namespaces/VSD" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.VEROSIM.de/namespaces/IBOSS ../XSD/iboss.xsd">
 	<!--
         * Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)
-        * Date : 2014/01/16
+        * Date : 2014/01/17
         * Version: 1.3
-        * All code (c)2013 Technische UniversitÃ¤t Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved-->
-	<VSD:name>ADM-Aeolus_ctank</VSD:name>
+        * All code (c)2013 Technische Universität Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved-->
 	<orbit>LEO</orbit>
+	<VSD:name>ADM-Aeolus_ctank</VSD:name>
 	<buildingBlocks>
-		<BuildingBlock VSD:id="id221">
+		<BuildingBlock VSD:id="id209">
 			<VSD:name>GPS-Baustein (Standard)</VSD:name>
 			<position unit="m">0.0 0.0 1.23</position>
 			<orientation unit="deg">0.0 0.0 0.0</orientation>
-			<definition xlink:href="../Catalogs/catalog.xml#id176"/>
+			<definition xlink:href="../Catalogs/catalog.xml#id168"/>
 		</BuildingBlock>
-		<BuildingBlock VSD:id="id222">
+		<BuildingBlock VSD:id="id210">
 			<VSD:name>GPS-Baustein (Standard)</VSD:name>
 			<position unit="m">0.41 0.82 0.41</position>
 			<orientation unit="deg">0.0 0.0 0.0</orientation>
-			<definition xlink:href="../Catalogs/catalog.xml#id176"/>
+			<definition xlink:href="../Catalogs/catalog.xml#id168"/>
 		</BuildingBlock>
-		<BuildingBlock VSD:id="id223">
+		<BuildingBlock VSD:id="id224">
 			<VSD:name>Sternsensorbaustein</VSD:name>
 			<position unit="m">0.82 0.82 0.0</position>
 			<orientation unit="deg">0.0 0.0 0.0</orientation>
-			<definition xlink:href="../Catalogs/catalog.xml#id177"/>
+			<definition xlink:href="../Catalogs/catalog.xml#id182"/>
 		</BuildingBlock>
-		<BuildingBlock VSD:id="id224">
+		<BuildingBlock VSD:id="id211">
 			<VSD:name>Inertial Measurement Unit Baustein (sehr genau)</VSD:name>
 			<position unit="m">0.41 0.41 0.0</position>
 			<orientation unit="deg">0.0 0.0 0.0</orientation>
-			<definition xlink:href="../Catalogs/catalog.xml#id186"/>
+			<definition xlink:href="../Catalogs/catalog.xml#id169"/>
 		</BuildingBlock>
-		<BuildingBlock VSD:id="id225">
+		<BuildingBlock VSD:id="id219">
 			<VSD:name>Reaktionsradbaustein</VSD:name>
 			<position unit="m">0.82 0.0 1.23</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id179"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id220">
+			<VSD:name>Reaktionsradbaustein</VSD:name>
+			<position unit="m">0.82 0.82 1.23</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id179"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id221">
+			<VSD:name>Reaktionsradbaustein</VSD:name>
+			<position unit="m">0.82 0.82 1.64</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id179"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id213">
+			<VSD:name>Magnetorquer-Baustein</VSD:name>
+			<position unit="m">0.0 0.82 1.23</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id175"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id225">
+			<VSD:name>TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)</VSD:name>
+			<position unit="m">0.82 0.0 1.64</position>
 			<orientation unit="deg">0.0 0.0 0.0</orientation>
 			<definition xlink:href="../Catalogs/catalog.xml#id184"/>
 		</BuildingBlock>
 		<BuildingBlock VSD:id="id226">
-			<VSD:name>Reaktionsradbaustein</VSD:name>
-			<position unit="m">0.82 0.82 1.23</position>
-			<orientation unit="deg">0.0 0.0 0.0</orientation>
-			<definition xlink:href="../Catalogs/catalog.xml#id184"/>
-		</BuildingBlock>
-		<BuildingBlock VSD:id="id227">
-			<VSD:name>Reaktionsradbaustein</VSD:name>
-			<position unit="m">0.82 0.82 1.64</position>
-			<orientation unit="deg">0.0 0.0 0.0</orientation>
-			<definition xlink:href="../Catalogs/catalog.xml#id184"/>
-		</BuildingBlock>
-		<BuildingBlock VSD:id="id228">
-			<VSD:name>Magnetorquer-Baustein</VSD:name>
-			<position unit="m">0.0 0.82 1.23</position>
-			<orientation unit="deg">0.0 0.0 0.0</orientation>
-			<definition xlink:href="../Catalogs/catalog.xml#id180"/>
-		</BuildingBlock>
-		<BuildingBlock VSD:id="id229">
-			<VSD:name>TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)</VSD:name>
-			<position unit="m">0.82 0.0 1.64</position>
-			<orientation unit="deg">0.0 0.0 0.0</orientation>
-			<definition xlink:href="../Catalogs/catalog.xml#id189"/>
-		</BuildingBlock>
-		<BuildingBlock VSD:id="id230">
 			<VSD:name>TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)</VSD:name>
 			<position unit="m">0.82 0.82 0.41</position>
 			<orientation unit="deg">0.0 0.0 0.0</orientation>
-			<definition xlink:href="../Catalogs/catalog.xml#id189"/>
+			<definition xlink:href="../Catalogs/catalog.xml#id184"/>
 		</BuildingBlock>
-		<BuildingBlock VSD:id="id231">
+		<BuildingBlock VSD:id="id222">
 			<VSD:name>Solargeneratorbaustein (entfaltbar, nachführbar)</VSD:name>
 			<position unit="m">0.0 0.41 1.23</position>
 			<orientation unit="deg">0.0 0.0 0.0</orientation>
-			<definition xlink:href="../Catalogs/catalog.xml#id188"/>
+			<definition xlink:href="../Catalogs/catalog.xml#id181"/>
 		</BuildingBlock>
-		<BuildingBlock VSD:id="id232">
+		<BuildingBlock VSD:id="id223">
 			<VSD:name>Solargeneratorbaustein (entfaltbar, nachführbar)</VSD:name>
 			<position unit="m">0.82 0.41 1.23</position>
 			<orientation unit="deg">0.0 0.0 0.0</orientation>
-			<definition xlink:href="../Catalogs/catalog.xml#id188"/>
+			<definition xlink:href="../Catalogs/catalog.xml#id181"/>
 		</BuildingBlock>
-		<BuildingBlock VSD:id="id233">
+		<BuildingBlock VSD:id="id208">
 			<VSD:name>Batteriebaustein</VSD:name>
 			<position unit="m">0.0 0.41 0.0</position>
 			<orientation unit="deg">0.0 0.0 0.0</orientation>
-			<definition xlink:href="../Catalogs/catalog.xml#id187"/>
+			<definition xlink:href="../Catalogs/catalog.xml#id162"/>
 		</BuildingBlock>
-		<BuildingBlock VSD:id="id234">
+		<BuildingBlock VSD:id="id214">
 			<VSD:name>Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)</VSD:name>
 			<position unit="m">0.0 0.0 1.64</position>
 			<orientation unit="deg">0.0 0.0 0.0</orientation>
-			<definition xlink:href="../Catalogs/catalog.xml#id191"/>
+			<definition xlink:href="../Catalogs/catalog.xml#id176"/>
 		</BuildingBlock>
-		<BuildingBlock VSD:id="id235">
+		<BuildingBlock VSD:id="id215">
 			<VSD:name>Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)</VSD:name>
 			<position unit="m">0.0 0.82 1.64</position>
 			<orientation unit="deg">0.0 0.0 0.0</orientation>
-			<definition xlink:href="../Catalogs/catalog.xml#id191"/>
+			<definition xlink:href="../Catalogs/catalog.xml#id176"/>
 		</BuildingBlock>
-		<BuildingBlock VSD:id="id236">
+		<BuildingBlock VSD:id="id216">
 			<VSD:name>Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)</VSD:name>
 			<position unit="m">0.41 0.0 0.82</position>
 			<orientation unit="deg">0.0 0.0 0.0</orientation>
-			<definition xlink:href="../Catalogs/catalog.xml#id191"/>
+			<definition xlink:href="../Catalogs/catalog.xml#id176"/>
 		</BuildingBlock>
-		<BuildingBlock VSD:id="id237">
+		<BuildingBlock VSD:id="id217">
 			<VSD:name>Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)</VSD:name>
 			<position unit="m">0.0 0.0 0.41</position>
 			<orientation unit="deg">0.0 0.0 0.0</orientation>
-			<definition xlink:href="../Catalogs/catalog.xml#id191"/>
+			<definition xlink:href="../Catalogs/catalog.xml#id176"/>
 		</BuildingBlock>
-		<BuildingBlock VSD:id="id238">
+		<BuildingBlock VSD:id="id218">
 			<VSD:name>Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)</VSD:name>
 			<position unit="m">0.0 0.82 0.41</position>
 			<orientation unit="deg">0.0 0.0 0.0</orientation>
-			<definition xlink:href="../Catalogs/catalog.xml#id191"/>
+			<definition xlink:href="../Catalogs/catalog.xml#id176"/>
 		</BuildingBlock>
-		<BuildingBlock VSD:id="id239">
+		<BuildingBlock VSD:id="id212">
 			<VSD:name>Kernstruktur2x2x2</VSD:name>
 			<position unit="m">0.0 0.0 0.0</position>
 			<orientation unit="deg">0.0 0.0 0.0</orientation>
