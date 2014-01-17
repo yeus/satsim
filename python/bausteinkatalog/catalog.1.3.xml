@@ -6,7 +6,7 @@
         * Version: 1.3
         * All code (c)2013 Technische Universität Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved-->
 	<componentDefs>
-		<GenericComponent VSD:id="id97">
+		<GenericComponent VSD:id="id1">
 			<Bemerkungen>PRISMA (Werte geschätzt)</Bemerkungen>
 			<height unit="mm">350.0</height>
 			<Hersteller>ECAPS</Hersteller>
@@ -17,7 +17,7 @@
 			<type>Propulsion</type>
 			<width unit="mm">500.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id99">
+		<GenericComponent VSD:id="id2">
 			<Bemerkungen>Entwicklungsphase (Masse nur für Düse)</Bemerkungen>
 			<Hersteller>ECAPS</Hersteller>
 			<length unit="mm">216.0</length>
@@ -25,7 +25,7 @@
 			<name>22N HPGP Rocket Engine</name>
 			<type>Propulsion</type>
 		</GenericComponent>
-		<GenericComponent VSD:id="id114">
+		<GenericComponent VSD:id="id3">
 			<Bemerkungen>für LEO, schon 14 Missionen</Bemerkungen>
 			<height unit="mm">36.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -38,7 +38,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">90.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id98">
+		<GenericComponent VSD:id="id4">
 			<Bemerkungen>Entwicklungsphase (Masse nur für Düse)</Bemerkungen>
 			<Hersteller>ECAPS</Hersteller>
 			<length unit="mm">180.0</length>
@@ -47,7 +47,7 @@
 			<power_max unit="W">10.0</power_max>
 			<type>Propulsion</type>
 		</GenericComponent>
-		<GenericComponent VSD:id="id167">
+		<GenericComponent VSD:id="id5">
 			<Bemerkungen>Elektronik</Bemerkungen>
 			<height unit="mm">263.0</height>
 			<length unit="mm">102.0</length>
@@ -56,7 +56,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">238.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id133">
+		<GenericComponent VSD:id="id6">
 			<Bemerkungen>Gyro</Bemerkungen>
 			<height unit="mm">280.0</height>
 			<length unit="mm">330.0</length>
@@ -65,7 +65,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">330.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id123">
+		<GenericComponent VSD:id="id7">
 			<Bemerkungen>Version LEO (gibt auch GEO)</Bemerkungen>
 			<height unit="mm">231.0</height>
 			<Hersteller>Jenoptik</Hersteller>
@@ -78,7 +78,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">154.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id116">
+		<GenericComponent VSD:id="id8">
 			<Bemerkungen>Blende</Bemerkungen>
 			<height unit="mm">316.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -91,7 +91,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">176.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id6">
+		<GenericComponent VSD:id="id9">
 			<Bemerkungen>idealisiert nach Surrey Satellite Technology Ltd. S-Band Patch Antenna; ggf. gegen andere Antenne austauschbar</Bemerkungen>
 			<height unit="mm">20.0</height>
 			<Lebensdauer>7 (LEO)</Lebensdauer>
@@ -107,7 +107,7 @@
 			<type>Hardware</type>
 			<width unit="mm">82.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id132">
+		<GenericComponent VSD:id="id10">
 			<Bemerkungen>Eletronik (Pleiades, Aeolus)</Bemerkungen>
 			<height unit="mm">145.0</height>
 			<Hersteller>Astrium</Hersteller>
@@ -120,7 +120,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">150.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id134">
+		<GenericComponent VSD:id="id11">
 			<Bemerkungen>für LEO, MEO, GEO</Bemerkungen>
 			<height unit="mm">160.0</height>
 			<Hersteller>Astrium</Hersteller>
@@ -133,7 +133,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">206.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id120">
+		<GenericComponent VSD:id="id12">
 			<Bemerkungen>Elektronik</Bemerkungen>
 			<height unit="mm">75.0</height>
 			<Hersteller>Jenoptik</Hersteller>
@@ -146,7 +146,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">145.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id122">
+		<GenericComponent VSD:id="id13">
 			<Bemerkungen>für GEO</Bemerkungen>
 			<height unit="mm">552.0</height>
 			<Hersteller>Jenoptik</Hersteller>
@@ -159,7 +159,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">192.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id7">
+		<GenericComponent VSD:id="id14">
 			<Bemerkungen>frei angepasst</Bemerkungen>
 			<height unit="mm">265.0</height>
 			<length unit="mm">250.0</length>
@@ -168,7 +168,7 @@
 			<type>Hardware</type>
 			<width unit="mm">53.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id85">
+		<GenericComponent VSD:id="id15">
 			<Bemerkungen>Mars Exp., Venus Exp., Rosetta</Bemerkungen>
 			<height unit="mm">24.0</height>
 			<Hersteller>TERMA</Hersteller>
@@ -178,7 +178,7 @@
 			<type>Power</type>
 			<width unit="mm">150.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id2">
+		<GenericComponent VSD:id="id16">
 			<height unit="mm">400.0</height>
 			<length unit="mm">400.0</length>
 			<mass unit="kg">2.5</mass>
@@ -186,7 +186,7 @@
 			<type>Struktur</type>
 			<width unit="mm">400.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id76">
+		<GenericComponent VSD:id="id17">
 			<Bemerkungen>Globalstar</Bemerkungen>
 			<height unit="mm">86.0</height>
 			<Hersteller>Mitsubishi</Hersteller>
@@ -197,7 +197,7 @@
 			<type>TM &amp; TC</type>
 			<width unit="mm">118.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id74">
+		<GenericComponent VSD:id="id18">
 			<height unit="mm">86.0</height>
 			<Hersteller>Mitsubishi</Hersteller>
 			<length unit="mm">174.0</length>
@@ -207,7 +207,7 @@
 			<type>TM &amp; TC</type>
 			<width unit="mm">233.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id60">
+		<GenericComponent VSD:id="id19">
 			<Bemerkungen>SmallGEO, Sentinel-2/3, Aeolus</Bemerkungen>
 			<height unit="mm">276.0</height>
 			<Hersteller>RUAG</Hersteller>
@@ -218,7 +218,7 @@
 			<type>OBDH</type>
 			<width unit="mm">270.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id8">
+		<GenericComponent VSD:id="id20">
 			<Bemerkungen>idealisiert nach Astrium CMG 15-45S; Drehimpuls 15 Nms, Moment 45Nm; Genauigkeit &lt;10mrad Drehimpulsstabilität &lt;0,03%, einzeln für RFS bis 1000kg bei 3°/s</Bemerkungen>
 			<Drehimpuls unit="m*s*N">15.0</Drehimpuls>
 			<Drehmoment unit="m*N">45.0</Drehmoment>
@@ -236,7 +236,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">270.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id164">
+		<GenericComponent VSD:id="id21">
 			<height unit="mm">350.0</height>
 			<Hersteller>Astrium</Hersteller>
 			<length unit="mm">270.0</length>
@@ -246,7 +246,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">270.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id163">
+		<GenericComponent VSD:id="id22">
 			<height unit="mm">313.0</height>
 			<Hersteller>Astrium</Hersteller>
 			<length unit="mm">270.0</length>
@@ -256,7 +256,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">225.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id9">
+		<GenericComponent VSD:id="id23">
 			<Bemerkungen>idealisiert und verkleinert nach Astrium CMG 15-45S Elektronic; für 2 CMG; Strahlungs-schutz notwendig </Bemerkungen>
 			<height unit="mm">100.0</height>
 			<Lebensdauer unit="yr">5.0</Lebensdauer>
@@ -272,7 +272,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">300.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id102">
+		<GenericComponent VSD:id="id24">
 			<Bemerkungen>Eurostar SatCom family</Bemerkungen>
 			<height unit="mm">23.0</height>
 			<Hersteller>Astrium</Hersteller>
@@ -285,7 +285,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">82.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id107">
+		<GenericComponent VSD:id="id25">
 			<Bemerkungen>ALEXIS, HETE, MOST, ChipSAT</Bemerkungen>
 			<height unit="mm">0.9</height>
 			<Hersteller>Comtech</Hersteller>
@@ -298,7 +298,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">1.27</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id86">
+		<GenericComponent VSD:id="id26">
 			<Bemerkungen>Mars Exp., Venus Exp., Rosetta</Bemerkungen>
 			<height unit="mm">24.0</height>
 			<Hersteller>TERMA</Hersteller>
@@ -309,7 +309,7 @@
 			<type>Power</type>
 			<width unit="mm">150.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id106">
+		<GenericComponent VSD:id="id27">
 			<height unit="mm">50.0</height>
 			<Hersteller>Officine Gal.</Hersteller>
 			<length unit="mm">110.0</length>
@@ -321,7 +321,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">110.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id101">
+		<GenericComponent VSD:id="id28">
 			<Bemerkungen>FASAT-Bravo, Uosat-12, TopSat</Bemerkungen>
 			<height unit="mm">35.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -334,7 +334,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">107.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id10">
+		<GenericComponent VSD:id="id29">
 			<Bemerkungen>idealisiert nach Rockwell Collins Deutschland (TELDIX) MWI; max. Drehimpuls 100Nms; max. RFS-Masse 5000kg; auch als Reaktionsrad nutzbar</Bemerkungen>
 			<Drehimpuls unit="m*s*N">100.0</Drehimpuls>
 			<height unit="mm">150.0</height>
@@ -353,7 +353,7 @@
 			<type>Drallrad (inkl.Elektro.)</type>
 			<width unit="mm">300.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id109">
+		<GenericComponent VSD:id="id30">
 			<Bemerkungen>Thor, Sirius-FM, GALAXY</Bemerkungen>
 			<height unit="mm">123.0</height>
 			<Hersteller>NEC</Hersteller>
@@ -364,7 +364,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">157.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id142">
+		<GenericComponent VSD:id="id31">
 			<height unit="mm">249.0</height>
 			<Hersteller>Honeywell</Hersteller>
 			<length unit="mm">178.0</length>
@@ -376,7 +376,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">178.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id11">
+		<GenericComponent VSD:id="id32">
 			<Bemerkungen>idealisiert nach Astrium Actuator Alignment Electronic; ggf. zusätzlicher Strahlungsschutz notwendig</Bemerkungen>
 			<height unit="mm">65.0</height>
 			<length unit="mm">180.0</length>
@@ -387,7 +387,7 @@
 			<type>Hardware</type>
 			<width unit="mm">160.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id12">
+		<GenericComponent VSD:id="id33">
 			<Bemerkungen>Solarzellen: GaAS-Multijunction (240W/m², 80W/kg, EOL); Anzahl der entfalt. Solarflächen variabel (abh. von max. Last), Länge ent-spricht i.M. einem </Bemerkungen>
 			<height unit="mm">30.0</height>
 			<length unit="mm">1200.0</length>
@@ -398,7 +398,7 @@
 			<type>Solar_Array</type>
 			<width unit="mm">595.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id13">
+		<GenericComponent VSD:id="id34">
 			<Bemerkungen>Solarzellen: GaAS-Multijunction (240W/m², 80W/kg, EOL); Anzahl der entfalt. Solarflächen variabel (abh. von max. Last) </Bemerkungen>
 			<height unit="mm">30.0</height>
 			<length unit="mm">1750.0</length>
@@ -409,7 +409,7 @@
 			<type>Solar_Array</type>
 			<width unit="mm">1750.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id14">
+		<GenericComponent VSD:id="id35">
 			<Bemerkungen>idealisiert nach EADS-Sodern STD 15 Earth Sensor; Ausrichtung 0,035° (bias), Rauschen 0,015° (noise); Orbitbereich 15000 – 140000km; ggf. Strahlungsschutz notwendig</Bemerkungen>
 			<height unit="mm">170.0</height>
 			<Lebensdauer>15 (GEO)</Lebensdauer>
@@ -425,7 +425,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">210.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id15">
+		<GenericComponent VSD:id="id36">
 			<Bemerkungen>idealisiert nach EADS-Sodern STD 16 Earth Sensor; Ausrichtung 0,06° (bias), Rauschen 0,042° (noise); Orbitbereich 300 – 6000km</Bemerkungen>
 			<height unit="mm">175.0</height>
 			<Lebensdauer>5 (LEO)</Lebensdauer>
@@ -441,7 +441,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">210.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id135">
+		<GenericComponent VSD:id="id37">
 			<height unit="mm">315.0</height>
 			<Hersteller>Honeywell</Hersteller>
 			<length unit="mm">504.0</length>
@@ -451,7 +451,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">293.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id16">
+		<GenericComponent VSD:id="id38">
 			<Bemerkungen>Flow Control Unit idealisiert mit High- und Low-Pressure Proportional Valve sowie Silicon Mass Flow Sensor (Thales), High Pressure Latch Valve (Marotta), Pressure Transducer, Gas Pressure Filter und Gas Fill and Drain Valve (RTG), Heizsystem noch unberücksichtigt</Bemerkungen>
 			<height unit="mm">120.0</height>
 			<length unit="mm">410.0</length>
@@ -465,7 +465,7 @@
 			<type>FCU</type>
 			<width unit="mm">295.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id100">
+		<GenericComponent VSD:id="id39">
 			<Bemerkungen>SPOT, XMM, Herschell, Planck</Bemerkungen>
 			<height unit="mm">49.0</height>
 			<Hersteller>Bradford</Hersteller>
@@ -478,7 +478,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">106.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id105">
+		<GenericComponent VSD:id="id40">
 			<Bemerkungen>Einsatz auf 4 LEO Satelliten</Bemerkungen>
 			<height unit="mm">21.0</height>
 			<Hersteller>Satellite Ser.</Hersteller>
@@ -491,7 +491,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">32.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id104">
+		<GenericComponent VSD:id="id41">
 			<height unit="mm">56.0</height>
 			<Hersteller>Jenoptik</Hersteller>
 			<length unit="mm">160.0</length>
@@ -503,7 +503,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">145.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id55">
+		<GenericComponent VSD:id="id42">
 			<Bemerkungen>TBD</Bemerkungen>
 			<height unit="mm">30.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -516,7 +516,7 @@
 			<type>OBDH</type>
 			<width unit="mm">167.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id72">
+		<GenericComponent VSD:id="id43">
 			<Bemerkungen>Ka Converter</Bemerkungen>
 			<height unit="mm">61.0</height>
 			<Hersteller>RUAG</Hersteller>
@@ -529,7 +529,7 @@
 			<type>TM &amp; TC</type>
 			<width unit="mm">90.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id71">
+		<GenericComponent VSD:id="id44">
 			<Bemerkungen>C &amp; Ku Receiver</Bemerkungen>
 			<height unit="mm">54.0</height>
 			<Hersteller>RUAG</Hersteller>
@@ -542,7 +542,7 @@
 			<type>TM &amp; TC</type>
 			<width unit="mm">112.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id59">
+		<GenericComponent VSD:id="id45">
 			<Bemerkungen>GEO Missionen</Bemerkungen>
 			<height unit="mm">270.0</height>
 			<Hersteller>ThalesAlenia</Hersteller>
@@ -553,7 +553,7 @@
 			<type>OBDH</type>
 			<width unit="mm">250.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id17">
+		<GenericComponent VSD:id="id46">
 			<Bemerkungen>idealisiert nach Astrium Mosaic GNSS Receiver; Pos. &lt;150m, Geschw. &lt;0,02m/s, Zeit &lt;750ns; geeignet für L1 C/A Code; ggf. Strahlungsschutz notwendig</Bemerkungen>
 			<height unit="mm">92.0</height>
 			<Lebensdauer unit="yr">15.0</Lebensdauer>
@@ -570,7 +570,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">272.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id18">
+		<GenericComponent VSD:id="id47">
 			<Bemerkungen>idealisiert nach ThalesAlenia LAGRANGETM; Pos. 8m, Geschw. 0,1m/s, Zeit ±250ns; geeignet für L1 und L2</Bemerkungen>
 			<height unit="mm">164.0</height>
 			<length unit="mm">250.0</length>
@@ -584,7 +584,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">190.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id141">
+		<GenericComponent VSD:id="id48">
 			<height unit="mm">104.0</height>
 			<Hersteller>RUAG</Hersteller>
 			<length unit="mm">300.0</length>
@@ -596,7 +596,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">240.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id139">
+		<GenericComponent VSD:id="id49">
 			<Bemerkungen>für LEO und GEO</Bemerkungen>
 			<height unit="mm">116.0</height>
 			<Hersteller>ThalesAlenia</Hersteller>
@@ -609,7 +609,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">170.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id143">
+		<GenericComponent VSD:id="id50">
 			<height unit="mm">25.0</height>
 			<Hersteller>SpaceQuest</Hersteller>
 			<length unit="mm">100.0</length>
@@ -621,7 +621,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">70.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id19">
+		<GenericComponent VSD:id="id51">
 			<Bemerkungen>idealisiert nach RUAG Extended GPS PEC Antenna; geeignet für L1 und L2, Platzhalter für in LAGRANGE enthaltene Antenne </Bemerkungen>
 			<height unit="mm">80.0</height>
 			<length unit="mm">200.0</length>
@@ -631,7 +631,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">200.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id20">
+		<GenericComponent VSD:id="id52">
 			<Bemerkungen>idealisiert nach Thales Alenia Space DS-HET, Isp 1500-3000 s, Schub 50-300 mN, max. benötigte Leistung 5000 W; anstelle von DS-HET sind auch HEMP-3050 oder RIT-22 möglich</Bemerkungen>
 			<height unit="mm">240.0</height>
 			<length unit="mm">140.0</length>
@@ -642,7 +642,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">240.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id21">
+		<GenericComponent VSD:id="id53">
 			<Bemerkungen>Stack angepasst an Dimensionen von Europaplatinen, Dimensionen an endgültige Platinenform anpassbar, Verwendung mehrerer Stacks möglich</Bemerkungen>
 			<height unit="mm">17.0</height>
 			<length unit="mm">171.0</length>
@@ -651,7 +651,7 @@
 			<type>TM &amp; TC</type>
 			<width unit="mm">151.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id52">
+		<GenericComponent VSD:id="id54">
 			<height unit="mm">55.0</height>
 			<Hersteller>SSTL</Hersteller>
 			<length unit="mm">320.0</length>
@@ -663,7 +663,7 @@
 			<type>OBDH</type>
 			<width unit="mm">170.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id64">
+		<GenericComponent VSD:id="id55">
 			<Bemerkungen>LEO, SSTL 300 Plattform</Bemerkungen>
 			<height unit="mm">190.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -676,7 +676,7 @@
 			<type>TM &amp; TC</type>
 			<width unit="mm">190.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id79">
+		<GenericComponent VSD:id="id56">
 			<Bemerkungen>TerraSAR-X, Seosar</Bemerkungen>
 			<height unit="mm">212.0</height>
 			<Hersteller>Astrium</Hersteller>
@@ -688,7 +688,7 @@
 			<type>Power</type>
 			<width unit="mm">300.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id153">
+		<GenericComponent VSD:id="id57">
 			<Bemerkungen>für LEO und GEO</Bemerkungen>
 			<height unit="mm">120.0</height>
 			<Hersteller>Honeywell</Hersteller>
@@ -699,7 +699,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">267.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id150">
+		<GenericComponent VSD:id="id58">
 			<Hersteller>Honeywell</Hersteller>
 			<length unit="mm">159.0</length>
 			<mass unit="kg">9.5</mass>
@@ -710,7 +710,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">316.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id151">
+		<GenericComponent VSD:id="id59">
 			<Hersteller>Honeywell</Hersteller>
 			<length unit="mm">159.0</length>
 			<mass unit="kg">10.6</mass>
@@ -721,7 +721,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">366.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id152">
+		<GenericComponent VSD:id="id60">
 			<Hersteller>Honeywell</Hersteller>
 			<length unit="mm">178.0</length>
 			<mass unit="kg">12.0</mass>
@@ -732,7 +732,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">418.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id124">
+		<GenericComponent VSD:id="id61">
 			<Bemerkungen>für LEO und GEO</Bemerkungen>
 			<height unit="mm">100.0</height>
 			<Hersteller>Sodern</Hersteller>
@@ -758,7 +758,7 @@
 			<type>OBDH</type>
 			<width unit="mm">242.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id22">
+		<GenericComponent VSD:id="id63">
 			<Bemerkungen>idealisiert nach Astrium Astrix200; Ausrichtung &lt;0,0005°/h (bias), Stabilität &lt;0,001°/h, Rauschen &lt;0,0001°/√h (noise); Werte gelten für EOL; Strahlungs-schutz notwendig</Bemerkungen>
 			<height unit="mm">280.0</height>
 			<Lebensdauer>Max 15 </Lebensdauer>
@@ -775,7 +775,7 @@
 			<type>IMU (sehr genau)</type>
 			<width unit="mm">330.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id23">
+		<GenericComponent VSD:id="id64">
 			<Bemerkungen>idealisiert nach Astrium Astrix3M²; Ausrichtung &lt;0,01°/h (bias), Stabilität &lt;0,8°/h, Rauschen &lt;0,005°/√h (noise); Werte gelten für EOL; Strahlungs-schutz notwendig</Bemerkungen>
 			<height unit="mm">160.0</height>
 			<Lebensdauer>Max 15 </Lebensdauer>
@@ -792,7 +792,7 @@
 			<type>IMU (Standard)</type>
 			<width unit="mm">206.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id131">
+		<GenericComponent VSD:id="id65">
 			<Bemerkungen>für LEO (NigeriaSat-2, Kanopus)</Bemerkungen>
 			<height unit="mm">54.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -805,7 +805,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">191.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id140">
+		<GenericComponent VSD:id="id66">
 			<Bemerkungen>für LEO</Bemerkungen>
 			<height unit="mm">50.0</height>
 			<Hersteller>RUAG</Hersteller>
@@ -818,7 +818,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">240.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id112">
+		<GenericComponent VSD:id="id67">
 			<Bemerkungen>für GEO/MEO (EUTELSAT uvm.)</Bemerkungen>
 			<height unit="mm">156.0</height>
 			<Hersteller>Selex</Hersteller>
@@ -831,7 +831,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">164.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id24">
+		<GenericComponent VSD:id="id68">
 			<Bemerkungen>idealisiert nach RTG Aero-Hydraulic Inc. (Ventile, Filter, Druckregler, Wandler und Düsen); Schub-bereich 0,01...1,0N; Heizsystem noch unberücksichtigt</Bemerkungen>
 			<height unit="mm">400.0</height>
 			<length unit="mm">100.0</length>
@@ -842,7 +842,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">400.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id77">
+		<GenericComponent VSD:id="id69">
 			<Bemerkungen>ECHOSTAR-8, TEMPO</Bemerkungen>
 			<height unit="mm">74.0</height>
 			<Hersteller>Mitsubishi</Hersteller>
@@ -853,7 +853,7 @@
 			<type>TM &amp; TC</type>
 			<width unit="mm">154.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id58">
+		<GenericComponent VSD:id="id70">
 			<Bemerkungen>CryoSat, GOCE, RADARSAT-2</Bemerkungen>
 			<height unit="mm">270.0</height>
 			<Hersteller>ThalesAlenia</Hersteller>
@@ -864,7 +864,7 @@
 			<type>OBDH</type>
 			<width unit="mm">250.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id155">
+		<GenericComponent VSD:id="id71">
 			<height unit="mm">101.0</height>
 			<Hersteller>Orbital Sc.</Hersteller>
 			<length unit="mm">203.0</length>
@@ -876,7 +876,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">203.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id91">
+		<GenericComponent VSD:id="id72">
 			<Bemerkungen>Proba-2, AGILE, SSETI express</Bemerkungen>
 			<height unit="mm">95.0</height>
 			<Hersteller>Saft</Hersteller>
@@ -886,7 +886,7 @@
 			<type>Power</type>
 			<width unit="mm">170.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id25">
+		<GenericComponent VSD:id="id73">
 			<Bemerkungen>idealisiert nach SAFT VES 180; Zusammenschaltung für 100Ah bei 36V → jeweils 10 Batterien in Reihe</Bemerkungen>
 			<height unit="mm">53.0</height>
 			<length unit="mm">250.0</length>
@@ -898,7 +898,7 @@
 			<type>Power</type>
 			<width unit="mm">53.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id103">
+		<GenericComponent VSD:id="id74">
 			<Bemerkungen>Eurostar SatCom family</Bemerkungen>
 			<height unit="mm">80.0</height>
 			<Hersteller>Astrium</Hersteller>
@@ -911,14 +911,14 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">25.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id81">
+		<GenericComponent VSD:id="id75">
 			<Bemerkungen>Myriade</Bemerkungen>
 			<Hersteller>ThalesAlenia</Hersteller>
 			<mass unit="kg">4.5</mass>
 			<name>Low Power PCDU 0,33kW</name>
 			<type>Power</type>
 		</GenericComponent>
-		<GenericComponent VSD:id="id166">
+		<GenericComponent VSD:id="id76">
 			<height unit="mm">714.0</height>
 			<Hersteller>Honeywell</Hersteller>
 			<length unit="mm">195.0</length>
@@ -928,7 +928,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">447.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id115">
+		<GenericComponent VSD:id="id77">
 			<Bemerkungen>Rechner, Kamera (für LEO)</Bemerkungen>
 			<height unit="mm">82.6</height>
 			<Hersteller>SpaceQuest</Hersteller>
@@ -941,7 +941,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">32.3</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id113">
+		<GenericComponent VSD:id="id78">
 			<Bemerkungen>für LEO, schon 25 Missionen</Bemerkungen>
 			<height unit="mm">32.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -954,7 +954,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">35.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id27">
+		<GenericComponent VSD:id="id79">
 			<Bemerkungen>idealisiert und Werte abgeleitet nach ZARM-Technik MT80-1 bzw. MT250-2; magnet. Moment ca. 60-80Am² je Spule</Bemerkungen>
 			<height unit="mm">100.0</height>
 			<length unit="mm">350.0</length>
@@ -966,7 +966,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">100.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id170">
+		<GenericComponent VSD:id="id80">
 			<Bemerkungen>variable Länge</Bemerkungen>
 			<height unit="mm">12.0</height>
 			<Hersteller>Satellite Ser.</Hersteller>
@@ -979,7 +979,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">12.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id80">
+		<GenericComponent VSD:id="id81">
 			<Bemerkungen>GRACE, GOCE, SWARM (Ein Modul)</Bemerkungen>
 			<height unit="mm">45.0</height>
 			<Hersteller>Astrium</Hersteller>
@@ -1001,7 +1001,7 @@
 			<type>Power</type>
 			<width unit="mm">190.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id108">
+		<GenericComponent VSD:id="id83">
 			<Bemerkungen>ALEXIS, HETE, TERRIERS</Bemerkungen>
 			<height unit="mm">3.49</height>
 			<Hersteller>Comtech</Hersteller>
@@ -1014,7 +1014,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">2.43</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id95">
+		<GenericComponent VSD:id="id84">
 			<Bemerkungen>50mN, Proba-2</Bemerkungen>
 			<height unit="mm">215.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -1027,7 +1027,7 @@
 			<type>Propulsion</type>
 			<width unit="mm">254.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id136">
+		<GenericComponent VSD:id="id85">
 			<Bemerkungen>schon 250 ausgeliefert</Bemerkungen>
 			<height unit="mm">169.0</height>
 			<Hersteller>Honeywell</Hersteller>
@@ -1040,7 +1040,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">233.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id130">
+		<GenericComponent VSD:id="id86">
 			<height unit="mm">76.0</height>
 			<Hersteller>Comtech</Hersteller>
 			<length unit="mm">60.0</length>
@@ -1052,7 +1052,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">76.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id56">
+		<GenericComponent VSD:id="id87">
 			<height unit="mm">250.0</height>
 			<Hersteller>ThalesAlenia</Hersteller>
 			<length unit="mm">454.0</length>
@@ -1062,7 +1062,7 @@
 			<type>OBDH</type>
 			<width unit="mm">296.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id96">
+		<GenericComponent VSD:id="id88">
 			<Bemerkungen>0,1N; JASON, PICASSO-CENA (Werte geschätzt)</Bemerkungen>
 			<height unit="mm">350.0</height>
 			<Hersteller>ThalesAlenia</Hersteller>
@@ -1072,7 +1072,7 @@
 			<type>Propulsion</type>
 			<width unit="mm">500.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id28">
+		<GenericComponent VSD:id="id89">
 			<Bemerkungen>idealisiert nach RTG Aero-Hydraulic Inc. (Filter, Wandler), Astrium (Düsen), VACCO (Latch Valve) Schubbereich 1,0-22N; seitliche Düsen um 90° drehbar montierbar, Heizsystem noch unberücksichtigt</Bemerkungen>
 			<height unit="mm">400.0</height>
 			<length unit="mm">100.0</length>
@@ -1083,7 +1083,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">400.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id138">
+		<GenericComponent VSD:id="id90">
 			<Bemerkungen>für LEO, MEO, GEO (TerraSAR-X)</Bemerkungen>
 			<height unit="mm">92.0</height>
 			<Hersteller>Astrium</Hersteller>
@@ -1096,7 +1096,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">284.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id53">
+		<GenericComponent VSD:id="id91">
 			<height unit="mm">38.0</height>
 			<Hersteller>SSTL</Hersteller>
 			<length unit="mm">330.0</length>
@@ -1108,7 +1108,7 @@
 			<type>OBDH</type>
 			<width unit="mm">165.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id169">
+		<GenericComponent VSD:id="id92">
 			<Bemerkungen>für LEO (SciSat, Giove-A)</Bemerkungen>
 			<height unit="mm">49.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -1121,7 +1121,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">74.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id168">
+		<GenericComponent VSD:id="id93">
 			<Bemerkungen>für LEO (Alsat-1, UK-DMC, Bilsat)</Bemerkungen>
 			<height unit="mm">66.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -1134,7 +1134,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">30.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id162">
+		<GenericComponent VSD:id="id94">
 			<height unit="mm">86.0</height>
 			<Hersteller>SpaceQuest</Hersteller>
 			<length unit="mm">115.0</length>
@@ -1146,7 +1146,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">115.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id157">
+		<GenericComponent VSD:id="id95">
 			<Bemerkungen>für Sats. von 50kg bis 5000kg</Bemerkungen>
 			<height unit="mm">150.0</height>
 			<Hersteller>Rockewell C.</Hersteller>
@@ -1159,7 +1159,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">300.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id156">
+		<GenericComponent VSD:id="id96">
 			<height unit="mm">150.0</height>
 			<Hersteller>Rockewell C.</Hersteller>
 			<length unit="mm">300.0</length>
@@ -1171,7 +1171,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">300.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id50">
+		<GenericComponent VSD:id="id97">
 			<Bemerkungen>GIOVE-A, Chandrayaan-1</Bemerkungen>
 			<height unit="mm">30.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -1184,7 +1184,7 @@
 			<type>OBDH</type>
 			<width unit="mm">167.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id49">
+		<GenericComponent VSD:id="id98">
 			<height unit="mm">30.0</height>
 			<Hersteller>SSTL</Hersteller>
 			<length unit="mm">306.0</length>
@@ -1196,7 +1196,7 @@
 			<type>OBDH</type>
 			<width unit="mm">167.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id54">
+		<GenericComponent VSD:id="id99">
 			<height unit="mm">38.0</height>
 			<length unit="mm">330.0</length>
 			<mass unit="kg">2.2</mass>
@@ -1204,7 +1204,7 @@
 			<type>OBDH</type>
 			<width unit="mm">330.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id61">
+		<GenericComponent VSD:id="id100">
 			<height unit="mm">216.0</height>
 			<Hersteller>Astrium</Hersteller>
 			<length unit="mm">250.0</length>
@@ -1216,7 +1216,7 @@
 			<type>OBDH</type>
 			<width unit="mm">150.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id29">
+		<GenericComponent VSD:id="id101">
 			<Bemerkungen>Daten idealisiert und verkleinert nach Astrium GEO Medium Power PCU; es wurde noch keine Aussage bezüglich zentrale oder dezentrale PCU getroffen </Bemerkungen>
 			<height unit="mm">350.0</height>
 			<length unit="mm">350.0</length>
@@ -1228,7 +1228,7 @@
 			<type>Power</type>
 			<width unit="mm">350.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id83">
+		<GenericComponent VSD:id="id102">
 			<Bemerkungen>Rosetta, Mars Exp., Venus Exp.</Bemerkungen>
 			<height unit="mm">158.0</height>
 			<Hersteller>TERMA</Hersteller>
@@ -1238,7 +1238,7 @@
 			<type>Power</type>
 			<width unit="mm">238.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id84">
+		<GenericComponent VSD:id="id103">
 			<Bemerkungen>XMM-Newton, Integral</Bemerkungen>
 			<height unit="mm">23.0</height>
 			<Hersteller>TERMA</Hersteller>
@@ -1248,7 +1248,7 @@
 			<type>Power</type>
 			<width unit="mm">185.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id30">
+		<GenericComponent VSD:id="id104">
 			<Bemerkungen>idealisiert und verkleinert nach Alcatel </Bemerkungen>
 			<height unit="mm">350.0</height>
 			<length unit="mm">190.0</length>
@@ -1259,7 +1259,7 @@
 			<type>Power</type>
 			<width unit="mm">350.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id154">
+		<GenericComponent VSD:id="id105">
 			<height unit="mm">105.0</height>
 			<Hersteller>Satellite Ser.</Hersteller>
 			<length unit="mm">102.0</length>
@@ -1271,7 +1271,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">102.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id31">
+		<GenericComponent VSD:id="id106">
 			<Bemerkungen>idealisiert nach Rockwell Collins Deutschland (TELDIX) MWI; max. Drehimpuls 100Nms; max. RFS-Masse 5000kg; auch als Drallrad nutzbar</Bemerkungen>
 			<height unit="mm">150.0</height>
 			<Lebensdauer unit="yr">20.0</Lebensdauer>
@@ -1289,7 +1289,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">300.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id32">
+		<GenericComponent VSD:id="id107">
 			<Bemerkungen>idealisiert nach L-3 Communications CR-313 Receiver; uplink max. 128kbps, RF input power max. +3dBm, noise max. 4dB; Strahlungs-schutz notwendig</Bemerkungen>
 			<height unit="mm">95.0</height>
 			<length unit="mm">170.0</length>
@@ -1304,7 +1304,7 @@
 			<type>TM &amp; TC</type>
 			<width unit="mm">165.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id118">
+		<GenericComponent VSD:id="id108">
 			<Bemerkungen>Rechner, Kamera (für LEO)</Bemerkungen>
 			<height unit="mm">139.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -1317,7 +1317,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">210.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id67">
+		<GenericComponent VSD:id="id109">
 			<Bemerkungen>RapidEye, GIOVE-A, AISAT</Bemerkungen>
 			<height unit="mm">80.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -1330,7 +1330,7 @@
 			<type>TM &amp; TC</type>
 			<width unit="mm">191.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id68">
+		<GenericComponent VSD:id="id110">
 			<Bemerkungen>TerraSAR, RapidEye, TanDEM-X</Bemerkungen>
 			<height unit="mm">20.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -1343,7 +1343,7 @@
 			<type>TM &amp; TC</type>
 			<width unit="mm">82.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id69">
+		<GenericComponent VSD:id="id111">
 			<Bemerkungen>Deimos-1</Bemerkungen>
 			<height unit="mm">500.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -1356,7 +1356,7 @@
 			<type>TM &amp; TC</type>
 			<width unit="mm">100.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id75">
+		<GenericComponent VSD:id="id112">
 			<height unit="mm">86.0</height>
 			<Hersteller>Mitsubishi</Hersteller>
 			<length unit="mm">258.0</length>
@@ -1366,7 +1366,7 @@
 			<type>TM &amp; TC</type>
 			<width unit="mm">58.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id66">
+		<GenericComponent VSD:id="id113">
 			<Bemerkungen>RapidEye, GIOVE-A, AISAT</Bemerkungen>
 			<height unit="mm">60.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -1379,7 +1379,7 @@
 			<type>TM &amp; TC</type>
 			<width unit="mm">135.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id33">
+		<GenericComponent VSD:id="id114">
 			<Bemerkungen>idealisiert nach MOOG Type 55 Solar Array Drive Assembly </Bemerkungen>
 			<height unit="mm">155.0</height>
 			<length unit="mm">420.0</length>
@@ -1391,7 +1391,7 @@
 			<type>Hardware</type>
 			<width unit="mm">370.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id1">
+		<GenericComponent VSD:id="id115">
 			<Kosten>1000.0</Kosten>
 			<mass unit="kg">1.0</mass>
 			<name>Schnittstelle</name>
@@ -1401,7 +1401,7 @@
 			<temp_min unit="degC">-50.0</temp_min>
 			<type>Schnittstelle</type>
 		</GenericComponent>
-		<GenericComponent VSD:id="id125">
+		<GenericComponent VSD:id="id116">
 			<Bemerkungen>für LEO und GEO</Bemerkungen>
 			<height unit="mm">350.0</height>
 			<Hersteller>Sodern</Hersteller>
@@ -1414,7 +1414,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">170.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id145">
+		<GenericComponent VSD:id="id117">
 			<Bemerkungen>für Kleinsatelliten im LEO</Bemerkungen>
 			<height unit="mm">12.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -1427,7 +1427,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">65.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id144">
+		<GenericComponent VSD:id="id118">
 			<Bemerkungen>für Nanosatelliten im LEO</Bemerkungen>
 			<height unit="mm">10.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -1440,7 +1440,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">45.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id146">
+		<GenericComponent VSD:id="id119">
 			<Bemerkungen>LEO (GIOVE-A, UK-DMC2)</Bemerkungen>
 			<height unit="mm">48.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -1453,7 +1453,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">78.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id147">
+		<GenericComponent VSD:id="id120">
 			<Bemerkungen>für LEO</Bemerkungen>
 			<height unit="mm">50.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -1466,7 +1466,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">160.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id148">
+		<GenericComponent VSD:id="id121">
 			<Bemerkungen>für LEO</Bemerkungen>
 			<height unit="mm">50.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -1479,7 +1479,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">160.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id149">
+		<GenericComponent VSD:id="id122">
 			<Bemerkungen>für GEO (DART, PROBA-1)</Bemerkungen>
 			<height unit="mm">50.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -1490,7 +1490,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">120.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id78">
+		<GenericComponent VSD:id="id123">
 			<Bemerkungen>CFESAT, RapidEye, (Ein Modul)</Bemerkungen>
 			<height unit="mm">30.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -1502,7 +1502,7 @@
 			<type>Power</type>
 			<width unit="mm">300.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id88">
+		<GenericComponent VSD:id="id124">
 			<Bemerkungen>GIOVE-A (Ein Modul)</Bemerkungen>
 			<height unit="mm">22.0</height>
 			<Hersteller>ClydeSpace</Hersteller>
@@ -1512,7 +1512,7 @@
 			<type>Power</type>
 			<width unit="mm">135.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id87">
+		<GenericComponent VSD:id="id125">
 			<Bemerkungen>RapidEye, UK-DMC</Bemerkungen>
 			<height unit="mm">70.0</height>
 			<Hersteller>ClydeSpace</Hersteller>
@@ -1522,7 +1522,7 @@
 			<type>Power</type>
 			<width unit="mm">150.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id34">
+		<GenericComponent VSD:id="id126">
 			<Bemerkungen>Daten idealisiert nach ThalesAlenia SMU-V1; es wurde noch keine Aussage bezüglich zentrale oder dezentrale OBC/SMU getroffen </Bemerkungen>
 			<height unit="mm">260.0</height>
 			<length unit="mm">290.0</length>
@@ -1535,7 +1535,7 @@
 			<type>Hardware</type>
 			<width unit="mm">280.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id57">
+		<GenericComponent VSD:id="id127">
 			<height unit="mm">252.0</height>
 			<Hersteller>ThalesAlenia</Hersteller>
 			<length unit="mm">286.0</length>
@@ -1547,7 +1547,7 @@
 			<type>OBDH</type>
 			<width unit="mm">274.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id35">
+		<GenericComponent VSD:id="id128">
 			<Bemerkungen>idealisiert nach Miniaturised Analog Fine Sun Sensor (ISIS), Accuracy 0,3°, Blickfeld 128° x 128°</Bemerkungen>
 			<height unit="mm">14.0</height>
 			<length unit="mm">46.0</length>
@@ -1560,7 +1560,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">45.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id36">
+		<GenericComponent VSD:id="id129">
 			<Bemerkungen>idealisiert nach Bradford Fine &amp; Coarse Sun Sensor CSS Accuracy &lt;1° (bias error &lt;0,15°)</Bemerkungen>
 			<height unit="mm">49.0</height>
 			<length unit="mm">108.0</length>
@@ -1573,7 +1573,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">106.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id63">
+		<GenericComponent VSD:id="id130">
 			<Bemerkungen>SMART-1</Bemerkungen>
 			<height unit="mm">292.0</height>
 			<Hersteller>SSC</Hersteller>
@@ -1586,7 +1586,7 @@
 			<type>OBDH</type>
 			<width unit="mm">280.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id37">
+		<GenericComponent VSD:id="id131">
 			<Bemerkungen>idealisiert nach Astrium L/S Band SSPA; nominal RF output power 15W; Strahlungsschutz notwendig</Bemerkungen>
 			<height unit="mm">47.0</height>
 			<length unit="mm">217.0</length>
@@ -1599,7 +1599,7 @@
 			<type>SSPA</type>
 			<width unit="mm">107.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id129">
+		<GenericComponent VSD:id="id132">
 			<height unit="mm">183.0</height>
 			<Hersteller>ATI</Hersteller>
 			<length unit="mm">178.0</length>
@@ -1609,7 +1609,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">178.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id126">
+		<GenericComponent VSD:id="id133">
 			<Bemerkungen>Elektronik (Cryosat, LISA)</Bemerkungen>
 			<height unit="mm">29.0</height>
 			<Hersteller>TERMA</Hersteller>
@@ -1622,7 +1622,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">165.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id128">
+		<GenericComponent VSD:id="id134">
 			<Bemerkungen>nur Kamera</Bemerkungen>
 			<height unit="mm">132.0</height>
 			<Hersteller>Clementine</Hersteller>
@@ -1633,7 +1633,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">117.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id110">
+		<GenericComponent VSD:id="id135">
 			<Bemerkungen>für GEO (TC2, HOT BIRD)</Bemerkungen>
 			<height unit="mm">206.0</height>
 			<Hersteller>Sodern</Hersteller>
@@ -1646,7 +1646,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">206.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id111">
+		<GenericComponent VSD:id="id136">
 			<Bemerkungen>für LEO (SPOT, ENVISAT)</Bemerkungen>
 			<height unit="mm">386.0</height>
 			<Hersteller>Sodern</Hersteller>
@@ -1659,7 +1659,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">208.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id38">
+		<GenericComponent VSD:id="id137">
 			<Bemerkungen>idealisiert nach Jena-Optronik AstroAPS; random error &lt;1arcsec (pitch/yaw) &lt;8arcsec (roll); </Bemerkungen>
 			<height unit="mm">375.0</height>
 			<Lebensdauer>&gt; 18 </Lebensdauer>
@@ -1676,12 +1676,12 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">150.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id4">
+		<GenericComponent VSD:id="id138">
 			<mass unit="kg">0.0</mass>
 			<name>Strahlungsschutz</name>
 			<type>Struktur</type>
 		</GenericComponent>
-		<GenericComponent VSD:id="id92">
+		<GenericComponent VSD:id="id139">
 			<Bemerkungen>100mN; RapidEye, GIOVE-A</Bemerkungen>
 			<Hersteller>SSTL</Hersteller>
 			<length unit="mm">56.0</length>
@@ -1693,7 +1693,7 @@
 			<type>Propulsion</type>
 			<width unit="mm">14.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id93">
+		<GenericComponent VSD:id="id140">
 			<Bemerkungen>50mN; Alsat-1, DMC</Bemerkungen>
 			<height unit="mm">140.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -1706,7 +1706,7 @@
 			<type>Propulsion</type>
 			<width unit="mm">440.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id39">
+		<GenericComponent VSD:id="id141">
 			<Bemerkungen>Tank idealisiert nach VEGA AVUM Gas Tank (ATK-Space Systems Inc.), Arbeitsdruck 310 bar, Blow Down System, Leertankmasse ca. 22 kg, Gasmasse ca. 22 kg, Tank ist in der Länge variabel</Bemerkungen>
 			<height unit="mm">350.0</height>
 			<length unit="mm">700.0</length>
@@ -1716,7 +1716,7 @@
 			<type>Tank</type>
 			<width unit="mm">350.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id40">
+		<GenericComponent VSD:id="id142">
 			<Bemerkungen>Tank idealisiert nach VEGA AVUM Gas Tank (ATK-Space Systems Inc.), Blow Down System, Leertankmasse ca. 22 kg, Treibstoffmasse ca. 30 kg (MMH, Anfangsdruck 25 bar), Tank ist in der Länge variabel</Bemerkungen>
 			<height unit="mm">350.0</height>
 			<length unit="mm">691.0</length>
@@ -1726,26 +1726,26 @@
 			<type>Tank</type>
 			<width unit="mm">350.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id42">
+		<GenericComponent VSD:id="id143">
 			<m0>350.0</m0>
 			<mass unit="kg">50.0</mass>
 			<name>Tank 3 (Hydrazin)</name>
 			<type>Tank</type>
 		</GenericComponent>
-		<GenericComponent VSD:id="id41">
+		<GenericComponent VSD:id="id144">
 			<m0>550.0</m0>
 			<mass unit="kg">50.0</mass>
 			<name>Tank 3 (Xenon)</name>
 			<type>Tank</type>
 		</GenericComponent>
-		<GenericComponent VSD:id="id48">
+		<GenericComponent VSD:id="id145">
 			<Bemerkungen>Testdüse zum testen von Algorithmen und programmen</Bemerkungen>
 			<Drehmoment unit="m*N">10.0</Drehmoment>
 			<mass unit="kg">0.0</mass>
 			<name>testdrallrad</name>
 			<type>ACS (Akt.)</type>
 		</GenericComponent>
-		<GenericComponent VSD:id="id47">
+		<GenericComponent VSD:id="id146">
 			<Bemerkungen>Testdüse zum testen von Algorithmen und programmen</Bemerkungen>
 			<Impulsbit unit="s*N">0.01</Impulsbit>
 			<mass unit="kg">0.0</mass>
@@ -1754,12 +1754,12 @@
 			<spez_impuls unit="s">220.0</spez_impuls>
 			<type>ACS (Akt.)</type>
 		</GenericComponent>
-		<GenericComponent VSD:id="id3">
+		<GenericComponent VSD:id="id147">
 			<mass unit="kg">0.0</mass>
 			<name>thermale Isolierung</name>
 			<type>Struktur</type>
 		</GenericComponent>
-		<GenericComponent VSD:id="id137">
+		<GenericComponent VSD:id="id148">
 			<Bemerkungen>ESA Integral Spacecraft</Bemerkungen>
 			<height unit="mm">120.0</height>
 			<Hersteller>ThalesAlenia</Hersteller>
@@ -1772,7 +1772,7 @@
 			<type>ACS (Sens.)</type>
 			<width unit="mm">125.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id43">
+		<GenericComponent VSD:id="id149">
 			<Bemerkungen>idealisiert nach General Dynamics Multi-Mode S-Band Transceiver; uplink max. 512kbps, noise figure &lt;2,5dB; down-link max. 6Mbps; Strahlungsschutz notwendig</Bemerkungen>
 			<height unit="mm">87.0</height>
 			<length unit="mm">204.0</length>
@@ -1786,7 +1786,7 @@
 			<type>TM &amp; TC</type>
 			<width unit="mm">160.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id44">
+		<GenericComponent VSD:id="id150">
 			<Bemerkungen>idealisiert nach L-3 Communications T-710() Transmitter; downlink 1,6Mbps, RF output power &gt;3W; Strahlungs-schutz notwendig</Bemerkungen>
 			<height unit="mm">70.0</height>
 			<length unit="mm">180.0</length>
@@ -1799,7 +1799,7 @@
 			<type>TM &amp; TC</type>
 			<width unit="mm">170.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id45">
+		<GenericComponent VSD:id="id151">
 			<Bemerkungen>idealisiert nach General Dynamics Advanced Multi-Mode Transponder (AMT-R) für Lunar Reconnais-sance Orbiter;; uplink max. 1Mbps, noise figure &lt;2,5dB; down-link max. 6Mbps; evtl. zusätzl. Strah-lungsschutz notwendig</Bemerkungen>
 			<height unit="mm">140.0</height>
 			<length unit="mm">230.0</length>
@@ -1814,13 +1814,13 @@
 			<type>TM &amp; TC</type>
 			<width unit="mm">170.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id5">
+		<GenericComponent VSD:id="id152">
 			<Bemerkungen>4 mm², pro Kontaktelement wird in der Vorauslegung ein Bedarf von 0,7 m Kabel angenommen (Vergleichskabelmasse: 0,05kg/m)</Bemerkungen>
 			<mass unit="kg">0.04</mass>
 			<name>Versorgungsleitungen</name>
 			<type>Hardware</type>
 		</GenericComponent>
-		<GenericComponent VSD:id="id89">
+		<GenericComponent VSD:id="id153">
 			<Bemerkungen>GIOVE-B, Proteus</Bemerkungen>
 			<height unit="mm">53.0</height>
 			<Hersteller>Saft</Hersteller>
@@ -1832,7 +1832,7 @@
 			<type>Power</type>
 			<width unit="mm">53.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id90">
+		<GenericComponent VSD:id="id154">
 			<height unit="mm">54.0</height>
 			<Hersteller>Saft</Hersteller>
 			<length unit="mm">245.0</length>
@@ -1843,7 +1843,7 @@
 			<type>Power</type>
 			<width unit="mm">54.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id158">
+		<GenericComponent VSD:id="id155">
 			<Hersteller>Bradford</Hersteller>
 			<length unit="mm">235.0</length>
 			<mass unit="kg">3.2</mass>
@@ -1852,7 +1852,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">123.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id159">
+		<GenericComponent VSD:id="id156">
 			<Hersteller>Bradford</Hersteller>
 			<length unit="mm">295.0</length>
 			<mass unit="kg">4.95</mass>
@@ -1861,7 +1861,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">123.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id160">
+		<GenericComponent VSD:id="id157">
 			<Hersteller>Bradford</Hersteller>
 			<length unit="mm">365.0</length>
 			<mass unit="kg">6.95</mass>
@@ -1870,7 +1870,7 @@
 			<type>ACS (Akt.)</type>
 			<width unit="mm">123.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id65">
+		<GenericComponent VSD:id="id158">
 			<Bemerkungen>LEO; RapidEye, Deimos-1</Bemerkungen>
 			<height unit="mm">129.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -1883,7 +1883,7 @@
 			<type>TM &amp; TC</type>
 			<width unit="mm">191.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id73">
+		<GenericComponent VSD:id="id159">
 			<height unit="mm">90.0</height>
 			<Hersteller>RUAG</Hersteller>
 			<length unit="mm">240.0</length>
@@ -1896,7 +1896,7 @@
 			<type>TM &amp; TC</type>
 			<width unit="mm">90.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id94">
+		<GenericComponent VSD:id="id160">
 			<Bemerkungen>18mN; RapidEye, Proba-2</Bemerkungen>
 			<height unit="mm">300.0</height>
 			<Hersteller>SSTL</Hersteller>
@@ -1909,7 +1909,7 @@
 			<type>Propulsion</type>
 			<width unit="mm">300.0</width>
 		</GenericComponent>
-		<GenericComponent VSD:id="id46">
+		<GenericComponent VSD:id="id161">
 			<Bemerkungen>Solarzellen: GaAS-Multijunction (240W/m², 80W/kg, EOL); Länge ent-spricht i.M. einem </Bemerkungen>
 			<height unit="mm">30.0</height>
 			<length unit="mm">1200.0</length>
@@ -1922,7 +1922,7 @@
 		</GenericComponent>
 	</componentDefs>
 	<buildingBlockDefs>
-		<BuildingBlockDef VSD:id="id187">
+		<BuildingBlockDef VSD:id="id162">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -1989,7 +1989,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id195">
+		<BuildingBlockDef VSD:id="id163">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -2058,7 +2058,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id192">
+		<BuildingBlockDef VSD:id="id164">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -2117,7 +2117,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id179">
+		<BuildingBlockDef VSD:id="id165">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -2196,7 +2196,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id196">
+		<BuildingBlockDef VSD:id="id166">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -2255,7 +2255,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id181">
+		<BuildingBlockDef VSD:id="id167">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -2308,7 +2308,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id176">
+		<BuildingBlockDef VSD:id="id168">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -2373,7 +2373,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id186">
+		<BuildingBlockDef VSD:id="id169">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -2434,7 +2434,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id182">
+		<BuildingBlockDef VSD:id="id170">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -2493,7 +2493,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id193">
+		<BuildingBlockDef VSD:id="id171">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -2560,7 +2560,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id194">
+		<BuildingBlockDef VSD:id="id172">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -2685,7 +2685,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id180">
+		<BuildingBlockDef VSD:id="id175">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -2752,7 +2752,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id191">
+		<BuildingBlockDef VSD:id="id176">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -2819,7 +2819,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id171">
+		<BuildingBlockDef VSD:id="id177">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -2878,7 +2878,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id190">
+		<BuildingBlockDef VSD:id="id178">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -2937,7 +2937,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id184">
+		<BuildingBlockDef VSD:id="id179">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -2996,7 +2996,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id185">
+		<BuildingBlockDef VSD:id="id180">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -3045,7 +3045,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id188">
+		<BuildingBlockDef VSD:id="id181">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -3118,7 +3118,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id177">
+		<BuildingBlockDef VSD:id="id182">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -3177,7 +3177,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id178">
+		<BuildingBlockDef VSD:id="id183">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -3256,7 +3256,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id189">
+		<BuildingBlockDef VSD:id="id184">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -3327,7 +3327,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id175">
+		<BuildingBlockDef VSD:id="id185">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -3406,7 +3406,7 @@
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id183">
+		<BuildingBlockDef VSD:id="id186">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
