@@ -16,12 +16,13 @@ import numpy as np
 import xml.etree.ElementTree as et
 import xml.dom.minidom
 import xml
-import utils
+import utils.odspy
 import quantities as pq
 import xml.etree.ElementTree as et
 import codecs
 import time
 import traceback
+import pickle
 
 pq.krad=pq.UnitQuantity('kilorad', pq.rads*1000, symbol='krad')
 pq.blocks=pq.UnitQuantity('blocks', 1, symbol='blocks')
@@ -176,7 +177,7 @@ class ibossxml(object):
     root.set("VSD:id",self._id)
     #root.set("type",self.type)
     #for vkey,vvalue in vars(self).items(): #check all variables in the class
-    for vkey,vvalue in self.xmlmapping.items(): 
+    for vkey,vvalue in sorted(self.xmlmapping.items(),key=lambda instance: instance[0].lower()): 
       if vkey not in ["components","_bb"]:  #sonderbehandlung (erstmal Auslassen) für BS-Listen
         if vvalue!=utils.odspy.EMPTY: root.append(self.property2xml(vkey,vvalue)) #speichern sämtlicher Klassenvariablen
     
@@ -305,7 +306,7 @@ class Satellite(ibossxml):
     root=et.Element("buildingBlocks")
     for bb in self.bb:
       newelem=et.Element("BuildingBlock")
-      newelem.set("VSD:id",ibossxml.getid())#"".join([str(int(i)) for i in bb.pos]))
+      newelem.set("VSD:id",bb.getid())#"".join([str(int(i)) for i in bb.pos]))
       #newelem.set("type",bb.type)
       newelem.append(self.property2xml("VSD:name",bb.name))
       newelem.append(self.property2xml("position",bb.pos*(self.bbsize+self.bbgap)))
@@ -328,6 +329,10 @@ class Satellite(ibossxml):
   def update(self):
     self.mass=self.massgen
     
+    #check buildingblock ids for consistency
+    #for bb in in self.bb:
+      
+    
   @property
   def massgen(self):
     return np.sum([bb.mass for bb in self.bb])*pq.kg
@@ -347,6 +352,18 @@ class Satellite(ibossxml):
   def com(self):
     self.__com=np.sum([(vec(*bb.pos)*(self.bbsize+self.bbgap))*bb.mass for bb in self.bb],axis=0)*pq.kg*pq.m/self.massgen  #2nd method
     return self.__com
+
+class Catalog(object):
+  def __init__(self):
+      self.bb={}
+      self.co={}
+      self.sat={}
+      
+  def make_consistent(self):
+    #max
+    #for satname,sat in self.sat.items():
+    #  sat.bb
+    pass
 
 #todo: save int,floats  etc..  as float and not as string in xml file
 #converts a list of "ibossxml" objects to xml
@@ -374,42 +391,39 @@ def savexml(filename,xml):
   f.write(prettyprintxml(xml))
   f.close()
 
-def saveibosslists(komponenten, bausteine, referenzmissionen):
+def saveibosslists(catalog):
   katalog=et.Element("Catalog",version=Version)
-  katalog.append(ibosslist2xml("componentDefs",komponenten.values()))
-  katalog.append(ibosslist2xml("buildingBlockDefs",bausteine.values()))
+  katalog.append(ibosslist2xml("componentDefs",catalog.co.values()))
+  katalog.append(ibosslist2xml("buildingBlockDefs",catalog.bb.values()))
   
   print("saving buildingblock catalog")
   savexml("bausteinkatalog/catalog.{}.xml".format(Version),katalog)
   
   print("saving satellite configurations")
-  for vkeys,vvalues in referenzmissionen.items():
+  for vkeys,vvalues in catalog.sat.items():
     #missionen=ibosslist2xml("Satellites",referenzmissionen.values())
-    savexml("bausteinkatalog/"+vkeys,vvalues.xml)
+    savexml("bausteinkatalog/tub satellites/"+vkeys,vvalues.xml)
+
+# Bei Abhängigkeiten zwischen Objekten (normalerweise müsste aber alles funktionieren)
+#http://stackoverflow.com/questions/6376081/pickle-linked-objects
+##### bei der Erstellung der Objekte wird das copy.copy()-Konstrukt benutzt!!!
+def loaddata(filename="./bausteinkatalog/katalogdata.iboss"):
+  datafile = open(filename,"rb")
+  cat = pickle.load(datafile)
+  datafile.close()
+  return cat
 
 def savedata(data, filename = "./bausteinkatalog/katalogdata.iboss"):
-  import pickle
   datafile = open(filename,"wb",2)
   pickle.dump(data, datafile)  
   datafile.close()
-
-#Probleme mit der Objektserialisierung
-#die Referenzen zwischen den Objekten müssen geklärt werden.
-#warscheinlich müssen die drei listen hierarchisch geladen werden. also erst co, dann bb, dann sats
-#unter zurhilfenahme des pickle Objekts
-#http://stackoverflow.com/questions/6376081/pickle-linked-objects
-##### !!!!! warschinlich ist das durch das copy.copy-Konstrukt verursacht worden!!!
-def loaddata(filename="./bausteinkatalog/katalogdata.iboss"):
-  import pickle
-  datafile = open(filename,"rb")
-  data = pickle.load(datafile)
-  datafile.close()
-  return data
-  
-  
   
 def main():
-  loaddata()
+  cat=loaddata()
+  cat.version=Version
+  cat.make_consistent()
+  
+  saveibosslists(cat)
   pass
   
 if __name__ == "__main__":
