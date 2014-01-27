@@ -310,7 +310,7 @@ class Satellite(ibossxml):
       newelem.set("VSD:id",bb._id)#"".join([str(int(i)) for i in bb.pos]))
       #newelem.set("type",bb.type)
       newelem.append(self.property2xml("VSD:name",bb.name))
-      newelem.append(self.property2xml("position",bb.pos*(self.bbsize+self.bbgap)))
+      newelem.append(self.property2xml("position",bb.pos))
       newelem.append(self.property2xml("orientation",bb.orientation))
       newelem2=et.Element("definition")
       newelem2.set("xlink:href","../Catalogs/catalog.xml#"+str(bb._refid))
@@ -376,8 +376,8 @@ class Catalog(object):
         bb._id = ibossxml.getid()
         bb._refid = self.bb[bb.name]._id
     
-    #check if new Version string is required
-    pass
+    #TODO: check if new Version string is required
+    #TODO: check for reference consitency between block catalog and blocklist of satellite
 
 #todo: save int,floats  etc..  as float and not as string in xml file
 #converts a list of "ibossxml" objects to xml
@@ -427,17 +427,49 @@ def loaddata(filename="./bausteinkatalog/katalogdata.iboss"):
   datafile.close()
   return cat
 
-def savedata(data, filename = "./bausteinkatalog/katalogdata.iboss"):
+def savedata(data, filename = "./bausteinkatalog/katalogdata_new.iboss"):
   datafile = open(filename,"wb")
   pickle.dump(data, datafile)  
   datafile.close()
+
+#temporary manipulation tasks
+def manip(cat):
+  cat.make_consistent()
+  
+  for key,sat in cat.sat.items():
+    for bb in sat.bb:
+      bb.pos=bb.pos*(sat.bbgap+sat.bbsize)
+
+def startconsole(localvariables):
+  from code import InteractiveConsole
+
+  cons=InteractiveConsole(locals=localvariables)
+  
+  bannerhelp="""
+  savedata(data, filename): save catalog
+  loaddata(filename): load catalog
+  """
+  
+  cons.runsource("import readline, rlcompleter")
+  cons.runsource("readline.set_completer(rlcompleter.Completer(globals()).complete)")
+  cons.runsource("readline.parse_and_bind('tab:complete')")
+  cons.runsource("a=123")
+  cons.interact(bannerhelp)
+  #1. readline.parse_and_bind('tab:complete')
+  #2.local = dict(globals(),**local) if local else globals()
+  #  code.interact(banner,local=local)
+  #readline.set_completer(rlcompleter.Completer(globals()).complete)
+  
+  #code.interact(local=locals(), banner=bannerhelp)
   
 def main():
   cat=loaddata()
   cat.make_consistent()
   
-  saveibosslists(cat)
-  pass
+  startconsole(localvariables=locals())
+ 
+  #saveibosslists(cat)
+  print("byebye")
   
 if __name__ == "__main__":
   main()
