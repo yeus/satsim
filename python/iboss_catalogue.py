@@ -81,6 +81,9 @@ def str2vec(stringvec):
   
 def str2vecint(stringvec): return vec(*[int(i) for i in stringvec.split(",")])
 
+def rstheader(string,level):
+  return string+"\n"+level*len(string)+"\n\n"
+
 def prettyprintxml(xmltree):
   XML=et.tostring(xmltree,encoding="utf-8")
   try:
@@ -189,6 +192,29 @@ class ibossxml(object):
 
   @property
   def xmlstr(self):  return prettyprintxml(self.xml)
+
+  def __str__(self):#__repr__
+    retstr=rstheader(self.name,"'")
+    
+    retstr+=("="*40)+" "+"="*100+"\n"
+    for key,val in vars(self).items():
+      if key[0]=="_" and key!="_bb": continue
+      
+      namestr= key if key!="_bb" else "Buildingblocks"
+      retstr+="{:40} ".format(namestr)
+      #retstr+=":{}: ".format(key)
+      if isinstance(val, list):
+        names=[elem.name for elem in val]
+        retstr += "{:<30};\n".format(names[0])
+        if len(names)>1:
+          for i in names[1:]:
+            retstr +=" "*40+" "+"{:<99};\n".format(i)
+      else:
+        retstr += "{:<30}\n".format(val)
+
+    retstr+=("="*40)+" "+"="*100+"\n"
+    
+    return retstr
 #end class ibossxml
 
 #TODO: Kernstruktur irgendwie definieren
@@ -213,6 +239,9 @@ class component(ibossxml):
     #print(variables)
     return variables
   
+  def update(self):
+    pass
+
   #def addxmlprop(self,xmlprop):
   #  super(FileInfo, self).addxmlprop(self,xmlprop)
 
@@ -360,6 +389,14 @@ class Catalog(object):
       self.bb={}
       self.sat={}
       
+  def update(self):
+    self.make_consistent()
+    
+    for i in [self.co.values(),self.bb.values(),self.sat.values()]:
+      for j in i:
+        j.update()
+        
+      
   def make_consistent(self):
     ibossxml.idcounter=0
 
@@ -375,7 +412,19 @@ class Catalog(object):
       for bb in sorted(sat.bb,key=lambda instance: instance.name.lower()):
         bb._id = ibossxml.getid()
         bb._refid = self.bb[bb.name]._id
-    
+        
+  def __str__(self):
+    returnstring=rstheader("Katalog:","-")
+  
+    for i,name in [(self.sat.values(),"Satelliten"),
+                    (self.bb.values(),"Bausteine"),
+                    (self.co.values(),"Komponenten")]:
+      returnstring+=rstheader(name,"^")
+      for j in i:
+        returnstring+=str(j)+"\n\n"
+        
+    return returnstring
+  
     #TODO: check if new Version string is required
     #TODO: check for reference consitency between block catalog and blocklist of satellite
 
@@ -464,12 +513,13 @@ def startconsole(localvariables):
   
 def main():
   cat=loaddata()
-  cat.make_consistent()
+  print(cat)
+  #cat.make_consistent()
   
-  startconsole(localvariables=locals())
+  #startconsole(localvariables=locals())
  
   #saveibosslists(cat)
-  print("byebye")
+  #print("byebye")
   
 if __name__ == "__main__":
   main()
