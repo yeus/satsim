@@ -8027,11 +8027,6 @@
 					<value>GEO/LEO</value>
 				</GenericVariable>
 				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
-				</GenericVariable>
-				<GenericVariable>
 					<VSD:name>type</VSD:name>
 					<value>Batteriebaustein</value>
 				</GenericVariable>
@@ -8093,11 +8088,6 @@
 				<GenericVariable>
 					<VSD:name>Einsatzgebiet</VSD:name>
 					<value>GEO/LEO</value>
-				</GenericVariable>
-				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
 				</GenericVariable>
 				<GenericVariable>
 					<VSD:name>type</VSD:name>
@@ -8164,11 +8154,6 @@
 					<value>GEO/LEO</value>
 				</GenericVariable>
 				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
-				</GenericVariable>
-				<GenericVariable>
 					<VSD:name>type</VSD:name>
 					<value>Drallradbaustein</value>
 				</GenericVariable>
@@ -8225,11 +8210,6 @@
 				<GenericVariable>
 					<VSD:name>Einsatzgebiet</VSD:name>
 					<value>GEO/LEO</value>
-				</GenericVariable>
-				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
 				</GenericVariable>
 				<GenericVariable>
 					<VSD:name>type</VSD:name>
@@ -8303,11 +8283,6 @@
 					<value>LEO</value>
 				</GenericVariable>
 				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
-				</GenericVariable>
-				<GenericVariable>
 					<VSD:name>type</VSD:name>
 					<value>Erdsensor-Baustein</value>
 				</GenericVariable>
@@ -8366,11 +8341,6 @@
 					<value>LEO</value>
 				</GenericVariable>
 				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
-				</GenericVariable>
-				<GenericVariable>
 					<VSD:name>type</VSD:name>
 					<value>GPS-Baustein (GPS und GLONASS)</value>
 				</GenericVariable>
@@ -8423,11 +8393,6 @@
 				<GenericVariable>
 					<VSD:name>Einsatzgebiet</VSD:name>
 					<value>GEO/LEO</value>
-				</GenericVariable>
-				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
 				</GenericVariable>
 				<GenericVariable>
 					<VSD:name>type</VSD:name>
@@ -8492,11 +8457,6 @@
 					<value>LEO</value>
 				</GenericVariable>
 				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
-				</GenericVariable>
-				<GenericVariable>
 					<VSD:name>type</VSD:name>
 					<value>Inertial Measurement Unit Baustein (sehr genau)</value>
 				</GenericVariable>
@@ -8556,11 +8516,6 @@
 					<value>LEO</value>
 				</GenericVariable>
 				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
-				</GenericVariable>
-				<GenericVariable>
 					<VSD:name>type</VSD:name>
 					<value>Inertial Measurement Unit Baustein (Standard)</value>
 				</GenericVariable>
@@ -8617,11 +8572,6 @@
 				<GenericVariable>
 					<VSD:name>Einsatzgebiet</VSD:name>
 					<value>GEO/LEO</value>
-				</GenericVariable>
-				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
 				</GenericVariable>
 				<GenericVariable>
 					<VSD:name>type</VSD:name>
@@ -8685,11 +8635,6 @@
 				<GenericVariable>
 					<VSD:name>Einsatzgebiet</VSD:name>
 					<value>GEO/LEO</value>
-				</GenericVariable>
-				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
 				</GenericVariable>
 				<GenericVariable>
 					<VSD:name>type</VSD:name>
@@ -8759,11 +8704,6 @@
 					<value>GEO/LEO</value>
 				</GenericVariable>
 				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
-				</GenericVariable>
-				<GenericVariable>
 					<VSD:name>type</VSD:name>
 					<value>Kernstruktur2x2x2</value>
 				</GenericVariable>
@@ -8807,11 +8747,6 @@
 					<value>GEO/LEO</value>
 				</GenericVariable>
 				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
-				</GenericVariable>
-				<GenericVariable>
 					<VSD:name>type</VSD:name>
 					<value>Kernstruktur2x2x3</value>
 				</GenericVariable>
@@ -8849,11 +8784,6 @@
 				<GenericVariable>
 					<VSD:name>Einsatzgebiet</VSD:name>
 					<value>LEO</value>
-				</GenericVariable>
-				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
 				</GenericVariable>
 				<GenericVariable>
 					<VSD:name>type</VSD:name>
@@ -8919,11 +8849,6 @@
 					<value>GEO/LEO</value>
 				</GenericVariable>
 				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
-				</GenericVariable>
-				<GenericVariable>
 					<VSD:name>type</VSD:name>
 					<value>Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)</value>
 				</GenericVariable>
@@ -8987,11 +8912,6 @@
 					<value>GEO/LEO</value>
 				</GenericVariable>
 				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
-				</GenericVariable>
-				<GenericVariable>
 					<VSD:name>type</VSD:name>
 					<value>OBC/SMU-Baustein</value>
 				</GenericVariable>
@@ -9048,11 +8968,6 @@
 				<GenericVariable>
 					<VSD:name>Einsatzgebiet</VSD:name>
 					<value>GEO/LEO</value>
-				</GenericVariable>
-				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
 				</GenericVariable>
 				<GenericVariable>
 					<VSD:name>type</VSD:name>
@@ -9113,11 +9028,6 @@
 					<value>GEO/LEO</value>
 				</GenericVariable>
 				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
-				</GenericVariable>
-				<GenericVariable>
 					<VSD:name>type</VSD:name>
 					<value>Reaktionsradbaustein</value>
 				</GenericVariable>
@@ -9176,11 +9086,6 @@
 					<value>LEO</value>
 				</GenericVariable>
 				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
-				</GenericVariable>
-				<GenericVariable>
 					<VSD:name>type</VSD:name>
 					<value>Solargeneratorbaustein (entfaltbar)</value>
 				</GenericVariable>
@@ -9231,11 +9136,6 @@
 				<GenericVariable>
 					<VSD:name>Einsatzgebiet</VSD:name>
 					<value>LEO</value>
-				</GenericVariable>
-				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
 				</GenericVariable>
 				<GenericVariable>
 					<VSD:name>type</VSD:name>
@@ -9309,11 +9209,6 @@
 					<value>GEO/LEO</value>
 				</GenericVariable>
 				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
-				</GenericVariable>
-				<GenericVariable>
 					<VSD:name>type</VSD:name>
 					<value>Sternsensorbaustein</value>
 				</GenericVariable>
@@ -9370,11 +9265,6 @@
 				<GenericVariable>
 					<VSD:name>Einsatzgebiet</VSD:name>
 					<value>GEO/LEO</value>
-				</GenericVariable>
-				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
 				</GenericVariable>
 				<GenericVariable>
 					<VSD:name>type</VSD:name>
@@ -9446,11 +9336,6 @@
 					<value>GEO/LEO</value>
 				</GenericVariable>
 				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
-				</GenericVariable>
-				<GenericVariable>
 					<VSD:name>type</VSD:name>
 					<value>TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)</value>
 				</GenericVariable>
@@ -9515,11 +9400,6 @@
 				<GenericVariable>
 					<VSD:name>Einsatzgebiet</VSD:name>
 					<value>GEO/LEO</value>
-				</GenericVariable>
-				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
 				</GenericVariable>
 				<GenericVariable>
 					<VSD:name>type</VSD:name>
@@ -9591,11 +9471,6 @@
 				<GenericVariable>
 					<VSD:name>Einsatzgebiet</VSD:name>
 					<value>GEO/LEO</value>
-				</GenericVariable>
-				<GenericVariable>
-					<VSD:name>power</VSD:name>
-					<unit>W</unit>
-					<value>0.0</value>
 				</GenericVariable>
 				<GenericVariable>
 					<VSD:name>type</VSD:name>
