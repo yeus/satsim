@@ -319,6 +319,7 @@ class buildingblock(ibossxml):
     root=et.Element("components")
     for co in self.components:
       newelem=et.Element("GenericComponent")
+      newelem.insert(0,et.Comment(co.name))
       if hasattr(co,"pos"): newelem.append(self.property2xml("position",co.pos))
       if hasattr(co,"rot"): newelem.append(self.property2xml("orientation",co.rot)) # TODO. rotation to "oriantation"
       if hasattr(co,"th_vec"): newelem.append(self.property2xml("th_vec",co.th_vec))#.set("th_vec", vec2str(co.th_vec))
@@ -331,17 +332,44 @@ class buildingblock(ibossxml):
     return root #so the list gets serialized in xml"""
     
   def add_co(self,co): #todo variable length argument list
-    self.components.append(copy(co))
-    self.components.append(co)
+    self.components.append(copy(co))  #use copy of component for an update with state variables
+    #self.components.append(co)
     if "num" not in vars(co): co.num=1
-    if "mass" in vars(co): self.mass+=co.mass*co.num
   
   def update(self):
-    self.power=0*pq.W
-    for CO in self.components:
-      if "power_max" in vars(CO): self.power_max+=CO.power_max
-    self.power_max+=(5*pq.W)
+    print("update buildingblock: {}".format(self.name))
+    self.updatecomponents()
+    self.power=0*pq.W #only as state variable
+    self.power_max=0*pq.W
+    for co in self.components:
+      if "power_max" in vars(co): 
+        self.power_max+=co.power_max
+        print("adding {} to power from {}".format(co.power_max,co.name))
     self.updatemass()
+    print("\n")
+  
+  def updatecomponents(self):
+    colist={}
+    #del self.components[1::2]  #corrected a temporary error in the catalogue
+    #for co in self.components:
+      #if co.name=="testdüse": continue
+      #print(co.name)
+    
+      #if co.name in colist:
+          #colist[co.name] += 1
+      #    print(colist[co.name].num==co.num)
+      #colist[co.name]=co
+  
+      #else: colist[co.name] = 1
+      #if colist[co.name]>=3:
+      #  print(co.name,colist[co.name])
+     
+      #if "pos" in vars(co): print("pos",co.pos)
+      #if "rot" in vars(co): print("rot",co.rot)
+      #if "num" in vars(co): print("num",co.num)
+      #if "th_vec" in vars(co): print("th_vec",co.th_vec)
+    #print("\n")
+  #TODO: also update with state variables
   
   def updatemass(self):
     self.mass=0*pq.kg
@@ -448,7 +476,9 @@ class Catalog(object):
       for bb in sorted(sat.bb,key=lambda instance: instance.name.lower()):
         bb._id = ibossxml.getid()
         bb._refid = self.bb[bb.name]._id
-        
+    
+    
+    
     #check if all default variables are there:
     for bb in self.bb.values():
       for def_key,def_val in bb.defaultvariables().items():
@@ -527,14 +557,6 @@ def savedata(data, filename = "./bausteinkatalog/katalogdata_new.iboss"):
   pickle.dump(data, datafile)  
   datafile.close()
 
-#temporary manipulation tasks
-def manip(cat):
-  cat.make_consistent()
-  
-  for key,sat in cat.sat.items():
-    for bb in sat.bb:
-      bb.pos=bb.pos*(sat.bbgap+sat.bbsize)
-
 def startconsole(localvariables):
   from code import InteractiveConsole
 
@@ -559,7 +581,9 @@ def startconsole(localvariables):
   
 def main():
   cat=loaddata()
-  print(cat)
+  cat.update()
+  #savedata(cat)
+  #print(cat)
   #cat.make_consistent()
   
   #startconsole(localvariables=locals())
