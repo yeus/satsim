@@ -50,7 +50,6 @@ Katalogreport:
 \n\n""".format(time.strftime("%Y/%m/%d"),iboss_catalogue.Version)
   
   cat=iboss_catalogue.loaddata()
-  
   cat.update()
   
   def listmsmass(sats):
@@ -102,8 +101,10 @@ def main(argv=None):
     try:
       if "odt" in argv:
          iboss_odt2xml.save_catalogue()
-      if "w" in argv: report2file(writereport())
-      if "p" in argv: print(writereport())
+      if "w" in argv: 
+        report2file(writereport())
+      if "p" in argv: 
+        print(writereport())
       if "py2xml" in argv: 
         cat=iboss_catalogue.loaddata()
         cat.save()

@@ -248,6 +248,12 @@ class ibossxml(object):
 #end class ibossxml
   def update(self):
     pass
+  
+  def varchange(self,varname,val=0,delete=False):
+    if delete: 
+      del vars(self)[varname]
+      return
+    vars(self)[varname]=val
 
 #TODO: Kernstruktur irgendwie definieren
 class component(ibossxml):
@@ -337,16 +343,16 @@ class buildingblock(ibossxml):
     if "num" not in vars(co): co.num=1
   
   def update(self):
-    print("update buildingblock: {}".format(self.name))
+    #print("update buildingblock: {}".format(self.name))
     self.updatecomponents()
-    self.power=0*pq.W #only as state variable
+    #self.power=0*pq.W #only as state variable
     self.power_max=0*pq.W
     for co in self.components:
       if "power_max" in vars(co): 
         self.power_max+=co.power_max
-        print("adding {} to power from {}".format(co.power_max,co.name))
+        #print("adding {} to power from {}".format(co.power_max,co.name))
     self.updatemass()
-    print("\n")
+    #print("\n")
   
   def updatecomponents(self):
     colist={}
@@ -394,7 +400,7 @@ class Satellite(ibossxml):
     
   @property
   def xmlmapping(self): #maps values to xml class
-    return {"VSD:name":"name","orbit":"orbit"}
+    return {"name":"VSD:name","orbit":"orbit"}
 
   def xmllist(self):
     root=et.Element("buildingBlocks")
@@ -452,6 +458,12 @@ class Catalog(object):
       self.co={}
       self.bb={}
       self.sat={}
+
+  def bbvarchange(self,varname,val=0.0,delete=False):
+    for i in self.bb.values():
+      print("changing {} to \"{}\" from \"{}\" in bb: {}".format(varname,"delete" if delete else var,vars(i)[varname],i.name))
+      i.varchange(varname,val,delete)
+    
       
   def update(self):
     self.make_consistent()
@@ -581,7 +593,8 @@ def startconsole(localvariables):
   
 def main():
   cat=loaddata()
-  cat.update()
+  #cat.bbvarchange("power",delete=True)
+  #cat.update()
   #savedata(cat)
   #print(cat)
   #cat.make_consistent()
