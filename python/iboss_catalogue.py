@@ -175,15 +175,43 @@ class ibossxml(object):
         
     return newelem
   
+  @classmethod
+  def genericvariable(cls,vkey,vvalue):
+    newelem=et.Element("GenericVariable")
+    et.SubElement(newelem,"VSD:name").text=vkey
+    if isinstance(vvalue,pq.Quantity): 
+      et.SubElement(newelem,"unit").text=vvalue.dimensionality.string
+      if vvalue.size==1 : value=unicode(vvalue.magnitude)
+      #else: newelem.extend(cls.vec2xml(vvalue.magnitude))
+      elif vvalue.size<=3: value = vec2str(vvalue.magnitude)
+      else: value = mat2str(vvalue.magnitude)
+    else:
+      try:
+        #if vvalue.size>1: newelem.extend(cls.vec2xml(vvalue.magnitude))
+        if vvalue.size>1: value = vec2str(vvalue.magnitude)
+        else: value = unicode(vvalue)
+      except AttributeError: #in case of vvalue not beeing an array
+        value = unicode(vvalue)
+    
+    et.SubElement(newelem,"value").text=value
+    return newelem
+  
   @property
   def xml(self):
     root=et.Element(self._xmltype)
     root.set("VSD:id",self._id)
-    #root.set("type",self.type)
-    #for vkey,vvalue in vars(self).items(): #check all variables in the class
-    for vkey,vvalue in sorted(self.xmlmapping.items(),key=lambda instance: instance[0].lower()): 
-      if vkey not in ["components","_bb"]:  #sonderbehandlung (erstmal Auslassen) für BS-Listen
-        if vvalue!=utils.odspy.EMPTY: root.append(self.property2xml(vkey,vvalue)) #speichern sämtlicher Klassenvariablen
+    
+    #TODO: if externversion==True
+    mapping=self.xmlmapping
+    variables=et.Element("genericVariables")
+    for vkey,vvalue in sorted(vars(self).items(),key=lambda instance: mapping[instance[0]].lower() if instance[0] in mapping else instance[0].lower()): #sort alphabetically with mapped names
+      if vkey[0]=="_" or isinstance(vvalue, list): continue #skip lists and private variables
+      if vkey in mapping:
+        root.append(self.property2xml(mapping[vkey],vvalue)) #speichern sämtlicher Klassenvariablen
+      else:
+        variables.append(self.genericvariable(vkey,vvalue)) #speichern sämtlicher Klassenvariablen
+    
+    root.append(variables)
     
     xmllist=self.xmllist()  # eigentliche Sonderbehandlung von BS-Listen
     if xmllist!=None: root.append(xmllist)  
@@ -203,7 +231,9 @@ class ibossxml(object):
       namestr= key if key!="_bb" else "Buildingblocks"
       retstr+="{:40} ".format(namestr)
       #retstr+=":{}: ".format(key)
-      if isinstance(val, list):
+      if isinstance(val,pq.Quantity) and val.ndim == 2:#val.shape==(3,3): #print matrices as strings
+        retstr+="[{},{},{}] * {}\n".format(val[0].magnitude,val[1].magnitude,val[2].magnitude,val.dimensionality.string)
+      elif isinstance(val, list):
         names=[elem.name for elem in val]
         retstr += "{:<30};\n".format(names[0])
         if len(names)>1:
@@ -216,6 +246,8 @@ class ibossxml(object):
     
     return retstr
 #end class ibossxml
+  def update(self):
+    pass
 
 #TODO: Kernstruktur irgendwie definieren
 class component(ibossxml):
@@ -228,55 +260,59 @@ class component(ibossxml):
     
     self._xmltype="GenericComponent"
     
-  @property
-  def xmlmapping(self): #maps values to xml class
-    variables={}
-    counter=0
-    for key,value in vars(self).items():
-      counter+=1
-      if key.startswith("_"): continue
-      variables.update({key:value})
-    #print(variables)
-    return variables
-  
-  def update(self):
-    pass
-
-  #def addxmlprop(self,xmlprop):
-  #  super(FileInfo, self).addxmlprop(self,xmlprop)
-
-
-
 class buildingblock(ibossxml):
   def __init__(self,bbtype):
     super(buildingblock, self).__init__()
     
-    self.blocksize=0.4*pq.m #0.4m
-    gap=0.01*pq.m
-    self.size=vec(self.blocksize+gap,self.blocksize+gap,self.blocksize+gap)*pq.m
-    self.name=bbtype
-    self.type=bbtype
-    self.components=[]
-    self.mass=0*pq.kg
-    self.power_max=0*pq.W
-    self.com=vec(0,0,0)*self.blocksize
-    self.heatcapacity=10*pq.J/pq.K
-    self.inertia=((0.85,0.0,0.0),
-                  (0.0,0.85,0.0),
-                  (0.0,0.0,0.85),)*pq.kg*pq.m**2
-    self.geometry="../../Models/Library/BuildingBlocks/EnMAP_Frame.mod"+"TODO: lieber so, als mit \"geometry xlink:href=\""
+    #self.blocksize=0.4*pq.m #0.4m
+    #gap=0.01*pq.m
+    #self.size=vec(self.blocksize+gap,self.blocksize+gap,self.blocksize+gap)*pq.m
+    #self.name=bbtype
+    #self.type=bbtype
+    #self.components=[]
+    #self.mass=0*pq.kg
+    #self.power_max=0*pq.W
+    #self.com=vec(0,0,0)*self.blocksize
+    #self.heatcapacity=10*pq.J/pq.K
+    #self.inertia=((0.85,0.0,0.0),
+                  #(0.0,0.85,0.0),
+                  #(0.0,0.0,0.85),)*pq.kg*pq.m**2
+    #self.orbit="ANY"
+    #self.geometry="../../Models/Library/BuildingBlocks/EnMAP_Frame.mod"+"TODO: lieber so, als mit \"geometry xlink:href=\""
+    
+    #initialize with default variables
+    vars(self).update(self.defaultvariables())
+    name=bbtype,
+    type=bbtype,
     
     self._xmltype="BuildingBlockDef"
 
+  def defaultvariables(self):
+    gap=0.01*pq.m
+    return dict(blocksize=0.4*pq.m, #0.4m,
+                size=vec(self.blocksize+gap,self.blocksize+gap,self.blocksize+gap)*pq.m,
+                name="generic",
+                type="generic",
+                components=[],
+                mass=0*pq.kg,
+                power_max=0*pq.W,
+                com=vec(0,0,0)*self.blocksize,
+                heatcapacity=10*pq.J/pq.K,
+                inertia=((0.85,0.0,0.0),
+                              (0.0,0.85,0.0),
+                              (0.0,0.0,0.85),)*pq.kg*pq.m**2,
+                orbit="ANY",
+                geometry="../../Models/Library/BuildingBlocks/EnMAP_Frame.mod"+"TODO: lieber so, als mit \"geometry xlink:href=\"")
+    
   @property
   def xmlmapping(self):
-    props={"VSD:name":self.name, "size":self.size, "mass": self.mass,
-                   "heatCapacity":self.heatcapacity,
-                   "geometry":self.geometry,
-                   "centerOfMass":self.com, #vector3d
-                   "inertiaTensor":self.inertia, #matrix3d
-                   "orbit":"ANY",
-                   "maxPowerConsumption":self.power_max}
+    props={"name":"VSD:name", "size":"size", "mass": "mass",
+                   "heatcapacity":"heatCapacity",
+                   "geometry":"geometry",
+                   "com":"centerOfMass", #vector3d
+                   "inertia":"inertiaTensor", #matrix3d
+                   "orbit":"orbit",
+                   "power_max":"maxPowerConsumption"}
     return props
 
   def xmllist(self):
@@ -330,7 +366,7 @@ class Satellite(ibossxml):
     
   @property
   def xmlmapping(self): #maps values to xml class
-    return {"VSD:name":self.name,"orbit":self.orbit}
+    return {"VSD:name":"name","orbit":"orbit"}
 
   def xmllist(self):
     root=et.Element("buildingBlocks")
@@ -413,6 +449,15 @@ class Catalog(object):
         bb._id = ibossxml.getid()
         bb._refid = self.bb[bb.name]._id
         
+    #check if all default variables are there:
+    for bb in self.bb.values():
+      for def_key,def_val in bb.defaultvariables().items():
+        if def_key not in vars(bb):
+          vars(bb)[def_key]=def_val
+          print("added: {} with \"{}\" to {}".format(def_key,def_val, bb.name))
+          
+    print("done with consistency check\n")
+        
   def __str__(self):
     returnstring=rstheader("Katalog:","-")
   
@@ -428,44 +473,45 @@ class Catalog(object):
     #TODO: check if new Version string is required
     #TODO: check for reference consitency between block catalog and blocklist of satellite
 
-#todo: save int,floats  etc..  as float and not as string in xml file
-#converts a list of "ibossxml" objects to xml
-def ibosslist2xml(name,instancelist):
-  root=et.Element(name)
-  for i in sorted(instancelist,key=lambda instance: instance.name.lower()): #alphabetically sorted list #operator.attrgetter('type').lower()): 
-    root.append(i.xml)
-  return root
- 
-def savexml(filename,xml):
-  initstr=u("""
+  #todo: save int,floats  etc..  as float and not as string in xml file
+  #converts a list of "ibossxml" objects to xml
+  def ibosslist2xml(self,name,instancelist):
+    root=et.Element(name)
+    for i in sorted(instancelist,key=lambda instance: instance.name.lower()): #alphabetically sorted list #operator.attrgetter('type').lower()): 
+      root.append(i.xml)
+    return root
+  
+  def savexml(self,filename,xml):
+    initstr=u("""
         * Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)
         * Date : {}
         * Version: {}
         * All code (c)2013 Technische Universität Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved""")
 
-  #print(type(initstr))
-  f=codecs.open(filename,"w",encoding="utf-8")
-  xml.set("xmlns:VSD","http://www.VEROSIM.de/namespaces/VSD") #muss möglicherweise für andere Klassen geändert werden.
-  xml.set("xmlns:xlink","http://www.w3.org/1999/xlink")
-  xml.set("xmlns:xsi","http://www.w3.org/2001/XMLSchema-instance")
-  xml.set("xmlns","http://www.VEROSIM.de/namespaces/IBOSS")
-  xml.set("xsi:schemaLocation","http://www.VEROSIM.de/namespaces/IBOSS ../XSD/iboss.xsd")
-  xml.insert(0,et.Comment(initstr.format(time.strftime("%Y/%m/%d"), Version)))
-  f.write(prettyprintxml(xml))
-  f.close()
+    #print(type(initstr))
+    f=codecs.open(filename,"w",encoding="utf-8")
+    xml.set("xmlns:VSD","http://www.VEROSIM.de/namespaces/VSD") #muss möglicherweise für andere Klassen geändert werden.
+    xml.set("xmlns:xlink","http://www.w3.org/1999/xlink")
+    xml.set("xmlns:xsi","http://www.w3.org/2001/XMLSchema-instance")
+    xml.set("xmlns","http://www.VEROSIM.de/namespaces/IBOSS")
+    xml.set("xsi:schemaLocation","http://www.VEROSIM.de/namespaces/IBOSS ../XSD/iboss.xsd")
+    xml.insert(0,et.Comment(initstr.format(time.strftime("%Y/%m/%d"), Version)))
+    f.write(prettyprintxml(xml))
+    f.close()
 
-def saveibosslists(catalog):
-  katalog=et.Element("Catalog",version=Version)
-  katalog.append(ibosslist2xml("componentDefs",catalog.co.values()))
-  katalog.append(ibosslist2xml("buildingBlockDefs",catalog.bb.values()))
-  
-  print("saving buildingblock catalog")
-  savexml("bausteinkatalog/catalog.{}.xml".format(Version),katalog)
-  
-  print("saving satellite configurations")
-  for vkeys,vvalues in catalog.sat.items():
-    #missionen=ibosslist2xml("Satellites",referenzmissionen.values())
-    savexml("bausteinkatalog/tub satellites/"+vkeys,vvalues.xml)
+  def save(self):
+    self.update()
+    katalog=et.Element("Catalog",version=Version)
+    katalog.append(self.ibosslist2xml("componentDefs",self.co.values()))
+    katalog.append(self.ibosslist2xml("buildingBlockDefs",self.bb.values()))
+    
+    print("saving buildingblock catalog")
+    self.savexml("bausteinkatalog/catalog.{}.xml".format(Version),katalog)
+    
+    print("saving satellite configurations")
+    for vkeys,vvalues in self.sat.items():
+      #missionen=ibosslist2xml("Satellites",referenzmissionen.values())
+      self.savexml("bausteinkatalog/tub satellites/"+vkeys,vvalues.xml)
 
 # Bei Abhängigkeiten zwischen Objekten (normalerweise müsste aber alles funktionieren)
 #http://stackoverflow.com/questions/6376081/pickle-linked-objects

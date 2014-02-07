@@ -98,13 +98,15 @@ Options:
 def main(argv=None):
   if argv is None:
     argv = sys.argv
+    if len(argv)<2: print(helpstring)
     try:
       if "odt" in argv:
          iboss_odt2xml.save_catalogue()
       if "w" in argv: report2file(writereport())
       if "p" in argv: print(writereport())
-    except IndexError:
-      print(helpstring)    
+      if "py2xml" in argv: 
+        cat=iboss_catalogue.loaddata()
+        cat.save()
     except:
       raise
       return
