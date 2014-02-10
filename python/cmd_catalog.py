@@ -22,7 +22,7 @@ from utils.odspy import ods2table
 import numpy as np
 import iboss_catalogue
 from iboss_catalogue import pq, loaddata
-from iboss_catalogue import str2vec
+from iboss_catalogue import str2vec, rstheader
 import copy
 import quantities as pq
 import time
@@ -70,8 +70,9 @@ Katalogreport:
     return ret+set2str(sorted(bspowlist, key=lambda bs: -bs[1]))+"\n\n"
   
 
+  report+=rstheader("Catalog Info","-")
+  report+=cat.info()+"\n\n"
   
-
   report+=listmsmass(cat.sat)
   report+=listbsmass(cat.bb)
   report+=listbspow(cat.bb)
@@ -108,6 +109,11 @@ def main(argv=None):
       if "py2xml" in argv: 
         cat=iboss_catalogue.loaddata()
         cat.save()
+      if "test" in argv:
+        cat=iboss_catalogue.Catalog()
+        cat.loadxmldata()
+        cat.save("test")
+        #filecmp  um den neuen und den alten file zu vergleichen (überprüft Konsistenz der Datenbank)
     except:
       raise
       return

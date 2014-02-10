@@ -141,6 +141,26 @@ class ibossxml(object):
     
     vars(self)[xmlprop.tag]=val*unit
   
+  def addgenericxmlvar(self,xmlvar):
+    #convert to floats and vectors
+    try:
+      value= xmlvar.find("value").text
+      try: value=float(value)
+      except ValueError: pass
+    
+      try: unit = pq.Quantity(1,xmlvar.find("unit").text)
+      except: unit = 1
+            
+      name = xmlvar.find("name").text
+      vars(self)[name]=value*unit
+      
+      #startconsole(localvariables=locals())#import pdb; pdb.set_trace()
+    except:
+      print("hat nicht funktioniert",prettyprintxml(xmlvar))
+      raise
+      
+    
+  
   @classmethod
   def xml2vec(cls,xmlvec):
     vec=[]
@@ -459,6 +479,14 @@ class Catalog(object):
       self.co={}
       self.bb={}
       self.sat={}
+      
+      self.ibossxmlns="http://www.VEROSIM.de/namespaces/IBOSS"
+
+  def info(self):
+    infostring ="Number of components in catalog: " + str(len(self.co)) +"\n"
+    infostring+="Number of buildingblocks in catalog: " + str(len(self.bb)) +"\n"
+    infostring+="Number of satellites in catalog: " + str(len(self.sat)) +"\n"
+    return infostring
 
   def bbvarchange(self,varname,val=0.0,delete=False):
     for i in self.bb.values():
@@ -536,61 +564,69 @@ class Catalog(object):
     xml.set("xmlns:VSD","http://www.VEROSIM.de/namespaces/VSD") #muss möglicherweise für andere Klassen geändert werden.
     xml.set("xmlns:xlink","http://www.w3.org/1999/xlink")
     xml.set("xmlns:xsi","http://www.w3.org/2001/XMLSchema-instance")
-    xml.set("xmlns","http://www.VEROSIM.de/namespaces/IBOSS")
+    xml.set("xmlns",self.ibossxmlns)
     xml.set("xsi:schemaLocation","http://www.VEROSIM.de/namespaces/IBOSS ../XSD/iboss.xsd")
     xml.insert(0,et.Comment(initstr.format(time.strftime("%Y/%m/%d"), Version)))
     f.write(prettyprintxml(xml))
     f.close()
 
-  def save(self):
+  def save(self, version=Version):
     self.update()
     katalog=et.Element("Catalog",version=Version)
-    katalog.append(self.ibosslist2xml("componentDefs",self.co.values()))
+    katalog.append(self.ibosslist2xml("componentDefs",self.co.values()))#TODO: componentDefs und buildingBlockDefs 
     katalog.append(self.ibosslist2xml("buildingBlockDefs",self.bb.values()))
     
     print("saving buildingblock catalog")
-    self.savexml("bausteinkatalog/catalog.{}.xml".format(Version),katalog)
+    self.savexml("bausteinkatalog/catalog.{}.xml".format(version),katalog)
     
     print("saving satellite configurations")
     for vkeys,vvalues in self.sat.items():
       #missionen=ibosslist2xml("Satellites",referenzmissionen.values())
-      self.savexml("bausteinkatalog/tub satellites/"+vkeys,vvalues.xml)
+      self.savexml("bausteinkatalog/tub satellites/{}.{}.xml".format(vkeys,version),vvalues.xml)
 
   #loads data from an XML file into catalog
-  def loadxmldata(self,filename='bausteinkatalog/catalog.1.3.xml'):
-    data = et.parse(filename)
-    data = data.getroot()
+  def loadxmldata(self,filename='bausteinkatalog/catalog.{}.xml'.format(Version)):
+    import re
+    with open(filename) as xmlfile:
+      strdata = xmlfile.read()
+      strdata = re.sub(' xmlns="[^"]+"', '', strdata) #strip xml from namespaces to make parsing easier
+      strdata = re.sub('VSD:', '', strdata) #strip xml from namespaces to make parsing easier
+      data = et.fromstring(strdata)
+      #data=et.parse(strdata)
+      #data = data.getroot()
 
-    co_list=data.find("componentDefs")
-    bs_list=data.find("buildingBlockDefs")
-
-    #todo XML load routinen in iboss Klassen verschieben
-    components=dict()
-    for i in co_list:
-      new_co=iboss_catalogue.component(i.find("type").text)
-      for xmlprop in i:  #add properties
-        new_co.addxmlprop(xmlprop)
-      components[new_co.name]=new_co
-      
-    buildingblocks=dict()
-    for i in bs_list:
-      new_bs=iboss_catalogue.buildingblock(i.find("type").text)
-      for xmlprop in i:
-        if xmlprop.tag=="components":
-          for co in xmlprop:
-            new_co=copy.copy(components[co.attrib["type"]])
-            if "num" in co.attrib: new_co.num=int(co.attrib["num"])
-            for co_prop in co:
-              #new_co.addxmlprop(co_prop) #Hier immer Ergänzungen aus dem laden einer alten katalogdatei hinzufügen
-              if co_prop.tag=="pos": new_co.pos=iboss_catalogue.ibossxml.xml2vec(co_prop)*pq.Quantity(1,"blocks")
-              if co_prop.tag=="th_vec": new_co.th_vec=iboss_catalogue.ibossxml.xml2vec(co_prop)*pq.dimensionless
-            new_bs.add_co(new_co)
-        else: new_bs.addxmlprop(xmlprop)
-      buildingblocks[new_bs.name]=new_bs
-
-    mission=dict()
+    #get list of componenents and buildingblocks
+    co_list=data.findall("componentDefs/GenericComponent") #tree.find('foo:bar', namespaces={'foo': 'http://url.of.namespace'})
+    bs_list=data.findall("buildingBlockDefs/BuildingBlockDef")
     
-    return components, buildingblocks, mission
+    #todo XML load routinen in iboss Klassen verschieben
+    for i in co_list:
+      new_co=component("generic")
+      genvars=i.findall("genericVariables/GenericVariable")
+      #startconsole(localvariables=locals())#import pdb; pdb.set_trace()
+      for var in genvars:  #add properties
+        new_co.addgenericxmlvar(var)
+      self.co[new_co.name]=new_co
+
+    #startconsole(localvariables=locals())#import pdb; pdb.set_trace()
+      
+    #buildingblocks=dict()
+    #for i in bs_list:
+      #new_bs=iboss_catalogue.buildingblock(i.find("type").text)
+      #for xmlprop in i:
+        #if xmlprop.tag=="components":
+          #for co in xmlprop:
+            #new_co=copy.copy(components[co.attrib["type"]])
+            #if "num" in co.attrib: new_co.num=int(co.attrib["num"])
+            #for co_prop in co:
+              ##new_co.addxmlprop(co_prop) #Hier immer Ergänzungen aus dem laden einer alten katalogdatei hinzufügen
+              #if co_prop.tag=="pos": new_co.pos=iboss_catalogue.ibossxml.xml2vec(co_prop)*pq.Quantity(1,"blocks")
+              #if co_prop.tag=="th_vec": new_co.th_vec=iboss_catalogue.ibossxml.xml2vec(co_prop)*pq.dimensionless
+            #new_bs.add_co(new_co)
+        #else: new_bs.addxmlprop(xmlprop)
+      #buildingblocks[new_bs.name]=new_bs
+
+    #mission=dict()
 
   def loadmission(filename):  
     co,bb,mn=loadxmldata()
@@ -634,6 +670,7 @@ def savedata(data, filename = "./bausteinkatalog/katalogdata_new.iboss"):
 
 def startconsole(localvariables):
   from code import InteractiveConsole
+  #ppxml=prettyprintxml
 
   cons=InteractiveConsole(locals=localvariables)
   

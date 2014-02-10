@@ -2,11 +2,19 @@
 Katalogreport:
 ===============
 
-:Datum: 2014/02/07
-:Version: 1.3
+:Datum: 2014/02/10
+:Version: 1.4
 
 ©TU Berlin
 
+
+
+Catalog Info
+------------
+
+Number of components in catalog: 161
+Number of buildingblocks in catalog: 25
+Number of buildingblocks in catalog: 6
 
 
 Referenzmissionen:
