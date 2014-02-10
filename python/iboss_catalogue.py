@@ -11,6 +11,8 @@
 
 """defines data structures for iboss project"""
 
+Version="1.4" #catalog version
+
 from copy import copy
 import numpy as np
 import xml.etree.ElementTree as et
@@ -61,7 +63,6 @@ vec= lambda x,y,z: np.array([x,y,z])  #create a vector
 helpstring="""
 Dieses Skript speichert den Bausteinkatalog im XML-Format
 """
-Version="1.3"
 
 #convert vector to string (python list)
 def vec2str(vec):
@@ -555,12 +556,13 @@ class Catalog(object):
       #missionen=ibosslist2xml("Satellites",referenzmissionen.values())
       self.savexml("bausteinkatalog/tub satellites/"+vkeys,vvalues.xml)
 
-  def loadxmldata(filename='bausteinkatalog/katalog.1.2.xml'):
+  #loads data from an XML file into catalog
+  def loadxmldata(self,filename='bausteinkatalog/catalog.1.3.xml'):
     data = et.parse(filename)
     data = data.getroot()
 
-    co_list=data.find("components")
-    bs_list=data.find("buildingblocks")
+    co_list=data.find("componentDefs")
+    bs_list=data.find("buildingBlockDefs")
 
     #todo XML load routinen in iboss Klassen verschieben
     components=dict()
