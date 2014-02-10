@@ -72,14 +72,16 @@ def vec2str(vec):
 def mat2str(mat):
   return "\n\t\t\t\t\t".join(["{:.8} {:.8} {:.8}".format(*vec) for vec in mat])
 
-#convert string to vector (python list)
+#convert string to vector (numpy array)
 def str2vec(stringvec):
-  try:  
-    val = vec(*[float(i) for i in stringvec.split(",")])
+  #try:  
+    val = np.array([float(i) for i in stringvec.rsplit()])
+    if val.size==1: val=val[0]
+    elif val.size==9: val=val.reshape(3,3) 
     return val 
-  except ValueError:
-    traceback.print_exc()
-    print("could not convert {} to float".format(stringvec))
+  #except ValueError:
+    #raise
+    #print("could not convert {} to float".format(stringvec))
   
 def str2vecint(stringvec): return vec(*[int(i) for i in stringvec.split(",")])
 
@@ -118,36 +120,29 @@ class ibossxml(object):
   def xmllist(self):
     return None
   
-  #todo: XML vektoren einlesen
   def addxmlprop(self,xmlprop):
     #convert to floats and vectors
+    unit=1
     try:
-      if xmlprop.tag in ["com","pos","th_vec","size"]: 
-        val=self.xml2vec(xmlprop)
+      if 'unit' in xmlprop.attrib:
+        val=str2vec(xmlprop.text)
+        unit=pq.Quantity(1,xmlprop.attrib['unit'])
       else: 
-        try:
-          val=float(xmlprop.text)
-        except ValueError: 
-          val=xmlprop.text
+        try: val=float(xmlprop.text)
+        except ValueError: val=xmlprop.text
     except:
+      print("hat nicht funktioniert",prettyprintxml(xmlprop))
+      print(xmlprop.text.rsplit())
       raise
-      print("hat nicht funktioniert",xmlprop.text)
-
-      
-    #find out unit
-    unit=xmlprop.get("unit")
-    if unit: 
-      unit=pq.Quantity(1,unit)
-    else: unit=1
     
     vars(self)[xmlprop.tag]=val*unit
   
   def addgenericxmlvar(self,xmlvar):
     #convert to floats and vectors
     try:
-      value= xmlvar.find("value").text
-      try: value=float(value)
-      except ValueError: pass
+      strvalue= xmlvar.find("value").text
+      try: value=str2vec(strvalue)
+      except ValueError:value=strvalue
     
       try: unit = pq.Quantity(1,xmlvar.find("unit").text)
       except: unit = 1
@@ -179,41 +174,50 @@ class ibossxml(object):
   
   @classmethod
   def property2xml(cls,vkey,vvalue):
-    newelem=et.Element(vkey)
-    #newelem=et.Element("property")
-    if isinstance(vvalue,pq.Quantity): 
-      newelem.set("unit",vvalue.dimensionality.string)
-      if vvalue.size==1 :newelem.text=unicode(vvalue.magnitude)
-      #else: newelem.extend(cls.vec2xml(vvalue.magnitude))
-      elif vvalue.size<=3: newelem.text = vec2str(vvalue.magnitude)
-      else: newelem.text = mat2str(vvalue.magnitude)
-    else:
-      try:
-        #if vvalue.size>1: newelem.extend(cls.vec2xml(vvalue.magnitude))
-        if vvalue.size>1: newelem.text = vec2str(vvalue.magnitude)
-        else: newelem.text = unicode(vvalue)
-      except AttributeError: #in case of vvalue not beeing an array
-        newelem.text = unicode(vvalue)
+    try:
+      newelem=et.Element(vkey)
+      #newelem=et.Element("property")
+      if isinstance(vvalue,pq.Quantity): 
+        newelem.set("unit",vvalue.dimensionality.string)
+        if vvalue.size==1 :newelem.text=unicode(vvalue.magnitude)
+        #else: newelem.extend(cls.vec2xml(vvalue.magnitude))
+        elif vvalue.size<=3: newelem.text = vec2str(vvalue.magnitude)
+        else: newelem.text = mat2str(vvalue.magnitude)
+      else:
+        try:
+          #if vvalue.size>1: newelem.extend(cls.vec2xml(vvalue.magnitude))
+          if vvalue.size>1: newelem.text = vec2str(vvalue.magnitude)
+          else: newelem.text = unicode(vvalue)
+        except AttributeError: #in case of vvalue not beeing an array
+          newelem.text = unicode(vvalue)
+    except:
+      print("vkey: ",vkey, "; vvalue: ",vvalue, "\n\n")
+      raise
+      
         
     return newelem
   
   @classmethod
   def genericvariable2xml(cls,vkey,vvalue):
-    newelem=et.Element("GenericVariable")
-    et.SubElement(newelem,"VSD:name").text=vkey
-    if isinstance(vvalue,pq.Quantity): 
-      et.SubElement(newelem,"unit").text=vvalue.dimensionality.string
-      if vvalue.size==1 : value=unicode(vvalue.magnitude)
-      #else: newelem.extend(cls.vec2xml(vvalue.magnitude))
-      elif vvalue.size<=3: value = vec2str(vvalue.magnitude)
-      else: value = mat2str(vvalue.magnitude)
-    else:
-      try:
-        #if vvalue.size>1: newelem.extend(cls.vec2xml(vvalue.magnitude))
-        if vvalue.size>1: value = vec2str(vvalue.magnitude)
-        else: value = unicode(vvalue)
-      except AttributeError: #in case of vvalue not beeing an array
-        value = unicode(vvalue)
+    try:
+      newelem=et.Element("GenericVariable")
+      et.SubElement(newelem,"VSD:name").text=vkey
+      if isinstance(vvalue,pq.Quantity): 
+        et.SubElement(newelem,"unit").text=vvalue.dimensionality.string
+        if vvalue.size==1 : value=unicode(vvalue.magnitude)
+        #else: newelem.extend(cls.vec2xml(vvalue.magnitude))
+        elif vvalue.size<=3: value = vec2str(vvalue.magnitude)
+        else: value = mat2str(vvalue.magnitude)
+      else:
+        try:
+          #if vvalue.size>1: newelem.extend(cls.vec2xml(vvalue.magnitude))
+          if vvalue.size>1: value = vec2str(vvalue.magnitude)
+          else: value = unicode(vvalue)
+        except AttributeError: #in case of vvalue not beeing an array
+          value = unicode(vvalue)
+    except:
+      print("vkey: ",vkey, "; vvalue: ",vvalue, "\n\n")
+      raise
     
     et.SubElement(newelem,"value").text=value
     return newelem
@@ -361,7 +365,7 @@ class buildingblock(ibossxml):
     return root #so the list gets serialized in xml"""
     
   def add_co(self,co): #todo variable length argument list
-    self.components.append(copy(co))  #use copy of component for an update with state variables
+    self.components.append(copy.copy(co))  #use copy of component for an update with state variables
     #self.components.append(co)
     if "num" not in vars(co): co.num=1
   
@@ -479,8 +483,11 @@ class Satellite(ibossxml):
 class Catalog(object):
   def __init__(self):
       self.co={}
+      self.idco={}
       self.bb={}
+      self.idbb={}
       self.sat={}
+      self.idsat={}
 
   def info(self):
     infostring ="Number of components in catalog: " + str(len(self.co)) +"\n"
@@ -604,9 +611,8 @@ class Catalog(object):
     #add componenents
     for i in co_list:
       new_co=component('generic')
-      new_co._id=attrib['id']
+      new_co._id=i.attrib['id']
       genvars=i.findall('genericVariables/GenericVariable')
-      startconsole(localvariables=locals())#import pdb; pdb.set_trace()
       for var in genvars:  new_co.addgenericxmlvar(var) #add properties
       self.co[new_co.name]=new_co  #catalog with component names
       self.idco[new_co._id]=new_co
@@ -616,17 +622,21 @@ class Catalog(object):
     #add building blocks
     for i in bs_list:
       new_bs=buildingblock("generic")
-      new_bs._id=attrib['id']
+      new_bs._id=i.attrib['id']
       for xmlprop in i: #add xml properties
         if xmlprop.tag=="components":
           for co in xmlprop:
-            new_co=copy.copy(self.idco[co._id])
+            co_id=list(co.find('definition').attrib.values())[0]
+            co_id=re.search('#(id.*)',co_id).group(1)
+
+            new_co=copy.copy(self.idco[co_id])
             #if "num" in co.attrib: new_co.num=int(co.attrib["num"])
             #for co_prop in co:
               #new_co.addxmlprop(co_prop) #Hier immer Ergänzungen aus dem laden einer alten katalogdatei hinzufügen
               #if co_prop.tag=="pos": new_co.pos=iboss_catalogue.ibossxml.xml2vec(co_prop)*pq.Quantity(1,"blocks")
               #if co_prop.tag=="th_vec": new_co.th_vec=iboss_catalogue.ibossxml.xml2vec(co_prop)*pq.dimensionless
             new_bs.add_co(new_co)
+            #startconsole(localvariables=locals())#import pdb; pdb.set_trace()
         elif xmlprop.tag == "genericVariables":
            for var in xmlprop:  new_bs.addgenericxmlvar(var) #add generic properties
         else: new_bs.addxmlprop(xmlprop)
