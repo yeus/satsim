@@ -25,6 +25,7 @@ import codecs
 import time
 import traceback
 import pickle
+import copy
 
 pq.krad=pq.UnitQuantity('kilorad', pq.rads*1000, symbol='krad')
 pq.blocks=pq.UnitQuantity('blocks', 1, symbol='blocks')
@@ -197,7 +198,7 @@ class ibossxml(object):
     return newelem
   
   @classmethod
-  def genericvariable(cls,vkey,vvalue):
+  def genericvariable2xml(cls,vkey,vvalue):
     newelem=et.Element("GenericVariable")
     et.SubElement(newelem,"VSD:name").text=vkey
     if isinstance(vvalue,pq.Quantity): 
@@ -230,7 +231,7 @@ class ibossxml(object):
       if vkey in mapping:
         root.append(self.property2xml(mapping[vkey],vvalue)) #speichern sämtlicher Klassenvariablen
       else:
-        variables.append(self.genericvariable(vkey,vvalue)) #speichern sämtlicher Klassenvariablen
+        variables.append(self.genericvariable2xml(vkey,vvalue)) #speichern sämtlicher Klassenvariablen
     
     root.append(variables)
     
@@ -316,14 +317,15 @@ class buildingblock(ibossxml):
 
   def defaultvariables(self):
     gap=0.01*pq.m
-    return dict(blocksize=0.4*pq.m, #0.4m,
-                size=vec(self.blocksize+gap,self.blocksize+gap,self.blocksize+gap)*pq.m,
+    Blocksize=0.4*pq.m
+    return dict(blocksize=Blocksize, #0.4m,
+                size=vec(Blocksize+gap,Blocksize+gap,Blocksize+gap)*pq.m,
                 name="generic",
                 type="generic",
                 components=[],
                 mass=0*pq.kg,
                 power_max=0*pq.W,
-                com=vec(0,0,0)*self.blocksize,
+                com=vec(0,0,0)*Blocksize,
                 heatcapacity=10*pq.J/pq.K,
                 inertia=((0.85,0.0,0.0),
                               (0.0,0.85,0.0),
@@ -354,7 +356,7 @@ class buildingblock(ibossxml):
         if co.num!=1: newelem.append(self.property2xml("num", co.num)) #if it is just one component number does not matter
       root.append(newelem)
       newelem2=et.Element("definition")
-      newelem2.set("xlink:href","../Catalogs/catalog.xml#"+str(co._id))
+      newelem2.set("xlink:href","../Catalogs/catalog.xml#"+str(co._refid))
       newelem.append(newelem2)
     return root #so the list gets serialized in xml"""
     
@@ -479,8 +481,6 @@ class Catalog(object):
       self.co={}
       self.bb={}
       self.sat={}
-      
-      self.ibossxmlns="http://www.VEROSIM.de/namespaces/IBOSS"
 
   def info(self):
     infostring ="Number of components in catalog: " + str(len(self.co)) +"\n"
@@ -511,14 +511,15 @@ class Catalog(object):
       
     for bb in sorted(self.bb.values(),key=lambda instance: instance.name.lower()):
       bb._id=ibossxml.getid()
+      for co in sorted(bb.components,key=lambda instance: instance.name.lower()):
+        co._id = ibossxml.getid()
+        co._refid = self.co[co.name]._id
     
     for sat in sorted(self.sat.values(),key=lambda instance: instance.name.lower()):
       sat._id=ibossxml.getid()
       for bb in sorted(sat.bb,key=lambda instance: instance.name.lower()):
         bb._id = ibossxml.getid()
         bb._refid = self.bb[bb.name]._id
-    
-    
     
     #check if all default variables are there:
     for bb in self.bb.values():
@@ -564,7 +565,7 @@ class Catalog(object):
     xml.set("xmlns:VSD","http://www.VEROSIM.de/namespaces/VSD") #muss möglicherweise für andere Klassen geändert werden.
     xml.set("xmlns:xlink","http://www.w3.org/1999/xlink")
     xml.set("xmlns:xsi","http://www.w3.org/2001/XMLSchema-instance")
-    xml.set("xmlns",self.ibossxmlns)
+    xml.set("xmlns","http://www.VEROSIM.de/namespaces/IBOSS")
     xml.set("xsi:schemaLocation","http://www.VEROSIM.de/namespaces/IBOSS ../XSD/iboss.xsd")
     xml.insert(0,et.Comment(initstr.format(time.strftime("%Y/%m/%d"), Version)))
     f.write(prettyprintxml(xml))
@@ -599,32 +600,38 @@ class Catalog(object):
     co_list=data.findall("componentDefs/GenericComponent") #tree.find('foo:bar', namespaces={'foo': 'http://url.of.namespace'})
     bs_list=data.findall("buildingBlockDefs/BuildingBlockDef")
     
-    #todo XML load routinen in iboss Klassen verschieben
+    #todo XML load routinen in iboss Klassen verschieben?
+    #add componenents
     for i in co_list:
-      new_co=component("generic")
-      genvars=i.findall("genericVariables/GenericVariable")
-      #startconsole(localvariables=locals())#import pdb; pdb.set_trace()
-      for var in genvars:  #add properties
-        new_co.addgenericxmlvar(var)
-      self.co[new_co.name]=new_co
+      new_co=component('generic')
+      new_co._id=attrib['id']
+      genvars=i.findall('genericVariables/GenericVariable')
+      startconsole(localvariables=locals())#import pdb; pdb.set_trace()
+      for var in genvars:  new_co.addgenericxmlvar(var) #add properties
+      self.co[new_co.name]=new_co  #catalog with component names
+      self.idco[new_co._id]=new_co
 
     #startconsole(localvariables=locals())#import pdb; pdb.set_trace()
-      
-    #buildingblocks=dict()
-    #for i in bs_list:
-      #new_bs=iboss_catalogue.buildingblock(i.find("type").text)
-      #for xmlprop in i:
-        #if xmlprop.tag=="components":
-          #for co in xmlprop:
-            #new_co=copy.copy(components[co.attrib["type"]])
+    
+    #add building blocks
+    for i in bs_list:
+      new_bs=buildingblock("generic")
+      new_bs._id=attrib['id']
+      for xmlprop in i: #add xml properties
+        if xmlprop.tag=="components":
+          for co in xmlprop:
+            new_co=copy.copy(self.idco[co._id])
             #if "num" in co.attrib: new_co.num=int(co.attrib["num"])
             #for co_prop in co:
-              ##new_co.addxmlprop(co_prop) #Hier immer Ergänzungen aus dem laden einer alten katalogdatei hinzufügen
+              #new_co.addxmlprop(co_prop) #Hier immer Ergänzungen aus dem laden einer alten katalogdatei hinzufügen
               #if co_prop.tag=="pos": new_co.pos=iboss_catalogue.ibossxml.xml2vec(co_prop)*pq.Quantity(1,"blocks")
               #if co_prop.tag=="th_vec": new_co.th_vec=iboss_catalogue.ibossxml.xml2vec(co_prop)*pq.dimensionless
-            #new_bs.add_co(new_co)
-        #else: new_bs.addxmlprop(xmlprop)
-      #buildingblocks[new_bs.name]=new_bs
+            new_bs.add_co(new_co)
+        elif xmlprop.tag == "genericVariables":
+           for var in xmlprop:  new_bs.addgenericxmlvar(var) #add generic properties
+        else: new_bs.addxmlprop(xmlprop)
+      self.bb[new_bs.name]=new_bs
+      self.idbb[new_bs._id]=new_bs
 
     #mission=dict()
 

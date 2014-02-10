@@ -8035,39 +8035,39 @@
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Li-Ion-Batterie-->
 					<num>20</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id25"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id73"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>48</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>6</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Batteriekontrolle-->
-					<definition xlink:href="../Catalogs/catalog.xml#id7"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id14"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id163">
+		<BuildingBlockDef VSD:id="id170">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -8098,40 +8098,40 @@
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--CMG-->
 					<num>2</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id8"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id20"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
 					<num>2</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>80</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>10</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--CMG-Electronics-->
-					<definition xlink:href="../Catalogs/catalog.xml#id9"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id23"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id164">
+		<BuildingBlockDef VSD:id="id178">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -8162,34 +8162,34 @@
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>48</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Drallrad (inkl.Elektro.)-->
-					<definition xlink:href="../Catalogs/catalog.xml#id10"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id29"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>6</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id165">
+		<BuildingBlockDef VSD:id="id185">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -8220,47 +8220,47 @@
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--FCU-->
-					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id38"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
 					<num>2</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Hall Efffekt Triebwerk-->
-					<definition xlink:href="../Catalogs/catalog.xml#id20"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id52"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>104</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>13</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Tank 1-->
-					<definition xlink:href="../Catalogs/catalog.xml#id39"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id141"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--PSCU-->
-					<definition xlink:href="../Catalogs/catalog.xml#id30"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id104"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id166">
+		<BuildingBlockDef VSD:id="id195">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -8291,34 +8291,34 @@
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>40</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>5</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Erdsensor 2-->
-					<definition xlink:href="../Catalogs/catalog.xml#id15"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id36"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id167">
+		<BuildingBlockDef VSD:id="id202">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -8349,30 +8349,30 @@
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>40</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>5</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id168">
+		<BuildingBlockDef VSD:id="id208">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -8403,38 +8403,38 @@
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>40</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>5</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--GNSS-Receiver 1-->
-					<definition xlink:href="../Catalogs/catalog.xml#id17"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id46"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--GPS-Antenne-->
-					<definition xlink:href="../Catalogs/catalog.xml#id19"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id51"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id169">
+		<BuildingBlockDef VSD:id="id216">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -8465,35 +8465,35 @@
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
 					<num>2</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>80</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>10</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--IMU (sehr genau)-->
-					<definition xlink:href="../Catalogs/catalog.xml#id22"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id63"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id170">
+		<BuildingBlockDef VSD:id="id223">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -8524,34 +8524,34 @@
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--IMU (Standard)-->
-					<definition xlink:href="../Catalogs/catalog.xml#id23"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id64"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>48</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>6</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id171">
+		<BuildingBlockDef VSD:id="id230">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -8582,39 +8582,39 @@
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
 					<num>2</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
 					<num>2</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>72</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Kaltgasantriebssyst.-->
-					<definition xlink:href="../Catalogs/catalog.xml#id24"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id68"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>9</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Tank 1-->
-					<definition xlink:href="../Catalogs/catalog.xml#id39"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id141"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id172">
+		<BuildingBlockDef VSD:id="id238">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -8645,39 +8645,39 @@
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 2-->
 					<num>2</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id36"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id129"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
 					<num>2</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>72</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Kaltgasantriebssyst.-->
-					<definition xlink:href="../Catalogs/catalog.xml#id24"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id68"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>9</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Tank 1-->
-					<definition xlink:href="../Catalogs/catalog.xml#id39"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id141"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id173">
+		<BuildingBlockDef VSD:id="id246">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -8711,16 +8711,16 @@
 			<components>
 				<GenericComponent>
 					<!--Tank 3 (Hydrazin)-->
-					<definition xlink:href="../Catalogs/catalog.xml#id42"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id143"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
 					<num>12</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id174">
+		<BuildingBlockDef VSD:id="id249">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -8754,16 +8754,16 @@
 			<components>
 				<GenericComponent>
 					<!--Tank 3 (Hydrazin)-->
-					<definition xlink:href="../Catalogs/catalog.xml#id42"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id143"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
 					<num>12</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id175">
+		<BuildingBlockDef VSD:id="id252">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -8793,40 +8793,40 @@
 			<components>
 				<GenericComponent>
 					<!--Magnetometer-->
-					<definition xlink:href="../Catalogs/catalog.xml#id113"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id78"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Magnetorquer-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id27"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id79"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>40</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>5</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id176">
+		<BuildingBlockDef VSD:id="id260">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -8857,39 +8857,39 @@
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
 					<num>2</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
 					<num>2</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>72</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Tank 2-->
-					<definition xlink:href="../Catalogs/catalog.xml#id40"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id142"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>9</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Monopropell.System-->
-					<definition xlink:href="../Catalogs/catalog.xml#id28"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id89"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id177">
+		<BuildingBlockDef VSD:id="id268">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -8920,34 +8920,34 @@
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>48</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>6</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--SMU-->
-					<definition xlink:href="../Catalogs/catalog.xml#id34"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id126"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id178">
+		<BuildingBlockDef VSD:id="id275">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -8978,34 +8978,34 @@
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--PCU-->
-					<definition xlink:href="../Catalogs/catalog.xml#id29"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id101"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>48</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>6</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id179">
+		<BuildingBlockDef VSD:id="id282">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -9036,34 +9036,34 @@
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Reaktionsrad-->
-					<definition xlink:href="../Catalogs/catalog.xml#id31"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id106"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>48</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>6</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id180">
+		<BuildingBlockDef VSD:id="id289">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -9094,28 +9094,28 @@
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 2-->
-					<definition xlink:href="../Catalogs/catalog.xml#id36"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id129"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--zentrale Solarfläche-->
-					<definition xlink:href="../Catalogs/catalog.xml#id46"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id161"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>8</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id181">
+		<BuildingBlockDef VSD:id="id295">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -9145,44 +9145,44 @@
 			<components>
 				<GenericComponent>
 					<!--SADA-->
-					<definition xlink:href="../Catalogs/catalog.xml#id33"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id114"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
 					<num>2</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--entfalt. Solarflächen 2-->
 					<num>5</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id13"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id34"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>48</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>6</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--entfalt. Elektronik-->
-					<definition xlink:href="../Catalogs/catalog.xml#id11"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id32"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id182">
+		<BuildingBlockDef VSD:id="id304">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -9217,34 +9217,34 @@
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sternsensor-->
-					<definition xlink:href="../Catalogs/catalog.xml#id38"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id137"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>24</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id183">
+		<BuildingBlockDef VSD:id="id311">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -9276,44 +9276,44 @@
 					<!--testdüse-->
 					<position unit="m">0.5 0.0 1.0</position>
 					<th_vec unit="m">0.0 1.0 -1.0</th_vec>
-					<definition xlink:href="../Catalogs/catalog.xml#id47"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id146"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--testdüse-->
 					<position unit="m">1.0 0.5 1.0</position>
 					<th_vec unit="m">-1.0 0.0 -1.0</th_vec>
-					<definition xlink:href="../Catalogs/catalog.xml#id47"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id146"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--testdüse-->
 					<position unit="m">0.5 1.0 1.0</position>
 					<th_vec unit="m">0.0 -1.0 -1.0</th_vec>
-					<definition xlink:href="../Catalogs/catalog.xml#id47"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id146"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--testdüse-->
 					<position unit="m">0.0 0.5 1.0</position>
 					<th_vec unit="m">1.0 0.0 -1.0</th_vec>
-					<definition xlink:href="../Catalogs/catalog.xml#id47"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id146"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--testdüse-->
 					<position unit="m">0.5 0.5 1.0</position>
 					<th_vec unit="m">0.0 0.0 -1.0</th_vec>
-					<definition xlink:href="../Catalogs/catalog.xml#id47"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id146"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>40</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id184">
+		<BuildingBlockDef VSD:id="id319">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -9343,43 +9343,43 @@
 			<components>
 				<GenericComponent>
 					<!--Antenne-->
-					<definition xlink:href="../Catalogs/catalog.xml#id6"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id9"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Transceiver-->
-					<definition xlink:href="../Catalogs/catalog.xml#id43"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id149"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--SSPA-->
-					<definition xlink:href="../Catalogs/catalog.xml#id37"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id131"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>40</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>5</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id185">
+		<BuildingBlockDef VSD:id="id328">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -9410,47 +9410,47 @@
 				<GenericComponent>
 					<!--Antenne-->
 					<num>2</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id6"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id9"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--SSPA-->
-					<definition xlink:href="../Catalogs/catalog.xml#id37"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id131"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>40</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>5</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Receiver-->
-					<definition xlink:href="../Catalogs/catalog.xml#id32"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id107"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Transmitter-->
-					<definition xlink:href="../Catalogs/catalog.xml#id44"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id150"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>
-		<BuildingBlockDef VSD:id="id186">
+		<BuildingBlockDef VSD:id="id338">
 			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
 			<geometry>../../Models/Library/BuildingBlocks/EnMAP_Frame.modTODO: lieber so, als mit &quot;geometry xlink:href=&quot;</geometry>
 			<heatCapacity unit="J/K">10.0</heatCapacity>
@@ -9481,39 +9481,39 @@
 				<GenericComponent>
 					<!--Antenne-->
 					<num>2</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id6"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id9"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Transponder-->
-					<definition xlink:href="../Catalogs/catalog.xml#id45"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id151"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id35"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
 					<num>3</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id21"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--SSPA-->
-					<definition xlink:href="../Catalogs/catalog.xml#id37"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id131"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<definition xlink:href="../Catalogs/catalog.xml#id2"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
 					<num>40</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id5"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
 					<num>5</num>
-					<definition xlink:href="../Catalogs/catalog.xml#id1"/>
+					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 			</components>
 		</BuildingBlockDef>

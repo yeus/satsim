@@ -108,6 +108,7 @@ def main(argv=None):
         print(writereport())
       if "py2xml" in argv: 
         cat=iboss_catalogue.loaddata()
+        cat.make_consistent()
         cat.save()
       if "test" in argv:
         cat=iboss_catalogue.Catalog()
