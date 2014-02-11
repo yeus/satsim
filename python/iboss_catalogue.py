@@ -26,6 +26,7 @@ import time
 import traceback
 import pickle
 import copy
+import re
 
 pq.krad=pq.UnitQuantity('kilorad', pq.rads*1000, symbol='krad')
 pq.blocks=pq.UnitQuantity('blocks', 1, symbol='blocks')
@@ -596,10 +597,10 @@ class Catalog(object):
     print("saving satellite configurations")
     for vkeys,vvalues in self.sat.items():
       #missionen=ibosslist2xml("Satellites",referenzmissionen.values())
-      self.savexml("bausteinkatalog/tub satellites/{}.{}.xml".format(vkeys,version),vvalues.xml)
+      self.savexml("bausteinkatalog/tub_sats/{}.{}.xml".format(vkeys,version),vvalues.xml)
 
-  #loads data from an XML file into catalog
-  def loadxmldata(self,filename='bausteinkatalog/catalog.{}.xml'.format(Version)):
+  #load xml file and strips it from namespaces
+  def loadxmlfile(self,filename):
     import re
     with open(filename) as xmlfile:
       strdata = xmlfile.read()
@@ -608,6 +609,11 @@ class Catalog(object):
       data = et.fromstring(strdata)
       #data=et.parse(strdata)
       #data = data.getroot()
+    return data
+
+  #loads data from an XML file into catalog
+  def loadxmldata(self,filename='bausteinkatalog/catalog.{}.xml'.format(Version)): 
+    data=self.loadxmlfile(filename)
 
     #get list of componenents and buildingblocks
     co_list=data.findall("componentDefs/GenericComponent") #tree.find('foo:bar', namespaces={'foo': 'http://url.of.namespace'})
@@ -642,6 +648,20 @@ class Catalog(object):
         else: new_bs.addxmlprop(xmlprop)
       self.bb[new_bs.name]=new_bs
       self.idbb[new_bs._id]=new_bs
+      
+    #add missions
+    import glob
+    for i in glob.glob("bausteinkatalog/tub_sats/*.{}.xml".format(Version)):
+      data = self.loadxmlfile(i)#TODO: check if it is a valid Satellite XML
+      
+      new_sat = Satellite('generic')
+      new_sat._id=data.attrib['id']
+      for xmlprop in data:
+        new_sat.addxmlprop(xmlprop)
+        
+      self.sat[new_sat.name] = new_sat
+      self.idsat[new_sat._id] = new_sat
+      
 
     #mission=dict()
 
