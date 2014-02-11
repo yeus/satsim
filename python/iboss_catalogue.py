@@ -257,7 +257,7 @@ class ibossxml(object):
     retstr=rstheader(self.name,"'")
     
     retstr+=("="*40)+" "+"="*100+"\n"
-    for key,val in vars(self).items():
+    for key,val in sorted(vars(self).items()):
       if key[0]=="_" and key!="_bb": continue
       
       namestr= key if key!="_bb" else "Buildingblocks"
