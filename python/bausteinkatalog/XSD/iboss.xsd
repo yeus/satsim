@@ -132,8 +132,8 @@
     <xs:complexContent>
       <xs:extension base="VSD3D:NodeType">
         <xs:sequence>
-          <xs:element name="position" type="VSDMeasure:Vector3Length"/>
-          <xs:element name="orientation" type="VSDMeasure:Vector3Angle"/>
+          <xs:element name="position" type="VSDMeasure:Vector3Length" minOccurs="0"/>
+          <xs:element name="orientation" type="VSDMeasure:Vector3Angle" minOccurs="0"/>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -199,14 +199,14 @@
     <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
   </xs:complexType>
 
-
-<!-- =========================================================== -->
+  <!-- =========================================================== -->
   
   <xs:element name="GenericComponent" type="GenericComponentType" substitutionGroup="Component"/>
   <xs:complexType name="GenericComponentType">
     <xs:complexContent>
       <xs:extension base="ComponentType">
         <xs:sequence>
+          <xs:element name="num" type="xs:int" minOccurs="0"/>
           <xs:element name="definition" type="GenericComponentDefCompositionType"/>
         </xs:sequence>
       </xs:extension>
@@ -217,12 +217,39 @@
   <xs:complexType name="GenericComponentDefType">
     <xs:complexContent>
       <xs:extension base="ComponentDefType">
+        <xs:sequence>
+          <xs:element name="genericVariables" type="GenericVariableCompositionListType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="GenericComponentDefCompositionType">
     <xs:sequence minOccurs="0">
       <xs:element ref="GenericComponentDef" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+
+  <xs:element name="GenericVariable" type="GenericVariableType"/>
+  <xs:complexType name="GenericVariableType">
+    <xs:complexContent>
+      <xs:extension base="VSD:NamedModelInstanceType">
+        <xs:sequence>
+          <xs:element name="unit" type="xs:string" minOccurs="0"/>
+          <xs:element name="value" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericVariableCompositionType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="GenericVariable" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+  <xs:complexType name="GenericVariableCompositionListType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="GenericVariable" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
     <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
   </xs:complexType>
@@ -250,6 +277,39 @@
   <xs:complexType name="StructureDefCompositionType">
     <xs:sequence minOccurs="0">
       <xs:element ref="StructureDef" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
+  </xs:complexType>
+  
+  <!-- =========================================================== -->
+  
+  <xs:element name="AOCSActuator" type="AOCSActuatorType" substitutionGroup="Component"/>
+  <xs:complexType name="AOCSActuatorType">
+    <xs:complexContent>
+      <xs:extension base="ComponentType">
+        <xs:sequence>
+          <xs:element name="thrustVector" type="VSM:Vector3"/> <!-- ra: Ich fände es sinnvoller, wenn man das über die orientation lösen würde, z.B. thrust lokal immer in z-Richtung und dann den AOCSActuator drehen -->
+          <xs:element name="definition" type="AOCSActuatorDefCompositionType"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:element name="AOCSActuatorDef" type="AOCSActuatorDefType" substitutionGroup="ComponentDef"/>
+  <xs:complexType name="AOCSActuatorDefType">
+    <xs:complexContent>
+      <xs:extension base="ComponentDefType">
+        <xs:sequence>
+          <xs:element name="specificImpulse" type="VSDMeasure:Time"/>
+          <xs:element name="thrust" type="VSDMeasure:Force"/>
+          <xs:element name="impulseBit" type="VSDMeasure:Momentum"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AOCSActuatorDefCompositionType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="AOCSActuatorDef" minOccurs="0"/>
     </xs:sequence>
     <xs:attributeGroup ref="VSD:AssociationAttributeGroup"/>
   </xs:complexType>
@@ -514,9 +574,9 @@
     <xs:complexContent>
       <xs:extension base="BodyType">
         <xs:sequence>
-          <xs:element name="definition" type="BuildingBlockDefCompositionType"/>
           <xs:element name="interfaces" type="InterfaceCompositionListType" minOccurs="0" maxOccurs="1"/>
           <xs:element name="currentPowerConsumption" type="VSDMeasure:Power" minOccurs="0"/>
+          <xs:element name="definition" type="BuildingBlockDefCompositionType"/>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -572,6 +632,7 @@
     <xs:complexContent>
       <xs:extension base="VSD:ModelInstanceType">
         <xs:sequence>
+          <xs:element name="version" type="xs:double" minOccurs="0" maxOccurs="1"/>
           <xs:element name="componentDefs" type="ComponentDefCompositionListType" minOccurs="1" maxOccurs="1"/>
           <xs:element name="buildingBlockDefs" type="BuildingBlockDefCompositionListType"
             minOccurs="0" maxOccurs="unbounded"/>
