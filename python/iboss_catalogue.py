@@ -442,8 +442,10 @@ class Satellite(ibossxml):
       newelem=et.Element("BuildingBlock")
       newelem.set("VSD:id",bb._id)#"".join([str(int(i)) for i in bb.pos]))
       #newelem.set("type",bb.type)
+      #TODO:  das hier alles in eine einzige Funktion
       newelem.append(self.property2xml("VSD:name",bb.name))
-      newelem.append(self.property2xml("position",bb.pos))
+      if hasattr(bb,"pos"): newelem.append(self.property2xml("position",bb.pos))
+      if hasattr(bb,"position"): newelem.append(self.property2xml("position",bb.position))
       newelem.append(self.property2xml("orientation",bb.orientation))
       newelem2=et.Element("definition")
       newelem2.set("xlink:href","../Catalogs/catalog.xml#"+str(bb._refid))
@@ -452,12 +454,8 @@ class Satellite(ibossxml):
     return root #so the list gets serialized in xml
     
   #adds a new building block to the satellite
-  def add_bb(self,bb,pos,orientation):  #todo variable length argument list
-    newbs=copy(bb)
-    newbs=bb
-    newbs.pos=pos
-    newbs.orientation=orientation
-    newbs.name=newbs.type
+  def add_bb(self,bb):  #todo variable length argument list
+    newbs=copy.copy(bb)
     self.bb.append(newbs)
    
   def update(self):
@@ -637,7 +635,7 @@ class Catalog(object):
         if xmlprop.tag=="components":
           for co in xmlprop:
             co_id=re.search('#(id.*)',list(co.find('definition').attrib.values())[0]).group(1) #get component name from link
-            new_co=copy.copy(self.idco[co_id]) #add component to list in buildingblock
+            new_co=copy.copy(self.idco[co_id]) #add copy of component to list in buildingblock
             for i in co: #add rest of variables
               if i.tag=='definition': continue
               else: new_co.addxmlprop(i)
@@ -651,14 +649,25 @@ class Catalog(object):
       
     #add missions
     import glob
-    for i in glob.glob("bausteinkatalog/tub_sats/*.{}.xml".format(Version)):
+    for i in glob.glob('bausteinkatalog/tub_sats/*.{}.xml'.format(Version)):  #get a file list of satxml files
       data = self.loadxmlfile(i)#TODO: check if it is a valid Satellite XML
       
       new_sat = Satellite('generic')
       new_sat._id=data.attrib['id']
       for xmlprop in data:
-        new_sat.addxmlprop(xmlprop)
-        
+        if xmlprop.tag == 'buildingBlocks':
+          for bb in xmlprop:
+            bb_id=re.search('#(id.*)',list(bb.find('definition').attrib.values())[0]).group(1) #get component name from link
+            new_bb=copy.copy(self.idbb[bb_id]) #add copy of buildingblock to list in buildingblock
+            for i in bb:
+              if i.tag=='definition': continue
+              else: new_bb.addxmlprop(i)
+            new_sat.add_bb(new_bb)
+        elif xmlprop.tag == 'genericVariables':
+           for var in xmlprop:  new_sat.addgenericxmlvar(var) #add generic properties
+        else: new_sat.addxmlprop(xmlprop)
+       
+
       self.sat[new_sat.name] = new_sat
       self.idsat[new_sat._id] = new_sat
       
