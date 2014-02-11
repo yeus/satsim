@@ -135,7 +135,12 @@ class ibossxml(object):
       print(xmlprop.text.rsplit())
       raise
     
-    vars(self)[xmlprop.tag]=val*unit
+    #change name according to xmlmapping
+    inv_map = {v:k for k, v in self.xmlmapping.items()}
+    if xmlprop.tag in inv_map.keys(): name = inv_map[xmlprop.tag]
+    else: name = xmlprop.tag
+      
+    vars(self)[name]=val*unit
   
   def addgenericxmlvar(self,xmlvar):
     #convert to floats and vectors
@@ -353,6 +358,7 @@ class buildingblock(ibossxml):
     for co in self.components:
       newelem=et.Element("GenericComponent")
       newelem.insert(0,et.Comment(co.name))
+      if hasattr(co,'position'): newelem.append(self.property2xml("position",co.position))
       if hasattr(co,"pos"): newelem.append(self.property2xml("position",co.pos))
       if hasattr(co,"rot"): newelem.append(self.property2xml("orientation",co.rot)) # TODO. rotation to "oriantation"
       if hasattr(co,"th_vec"): newelem.append(self.property2xml("th_vec",co.th_vec))#.set("th_vec", vec2str(co.th_vec))
@@ -617,8 +623,6 @@ class Catalog(object):
       self.co[new_co.name]=new_co  #catalog with component names
       self.idco[new_co._id]=new_co
 
-    #startconsole(localvariables=locals())#import pdb; pdb.set_trace()
-    
     #add building blocks
     for i in bs_list:
       new_bs=buildingblock("generic")
@@ -626,17 +630,13 @@ class Catalog(object):
       for xmlprop in i: #add xml properties
         if xmlprop.tag=="components":
           for co in xmlprop:
-            co_id=list(co.find('definition').attrib.values())[0]
-            co_id=re.search('#(id.*)',co_id).group(1)
-
-            new_co=copy.copy(self.idco[co_id])
-            #if "num" in co.attrib: new_co.num=int(co.attrib["num"])
-            #for co_prop in co:
-              #new_co.addxmlprop(co_prop) #Hier immer Ergänzungen aus dem laden einer alten katalogdatei hinzufügen
-              #if co_prop.tag=="pos": new_co.pos=iboss_catalogue.ibossxml.xml2vec(co_prop)*pq.Quantity(1,"blocks")
-              #if co_prop.tag=="th_vec": new_co.th_vec=iboss_catalogue.ibossxml.xml2vec(co_prop)*pq.dimensionless
+            co_id=re.search('#(id.*)',list(co.find('definition').attrib.values())[0]).group(1) #get component name from link
+            new_co=copy.copy(self.idco[co_id]) #add component to list in buildingblock
+            for i in co: #add rest of variables
+              if i.tag=='definition': continue
+              else: new_co.addxmlprop(i)
+            
             new_bs.add_co(new_co)
-            #startconsole(localvariables=locals())#import pdb; pdb.set_trace()
         elif xmlprop.tag == "genericVariables":
            for var in xmlprop:  new_bs.addgenericxmlvar(var) #add generic properties
         else: new_bs.addxmlprop(xmlprop)
