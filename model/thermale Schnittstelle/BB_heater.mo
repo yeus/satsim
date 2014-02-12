@@ -1,4 +1,5 @@
 model BB_heater "BB_heater.mo"
+<<<<<<< HEAD
   // CP: 65001
   // SimulationX Version: 3.5.707.15 x64
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a Heater "Thermal port for 1-dim. heat transfer (filled rectangular icon)" annotation(Placement(transformation(extent = {{45,-90},{65,-70}}), iconTransformation(extent = {{90,-10},{110,10}})));
@@ -20,6 +21,84 @@ equation
   connect(temperature_EB.port,Heater) annotation(Line(points = {{-60,-85},{-55,-85},{50,-85},{50,-80},{55,-80}}, color = {191,0,0}, thickness = 0.0625));
   connect(heater_power.port,Heater) annotation(Line(points = {{35,-55},{40,-55},{50,-55},{50,-80},{55,-80}}, color = {191,0,0}, thickness = 0.0625));
   annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}), graphics = {Ellipse(lineColor = {255,255,255}, fillColor = {255,0,0}, fillPattern = FillPattern.CrossDiag, extent = {{100,-100},{-100,100}}),Text(textString = "heater", textStyle = {TextStyle.Bold}, lineColor = {0,0,0}, fillColor = {255,0,0}, extent = {{-99,37},{100,-35}})}), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}})), Documentation(info = "<HTML>
+=======
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a Heater "Thermal port for 1-dim. heat transfer (filled rectangular icon)" annotation(Placement(
+		transformation(extent={{45,-90},{65,-70}}),
+		iconTransformation(extent={{90,-10},{110,10}})));
+	parameter Modelica.SIunits.ActivePower heating_power=100 "heating Power of the heater";
+	parameter Modelica.SIunits.Temp_K lower_Temp_boundary=270 "Coldest allowed temperatur in the Box";
+	parameter Real bandwidth_heater=5 "Bandwidth of the controller / K";
+	Modelica.Blocks.Logical.OnOffController onOffController1(bandwidth=bandwidth_heater) annotation(Placement(transformation(extent={{-85,-65},{-65,-45}})));
+	Modelica.Blocks.Sources.Constant lower_Temp(k=lower_Temp_boundary) annotation(Placement(transformation(extent={{-115,-50},{-95,-30}})));
+	Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperature_EB annotation(Placement(transformation(
+		origin={-105,-85},
+		extent={{-10,-10},{10,10}},
+		rotation=-180)));
+	Modelica.Blocks.Math.Gain gain1(k=heating_power) annotation(Placement(transformation(extent={{-15,-65},{5,-45}})));
+	Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow heater_power annotation(Placement(transformation(extent={{15,-65},{35,-45}})));
+	Modelica.Blocks.Math.BooleanToReal booleanToReal1 annotation(Placement(transformation(extent={{-50,-65},{-30,-45}})));
+	equation
+		connect(temperature_EB.T,onOffController1.u) annotation(Line(
+			points={{-115,-85},{-120,-85},{-120,-61},{-92,-61},{-87,-61}},
+			color={0,0,127},
+			thickness=0.0625));
+		connect(gain1.y,heater_power.Q_flow) annotation(Line(
+			points={{6,-55},{11,-55},{10,-55},{15,-55}},
+			color={0,0,127},
+			thickness=0.0625));
+		connect(lower_Temp.y,onOffController1.reference) annotation(Line(
+			points={{-94,-40},{-89,-40},{-89,-44},{-92,-44},{-92,-49},{-87,
+			-49}},
+			color={0,0,127},
+			thickness=0.0625));
+		
+		
+		connect(temperature_EB.port,Heater) annotation(Line(
+			points={{-95,-85},{-90,-85},{50,-85},{50,-80},{55,-80}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(heater_power.port,Heater) annotation(Line(
+			points={{35,-55},{40,-55},{50,-55},{50,-80},{55,-80}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(booleanToReal1.u,onOffController1.y) annotation(Line(
+			points={{-52,-55},{-57,-55},{-59,-55},{-64,-55}},
+			color={255,0,255},
+			thickness=0.0625));
+		connect(booleanToReal1.y,gain1.u) annotation(Line(
+			points={{-29,-55},{-24,-55},{-22,-55},{-17,-55}},
+			color={0,0,127},
+			thickness=0.0625));
+	annotation(
+		lower_Temp(y(flags=2)),
+		temperature_EB(
+			T(flags=2),
+			port(T(flags=2))),
+		gain1(y(flags=2)),
+		heater_power(port(Q_flow(flags=2))),
+		viewinfo[0](
+			simViewInfos[0](
+				runtimeClass="CSimView",
+				tabGroup=0,
+				typename="ModelViewInfo"),
+			typename="ModelInfo"),
+		Icon(
+			coordinateSystem(extent={{-100,-100},{100,100}}),
+			graphics={
+								Ellipse(
+									lineColor={255,255,255},
+									fillColor={255,0,0},
+									fillPattern=FillPattern.CrossDiag,
+									extent={{100,-100},{-100,100}}),
+								Text(
+									textString="heater",
+									textStyle={TextStyle.Bold},
+									lineColor={0,0,0},
+									fillColor={255,0,0},
+									extent={{-99,37},{100,-35}})}),
+		Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
+		Documentation(info="<HTML>
+>>>>>>> 8eb2f94e236cb9c25a8548cca347a7314328728e
 <P>
 A constant voltage of 10 V is applied to a
 temperature dependent resistor of 10*(1+(T-20C)/(235+20C)) Ohms,
