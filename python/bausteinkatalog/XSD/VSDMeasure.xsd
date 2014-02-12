@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns="http://www.VEROSIM.de/namespaces/VSDMeasure" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:VSM="http://www.VEROSIM.de/namespaces/VSM" targetNamespace="http://www.VEROSIM.de/namespaces/VSDMeasure" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xs:import namespace="http://www.VEROSIM.de/namespaces/VSM" schemaLocation="VSM.xsd"/>
+
+	<!-- ****************************************************************** -->
+	<!-- scalar measures (value + unit) -->
+	<!-- ****************************************************************** -->
+
+	<xs:complexType name="Length">
+		<xs:simpleContent>
+			<xs:extension base="xs:double">
+			   <xs:attribute name="unit" type="lengthUnit" use="required"/>
+				<!--<xs:attribute name="unit" type="lengthUnit" use="optional" default="m"/>-->
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="Angle">
+		<xs:simpleContent>
+			<xs:extension base="xs:double">
+				<xs:attribute name="unit" type="angleUnit" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="Mass">
+		<xs:simpleContent>
+			<xs:extension base="xs:double">
+				<xs:attribute name="unit" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="kg"/>
+							<xs:enumeration value="t"/>
+							<xs:enumeration value="g"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="MomentOfInertia">
+		<xs:simpleContent>
+			<xs:extension base="xs:double">
+				<xs:attribute name="unit" type="inertiaUnit" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="Time">
+		<xs:simpleContent>
+			<xs:extension base="xs:double">
+				<xs:attribute name="unit" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="s"/>
+							<xs:enumeration value="h"/>
+							<xs:enumeration value="m"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="Power">
+		<xs:simpleContent>
+			<xs:extension base="xs:double">
+				<xs:attribute name="unit" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="W"/>
+							<xs:enumeration value="PS"/>
+							<xs:enumeration value="kW"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="Volume">
+		<xs:simpleContent>
+			<xs:extension base="xs:double">
+				<xs:attribute name="unit" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="m³"/>
+							<xs:enumeration value="l"/>
+							<xs:enumeration value="hl"/>
+							<xs:enumeration value="ccm"/>
+							<xs:enumeration value="cm³"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="Charge">
+		<xs:simpleContent>
+			<xs:extension base="xs:double">
+				<xs:attribute name="unit" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="C"/>
+							<xs:enumeration value="Ah"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="HeatCapacity">
+		<xs:simpleContent>
+			<xs:extension base="xs:double">
+				<xs:attribute name="unit" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="J/K"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<!-- ****************************************************************** -->
+	<!-- list of measures (value + unit) -->
+	<!-- ****************************************************************** -->
+	
+	<xs:complexType name="LengthList">
+		<xs:simpleContent>
+			<xs:extension base="VSM:doublelist">
+				<xs:attribute name="unit" type="lengthUnit" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	
+	<!-- ****************************************************************** -->
+	<!-- vector measures (value + unit) -->
+	<!-- ****************************************************************** -->
+	
+	<xs:complexType name="Vector3Length">
+		<xs:simpleContent>
+			<xs:extension base="VSM:Vector3">
+				<xs:attribute name="unit" type="lengthUnit" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="Vector3Angle">
+		<xs:simpleContent>
+			<xs:extension base="VSM:Vector3">
+				<xs:attribute name="unit" type="angleUnit" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="InertiaTensor">
+		<xs:simpleContent>
+			<xs:extension base="VSM:Matrix3x3">
+				<xs:attribute name="unit" type="inertiaUnit" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<!-- ****************************************************************** -->
+	<!-- units -->
+	<!-- ****************************************************************** -->
+
+	<xs:simpleType name="lengthUnit">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="m"/>
+			<xs:enumeration value="km"/>
+			<xs:enumeration value="dm"/>
+			<xs:enumeration value="cm"/>
+			<xs:enumeration value="mm"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="angleUnit">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="rad"/>
+			<xs:enumeration value="deg"/>
+			<xs:enumeration value="°"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="inertiaUnit">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="kg·m²"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>

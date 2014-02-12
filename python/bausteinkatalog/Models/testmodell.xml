@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Satellite VSD:id="id1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:VSD="http://www.VEROSIM.de/namespaces/VSD"
+	xmlns="http://www.VEROSIM.de/namespaces/IBOSS"
+	xsi:schemaLocation="http://www.VEROSIM.de/namespaces/IBOSS ../XSD/iboss.xsd">
+	<VSD:flags>Show</VSD:flags>
+	<VSD:name>Testsatellit</VSD:name>
+	<orbit>LEO</orbit>
+<!--	<buildingBlockGap unit="m">0.01</buildingBlockGap>
+-->	<buildingBlocks>
+		<BuildingBlock VSD:id="id2">
+			<position unit="cm">0 0 0</position>
+			<orientation unit="rad">0 0 0</orientation>
+			<definition xlink:href="../Catalogs/bbcatalog.xml#id1"/>
+			<interfaces>
+				<Interface VSD:id="id3">
+					<faceId>0</faceId>
+					<Connection>Blocked</Connection>
+					<Offset unit="mm">5 0 0</Offset>
+					<Axis>X</Axis>
+					<Direction>Negative</Direction>
+					<neighbor xlink:href="#id4"/>
+				</Interface>
+			</interfaces>
+			<currentPowerConsumption unit="W">0.1</currentPowerConsumption>
+		</BuildingBlock>
+		<BuildingBlock>
+			<VSD:extensions>
+				<VSD:CommentExtension>
+					<VSD:name>Kommentar</VSD:name>
+					<VSD:comment>Dies ist ein Kommentar!</VSD:comment>
+				</VSD:CommentExtension>				
+			</VSD:extensions>
+			<position unit="cm">0 50 0</position>
+			<orientation unit="rad">0 0 0</orientation>
+			<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
+			<interfaces>
+				<Interface VSD:id="id4">
+					<faceId>6</faceId>
+					<Connection>Blocked</Connection>
+					<Offset unit="mm">-5 0 0</Offset>
+					<Axis>Y</Axis>
+					<Direction>Positive</Direction>
+					<neighbor xlink:href="#id3"/>
+				</Interface>
+			</interfaces>
+		</BuildingBlock>
+	</buildingBlocks>
+</Satellite>
