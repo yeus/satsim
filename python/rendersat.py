@@ -4,7 +4,7 @@ import sys
 import os
 from math import pi
 
-pythonpath="/usr/lib/python3/dist-packages" 
+pythonpath="/usr/local/lib/python3.3/dist-packages" 
 if pythonpath not in sys.path: 
     sys.path.append(pythonpath)
 
@@ -20,7 +20,7 @@ from mathutils import *
 
 from arrows import arrow
 
-import optsat
+import iboss_optsat as optsat
 import imp
 imp.reload(optsat)
   

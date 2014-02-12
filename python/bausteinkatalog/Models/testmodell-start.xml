@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Satellite VSD:id="id42"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:xlink="http://www.w3.org/1999/xlink" 
+	xmlns:VSD="http://www.VEROSIM.de/namespaces/VSD" 
+	xmlns="http://www.VEROSIM.de/namespaces/IBOSS" 
+	xsi:schemaLocation="http://www.VEROSIM.de/namespaces/IBOSS  ../XSD/iboss.xsd">
+	
+	<VSD:name>Testsatellit</VSD:name>
+
+	<orbit>LEO</orbit>
+	<buildingBlocks>
+		<BuildingBlock VSD:id="id50">
+			<VSD:flags>Show</VSD:flags>
+			<position unit="cm">0 0 0</position>
+			<orientation unit="rad">0 0 0</orientation>
+			<definition xlink:href="bbcatalog.xml#id101"/>
+			<interfaces>
+				<Interface VSD:id="id10">
+					<faceId>6</faceId>
+					<Connection>Locked</Connection>
+					<Offset unit="mm">-5 0 0</Offset>
+					<Axis>Y</Axis>
+					<Direction>Positive</Direction>
+					<neighbor xlink:href="#id13"/>
+				</Interface>
+				<Interface VSD:id="id11">
+					<faceId>0</faceId>
+					<Connection>Valid</Connection>
+					<Offset unit="mm">5 0 0</Offset>
+					<Axis>Y</Axis>
+					<Direction>Negative</Direction>
+				</Interface>
+			</interfaces>
+			<currentPowerConsumption unit="W">0.1</currentPowerConsumption>
+		</BuildingBlock>
+
+		<BuildingBlock VSD:id="id1">
+			<position unit="cm">0 50 0</position>
+			<orientation unit="rad">0 0 0</orientation>
+			<definition xlink:href="bbcatalog.xml#id102"/>
+			<interfaces>
+				<Interface VSD:id="id12">
+					<faceId>6</faceId>
+					<Connection>Valid</Connection>
+					<Offset unit="mm">-5 0 0</Offset>
+					<Axis>Y</Axis>
+					<Direction>Positive</Direction>
+					</Interface>
+  				<Interface VSD:id="id13">
+					<faceId>6</faceId>
+					<Connection>Locked</Connection>
+					<Offset unit="mm">-5 0 0</Offset>
+					<Axis>Y</Axis>
+					<Direction>Negative</Direction>
+					<neighbor xlink:href="#id10"/>
+				</Interface>
+				<Interface VSD:id="idgrasp">
+					<faceId>0</faceId>
+					<Connection>Valid</Connection>
+					<Offset unit="mm">5 0 0</Offset>
+					<Axis>Z</Axis>
+					<Direction>Negative</Direction>
+				</Interface>
+			</interfaces>
+		</BuildingBlock>
+	</buildingBlocks>
+	
+</Satellite>

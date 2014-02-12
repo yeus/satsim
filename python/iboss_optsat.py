@@ -10,7 +10,7 @@
 # modified:
 #       - created: 2012 11 26 - Thomas Meschede
 
-import tableop as taop
+import iboss_xml_load as taop
 import numpy as np
 from itertools import product
 import iboss
@@ -76,7 +76,7 @@ for pos in np.ndindex(*satsize):
   else: satgrid[pos].rot=vec(randrange(4)*90,randrange(4)*90,randrange(4)*90)*pq.deg
   
 def getmission():
-  mission=iboss.mission("BSP_Mission")
+  mission=iboss.mission("ADM-Aelous")
   mission.bb=satgrid.flatten()
   return mission
 
