@@ -161,5 +161,10 @@ package modelicatests
     connect(resistor3.n,ground1.p) annotation(Line(points = {{65.896,3.87283},{65.896,-27.1676},{40.7514,-72.659},{41.0405,-72.659}}));
     annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 20.0, Tolerance = 0.000001));
   end pChannelMOSFETtest;
+  model efunc
+    Real x(start = 1.0);
+  equation
+    x = der(x);
+  end efunc;
 end modelicatests;
 

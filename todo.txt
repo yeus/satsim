@@ -61,6 +61,9 @@ Experimente:
 
 Bausteinkatalog/XML:
 ====================
+- verwendeten Komponentenkatalog zusammen mit Bausteinkatalog optimieren
+- Volumenausnutzung und Packungsdichte (kg/m³) Für Gesamtsatelliten und für die einzelnen Bausteine
+- Vergleich all dieser Werte mit den "herkömmlichen" Missionen
 - max_power und power, das verbraucht wird, muss überarbeitet werden (z.B. elektr. BS: PSCU und Triebwerk haben beide als power_max 5000W angegeben, es handelt sich jedoch nicht in beiden Fällen um Verbrauchswerte)
 - Bausteine müssen angeben, wie ihre "Form" ist. z.B. in Form einer Liste von Positions-Vektoren
 - Verbrauch analysieren
