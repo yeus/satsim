@@ -3,7 +3,7 @@ Katalogreport:
 ===============
 
 :Datum: 2014/02/13
-:Version: 1.4
+:Version: 1.5
 
 ©TU Berlin
 
@@ -25,8 +25,8 @@ ADM-Aeolus                                                                      
 ADM-Aeolus_ctank                                                                    858.23 kg
 SmallGEO                                                                            843.99 kg
 SmallGEO_ctank                                                                      843.99 kg
-EnMAP                                                                               585.35 kg
 EnMAP_ctank                                                                         585.35 kg
+EnMAP                                                                               585.35 kg
 =========================================================== =================================
 
 
@@ -226,48 +226,6 @@ type                                     ADM-Aeolus
 ======================================== ====================================================================================================
 
 
-EnMAP
-'''''
-
-======================================== ====================================================================================================
-Anwendung                                Erdbeobachtung                
-Bodensegment                             Command & Control: DLR Oberpfaffenhofen; Wissenschaftliche Leitung: GFZ Potsdam
-Inklination                              97.96 deg                     
-Launchtime                               2016.0                        
-Lebensdauer                              Min. 5                        
-Nutzlast                                 2 Hyperspektralsensoren       
-Orbitart                                 sonnensynchron, polar         
-Orbithoehe                               653.0 km                      
-Umlaufzeit                               1.63 h                        
-bb                                       Kernstruktur2x2x2             ;
-                                         GPS-Baustein (Standard)                                                                            ;
-                                         GPS-Baustein (Standard)                                                                            ;
-                                         Sternsensorbaustein                                                                                ;
-                                         Sternsensorbaustein                                                                                ;
-                                         Inertial Measurement Unit Baustein (sehr genau)                                                    ;
-                                         Reaktionsradbaustein                                                                               ;
-                                         Reaktionsradbaustein                                                                               ;
-                                         Reaktionsradbaustein                                                                               ;
-                                         Magnetorquer-Baustein                                                                              ;
-                                         TM&TC-Baustein (S-Band; Transceiver+SSPA)                                                          ;
-                                         TM&TC-Baustein (S-Band; Transceiver+SSPA)                                                          ;
-                                         Solargeneratorbaustein (entfaltbar, nachführbar)                                                   ;
-                                         Batteriebaustein                                                                                   ;
-                                         Batteriebaustein                                                                                   ;
-                                         Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)                                               ;
-                                         Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)                                               ;
-bbgap                                    0.01 m                        
-bbsize                                   0.4 m                         
-com                                      [ 0.23344462  0.03896439  0.21872672] m
-mass                                     585.35 kg                     
-mission_objective                        Hypersprektrale Aufnahmen der Erde
-name                                     EnMAP                         
-orbit                                    LEO                           
-semimajor_axis                           7021.8 km                     
-type                                     EnMAP                         
-======================================== ====================================================================================================
-
-
 EnMAP_ctank
 '''''''''''
 
@@ -307,6 +265,48 @@ name                                     EnMAP_ctank
 orbit                                    LEO                           
 semimajor_axis                           7021.8 km                     
 type                                     EnMAP_ctank                   
+======================================== ====================================================================================================
+
+
+EnMAP
+'''''
+
+======================================== ====================================================================================================
+Anwendung                                Erdbeobachtung                
+Bodensegment                             Command & Control: DLR Oberpfaffenhofen; Wissenschaftliche Leitung: GFZ Potsdam
+Inklination                              97.96 deg                     
+Launchtime                               2016.0                        
+Lebensdauer                              Min. 5                        
+Nutzlast                                 2 Hyperspektralsensoren       
+Orbitart                                 sonnensynchron, polar         
+Orbithoehe                               653.0 km                      
+Umlaufzeit                               1.63 h                        
+bb                                       Kernstruktur2x2x2             ;
+                                         GPS-Baustein (Standard)                                                                            ;
+                                         GPS-Baustein (Standard)                                                                            ;
+                                         Sternsensorbaustein                                                                                ;
+                                         Sternsensorbaustein                                                                                ;
+                                         Inertial Measurement Unit Baustein (sehr genau)                                                    ;
+                                         Reaktionsradbaustein                                                                               ;
+                                         Reaktionsradbaustein                                                                               ;
+                                         Reaktionsradbaustein                                                                               ;
+                                         Magnetorquer-Baustein                                                                              ;
+                                         TM&TC-Baustein (S-Band; Transceiver+SSPA)                                                          ;
+                                         TM&TC-Baustein (S-Band; Transceiver+SSPA)                                                          ;
+                                         Solargeneratorbaustein (entfaltbar, nachführbar)                                                   ;
+                                         Batteriebaustein                                                                                   ;
+                                         Batteriebaustein                                                                                   ;
+                                         Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)                                               ;
+                                         Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)                                               ;
+bbgap                                    0.01 m                        
+bbsize                                   0.4 m                         
+com                                      [ 0.23344462  0.03896439  0.21872672] m
+mass                                     585.35 kg                     
+mission_objective                        Hypersprektrale Aufnahmen der Erde
+name                                     EnMAP                         
+orbit                                    LEO                           
+semimajor_axis                           7021.8 km                     
+type                                     EnMAP                         
 ======================================== ====================================================================================================
 
 
