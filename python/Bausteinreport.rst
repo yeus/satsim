@@ -2,7 +2,7 @@
 Katalogreport:
 ===============
 
-:Datum: 2014/02/11
+:Datum: 2014/02/13
 :Version: 1.4
 
 ©TU Berlin
@@ -12,9 +12,9 @@ Katalogreport:
 Catalog Info
 ------------
 
-Number of components in catalog: 161
-Number of buildingblocks in catalog: 25
-Number of satellites in catalog: 6
+- Number of components in catalog: 161
+- Number of buildingblocks in catalog: 25
+- Number of satellites in catalog: 6
 
 
 Referenzmissionen:
@@ -113,7 +113,7 @@ Nutzlast                                 variiert
 Orbitart                                 geostationär                  
 Orbithoehe                               35786.0 km                    
 Umlaufzeit                               24.0 h                        
-Buildingblocks                           GPS-Baustein (Standard)       ;
+bb                                       GPS-Baustein (Standard)       ;
                                          GPS-Baustein (Standard)                                                                            ;
                                          Sternsensorbaustein                                                                                ;
                                          Sternsensorbaustein                                                                                ;
@@ -133,6 +133,7 @@ Buildingblocks                           GPS-Baustein (Standard)       ;
                                          Kernstruktur2x2x2                                                                                  ;
 bbgap                                    0.01 m                        
 bbsize                                   0.4 m                         
+com                                      [ 0.  0.  0.] m               
 mass                                     843.99 kg                     
 mission_objective                        Kleine, marktfähige, europäische Satellitenplattform zur Telekommunkation
 name                                     SmallGEO_ctank                
@@ -153,7 +154,7 @@ Lebensdauer                              3 (+3 Monate commissioning phase)
 Nutzlast                                 ALADIN (Atmospheric Laser Doppler INstrument) 
 Orbitart                                 sonnensynchron, quasi-polar, Dämmerungsorbit
 Orbithoehe                               408.0 km                      
-Buildingblocks                           GPS-Baustein (Standard)       ;
+bb                                       GPS-Baustein (Standard)       ;
                                          GPS-Baustein (Standard)                                                                            ;
                                          Sternsensorbaustein                                                                                ;
                                          Inertial Measurement Unit Baustein (sehr genau)                                                    ;
@@ -174,6 +175,7 @@ Buildingblocks                           GPS-Baustein (Standard)       ;
                                          Kernstruktur2x2x2                                                                                  ;
 bbgap                                    0.01 m                        
 bbsize                                   0.4 m                         
+com                                      [ 0.0957071   0.14739477  0.3627186 ] m
 mass                                     858.2300000000001 kg          
 mission_objective                        Winderforschung/ Messung von Windgeschwindigkeiten
 name                                     ADM-Aeolus_ctank              
@@ -194,7 +196,7 @@ Lebensdauer                              3 (+3 Monate commissioning phase)
 Nutzlast                                 ALADIN (Atmospheric Laser Doppler INstrument) 
 Orbitart                                 sonnensynchron, quasi-polar, Dämmerungsorbit
 Orbithoehe                               408.0 km                      
-Buildingblocks                           Kernstruktur2x2x3             ;
+bb                                       Kernstruktur2x2x3             ;
                                          GPS-Baustein (Standard)                                                                            ;
                                          GPS-Baustein (Standard)                                                                            ;
                                          Sternsensorbaustein                                                                                ;
@@ -215,6 +217,7 @@ Buildingblocks                           Kernstruktur2x2x3             ;
                                          Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)                                               ;
 bbgap                                    0.01 m                        
 bbsize                                   0.4 m                         
+com                                      [ 0.24313516  0.15239137  0.15331587] m
 mass                                     858.2300000000002 kg          
 mission_objective                        Winderforschung/ Messung von Windgeschwindigkeiten
 name                                     ADM-Aeolus                    
@@ -236,7 +239,7 @@ Nutzlast                                 2 Hyperspektralsensoren
 Orbitart                                 sonnensynchron, polar         
 Orbithoehe                               653.0 km                      
 Umlaufzeit                               1.63 h                        
-Buildingblocks                           Kernstruktur2x2x2             ;
+bb                                       Kernstruktur2x2x2             ;
                                          GPS-Baustein (Standard)                                                                            ;
                                          GPS-Baustein (Standard)                                                                            ;
                                          Sternsensorbaustein                                                                                ;
@@ -255,6 +258,7 @@ Buildingblocks                           Kernstruktur2x2x2             ;
                                          Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)                                               ;
 bbgap                                    0.01 m                        
 bbsize                                   0.4 m                         
+com                                      [ 0.23344462  0.03896439  0.21872672] m
 mass                                     585.35 kg                     
 mission_objective                        Hypersprektrale Aufnahmen der Erde
 name                                     EnMAP                         
@@ -277,7 +281,7 @@ Nutzlast                                 2 Hyperspektralsensoren
 Orbitart                                 sonnensynchron, polar         
 Orbithoehe                               653.0 km                      
 Umlaufzeit                               1.63 h                        
-Buildingblocks                           GPS-Baustein (Standard)       ;
+bb                                       GPS-Baustein (Standard)       ;
                                          GPS-Baustein (Standard)                                                                            ;
                                          Sternsensorbaustein                                                                                ;
                                          Sternsensorbaustein                                                                                ;
@@ -296,6 +300,7 @@ Buildingblocks                           GPS-Baustein (Standard)       ;
                                          Kernstruktur2x2x2                                                                                  ;
 bbgap                                    0.01 m                        
 bbsize                                   0.4 m                         
+com                                      [ 0.13585271  0.14275936  0.118062  ] m
 mass                                     585.35 kg                     
 mission_objective                        Hypersprektrale Aufnahmen der Erde
 name                                     EnMAP_ctank                   
@@ -318,7 +323,7 @@ Nutzlast                                 variiert
 Orbitart                                 geostationär                  
 Orbithoehe                               35786.0 km                    
 Umlaufzeit                               24.0 h                        
-Buildingblocks                           Kernstruktur2x2x3             ;
+bb                                       Kernstruktur2x2x3             ;
                                          GPS-Baustein (Standard)                                                                            ;
                                          GPS-Baustein (Standard)                                                                            ;
                                          Sternsensorbaustein                                                                                ;
@@ -338,6 +343,7 @@ Buildingblocks                           Kernstruktur2x2x3             ;
                                          elektrischer Antriebs-Baustein                                                                     ;
 bbgap                                    0.01 m                        
 bbsize                                   0.4 m                         
+com                                      [ 0.23072596  0.23420352  0.11178384] m
 mass                                     843.9900000000001 kg          
 mission_objective                        Kleine, marktfähige, europäische Satellitenplattform zur Telekommunkation
 name                                     SmallGEO                      

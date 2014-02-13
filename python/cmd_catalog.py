@@ -115,6 +115,7 @@ def main(argv=None):
       if 'test' in argv:
         cat=iboss_catalogue.Catalog()
         cat.loadxmldata()
+        cat.update()
         cat.save("1.4")
         #filecmp  um den neuen und den alten file zu vergleichen (überprüft Konsistenz der Datenbank)
     except:
