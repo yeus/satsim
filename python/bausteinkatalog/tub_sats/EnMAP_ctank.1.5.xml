@@ -3,7 +3,7 @@
 	<!--
         * Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)
         * Date : 2014/02/13
-        * Version: 1.4
+        * Version: 1.5
         * All code (c)2013 Technische Universität Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved-->
 	<orbit>LEO</orbit>
 	<VSD:name>EnMAP_ctank</VSD:name>
