@@ -69,10 +69,25 @@ def prettyprintxml(xmltree):
   #print("\n" + str(type(XML)) + "\n")  
   return XML.toprettyxml()
 
-#class used to wrap dictionaries
-class Bunch:
-    def __init__(self, **kwds):
-        self.__dict__.update(kwds)
+##different verions of "bunch" classes:
+##TODO:  eine dieser Klassen hier für die XML-python benutzen, damit könnte man dann die gesamte Datenbank einfach in einem json Objekt speichern, (oder auch csv.  usw..).
+##class used to wrap dictionaries
+#class Bunch:
+    #def __init__(self, **kwds):
+        #self.__dict__.update(kwds)
+
+#class Bunch(dict): #class which is itself also a dictionary
+    #def __init__(self,**kw):
+        #dict.__init__(self,kw)
+        #self.__dict__ = self
+
+##short bunch class        
+#class Bunch:
+    #__init__ = lambda self, **kw: setattr(self, '__dict__', kw)
+
+#class bunch(dict):
+    #__getattr__ = dict.__getitem__
+
 
 class ibossxml(object):
   idcounter = 0  #counts individual ids
