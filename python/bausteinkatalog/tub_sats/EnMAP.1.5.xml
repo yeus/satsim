@@ -84,7 +84,7 @@
 	<buildingBlocks>
 		<BuildingBlock VSD:id="id393">
 			<VSD:name>Kernstruktur2x2x2</VSD:name>
-			<position unit="m">0.0 0.0 0.0</position>
+			<position unit="m">0.41 0.0 0.41</position>
 			<orientation unit="deg">0.0 0.0 0.0</orientation>
 			<definition xlink:href="../Catalogs/catalog.xml#id246"/>
 		</BuildingBlock>
@@ -108,7 +108,7 @@
 		</BuildingBlock>
 		<BuildingBlock VSD:id="id402">
 			<VSD:name>Sternsensorbaustein</VSD:name>
-			<position unit="m">0.0 0.0 0.0</position>
+			<position unit="m">0.0 0.41 0.82</position>
 			<orientation unit="deg">0.0 0.0 0.0</orientation>
 			<definition xlink:href="../Catalogs/catalog.xml#id304"/>
 		</BuildingBlock>

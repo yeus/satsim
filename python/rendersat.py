@@ -1,4 +1,6 @@
 import bpy
+import bpy.props
+from bpy.props import FloatVectorProperty
 from genutils import copyobject as cpobj
 import sys
 import os
@@ -20,24 +22,43 @@ from mathutils import *
 
 from arrows import arrow
 
-import iboss_optsat as optsat
+import iboss_catalogue
 import imp
-imp.reload(optsat)
+imp.reload(iboss_catalogue)
   
-mission=optsat.getmission()
+cat=iboss_catalogue.Catalog()
+cat.loadxmldata()
+mission = cat.sat["EnMAP"]
+
+print(mission.name)
+
+
+def pq2bq():
+  fvp = FloatVectorProperty("")
+  return fvp
 
 #select layer to put the satellite into:
 bpy.data.scenes['Scene'].layers=[False]*19+[True]
 
+#TODO:  mit dieser Seite hier:
+#http://www.blender.org/documentation/blender_python_api_2_69_release/info_tips_and_tricks.html
+#ein GUI entwickeln
+
 #render satellit with forces
 mode=""#".transparent"  #transparent render
 for bs in mission.bb:
-    if bs.name=="test Lageregelungsbaustein": newobj=cpobj("düsenbaustein"+mode)
+    if bs.name   == "test Lageregelungsbaustein": newobj=cpobj("düsenbaustein"+mode)
+    elif bs.name == "Kernstruktur2x2x2": newobj=cpobj("2x2x2"+mode)
     else: newobj=cpobj("baustein"+mode)
-    newobj.location=Vector(bs.pos)*0.41
+    newobj.location=Vector(bs.pos)
     newobj.rotation_mode="XYZ"
-    newobj.rotation_euler=bs.rot*pi/180
-    newobj["buildingblock"]=1
+    newobj.rotation_euler=bs.orientation*pi/180
+    newobj["blocktype"]=bs.name
+    newobj["mission"]=mission.name
+    newobj["test"]={"test2":1.0,"y":2.0}
+    newobj.name=bs.name
+    #TODO: hier python drivers hinzufügen, um die Position von Objekten zu bestimmen
+    #http://blenderartists.org/forum/archive/index.php/t-209910.html?s=078384d8fb1235542564a869f33b6ab0
         
     #render forces
     if bs.name=="test Lageregelungsbaustein": 
