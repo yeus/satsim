@@ -565,6 +565,319 @@ An approppriate simulating time would be 10 seconds.
 					StartTime=0,
 					Interval=0.001));
 		end BB_heater;
+		model TCS "TCS.mo"
+			Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a Temp "Thermal port for 1-dim. heat transfer (filled rectangular icon)" annotation(Placement(
+				transformation(extent={{-50,20},{-30,40}}),
+				iconTransformation(
+					origin={-100,0},
+					extent={{-10,-10},{10,10}},
+					rotation=-90)));
+			input Modelica.Blocks.Interfaces.RealInput Tmax "'input Real' as connector" annotation(Placement(
+				transformation(extent={{40,-20},{80,20}}),
+				iconTransformation(
+					origin={50,100},
+					extent={{-20,-20},{20,20}},
+					rotation=270)));
+			input Modelica.Blocks.Interfaces.RealInput Tmin "'input Real' as connector" annotation(Placement(
+				transformation(extent={{45,35},{85,75}}),
+				iconTransformation(
+					origin={-50,100},
+					extent={{-20,-20},{20,20}},
+					rotation=270)));
+			output Modelica.Blocks.Interfaces.BooleanOutput heater_on "'output Boolean' as connector" annotation(Placement(
+				transformation(extent={{165,40},{185,60}}),
+				iconTransformation(
+					origin={-50,-100},
+					extent={{-10,-10},{10,10}},
+					rotation=-90)));
+			output Modelica.Blocks.Interfaces.BooleanOutput cooler_on "'output Boolean' as connector" annotation(Placement(
+				transformation(extent={{165,-5},{185,15}}),
+				iconTransformation(
+					origin={50,-100},
+					extent={{-10,-10},{10,10}},
+					rotation=-90)));
+			Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperature_EB annotation(Placement(transformation(
+				origin={15,30},
+				extent={{-10,-10},{10,10}})));
+			Modelica.Blocks.Logical.OnOffController onOffController_heat annotation(Placement(transformation(extent={{120,40},{140,60}})));
+			Modelica.Blocks.Logical.OnOffController onOffController_cool annotation(Placement(transformation(extent={{120,-5},{140,15}})));
+			equation
+				connect(onOffController_heat.reference,Tmin) annotation(Line(
+					points={{118,56},{113,56},{70,56},{70,55},{65,55}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(onOffController_cool.u,Tmax) annotation(Line(
+					points={{118,-1},{113,-1},{65,-1},{65,0},{60,0}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(onOffController_heat.y,heater_on) annotation(Line(
+					points={{141,50},{146,50},{170,50},{175,50}},
+					color={255,0,255},
+					thickness=0.0625));
+				connect(onOffController_cool.y,cooler_on) annotation(Line(
+					points={{141,5},{146,5},{170,5},{175,5}},
+					color={255,0,255},
+					thickness=0.0625));
+				connect(Temp,temperature_EB.port) annotation(Line(
+					points={{-40,30},{-35,30},{0,30},{5,30}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(temperature_EB.T,onOffController_heat.u) annotation(Line(
+					points={{25,30},{30,30},{113,30},{113,44},{118,44}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(temperature_EB.T,onOffController_cool.reference) annotation(Line(
+					points={{25,30},{30,30},{113,30},{113,11},{118,11}},
+					color={0,0,127},
+					thickness=0.0625));
+			annotation(
+				temperature_EB(
+					T(flags=2),
+					port(T(flags=2))),
+				onOffController_heat(bandwidth(flags=128)),
+				onOffController_cool(bandwidth(flags=128)),
+				Icon(
+					coordinateSystem(extent={{-100,-100},{100,100}}),
+					graphics={
+										Rectangle(
+											radius=4,
+											lineColor={0,0,0},
+											fillColor={255,0,0},
+											fillPattern=FillPattern.Solid,
+											extent={{-100,100},{100,-100}}),
+										Text(
+											textString="TCS",
+											textStyle={TextStyle.Bold},
+											lineColor={0,0,0},
+											extent={{-40,10},{-43,10}}),
+										Text(
+											textString="TCS",
+											fontSize=16,
+											textStyle={TextStyle.Bold},
+											lineColor={0,0,0},
+											extent={{-99,99},{101,-98}}),
+										Text(
+											textString="Tmin",
+											fontSize=8,
+											lineColor={0,0,0},
+											extent={{-108,86},{-3,51}}),
+										Text(
+											textString="Tmax",
+											fontSize=8,
+											lineColor={0,0,0},
+											extent={{-4,84},{107,52}}),
+										Text(
+											textString="heat",
+											fontSize=8,
+											lineColor={0,0,0},
+											extent={{-95,-61},{-4,-87}}),
+										Text(
+											textString="cool",
+											fontSize=8,
+											lineColor={0,0,0},
+											extent={{8,-62},{94,-86}})}),
+				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
+				Documentation(info="MIME-Version: 1.0
+		Content-Type: multipart/related;boundary=\"--$iti$\";type=\"text/html\"
+
+		----$iti$
+		Content-Type:text/html;charset=\"iso-8859-1\"
+		Content-Transfer-Encoding: quoted-printable
+		Content-Location: C:\\Users\\Jens\\AppData\\Local\\Temp\\itiE013.tmp\\hlpD43B.tmp\\TCS.htm
+
+		<=21DOCTYPE HTML PUBLIC =22-//W3C//DTD HTML 4.0 Transitional//EN=22>
+		<HTML><HEAD>
+		<META content=3D=22text/html; charset=3Dwindows-1252=22 http-equiv=3DContent=
+		-Type>
+		<STYLE type=3Dtext/css>body, H3, H4, Table =7Bfont-family: Verdana, Arial, H=
+		elvetica, sans-serif; font-size:10px; color: =23000000;=7D
+		</STYLE>
+
+		<META name=3DGENERATOR content=3D=22MSHTML 11.00.9600.16476=22></HEAD>
+		<BODY>
+		<P>A constant voltage of 10 V is applied to a temperature dependent resistor=
+		 of 
+		10*(1+(T-20C)/(235+20C)) Ohms, whose losses v**2/r are dissipated via a ther=
+		mal 
+		conductance of 0.1 W/K to ambient temperature 20 degree C. The resistor is 
+		=
+
+		assumed to have a thermal capacity of 1 J/K, having ambient temparature at t=
+		he 
+		beginning of the experiment. The temperature of this heating resistor is hel=
+		d by 
+		an OnOff-controller at reference temperature within a given bandwith +/- 1 K=
+		 by 
+		switching on and off the voltage source. The reference temperature starts at=
+		 25 
+		degree C and rises between t =3D 2 and 8 seconds linear to 50 degree C. An 
+		=
+
+		approppriate simulating time would be 10 seconds. </P></BODY></HTML>
+
+
+		----$iti$--"),
+				experiment(
+					StopTime=1,
+					StartTime=0,
+					Interval=0.001));
+		end TCS;
+		model heater_cooler_EPS "heater_cooler_EPS.mo"
+			Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b Power_heating_cooling "Thermal port for 1-dim. heat transfer (unfilled rectangular icon)" annotation(Placement(
+				transformation(extent={{75,-30},{95,-10}}),
+				iconTransformation(extent={{-10,90},{10,110}})));
+			input Modelica.Blocks.Interfaces.BooleanInput heater_on "'input Boolean' as connector" annotation(Placement(
+				transformation(extent={{-125,-20},{-85,20}}),
+				iconTransformation(extent={{-120,30},{-80,70}})));
+			input Modelica.Blocks.Interfaces.BooleanInput cooler_on "'input Boolean' as connector" annotation(Placement(
+				transformation(extent={{-125,-60},{-85,-20}}),
+				iconTransformation(extent={{-120,-70},{-80,-30}})));
+			output Modelica.Blocks.Interfaces.RealOutput Tmin "'output Real' as connector" annotation(Placement(
+				transformation(extent={{-105,25},{-85,45}}),
+				iconTransformation(extent={{90,40},{110,60}})));
+			output Modelica.Blocks.Interfaces.RealOutput Tmax "'output Real' as connector" annotation(Placement(
+				transformation(extent={{-105,-85},{-85,-65}}),
+				iconTransformation(extent={{90,-60},{110,-40}})));
+			Modelica.Blocks.Math.Gain heating_power annotation(Placement(transformation(extent={{-5,-10},{15,10}})));
+			Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow heater_power annotation(Placement(transformation(extent={{25,-10},{45,10}})));
+			Modelica.Blocks.Math.BooleanToReal booleanToReal1 annotation(Placement(transformation(extent={{-40,-10},{-20,10}})));
+			Modelica.Blocks.Math.Gain cooling_power annotation(Placement(transformation(extent={{-5,-50},{15,-30}})));
+			Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow heater_power1 annotation(Placement(transformation(extent={{25,-50},{45,-30}})));
+			Modelica.Blocks.Math.BooleanToReal booleanToReal2 annotation(Placement(transformation(extent={{-40,-50},{-20,-30}})));
+			Modelica.Blocks.Sources.Constant lower_Temp annotation(Placement(transformation(
+				origin={-30,35},
+				extent={{-10,-10},{10,10}},
+				rotation=-180)));
+			Modelica.Blocks.Sources.Constant upper_Temp annotation(Placement(transformation(
+				origin={-30,-75},
+				extent={{-10,-10},{10,10}},
+				rotation=-180)));
+			equation
+				connect(booleanToReal1.y,heating_power.u) annotation(Line(
+					points={{-19,0},{-14,0},{-12,0},{-7,0}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(heating_power.y,heater_power.Q_flow) annotation(Line(
+					points={{16,0},{21,0},{20,0},{25,0}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(booleanToReal2.y,cooling_power.u) annotation(Line(
+					points={{-19,-40},{-14,-40},{-12,-40},{-7,-40}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(cooling_power.y,heater_power1.Q_flow) annotation(Line(
+					points={{16,-40},{21,-40},{20,-40},{25,-40}},
+					color={0,0,127},
+					thickness=0.0625));
+				
+				
+				connect(heater_power.port,Power_heating_cooling) annotation(Line(
+					points={{45,0},{50,0},{80,0},{80,-20},{85,-20}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(heater_power1.port,Power_heating_cooling) annotation(Line(
+					points={{45,-40},{50,-40},{80,-40},{80,-20},{85,-20}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(booleanToReal1.u,heater_on) annotation(Line(
+					points={{-42,0},{-47,0},{-100,0},{-105,0}},
+					color={255,0,255},
+					thickness=0.0625));
+				connect(booleanToReal2.u,cooler_on) annotation(Line(
+					points={{-42,-40},{-47,-40},{-100,-40},{-105,-40}},
+					color={255,0,255},
+					thickness=0.0625));
+				connect(lower_Temp.y,Tmin) annotation(Line(
+					points={{-41,35},{-46,35},{-90,35},{-95,35}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(upper_Temp.y,Tmax) annotation(Line(
+					points={{-41,-75},{-46,-75},{-90,-75},{-95,-75}},
+					color={0,0,127},
+					thickness=0.0625));
+			annotation(
+				heating_power(
+					k(flags=128),
+					y(flags=2)),
+				heater_power(port(Q_flow(flags=2))),
+				cooling_power(
+					k(flags=128),
+					y(flags=2)),
+				heater_power1(port(Q_flow(flags=2))),
+				lower_Temp(
+					k(flags=128),
+					y(flags=2)),
+				upper_Temp(
+					k(flags=128),
+					y(flags=2)),
+				Icon(
+					coordinateSystem(extent={{-100,-100},{100,100}}),
+					graphics={
+										Rectangle(
+											lineColor={255,255,255},
+											fillColor={255,0,0},
+											fillPattern=FillPattern.CrossDiag,
+											extent={{-100,100},{100,0}}),
+										Rectangle(
+											lineColor={0,0,0},
+											fillColor={0,0,255},
+											fillPattern=FillPattern.CrossDiag,
+											extent={{-100,1},{100,-99}}),
+										Text(
+											textString="heater",
+											fontSize=12,
+											textStyle={TextStyle.Bold},
+											lineColor={0,0,0},
+											extent={{-97,54},{100,0}}),
+										Text(
+											textString="cooler",
+											fontSize=12,
+											textStyle={TextStyle.Bold},
+											lineColor={255,255,255},
+											extent={{-98,-2},{100,-57}}),
+										Text(
+											textString="heat",
+											fontSize=8,
+											lineColor={0,0,0},
+											extent={{-100,96},{-13,66}}),
+										Text(
+											textString="cool",
+											fontSize=8,
+											lineColor={255,255,255},
+											extent={{-102,-70},{-15,-100}}),
+										Text(
+											textString="Tmin",
+											fontSize=8,
+											lineColor={0,0,0},
+											extent={{0,97},{99,64}}),
+										Text(
+											textString="Tmax",
+											fontSize=8,
+											lineColor={255,255,255},
+											extent={{-9,-69},{99,-102}})}),
+				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
+				Documentation(info="<HTML>
+		<P>
+		A constant voltage of 10 V is applied to a
+		temperature dependent resistor of 10*(1+(T-20C)/(235+20C)) Ohms,
+		whose losses v**2/r are dissipated via a
+		thermal conductance of 0.1 W/K to ambient temperature 20 degree C.
+		The resistor is assumed to have a thermal capacity of 1 J/K,
+		having ambient temparature at the beginning of the experiment.
+		The temperature of this heating resistor is held by an OnOff-controller
+		at reference temperature within a given bandwith +/- 1 K
+		by switching on and off the voltage source.
+		The reference temperature starts at 25 degree C
+		and rises between t = 2 and 8 seconds linear to 50 degree C.
+		An approppriate simulating time would be 10 seconds.
+		</P>
+		</HTML>
+		"),
+				experiment(
+					StopTime=1,
+					StartTime=0,
+					Interval=0.001));
+		end heater_cooler_EPS;
 		model thermal_TIM "thermal interfacial material parameters (Conductance)"
 			thermal_connector thermal_connector2 "Verbindungselement fuer mehr als eine Schnittstelle" annotation(Placement(
 				transformation(
