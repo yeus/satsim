@@ -14,7 +14,6 @@
 			<VSD:flags>Show</VSD:flags>
 			<position unit="cm">0 0 0</position>
 			<orientation unit="rad">0 0 0</orientation>
-			<definition xlink:href="bbcatalog.xml#id101"/>
 			<interfaces>
 				<Interface VSD:id="id10">
 					<faceId>6</faceId>
@@ -34,12 +33,12 @@
 				</Interface>
 			</interfaces>
 			<currentPowerConsumption unit="W">0.1</currentPowerConsumption>
+			<definition xlink:href="bbcatalog.xml#id101"/>
 		</BuildingBlock>
 
 		<BuildingBlock VSD:id="id1">
 			<position unit="cm">0 -50 0</position>
 			<orientation unit="rad">0 0 0</orientation>
-			<definition xlink:href="bbcatalog.xml#id102"/>
 			<interfaces>
 				<Interface VSD:id="id12">
 					<faceId>6</faceId>
@@ -64,6 +63,7 @@
 					<Direction>Negative</Direction>
 				</Interface>
 			</interfaces>
+			<definition xlink:href="bbcatalog.xml#id102"/>
 		</BuildingBlock>
 	</buildingBlocks>
 	

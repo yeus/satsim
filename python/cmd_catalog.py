@@ -49,7 +49,9 @@ Katalogreport:
 
 \n\n""".format(time.strftime("%Y/%m/%d"),iboss_catalogue.Version)
   
-  cat=iboss_catalogue.loaddata()
+  
+  cat=iboss_catalogue.Catalog()
+  cat.loadxmldata()
   cat.update()
   
   def listmsmass(sats):
@@ -100,20 +102,21 @@ def main(argv=None):
     argv = sys.argv
     if len(argv)<2: print(helpstring)
     try:
-      if "odt" in argv:
+      if 'odt' in argv:
          iboss_odt2xml.save_catalogue()
-      if "w" in argv: 
+      if 'w' in argv: 
         report2file(writereport())
-      if "p" in argv: 
+      if 'p' in argv: 
         print(writereport())
-      if "py2xml" in argv: 
+      if 'py2xml' in argv: 
         cat=iboss_catalogue.loaddata()
         cat.make_consistent()
         cat.save()
-      if "test" in argv:
+      if 'test' in argv:
         cat=iboss_catalogue.Catalog()
         cat.loadxmldata()
-        cat.save("test")
+        cat.update()
+        cat.save("1.4")
         #filecmp  um den neuen und den alten file zu vergleichen (überprüft Konsistenz der Datenbank)
     except:
       raise
