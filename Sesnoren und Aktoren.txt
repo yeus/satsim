@@ -1,0 +1,74 @@
+Copyright by TU Berlin
+
+
+
+AOCS
+====
+
+Sensoren
+--------
+
+- Planetensensoren
+- radio beacon
+- GNSS
+- Mondsensor
+- Magnetfeldsensor
+- Sternsensor
+- Erdsensor
+- Sonnensensor
+- Gyroscope
+- Beschleunigungsmesser (RMU, Reaction Measurement Unit) (6 Achsen)
+- IMU
+- fliegende Testmasse (GOCE, GRACE)
+- Beleuchtungssensor
+
+- Horizontsensor
+- Kamera
+- 3d Lidar
+- Radar
+
+Aktoren
+-------
+
+- Solarsegel
+  - magnetisch
+  - mechanisch
+  - Plasma
+- Boom
+- Tether
+- Magnetfeldspulen
+- Drallrad
+- 3-Achsen Reaktionsräder
+- 2-Achsen Gyro
+- Düsen
+  - elektrisch
+  - Gas
+- Atombombenantrieb  (nerva)
+  
+Power
+=====
+
+- Akkretionsscheibenreaktor
+- neutronenfusionsreaktor
+- Antimateriereaktor
+- Einstrahlung auf Solarzellen
+
+
+Thermal
+=======
+
+Sensoren
+--------
+
+- Einstrahlung auf "alles"
+
+
+Aktoren
+-------
+
+- Radiator (Variabel und Nicht-Variabel)?
+
+Visionär
+========
+
+- Weltraumaufzug

@@ -4,6 +4,7 @@ HIL-Simulation
 
 Verschiedenes:
 ==============
+- für gemeinsame Grafik: "Basismodell" nur als Grafikmodell hitnerlegen
 - EVS Simulation über Modelica
 - Bei der Simulation eines einzelnen Bausteins auf Grenzwerte, wie z.B. max. Stromfluß über eine Schnittstelle achten usw...
 - Implementierung v. Unit-Tests 
@@ -26,6 +27,10 @@ Liste von Komponentenmodellen
 - OBC
   - Mit ein klein bischen zufälligem Rauschen, was die Auslastung (und damit Energieverbrauch) angeht
 - AOCS
+  - Initialisierung: 
+    - "zentrales" Modul definiert die Ausrichtung, Geschwindigkeit und 
+    - ein beliebiges Modul bekommt Position, Orientierung und Geschwindigkeit vorgegeben und propagiert das dann durch die restlichen Bausteine
+  - Alle Bausteine bestehen aus einem "Body", möglichst keine Punktmassen verwenden, da diese keine Orientierung haben können
   - 3-Achsen Reaktionsrad
   - Drallrad
   - Gyros
