@@ -1218,7 +1218,7 @@ package satcomponents
     model cubesatwith3axisreactionwheel
       extends Modelica.Icons.Example;
       inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(visible = true, transformation(origin = {-74.9845,45.4769}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      Modelica.Mechanics.MultiBody.Joints.FreeMotion freemotion1(useQuaternions = false) annotation(Placement(visible = true, transformation(origin = {-44.2197,45.3757}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Mechanics.MultiBody.Joints.FreeMotion freemotion1(useQuaternions = false, w_rel_a_start = {3.0,0,0}) annotation(Placement(visible = true, transformation(origin = {-44.2197,45.3757}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       Modelica.Blocks.Sources.Trapezoid trapezoid1(rising = 20, width = 1000, falling = 20, startTime = 2000, period = 5000, nperiod = -1, amplitude = 1367) annotation(Placement(visible = true, transformation(origin = {-29.8712,-10.2364}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       satcomponents.Cubesat cubesat1 annotation(Placement(visible = true, transformation(origin = {-7.80347,46.2428}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     equation
