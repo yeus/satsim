@@ -271,6 +271,12 @@ package iboss
       annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
       annotation(Diagram, Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-77.2278,76.0255},{74.9561,-75.256}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-69.5191,69.4202},{66.9674,-68.4328}}),Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-20.2122,18.7864},{19.355,-20.778}}),Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-15.3692,13.9434},{14.512,-15.6521}}),Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-1.42575,0.571424},{0.288544,-1.14286}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-74.3791,15.6917},{-79.2362,-16.0226}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-15.9916,77.1881},{15.1513,72.0453}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{73.239,13.1174},{77.5247,-13.7397}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-15.4145,-72.9759},{16.5855,-77.833}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-49.505,66.761},{55.4455,27.4399}}, textString = "%name")}));
     end basic_structure;
+    model basic_wheel3x
+      extends basic_structure;
+      satcomponents.AOCS.Parts.reactionwheel3axis reactionwheel3axis1 annotation(Placement(visible = true, transformation(origin = {-51.9584,-31.2554}, extent = {{13.1779,-13.1779},{-13.1779,13.1779}}, rotation = 0)));
+    equation
+      connect(Struktur.frame_a,reactionwheel3axis1.frame_a) annotation(Line(points = {{-7.88732,-0.469484},{-20.373,-0.469484},{-20.373,-30.4161},{-38.7374,-30.4161},{-38.7374,-30.4161}}));
+    end basic_wheel3x;
   end buildingblocks;
   package satellites
     model generic_sat
@@ -508,24 +514,32 @@ package iboss
     model structure1x1x1
       inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(visible = true, transformation(origin = {-60,60}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       Modelica.Mechanics.MultiBody.Joints.FreeMotion freemotion1(w_rel_a_start = {0.3,0.3,0.1}, r_rel_a(start = {0.0,0.0,0.0}), v_rel_a(start = {0.0,0.0,0.0})) annotation(Placement(visible = true, transformation(origin = {-25.2708,59.6844}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      Modelica.SIunits.Position r_rel[3];
-      iboss.buildingblocks.basic_structure basic_structure1 annotation(Placement(visible = true, transformation(origin = {0.406441,23.8267}, extent = {{-12.1702,-12.1702},{12.1702,12.1702}}, rotation = 0)));
-      iboss.buildingblocks.basic_structure basic_structure3 annotation(Placement(visible = true, transformation(origin = {-29.8083,24.5936}, extent = {{-12.0169,-12.0169},{12.0169,12.0169}}, rotation = 0)));
-      iboss.buildingblocks.basic_structure basic_structure2 annotation(Placement(visible = true, transformation(origin = {29.9156,23.888}, extent = {{-12.1702,-12.1702},{12.1702,12.1702}}, rotation = 0)));
-      iboss.buildingblocks.basic_structure basic_structure4 annotation(Placement(visible = true, transformation(origin = {-30.3604,-5.09969}, extent = {{-12.0169,-12.0169},{12.0169,12.0169}}, rotation = 0)));
-      iboss.buildingblocks.basic_structure basic_structure5 annotation(Placement(visible = true, transformation(origin = {0.375798,-5.03834}, extent = {{-12.0169,-12.0169},{12.0169,12.0169}}, rotation = 0)));
-      iboss.buildingblocks.basic_structure basic_structure6 annotation(Placement(visible = true, transformation(origin = {30.4985,-5.59049}, extent = {{-12.0169,-12.0169},{12.0169,12.0169}}, rotation = 0)));
+      iboss.buildingblocks.basic_wheel3x basic_wheel3x1 annotation(Placement(visible = true, transformation(origin = {3.30379,13.7915}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     equation
-      connect(basic_structure2.Yn,basic_structure6.Yp) annotation(Line(points = {{29.9156,14.1519},{30.3681,14.1519},{30.3681,4.60123},{30.3681,4.60123}}));
-      connect(basic_structure1.Yn,basic_structure5.Yp) annotation(Line(points = {{0.406441,14.0905},{0,14.0905},{0,4.90798},{0,4.90798}}));
-      connect(basic_structure3.Yn,basic_structure4.Yp) annotation(Line(points = {{-29.8083,14.98},{-30.0613,14.98},{-30.0613,5.82822},{-30.0613,5.82822}}));
-      connect(freemotion1.frame_b,basic_structure1.Yp) annotation(Line(points = {{-15.2708,59.6844},{0.306748,59.6844},{0.306748,33.4356},{0.306748,33.4356}}));
-      connect(basic_structure1.Xp,basic_structure2.Xn) annotation(Line(points = {{10.1426,23.8267},{19.9386,23.8267},{20.2454,24.2331},{19.9386,23.9264}}));
-      connect(basic_structure3.Xp,basic_structure1.Xn) annotation(Line(points = {{-20.1947,24.5936},{-9.81595,24.5936},{-9.81595,23.8267},{-9.32973,23.8267}}));
-      r_rel = basic_structure2.r - basic_structure1.r;
+      connect(freemotion1.frame_b,basic_wheel3x1.Yp) annotation(Line(points = {{-15.2708,59.6844},{3.42466,59.6844},{3.42466,21.9178},{3.42466,21.9178}}));
       connect(world.frame_b,freemotion1.frame_a) annotation(Line(points = {{-50,60},{-35.2941,60},{-35.2708,60.5452},{-35.2708,59.6844}}));
       annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
     end structure1x1x1;
+    model passivestructure3x2x1
+      inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(visible = true, transformation(origin = {-60,60}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Mechanics.MultiBody.Joints.FreeMotion r(w_rel_a_start = {0.3,0.3,0.1}, r_rel_a(start = {0.0,0.0,0.0}), v_rel_a(start = {0.0,0.0,0.0})) annotation(Placement(visible = true, transformation(origin = {-25.2708,59.6844}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      iboss.buildingblocks.basic_structure basic_structure1 annotation(Placement(visible = true, transformation(origin = {-45.8904,9.58904}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      iboss.buildingblocks.basic_structure basic_structure3 annotation(Placement(visible = true, transformation(origin = {19.4521,8.49315}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      iboss.buildingblocks.basic_structure basic_structure4 annotation(Placement(visible = true, transformation(origin = {18.9041,-20.4795}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      iboss.buildingblocks.basic_structure basic_structure5 annotation(Placement(visible = true, transformation(origin = {-13.1507,-20}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      iboss.buildingblocks.basic_structure basic_structure6 annotation(Placement(visible = true, transformation(origin = {-45.5479,-19.1781}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      iboss.buildingblocks.basic_structure basic_structure2 annotation(Placement(visible = true, transformation(origin = {-14.3021,9.72603}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    equation
+      connect(r.frame_b,basic_structure2.Yp) annotation(Line(points = {{-15.2708,59.6844},{-14.0411,59.6844},{-14.3021,17.4658},{-14.3021,17.726}}));
+      connect(basic_structure2.Yn,basic_structure5.Yp) annotation(Line(points = {{-14.3021,1.72603},{-13.0137,1.72603},{-13.0137,-11.6438},{-13.0137,-11.6438}}));
+      connect(basic_structure1.Xp,basic_structure2.Xn) annotation(Line(points = {{-37.8904,9.58904},{-22.6027,9.58904},{-22.3021,10.274},{-22.3021,9.72603}}));
+      connect(basic_structure2.Xp,basic_structure3.Xn) annotation(Line(points = {{-6.30206,9.72603},{11.3014,9.72603},{11.3014,8.90411},{11.3014,8.90411}}));
+      connect(basic_structure5.Xp,basic_structure4.Xn) annotation(Line(points = {{-5.15068,-20},{10.6164,-20},{10.6164,-19.863},{10.6164,-19.863}}));
+      connect(basic_structure6.Xp,basic_structure5.Xn) annotation(Line(points = {{-37.5479,-19.1781},{-20.8904,-19.1781},{-20.8904,-19.5205},{-20.8904,-19.5205}}));
+      connect(r.frame_b,basic_structure2.Yp) annotation(Line(points = {{-15.2708,59.6844},{-14.0411,59.6844},{-14.0411,17.4658},{-14.0411,17.4658}}));
+      connect(world.frame_b,r.frame_a) annotation(Line(points = {{-50,60},{-35.2941,60},{-35.2708,60.5452},{-35.2708,59.6844}}));
+      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0, StopTime = 100, Tolerance = 0.00001));
+    end passivestructure3x2x1;
   end satellites;
   package ControlBlocks "Controlblocks for iBoss-Components"
     block EI_control "Controls the electrical interface"

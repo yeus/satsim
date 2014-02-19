@@ -235,5 +235,23 @@ package modelicatests
     connect(world.frame_b,freeMotion.frame_a) annotation(Line(points = {{-60,70},{-40,70}}, color = {95,95,95}, thickness = 0.5));
     connect(freeMotion.frame_b,fixedTranslation1.frame_a) annotation(Line(points = {{-20,70},{-10,70},{-10,20},{10,20},{10,0},{0,0}}, color = {95,95,95}, thickness = 0.5));
   end PointGravityWithPointMasses2;
+  package bus_simulation
+    model signalbus
+      Modelica.Blocks.Examples.BusUsage_Utilities.Interfaces.ControlBus controlbus1 annotation(Placement(visible = true, transformation(origin = {0,36.6242}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {0,36.6242}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    equation
+      connect(sine.y,controlBus.realSignal1) annotation;
+      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
+    end signalbus;
+    model sender
+      Modelica.Blocks.Interfaces.RealOutput y annotation(Placement(visible = true, transformation(origin = {97.1338,0.318471}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {98.0892,1.27389}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    equation
+      y = sin(time);
+      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
+    end sender;
+    model receiver
+      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
+    end receiver;
+    annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
+  end bus_simulation;
 end modelicatests;
 
