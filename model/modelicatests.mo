@@ -236,22 +236,27 @@ package modelicatests
     connect(freeMotion.frame_b,fixedTranslation1.frame_a) annotation(Line(points = {{-20,70},{-10,70},{-10,20},{10,20},{10,0},{0,0}}, color = {95,95,95}, thickness = 0.5));
   end PointGravityWithPointMasses2;
   package bus_simulation
-    model signalbus
-      Modelica.Blocks.Examples.BusUsage_Utilities.Interfaces.ControlBus controlbus1 annotation(Placement(visible = true, transformation(origin = {0,36.6242}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {0,36.6242}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    expandable connector EngineBus
+    end EngineBus;
+    block Sensor
+      RealOutput speed;
+      // Output, ie., non-input
     equation
-      connect(sine.y,controlBus.realSignal1) annotation;
-      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
-    end signalbus;
-    model sender
-      Modelica.Blocks.Interfaces.RealOutput y annotation(Placement(visible = true, transformation(origin = {97.1338,0.318471}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {98.0892,1.27389}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      speed = sin(time);
+    end Sensor;
+    block Actuator
+      RealInput speed;
+      // Input
+    end Actuator;
+    model Engine
+      EngineBus bus;
+      Sensor sensor;
+      Actuator actuator;
     equation
-      y = sin(time);
-      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
-    end sender;
-    model receiver
-      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
-    end receiver;
-    annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
+      connect(bus.speed,sensor.speed);
+      // provides the non-input from sensor.speed
+      connect(bus.speed,actuator.speed);
+    end Engine;
   end bus_simulation;
 end modelicatests;
 
