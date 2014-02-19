@@ -1,6 +1,32 @@
 Copyright by TU Berlin
 
+benötigte Komponenten in Verosim
+================================
 
+benötigte Sensoren:
+-------------------
+
+- Sonnensensor
+  - Daten: Winkel (alpha, beta ^= Azimuth, Elevation, nur aktiv, wenn gegen Sonne gerichtet)
+- Horizontsensor/Erdsensor
+  - Daten: (alpha, beta ^= Azimuth, Elevation, Orientierung zum Horizont, nur aktiv, wenn gegen Erde gerichtet)
+- IMU (3D Beschleunigung, 3D Drehgeschwindigkeit ())
+- Sonneneinstrahlung auf Solarzelle
+- Magnetfeldsensor (Richtung des Erdmagnetfeldes)
+- Sternsensor
+  - Daten: (alpha, beta ^= Azimuth, Elevation, Orientierung zum Horizont, Verdeckung durch Erde/Sonne)
+- GNSS (GPS)
+  - Daten: (X,Y,Z)
+
+bereitgestellete AOCS Aktoren:
+------------------------------
+
+- Reaktionsrad 
+  - Daten: (Drehmomentvektor)
+- Magnetfeldspulen
+  - Daten: (Magnetfeldstärke und Ausrichtung (resultiert in Dipolmoment zum  Erdmagnetfeld))
+- Düsen:
+  - Daten: Kraftvektor in eine bestimmte Richtung (Die Düsen arbeiten häufig gepulst, dafür braucht man eine kleine Simulationsschrittweite, oder muss das sonstwie ausgleichen.)
 
 AOCS
 ====
@@ -11,12 +37,23 @@ Sensoren
 - Planetensensoren
 - radio beacon
 - GNSS
+  - GPS
+  - GLONASS
+  - Galileo
 - Mondsensor
-- Magnetfeldsensor
-- Sternsensor
+- Magnetfeldsensor (MFS, Magnetic Field Sensor)
+  - 1,2,3,4 axis
+- Sternsensor/Sternkamera/Star tracker
+  - CHU (Camera Head Unit)
 - Erdsensor
-- Sonnensensor
+  - Infrarot
+- Sonnensensor (Solar Sensor)
+  - Broad Angle Sun Sensor
+  - Solarzellen
+  - digital
 - Gyroscope
+  - Ring laser Gyroscope
+  - 3 axis
 - Beschleunigungsmesser (RMU, Reaction Measurement Unit) (6 Achsen)
 - IMU
 - fliegende Testmasse (GOCE, GRACE)
@@ -37,10 +74,13 @@ Aktoren
 - Boom
 - Tether
 - Magnetfeldspulen
+  - magnetic coil system (MCS)
 - Drallrad
-- 3-Achsen Reaktionsräder
+- COntrol Momentum Gyro
+- 3-Achsen Reaktionsräder (Reactionwheel)
 - 2-Achsen Gyro
 - Düsen
+  - Reactionjet
   - elektrisch
   - Gas
 - Atombombenantrieb  (nerva)
@@ -72,3 +112,8 @@ Visionär
 ========
 
 - Weltraumaufzug
+
+TODO:
+=====
+
+- Daten aus Vorlesung (Lageregelung 1) in Bausteinkatalog übernehmen
