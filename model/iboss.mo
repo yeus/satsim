@@ -523,23 +523,48 @@ package iboss
     model passivestructure3x2x1
       inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(visible = true, transformation(origin = {-60,60}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       Modelica.Mechanics.MultiBody.Joints.FreeMotion r(w_rel_a_start = {0.3,0.3,0.1}, r_rel_a(start = {0.0,0.0,0.0}), v_rel_a(start = {0.0,0.0,0.0})) annotation(Placement(visible = true, transformation(origin = {-25.2708,59.6844}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      iboss.buildingblocks.basic_structure basic_structure1 annotation(Placement(visible = true, transformation(origin = {-45.8904,9.58904}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      iboss.buildingblocks.basic_structure basic_structure3 annotation(Placement(visible = true, transformation(origin = {19.4521,8.49315}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      iboss.buildingblocks.basic_structure basic_structure4 annotation(Placement(visible = true, transformation(origin = {18.9041,-20.4795}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      iboss.buildingblocks.basic_structure basic_structure5 annotation(Placement(visible = true, transformation(origin = {-13.1507,-20}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      iboss.buildingblocks.basic_structure basic_structure6 annotation(Placement(visible = true, transformation(origin = {-45.5479,-19.1781}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      iboss.buildingblocks.basic_structure basic_structure2 annotation(Placement(visible = true, transformation(origin = {-14.3021,9.72603}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      iboss.buildingblocks.basic_structure bs1 annotation(Placement(visible = true, transformation(origin = {-45.8904,9.58904}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      iboss.buildingblocks.basic_structure bs2 annotation(Placement(visible = true, transformation(origin = {19.4521,8.49315}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      iboss.buildingblocks.basic_structure bs3 annotation(Placement(visible = true, transformation(origin = {-14.3021,9.72603}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     equation
-      connect(r.frame_b,basic_structure2.Yp) annotation(Line(points = {{-15.2708,59.6844},{-14.0411,59.6844},{-14.3021,17.4658},{-14.3021,17.726}}));
-      connect(basic_structure2.Yn,basic_structure5.Yp) annotation(Line(points = {{-14.3021,1.72603},{-13.0137,1.72603},{-13.0137,-11.6438},{-13.0137,-11.6438}}));
-      connect(basic_structure1.Xp,basic_structure2.Xn) annotation(Line(points = {{-37.8904,9.58904},{-22.6027,9.58904},{-22.3021,10.274},{-22.3021,9.72603}}));
-      connect(basic_structure2.Xp,basic_structure3.Xn) annotation(Line(points = {{-6.30206,9.72603},{11.3014,9.72603},{11.3014,8.90411},{11.3014,8.90411}}));
-      connect(basic_structure5.Xp,basic_structure4.Xn) annotation(Line(points = {{-5.15068,-20},{10.6164,-20},{10.6164,-19.863},{10.6164,-19.863}}));
-      connect(basic_structure6.Xp,basic_structure5.Xn) annotation(Line(points = {{-37.5479,-19.1781},{-20.8904,-19.1781},{-20.8904,-19.5205},{-20.8904,-19.5205}}));
-      connect(r.frame_b,basic_structure2.Yp) annotation(Line(points = {{-15.2708,59.6844},{-14.0411,59.6844},{-14.0411,17.4658},{-14.0411,17.4658}}));
+      connect(r.frame_b,bs1.Yp) annotation(Line(points = {{-15.2708,59.6844},{-10.043,59.6844},{-10.043,35.868},{-45.6241,35.868},{-45.6241,17.5036},{-45.6241,17.5036}}));
+      connect(bs1.Xp,bs2.Xn) annotation(Line(points = {{-37.8904,9.58904},{-22.6027,9.58904},{-22.3021,10.274},{-22.3021,9.72603}}));
+      connect(bs2.Xp,bs3.Xn) annotation(Line(points = {{-6.30206,9.72603},{11.3014,9.72603},{11.3014,8.90411},{11.3014,8.90411}}));
       connect(world.frame_b,r.frame_a) annotation(Line(points = {{-50,60},{-35.2941,60},{-35.2708,60.5452},{-35.2708,59.6844}}));
       annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0, StopTime = 100, Tolerance = 0.00001));
     end passivestructure3x2x1;
+    model generic_sat_aocs
+      parameter Integer size_x = 3;
+      parameter Integer size_y = 1;
+      parameter Integer size_z = 1;
+      inner Modelica.Mechanics.MultiBody.World world;
+      Modelica.Mechanics.MultiBody.Joints.FreeMotion r(w_rel_a_start = {0.3,0.3,0.1}, r_rel_a(start = {0.0,0.0,0.0}), v_rel_a(start = {0.0,0.0,0.0}));
+      iboss.buildingblocks.basic_structure bs[size_x];
+    equation
+      connect(bs[1].Yp,r.frame_b);
+      connect(world.frame_b,r.frame_a);
+      //connect other buildingblocks
+      for i in 1:size_x - 1 loop
+      connect(bs[i].Xp,bs[i + 1].Xn);
+
+      end for;
+      /*for i in 1:size_x - 1, j in 1:size_y, k in 1:size_z loop
+  connect(bb[i,j,k].Xp,connelem_x[i,j,k].int1);
+  connect(bb[i + 1,j,k].Xn,connelem_x[i,j,k].int2);
+  end for;
+  for i in 1:size_x, j in 1:size_y - 1, k in 1:size_z loop
+  connect(bb[i,j,k].Xp,connelem_y[i,j,k].int1);
+  connect(bb[i,j + 1,k].Xn,connelem_y[i,j,k].int2);
+
+  end for;
+  for i in 1:size_x, j in 1:size_y, k in 1:size_z - 1 loop
+  connect(bb[i,j,k].Xp,connelem_z[i,j,k].int1);
+  connect(bb[i,j,k + 1].Xn,connelem_z[i,j,k].int2);
+
+  end for;
+  //*/
+      annotation(experiment(StartTime = 0.0, StopTime = 100.0, Tolerance = 0.000001));
+    end generic_sat_aocs;
   end satellites;
   package ControlBlocks "Controlblocks for iBoss-Components"
     block EI_control "Controls the electrical interface"
