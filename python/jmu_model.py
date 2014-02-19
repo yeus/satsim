@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/home/tom/jm_python
 # -*- coding: utf-8 -*-
 
 
