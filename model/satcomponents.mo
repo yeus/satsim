@@ -600,7 +600,7 @@ package satcomponents
         annotation(Diagram, Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-87.69450000000001,78.6421},{88.5431,-74.6818}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{10.4668,68.1754},{76.37909999999999,30.2687}}, textString = "%Vref V"),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-63.6492,18.9533},{57.9915,-33.0976}}, textString = "DCDC")}));
       end DCtoDCModel;
       model dcdc_ideal "DC/DC Converter Model nach Torrey, D., & Selamogullari, U. (2002). A Behavioral Model for DC-DC Converters using Modelica. modelica.org"
-        class CCS
+        model CCS
           extends Modelica.Electrical.Analog.Interfaces.TwoPort;
         equation
           i1 = 0;
@@ -1320,4 +1320,3 @@ package satcomponents
   end AOCS;
   annotation(dateModified = "2013-07-22 12:21:35Z", Icon(coordinateSystem(extent = {{-100,-100},{100,100}}), graphics = {Polygon(points = {{-11.5042,31.4966},{33.1625,8.163309999999999},{11.8292,-31.5034},{-33.1708,-7.17002},{-11.5042,31.4966}}, origin = {-0.495835,-3.82998}),Polygon(points = {{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}}, fillColor = {0,0,255}, fillPattern = FillPattern.VerticalCylinder, origin = {41.3475,49.7145}),Polygon(points = {{-44.3475,-20.3811},{-13.0141,-37.3811},{25.6525,27.2855},{-5.68082,43.9522},{-44.3475,-20.3811}}, fillColor = {0,0,255}, fillPattern = FillPattern.VerticalCylinder, origin = {-23.6525,-62.9522}),Polygon(points = {{-8.16695,13.1269},{-13.1669,4.12686},{-0.500278,-13.5398},{13.1664,11.1269},{-8.16695,13.1269}}, origin = {36.1669,-23.4602}),Polygon(points = {{16.7693,29.6823},{14.7693,5.68234},{1.10267,-18.651},{-16.8973,-29.3177},{16.7693,29.6823}}, origin = {-35.7693,14.651})}), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}})));
 end satcomponents;
-
