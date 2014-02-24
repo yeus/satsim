@@ -642,43 +642,43 @@ An approppriate simulating time would be 10 seconds.
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
-										Rectangle(
-											radius=4,
-											lineColor={0,0,0},
-											fillColor={255,0,0},
-											fillPattern=FillPattern.Solid,
-											extent={{-100,100},{100,-100}}),
-										Text(
-											textString="TCS",
-											textStyle={TextStyle.Bold},
-											lineColor={0,0,0},
-											extent={{-40,10},{-43,10}}),
-										Text(
-											textString="TCS",
-											fontSize=16,
-											textStyle={TextStyle.Bold},
-											lineColor={0,0,0},
-											extent={{-99,99},{101,-98}}),
-										Text(
-											textString="Tmin",
-											fontSize=8,
-											lineColor={0,0,0},
-											extent={{-108,86},{-3,51}}),
-										Text(
-											textString="Tmax",
-											fontSize=8,
-											lineColor={0,0,0},
-											extent={{-4,84},{107,52}}),
-										Text(
-											textString="heat",
-											fontSize=8,
-											lineColor={0,0,0},
-											extent={{-95,-61},{-4,-87}}),
-										Text(
-											textString="cool",
-											fontSize=8,
-											lineColor={0,0,0},
-											extent={{8,-62},{94,-86}})}),
+																																			Rectangle(
+																																				radius=4,
+																																				lineColor={0,0,0},
+																																				fillColor={255,0,0},
+																																				fillPattern=FillPattern.Solid,
+																																				extent={{-100,100},{100,-100}}),
+																																			Text(
+																																				textString="TCS",
+																																				textStyle={TextStyle.Bold},
+																																				lineColor={0,0,0},
+																																				extent={{-40,10},{-43,10}}),
+																																			Text(
+																																				textString="TCS",
+																																				fontSize=16,
+																																				textStyle={TextStyle.Bold},
+																																				lineColor={0,0,0},
+																																				extent={{-99,99},{101,-98}}),
+																																			Text(
+																																				textString="Tmin",
+																																				fontSize=8,
+																																				lineColor={0,0,0},
+																																				extent={{-108,86},{-3,51}}),
+																																			Text(
+																																				textString="Tmax",
+																																				fontSize=8,
+																																				lineColor={0,0,0},
+																																				extent={{-4,84},{107,52}}),
+																																			Text(
+																																				textString="heat",
+																																				fontSize=8,
+																																				lineColor={0,0,0},
+																																				extent={{-95,-61},{-4,-87}}),
+																																			Text(
+																																				textString="cool",
+																																				fontSize=8,
+																																				lineColor={0,0,0},
+																																				extent={{8,-62},{94,-86}})}),
 				Documentation(info="MIME-Version: 1.0
 		Content-Type: multipart/related;boundary=\"--$iti$\";type=\"text/html\"
 
@@ -756,7 +756,7 @@ An approppriate simulating time would be 10 seconds.
 				origin={-30,35},
 				extent={{-10,-10},{10,10}},
 				rotation=-180)));
-			Modelica.Blocks.Sources.Constant upper_Temp(k=upper_Temp_boundary+bandwidth_cooler/2) annotation(Placement(transformation(
+			Modelica.Blocks.Sources.Constant upper_Temp(k=upper_Temp_boundary-bandwidth_cooler/2) annotation(Placement(transformation(
 				origin={-30,-75},
 				extent={{-10,-10},{10,10}},
 				rotation=-180)));
@@ -821,48 +821,48 @@ An approppriate simulating time would be 10 seconds.
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
-										Rectangle(
-											lineColor={255,255,255},
-											fillColor={255,0,0},
-											fillPattern=FillPattern.CrossDiag,
-											extent={{-100,100},{100,0}}),
-										Rectangle(
-											lineColor={0,0,0},
-											fillColor={0,0,255},
-											fillPattern=FillPattern.CrossDiag,
-											extent={{-100,1},{100,-99}}),
-										Text(
-											textString="heater",
-											fontSize=12,
-											textStyle={TextStyle.Bold},
-											lineColor={0,0,0},
-											extent={{-97,54},{100,0}}),
-										Text(
-											textString="cooler",
-											fontSize=12,
-											textStyle={TextStyle.Bold},
-											lineColor={255,255,255},
-											extent={{-98,-2},{100,-57}}),
-										Text(
-											textString="heat",
-											fontSize=8,
-											lineColor={0,0,0},
-											extent={{-100,96},{-13,66}}),
-										Text(
-											textString="cool",
-											fontSize=8,
-											lineColor={255,255,255},
-											extent={{-102,-70},{-15,-100}}),
-										Text(
-											textString="Tmin",
-											fontSize=8,
-											lineColor={0,0,0},
-											extent={{0,97},{99,64}}),
-										Text(
-											textString="Tmax",
-											fontSize=8,
-											lineColor={255,255,255},
-											extent={{-9,-69},{99,-102}})}),
+																														Rectangle(
+																															lineColor={255,255,255},
+																															fillColor={255,0,0},
+																															fillPattern=FillPattern.CrossDiag,
+																															extent={{-100,100},{100,0}}),
+																														Rectangle(
+																															lineColor={0,0,0},
+																															fillColor={0,0,255},
+																															fillPattern=FillPattern.CrossDiag,
+																															extent={{-100,1},{100,-99}}),
+																														Text(
+																															textString="heater",
+																															fontSize=12,
+																															textStyle={TextStyle.Bold},
+																															lineColor={0,0,0},
+																															extent={{-97,54},{100,0}}),
+																														Text(
+																															textString="cooler",
+																															fontSize=12,
+																															textStyle={TextStyle.Bold},
+																															lineColor={255,255,255},
+																															extent={{-98,-2},{100,-57}}),
+																														Text(
+																															textString="heat",
+																															fontSize=8,
+																															lineColor={0,0,0},
+																															extent={{-100,96},{-13,66}}),
+																														Text(
+																															textString="cool",
+																															fontSize=8,
+																															lineColor={255,255,255},
+																															extent={{-102,-70},{-15,-100}}),
+																														Text(
+																															textString="Tmin",
+																															fontSize=8,
+																															lineColor={0,0,0},
+																															extent={{0,97},{99,64}}),
+																														Text(
+																															textString="Tmax",
+																															fontSize=8,
+																															lineColor={255,255,255},
+																															extent={{-9,-69},{99,-102}})}),
 				Documentation(info="<HTML>
 		<P>
 		A constant voltage of 10 V is applied to a
@@ -1202,15 +1202,15 @@ An approppriate simulating time would be 10 seconds.
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
-																											Rectangle(
-																											lineColor={0,0,0},
-																										fillPattern=FillPattern.Solid,
-																										extent={{-100,100},{100,-100}}),
-																									Ellipse(
-																										lineColor={0,0,0},
-																										fillColor={255,255,0},
-																										fillPattern=FillPattern.Solid,
-																										extent={{98,-96},{-96,98}})}),
+																																																				Rectangle(
+																																																				lineColor={0,0,0},
+																																																			fillPattern=FillPattern.Solid,
+																																																			extent={{-100,100},{100,-100}}),
+																																																		Ellipse(
+																																																			lineColor={0,0,0},
+																																																			fillColor={255,255,0},
+																																																			fillPattern=FillPattern.Solid,
+																																																			extent={{98,-96},{-96,98}})}),
 				experiment(
 					StopTime=10,
 					StartTime=0));
@@ -1625,7 +1625,7 @@ An approppriate simulating time would be 10 seconds.
 					extent={{10,10},{-10,-10}},
 					rotation=-180),
 				iconTransformation(
-					origin={-87.4828,-87.7579},
+					origin={-87.4828,-87.75790000000001},
 					extent={{12,12},{-12,-12}},
 					rotation=-180)));
 			thermal_connector thermal_connector_xn annotation(Placement(
@@ -1667,89 +1667,350 @@ An approppriate simulating time would be 10 seconds.
 				parameter Real Gr_P_EB(unit="m2")=x_EB * y_EB * (eps_Panel * eps_EB) / (eps_Panel + eps_EB - eps_Panel * eps_EB)"Net radiation conductance between two surfaces (see docu)(Panel - Electronic Box) tbd";
 			public
 				Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow fixedHeatFlow1(Q_flow=BuildingBlock_Power) annotation(Placement(transformation(extent={{0,0},{20,20}})));
-				BB_heater bB_heater1(
-					heating_power=heating_power,
-					lower_Temp_boundary=lower_Temp_boundary,
-					bandwidth_heater=bandwidth_heater) annotation(Placement(transformation(extent={{30,-35},{50,-15}})));
-				BB_cooler bB_cooler1(
-					cooling_power=cooling_power,
+				TCS tCS1(
+					bandwidth_cooler=bandwidth_cooler,
+					bandwidth_heater=bandwidth_heater) annotation(Placement(transformation(extent={{-80,-5},{-60,15}})));
+				heater_cooler_EPS heater_cooler_EPS1(
+					power_cooler=cooling_power,
 					upper_Temp_boundary=upper_Temp_boundary,
-					bandwidth_cooler=bandwidth_cooler) annotation(Placement(transformation(extent={{20,-60},{40,-40}})));
+					power_heater=heating_power,
+					lower_Temp_boundary=lower_Temp_boundary,
+					bandwidth_cooler=bandwidth_cooler,
+					bandwidth_heater=bandwidth_heater) annotation(Placement(transformation(extent={{-45,-35},{-25,-15}})));
 			equation
-				connect(Panel_zn.thermal_connector1,thermal_connector_zn) annotation(Line(points = {{288.6666564941406,24.66666412353516},{300,35}}, thickness = 0.0625), AutoRoute = false);
-				connect(EB_Pzn.port_a,thermalModel_ElectronicBox1.EB_zn) annotation(Line(points = {{194.6666564941406,-67},{178.3333435058594,-81.66667175292969}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(thermalModel_ElectronicBox1.EB_zp,EB_Pzp.port_b) annotation(Line(points = {{146.6666564941406,-113.3333282470703},{129.6666564941406,-130}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(Panel_zp.thermal_connector1,thermal_connector_zp) annotation(Line(points = {{41.33332824707031,-217.6666564941406},{10,-250}}, thickness = 0.0625), AutoRoute = false);
-				connect(EB_Pyn.port_a,thermalModel_ElectronicBox1.EB_yn) annotation(Line(points = {{161,-135},{161,-130},{161,-120},{163,-120},{163,-115}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_yn.thermal_connector1,thermal_connector_yn) annotation(Line(points = {{162,-208},{162,-213},{165,-213},{165,-235},{160,-235}}, thickness = 0.0625));
-				connect(EB_Pxp.port_a,thermalModel_ElectronicBox1.EB_xp) annotation(Line(points = {{200,-97},{195,-97},{185,-97},{185,-98},{180,-98}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_xp.thermal_connector1,thermal_connector_xp) annotation(Line(points = {{278,-98},{283,-98},{320,-98},{320,-95},{325,-95}}, thickness = 0.0625));
-				connect(EB_Pxn.port_b,thermalModel_ElectronicBox1.EB_xn) annotation(Line(points = {{122,-97},{127,-97},{140,-97},{140,-98},{145,-98}}, color = {191,0,0}, thickness = 0.0625));
-				connect(EB_Pyp.port_b,thermalModel_ElectronicBox1.EB_yp) annotation(Line(points = {{162,-59},{162,-64},{162,-75},{163,-75},{163,-80}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_yp.thermal_connector1,thermal_connector_yp) annotation(Line(points = {{162,5},{162,10},{160,10},{160,35},{165,35}}, thickness = 0.0625));
-				connect(Panel_xn.thermal_connector1,thermal_connector_xn) annotation(Line(points = {{57,-97},{52,-97},{20,-97},{20,-95},{15,-95}}, thickness = 0.0625));
-				connect(thermalModel_ElectronicBox1.dissipationPower,port_b) annotation(Line(points = {{162.6666564941406,-97.66667175292969},{110,-45}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(Panel_yp.port_xn,EB_Pyp.port_a) annotation(Line(points = {{162,-5},{162,-10},{162,-40},{162,-40},{162,-45}}, color = {191,0,0}, thickness = 0.0625));
-				connect(EB_Pzn.port_b,Panel_zn.port_xn) annotation(Line(points = {{205.6666564941406,-56},{281.3333435058594,17.33333587646484}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(EB_Pxp.port_b,Panel_xp.port_xn) annotation(Line(points = {{214,-97},{219,-97},{262,-97},{262,-98},{267,-98}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_yn.port_xn,EB_Pyn.port_b) annotation(Line(points = {{162,-197},{162,-192},{162,-152},{161,-152},{161,-147}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_zp.port_xn,EB_Pzp.port_a) annotation(Line(points = {{48.66667175292969,-210.3333435058594},{119.6666564941406,-139.6666717529297}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(Panel_xn.port_xn,EB_Pxn.port_a) annotation(Line(points = {{68,-97},{73,-97},{105,-97},{110,-97}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_yn.port_yp,adjoiningPanel_xp_yn.port_b) annotation(Line(points = {{168,-198},{173,-198},{267,-198},{267,-174},{267,-169}}, color = {191,0,0}, thickness = 0.0625));
-				connect(adjoiningPanel_xp_yn.port_a,Panel_xp.port_yn) annotation(Line(points = {{267,-155},{267,-150},{267,-109},{269,-109},{269,-104}}, color = {191,0,0}, thickness = 0.0625));
-				connect(adjoiningPanel_xp_yp.port_b,Panel_xp.port_yp) annotation(Line(points = {{232,-1},{237,-1},{268,-1},{268,-87},{268,-92}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_yp.port_yn,adjoiningPanel_xp_yp.port_a) annotation(Line(points = {{169,-3},{174,-3},{215,-3},{215,-1},{220,-1}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_xn.port_yn,adjoiningPanel_xn_yp.port_b) annotation(Line(points = {{66,-91},{66,-86},{66,-57},{66,-52}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_xn.port_yp,adjoiningPanel_xn_yn.port_a) annotation(Line(points = {{67,-103},{67,-108},{67,-155},{67,-160}}, color = {191,0,0}, thickness = 0.0625));
-				connect(adjoiningPanel_xn_yn.port_b,Panel_yn.port_yn) annotation(Line(points = {{67,-174},{67,-179},{67,-199},{151,-199},{156,-199}}, color = {191,0,0}, thickness = 0.0625));
-				connect(adjoiningPanel_xn_yp.port_a,Panel_yp.port_yp) annotation(Line(points = {{66,-39.66667175292969},{66,-35},{66,-5},{157,-5},{156.6666564941406,-3.666664123535156}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(Panel_zp.port_zn,adjoiningPanel_xp_zp.port_b) annotation(Line(points = {{47.33332824707031,-220},{255,-220},{252,-194.6666564941406}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(Panel_xp.port_zp,adjoiningPanel_xp_zp.port_a) annotation(Line(points = {{263,-104},{258,-104},{252,-104},{252,-174},{252,-179}}, color = {191,0,0}, thickness = 0.0625));
-				connect(adjoiningPanel_xp_zn.port_b,Panel_zn.port_zp) annotation(Line(points = {{275,-40},{275,-35},{275,5},{283,5},{283,10}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_xp.port_zn,adjoiningPanel_xp_zn.port_a) annotation(Line(points = {{275,-92},{275,-87},{275,-55},{275,-50}}, color = {191,0,0}, thickness = 0.0625));
-				connect(adjoiningPanel_xn_zp.port_b,Panel_zp.port_zp) annotation(Line(points = {{51,-157},{51,-162},{51,-198},{47,-198},{47,-203}}, color = {191,0,0}, thickness = 0.0625));
-				connect(adjoiningPanel_xn_zp.port_a,Panel_xn.port_zp) annotation(Line(points = {{51,-145},{51,-140},{77,-140},{77,-91},{72,-91}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_zn.port_zn,adjoiningPanel_xn_zn.port_b) annotation(Line(points = {{282.6666564941406,26.66666412353516},{273,12},{273,15},{112,15},{72.33332824707031,14}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(adjoiningPanel_xn_zn.port_a,Panel_xn.port_zn) annotation(Line(points = {{60,14},{55,14},{55,-108},{60,-108},{60,-103}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_yp.port_zp,adjoiningPanel_yp_zp.port_a) annotation(Line(points = {{168.6666564941406,-8.333335876464844},{170,-10},{85,-10},{83,-55}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(adjoiningPanel_yp_zp.port_b,Panel_zp.port_yp) annotation(Line(points = {{83,-67},{83,-72},{83,-210},{52,-210},{52,-215}}, color = {191,0,0}, thickness = 0.0625));
-				connect(adjoiningPanel_yn_zp.port_a,Panel_zp.port_yn) annotation(Line(points = {{120,-185},{115,-185},{43,-185},{43,-202},{43,-207}}, color = {191,0,0}, thickness = 0.0625));
-				connect(adjoiningPanel_yn_zp.port_b,Panel_yn.port_zp) annotation(Line(points = {{130,-185},{135,-185},{156,-185},{156,-188},{156,-193}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_zn.port_yn,adjoiningPanel_yn_zn.port_b) annotation(Line(points = {{287,14},{287,9},{287,-120},{287,-125}}, color = {191,0,0}, thickness = 0.0625));
-				connect(adjoiningPanel_yn_zn.port_a,Panel_yn.port_zn) annotation(Line(points = {{287,-136},{287,-141},{287,-205},{173,-205},{168,-205}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_zn.port_yp,adjoiningPanel_yp_zn.port_b) annotation(Line(points = {{278,22},{278,20},{232,20},{232,19},{185,19},{180,19}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(Panel_yp.port_zn,adjoiningPanel_yp_zn.port_a) annotation(Line(points = {{157,2},{152,2},{152,19},{165,19},{170,19}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_yn.port_xn,oposite_Panel_y.port_b) annotation(Line(points = {{162,-197},{162,-192},{162,-172},{186,-172},{186,-167}}, color = {191,0,0}, thickness = 0.0625));
-				connect(oposite_Panel_y.port_a,Panel_yp.port_xn) annotation(Line(points = {{186,-155},{186,-150},{186,-10},{162,-10},{162,-5}}, color = {191,0,0}, thickness = 0.0625));
-				connect(oposite_Panel_x.port_a,Panel_xn.port_xn) annotation(Line(points = {{110,-72},{105,-72},{73,-72},{73,-97},{68,-97}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_xp.port_xn,oposite_Panel_x.port_b) annotation(Line(points = {{267.3333435058594,-97.66667175292969},{260,-100},{260,-75},{130,-75},{129,-72},{123.6666564941406,-72}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(oposite_Panel_z.port_a,Panel_zp.port_xn) annotation(Line(points = {{200,-131.6666717529297},{195,-132},{190,-132},{190,-210},{48.66667175292969,-210.3333435058594}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(Panel_zn.port_xn,oposite_Panel_z.port_b) annotation(Line(points = {{281.3333435058594,17.33333587646484},{240,12},{240,-132},{218,-132},{213,-131.6666717529297}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(fixedHeatFlow1.port,port_b) annotation(Line(points = {{20,10},{25,10},{105,10},{105,-45},{110,-45}}, color = {191,0,0}, thickness = 0.0625));
-				connect(bB_heater1.Heater,thermalModel_ElectronicBox1.dissipationPower) annotation(Line(points = {{50,-25},{55,-25},{158,-25},{158,-98},{163,-98}}, color = {191,0,0}, thickness = 0.0625));
-				connect(bB_cooler1.cooler,thermalModel_ElectronicBox1.dissipationPower) annotation(Line(points = {{40,-50},{45,-50},{158,-50},{158,-98},{163,-98}}, color = {191,0,0}, thickness = 0.0625));
+				connect(Panel_zn.thermal_connector1,thermal_connector_zn) annotation(
+					Line(
+						points={{288.6666564941406,24.66666412353516},{300,35}},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(EB_Pzn.port_a,thermalModel_ElectronicBox1.EB_zn) annotation(
+					Line(
+						points={{194.6666564941406,-67},{178.3333435058594,-81.66667175292969}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(thermalModel_ElectronicBox1.EB_zp,EB_Pzp.port_b) annotation(
+					Line(
+						points={{146.6666564941406,-113.3333282470703},{129.6666564941406,-130}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(Panel_zp.thermal_connector1,thermal_connector_zp) annotation(
+					Line(
+						points={{41.33332824707031,-217.6666564941406},{10,-250}},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(EB_Pyn.port_a,thermalModel_ElectronicBox1.EB_yn) annotation(Line(
+					points={{161,-135},{161,-130},{161,-120},{163,-120},{163,-115}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_yn.thermal_connector1,thermal_connector_yn) annotation(Line(
+					points={{162,-208},{162,-213},{165,-213},{165,-235},{160,-235}},
+					thickness=0.0625));
+				connect(EB_Pxp.port_a,thermalModel_ElectronicBox1.EB_xp) annotation(Line(
+					points={{200,-97},{195,-97},{185,-97},{185,-98},{180,-98}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_xp.thermal_connector1,thermal_connector_xp) annotation(Line(
+					points={{278,-98},{283,-98},{320,-98},{320,-95},{325,-95}},
+					thickness=0.0625));
+				connect(EB_Pxn.port_b,thermalModel_ElectronicBox1.EB_xn) annotation(Line(
+					points={{122,-97},{127,-97},{140,-97},{140,-98},{145,-98}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(EB_Pyp.port_b,thermalModel_ElectronicBox1.EB_yp) annotation(Line(
+					points={{162,-59},{162,-64},{162,-75},{163,-75},{163,-80}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_yp.thermal_connector1,thermal_connector_yp) annotation(Line(
+					points={{162,5},{162,10},{160,10},{160,35},{165,35}},
+					thickness=0.0625));
+				connect(Panel_xn.thermal_connector1,thermal_connector_xn) annotation(Line(
+					points={{57,-97},{52,-97},{20,-97},{20,-95},{15,-95}},
+					thickness=0.0625));
+				connect(thermalModel_ElectronicBox1.dissipationPower,port_b) annotation(
+					Line(
+						points={{162.6666564941406,-97.66667175292969},{110,-45}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(Panel_yp.port_xn,EB_Pyp.port_a) annotation(Line(
+					points={{162,-5},{162,-10},{162,-40},{162,-40},{162,-45}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(EB_Pzn.port_b,Panel_zn.port_xn) annotation(
+					Line(
+						points={{205.6666564941406,-56},{281.3333435058594,17.33333587646484}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(EB_Pxp.port_b,Panel_xp.port_xn) annotation(Line(
+					points={{214,-97},{219,-97},{262,-97},{262,-98},{267,-98}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_yn.port_xn,EB_Pyn.port_b) annotation(Line(
+					points={{162,-197},{162,-192},{162,-152},{161,-152},{161,-147}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_zp.port_xn,EB_Pzp.port_a) annotation(
+					Line(
+						points={{48.66667175292969,-210.3333435058594},{119.6666564941406,-139.6666717529297}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(Panel_xn.port_xn,EB_Pxn.port_a) annotation(Line(
+					points={{68,-97},{73,-97},{105,-97},{110,-97}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_yn.port_yp,adjoiningPanel_xp_yn.port_b) annotation(Line(
+					points={{168,-198},{173,-198},{267,-198},{267,-174},{267,-169}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(adjoiningPanel_xp_yn.port_a,Panel_xp.port_yn) annotation(Line(
+					points={{267,-155},{267,-150},{267,-109},{269,-109},{269,-104}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(adjoiningPanel_xp_yp.port_b,Panel_xp.port_yp) annotation(Line(
+					points={{232,-1},{237,-1},{268,-1},{268,-87},{268,-92}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_yp.port_yn,adjoiningPanel_xp_yp.port_a) annotation(Line(
+					points={{169,-3},{174,-3},{215,-3},{215,-1},{220,-1}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_xn.port_yn,adjoiningPanel_xn_yp.port_b) annotation(Line(
+					points={{66,-91},{66,-86},{66,-57},{66,-52}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_xn.port_yp,adjoiningPanel_xn_yn.port_a) annotation(Line(
+					points={{67,-103},{67,-108},{67,-155},{67,-160}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(adjoiningPanel_xn_yn.port_b,Panel_yn.port_yn) annotation(Line(
+					points={{67,-174},{67,-179},{67,-199},{151,-199},{156,-199}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(adjoiningPanel_xn_yp.port_a,Panel_yp.port_yp) annotation(
+					Line(
+						points={{66,-39.66667175292969},{66,-35},{66,-5},{157,-5},{156.6666564941406,-3.666664123535156}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(Panel_zp.port_zn,adjoiningPanel_xp_zp.port_b) annotation(
+					Line(
+						points={{47.33332824707031,-220},{255,-220},{252,-194.6666564941406}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(Panel_xp.port_zp,adjoiningPanel_xp_zp.port_a) annotation(Line(
+					points={{263,-104},{258,-104},{252,-104},{252,-174},{252,-179}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(adjoiningPanel_xp_zn.port_b,Panel_zn.port_zp) annotation(Line(
+					points={{275,-40},{275,-35},{275,5},{283,5},{283,10}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_xp.port_zn,adjoiningPanel_xp_zn.port_a) annotation(Line(
+					points={{275,-92},{275,-87},{275,-55},{275,-50}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(adjoiningPanel_xn_zp.port_b,Panel_zp.port_zp) annotation(Line(
+					points={{51,-157},{51,-162},{51,-198},{47,-198},{47,-203}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(adjoiningPanel_xn_zp.port_a,Panel_xn.port_zp) annotation(Line(
+					points={{51,-145},{51,-140},{77,-140},{77,-91},{72,-91}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_zn.port_zn,adjoiningPanel_xn_zn.port_b) annotation(
+					Line(
+						points={{282.6666564941406,26.66666412353516},{273,12},{273,15},{112,15},{72.33332824707031,14}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(adjoiningPanel_xn_zn.port_a,Panel_xn.port_zn) annotation(Line(
+					points={{60,14},{55,14},{55,-108},{60,-108},{60,-103}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_yp.port_zp,adjoiningPanel_yp_zp.port_a) annotation(
+					Line(
+						points={{168.6666564941406,-8.333335876464844},{170,-10},{85,-10},{83,-55}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(adjoiningPanel_yp_zp.port_b,Panel_zp.port_yp) annotation(Line(
+					points={{83,-67},{83,-72},{83,-210},{52,-210},{52,-215}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(adjoiningPanel_yn_zp.port_a,Panel_zp.port_yn) annotation(Line(
+					points={{120,-185},{115,-185},{43,-185},{43,-202},{43,-207}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(adjoiningPanel_yn_zp.port_b,Panel_yn.port_zp) annotation(Line(
+					points={{130,-185},{135,-185},{156,-185},{156,-188},{156,-193}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_zn.port_yn,adjoiningPanel_yn_zn.port_b) annotation(Line(
+					points={{287,14},{287,9},{287,-120},{287,-125}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(adjoiningPanel_yn_zn.port_a,Panel_yn.port_zn) annotation(Line(
+					points={{287,-136},{287,-141},{287,-205},{173,-205},{168,-205}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_zn.port_yp,adjoiningPanel_yp_zn.port_b) annotation(
+					Line(
+						points={{278,22},{278,20},{232,20},{232,19},{185,19},{180,
+						19}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(Panel_yp.port_zn,adjoiningPanel_yp_zn.port_a) annotation(Line(
+					points={{157,2},{152,2},{152,19},{165,19},{170,19}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_yn.port_xn,oposite_Panel_y.port_b) annotation(Line(
+					points={{162,-197},{162,-192},{162,-172},{186,-172},{186,-167}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(oposite_Panel_y.port_a,Panel_yp.port_xn) annotation(Line(
+					points={{186,-155},{186,-150},{186,-10},{162,-10},{162,-5}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(oposite_Panel_x.port_a,Panel_xn.port_xn) annotation(Line(
+					points={{110,-72},{105,-72},{73,-72},{73,-97},{68,-97}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_xp.port_xn,oposite_Panel_x.port_b) annotation(
+					Line(
+						points={{267.3333435058594,-97.66667175292969},{260,-100},{260,-75},{130,-75},{129,-72},{123.6666564941406,
+						-72}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(oposite_Panel_z.port_a,Panel_zp.port_xn) annotation(
+					Line(
+						points={{200,-131.6666717529297},{195,-132},{190,-132},{190,-210},{48.66667175292969,-210.3333435058594}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(Panel_zn.port_xn,oposite_Panel_z.port_b) annotation(
+					Line(
+						points={{281.3333435058594,17.33333587646484},{240,12},{240,-132},{218,-132},{213,-131.6666717529297}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(fixedHeatFlow1.port,port_b) annotation(Line(
+					points={{20,10},{25,10},{105,10},{105,-45},{110,-45}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(tCS1.cooler_on,heater_cooler_EPS1.cooler_on) annotation(Line(
+					points={{-65,-5},{-65,-10},{-65,-30},{-50,-30},{-45,-30}},
+					color={255,0,255},
+					thickness=0.0625));
+				connect(heater_cooler_EPS1.heater_on,tCS1.heater_on) annotation(Line(
+					points={{-45,-20},{-50,-20},{-75,-20},{-75,-10},{-75,-5}},
+					color={255,0,255},
+					thickness=0.0625));
+				connect(tCS1.Tmax,heater_cooler_EPS1.Tmax) annotation(
+					Line(
+						points={{-65,15},{-65,30},{-15,30},{-15,-30},{-25,-30}},
+						color={0,0,127},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(heater_cooler_EPS1.Tmin,tCS1.Tmin) annotation(Line(
+					points={{-25,-20},{-20,-20},{-20,20},{-75,20},{-75,15}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(port_b,tCS1.Temp) annotation(Line(
+					points={{110,-45},{105,-45},{-85,-45},{-85,5},{-80,5}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(heater_cooler_EPS1.Power_heating_cooling,port_b) annotation(Line(
+					points={{-35,-15},{-35,-10},{35,-10},{35,-45},{105,-45},{110,
+					-45}},
+					color={191,0,0},
+					thickness=0.0625));
 			annotation(
 				port_b(
 					T(flags=2),
 					Q_flow(flags=2)),
 				fixedHeatFlow1(port(Q_flow(flags=2))),
-				bB_heater1(
+				tCS1(temperature_EB(
+					T(flags=2),
+					port(T(flags=2)))),
+				heater_cooler_EPS1(
+					heating_power(y(flags=2)),
+					heater_power(port(Q_flow(flags=2))),
+					cooling_power(y(flags=2)),
+					cooler_power(port(Q_flow(flags=2))),
 					lower_Temp(y(flags=2)),
-					temperature_EB(
-						T(flags=2),
-						port(T(flags=2))),
-					gain1(y(flags=2)),
-					heater_power(port(Q_flow(flags=2)))),
-				bB_cooler1(
-					upper_Temp(y(flags=2)),
-					temperature_EB(
-						T(flags=2),
-						port(T(flags=2))),
-					gain1(y(flags=2)),
-					heater_power(port(Q_flow(flags=2)))),
+					upper_Temp(y(flags=2))),
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
-					graphics={Rectangle(lineColor = {255,0,0}, fillColor = {255,255,255}, fillPattern = FillPattern.CrossDiag, extent = {{-10,-50},{10,50}}),Rectangle(lineColor = {255,0,0}, fillColor = {255,255,255}, fillPattern = FillPattern.CrossDiag, extent = {{-10.2751,-50},{9.7249,50}}),Rectangle(lineColor = {255,0,0}, fillColor = {255,255,255}, fillPattern = FillPattern.CrossDiag, extent = {{-50,-10},{50,10}}),Rectangle(lineColor = {255,0,0}, fillColor = {255,255,255}, fillPattern = FillPattern.CrossDiag, extent = {{-50,-10},{50,10}}),Rectangle(lineColor = {255,0,0}, fillColor = {255,255,255}, lineThickness = 2, extent = {{-80,-80},{80,80}}),Text(textString = "%name", textStyle = {TextStyle.Bold}, lineColor = {0,0,0}, fillColor = {255,0,0}, fillPattern = FillPattern.Solid, extent = {{-78.4853,-65.6671},{78.4853,-25.6671}}),Text(textString = "yp", lineColor = {0,0,0}, fillPattern = FillPattern.Solid, extent = {{-12.0277,70.2527},{14.7787,93.1585}}),Text(textString = "yn", lineColor = {0,0,0}, fillPattern = FillPattern.Solid, extent = {{-12.3028,-89.8573},{14.5036,-66.9515}}),Text(textString = "xp", lineColor = {0,0,0}, fillPattern = FillPattern.Solid, extent = {{67.4771,-10.6276},{94.2835,12.2782}}),Text(textString = "xn", lineColor = {0,0,0}, fillPattern = FillPattern.Solid, extent = {{-92.6329,-12.5533},{-65.8265,10.3525}}),Text(textString = "zp", lineColor = {0,0,0}, fillPattern = FillPattern.Solid, extent = {{-79.428,-79.9536},{-52.6216,-57.0478}}),Text(textString = "zn", lineColor = {0,0,0}, fillPattern = FillPattern.Solid, extent = {{55.2109,58.9977},{82.0173,81.9035}})}),
+					graphics={
+										Rectangle(
+											lineColor={255,0,0},
+											fillColor={255,255,255},
+											fillPattern=FillPattern.CrossDiag,
+											extent={{-10,-50},{10,50}}),
+										Rectangle(
+											lineColor={255,0,0},
+											fillColor={255,255,255},
+											fillPattern=FillPattern.CrossDiag,
+											extent={{-10.2751,-50},{9.7249,50}}),
+										Rectangle(
+											lineColor={255,0,0},
+											fillColor={255,255,255},
+											fillPattern=FillPattern.CrossDiag,
+											extent={{-50,-10},{50,10}}),
+										Rectangle(
+											lineColor={255,0,0},
+											fillColor={255,255,255},
+											fillPattern=FillPattern.CrossDiag,
+											extent={{-50,-10},{50,10}}),
+										Rectangle(
+											lineColor={255,0,0},
+											fillColor={255,255,255},
+											lineThickness=2,
+											extent={{-80,-80},{80,80}}),
+										Text(
+											textString="%name",
+											textStyle={TextStyle.Bold},
+											lineColor={0,0,0},
+											fillColor={255,0,0},
+											fillPattern=FillPattern.Solid,
+											extent={{-78.4853,-65.66710000000001},{78.4853,-25.6671}}),
+										Text(
+											textString="yp",
+											lineColor={0,0,0},
+											fillPattern=FillPattern.Solid,
+											extent={{-12.0277,70.2527},{14.7787,93.1585}}),
+										Text(
+											textString="yn",
+											lineColor={0,0,0},
+											fillPattern=FillPattern.Solid,
+											extent={{-12.3028,-89.8573},{14.5036,-66.9515}}),
+										Text(
+											textString="xp",
+											lineColor={0,0,0},
+											fillPattern=FillPattern.Solid,
+											extent={{67.47709999999999,-10.6276},{94.2835,12.2782}}),
+										Text(
+											textString="xn",
+											lineColor={0,0,0},
+											fillPattern=FillPattern.Solid,
+											extent={{-92.63290000000001,-12.5533},{-65.8265,10.3525}}),
+										Text(
+											textString="zp",
+											lineColor={0,0,0},
+											fillPattern=FillPattern.Solid,
+											extent={{-79.428,-79.95359999999999},{-52.6216,-57.0478}}),
+										Text(
+											textString="zn",
+											lineColor={0,0,0},
+											fillPattern=FillPattern.Solid,
+											extent={{55.2109,58.9977},{82.01730000000001,81.90349999999999}})}),
 				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
 				Documentation(info="<HTML>
 <P>
@@ -2179,7 +2440,7 @@ An approppriate simulating time would be 10 seconds.
 					extent={{10,10},{-10,-10}},
 					rotation=-180),
 				iconTransformation(
-					origin={-87.4828,-87.7579},
+					origin={-87.4828,-87.75790000000001},
 					extent={{12,12},{-12,-12}},
 					rotation=-180)));
 			thermal_connector thermal_connector_xn annotation(Placement(
@@ -2220,87 +2481,345 @@ An approppriate simulating time would be 10 seconds.
 				parameter Real Gr_aP(unit="m2")=ViewFactor_vertical * y_Panel * z_Panel * 1 / (2 / eps_Panel - 1)"Net radiation conductance between two surfaces (see docu)(adjoining Panels) tbd";
 				parameter Real Gr_P_EB(unit="m2")=x_EB * y_EB * (eps_Panel * eps_EB) / (eps_Panel + eps_EB - eps_Panel * eps_EB)"Net radiation conductance between two surfaces (see docu)(Panel - Electronic Box) tbd";
 			public
-				BB_heater bB_heater1(
-					heating_power=heating_power,
-					lower_Temp_boundary=lower_Temp_boundary,
-					bandwidth_heater=bandwidth_heater) annotation(Placement(transformation(extent={{30,-35},{50,-15}})));
-				BB_cooler bB_cooler1(
-					cooling_power=cooling_power,
+				TCS tCS1(
+					bandwidth_cooler=bandwidth_cooler,
+					bandwidth_heater=bandwidth_heater) annotation(Placement(transformation(extent={{-75,-15},{-55,5}})));
+				heater_cooler_EPS heater_cooler_EPS1(
+					power_cooler=cooling_power,
 					upper_Temp_boundary=upper_Temp_boundary,
-					bandwidth_cooler=bandwidth_cooler) annotation(Placement(transformation(extent={{20,-60},{40,-40}})));
+					power_heater=heating_power,
+					lower_Temp_boundary=lower_Temp_boundary,
+					bandwidth_cooler=bandwidth_cooler,
+					bandwidth_heater=bandwidth_heater) annotation(Placement(transformation(extent={{-40,-35},{-20,-15}})));
 			equation
-				connect(Panel_zn.thermal_connector1,thermal_connector_zn) annotation(Line(points = {{288.6666564941406,24.66666412353516},{300,35}}, thickness = 0.0625), AutoRoute = false);
-				connect(EB_Pzn.port_a,thermalModel_ElectronicBox1.EB_zn) annotation(Line(points = {{194.6666564941406,-67},{178.3333435058594,-81.66667175292969}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(thermalModel_ElectronicBox1.EB_zp,EB_Pzp.port_b) annotation(Line(points = {{146.6666564941406,-113.3333282470703},{129.6666564941406,-130}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(Panel_zp.thermal_connector1,thermal_connector_zp) annotation(Line(points = {{41.33332824707031,-217.6666564941406},{10,-250}}, thickness = 0.0625), AutoRoute = false);
-				connect(EB_Pyn.port_a,thermalModel_ElectronicBox1.EB_yn) annotation(Line(points = {{161,-135},{161,-130},{161,-120},{163,-120},{163,-115}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_yn.thermal_connector1,thermal_connector_yn) annotation(Line(points = {{162,-208},{162,-213},{165,-213},{165,-235},{160,-235}}, thickness = 0.0625));
-				connect(EB_Pxp.port_a,thermalModel_ElectronicBox1.EB_xp) annotation(Line(points = {{200,-97},{195,-97},{185,-97},{185,-98},{180,-98}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_xp.thermal_connector1,thermal_connector_xp) annotation(Line(points = {{278,-98},{283,-98},{320,-98},{320,-95},{325,-95}}, thickness = 0.0625));
-				connect(EB_Pxn.port_b,thermalModel_ElectronicBox1.EB_xn) annotation(Line(points = {{122,-97},{127,-97},{140,-97},{140,-98},{145,-98}}, color = {191,0,0}, thickness = 0.0625));
-				connect(EB_Pyp.port_b,thermalModel_ElectronicBox1.EB_yp) annotation(Line(points = {{162,-59},{162,-64},{162,-75},{163,-75},{163,-80}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_yp.thermal_connector1,thermal_connector_yp) annotation(Line(points = {{162,5},{162,10},{160,10},{160,35},{165,35}}, thickness = 0.0625));
-				connect(Panel_xn.thermal_connector1,thermal_connector_xn) annotation(Line(points = {{57,-97},{52,-97},{20,-97},{20,-95},{15,-95}}, thickness = 0.0625));
-				connect(thermalModel_ElectronicBox1.dissipationPower,port_b) annotation(Line(points = {{162.6666564941406,-97.66667175292969},{110,-45}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(Panel_yp.port_xn,EB_Pyp.port_a) annotation(Line(points = {{162,-5},{162,-10},{162,-40},{162,-40},{162,-45}}, color = {191,0,0}, thickness = 0.0625));
-				connect(EB_Pzn.port_b,Panel_zn.port_xn) annotation(Line(points = {{205.6666564941406,-56},{281.3333435058594,17.33333587646484}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(EB_Pxp.port_b,Panel_xp.port_xn) annotation(Line(points = {{214,-97},{219,-97},{262,-97},{262,-98},{267,-98}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_yn.port_xn,EB_Pyn.port_b) annotation(Line(points = {{162,-197},{162,-192},{162,-152},{161,-152},{161,-147}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_zp.port_xn,EB_Pzp.port_a) annotation(Line(points = {{48.66667175292969,-210.3333435058594},{119.6666564941406,-139.6666717529297}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(Panel_xn.port_xn,EB_Pxn.port_a) annotation(Line(points = {{68,-97},{73,-97},{105,-97},{110,-97}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_yn.port_yp,adjoiningPanel_xp_yn.port_b) annotation(Line(points = {{168,-198},{173,-198},{267,-198},{267,-174},{267,-169}}, color = {191,0,0}, thickness = 0.0625));
-				connect(adjoiningPanel_xp_yn.port_a,Panel_xp.port_yn) annotation(Line(points = {{267,-155},{267,-150},{267,-109},{269,-109},{269,-104}}, color = {191,0,0}, thickness = 0.0625));
-				connect(adjoiningPanel_xp_yp.port_b,Panel_xp.port_yp) annotation(Line(points = {{232,-1},{237,-1},{268,-1},{268,-87},{268,-92}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_yp.port_yn,adjoiningPanel_xp_yp.port_a) annotation(Line(points = {{169,-3},{174,-3},{215,-3},{215,-1},{220,-1}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_xn.port_yn,adjoiningPanel_xn_yp.port_b) annotation(Line(points = {{66,-91},{66,-86},{66,-57},{66,-52}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_xn.port_yp,adjoiningPanel_xn_yn.port_a) annotation(Line(points = {{67,-103},{67,-108},{67,-155},{67,-160}}, color = {191,0,0}, thickness = 0.0625));
-				connect(adjoiningPanel_xn_yn.port_b,Panel_yn.port_yn) annotation(Line(points = {{67,-174},{67,-179},{67,-199},{151,-199},{156,-199}}, color = {191,0,0}, thickness = 0.0625));
-				connect(adjoiningPanel_xn_yp.port_a,Panel_yp.port_yp) annotation(Line(points = {{66,-39.66667175292969},{66,-35},{66,-5},{157,-5},{156.6666564941406,-3.666664123535156}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(Panel_zp.port_zn,adjoiningPanel_xp_zp.port_b) annotation(Line(points = {{47.33332824707031,-220},{255,-220},{252,-194.6666564941406}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(Panel_xp.port_zp,adjoiningPanel_xp_zp.port_a) annotation(Line(points = {{263,-104},{258,-104},{252,-104},{252,-174},{252,-179}}, color = {191,0,0}, thickness = 0.0625));
-				connect(adjoiningPanel_xp_zn.port_b,Panel_zn.port_zp) annotation(Line(points = {{275,-40},{275,-35},{275,5},{283,5},{283,10}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_xp.port_zn,adjoiningPanel_xp_zn.port_a) annotation(Line(points = {{275,-92},{275,-87},{275,-55},{275,-50}}, color = {191,0,0}, thickness = 0.0625));
-				connect(adjoiningPanel_xn_zp.port_b,Panel_zp.port_zp) annotation(Line(points = {{51,-157},{51,-162},{51,-198},{47,-198},{47,-203}}, color = {191,0,0}, thickness = 0.0625));
-				connect(adjoiningPanel_xn_zp.port_a,Panel_xn.port_zp) annotation(Line(points = {{51,-145},{51,-140},{77,-140},{77,-91},{72,-91}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_zn.port_zn,adjoiningPanel_xn_zn.port_b) annotation(Line(points = {{282.6666564941406,26.66666412353516},{273,12},{273,15},{112,15},{72.33332824707031,14}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(adjoiningPanel_xn_zn.port_a,Panel_xn.port_zn) annotation(Line(points = {{60,14},{55,14},{55,-108},{60,-108},{60,-103}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_yp.port_zp,adjoiningPanel_yp_zp.port_a) annotation(Line(points = {{168.6666564941406,-8.333335876464844},{170,-10},{85,-10},{83,-55}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(adjoiningPanel_yp_zp.port_b,Panel_zp.port_yp) annotation(Line(points = {{83,-67},{83,-72},{83,-210},{52,-210},{52,-215}}, color = {191,0,0}, thickness = 0.0625));
-				connect(adjoiningPanel_yn_zp.port_a,Panel_zp.port_yn) annotation(Line(points = {{120,-185},{115,-185},{43,-185},{43,-202},{43,-207}}, color = {191,0,0}, thickness = 0.0625));
-				connect(adjoiningPanel_yn_zp.port_b,Panel_yn.port_zp) annotation(Line(points = {{130,-185},{135,-185},{156,-185},{156,-188},{156,-193}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_zn.port_yn,adjoiningPanel_yn_zn.port_b) annotation(Line(points = {{287,14},{287,9},{287,-120},{287,-125}}, color = {191,0,0}, thickness = 0.0625));
-				connect(adjoiningPanel_yn_zn.port_a,Panel_yn.port_zn) annotation(Line(points = {{287,-136},{287,-141},{287,-205},{173,-205},{168,-205}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_zn.port_yp,adjoiningPanel_yp_zn.port_b) annotation(Line(points = {{278,22},{278,20},{232,20},{232,19},{185,19},{180,19}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(Panel_yp.port_zn,adjoiningPanel_yp_zn.port_a) annotation(Line(points = {{157,2},{152,2},{152,19},{165,19},{170,19}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_yn.port_xn,oposite_Panel_y.port_b) annotation(Line(points = {{162,-197},{162,-192},{162,-172},{186,-172},{186,-167}}, color = {191,0,0}, thickness = 0.0625));
-				connect(oposite_Panel_y.port_a,Panel_yp.port_xn) annotation(Line(points = {{186,-155},{186,-150},{186,-10},{162,-10},{162,-5}}, color = {191,0,0}, thickness = 0.0625));
-				connect(oposite_Panel_x.port_a,Panel_xn.port_xn) annotation(Line(points = {{110,-72},{105,-72},{73,-72},{73,-97},{68,-97}}, color = {191,0,0}, thickness = 0.0625));
-				connect(Panel_xp.port_xn,oposite_Panel_x.port_b) annotation(Line(points = {{267.3333435058594,-97.66667175292969},{260,-100},{260,-75},{130,-75},{129,-72},{123.6666564941406,-72}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(oposite_Panel_z.port_a,Panel_zp.port_xn) annotation(Line(points = {{200,-131.6666717529297},{195,-132},{190,-132},{190,-210},{48.66667175292969,-210.3333435058594}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(Panel_zn.port_xn,oposite_Panel_z.port_b) annotation(Line(points = {{281.3333435058594,17.33333587646484},{240,12},{240,-132},{218,-132},{213,-131.6666717529297}}, color = {191,0,0}, thickness = 0.0625), AutoRoute = false);
-				connect(bB_heater1.Heater,thermalModel_ElectronicBox1.dissipationPower) annotation(Line(points = {{50,-25},{55,-25},{158,-25},{158,-98},{163,-98}}, color = {191,0,0}, thickness = 0.0625));
-				connect(bB_cooler1.cooler,thermalModel_ElectronicBox1.dissipationPower) annotation(Line(points = {{40,-50},{45,-50},{158,-50},{158,-98},{163,-98}}, color = {191,0,0}, thickness = 0.0625));
+				connect(Panel_zn.thermal_connector1,thermal_connector_zn) annotation(
+					Line(
+						points={{288.6666564941406,24.66666412353516},{300,35}},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(EB_Pzn.port_a,thermalModel_ElectronicBox1.EB_zn) annotation(
+					Line(
+						points={{194.6666564941406,-67},{178.3333435058594,-81.66667175292969}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(thermalModel_ElectronicBox1.EB_zp,EB_Pzp.port_b) annotation(
+					Line(
+						points={{146.6666564941406,-113.3333282470703},{129.6666564941406,-130}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(Panel_zp.thermal_connector1,thermal_connector_zp) annotation(
+					Line(
+						points={{41.33332824707031,-217.6666564941406},{10,-250}},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(EB_Pyn.port_a,thermalModel_ElectronicBox1.EB_yn) annotation(Line(
+					points={{161,-135},{161,-130},{161,-120},{163,-120},{163,-115}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_yn.thermal_connector1,thermal_connector_yn) annotation(Line(
+					points={{162,-208},{162,-213},{165,-213},{165,-235},{160,-235}},
+					thickness=0.0625));
+				connect(EB_Pxp.port_a,thermalModel_ElectronicBox1.EB_xp) annotation(Line(
+					points={{200,-97},{195,-97},{185,-97},{185,-98},{180,-98}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_xp.thermal_connector1,thermal_connector_xp) annotation(Line(
+					points={{278,-98},{283,-98},{320,-98},{320,-95},{325,-95}},
+					thickness=0.0625));
+				connect(EB_Pxn.port_b,thermalModel_ElectronicBox1.EB_xn) annotation(Line(
+					points={{122,-97},{127,-97},{140,-97},{140,-98},{145,-98}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(EB_Pyp.port_b,thermalModel_ElectronicBox1.EB_yp) annotation(Line(
+					points={{162,-59},{162,-64},{162,-75},{163,-75},{163,-80}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_yp.thermal_connector1,thermal_connector_yp) annotation(Line(
+					points={{162,5},{162,10},{160,10},{160,35},{165,35}},
+					thickness=0.0625));
+				connect(Panel_xn.thermal_connector1,thermal_connector_xn) annotation(Line(
+					points={{57,-97},{52,-97},{20,-97},{20,-95},{15,-95}},
+					thickness=0.0625));
+				connect(thermalModel_ElectronicBox1.dissipationPower,port_b) annotation(
+					Line(
+						points={{162.6666564941406,-97.66667175292969},{110,-45}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(Panel_yp.port_xn,EB_Pyp.port_a) annotation(Line(
+					points={{162,-5},{162,-10},{162,-40},{162,-40},{162,-45}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(EB_Pzn.port_b,Panel_zn.port_xn) annotation(
+					Line(
+						points={{205.6666564941406,-56},{281.3333435058594,17.33333587646484}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(EB_Pxp.port_b,Panel_xp.port_xn) annotation(Line(
+					points={{214,-97},{219,-97},{262,-97},{262,-98},{267,-98}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_yn.port_xn,EB_Pyn.port_b) annotation(Line(
+					points={{162,-197},{162,-192},{162,-152},{161,-152},{161,-147}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_zp.port_xn,EB_Pzp.port_a) annotation(
+					Line(
+						points={{48.66667175292969,-210.3333435058594},{119.6666564941406,-139.6666717529297}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(Panel_xn.port_xn,EB_Pxn.port_a) annotation(Line(
+					points={{68,-97},{73,-97},{105,-97},{110,-97}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_yn.port_yp,adjoiningPanel_xp_yn.port_b) annotation(Line(
+					points={{168,-198},{173,-198},{267,-198},{267,-174},{267,-169}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(adjoiningPanel_xp_yn.port_a,Panel_xp.port_yn) annotation(Line(
+					points={{267,-155},{267,-150},{267,-109},{269,-109},{269,-104}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(adjoiningPanel_xp_yp.port_b,Panel_xp.port_yp) annotation(Line(
+					points={{232,-1},{237,-1},{268,-1},{268,-87},{268,-92}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_yp.port_yn,adjoiningPanel_xp_yp.port_a) annotation(Line(
+					points={{169,-3},{174,-3},{215,-3},{215,-1},{220,-1}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_xn.port_yn,adjoiningPanel_xn_yp.port_b) annotation(Line(
+					points={{66,-91},{66,-86},{66,-57},{66,-52}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_xn.port_yp,adjoiningPanel_xn_yn.port_a) annotation(Line(
+					points={{67,-103},{67,-108},{67,-155},{67,-160}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(adjoiningPanel_xn_yn.port_b,Panel_yn.port_yn) annotation(Line(
+					points={{67,-174},{67,-179},{67,-199},{151,-199},{156,-199}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(adjoiningPanel_xn_yp.port_a,Panel_yp.port_yp) annotation(
+					Line(
+						points={{66,-39.66667175292969},{66,-35},{66,-5},{157,-5},{156.6666564941406,-3.666664123535156}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(Panel_zp.port_zn,adjoiningPanel_xp_zp.port_b) annotation(
+					Line(
+						points={{47.33332824707031,-220},{255,-220},{252,-194.6666564941406}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(Panel_xp.port_zp,adjoiningPanel_xp_zp.port_a) annotation(Line(
+					points={{263,-104},{258,-104},{252,-104},{252,-174},{252,-179}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(adjoiningPanel_xp_zn.port_b,Panel_zn.port_zp) annotation(Line(
+					points={{275,-40},{275,-35},{275,5},{283,5},{283,10}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_xp.port_zn,adjoiningPanel_xp_zn.port_a) annotation(Line(
+					points={{275,-92},{275,-87},{275,-55},{275,-50}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(adjoiningPanel_xn_zp.port_b,Panel_zp.port_zp) annotation(Line(
+					points={{51,-157},{51,-162},{51,-198},{47,-198},{47,-203}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(adjoiningPanel_xn_zp.port_a,Panel_xn.port_zp) annotation(Line(
+					points={{51,-145},{51,-140},{77,-140},{77,-91},{72,-91}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_zn.port_zn,adjoiningPanel_xn_zn.port_b) annotation(
+					Line(
+						points={{282.6666564941406,26.66666412353516},{273,12},{273,15},{112,15},{72.33332824707031,14}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(adjoiningPanel_xn_zn.port_a,Panel_xn.port_zn) annotation(Line(
+					points={{60,14},{55,14},{55,-108},{60,-108},{60,-103}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_yp.port_zp,adjoiningPanel_yp_zp.port_a) annotation(
+					Line(
+						points={{168.6666564941406,-8.333335876464844},{170,-10},{85,-10},{83,-55}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(adjoiningPanel_yp_zp.port_b,Panel_zp.port_yp) annotation(Line(
+					points={{83,-67},{83,-72},{83,-210},{52,-210},{52,-215}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(adjoiningPanel_yn_zp.port_a,Panel_zp.port_yn) annotation(Line(
+					points={{120,-185},{115,-185},{43,-185},{43,-202},{43,-207}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(adjoiningPanel_yn_zp.port_b,Panel_yn.port_zp) annotation(Line(
+					points={{130,-185},{135,-185},{156,-185},{156,-188},{156,-193}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_zn.port_yn,adjoiningPanel_yn_zn.port_b) annotation(Line(
+					points={{287,14},{287,9},{287,-120},{287,-125}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(adjoiningPanel_yn_zn.port_a,Panel_yn.port_zn) annotation(Line(
+					points={{287,-136},{287,-141},{287,-205},{173,-205},{168,-205}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_zn.port_yp,adjoiningPanel_yp_zn.port_b) annotation(
+					Line(
+						points={{278,22},{278,20},{232,20},{232,19},{185,19},{180,
+						19}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(Panel_yp.port_zn,adjoiningPanel_yp_zn.port_a) annotation(Line(
+					points={{157,2},{152,2},{152,19},{165,19},{170,19}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_yn.port_xn,oposite_Panel_y.port_b) annotation(Line(
+					points={{162,-197},{162,-192},{162,-172},{186,-172},{186,-167}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(oposite_Panel_y.port_a,Panel_yp.port_xn) annotation(Line(
+					points={{186,-155},{186,-150},{186,-10},{162,-10},{162,-5}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(oposite_Panel_x.port_a,Panel_xn.port_xn) annotation(Line(
+					points={{110,-72},{105,-72},{73,-72},{73,-97},{68,-97}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Panel_xp.port_xn,oposite_Panel_x.port_b) annotation(
+					Line(
+						points={{267.3333435058594,-97.66667175292969},{260,-100},{260,-75},{130,-75},{129,-72},{123.6666564941406,
+						-72}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(oposite_Panel_z.port_a,Panel_zp.port_xn) annotation(
+					Line(
+						points={{200,-131.6666717529297},{195,-132},{190,-132},{190,-210},{48.66667175292969,-210.3333435058594}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(Panel_zn.port_xn,oposite_Panel_z.port_b) annotation(
+					Line(
+						points={{281.3333435058594,17.33333587646484},{240,12},{240,-132},{218,-132},{213,-131.6666717529297}},
+						color={191,0,0},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(tCS1.cooler_on,heater_cooler_EPS1.cooler_on) annotation(Line(
+					points={{-60,-15},{-60,-20},{-60,-30},{-45,-30},{-40,-30}},
+					color={255,0,255},
+					thickness=0.0625));
+				connect(heater_cooler_EPS1.heater_on,tCS1.heater_on) annotation(Line(
+					points={{-40,-20},{-45,-20},{-70,-20},{-70,-15}},
+					color={255,0,255},
+					thickness=0.0625));
+				connect(heater_cooler_EPS1.Tmin,tCS1.Tmin) annotation(Line(
+					points={{-20,-20},{-15,-20},{-15,10},{-70,10},{-70,5}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(heater_cooler_EPS1.Tmax,tCS1.Tmax) annotation(
+					Line(
+						points={{-20,-30},{5,-30},{5,25},{-60,25},{-60,5}},
+						color={0,0,127},
+						thickness=0.0625),
+					AutoRoute=false);
+				connect(tCS1.Temp,port_b) annotation(Line(
+					points={{-75,-5},{-80,-5},{-80,-45},{105,-45},{110,-45}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(heater_cooler_EPS1.Power_heating_cooling,port_b) annotation(Line(
+					points={{-30,-15},{-30,-10},{37,-10},{37,-45},{105,-45},{110,
+					-45}},
+					color={191,0,0},
+					thickness=0.0625));
 			annotation(
 				port_b(
 					T(flags=2),
 					Q_flow(flags=2)),
-				bB_heater1(
+				tCS1(temperature_EB(
+					T(flags=2),
+					port(T(flags=2)))),
+				heater_cooler_EPS1(
+					heating_power(y(flags=2)),
+					heater_power(port(Q_flow(flags=2))),
+					cooling_power(y(flags=2)),
+					cooler_power(port(Q_flow(flags=2))),
 					lower_Temp(y(flags=2)),
-					temperature_EB(
-						T(flags=2),
-						port(T(flags=2))),
-					gain1(y(flags=2)),
-					heater_power(port(Q_flow(flags=2)))),
-				bB_cooler1(
-					upper_Temp(y(flags=2)),
-					temperature_EB(
-						T(flags=2),
-						port(T(flags=2))),
-					gain1(y(flags=2)),
-					heater_power(port(Q_flow(flags=2)))),
+					upper_Temp(y(flags=2))),
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
-					graphics={Rectangle(lineColor = {255,0,0}, fillColor = {255,255,255}, fillPattern = FillPattern.CrossDiag, extent = {{-10,-50},{10,50}}),Rectangle(lineColor = {255,0,0}, fillColor = {255,255,255}, fillPattern = FillPattern.CrossDiag, extent = {{-10.2751,-50},{9.7249,50}}),Rectangle(lineColor = {255,0,0}, fillColor = {255,255,255}, fillPattern = FillPattern.CrossDiag, extent = {{-50,-10},{50,10}}),Rectangle(lineColor = {255,0,0}, fillColor = {255,255,255}, fillPattern = FillPattern.CrossDiag, extent = {{-50,-10},{50,10}}),Rectangle(lineColor = {255,0,0}, fillColor = {255,255,255}, lineThickness = 2, extent = {{-80,-80},{80,80}}),Text(textString = "%name", textStyle = {TextStyle.Bold}, lineColor = {0,0,0}, fillColor = {255,0,0}, fillPattern = FillPattern.Solid, extent = {{-78.4853,-65.6671},{78.4853,-25.6671}}),Text(textString = "yp", lineColor = {0,0,0}, fillPattern = FillPattern.Solid, extent = {{-12.0277,70.2527},{14.7787,93.1585}}),Text(textString = "yn", lineColor = {0,0,0}, fillPattern = FillPattern.Solid, extent = {{-12.3028,-89.8573},{14.5036,-66.9515}}),Text(textString = "xp", lineColor = {0,0,0}, fillPattern = FillPattern.Solid, extent = {{67.4771,-10.6276},{94.2835,12.2782}}),Text(textString = "xn", lineColor = {0,0,0}, fillPattern = FillPattern.Solid, extent = {{-92.6329,-12.5533},{-65.8265,10.3525}}),Text(textString = "zp", lineColor = {0,0,0}, fillPattern = FillPattern.Solid, extent = {{-79.428,-79.9536},{-52.6216,-57.0478}}),Text(textString = "zn", lineColor = {0,0,0}, fillPattern = FillPattern.Solid, extent = {{55.2109,58.9977},{82.0173,81.9035}})}),
+					graphics={
+										Rectangle(
+											lineColor={255,0,0},
+											fillColor={255,255,255},
+											fillPattern=FillPattern.CrossDiag,
+											extent={{-10,-50},{10,50}}),
+										Rectangle(
+											lineColor={255,0,0},
+											fillColor={255,255,255},
+											fillPattern=FillPattern.CrossDiag,
+											extent={{-10.2751,-50},{9.7249,50}}),
+										Rectangle(
+											lineColor={255,0,0},
+											fillColor={255,255,255},
+											fillPattern=FillPattern.CrossDiag,
+											extent={{-50,-10},{50,10}}),
+										Rectangle(
+											lineColor={255,0,0},
+											fillColor={255,255,255},
+											fillPattern=FillPattern.CrossDiag,
+											extent={{-50,-10},{50,10}}),
+										Rectangle(
+											lineColor={255,0,0},
+											fillColor={255,255,255},
+											lineThickness=2,
+											extent={{-80,-80},{80,80}}),
+										Text(
+											textString="%name",
+											textStyle={TextStyle.Bold},
+											lineColor={0,0,0},
+											fillColor={255,0,0},
+											fillPattern=FillPattern.Solid,
+											extent={{-78.4853,-65.66710000000001},{78.4853,-25.6671}}),
+										Text(
+											textString="yp",
+											lineColor={0,0,0},
+											fillPattern=FillPattern.Solid,
+											extent={{-12.0277,70.2527},{14.7787,93.1585}}),
+										Text(
+											textString="yn",
+											lineColor={0,0,0},
+											fillPattern=FillPattern.Solid,
+											extent={{-12.3028,-89.8573},{14.5036,-66.9515}}),
+										Text(
+											textString="xp",
+											lineColor={0,0,0},
+											fillPattern=FillPattern.Solid,
+											extent={{67.47709999999999,-10.6276},{94.2835,12.2782}}),
+										Text(
+											textString="xn",
+											lineColor={0,0,0},
+											fillPattern=FillPattern.Solid,
+											extent={{-92.63290000000001,-12.5533},{-65.8265,10.3525}}),
+										Text(
+											textString="zp",
+											lineColor={0,0,0},
+											fillPattern=FillPattern.Solid,
+											extent={{-79.428,-79.95359999999999},{-52.6216,-57.0478}}),
+										Text(
+											textString="zn",
+											lineColor={0,0,0},
+											fillPattern=FillPattern.Solid,
+											extent={{55.2109,58.9977},{82.01730000000001,81.90349999999999}})}),
 				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
 				Documentation(info="<HTML>
 <P>
