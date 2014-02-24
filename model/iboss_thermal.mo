@@ -596,11 +596,13 @@ An approppriate simulating time would be 10 seconds.
 					origin={50,-100},
 					extent={{-10,-10},{10,10}},
 					rotation=-90)));
+			parameter Real bandwidth_cooler=5 "Bandwidth of the bang-bang controller (cool) / K";
+			parameter Real bandwidth_heater=5 "Bandwidth of the bang-bang controller (heat) / K";
 			Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperature_EB annotation(Placement(transformation(
 				origin={15,30},
 				extent={{-10,-10},{10,10}})));
-			Modelica.Blocks.Logical.OnOffController onOffController_heat annotation(Placement(transformation(extent={{120,40},{140,60}})));
-			Modelica.Blocks.Logical.OnOffController onOffController_cool annotation(Placement(transformation(extent={{120,-5},{140,15}})));
+			Modelica.Blocks.Logical.OnOffController onOffController_heat(bandwidth=bandwidth_heater) annotation(Placement(transformation(extent={{120,40},{140,60}})));
+			Modelica.Blocks.Logical.OnOffController onOffController_cool(bandwidth=bandwidth_cooler) annotation(Placement(transformation(extent={{120,-5},{140,15}})));
 			equation
 				connect(onOffController_heat.reference,Tmin) annotation(Line(
 					points={{118,56},{113,56},{70,56},{70,55},{65,55}},
@@ -634,8 +636,9 @@ An approppriate simulating time would be 10 seconds.
 				temperature_EB(
 					T(flags=2),
 					port(T(flags=2))),
-				onOffController_heat(bandwidth(flags=128)),
-				onOffController_cool(bandwidth(flags=128)),
+				viewinfo[0](
+					viewSettings(clrRaster=12632256),
+					typename="ModelInfo"),
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
@@ -676,7 +679,6 @@ An approppriate simulating time would be 10 seconds.
 											fontSize=8,
 											lineColor={0,0,0},
 											extent={{8,-62},{94,-86}})}),
-				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
 				Documentation(info="MIME-Version: 1.0
 		Content-Type: multipart/related;boundary=\"--$iti$\";type=\"text/html\"
 
@@ -738,55 +740,42 @@ An approppriate simulating time would be 10 seconds.
 			output Modelica.Blocks.Interfaces.RealOutput Tmax "'output Real' as connector" annotation(Placement(
 				transformation(extent={{-105,-85},{-85,-65}}),
 				iconTransformation(extent={{90,-60},{110,-40}})));
-			Modelica.Blocks.Math.Gain heating_power annotation(Placement(transformation(extent={{-5,-10},{15,10}})));
+			parameter Modelica.SIunits.ActivePower power_cooler=-100 "cooling Power of the heater";
+			parameter Modelica.SIunits.Temp_K upper_Temp_boundary=310 "hottest allowed temperatur in the Box";
+			parameter Modelica.SIunits.ActivePower power_heater=100 "heating Power of the heater";
+			parameter Modelica.SIunits.Temp_K lower_Temp_boundary=270 "Coldest allowed temperatur in the Box";
+			parameter Real bandwidth_cooler=5 "Bandwidth of the bang-bang controller (cool) / K";
+			parameter Real bandwidth_heater=5 "Bandwidth of the bang-bang controller (heat) / K";
+			Modelica.Blocks.Math.Gain heating_power(k=power_heater) annotation(Placement(transformation(extent={{-5,-10},{15,10}})));
 			Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow heater_power annotation(Placement(transformation(extent={{25,-10},{45,10}})));
-			Modelica.Blocks.Math.BooleanToReal booleanToReal1 annotation(Placement(transformation(extent={{-40,-10},{-20,10}})));
-			Modelica.Blocks.Math.Gain cooling_power annotation(Placement(transformation(extent={{-5,-50},{15,-30}})));
-			Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow heater_power1 annotation(Placement(transformation(extent={{25,-50},{45,-30}})));
-			Modelica.Blocks.Math.BooleanToReal booleanToReal2 annotation(Placement(transformation(extent={{-40,-50},{-20,-30}})));
-			Modelica.Blocks.Sources.Constant lower_Temp annotation(Placement(transformation(
+			Modelica.Blocks.Math.BooleanToReal booleanToReal_heat annotation(Placement(transformation(extent={{-40,-10},{-20,10}})));
+			Modelica.Blocks.Math.Gain cooling_power(k=power_cooler) annotation(Placement(transformation(extent={{-5,-50},{15,-30}})));
+			Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow cooler_power annotation(Placement(transformation(extent={{25,-50},{45,-30}})));
+			Modelica.Blocks.Math.BooleanToReal booleanToReal_cool annotation(Placement(transformation(extent={{-40,-50},{-20,-30}})));
+			Modelica.Blocks.Sources.Constant lower_Temp(k=lower_Temp_boundary+bandwidth_heater/2) annotation(Placement(transformation(
 				origin={-30,35},
 				extent={{-10,-10},{10,10}},
 				rotation=-180)));
-			Modelica.Blocks.Sources.Constant upper_Temp annotation(Placement(transformation(
+			Modelica.Blocks.Sources.Constant upper_Temp(k=upper_Temp_boundary+bandwidth_cooler/2) annotation(Placement(transformation(
 				origin={-30,-75},
 				extent={{-10,-10},{10,10}},
 				rotation=-180)));
 			equation
-				connect(booleanToReal1.y,heating_power.u) annotation(Line(
-					points={{-19,0},{-14,0},{-12,0},{-7,0}},
-					color={0,0,127},
-					thickness=0.0625));
 				connect(heating_power.y,heater_power.Q_flow) annotation(Line(
 					points={{16,0},{21,0},{20,0},{25,0}},
 					color={0,0,127},
 					thickness=0.0625));
-				connect(booleanToReal2.y,cooling_power.u) annotation(Line(
-					points={{-19,-40},{-14,-40},{-12,-40},{-7,-40}},
-					color={0,0,127},
-					thickness=0.0625));
-				connect(cooling_power.y,heater_power1.Q_flow) annotation(Line(
-					points={{16,-40},{21,-40},{20,-40},{25,-40}},
-					color={0,0,127},
-					thickness=0.0625));
+				
+				
 				
 				
 				connect(heater_power.port,Power_heating_cooling) annotation(Line(
 					points={{45,0},{50,0},{80,0},{80,-20},{85,-20}},
 					color={191,0,0},
 					thickness=0.0625));
-				connect(heater_power1.port,Power_heating_cooling) annotation(Line(
-					points={{45,-40},{50,-40},{80,-40},{80,-20},{85,-20}},
-					color={191,0,0},
-					thickness=0.0625));
-				connect(booleanToReal1.u,heater_on) annotation(Line(
-					points={{-42,0},{-47,0},{-100,0},{-105,0}},
-					color={255,0,255},
-					thickness=0.0625));
-				connect(booleanToReal2.u,cooler_on) annotation(Line(
-					points={{-42,-40},{-47,-40},{-100,-40},{-105,-40}},
-					color={255,0,255},
-					thickness=0.0625));
+				
+				
+				
 				connect(lower_Temp.y,Tmin) annotation(Line(
 					points={{-41,35},{-46,35},{-90,35},{-95,35}},
 					color={0,0,127},
@@ -795,21 +784,40 @@ An approppriate simulating time would be 10 seconds.
 					points={{-41,-75},{-46,-75},{-90,-75},{-95,-75}},
 					color={0,0,127},
 					thickness=0.0625));
+				connect(cooler_power.port,Power_heating_cooling) annotation(Line(
+					points={{45,-40},{50,-40},{80,-40},{80,-20},{85,-20}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(cooling_power.y,cooler_power.Q_flow) annotation(Line(
+					points={{16,-40},{21,-40},{20,-40},{25,-40}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(booleanToReal_heat.u,heater_on) annotation(Line(
+					points={{-42,0},{-47,0},{-100,0},{-105,0}},
+					color={255,0,255},
+					thickness=0.0625));
+				connect(booleanToReal_heat.y,heating_power.u) annotation(Line(
+					points={{-19,0},{-14,0},{-12,0},{-7,0}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(booleanToReal_cool.u,cooler_on) annotation(Line(
+					points={{-42,-40},{-47,-40},{-100,-40},{-105,-40}},
+					color={255,0,255},
+					thickness=0.0625));
+				connect(booleanToReal_cool.y,cooling_power.u) annotation(Line(
+					points={{-19,-40},{-14,-40},{-12,-40},{-7,-40}},
+					color={0,0,127},
+					thickness=0.0625));
 			annotation(
-				heating_power(
-					k(flags=128),
-					y(flags=2)),
+				heating_power(y(flags=2)),
 				heater_power(port(Q_flow(flags=2))),
-				cooling_power(
-					k(flags=128),
-					y(flags=2)),
-				heater_power1(port(Q_flow(flags=2))),
-				lower_Temp(
-					k(flags=128),
-					y(flags=2)),
-				upper_Temp(
-					k(flags=128),
-					y(flags=2)),
+				cooling_power(y(flags=2)),
+				cooler_power(port(Q_flow(flags=2))),
+				lower_Temp(y(flags=2)),
+				upper_Temp(y(flags=2)),
+				viewinfo[0](
+					viewSettings(clrRaster=12632256),
+					typename="ModelInfo"),
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
@@ -855,7 +863,6 @@ An approppriate simulating time would be 10 seconds.
 											fontSize=8,
 											lineColor={255,255,255},
 											extent={{-9,-69},{99,-102}})}),
-				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
 				Documentation(info="<HTML>
 		<P>
 		A constant voltage of 10 V is applied to a
@@ -1195,15 +1202,15 @@ An approppriate simulating time would be 10 seconds.
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
-										Rectangle(
-											lineColor={0,0,0},
-											fillPattern=FillPattern.Solid,
-											extent={{-100,100},{100,-100}}),
-										Ellipse(
-											lineColor={0,0,0},
-											fillColor={255,255,0},
-											fillPattern=FillPattern.Solid,
-											extent={{98,-96},{-96,98}})}),
+																											Rectangle(
+																											lineColor={0,0,0},
+																										fillPattern=FillPattern.Solid,
+																										extent={{-100,100},{100,-100}}),
+																									Ellipse(
+																										lineColor={0,0,0},
+																										fillColor={255,255,0},
+																										fillPattern=FillPattern.Solid,
+																										extent={{98,-96},{-96,98}})}),
 				experiment(
 					StopTime=10,
 					StartTime=0));
