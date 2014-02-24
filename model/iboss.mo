@@ -522,7 +522,7 @@ package iboss
     end structure1x1x1;
     model passivestructure3x2x1
       inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(visible = true, transformation(origin = {-60,60}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      Modelica.Mechanics.MultiBody.Joints.FreeMotion r(w_rel_a_start = {0.0,0.3,0.0}, r_rel_a(start = {0.0,0.0,0.0}), v_rel_a(start = {0.0,0.0,0.0})) annotation(Placement(visible = true, transformation(origin = {-25.2708,59.6844}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Mechanics.MultiBody.Joints.FreeMotion r(w_rel_a_start = {0.1,0.5,0.0}, r_rel_a(start = {0.0,0.0,0.0}), v_rel_a(start = {0.0,0.0,0.0})) annotation(Placement(visible = true, transformation(origin = {-25.2708,59.6844}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       iboss.buildingblocks.basic_structure bs2 annotation(Placement(visible = true, transformation(origin = {0,0}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       iboss.buildingblocks.basic_structure bs1 annotation(Placement(visible = true, transformation(origin = {-40,0}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       iboss.buildingblocks.basic_structure bs3 annotation(Placement(visible = true, transformation(origin = {40,0}, extent = {{-10,-10},{10,10}}, rotation = 0)));
@@ -538,7 +538,7 @@ package iboss
       parameter Integer size_y = 1;
       parameter Integer size_z = 1;
       inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity);
-      Modelica.Mechanics.MultiBody.Joints.FreeMotion r(w_rel_a_start = {0.0,0.3,0.0}, r_rel_a(start = {0.0,0.0,0.0}), v_rel_a(start = {0.0,0.0,0.0}));
+      Modelica.Mechanics.MultiBody.Joints.FreeMotion r(w_rel_a_start = {0.1,0.5,0.0}, r_rel_a(start = {0.0,0.0,0.0}), v_rel_a(start = {0.0,0.0,0.0}));
       iboss.buildingblocks.basic_structure bs[size_x];
     equation
       connect(bs[2].Yp,r.frame_b);

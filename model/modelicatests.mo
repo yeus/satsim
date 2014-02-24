@@ -29,7 +29,7 @@ package modelicatests
     Modelica.Blocks.Sources.Ramp ramp1(duration = 10) annotation(Placement(visible = true, transformation(origin = {-63.9659,11.9403}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     Modelica.Electrical.Analog.Sources.SignalVoltage signalvoltage1 annotation(Placement(visible = true, transformation(origin = {30.2772,-14.9254}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     Modelica.Blocks.Tables.CombiTable1D combitable1ds1(table = [0.0,0.5;0.9,3.0;1.0,4.0], columns = {2,3}, n = 1) annotation(Placement(visible = true, transformation(origin = {-14.9254,11.5139}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-    Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {47.3968,-64.2729}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {47.3968,-64.27290000000001}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     Modelica.Electrical.Analog.Basic.Resistor resistor1 annotation(Placement(visible = true, transformation(origin = {30.8797,-43.447}, extent = {{-10,-10},{10,10}}, rotation = 0)));
   equation
     connect(resistor1.n,signalvoltage1.n) annotation(Line(points = {{40.8797,-43.447},{47.0377,-43.447},{47.0377,-14.3627},{40.5745,-14.3627},{40.5745,-14.3627}}));
@@ -50,10 +50,10 @@ package modelicatests
     when sample(0, 0.01) then
           x:=mod(a * pre(x) + c, m);    
     end when;
-    annotation(experiment(StartTime = 0.0, StopTime = 20.0, Tolerance = 0.000001));
+    annotation(experiment(StartTime = 0.0, StopTime = 20.0, Tolerance = 1e-06));
   end noise;
   model simplependulum
-    inner Modelica.Mechanics.MultiBody.World world annotation(Placement(visible = true, transformation(origin = {-72.0362,-1.67937}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    inner Modelica.Mechanics.MultiBody.World world annotation(Placement(visible = true, transformation(origin = {-72.03619999999999,-1.67937}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     Modelica.Mechanics.Rotational.Components.Damper damper2(d = 0.1) annotation(Placement(visible = true, transformation(origin = {-31.9961,35.4135}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     Modelica.Mechanics.MultiBody.Joints.Revolute revolute1(phi.start = 3.14159 / 2.0, n = {0,0,1}, useAxisFlange = true) annotation(Placement(visible = true, transformation(origin = {-28.3295,-1.25318}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     Modelica.Mechanics.MultiBody.Parts.Body body1(m = 0.5, r_CM = {0,0,0}) annotation(Placement(visible = true, transformation(origin = {46.4644,-0.839688}, extent = {{-10,-10},{10,10}}, rotation = 0)));
@@ -74,22 +74,22 @@ package modelicatests
   model OpticalWireless
     Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 120) annotation(Placement(visible = true, transformation(origin = {-49.711,-20.2312}, extent = {{-10,-10},{10,10}}, rotation = 90)));
     Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 120) annotation(Placement(visible = true, transformation(origin = {-16.7052,-20.7514}, extent = {{-10,-10},{10,10}}, rotation = 90)));
-    Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.0000000001) annotation(Placement(visible = true, transformation(origin = {13.5838,-48.2659}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-    Modelica.Electrical.Analog.Basic.Capacitor capacitor2(C = 0.0000000001) annotation(Placement(visible = true, transformation(origin = {12.4855,-8.90173}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 1e-10) annotation(Placement(visible = true, transformation(origin = {13.5838,-48.2659}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Capacitor capacitor2(C = 1e-10) annotation(Placement(visible = true, transformation(origin = {12.4855,-8.901730000000001}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {53.4682,-36.9942}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     Modelica.Electrical.Analog.Sources.ConstantVoltage constantvoltage1(V = 5) annotation(Placement(visible = true, transformation(origin = {-51.4451,73.4104}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     Modelica.Electrical.Analog.Semiconductors.NPN npn1 annotation(Placement(visible = true, transformation(origin = {-51.1561,29.4798}, extent = {{-10,-10},{10,10}}, rotation = 0)));
   equation
     connect(capacitor1.n,ground1.p) annotation(Line(points = {{23.5838,-48.2659},{33.237,-48.8439},{32.948,-26.8786},{53.7572,-27.4566},{53.4682,-26.9942}}));
-    connect(capacitor2.n,ground1.p) annotation(Line(points = {{22.4855,-8.90173},{53.4682,-8.90173},{53.4682,-26.9942},{53.4682,-26.9942}}));
-    connect(resistor2.n,capacitor2.p) annotation(Line(points = {{-16.7052,-10.7514},{-16.7052,-8.3815},{2.48555,-8.3815},{2.48555,-8.90173}}));
+    connect(capacitor2.n,ground1.p) annotation(Line(points = {{22.4855,-8.901730000000001},{53.4682,-8.901730000000001},{53.4682,-26.9942},{53.4682,-26.9942}}));
+    connect(resistor2.n,capacitor2.p) annotation(Line(points = {{-16.7052,-10.7514},{-16.7052,-8.381500000000001},{2.48555,-8.381500000000001},{2.48555,-8.901730000000001}}));
     connect(resistor2.p,capacitor1.p) annotation(Line(points = {{-16.7052,-30.7514},{-16.4162,-48.5549},{-15.7803,-48.8439},{3.58381,-48.2659}}));
     connect(resistor1.n,resistor2.n) annotation(Line(points = {{-49.711,-10.2312},{-49.711,-10.9827},{-16.4162,-10.9827},{-16.7052,-10.7514}}));
     connect(resistor1.p,resistor2.p) annotation(Line(points = {{-49.711,-30.2312},{-49.711,-31.5029},{-16.4162,-31.5029},{-16.7052,-30.7514}}));
     annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
   end OpticalWireless;
   model Transistortest
-    Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 0.1) annotation(Placement(visible = true, transformation(origin = {-12.1387,71.0983}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+    Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 0.1) annotation(Placement(visible = true, transformation(origin = {-12.1387,71.09829999999999}, extent = {{-10,-10},{10,10}}, rotation = -90)));
     Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {42.7746,-5.49133}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     Modelica.Electrical.Analog.Sources.ConstantVoltage constantvoltage1(V = 5) annotation(Placement(visible = true, transformation(origin = {45.6647,71.3873}, extent = {{-10,-10},{10,10}}, rotation = -90)));
     Modelica.Electrical.Analog.Sources.SineVoltage sinevoltage1(V = 0.1, freqHz = 10) annotation(Placement(visible = true, transformation(origin = {-57.5145,19.0751}, extent = {{10,-10},{-10,10}}, rotation = 90)));
@@ -97,12 +97,12 @@ package modelicatests
     Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 0.1) annotation(Placement(visible = true, transformation(origin = {-10.4046,17.6301}, extent = {{-10,-10},{10,10}}, rotation = -90)));
   equation
     connect(resistor2.n,ground1.p) annotation(Line(points = {{-10.4046,7.63006},{-10.4046,4.62428},{42.7746,4.62428},{42.7746,4.62428}}));
-    connect(pnp1.E,resistor2.p) annotation(Line(points = {{-10.2312,31.7052},{-9.82659,31.7052},{-9.82659,27.4566},{-9.82659,27.4566}}));
-    connect(resistor1.n,pnp1.C) annotation(Line(points = {{-12.1387,61.0983},{-12.1387,41.6185},{-9.82659,41.6185},{-9.82659,41.6185}}));
+    connect(pnp1.E,resistor2.p) annotation(Line(points = {{-10.2312,31.7052},{-9.826589999999999,31.7052},{-9.826589999999999,27.4566},{-9.826589999999999,27.4566}}));
+    connect(resistor1.n,pnp1.C) annotation(Line(points = {{-12.1387,61.0983},{-12.1387,41.6185},{-9.826589999999999,41.6185},{-9.826589999999999,41.6185}}));
     connect(sinevoltage1.p,pnp1.B) annotation(Line(points = {{-57.5145,29.0751},{-57.5145,36.7052},{-30.3468,36.7052},{-30.3468,36.7052}}));
-    connect(sinevoltage1.n,ground1.p) annotation(Line(points = {{-57.5145,9.07514},{-57.5145,4.91329},{42.7746,4.91329},{42.7746,4.91329}}));
+    connect(sinevoltage1.n,ground1.p) annotation(Line(points = {{-57.5145,9.075139999999999},{-57.5145,4.91329},{42.7746,4.91329},{42.7746,4.91329}}));
     connect(constantvoltage1.n,ground1.p) annotation(Line(points = {{45.6647,61.3873},{45.6647,4.91329},{42.4855,4.91329},{42.4855,4.91329}}));
-    connect(resistor1.p,constantvoltage1.p) annotation(Line(points = {{-12.1387,81.0983},{-12.1387,87.5723},{45.6647,87.5723},{45.6647,81.2139},{45.6647,81.2139}}));
+    connect(resistor1.p,constantvoltage1.p) annotation(Line(points = {{-12.1387,81.09829999999999},{-12.1387,87.5723},{45.6647,87.5723},{45.6647,81.2139},{45.6647,81.2139}}));
     annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
   end Transistortest;
   model Capacitortest
@@ -117,8 +117,8 @@ package modelicatests
   end Capacitortest;
   model variableresistortest
     Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {12.4242,-24.8485}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-    Modelica.Electrical.Analog.Basic.Resistor resistor1 annotation(Placement(visible = true, transformation(origin = {8.78788,36.0606}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-    Modelica.Electrical.Analog.Basic.Capacitor capacitor1 annotation(Placement(visible = true, transformation(origin = {8.78788,8.48485}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Resistor resistor1 annotation(Placement(visible = true, transformation(origin = {8.787879999999999,36.0606}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Capacitor capacitor1 annotation(Placement(visible = true, transformation(origin = {8.787879999999999,8.48485}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     Modelica.Electrical.Analog.Sources.SignalVoltage signalvoltage1 annotation(Placement(visible = true, transformation(origin = {-31.8182,35.7576}, extent = {{10,-10},{-10,10}}, rotation = 0)));
     Modelica.Electrical.Analog.Basic.VariableResistor vr1 annotation(Placement(visible = true, transformation(origin = {-31.2121,66.9697}, extent = {{10,-10},{-10,10}}, rotation = 0)));
   equation
@@ -129,7 +129,7 @@ package modelicatests
     connect(signalvoltage1.n,ground1.p) annotation(Line(points = {{-41.8182,35.7576},{-52.4242,35.7576},{-52.4242,-15.1515},{12.1212,-15.1515},{12.1212,-15.1515}}));
     connect(signalvoltage1.p,capacitor1.p) annotation(Line(points = {{-21.8182,35.7576},{-15.1515,35.7576},{-15.1515,8.48485},{-0.606061,8.48485},{-0.606061,8.48485}}));
     connect(signalvoltage1.p,resistor1.p) annotation(Line(points = {{-21.8182,35.7576},{-1.51515,35.7576},{-1.51515,35.7576},{-1.51515,35.7576}}));
-    connect(ground1.p,capacitor1.n) annotation(Line(points = {{12.4242,-14.8485},{24.2424,-14.8485},{24.2424,8.78788},{18.4848,8.78788},{18.4848,8.78788}}));
+    connect(ground1.p,capacitor1.n) annotation(Line(points = {{12.4242,-14.8485},{24.2424,-14.8485},{24.2424,8.787879999999999},{18.4848,8.787879999999999},{18.4848,8.787879999999999}}));
     connect(resistor1.n,ground1.p) annotation(Line(points = {{18.7879,36.0606},{33.3333,36.0606},{33.3333,-15.1515},{12.4242,-15.1515},{12.4242,-15.1515}}));
     annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
   end variableresistortest;
@@ -137,29 +137,29 @@ package modelicatests
     Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 500) annotation(Placement(visible = true, transformation(origin = {-30.6358,26.0116}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     Modelica.Electrical.Analog.Basic.Resistor resistor3(R = 0.5) annotation(Placement(visible = true, transformation(origin = {65.896,13.8728}, extent = {{-10,-10},{10,10}}, rotation = -90)));
     Modelica.Electrical.Analog.Sources.ConstantVoltage constantvoltage1(V = 100) annotation(Placement(visible = true, transformation(origin = {-71.6763,10.9827}, extent = {{-10,-10},{10,10}}, rotation = -90)));
-    Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {41.0405,-82.659}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-    Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 0.00000001) annotation(Placement(visible = true, transformation(origin = {24.5665,25.1445}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {41.0405,-82.65900000000001}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 1e-08) annotation(Placement(visible = true, transformation(origin = {24.5665,25.1445}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     Modelica.Electrical.Analog.Sources.PulseVoltage pulsevoltage1(V = 50, width = 50, period = 1.0) annotation(Placement(visible = true, transformation(origin = {-47.1098,-40.4624}, extent = {{10,-10},{-10,10}}, rotation = 0)));
     Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 500) annotation(Placement(visible = true, transformation(origin = {-5.20231,-3.75723}, extent = {{10,-10},{-10,10}}, rotation = 90)));
     Modelica.Electrical.Analog.Semiconductors.NMOS nmos1 annotation(Placement(visible = true, transformation(origin = {-16.7889,-35.5491}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     Modelica.Electrical.Analog.Semiconductors.PMOS pmos1 annotation(Placement(visible = true, transformation(origin = {-13.2948,58.9595}, extent = {{-10,-10},{10,10}}, rotation = 90)));
   equation
-    connect(pmos1.S,resistor3.p) annotation(Line(points = {{-8.2948,68.9595},{-8.2948,69.9213},{65.8268,69.9213},{65.8268,24.252},{65.8268,24.252}}));
-    connect(pmos1.B,pmos1.D) annotation(Line(points = {{-13.2948,68.9595},{-13.2948,83.7795},{-18.2677,83.7795},{-18.2677,69.6063},{-18.2677,69.6063}}));
-    connect(resistor1.p,constantvoltage1.p) annotation(Line(points = {{-40.6358,26.0116},{-71.811,26.0116},{-71.811,21.4173},{-71.811,21.4173}}));
-    connect(pmos1.D,resistor1.p) annotation(Line(points = {{-18.2948,68.9595},{-18.2948,70.2362},{-40.9449,70.2362},{-40.9449,25.8268},{-40.9449,25.8268}}));
+    connect(pmos1.S,resistor3.p) annotation(Line(points = {{-8.2948,68.95950000000001},{-8.2948,69.9213},{65.82680000000001,69.9213},{65.82680000000001,24.252},{65.82680000000001,24.252}}));
+    connect(pmos1.B,pmos1.D) annotation(Line(points = {{-13.2948,68.95950000000001},{-13.2948,83.7795},{-18.2677,83.7795},{-18.2677,69.6063},{-18.2677,69.6063}}));
+    connect(resistor1.p,constantvoltage1.p) annotation(Line(points = {{-40.6358,26.0116},{-71.81100000000001,26.0116},{-71.81100000000001,21.4173},{-71.81100000000001,21.4173}}));
+    connect(pmos1.D,resistor1.p) annotation(Line(points = {{-18.2948,68.95950000000001},{-18.2948,70.2362},{-40.9449,70.2362},{-40.9449,25.8268},{-40.9449,25.8268}}));
     connect(resistor1.n,pmos1.G) annotation(Line(points = {{-20.6358,26.0116},{0,26.0116},{0,48.8439},{-18.2948,48.9595},{-8.2948,48.9595}}));
     connect(capacitor1.p,pmos1.G) annotation(Line(points = {{14.5665,25.1445},{0,25.1445},{0,48.8439},{-18.2948,48.9595},{-8.2948,48.9595}}));
     connect(nmos1.B,nmos1.S) annotation(Line(points = {{-6.78895,-35.5491},{1.25984,-35.5491},{1.25984,-40.6299},{-6.29921,-40.6299},{-6.29921,-40.6299}}));
     connect(nmos1.D,resistor2.n) annotation(Line(points = {{-6.78895,-30.5491},{-5.03937,-30.5491},{-5.03937,-13.8583},{-5.03937,-13.8583}}));
-    connect(nmos1.S,ground1.p) annotation(Line(points = {{-6.78895,-40.5491},{40.9449,-40.5491},{40.9449,-73.0709},{40.9449,-73.0709}}));
+    connect(nmos1.S,ground1.p) annotation(Line(points = {{-6.78895,-40.5491},{40.9449,-40.5491},{40.9449,-73.07089999999999},{40.9449,-73.07089999999999}}));
     connect(pulsevoltage1.p,nmos1.G) annotation(Line(points = {{-37.1098,-40.4624},{-26.3006,-40.4624},{-26.7889,-40.5491},{-26.7889,-40.5491}}));
     connect(resistor2.p,resistor1.n) annotation(Line(points = {{-5.20231,6.24277},{-5.20231,26.1417},{-21.1024,26.1417},{-21.1024,26.1417}}));
-    connect(capacitor1.n,resistor3.p) annotation(Line(points = {{34.5665,25.1445},{65.5118,25.1445},{65.5118,24.5669},{65.5118,24.5669}}));
-    connect(pulsevoltage1.n,constantvoltage1.n) annotation(Line(points = {{-57.1098,-40.4624},{-71.9653,-40.4624},{-71.9653,0.982659},{-71.6763,0.982659}}));
-    connect(ground1.p,constantvoltage1.n) annotation(Line(points = {{41.0405,-72.659},{-71.9653,-72.659},{-71.9653,0.578035},{-71.9653,0.578035}}));
-    connect(resistor3.n,ground1.p) annotation(Line(points = {{65.896,3.87283},{65.896,-27.1676},{40.7514,-72.659},{41.0405,-72.659}}));
-    annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 20.0, Tolerance = 0.000001));
+    connect(capacitor1.n,resistor3.p) annotation(Line(points = {{34.5665,25.1445},{65.51179999999999,25.1445},{65.51179999999999,24.5669},{65.51179999999999,24.5669}}));
+    connect(pulsevoltage1.n,constantvoltage1.n) annotation(Line(points = {{-57.1098,-40.4624},{-71.9653,-40.4624},{-71.9653,0.9826589999999999},{-71.6763,0.9826589999999999}}));
+    connect(ground1.p,constantvoltage1.n) annotation(Line(points = {{41.0405,-72.65900000000001},{-71.9653,-72.65900000000001},{-71.9653,0.578035},{-71.9653,0.578035}}));
+    connect(resistor3.n,ground1.p) annotation(Line(points = {{65.896,3.87283},{65.896,-27.1676},{40.7514,-72.65900000000001},{41.0405,-72.65900000000001}}));
+    annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0.0, StopTime = 20.0, Tolerance = 1e-06));
   end pChannelMOSFETtest;
   model efunc
     Real x(start = 1.0);
@@ -239,14 +239,13 @@ package modelicatests
     expandable connector EngineBus
     end EngineBus;
     block Sensor
-      RealOutput speed;
+      Modelica.Blocks.Interfaces.RealOutput speed;
       // Output, ie., non-input
     equation
       speed = sin(time);
     end Sensor;
     block Actuator
-      RealInput speed;
-      // Input
+      Modelica.Blocks.Interfaces.RealInput speed;
     end Actuator;
     model Engine
       EngineBus bus;
@@ -257,6 +256,31 @@ package modelicatests
       // provides the non-input from sensor.speed
       connect(bus.speed,actuator.speed);
     end Engine;
+    model Test
+      import Modelica.Constants.small;
+      expandable connector Bus
+      end Bus;
+      expandable connector SubBus
+      end SubBus;
+      connector C
+        Real x;
+      end C;
+      model Component1
+        Bus bus;
+        SubBus subBus;
+        C c;
+      equation
+        connect(bus.subBus,subBus);
+        connect(subBus.c,c);
+        c.x = 42;
+      end Component1;
+      Component1 component;
+      C c;
+      Bus bus;
+    equation
+      connect(bus,component.bus);
+      connect(c,bus.subBus.c);
+    end Test;
   end bus_simulation;
   package openmodelica_cpp
     model coding_interface
@@ -265,4 +289,3 @@ package modelicatests
     annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
   end openmodelica_cpp;
 end modelicatests;
-
