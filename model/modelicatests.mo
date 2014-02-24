@@ -281,6 +281,23 @@ package modelicatests
       connect(bus,component.bus);
       connect(c,bus.subBus.c);
     end Test;
+    model signalbustest
+      modelicatests.bus_simulation.EngineBus enginebus2 annotation(Placement(visible = true, transformation(origin = {40,0}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {40,0}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      modelicatests.bus_simulation.EngineBus enginebus1 annotation(Placement(visible = true, transformation(origin = {-20,0}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {-40,0}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Blocks.Sources.Pulse pulse1 annotation(Placement(visible = true, transformation(origin = {-80,40}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Blocks.Sources.Sine sine1 annotation(Placement(visible = true, transformation(origin = {-80,-40}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Blocks.Sources.IntegerConstant integerconstant1 annotation(Placement(visible = true, transformation(origin = {-80,0}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Blocks.Math.Tanh tanh1 annotation(Placement(visible = true, transformation(origin = {80,20}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Blocks.Math.Cos cos1 annotation(Placement(visible = true, transformation(origin = {80,-40}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    equation
+      connect(enginebus2.u,cos1.u) annotation(Line(points = {{40,0},{39.685,0},{39.685,-39.685},{66.7717,-39.685},{66.7717,-39.685}}));
+      connect(tanh1.u,enginebus2.u2) annotation(Line(points = {{68,20},{42.7547,20},{42.7547,0.860832},{42.7547,0.860832}}));
+      connect(sine1.y,enginebus1.u) annotation(Line(points = {{-69,-40},{-24.9641,-40},{-24.9641,0.573888},{-24.9641,0.573888}}));
+      connect(integerconstant1.y,enginebus1.i) annotation(Line(points = {{-69,0},{-24.6772,0},{-24.6772,0},{-24.6772,0}}));
+      connect(pulse1.y,enginebus1.u2) annotation(Line(points = {{-69,40},{-24.6772,40},{-24.6772,1.72166},{-24.6772,1.72166}}));
+      connect(enginebus1,enginebus2) annotation(Line(points = {{-20,0},{39.5983,0},{39.5983,-0.860832},{39.5983,-0.860832}}));
+      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
+    end signalbustest;
   end bus_simulation;
   package openmodelica_cpp
     model coding_interface
