@@ -11,7 +11,7 @@
 
 """defines data structures for iboss project"""
 
-Version="1.4" #catalog version
+Version="1.5" #catalog version
 
 from copy import copy
 import numpy as np
@@ -69,10 +69,25 @@ def prettyprintxml(xmltree):
   #print("\n" + str(type(XML)) + "\n")  
   return XML.toprettyxml()
 
-#class used to wrap dictionaries
-class Bunch:
-    def __init__(self, **kwds):
-        self.__dict__.update(kwds)
+##different verions of "bunch" classes:
+##TODO:  eine dieser Klassen hier für die XML-python benutzen, damit könnte man dann die gesamte Datenbank einfach in einem json Objekt speichern, (oder auch csv.  usw..).
+##class used to wrap dictionaries
+#class Bunch:
+    #def __init__(self, **kwds):
+        #self.__dict__.update(kwds)
+
+#class Bunch(dict): #class which is itself also a dictionary
+    #def __init__(self,**kw):
+        #dict.__init__(self,kw)
+        #self.__dict__ = self
+
+##short bunch class        
+#class Bunch:
+    #__init__ = lambda self, **kw: setattr(self, '__dict__', kw)
+
+#class bunch(dict):
+    #__getattr__ = dict.__getitem__
+
 
 class ibossxml(object):
   idcounter = 0  #counts individual ids
@@ -134,71 +149,43 @@ class ibossxml(object):
       print("hat nicht funktioniert",prettyprintxml(xmlvar))
       raise
       
-    
-  
-  @classmethod
-  def xml2vec(cls,xmlvec):
-    vec=[]
-    for i in xmlvec:
-      vec.append(float(i.text))
-    return vec 
-
-  @classmethod
-  def vec2xml(cls,vec):
-    x,y,z=et.Element("x"),et.Element("y"),et.Element("z")
-    x.text=str(vec[0])
-    y.text=str(vec[1])
-    z.text=str(vec[2])
-    return (x,y,z)
-  
-  @classmethod
-  def property2xml(cls,vkey,vvalue):
-    try:
-      newelem=et.Element(vkey)
-      #newelem=et.Element("property")
-      if isinstance(vvalue,pq.Quantity): 
-        newelem.set("unit",vvalue.dimensionality.string)
-        if vvalue.size==1 :newelem.text=str(vvalue.magnitude)
-        #else: newelem.extend(cls.vec2xml(vvalue.magnitude))
-        elif vvalue.size<=3: newelem.text = vec2str(vvalue.magnitude)
-        else: newelem.text = mat2str(vvalue.magnitude)
-      else:
-        try:
-          #if vvalue.size>1: newelem.extend(cls.vec2xml(vvalue.magnitude))
-          if vvalue.size>1: newelem.text = vec2str(vvalue.magnitude)
-          else: newelem.text = str(vvalue)
-        except AttributeError: #in case of vvalue not beeing an array
-          newelem.text = str(vvalue)
-    except:
-      print("vkey: ",vkey, "; vvalue: ",vvalue, "\n\n")
-      raise
-      
+  @staticmethod
+  def property2strlist(vkey,value):
+    name = vkey
+    if isinstance(value,pq.Quantity):    
+      unit = value.dimensionality.string
+      if value.size==1:    val = str(value.magnitude)
+      elif value.size<=3:  val = vec2str(value.magnitude)
+      else:                val = mat2str(value.magnitude)
+    else:
+      unit = None
+      try:
+        if value.size>1:  val = vec2str(vvalue.magnitude)
+        else:              val = str(value)
+      except AttributeError: #in case of vvalue not beeing an array
+        val = str(value)
         
+    return name,val,unit
+  
+  @staticmethod
+  def property2xml(vkey,vvalue):
+    name,val,unit = ibossxml.property2strlist(vkey,vvalue)
+
+    newelem = et.Element(name)
+    if unit: newelem.set("unit",unit)
+    newelem.text = val
+       
     return newelem
   
-  @classmethod
-  def genericvariable2xml(cls,vkey,vvalue):
-    try:
-      newelem=et.Element("GenericVariable")
-      et.SubElement(newelem,"VSD:name").text=vkey
-      if isinstance(vvalue,pq.Quantity): 
-        et.SubElement(newelem,"unit").text=vvalue.dimensionality.string
-        if vvalue.size==1 : value=str(vvalue.magnitude)
-        #else: newelem.extend(cls.vec2xml(vvalue.magnitude))
-        elif vvalue.size<=3: value = vec2str(vvalue.magnitude)
-        else: value = mat2str(vvalue.magnitude)
-      else:
-        try:
-          #if vvalue.size>1: newelem.extend(cls.vec2xml(vvalue.magnitude))
-          if vvalue.size>1: value = vec2str(vvalue.magnitude)
-          else: value = str(vvalue)
-        except AttributeError: #in case of vvalue not beeing an array
-          value = str(vvalue)
-    except:
-      print("vkey: ",vkey, "; vvalue: ",vvalue, "\n\n")
-      raise
+  @staticmethod
+  def genericvariable2xml(vkey,vvalue):
+    name,val,unit = ibossxml.property2strlist(vkey,vvalue)
     
-    et.SubElement(newelem,"value").text=value
+    newelem=et.Element("GenericVariable")
+    et.SubElement(newelem,"VSD:name").text      = name
+    if unit: et.SubElement(newelem,"unit").text = unit
+    et.SubElement(newelem,"value").text         = val
+    
     return newelem
   
   @property

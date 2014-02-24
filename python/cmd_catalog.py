@@ -116,7 +116,7 @@ def main(argv=None):
         cat=iboss_catalogue.Catalog()
         cat.loadxmldata()
         cat.update()
-        cat.save("1.4")
+        cat.save()
         #filecmp  um den neuen und den alten file zu vergleichen (überprüft Konsistenz der Datenbank)
     except:
       raise
