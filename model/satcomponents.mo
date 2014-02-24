@@ -525,7 +525,7 @@ package satcomponents
           Modelica.Blocks.Interfaces.RealInput u annotation(Placement(visible = true, transformation(origin = {-0.565771,71.0042}, extent = {{-12,12},{12,-12}}, rotation = -90), iconTransformation(origin = {-0.565771,71.0042}, extent = {{-12,12},{12,-12}}, rotation = -90)));
           annotation(Diagram, Icon(graphics = {Line(points = {{-88.2603,-0.282885},{-52.6167,-0.282885},{-48.3734,-0.282885}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25),Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-42.7157,46.6761},{47.8076,-49.505}}),Line(points = {{51.4851,0.282885},{89.10890000000001,0.565771}}, rotation = 0, color = {0,0,255}, pattern = LinePattern.Solid, thickness = 0.25)}));
         end SignalCurrent;
-        class CCS
+        model CCS
           extends Modelica.Electrical.Analog.Interfaces.TwoPort;
         equation
           i1 = 0;
@@ -558,7 +558,6 @@ package satcomponents
         Modelica.Blocks.Math.Feedback Feedback1 annotation(Placement(visible = true, transformation(origin = {-52.1354,79.2469}, extent = {{-12,-12},{12,12}}, rotation = 0)));
         Modelica.Blocks.Nonlinear.Limiter Limiter1(uMax = Pout / Vref, uMin = 0) annotation(Placement(visible = true, transformation(origin = {27.8677,79.723}, extent = {{-12,-12},{12,12}}, rotation = 0)));
         Modelica.Blocks.Sources.Constant Constant1(k = Vref) annotation(Placement(visible = true, transformation(origin = {-80.6833,79.0128}, extent = {{-12,-12},{12,12}}, rotation = 0)));
-        LimPICont LimPI(Pout = Pout, Vref = Vref) annotation(Placement(visible = true, transformation(origin = {-16.2708,79.1807}, extent = {{-12,-12},{12,12}}, rotation = 0)));
         CCS CCS1 annotation(Placement(visible = true, transformation(origin = {-13.4794,-3.13342}, extent = {{-12,-12},{12,12}}, rotation = 0)));
         Modelica.Electrical.Analog.Interfaces.NegativePin n1 annotation(Placement(visible = true, transformation(origin = {100.829,-55.7992}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {100.829,-55.7992}, extent = {{-12,-12},{12,12}}, rotation = 0)));
         Modelica.Electrical.Analog.Interfaces.NegativePin n annotation(Placement(visible = true, transformation(origin = {-99.9705,-57.2039}, extent = {{-12,-12},{12,12}}, rotation = 0), iconTransformation(origin = {-99.9705,-57.2039}, extent = {{-12,-12},{12,12}}, rotation = 0)));
@@ -570,7 +569,10 @@ package satcomponents
         SignalCurrent SignalCurrent1 annotation(Placement(visible = true, transformation(origin = {18.5897,-5.33737}, extent = {{12,-12},{-12,12}}, rotation = -270)));
         Modelica.Electrical.Analog.Sensors.VoltageSensor Volt annotation(Placement(visible = true, transformation(origin = {61.2614,-6.05931}, extent = {{-12,12},{12,-12}}, rotation = -90)));
         Modelica.Electrical.Analog.Basic.Capacitor Cout(C = 5e-05) annotation(Placement(visible = true, transformation(origin = {38.7774,-6.20137}, extent = {{-12,12},{12,-12}}, rotation = -90)));
+        LimPICont LimPI(Pout = Pout, Vref = Vref) annotation(Placement(visible = true, transformation(origin = {-20,80}, extent = {{-12,-12},{12,12}}, rotation = 0)));
       equation
+        connect(LimPI.y,Limiter1.u) annotation(Line(points = {{-8.05092,80.6789},{13.1455,80.6789},{13.1455,79.8122},{13.1455,79.8122}}));
+        connect(Feedback1.y,LimPI.u) annotation(Line(points = {{-41.3354,79.2469},{-31.4554,79.2469},{-31.4554,79.34269999999999},{-31.4554,79.34269999999999}}));
         connect(Dout.n,Cout.p) annotation(Line(points = {{95.9451,4.88093},{89.6747,4.88093},{89.6747,5.79863},{38.7774,5.79863}}));
         connect(Dout.p,Cout.n) annotation(Line(points = {{95.9451,-19.1191},{76.66200000000001,-19.1191},{76.66200000000001,-18.2014},{38.7774,-18.2014}}));
         connect(Cout.n,Volt.n) annotation(Line(points = {{38.7774,-18.2014},{23.1966,-18.2014},{23.1966,-18.0593},{61.2614,-18.0593}}));
@@ -590,8 +592,6 @@ package satcomponents
         connect(CCS1.n1,n1) annotation(Line(points = {{-25.4794,-9.133419999999999},{-37.6237,-9.133419999999999},{-37.6237,-55.7992},{100.829,-55.7992}}));
         connect(CCS1.p1,p1) annotation(Line(points = {{-25.4794,2.86658},{-21.4993,2.86658},{-21.4993,46.1028},{100.497,46.1028}}));
         connect(Amp.n,p1) annotation(Line(points = {{82.72029999999999,37.0863},{82.8854,37.0863},{82.8854,46.1028},{100.497,46.1028}}));
-        connect(LimPI.y,Limiter1.u) annotation(Line(points = {{-4.32175,79.8596},{12.447,79.8596},{12.447,79.723},{13.4677,79.723}}));
-        connect(Feedback1.y,LimPI.u) annotation(Line(points = {{-41.3354,79.2469},{-28.0057,79.2469},{-28.0057,79.3165},{-27.9484,79.3165}}));
         connect(Constant1.y,Feedback1.u1) annotation(Line(points = {{-67.4833,79.0128},{-62.5177,79.0128},{-62.5177,79.2469},{-61.7354,79.2469}}));
         connect(p,Din.p) annotation(Line(points = {{-99.5025,45.7711},{-83.1683,45.7711},{-83.1683,44.7429},{-82.9539,44.7429}}));
         Iout = Pout / Vref;
