@@ -108,74 +108,50 @@ package modelicatests
 			StopTime=10.0,
 			Tolerance=0.0001));
 	end tabletest;
-	model noise
+	model noise_sampled "noise_sampled"
 		Integer x(start=0);
-		parameter Integer m=4294967296 "=2^32";
-		parameter Integer a=214013;
-		parameter Integer c=2531011;
+		constant Integer m=2^31-1;
+		parameter Integer a=7^5;
+		parameter Integer c=10;
 		algorithm
 			//x:=mod(a * integer(time) + c, m); //LCG Noise
 			when sample(0, 0.01) then
 			      x:=mod(a * pre(x) + c, m);    
 			end when;
-		annotation(experiment(
-			StartTime=0.0,
-			StopTime=20.0,
-			Tolerance=1e-06));
-	end noise;
+		annotation(
+			x(flags=2),
+			experiment(
+				StopTime=20,
+				StartTime=0,
+				Tolerance=1e-006));
+	end noise_sampled;
 	model simplependulum
-		inner Modelica.Mechanics.MultiBody.World world annotation(Placement(
-			visible=true,
-			transformation(
-				origin={-72.03619999999999,-1.67937},
-				extent={{-10,-10},{10,10}},
-				rotation=0)));
-		Modelica.Mechanics.Rotational.Components.Damper damper2(d=0.1) annotation(Placement(
-			visible=true,
-			transformation(
-				origin={-31.9961,35.4135},
-				extent={{-10,-10},{10,10}},
-				rotation=0)));
+		inner Modelica.Mechanics.MultiBody.World world annotation(Placement(transformation(
+			origin={-72.03619999999999,-1.67937},
+			extent={{-10,-10},{10,10}})));
+		Modelica.Mechanics.Rotational.Components.Damper damper2(d=0.1) annotation(Placement(transformation(
+			origin={-31.9961,35.4135},
+			extent={{-10,-10},{10,10}})));
 		Modelica.Mechanics.MultiBody.Joints.Revolute revolute1(
-			phi.start=3.14159 / 2.0,
+			useAxisFlange=true,
 			n={0,0,1},
-			useAxisFlange=true) annotation(Placement(
-			visible=true,
-			transformation(
-				origin={-28.3295,-1.25318},
-				extent={{-10,-10},{10,10}},
-				rotation=0)));
+			phi(start=3.14159 / 2.0)) annotation(Placement(transformation(
+			origin={-28.3295,-1.25318},
+			extent={{-10,-10},{10,10}})));
 		Modelica.Mechanics.MultiBody.Parts.Body body1(
-			m=0.5,
-			r_CM={0,0,0}) annotation(Placement(
-			visible=true,
-			transformation(
-				origin={46.4644,-0.839688},
-				extent={{-10,-10},{10,10}},
-				rotation=0)));
-		Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedtranslation1(r={0,-0.2,0}) annotation(Placement(
-			visible=true,
-			transformation(
-				origin={11.1437,-0.879765},
-				extent={{-10,-10},{10,10}},
-				rotation=0)));
+			r_CM={0,0,0},
+			m=0.5) annotation(Placement(transformation(
+			origin={46.4644,-0.839688},
+			extent={{-10,-10},{10,10}})));
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedtranslation1(r={0,-0.2,0}) annotation(Placement(transformation(
+			origin={11.1437,-0.879765},
+			extent={{-10,-10},{10,10}})));
 		equation
 			connect(fixedtranslation1.frame_b,body1.frame_a) annotation(Line(points = {{21.1437,-0.879765},{36.0704,-0.879765},{36.0704,-0.293255},{36.0704,-0.293255}}));
 			connect(revolute1.frame_b,fixedtranslation1.frame_a) annotation(Line(points = {{-18.3295,-1.25318},{0.58651,-1.25318},{0.58651,-1.17302},{0.58651,-1.17302}}));
 			connect(world.frame_b,revolute1.frame_a) annotation(Line(points = {{-62.0362,-1.67937},{-38.1232,-1.67937},{-38.1232,-0.879765},{-38.1232,-0.879765}}));
 			connect(revolute1.axis,damper2.flange_b) annotation(Line(points = {{-28.3295,8.74682},{-13.6628,9.04008},{-13.6628,35.7067},{-22.3294,35.7067},{-22.3294,35.4135}}));
 			connect(damper2.flange_a,revolute1.support) annotation(Line(points = {{-41.9961,35.4135},{-45.6628,35.4135},{-45.6628,8.74682},{-34.9961,8.74682},{-34.3295,8.74682}}));
-		annotation(
-			Icon(coordinateSystem(
-				extent={{-100,-100},{100,100}},
-				preserveAspectRatio=true,
-				initialScale=0.1,
-				grid={2,2})),
-			Diagram(coordinateSystem(
-				extent={{-100,-100},{100,100}},
-				preserveAspectRatio=true,
-				initialScale=0.1,
-				grid={2,2})));
 	end simplependulum;
 	model Kreisel
 		inner Modelica.Mechanics.MultiBody.World world annotation(Placement(
@@ -666,15 +642,15 @@ package modelicatests
 	package bus_simulation
 		expandable connector modcom "modcom"
 			annotation(Icon(graphics={
-					Rectangle(
-						lineColor={0,0,0},
-						fillColor={255,255,255},
-						fillPattern=FillPattern.Solid,
-						extent={{-73.3,76.7},{80,-76.7}}),
-					Text(
-						textString="iCOM",
-						lineColor={0,0,0},
-						extent={{-46.7,50},{53.3,-50}})}));
+														Rectangle(
+															lineColor={0,0,0},
+															fillColor={255,255,255},
+															fillPattern=FillPattern.Solid,
+															extent={{-73.3,76.7},{80,-76.7}}),
+														Text(
+															textString="iCOM",
+															lineColor={0,0,0},
+															extent={{-46.7,50},{53.3,-50}})}));
 		end modcom;
 		block Sensor
 			Modelica.Blocks.Interfaces.RealOutput speed;
@@ -719,32 +695,80 @@ package modelicatests
 				connect(c,bus.subBus.c);
 		end Test;
 		model signalbustest
+			modcom modcom1 annotation(Placement(transformation(extent={{-70,20},{-50,40}})));
+			modcom modcom2 annotation(Placement(transformation(extent={{20,20},{40,40}})));
 			Modelica.Blocks.Sources.Pulse pulse1 annotation(Placement(transformation(
-				origin={-80,40},
+				origin={-110,75},
 				extent={{-10,-10},{10,10}})));
-			Modelica.Blocks.Sources.Sine sine1 annotation(Placement(transformation(
-				origin={-80,-40},
+			Modelica.Blocks.Sources.Sine sine1(
+				amplitude=2.0,
+				freqHz=0.1) annotation(Placement(transformation(
+				origin={-110,-5},
 				extent={{-10,-10},{10,10}})));
 			Modelica.Blocks.Sources.IntegerConstant integerconstant1 annotation(Placement(transformation(
-				origin={-80,0},
+				origin={-110,35},
 				extent={{-10,-10},{10,10}})));
 			Modelica.Blocks.Math.Tanh tanh1 annotation(Placement(transformation(
-				origin={80,20},
+				origin={115,70},
 				extent={{-10,-10},{10,10}})));
 			Modelica.Blocks.Math.Cos cos1 annotation(Placement(transformation(
-				origin={95,-40},
+				origin={115,-5},
+				extent={{-10,-10},{10,10}})));
+			Modelica.Blocks.Interaction.Show.RealValue realValue1 annotation(Placement(transformation(extent={{70,35},{90,55}})));
+			Modelica.Blocks.Sources.Sine sine2(
+				amplitude=2.0,
+				freqHz=0.1) annotation(Placement(transformation(
+				origin={-85,-30},
 				extent={{-10,-10},{10,10}})));
 			equation
-				connect(pulse1.y,tanh1.u) annotation(Line(
-					points={{-69,40},{-64,40},{63,40},{63,20},{68,20}},
+				connect(pulse1.y,modcom1.pulse) annotation(Line(
+					points={{-99,75},{-94,75},{-65,75},{-65,30},{-60,30}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(integerconstant1.y,modcom1.int) annotation(Line(
+					points={{-99,35},{-94,35},{-65,35},{-65,30},{-60,30}},
+					color={255,127,0},
+					thickness=0.0625));
+				connect(tanh1.u,modcom2.pulse) annotation(Line(
+					points={{103,70},{98,70},{35,70},{35,30},{30,30}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(sine1.y,modcom1.u[0]) annotation(Line(
+					points={{-69,-40},{-64,-40},{-35,-40},{-35,-5},{-30,-5}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(sine2.y,modcom1.u[1]) annotation(Line(
+					points={{-44,-65},{-39,-65},{-35,-65},{-35,-5},{-30,-5}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(realValue1.numberPort,modcom2.u[0]) annotation(Line(
+					points={{43.7,5},{38.7,5},{15,5},{15,-5},{10,-5}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(cos1.u,modcom2.u[1]) annotation(Line(
+					points={{83,-40},{78,-40},{15,-40},{15,-5},{10,-5}},
 					color={0,0,127},
 					thickness=0.0625));
 			annotation(
-				viewinfo[2](
+				sine1(y(flags=2)),
+				tanh1(y(flags=2)),
+				realValue1(showNumber(flags=2)),
+				sine2(y(flags=2)),
+				viewinfo[0](
 					viewSettings(clrRaster=12632256),
 					typename="ModelInfo"),
+				viewinfo[1](
+					minOrder=0.5,
+					maxOrder=12,
+					mode=0,
+					minStep=0.01,
+					maxStep=0.1,
+					relTol=1e-005,
+					oversampling=4,
+					anaAlgorithm=0,
+					typename="AnaStatInfo"),
 				experiment(
-					StopTime=1,
+					StopTime=100,
 					StartTime=0));
 		end signalbustest;
 	end bus_simulation;
@@ -774,4 +798,24 @@ package modelicatests
 				initialScale=0.1,
 				grid={2,2})));
 	end openmodelica_cpp;
+	model noise_ung "noise_sampled"
+		constant Integer m=2^31-1;
+		parameter Integer a=7^5;
+		parameter Integer c=10;
+		Integer x(start=0);
+		Integer y(start=0);
+		algorithm
+			y:=mod(a * integer(time*m) + c, m);
+			x:=mod(a * y + c, m);
+		annotation(
+			x(flags=2),
+			y(flags=2),
+			viewinfo[0](
+				viewSettings(clrRaster=12632256),
+				typename="ModelInfo"),
+			experiment(
+				StopTime=20,
+				StartTime=0,
+				Tolerance=1e-006));
+	end noise_ung;
 end modelicatests;
