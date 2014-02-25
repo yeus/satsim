@@ -1,5 +1,6 @@
 // CP: 65001
-// SimulationX Version: 3.5.707.15 x64
+// SimulationX Version: 3.6.1.26028 x64
+within ;
 package iboss_thermal "iboss_thermal"
 	import MaterialDatabase.*;
 	package components "components"
@@ -90,7 +91,9 @@ package iboss_thermal "iboss_thermal"
 				origin={-30,-15},
 				extent={{-10,-10},{10,10}},
 				rotation=-135)));
-			replaceable parameter MaterialDatabase.Material material "Material from MaterialDataBase" annotation(choicesAllMatching=true);
+			parameter MaterialDatabase.Material material "Material from MaterialDataBase" annotation(
+				Placement(transformation(extent={{-10,-10},{10,10}})),
+				choicesAllMatching=true);
 			parameter Modelica.SIunits.Length x "Laenge des Materials in x Richtung der Waermeausbreitung";
 			parameter Modelica.SIunits.Length y "Laenge des Materials in y Richtung der Waermeausbreitung";
 			parameter Modelica.SIunits.Length z "Laenge des Materials in z Richtung der Waermeausbreitung";
@@ -114,11 +117,29 @@ package iboss_thermal "iboss_thermal"
 				connect(thermalConductorhinten_z.port_a,port_a_zn) annotation(Line(points = {{32,43},{37,43},{45,43},{45,65},{50,65}}, color = {191,0,0}, thickness = 0.0625));
 			annotation(
 				Icon(
-					coordinateSystem(
-						extent={{-100,-100},{100,100}},
-						grid={10,10}),
-					graphics={Rectangle(lineColor = {255,0,0}, fillColor = {255,255,255}, fillPattern = FillPattern.HorizontalCylinder, extent = {{-94.6355,-59.4223},{96.011,61.8982}}, visible = true, origin = {-0.6878,-1.238}),Text(textString = "%name", textStyle = {TextStyle.Bold}, fillPattern = FillPattern.Solid, extent = {{-101.2507,52.8171},{98.7493,112.8171}}, visible = true, origin = {82.8171,1.2507}, rotation = 90),Text(textString = "thermal element", fontSize = 16, fillColor = {0,0,255}, extent = {{-3,-2},{0,9}}, visible = true)}),
-				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
+					coordinateSystem(grid={10,10}),
+					graphics={
+									Rectangle(
+										lineColor={255,0,0},
+										fillColor={255,255,255},
+										fillPattern=FillPattern.HorizontalCylinder,
+										extent={{-94.63549999999999,-59.4223},{96.011,61.8982}},
+										visible=true,
+										origin={-0.6878,-1.238}),
+									Text(
+										textString="%name",
+										textStyle={TextStyle.Bold},
+										fillPattern=FillPattern.Solid,
+										extent={{-101.2507,52.8171},{98.74930000000001,112.8171}},
+										visible=true,
+										origin={82.8171,1.2507},
+										rotation=90),
+									Text(
+										textString="thermal element",
+										fontSize=16,
+										fillColor={0,0,255},
+										extent={{-3,-2},{0,9}},
+										visible=true)}),
 				experiment(
 					StopTime=1,
 					StartTime=0));
@@ -133,9 +154,15 @@ package iboss_thermal "iboss_thermal"
 			parameter Modelica.SIunits.Length x_TSS "length x of TSS in m";
 			parameter Modelica.SIunits.Length y_TSS "length y of TSS in m";
 			parameter Modelica.SIunits.Length z_TSS "length z of TSS in m";
-			replaceable parameter MaterialDatabase.Material material_ESS "Material of ESS from MaterialDataBase" annotation(choicesAllMatching=true);
-			replaceable parameter MaterialDatabase.Material material_MSS "Material of MSS from MaterialDataBase" annotation(choicesAllMatching=true);
-			replaceable parameter MaterialDatabase.Material material_TSS "Material of TSS from MaterialDataBase" annotation(choicesAllMatching=true);
+			parameter MaterialDatabase.Material material_ESS "Material of ESS from MaterialDataBase" annotation(
+				Placement(transformation(extent={{-10,-10},{10,10}})),
+				choicesAllMatching=true);
+			parameter MaterialDatabase.Material material_MSS "Material of MSS from MaterialDataBase" annotation(
+				Placement(transformation(extent={{-10,-10},{10,10}})),
+				choicesAllMatching=true);
+			parameter MaterialDatabase.Material material_TSS "Material of TSS from MaterialDataBase" annotation(
+				Placement(transformation(extent={{-10,-10},{10,10}})),
+				choicesAllMatching=true);
 			Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_a annotation(Placement(
 				transformation(
 					origin={-43,-2},
@@ -182,7 +209,7 @@ package iboss_thermal "iboss_thermal"
 					origin={40,0},
 					extent={{-10,-10},{10,10}}),
 				iconTransformation(
-					origin={98.674,-0.6225},
+					origin={98.67400000000001,-0.6225000000000001},
 					extent={{-10,-10},{10,10}})));
 			Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a TSS_IF annotation(Placement(
 				transformation(
@@ -200,11 +227,22 @@ package iboss_thermal "iboss_thermal"
 				connect(TSS.port_b_xp,TSS_IF) annotation(Line(points = {{12,-40},{17,-40},{35,-40},{40,-40}}, color = {191,0,0}, thickness = 0.0625));
 			annotation(
 				Icon(
-					coordinateSystem(
-						extent={{-100,-100},{100,100}},
-						grid={10,10}),
-					graphics={Rectangle(lineColor = {255,0,0}, fillColor = {255,255,255}, fillPattern = FillPattern.CrossDiag, extent = {{-30,-100},{30,100}}, visible = true),Text(textString = "%name", textStyle = {TextStyle.Bold}, fillPattern = FillPattern.Solid, extent = {{-100,-30},{100,30}}, visible = true, origin = {60,-0}, rotation = 90)}),
-				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
+					coordinateSystem(grid={10,10}),
+					graphics={
+									Rectangle(
+										lineColor={255,0,0},
+										fillColor={255,255,255},
+										fillPattern=FillPattern.CrossDiag,
+										extent={{-30,-100},{30,100}},
+										visible=true),
+									Text(
+										textString="%name",
+										textStyle={TextStyle.Bold},
+										fillPattern=FillPattern.Solid,
+										extent={{-100,-30},{100,30}},
+										visible=true,
+										origin={60,-0},
+										rotation=90)}),
 				experiment(
 					StopTime=1,
 					StartTime=0));
@@ -260,7 +298,9 @@ package iboss_thermal "iboss_thermal"
 			Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor_zn(G=Gz / 2) annotation(Placement(transformation(
 				origin={31,35},
 				extent={{-10,-10},{10,10}})));
-			replaceable parameter MaterialDatabase.Material material "Material from MaterialDataBase" annotation(choicesAllMatching=true);
+			parameter MaterialDatabase.Material material "Material from MaterialDataBase" annotation(
+				Placement(transformation(extent={{-10,-10},{10,10}})),
+				choicesAllMatching=true);
 			parameter Modelica.SIunits.Length x "Laenge des Materials in x Richtung der Waermeausbreitung";
 			parameter Modelica.SIunits.Length y "Laenge des Materials in y Richtung der Waermeausbreitung";
 			parameter Modelica.SIunits.Length z "Laenge des Materials in z Richtung der Waermeausbreitung";
@@ -274,17 +314,17 @@ package iboss_thermal "iboss_thermal"
 				rotation=-90)));
 			Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_zp annotation(Placement(
 				transformation(
-					origin={-90.147,-89.9621},
+					origin={-90.14700000000001,-89.96210000000001},
 					extent={{-10,-10},{10,10}}),
 				iconTransformation(
-					origin={-90.147,-89.9621},
+					origin={-90.14700000000001,-89.96210000000001},
 					extent={{-10,-10},{10,10}})));
 			Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a EB_zn annotation(Placement(
 				transformation(
-					origin={90.147,89.9621},
+					origin={90.14700000000001,89.96210000000001},
 					extent={{-10,-10},{10,10}}),
 				iconTransformation(
-					origin={90.147,89.9621},
+					origin={90.14700000000001,89.96210000000001},
 					extent={{-10,-10},{10,10}})));
 			protected
 				parameter Modelica.SIunits.ThermalConductance Gx=(y * z * material.k) / x "Constant thermal conductance of material in x direction";
@@ -306,9 +346,48 @@ package iboss_thermal "iboss_thermal"
 				connect(thermalConductor_xn.port_a,EB_xn) annotation(Line(points = {{-40,0},{-45,0},{-55,0},{-60,0}}, color = {191,0,0}, thickness = 0.0625));
 				connect(thermalConductor_yn.port_b,EB_yn) annotation(Line(points = {{0,-60},{0,-65},{-5,-65},{-5,-80},{0,-80}}, color = {191,0,0}, thickness = 0.0625));
 			annotation(
-				Icon(
-					coordinateSystem(extent={{-100,-100},{100,100}}),
-					graphics={Rectangle(pattern = LinePattern.Dot, lineColor = {255,0,0}, fillColor = {255,255,255}, fillPattern = FillPattern.Sphere, extent = {{-99.8363,-100.111},{100.164,99.8886}}),Text(textString = "xp", lineColor = {0,0,0}, fillPattern = FillPattern.Solid, extent = {{67.7961,-9.3325},{89.8959,7.7865}}),Text(textString = "xn", lineColor = {0,0,0}, fillPattern = FillPattern.Solid, extent = {{-89.1229,-9.3325},{-67.0231,7.7865}}),Text(textString = "yp", lineColor = {0,0,0}, fillPattern = FillPattern.Solid, extent = {{-11.0499,71.446},{11.0499,88.565}}),Text(textString = "yn", lineColor = {0,0,0}, fillPattern = FillPattern.Solid, extent = {{-11.4955,-90.0356},{10.6043,-72.9166}}),Text(textString = "zn", lineColor = {0,0,0}, fillPattern = FillPattern.Solid, extent = {{58.2761,65.9935},{80.3759,83.1125}}),Text(textString = "zp", lineColor = {0,0,0}, fillPattern = FillPattern.Solid, extent = {{-83.9086,-81.0027},{-61.8088,-63.8837}}),Text(textString = "electrical power", lineColor = {0,0,0}, fillPattern = FillPattern.Solid, extent = {{-44.773,20.8807},{55.227,45.6943}})}),
+				Icon(graphics={
+							Rectangle(
+								pattern=LinePattern.Dot,
+								lineColor={255,0,0},
+								fillColor={255,255,255},
+								fillPattern=FillPattern.Sphere,
+								extent={{-99.83629999999999,-100.111},{100.164,99.8886}}),
+							Text(
+								textString="xp",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{67.7961,-9.3325},{89.8959,7.7865}}),
+							Text(
+								textString="xn",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-89.1229,-9.3325},{-67.0231,7.7865}}),
+							Text(
+								textString="yp",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-11.0499,71.446},{11.0499,88.565}}),
+							Text(
+								textString="yn",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-11.4955,-90.0356},{10.6043,-72.9166}}),
+							Text(
+								textString="zn",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{58.2761,65.9935},{80.3759,83.1125}}),
+							Text(
+								textString="zp",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-83.90860000000001,-81.0027},{-61.8088,-63.8837}}),
+							Text(
+								textString="electrical power",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-44.773,20.8807},{55.227,45.6943}})}),
 				experiment(
 					StopTime=1,
 					StartTime=0));
@@ -423,10 +502,18 @@ package iboss_thermal "iboss_thermal"
 			parameter Modelica.SIunits.Length x_Panel "length x of Panel in m";
 			parameter Modelica.SIunits.Length y_Panel "length y of Panel in m";
 			parameter Modelica.SIunits.Length z_Panel "length z of Panel in m";
-			replaceable parameter MaterialDatabase.Material material_ESS "Material of ESS from MaterialDataBase" annotation(choicesAllMatching=true);
-			replaceable parameter MaterialDatabase.Material material_MSS "Material of MSS from MaterialDataBase" annotation(choicesAllMatching=true);
-			replaceable parameter MaterialDatabase.Material material_TSS "Material of TSS from MaterialDataBase" annotation(choicesAllMatching=true);
-			replaceable parameter MaterialDatabase.Material material_Panel "Material of TSS from MaterialDataBase" annotation(choicesAllMatching=true);
+			parameter MaterialDatabase.Material material_ESS "Material of ESS from MaterialDataBase" annotation(
+				Placement(transformation(extent={{-10,-10},{10,10}})),
+				choicesAllMatching=true);
+			parameter MaterialDatabase.Material material_MSS "Material of MSS from MaterialDataBase" annotation(
+				Placement(transformation(extent={{-10,-10},{10,10}})),
+				choicesAllMatching=true);
+			parameter MaterialDatabase.Material material_TSS "Material of TSS from MaterialDataBase" annotation(
+				Placement(transformation(extent={{-10,-10},{10,10}})),
+				choicesAllMatching=true);
+			parameter MaterialDatabase.Material material_Panel "Material of TSS from MaterialDataBase" annotation(
+				Placement(transformation(extent={{-10,-10},{10,10}})),
+				choicesAllMatching=true);
 			equation
 				connect(BuildingBlock_Panel.port_b_xp,schnittstelle1.port_a) annotation(Line(points = {{-10,0},{-5,0},{12,0},{17,0}}, color = {191,0,0}, thickness = 0.0625));
 				connect(schnittstelle1.ESS_IF,thermal_connector1.ESS) annotation(Line(points = {{30,5},{35,5},{45,5},{45,-1},{50,-1}}, color = {191,0,0}, thickness = 0.0625));
@@ -440,10 +527,29 @@ package iboss_thermal "iboss_thermal"
 				connect(BuildingBlock_Panel.port_a_yn,port_yn) annotation(Line(points = {{-20,-6},{-20,-11},{-15,-11},{-15,-36},{-20,-36}}, color = {191,0,0}, thickness = 0.0625));
 			annotation(
 				Icon(
-					coordinateSystem(
-						extent={{-100,-100},{100,100}},
-						grid={10,10}),
-					graphics={Rectangle(lineColor = {255,0,0}, fillColor = {255,255,255}, fillPattern = FillPattern.VerticalCylinder, extent = {{-10,-100},{10,100}}, visible = true, origin = {-10,0}),Rectangle(lineColor = {255,0,0}, fillColor = {255,255,255}, fillPattern = FillPattern.CrossDiag, extent = {{-10,-50},{10,50}}, visible = true, origin = {10,0}),Text(textString = "%name", textStyle = {TextStyle.Bold}, fillPattern = FillPattern.Solid, extent = {{-100,-20},{100,20}}, visible = true, rotation = 90)}),
+					coordinateSystem(grid={10,10}),
+					graphics={
+									Rectangle(
+										lineColor={255,0,0},
+										fillColor={255,255,255},
+										fillPattern=FillPattern.VerticalCylinder,
+										extent={{-10,-100},{10,100}},
+										visible=true,
+										origin={-10,0}),
+									Rectangle(
+										lineColor={255,0,0},
+										fillColor={255,255,255},
+										fillPattern=FillPattern.CrossDiag,
+										extent={{-10,-50},{10,50}},
+										visible=true,
+										origin={10,0}),
+									Text(
+										textString="%name",
+										textStyle={TextStyle.Bold},
+										fillPattern=FillPattern.Solid,
+										extent={{-100,-20},{100,20}},
+										visible=true,
+										rotation=90)}),
 				Diagram(coordinateSystem(
 					extent={{-105,-74},{105,74}},
 					grid={5,5})),
@@ -636,49 +742,46 @@ An approppriate simulating time would be 10 seconds.
 				temperature_EB(
 					T(flags=2),
 					port(T(flags=2))),
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
-																																			Rectangle(
-																																				radius=4,
-																																				lineColor={0,0,0},
-																																				fillColor={255,0,0},
-																																				fillPattern=FillPattern.Solid,
-																																				extent={{-100,100},{100,-100}}),
-																																			Text(
-																																				textString="TCS",
-																																				textStyle={TextStyle.Bold},
-																																				lineColor={0,0,0},
-																																				extent={{-40,10},{-43,10}}),
-																																			Text(
-																																				textString="TCS",
-																																				fontSize=16,
-																																				textStyle={TextStyle.Bold},
-																																				lineColor={0,0,0},
-																																				extent={{-99,99},{101,-98}}),
-																																			Text(
-																																				textString="Tmin",
-																																				fontSize=8,
-																																				lineColor={0,0,0},
-																																				extent={{-108,86},{-3,51}}),
-																																			Text(
-																																				textString="Tmax",
-																																				fontSize=8,
-																																				lineColor={0,0,0},
-																																				extent={{-4,84},{107,52}}),
-																																			Text(
-																																				textString="heat",
-																																				fontSize=8,
-																																				lineColor={0,0,0},
-																																				extent={{-95,-61},{-4,-87}}),
-																																			Text(
-																																				textString="cool",
-																																				fontSize=8,
-																																				lineColor={0,0,0},
-																																				extent={{8,-62},{94,-86}})}),
+																																								Rectangle(
+																																									radius=4,
+																																									lineColor={0,0,0},
+																																									fillColor={255,0,0},
+																																									fillPattern=FillPattern.Solid,
+																																									extent={{-100,100},{100,-100}}),
+																																								Text(
+																																									textString="TCS",
+																																									textStyle={TextStyle.Bold},
+																																									lineColor={0,0,0},
+																																									extent={{-40,10},{-43,10}}),
+																																								Text(
+																																									textString="TCS",
+																																									fontSize=16,
+																																									textStyle={TextStyle.Bold},
+																																									lineColor={0,0,0},
+																																									extent={{-99,99},{101,-98}}),
+																																								Text(
+																																									textString="Tmin",
+																																									fontSize=8,
+																																									lineColor={0,0,0},
+																																									extent={{-108,86},{-3,51}}),
+																																								Text(
+																																									textString="Tmax",
+																																									fontSize=8,
+																																									lineColor={0,0,0},
+																																									extent={{-4,84},{107,52}}),
+																																								Text(
+																																									textString="heat",
+																																									fontSize=8,
+																																									lineColor={0,0,0},
+																																									extent={{-95,-61},{-4,-87}}),
+																																								Text(
+																																									textString="cool",
+																																									fontSize=8,
+																																									lineColor={0,0,0},
+																																									extent={{8,-62},{94,-86}})}),
 				Documentation(info="MIME-Version: 1.0
 		Content-Type: multipart/related;boundary=\"--$iti$\";type=\"text/html\"
 
@@ -815,54 +918,51 @@ An approppriate simulating time would be 10 seconds.
 				cooler_power(port(Q_flow(flags=2))),
 				lower_Temp(y(flags=2)),
 				upper_Temp(y(flags=2)),
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
-																														Rectangle(
-																															lineColor={255,255,255},
-																															fillColor={255,0,0},
-																															fillPattern=FillPattern.CrossDiag,
-																															extent={{-100,100},{100,0}}),
-																														Rectangle(
-																															lineColor={0,0,0},
-																															fillColor={0,0,255},
-																															fillPattern=FillPattern.CrossDiag,
-																															extent={{-100,1},{100,-99}}),
-																														Text(
-																															textString="heater",
-																															fontSize=12,
-																															textStyle={TextStyle.Bold},
-																															lineColor={0,0,0},
-																															extent={{-97,54},{100,0}}),
-																														Text(
-																															textString="cooler",
-																															fontSize=12,
-																															textStyle={TextStyle.Bold},
-																															lineColor={255,255,255},
-																															extent={{-98,-2},{100,-57}}),
-																														Text(
-																															textString="heat",
-																															fontSize=8,
-																															lineColor={0,0,0},
-																															extent={{-100,96},{-13,66}}),
-																														Text(
-																															textString="cool",
-																															fontSize=8,
-																															lineColor={255,255,255},
-																															extent={{-102,-70},{-15,-100}}),
-																														Text(
-																															textString="Tmin",
-																															fontSize=8,
-																															lineColor={0,0,0},
-																															extent={{0,97},{99,64}}),
-																														Text(
-																															textString="Tmax",
-																															fontSize=8,
-																															lineColor={255,255,255},
-																															extent={{-9,-69},{99,-102}})}),
+																																			Rectangle(
+																																				lineColor={255,255,255},
+																																				fillColor={255,0,0},
+																																				fillPattern=FillPattern.CrossDiag,
+																																				extent={{-100,100},{100,0}}),
+																																			Rectangle(
+																																				lineColor={0,0,0},
+																																				fillColor={0,0,255},
+																																				fillPattern=FillPattern.CrossDiag,
+																																				extent={{-100,1},{100,-99}}),
+																																			Text(
+																																				textString="heater",
+																																				fontSize=12,
+																																				textStyle={TextStyle.Bold},
+																																				lineColor={0,0,0},
+																																				extent={{-97,54},{100,0}}),
+																																			Text(
+																																				textString="cooler",
+																																				fontSize=12,
+																																				textStyle={TextStyle.Bold},
+																																				lineColor={255,255,255},
+																																				extent={{-98,-2},{100,-57}}),
+																																			Text(
+																																				textString="heat",
+																																				fontSize=8,
+																																				lineColor={0,0,0},
+																																				extent={{-100,96},{-13,66}}),
+																																			Text(
+																																				textString="cool",
+																																				fontSize=8,
+																																				lineColor={255,255,255},
+																																				extent={{-102,-70},{-15,-100}}),
+																																			Text(
+																																				textString="Tmin",
+																																				fontSize=8,
+																																				lineColor={0,0,0},
+																																				extent={{0,97},{99,64}}),
+																																			Text(
+																																				textString="Tmax",
+																																				fontSize=8,
+																																				lineColor={255,255,255},
+																																				extent={{-9,-69},{99,-102}})}),
 				Documentation(info="<HTML>
 		<P>
 		A constant voltage of 10 V is applied to a
@@ -903,13 +1003,13 @@ An approppriate simulating time would be 10 seconds.
 					origin={100,0},
 					extent={{-10,-10},{10,10}},
 					rotation=-360)));
-			Modelica.Thermal.HeatTransfer.Components.ThermalConductor Conductance_TIM_TSS(G=h_TSS * A_TSS)"Lumped thermal element transporting heat without storing it" annotation(Placement(transformation(
+			Modelica.Thermal.HeatTransfer.Components.ThermalConductor Conductance_TIM_TSS(G=h_TSS * A_TSS) "Lumped thermal element transporting heat without storing it" annotation(Placement(transformation(
 				origin={-0,10},
 				extent={{-6.1349,-6.1349},{6.1349,6.1349}})));
-			Modelica.Thermal.HeatTransfer.Components.ThermalConductor Conductance_MSS(G=h_MSS * A_MSS)"Lumped thermal element transporting heat without storing it" annotation(Placement(transformation(
+			Modelica.Thermal.HeatTransfer.Components.ThermalConductor Conductance_MSS(G=h_MSS * A_MSS) "Lumped thermal element transporting heat without storing it" annotation(Placement(transformation(
 				origin={-0,-10},
 				extent={{-6.0931,-6.0931},{6.0931,6.0931}})));
-			Modelica.Thermal.HeatTransfer.Components.ThermalConductor Conductance_ESS(G=h_ESS * A_ESS)"Lumped thermal element transporting heat without storing it" annotation(Placement(transformation(
+			Modelica.Thermal.HeatTransfer.Components.ThermalConductor Conductance_ESS(G=h_ESS * A_ESS) "Lumped thermal element transporting heat without storing it" annotation(Placement(transformation(
 				origin={0,-30},
 				extent={{-6.1934,-6.1934},{6.1934,6.1934}})));
 			parameter Real h_TSS(unit="W/(mÂ²Â·K)")=300 "Heat transfer coefficient TSS - TSS";
@@ -917,7 +1017,7 @@ An approppriate simulating time would be 10 seconds.
 			parameter Real h_ESS(unit="W/(mÂ²Â·K)")=240 "Heat transfer coefficient ESS - ESS";
 			parameter Modelica.SIunits.Emissivity eps_Rad=0.5 "Emmisivity of the radiator";
 			parameter Real ViewFactor_Rad=0.2 "Viewfactor of Radiator";
-			Modelica.Thermal.HeatTransfer.Components.BodyRadiation Radiator(Gr=ViewFactor_Rad * A_Rad * 1 / (2 / eps_Rad - 1))"Lumped thermal element for radiation heat transfer" annotation(Placement(transformation(
+			Modelica.Thermal.HeatTransfer.Components.BodyRadiation Radiator(Gr=ViewFactor_Rad * A_Rad * 1 / (2 / eps_Rad - 1)) "Lumped thermal element for radiation heat transfer" annotation(Placement(transformation(
 				origin={0,30},
 				extent={{-6.25,-6.25},{6.25,6.25}})));
 			parameter Modelica.SIunits.Area A_ESS(unit="m2")=0.0002 "Querschnittsflaeche der ESS";
@@ -1202,15 +1302,15 @@ An approppriate simulating time would be 10 seconds.
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
-																																																				Rectangle(
-																																																				lineColor={0,0,0},
-																																																			fillPattern=FillPattern.Solid,
-																																																			extent={{-100,100},{100,-100}}),
-																																																		Ellipse(
-																																																			lineColor={0,0,0},
-																																																			fillColor={255,255,0},
-																																																			fillPattern=FillPattern.Solid,
-																																																			extent={{98,-96},{-96,98}})}),
+																																																									Rectangle(
+																																																									lineColor={0,0,0},
+																																																								fillPattern=FillPattern.Solid,
+																																																								extent={{-100,100},{100,-100}}),
+																																																							Ellipse(
+																																																								lineColor={0,0,0},
+																																																								fillColor={255,255,0},
+																																																								fillPattern=FillPattern.Solid,
+																																																								extent={{98,-96},{-96,98}})}),
 				experiment(
 					StopTime=10,
 					StartTime=0));
@@ -1248,11 +1348,21 @@ An approppriate simulating time would be 10 seconds.
 			parameter Modelica.SIunits.Height x_EB=0.1 "length of Electronic Box in m";
 			parameter Modelica.SIunits.Height y_EB=0.1 "height of Electronic Box in m";
 			parameter Modelica.SIunits.Height z_EB=0.1 "width of Electronic Box in m";
-			replaceable parameter MaterialDatabase.Material material_ESS=Kupfer "Material of ESS from MaterialDataBase" annotation(choicesAllMatching=true);
-			replaceable parameter MaterialDatabase.Material material_MSS=Titan "Material of MSS from MaterialDataBase" annotation(choicesAllMatching=true);
-			replaceable parameter MaterialDatabase.Material material_TSS=Panel "Material of TSS from MaterialDataBase" annotation(choicesAllMatching=true);
-			replaceable parameter MaterialDatabase.Material material_Panel=Panel "Material of Panel from MaterialDataBase" annotation(choicesAllMatching=true);
-			replaceable parameter MaterialDatabase.Material material_EB=elektronik_Box_Composit1 "Material of Electronic Box from MaterialDataBase" annotation(choicesAllMatching=true);
+			parameter MaterialDatabase.Material material_ESS=MaterialDatabase.Kupferlegierungen_Kupfer() "Material of ESS from MaterialDataBase" annotation(
+				Placement(transformation(extent={{-10,-10},{10,10}})),
+				choicesAllMatching=true);
+			parameter MaterialDatabase.Material material_MSS=MaterialDatabase.Andere_Metalle_Titan() "Material of MSS from MaterialDataBase" annotation(
+				Placement(transformation(extent={{-10,-10},{10,10}})),
+				choicesAllMatching=true);
+			parameter MaterialDatabase.Material material_TSS=MaterialDatabase.Kupferlegierungen_Kupfer() "Material of TSS from MaterialDataBase" annotation(
+				Placement(transformation(extent={{-10,-10},{10,10}})),
+				choicesAllMatching=true);
+			parameter MaterialDatabase.Material material_Panel=MaterialDatabase.Kohlenstofffasern_Carbon_Panel_tbd() "Material of Panel from MaterialDataBase" annotation(
+				Placement(transformation(extent={{-10,-10},{10,10}})),
+				choicesAllMatching=true);
+			parameter MaterialDatabase.Material material_EB=MaterialDatabase.Elektronik_Box_Composit() "Material of Electronic Box from MaterialDataBase" annotation(
+				Placement(transformation(extent={{-10,-10},{10,10}})),
+				choicesAllMatching=true);
 			parameter Modelica.SIunits.Power BuildingBlock_Power=5 "Leistungsbedarf des Standartbausteins";
 			parameter Real h_Panel(unit="W/(mÂ²Â·K)")=300 "Heat transfer coefficient Panel-Panel";
 			parameter Real h_EB(unit="W/(mÂ²Â·K)")=300 "Heat transfer coefficient EB-Panel";
@@ -1592,21 +1702,6 @@ An approppriate simulating time would be 10 seconds.
 				origin={81,-61},
 				extent={{-6.1458,-6.1458},{6,10}},
 				rotation=-90)));
-			parameter MaterialDatabase.Kupferlegierungen_Kupfer Kupfer annotation(Placement(transformation(
-				origin={130,90},
-				extent={{-10,-10},{10,10}})));
-			parameter MaterialDatabase.Titanlegierungen_Handelsueblich_Rein_CP_Ti_UNS_R50700__Klasse_4_SS Titan annotation(Placement(transformation(
-				origin={130,30},
-				extent={{-10,-10},{10,10}})));
-			parameter MaterialDatabase.Aluminiumlegierungen_1060_H12 Aluminium annotation(Placement(transformation(
-				origin={130,-30},
-				extent={{-10,-10},{10,10}})));
-			parameter MaterialDatabase.Kohlenstofffasern_Carbon_Panel_tbd Panel annotation(Placement(transformation(
-				origin={130,-60},
-				extent={{-10,-10},{10,10}})));
-			parameter MaterialDatabase.Elektronik_Box_Composit elektronik_Box_Composit1 annotation(Placement(transformation(
-				origin={130,60},
-				extent={{-10,-10},{10,10}})));
 			Modelica.Thermal.HeatTransfer.Components.BodyRadiation oposite_Panel_x(Gr=Gr_oP) annotation(Placement(transformation(
 				origin={117,-72},
 				extent={{-6.7966,-6.7966},{6.7966,6.7966}})));
@@ -1662,9 +1757,9 @@ An approppriate simulating time would be 10 seconds.
 					origin={87.8378,87.8378},
 					extent={{-12,-12},{12,12}})));
 			protected
-				parameter Real Gr_oP(unit="m2")=ViewFactor_parallel * y_Panel * z_Panel * 1 / (2 / eps_Panel - 1)"Net radiation conductance between two surfaces (see docu)(opposite Panels) tbd";
-				parameter Real Gr_aP(unit="m2")=ViewFactor_vertical * y_Panel * z_Panel * 1 / (2 / eps_Panel - 1)"Net radiation conductance between two surfaces (see docu)(adjoining Panels) tbd";
-				parameter Real Gr_P_EB(unit="m2")=x_EB * y_EB * (eps_Panel * eps_EB) / (eps_Panel + eps_EB - eps_Panel * eps_EB)"Net radiation conductance between two surfaces (see docu)(Panel - Electronic Box) tbd";
+				parameter Real Gr_oP(unit="m2")=ViewFactor_parallel * y_Panel * z_Panel * 1 / (2 / eps_Panel - 1) "Net radiation conductance between two surfaces (see docu)(opposite Panels) tbd";
+				parameter Real Gr_aP(unit="m2")=ViewFactor_vertical * y_Panel * z_Panel * 1 / (2 / eps_Panel - 1) "Net radiation conductance between two surfaces (see docu)(adjoining Panels) tbd";
+				parameter Real Gr_P_EB(unit="m2")=x_EB * y_EB * (eps_Panel * eps_EB) / (eps_Panel + eps_EB - eps_Panel * eps_EB) "Net radiation conductance between two surfaces (see docu)(Panel - Electronic Box) tbd";
 			public
 				Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow fixedHeatFlow1(Q_flow=BuildingBlock_Power) annotation(Placement(transformation(extent={{0,0},{20,20}})));
 				TCS tCS1(
@@ -1946,72 +2041,69 @@ An approppriate simulating time would be 10 seconds.
 					cooler_power(port(Q_flow(flags=2))),
 					lower_Temp(y(flags=2)),
 					upper_Temp(y(flags=2))),
-				Icon(
-					coordinateSystem(extent={{-100,-100},{100,100}}),
-					graphics={
-										Rectangle(
-											lineColor={255,0,0},
-											fillColor={255,255,255},
-											fillPattern=FillPattern.CrossDiag,
-											extent={{-10,-50},{10,50}}),
-										Rectangle(
-											lineColor={255,0,0},
-											fillColor={255,255,255},
-											fillPattern=FillPattern.CrossDiag,
-											extent={{-10.2751,-50},{9.7249,50}}),
-										Rectangle(
-											lineColor={255,0,0},
-											fillColor={255,255,255},
-											fillPattern=FillPattern.CrossDiag,
-											extent={{-50,-10},{50,10}}),
-										Rectangle(
-											lineColor={255,0,0},
-											fillColor={255,255,255},
-											fillPattern=FillPattern.CrossDiag,
-											extent={{-50,-10},{50,10}}),
-										Rectangle(
-											lineColor={255,0,0},
-											fillColor={255,255,255},
-											lineThickness=2,
-											extent={{-80,-80},{80,80}}),
-										Text(
-											textString="%name",
-											textStyle={TextStyle.Bold},
-											lineColor={0,0,0},
-											fillColor={255,0,0},
-											fillPattern=FillPattern.Solid,
-											extent={{-78.4853,-65.66710000000001},{78.4853,-25.6671}}),
-										Text(
-											textString="yp",
-											lineColor={0,0,0},
-											fillPattern=FillPattern.Solid,
-											extent={{-12.0277,70.2527},{14.7787,93.1585}}),
-										Text(
-											textString="yn",
-											lineColor={0,0,0},
-											fillPattern=FillPattern.Solid,
-											extent={{-12.3028,-89.8573},{14.5036,-66.9515}}),
-										Text(
-											textString="xp",
-											lineColor={0,0,0},
-											fillPattern=FillPattern.Solid,
-											extent={{67.47709999999999,-10.6276},{94.2835,12.2782}}),
-										Text(
-											textString="xn",
-											lineColor={0,0,0},
-											fillPattern=FillPattern.Solid,
-											extent={{-92.63290000000001,-12.5533},{-65.8265,10.3525}}),
-										Text(
-											textString="zp",
-											lineColor={0,0,0},
-											fillPattern=FillPattern.Solid,
-											extent={{-79.428,-79.95359999999999},{-52.6216,-57.0478}}),
-										Text(
-											textString="zn",
-											lineColor={0,0,0},
-											fillPattern=FillPattern.Solid,
-											extent={{55.2109,58.9977},{82.01730000000001,81.90349999999999}})}),
-				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
+				Icon(graphics={
+							Rectangle(
+								lineColor={255,0,0},
+								fillColor={255,255,255},
+								fillPattern=FillPattern.CrossDiag,
+								extent={{-10,-50},{10,50}}),
+							Rectangle(
+								lineColor={255,0,0},
+								fillColor={255,255,255},
+								fillPattern=FillPattern.CrossDiag,
+								extent={{-10.2751,-50},{9.7249,50}}),
+							Rectangle(
+								lineColor={255,0,0},
+								fillColor={255,255,255},
+								fillPattern=FillPattern.CrossDiag,
+								extent={{-50,-10},{50,10}}),
+							Rectangle(
+								lineColor={255,0,0},
+								fillColor={255,255,255},
+								fillPattern=FillPattern.CrossDiag,
+								extent={{-50,-10},{50,10}}),
+							Rectangle(
+								lineColor={255,0,0},
+								fillColor={255,255,255},
+								lineThickness=2,
+								extent={{-80,-80},{80,80}}),
+							Text(
+								textString="%name",
+								textStyle={TextStyle.Bold},
+								lineColor={0,0,0},
+								fillColor={255,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-78.4853,-65.66710000000001},{78.4853,-25.6671}}),
+							Text(
+								textString="yp",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-12.0277,70.2527},{14.7787,93.1585}}),
+							Text(
+								textString="yn",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-12.3028,-89.8573},{14.5036,-66.9515}}),
+							Text(
+								textString="xp",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{67.47709999999999,-10.6276},{94.2835,12.2782}}),
+							Text(
+								textString="xn",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-92.63290000000001,-12.5533},{-65.8265,10.3525}}),
+							Text(
+								textString="zp",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-79.428,-79.95359999999999},{-52.6216,-57.0478}}),
+							Text(
+								textString="zn",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{55.2109,58.9977},{82.01730000000001,81.90349999999999}})}),
 				Documentation(info="<HTML>
 <P>
 A constant voltage of 10 V is applied to a
@@ -2064,11 +2156,21 @@ An approppriate simulating time would be 10 seconds.
 			parameter Modelica.SIunits.Height x_EB=0.1 "length of Electronic Box in m";
 			parameter Modelica.SIunits.Height y_EB=0.1 "height of Electronic Box in m";
 			parameter Modelica.SIunits.Height z_EB=0.1 "width of Electronic Box in m";
-			replaceable parameter MaterialDatabase.Material material_ESS=Kupfer "Material of ESS from MaterialDataBase" annotation(choicesAllMatching=true);
-			replaceable parameter MaterialDatabase.Material material_MSS=Titan "Material of MSS from MaterialDataBase" annotation(choicesAllMatching=true);
-			replaceable parameter MaterialDatabase.Material material_TSS=Panel "Material of TSS from MaterialDataBase" annotation(choicesAllMatching=true);
-			replaceable parameter MaterialDatabase.Material material_Panel=Panel "Material of Panel from MaterialDataBase" annotation(choicesAllMatching=true);
-			replaceable parameter MaterialDatabase.Material material_EB=elektronik_Box_Composit1 "Material of Electronic Box from MaterialDataBase" annotation(choicesAllMatching=true);
+			parameter MaterialDatabase.Material material_ESS=MaterialDatabase.Kupferlegierungen_Kupfer() "Material of ESS from MaterialDataBase" annotation(
+				Placement(transformation(extent={{-10,-10},{10,10}})),
+				choicesAllMatching=true);
+			parameter MaterialDatabase.Material material_MSS=MaterialDatabase.Andere_Metalle_Titan() "Material of MSS from MaterialDataBase" annotation(
+				Placement(transformation(extent={{-10,-10},{10,10}})),
+				choicesAllMatching=true);
+			parameter MaterialDatabase.Material material_TSS=MaterialDatabase.Kupferlegierungen_Kupfer() "Material of TSS from MaterialDataBase" annotation(
+				Placement(transformation(extent={{-10,-10},{10,10}})),
+				choicesAllMatching=true);
+			parameter MaterialDatabase.Material material_Panel=MaterialDatabase.Kohlenstofffasern_Carbon_Panel_tbd() "Material of Panel from MaterialDataBase" annotation(
+				Placement(transformation(extent={{-10,-10},{10,10}})),
+				choicesAllMatching=true);
+			parameter MaterialDatabase.Material material_EB=MaterialDatabase.Elektronik_Box_Composit() "Material of Electronic Box from MaterialDataBase" annotation(
+				Placement(transformation(extent={{-10,-10},{10,10}})),
+				choicesAllMatching=true);
 			parameter Real h_Panel(unit="W/(mÂ²Â·K)")=3000 "Heat transfer coefficient Panel-Panel";
 			parameter Real h_EB(unit="W/(mÂ²Â·K)")=3000 "Heat transfer coefficient EB-Panel";
 			parameter Real ViewFactor_parallel=0.2 "Viewfactor of parallel Surfaces";
@@ -2407,21 +2509,6 @@ An approppriate simulating time would be 10 seconds.
 				origin={81,-61},
 				extent={{-6.1458,-6.1458},{6,10}},
 				rotation=-90)));
-			parameter MaterialDatabase.Kupferlegierungen_Kupfer Kupfer annotation(Placement(transformation(
-				origin={130,90},
-				extent={{-10,-10},{10,10}})));
-			parameter MaterialDatabase.Titanlegierungen_Handelsueblich_Rein_CP_Ti_UNS_R50700__Klasse_4_SS Titan annotation(Placement(transformation(
-				origin={130,30},
-				extent={{-10,-10},{10,10}})));
-			parameter MaterialDatabase.Aluminiumlegierungen_1060_H12 Aluminium annotation(Placement(transformation(
-				origin={130,-30},
-				extent={{-10,-10},{10,10}})));
-			parameter MaterialDatabase.Kohlenstofffasern_Carbon_Panel_tbd Panel annotation(Placement(transformation(
-				origin={130,-60},
-				extent={{-10,-10},{10,10}})));
-			parameter MaterialDatabase.Elektronik_Box_Composit elektronik_Box_Composit1 annotation(Placement(transformation(
-				origin={130,60},
-				extent={{-10,-10},{10,10}})));
 			Modelica.Thermal.HeatTransfer.Components.BodyRadiation oposite_Panel_x(Gr=Gr_oP) annotation(Placement(transformation(
 				origin={117,-72},
 				extent={{-6.7966,-6.7966},{6.7966,6.7966}})));
@@ -2477,9 +2564,9 @@ An approppriate simulating time would be 10 seconds.
 					origin={87.8378,87.8378},
 					extent={{-12,-12},{12,12}})));
 			protected
-				parameter Real Gr_oP(unit="m2")=ViewFactor_parallel * y_Panel * z_Panel * 1 / (2 / eps_Panel - 1)"Net radiation conductance between two surfaces (see docu)(opposite Panels) tbd";
-				parameter Real Gr_aP(unit="m2")=ViewFactor_vertical * y_Panel * z_Panel * 1 / (2 / eps_Panel - 1)"Net radiation conductance between two surfaces (see docu)(adjoining Panels) tbd";
-				parameter Real Gr_P_EB(unit="m2")=x_EB * y_EB * (eps_Panel * eps_EB) / (eps_Panel + eps_EB - eps_Panel * eps_EB)"Net radiation conductance between two surfaces (see docu)(Panel - Electronic Box) tbd";
+				parameter Real Gr_oP(unit="m2")=ViewFactor_parallel * y_Panel * z_Panel * 1 / (2 / eps_Panel - 1) "Net radiation conductance between two surfaces (see docu)(opposite Panels) tbd";
+				parameter Real Gr_aP(unit="m2")=ViewFactor_vertical * y_Panel * z_Panel * 1 / (2 / eps_Panel - 1) "Net radiation conductance between two surfaces (see docu)(adjoining Panels) tbd";
+				parameter Real Gr_P_EB(unit="m2")=x_EB * y_EB * (eps_Panel * eps_EB) / (eps_Panel + eps_EB - eps_Panel * eps_EB) "Net radiation conductance between two surfaces (see docu)(Panel - Electronic Box) tbd";
 			public
 				TCS tCS1(
 					bandwidth_cooler=bandwidth_cooler,
@@ -2755,72 +2842,69 @@ An approppriate simulating time would be 10 seconds.
 					cooler_power(port(Q_flow(flags=2))),
 					lower_Temp(y(flags=2)),
 					upper_Temp(y(flags=2))),
-				Icon(
-					coordinateSystem(extent={{-100,-100},{100,100}}),
-					graphics={
-										Rectangle(
-											lineColor={255,0,0},
-											fillColor={255,255,255},
-											fillPattern=FillPattern.CrossDiag,
-											extent={{-10,-50},{10,50}}),
-										Rectangle(
-											lineColor={255,0,0},
-											fillColor={255,255,255},
-											fillPattern=FillPattern.CrossDiag,
-											extent={{-10.2751,-50},{9.7249,50}}),
-										Rectangle(
-											lineColor={255,0,0},
-											fillColor={255,255,255},
-											fillPattern=FillPattern.CrossDiag,
-											extent={{-50,-10},{50,10}}),
-										Rectangle(
-											lineColor={255,0,0},
-											fillColor={255,255,255},
-											fillPattern=FillPattern.CrossDiag,
-											extent={{-50,-10},{50,10}}),
-										Rectangle(
-											lineColor={255,0,0},
-											fillColor={255,255,255},
-											lineThickness=2,
-											extent={{-80,-80},{80,80}}),
-										Text(
-											textString="%name",
-											textStyle={TextStyle.Bold},
-											lineColor={0,0,0},
-											fillColor={255,0,0},
-											fillPattern=FillPattern.Solid,
-											extent={{-78.4853,-65.66710000000001},{78.4853,-25.6671}}),
-										Text(
-											textString="yp",
-											lineColor={0,0,0},
-											fillPattern=FillPattern.Solid,
-											extent={{-12.0277,70.2527},{14.7787,93.1585}}),
-										Text(
-											textString="yn",
-											lineColor={0,0,0},
-											fillPattern=FillPattern.Solid,
-											extent={{-12.3028,-89.8573},{14.5036,-66.9515}}),
-										Text(
-											textString="xp",
-											lineColor={0,0,0},
-											fillPattern=FillPattern.Solid,
-											extent={{67.47709999999999,-10.6276},{94.2835,12.2782}}),
-										Text(
-											textString="xn",
-											lineColor={0,0,0},
-											fillPattern=FillPattern.Solid,
-											extent={{-92.63290000000001,-12.5533},{-65.8265,10.3525}}),
-										Text(
-											textString="zp",
-											lineColor={0,0,0},
-											fillPattern=FillPattern.Solid,
-											extent={{-79.428,-79.95359999999999},{-52.6216,-57.0478}}),
-										Text(
-											textString="zn",
-											lineColor={0,0,0},
-											fillPattern=FillPattern.Solid,
-											extent={{55.2109,58.9977},{82.01730000000001,81.90349999999999}})}),
-				Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
+				Icon(graphics={
+							Rectangle(
+								lineColor={255,0,0},
+								fillColor={255,255,255},
+								fillPattern=FillPattern.CrossDiag,
+								extent={{-10,-50},{10,50}}),
+							Rectangle(
+								lineColor={255,0,0},
+								fillColor={255,255,255},
+								fillPattern=FillPattern.CrossDiag,
+								extent={{-10.2751,-50},{9.7249,50}}),
+							Rectangle(
+								lineColor={255,0,0},
+								fillColor={255,255,255},
+								fillPattern=FillPattern.CrossDiag,
+								extent={{-50,-10},{50,10}}),
+							Rectangle(
+								lineColor={255,0,0},
+								fillColor={255,255,255},
+								fillPattern=FillPattern.CrossDiag,
+								extent={{-50,-10},{50,10}}),
+							Rectangle(
+								lineColor={255,0,0},
+								fillColor={255,255,255},
+								lineThickness=2,
+								extent={{-80,-80},{80,80}}),
+							Text(
+								textString="%name",
+								textStyle={TextStyle.Bold},
+								lineColor={0,0,0},
+								fillColor={255,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-78.4853,-65.66710000000001},{78.4853,-25.6671}}),
+							Text(
+								textString="yp",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-12.0277,70.2527},{14.7787,93.1585}}),
+							Text(
+								textString="yn",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-12.3028,-89.8573},{14.5036,-66.9515}}),
+							Text(
+								textString="xp",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{67.47709999999999,-10.6276},{94.2835,12.2782}}),
+							Text(
+								textString="xn",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-92.63290000000001,-12.5533},{-65.8265,10.3525}}),
+							Text(
+								textString="zp",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-79.428,-79.95359999999999},{-52.6216,-57.0478}}),
+							Text(
+								textString="zn",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{55.2109,58.9977},{82.01730000000001,81.90349999999999}})}),
 				Documentation(info="<HTML>
 <P>
 A constant voltage of 10 V is applied to a
