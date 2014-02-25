@@ -60,8 +60,9 @@ package iboss
       Modelica.Electrical.Analog.Interfaces.NegativePin GND annotation(Placement(visible = true, transformation(origin = {61.9524,-60.6435}, extent = {{-28.2954,-28.2954},{28.2954,28.2954}}, rotation = 0)));
       annotation(defaultComponentName = "iBoss_connector", Diagram(graphics = {Text(rotation = 0, lineColor = {0,0,0}, fillColor = {0,0,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-102.764,-102.343},{97.23560000000001,-162.343}}, textString = "%name"),Rectangle(rotation = 0, lineColor = {0,0,0}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.CrossDiag, lineThickness = 1, extent = {{-14.1125,15.3798},{12.5283,-10.6274}})}), Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,0}, fillColor = {0,0,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.CrossDiag, lineThickness = 1, extent = {{-100,100},{100,-100}})}));
     end iboss_connector;
-    expandable connector iboss_int "general iboss interface"
-      annotation(defaultComponentName = "iBoss_connector", Diagram(graphics = {Text(rotation = 0, lineColor = {0,0,0}, fillColor = {0,0,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-102.764,-102.343},{97.23560000000001,-162.343}}, textString = "%name"),Rectangle(rotation = 0, lineColor = {0,0,0}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.CrossDiag, lineThickness = 1, extent = {{-14.1125,15.3798},{12.5283,-10.6274}})}), Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,0}, fillColor = {0,0,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.CrossDiag, lineThickness = 1, extent = {{-100,100},{100,-100}})}));
+    connector iboss_int "general iboss interface"
+      satcomponents.AOCS.ctrl.ACS_bus acs_bus;
+      annotation(defaultComponentName = "iBoss_connector", Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2}), graphics = {Rectangle(origin = {0.22,0}, fillColor = {255,220,168}, fillPattern = FillPattern.Solid, lineThickness = 1, extent = {{-100,100},{100,-100}})}), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2}), graphics = {Text(fillPattern = FillPattern.Solid, extent = {{-102.764,-102.343},{97.23560000000001,-162.343}}, textString = "%name"),Rectangle(origin = {-1.11,1.88}, fillColor = {255,220,168}, fillPattern = FillPattern.Solid, extent = {{-91.81,87.72},{91.81,-87.72}})}));
     end iboss_int;
     connector iboss_int_mech
       annotation(defaultComponentName = "iBoss_connector", Diagram(graphics = {Text(rotation = 0, lineColor = {0,0,0}, fillColor = {0,0,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-102.764,-102.343},{97.23560000000001,-162.343}}, textString = "%name"),Rectangle(rotation = 0, lineColor = {0,0,0}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.CrossDiag, lineThickness = 1, extent = {{-14.1125,15.3798},{12.5283,-10.6274}})}), Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,0}, fillColor = {0,0,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.CrossDiag, lineThickness = 1, extent = {{-100,100},{100,-100}})}));
@@ -247,34 +248,34 @@ package iboss
       extends icons.basic;
       Modelica.SIunits.Position r[3];
       Modelica.SIunits.AngularVelocity w[3];
-      Modelica.Mechanics.MultiBody.Interfaces.Frame_a Xp annotation(Placement(visible = true, transformation(origin = {80,0}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {80,0}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      Modelica.Mechanics.MultiBody.Interfaces.Frame_a Yn annotation(Placement(visible = true, transformation(origin = {0,-80}, extent = {{-10,-10},{10,10}}, rotation = -90), iconTransformation(origin = {0,-80}, extent = {{-10,-10},{10,10}}, rotation = 90)));
-      Modelica.Mechanics.MultiBody.Interfaces.Frame_a Yp annotation(Placement(visible = true, transformation(origin = {0,80}, extent = {{-10,-10},{10,10}}, rotation = -90), iconTransformation(origin = {0,80}, extent = {{-10,-10},{10,10}}, rotation = -90)));
-      Modelica.Mechanics.MultiBody.Interfaces.Frame_a Zn annotation(Placement(visible = true, transformation(origin = {60,-60}, extent = {{-10,-10},{10,10}}, rotation = -90), iconTransformation(origin = {60,-60}, extent = {{-10,-10},{10,10}}, rotation = -90)));
-      Modelica.Mechanics.MultiBody.Interfaces.Frame_a Xn annotation(Placement(visible = true, transformation(origin = {-80,0}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {-80,0}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      Modelica.Mechanics.MultiBody.Interfaces.Frame_a Zp annotation(Placement(visible = true, transformation(origin = {-60,60}, extent = {{-10,-10},{10,10}}, rotation = -90), iconTransformation(origin = {-60,60}, extent = {{-10,-10},{10,10}}, rotation = -90)));
-      Modelica.Mechanics.MultiBody.Parts.FixedTranslation rYp(r = {0.0,0.205,0.0}) annotation(Placement(visible = true, transformation(origin = {0,40}, extent = {{10,-10},{-10,10}}, rotation = -90)));
-      Modelica.Mechanics.MultiBody.Parts.FixedTranslation rYn(r = {0.0,-0.205,0.0}) annotation(Placement(visible = true, transformation(origin = {0,-40}, extent = {{-10,-10},{10,10}}, rotation = -90)));
-      Modelica.Mechanics.MultiBody.Parts.FixedTranslation rXp(r = {0.205,0.0,0.0}) annotation(Placement(visible = true, transformation(origin = {40,0}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      Modelica.Mechanics.MultiBody.Parts.FixedTranslation rXn(r = {-0.205,0.0,0.0}, animation = true) annotation(Placement(visible = true, transformation(origin = {-40,0}, extent = {{10,-10},{-10,10}}, rotation = 0)));
-      Modelica.Mechanics.MultiBody.Parts.FixedTranslation rZp(r = {0.0,0.0,0.205}) annotation(Placement(visible = true, transformation(origin = {-40,20}, extent = {{10,-10},{-10,10}}, rotation = 0)));
-      Modelica.Mechanics.MultiBody.Parts.FixedTranslation rZn(r = {0.0,0.0,-0.205}) annotation(Placement(visible = true, transformation(origin = {40,-20}, extent = {{-10,-10},{10,10}}, rotation = 360)));
       Modelica.Mechanics.MultiBody.Parts.Body Struktur(m = 5, I_11 = 0.0018, I_22 = 0.0017, I_33 = 0.0016, r_CM = {0,0,-0.01}, useQuaternions = false) annotation(Placement(visible = true, transformation(origin = {2.11268,-0.469484}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Mechanics.MultiBody.Interfaces.Frame_a Zps annotation(Placement(visible = true, transformation(origin = {-40,60}, extent = {{-10,-10},{10,10}}, rotation = -90), iconTransformation(origin = {-40,60}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+      Modelica.Mechanics.MultiBody.Interfaces.Frame_a Yps annotation(Placement(visible = true, transformation(origin = {20,80}, extent = {{-10,-10},{10,10}}, rotation = -90), iconTransformation(origin = {20,80}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+      Modelica.Mechanics.MultiBody.Interfaces.Frame_a Xps annotation(Placement(visible = true, transformation(origin = {80,-20}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {80,-20}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Mechanics.MultiBody.Interfaces.Frame_a Zns annotation(Placement(visible = true, transformation(origin = {40,-60}, extent = {{-10,-10},{10,10}}, rotation = -90), iconTransformation(origin = {40,-60}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+      Modelica.Mechanics.MultiBody.Interfaces.Frame_a Yns annotation(Placement(visible = true, transformation(origin = {-20,-80}, extent = {{-10,-10},{10,10}}, rotation = -90), iconTransformation(origin = {-20,-80}, extent = {{-10,-10},{10,10}}, rotation = 90)));
+      Modelica.Mechanics.MultiBody.Interfaces.Frame_a Xns annotation(Placement(visible = true, transformation(origin = {-80,20}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {-80,20}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Mechanics.MultiBody.Parts.FixedTranslation rZp(r = {0.0,0.0,0.205}) annotation(Placement(visible = true, transformation(origin = {-40,40}, extent = {{10,-10},{-10,10}}, rotation = -90)));
+      Modelica.Mechanics.MultiBody.Parts.FixedTranslation rYp(r = {0.0,0.205,0.0}) annotation(Placement(visible = true, transformation(origin = {20,60}, extent = {{10,-10},{-10,10}}, rotation = -90)));
+      Modelica.Mechanics.MultiBody.Parts.FixedTranslation rZn(r = {0.0,0.0,-0.205}) annotation(Placement(visible = true, transformation(origin = {40,-40}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+      Modelica.Mechanics.MultiBody.Parts.FixedTranslation rYn(r = {0.0,-0.205,0.0}) annotation(Placement(visible = true, transformation(origin = {-20,-60}, extent = {{-10,-10},{10,10}}, rotation = -90)));
+      Modelica.Mechanics.MultiBody.Parts.FixedTranslation rXn(r = {-0.205,0.0,0.0}, animation = true) annotation(Placement(visible = true, transformation(origin = {-60,0}, extent = {{10,-10},{-10,10}}, rotation = 0)));
+      Modelica.Mechanics.MultiBody.Parts.FixedTranslation rXp(r = {0.205,0.0,0.0}) annotation(Placement(visible = true, transformation(origin = {60,0}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     equation
+      connect(rYp.frame_b,Yps) annotation(Line(points = {{20,70},{20,79.8673},{19.9115,79.8673},{19.9115,79.8673}}));
+      connect(Zps,rZp.frame_b) annotation(Line(points = {{-40,60},{-40,50},{-40.4867,50},{-40.4867,50}}));
+      connect(Yns,rYn.frame_b) annotation(Line(points = {{-20,-80},{-20,-68.36279999999999},{-19.9115,-68.36279999999999},{-19.9115,-68.36279999999999}}));
+      connect(rZn.frame_b,Zns) annotation(Line(points = {{40,-50},{40,-59.7345},{40.4867,-59.7345},{40.4867,-59.7345}}));
+      connect(rXp.frame_b,Xps) annotation(Line(points = {{70,0},{79.646,0},{79.646,-18.5841},{79.646,-18.5841}}));
+      connect(Struktur.frame_a,rZn.frame_a) annotation(Line(points = {{-7.88732,-0.469484},{-13.2743,-0.469484},{-13.2743,-29.646},{40.0442,-29.646},{40.0442,-29.646}}));
+      connect(Struktur.frame_a,rXp.frame_a) annotation(Line(points = {{-7.88732,-0.469484},{-13.2743,-0.469484},{-13.2743,31.1947},{49.7788,31.1947},{49.7788,0.663717},{49.7788,0.663717}}));
+      connect(Struktur.frame_a,rYp.frame_a) annotation(Line(points = {{-7.88732,-0.469484},{-13.0531,-0.469484},{-13.0531,31.1947},{19.9115,31.1947},{19.9115,50},{19.9115,50}}));
+      connect(Struktur.frame_a,rZp.frame_a) annotation(Line(points = {{-7.88732,-0.469484},{-40.2655,-0.469484},{-40.2655,29.646},{-40.2655,29.646}}));
+      connect(Struktur.frame_a,rYn.frame_a) annotation(Line(points = {{-7.88732,-0.469484},{-20.354,-0.469484},{-20.354,-49.5575},{-20.354,-49.5575}}));
+      connect(rXn.frame_a,Struktur.frame_a) annotation(Line(points = {{-50,0},{-7.74336,0},{-7.74336,-0.221239},{-7.74336,-0.221239}}));
+      connect(Xns,rXn.frame_b) annotation(Line(points = {{-80,20},{-69.9115,20},{-69.9115,0.221239},{-69.9115,0.221239}}));
       Struktur.r_0 = r;
       Struktur.phi = w;
-      connect(Struktur.frame_a,rYn.frame_a) annotation(Line(points = {{-7.88732,-0.469484},{-11.0329,-0.469484},{-11.0329,-29.8122},{0,-29.8122},{0,-29.8122}}));
-      connect(Struktur.frame_a,rXp.frame_a) annotation(Line(points = {{-7.88732,-0.469484},{-11.0329,-0.469484},{-11.0329,19.2488},{30.2817,19.2488},{30.2817,0.234742},{30.2817,0.234742}}));
-      connect(Struktur.frame_a,rZn.frame_a) annotation(Line(points = {{-7.88732,-0.469484},{-11.0329,-0.469484},{-11.0329,-20.1878},{30.0469,-20.1878},{30.0469,-20.1878}}));
-      connect(Struktur.frame_a,rYp.frame_a) annotation(Line(points = {{-7.88732,-0.469484},{-11.0329,-0.469484},{-11.0329,19.2488},{-0.234742,19.2488},{-0.234742,30.0469},{-0.234742,30.0469}}));
-      connect(Struktur.frame_a,rZp.frame_a) annotation(Line(points = {{-7.88732,-0.469484},{-20.4225,-0.469484},{-20.4225,19.9531},{-29.8122,19.9531},{-29.8122,19.9531}}));
-      connect(Struktur.frame_a,rXn.frame_a) annotation(Line(points = {{-7.88732,-0.469484},{-29.8122,-0.469484},{-29.8122,0},{-29.8122,0}}));
-      connect(Yn,rYn.frame_b) annotation(Line(points = {{0,-80},{0,-50.4695},{0,-50.4695},{0,-50.4695}}));
-      connect(Yp,rYp.frame_b) annotation(Line(points = {{0,80},{0,49.7653},{-0.234742,49.7653},{-0.234742,49.7653}}));
-      connect(Xp,rXp.frame_b) annotation(Line(points = {{80,0},{50.4695,0},{50.4695,-0.234742},{50.4695,-0.234742}}));
-      connect(rZn.frame_b,Zn) annotation(Line(points = {{50,-20},{60.3286,-20},{60.3286,-60.3286},{60.3286,-60.3286}}));
-      connect(Zp,rZp.frame_b) annotation(Line(points = {{-60,60},{-60,20.1878},{-50.2347,20.1878},{-50.2347,20.1878}}));
-      connect(Xn,rXn.frame_b) annotation(Line(points = {{-80,0},{-49.7653,0},{-49.7653,-0.469484},{-49.7653,-0.469484}}));
       annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
     end basic_structure;
     model basic_wheel3x
@@ -285,6 +286,19 @@ package iboss
     end basic_wheel3x;
     model basic
       extends icons.basic;
+      extends basic_structure;
+      iboss.components.iboss_int Zp annotation(Placement(visible = true, transformation(origin = {-60,60}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {-60,60}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      iboss.components.iboss_int Zn annotation(Placement(visible = true, transformation(origin = {60,-60}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {60,-60}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      iboss.components.iboss_int Xn annotation(Placement(visible = true, transformation(origin = {-80,0}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {-80,0}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      iboss.components.iboss_int Xp annotation(Placement(visible = true, transformation(origin = {80,0}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {80,0}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      iboss.components.iboss_int Yp annotation(Placement(visible = true, transformation(origin = {0,80}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {0,80}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      iboss.components.iboss_int Yn annotation(Placement(visible = true, transformation(origin = {0,-80}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {0,-80}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+    equation
+      connect(Zn,Yn) annotation(Line(points = {{60,-60},{59.7544,-60},{59.7544,-86.7667},{-1.63711,-86.7667},{-1.63711,-86.7667}}));
+      connect(Xp,Zn) annotation(Line(points = {{80,0},{88.9495,0},{88.9495,-66.5757},{58.3902,-66.5757},{58.3902,-66.5757}}));
+      connect(Yp,Xp) annotation(Line(points = {{0,80},{3.81992,80},{3.81992,87.5853},{85.4025,87.5853},{85.4025,-2.18281},{85.4025,-2.18281}}));
+      connect(Zp,Yp) annotation(Line(points = {{-60,60},{-60.3001,60},{-60.3001,75.8527},{-7.36698,75.8527},{-7.36698,75.8527}}));
+      connect(Xn,Zp) annotation(Line(points = {{-80,0},{-91.40519999999999,0},{-91.40519999999999,57.0259},{-68.7585,57.0259},{-68.7585,57.0259}}));
     end basic;
     package icons
       model basic
@@ -580,6 +594,26 @@ package iboss
   //*/
       annotation(experiment(StartTime = 0.0, StopTime = 100.0, Tolerance = 1e-06));
     end generic_sat_aocs;
+    model ass3x1x1
+      iboss.buildingblocks.basic bb2 annotation(Placement(visible = true, transformation(origin = {40,20}, extent = {{-27.5,-27.5},{27.5,27.5}}, rotation = 0)));
+      iboss.buildingblocks.basic bb3 annotation(Placement(visible = true, transformation(origin = {40,-40}, extent = {{-27.5,-27.5},{27.5,27.5}}, rotation = 0)));
+      iboss.buildingblocks.basic bb4 annotation(Placement(visible = true, transformation(origin = {-40,-40}, extent = {{-27.5,-27.5},{27.5,27.5}}, rotation = 0)));
+      Modelica.Mechanics.MultiBody.Joints.FreeMotion r(w_rel_a_start = {0.1,0.5,0.0}, r_rel_a(start = {0.0,0.0,0.0}), v_rel_a(start = {0.0,0.0,0.0})) annotation(Placement(visible = true, transformation(origin = {20,80}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(visible = true, transformation(origin = {-20,80}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      satcomponents.AOCS.ctrl.ACS acs1 annotation(Placement(visible = true, transformation(origin = {-80,60}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      iboss.buildingblocks.basic bb1 annotation(Placement(visible = true, transformation(origin = {-40,20}, extent = {{-25,-25},{25,25}}, rotation = 0)));
+    equation
+      connect(bb4.Yp,bb1.Yn) annotation(Line(points = {{-40,-18},{-39.8329,-18},{-39.8329,0},{-39.8329,0}}));
+      connect(bb2.Yn,bb3.Yp) annotation(Line(points = {{40,-2},{40.1114,-2},{40.1114,-19.2201},{40.1114,-19.2201}}));
+      connect(bb1.Xp,bb2.Xn) annotation(Line(points = {{-20,20},{17.5487,20},{17.5487,19.7772},{17.5487,19.7772}}));
+      connect(bb2.Yns,bb3.Yps) annotation(Line(points = {{34.5,-2},{34.5404,-2},{34.5404,-9.470750000000001},{45.961,-9.470750000000001},{45.961,-17.5487},{45.961,-17.5487}}));
+      connect(bb1.Yns,bb4.Yps) annotation(Line(points = {{-45,0},{-45.961,0},{-45.961,-7.79944},{-33.9833,-7.79944},{-33.9833,-17.5487},{-33.9833,-17.5487}}));
+      connect(bb2.Xns,bb1.Xps) annotation(Line(points = {{18,25.5},{-1.39276,25.5},{-1.39276,15.5989},{-19.4986,15.5989},{-19.4986,15.5989}}));
+      connect(acs1.acs_bus,bb1.Yp.acs_bus) annotation(Line(points = {{-70,60},{-40.39,60},{-40.39,41.7827},{-40.39,41.7827}}));
+      connect(r.frame_b,bb2.Yps) annotation(Line(points = {{30,80},{46.5181,80},{46.5181,41.5042},{46.5181,41.5042}}));
+      connect(world.frame_b,r.frame_a) annotation(Line(points = {{-10,80},{9.822649999999999,80},{9.822649999999999,80.4911},{9.822649999999999,80.4911}}));
+      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
+    end ass3x1x1;
   end satellites;
   package ControlBlocks "Controlblocks for iBoss-Components"
     block EI_control "Controls the electrical interface"
