@@ -1066,9 +1066,6 @@ An approppriate simulating time would be 10 seconds.
 					visible=true,
 					origin={19.4949,-5.2927}));
 			annotation(
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(
 					coordinateSystem(grid={10,10}),
 					graphics={
