@@ -119,27 +119,27 @@ package iboss_thermal "iboss_thermal"
 				Icon(
 					coordinateSystem(grid={10,10}),
 					graphics={
-									Rectangle(
-										lineColor={255,0,0},
-										fillColor={255,255,255},
-										fillPattern=FillPattern.HorizontalCylinder,
-										extent={{-94.63549999999999,-59.4223},{96.011,61.8982}},
-										visible=true,
-										origin={-0.6878,-1.238}),
-									Text(
-										textString="%name",
-										textStyle={TextStyle.Bold},
-										fillPattern=FillPattern.Solid,
-										extent={{-101.2507,52.8171},{98.74930000000001,112.8171}},
-										visible=true,
-										origin={82.8171,1.2507},
-										rotation=90),
-									Text(
-										textString="thermal element",
-										fontSize=16,
-										fillColor={0,0,255},
-										extent={{-3,-2},{0,9}},
-										visible=true)}),
+														Rectangle(
+															lineColor={255,0,0},
+															fillColor={255,255,255},
+															fillPattern=FillPattern.HorizontalCylinder,
+															extent={{-94.63549999999999,-59.4223},{96.011,61.8982}},
+															visible=true,
+															origin={-0.6878,-1.238}),
+														Text(
+															textString="%name",
+															textStyle={TextStyle.Bold},
+															fillPattern=FillPattern.Solid,
+															extent={{-101.2507,52.8171},{98.74930000000001,112.8171}},
+															visible=true,
+															origin={82.8171,1.2507},
+															rotation=90),
+														Text(
+															textString="thermal element",
+															fontSize=16,
+															fillColor={0,0,255},
+															extent={{-3,-2},{0,9}},
+															visible=true)}),
 				experiment(
 					StopTime=1,
 					StartTime=0));
@@ -229,20 +229,20 @@ package iboss_thermal "iboss_thermal"
 				Icon(
 					coordinateSystem(grid={10,10}),
 					graphics={
-									Rectangle(
-										lineColor={255,0,0},
-										fillColor={255,255,255},
-										fillPattern=FillPattern.CrossDiag,
-										extent={{-30,-100},{30,100}},
-										visible=true),
-									Text(
-										textString="%name",
-										textStyle={TextStyle.Bold},
-										fillPattern=FillPattern.Solid,
-										extent={{-100,-30},{100,30}},
-										visible=true,
-										origin={60,-0},
-										rotation=90)}),
+														Rectangle(
+															lineColor={255,0,0},
+															fillColor={255,255,255},
+															fillPattern=FillPattern.CrossDiag,
+															extent={{-30,-100},{30,100}},
+															visible=true),
+														Text(
+															textString="%name",
+															textStyle={TextStyle.Bold},
+															fillPattern=FillPattern.Solid,
+															extent={{-100,-30},{100,30}},
+															visible=true,
+															origin={60,-0},
+															rotation=90)}),
 				experiment(
 					StopTime=1,
 					StartTime=0));
@@ -347,47 +347,47 @@ package iboss_thermal "iboss_thermal"
 				connect(thermalConductor_yn.port_b,EB_yn) annotation(Line(points = {{0,-60},{0,-65},{-5,-65},{-5,-80},{0,-80}}, color = {191,0,0}, thickness = 0.0625));
 			annotation(
 				Icon(graphics={
-							Rectangle(
-								pattern=LinePattern.Dot,
-								lineColor={255,0,0},
-								fillColor={255,255,255},
-								fillPattern=FillPattern.Sphere,
-								extent={{-99.83629999999999,-100.111},{100.164,99.8886}}),
-							Text(
-								textString="xp",
-								lineColor={0,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{67.7961,-9.3325},{89.8959,7.7865}}),
-							Text(
-								textString="xn",
-								lineColor={0,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{-89.1229,-9.3325},{-67.0231,7.7865}}),
-							Text(
-								textString="yp",
-								lineColor={0,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{-11.0499,71.446},{11.0499,88.565}}),
-							Text(
-								textString="yn",
-								lineColor={0,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{-11.4955,-90.0356},{10.6043,-72.9166}}),
-							Text(
-								textString="zn",
-								lineColor={0,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{58.2761,65.9935},{80.3759,83.1125}}),
-							Text(
-								textString="zp",
-								lineColor={0,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{-83.90860000000001,-81.0027},{-61.8088,-63.8837}}),
-							Text(
-								textString="electrical power",
-								lineColor={0,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{-44.773,20.8807},{55.227,45.6943}})}),
+											Rectangle(
+												pattern=LinePattern.Dot,
+												lineColor={255,0,0},
+												fillColor={255,255,255},
+												fillPattern=FillPattern.Sphere,
+												extent={{-99.83629999999999,-100.111},{100.164,99.8886}}),
+											Text(
+												textString="xp",
+												lineColor={0,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{67.7961,-9.3325},{89.8959,7.7865}}),
+											Text(
+												textString="xn",
+												lineColor={0,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{-89.1229,-9.3325},{-67.0231,7.7865}}),
+											Text(
+												textString="yp",
+												lineColor={0,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{-11.0499,71.446},{11.0499,88.565}}),
+											Text(
+												textString="yn",
+												lineColor={0,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{-11.4955,-90.0356},{10.6043,-72.9166}}),
+											Text(
+												textString="zn",
+												lineColor={0,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{58.2761,65.9935},{80.3759,83.1125}}),
+											Text(
+												textString="zp",
+												lineColor={0,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{-83.90860000000001,-81.0027},{-61.8088,-63.8837}}),
+											Text(
+												textString="electrical power",
+												lineColor={0,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{-44.773,20.8807},{55.227,45.6943}})}),
 				experiment(
 					StopTime=1,
 					StartTime=0));
@@ -529,27 +529,27 @@ package iboss_thermal "iboss_thermal"
 				Icon(
 					coordinateSystem(grid={10,10}),
 					graphics={
-									Rectangle(
-										lineColor={255,0,0},
-										fillColor={255,255,255},
-										fillPattern=FillPattern.VerticalCylinder,
-										extent={{-10,-100},{10,100}},
-										visible=true,
-										origin={-10,0}),
-									Rectangle(
-										lineColor={255,0,0},
-										fillColor={255,255,255},
-										fillPattern=FillPattern.CrossDiag,
-										extent={{-10,-50},{10,50}},
-										visible=true,
-										origin={10,0}),
-									Text(
-										textString="%name",
-										textStyle={TextStyle.Bold},
-										fillPattern=FillPattern.Solid,
-										extent={{-100,-20},{100,20}},
-										visible=true,
-										rotation=90)}),
+														Rectangle(
+															lineColor={255,0,0},
+															fillColor={255,255,255},
+															fillPattern=FillPattern.VerticalCylinder,
+															extent={{-10,-100},{10,100}},
+															visible=true,
+															origin={-10,0}),
+														Rectangle(
+															lineColor={255,0,0},
+															fillColor={255,255,255},
+															fillPattern=FillPattern.CrossDiag,
+															extent={{-10,-50},{10,50}},
+															visible=true,
+															origin={10,0}),
+														Text(
+															textString="%name",
+															textStyle={TextStyle.Bold},
+															fillPattern=FillPattern.Solid,
+															extent={{-100,-20},{100,20}},
+															visible=true,
+															rotation=90)}),
 				Diagram(coordinateSystem(
 					extent={{-105,-74},{105,74}},
 					grid={5,5})),
@@ -745,43 +745,43 @@ An approppriate simulating time would be 10 seconds.
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
-																																								Rectangle(
-																																									radius=4,
-																																									lineColor={0,0,0},
-																																									fillColor={255,0,0},
-																																									fillPattern=FillPattern.Solid,
-																																									extent={{-100,100},{100,-100}}),
-																																								Text(
-																																									textString="TCS",
-																																									textStyle={TextStyle.Bold},
-																																									lineColor={0,0,0},
-																																									extent={{-40,10},{-43,10}}),
-																																								Text(
-																																									textString="TCS",
-																																									fontSize=16,
-																																									textStyle={TextStyle.Bold},
-																																									lineColor={0,0,0},
-																																									extent={{-99,99},{101,-98}}),
-																																								Text(
-																																									textString="Tmin",
-																																									fontSize=8,
-																																									lineColor={0,0,0},
-																																									extent={{-108,86},{-3,51}}),
-																																								Text(
-																																									textString="Tmax",
-																																									fontSize=8,
-																																									lineColor={0,0,0},
-																																									extent={{-4,84},{107,52}}),
-																																								Text(
-																																									textString="heat",
-																																									fontSize=8,
-																																									lineColor={0,0,0},
-																																									extent={{-95,-61},{-4,-87}}),
-																																								Text(
-																																									textString="cool",
-																																									fontSize=8,
-																																									lineColor={0,0,0},
-																																									extent={{8,-62},{94,-86}})}),
+																																													Rectangle(
+																																														radius=4,
+																																														lineColor={0,0,0},
+																																														fillColor={255,0,0},
+																																														fillPattern=FillPattern.Solid,
+																																														extent={{-100,100},{100,-100}}),
+																																													Text(
+																																														textString="TCS",
+																																														textStyle={TextStyle.Bold},
+																																														lineColor={0,0,0},
+																																														extent={{-40,10},{-43,10}}),
+																																													Text(
+																																														textString="TCS",
+																																														fontSize=16,
+																																														textStyle={TextStyle.Bold},
+																																														lineColor={0,0,0},
+																																														extent={{-99,99},{101,-98}}),
+																																													Text(
+																																														textString="Tmin",
+																																														fontSize=8,
+																																														lineColor={0,0,0},
+																																														extent={{-108,86},{-3,51}}),
+																																													Text(
+																																														textString="Tmax",
+																																														fontSize=8,
+																																														lineColor={0,0,0},
+																																														extent={{-4,84},{107,52}}),
+																																													Text(
+																																														textString="heat",
+																																														fontSize=8,
+																																														lineColor={0,0,0},
+																																														extent={{-95,-61},{-4,-87}}),
+																																													Text(
+																																														textString="cool",
+																																														fontSize=8,
+																																														lineColor={0,0,0},
+																																														extent={{8,-62},{94,-86}})}),
 				Documentation(info="MIME-Version: 1.0
 		Content-Type: multipart/related;boundary=\"--$iti$\";type=\"text/html\"
 
@@ -921,48 +921,48 @@ An approppriate simulating time would be 10 seconds.
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
-																																			Rectangle(
-																																				lineColor={255,255,255},
-																																				fillColor={255,0,0},
-																																				fillPattern=FillPattern.CrossDiag,
-																																				extent={{-100,100},{100,0}}),
-																																			Rectangle(
-																																				lineColor={0,0,0},
-																																				fillColor={0,0,255},
-																																				fillPattern=FillPattern.CrossDiag,
-																																				extent={{-100,1},{100,-99}}),
-																																			Text(
-																																				textString="heater",
-																																				fontSize=12,
-																																				textStyle={TextStyle.Bold},
-																																				lineColor={0,0,0},
-																																				extent={{-97,54},{100,0}}),
-																																			Text(
-																																				textString="cooler",
-																																				fontSize=12,
-																																				textStyle={TextStyle.Bold},
-																																				lineColor={255,255,255},
-																																				extent={{-98,-2},{100,-57}}),
-																																			Text(
-																																				textString="heat",
-																																				fontSize=8,
-																																				lineColor={0,0,0},
-																																				extent={{-100,96},{-13,66}}),
-																																			Text(
-																																				textString="cool",
-																																				fontSize=8,
-																																				lineColor={255,255,255},
-																																				extent={{-102,-70},{-15,-100}}),
-																																			Text(
-																																				textString="Tmin",
-																																				fontSize=8,
-																																				lineColor={0,0,0},
-																																				extent={{0,97},{99,64}}),
-																																			Text(
-																																				textString="Tmax",
-																																				fontSize=8,
-																																				lineColor={255,255,255},
-																																				extent={{-9,-69},{99,-102}})}),
+																																								Rectangle(
+																																									lineColor={255,255,255},
+																																									fillColor={255,0,0},
+																																									fillPattern=FillPattern.CrossDiag,
+																																									extent={{-100,100},{100,0}}),
+																																								Rectangle(
+																																									lineColor={0,0,0},
+																																									fillColor={0,0,255},
+																																									fillPattern=FillPattern.CrossDiag,
+																																									extent={{-100,1},{100,-99}}),
+																																								Text(
+																																									textString="heater",
+																																									fontSize=12,
+																																									textStyle={TextStyle.Bold},
+																																									lineColor={0,0,0},
+																																									extent={{-97,54},{100,0}}),
+																																								Text(
+																																									textString="cooler",
+																																									fontSize=12,
+																																									textStyle={TextStyle.Bold},
+																																									lineColor={255,255,255},
+																																									extent={{-98,-2},{100,-57}}),
+																																								Text(
+																																									textString="heat",
+																																									fontSize=8,
+																																									lineColor={0,0,0},
+																																									extent={{-100,96},{-13,66}}),
+																																								Text(
+																																									textString="cool",
+																																									fontSize=8,
+																																									lineColor={255,255,255},
+																																									extent={{-102,-70},{-15,-100}}),
+																																								Text(
+																																									textString="Tmin",
+																																									fontSize=8,
+																																									lineColor={0,0,0},
+																																									extent={{0,97},{99,64}}),
+																																								Text(
+																																									textString="Tmax",
+																																									fontSize=8,
+																																									lineColor={255,255,255},
+																																									extent={{-9,-69},{99,-102}})}),
 				Documentation(info="<HTML>
 		<P>
 		A constant voltage of 10 V is applied to a
@@ -1023,22 +1023,83 @@ An approppriate simulating time would be 10 seconds.
 			parameter Modelica.SIunits.Area A_ESS(unit="m2")=0.0002 "Querschnittsflaeche der ESS";
 			parameter Modelica.SIunits.Area A_TSS(unit="m2")=0.01 "Querschnittsflaeche der TSS";
 			parameter Modelica.SIunits.Area A_MSS(unit="m2")=0.005 "Querschnittsflaeche der MSS";
-			parameter Modelica.SIunits.Area A_Rad(unit="m2")=0.1448 "Querschnittsflaeche der MSS";
+			parameter Modelica.SIunits.Area A_Rad(unit="m2")=0.1448 "Querschnittsflaeche des Panels";
 			equation
-				connect(Radiator.port_b,thermal_connector1.Rad) annotation(Line(points = {{-13.3179,24.691},{-10.3179,24.691},{-10.3179,-18.309},{16.9769,-18.309},{16.9769,-12.7641}}, color = {191,0,0}, visible = true, origin = {19.5679,5.309}));
-				connect(thermal_connector2.Rad,Radiator.port_a) annotation(Line(points = {{-10.0983,-15.0299},{-10.0983,7.5149},{20.1966,7.5149}}, color = {191,0,0}, visible = true, origin = {-26.4466,22.485}));
-				connect(thermal_connector2.TSS,Conductance_TIM_TSS.port_a) annotation(Line(points = {{-21.2747,-3.7486},{6.0916,-3.7486},{6.0916,3.7486},{9.0916,3.7486}}, color = {191,0,0}, visible = true, origin = {-15.2265,6.2513}));
-				connect(Conductance_TIM_TSS.port_b,thermal_connector1.TSS) annotation(Line(points = {{-18.0241,6.2513},{2.841,6.2513},{2.841,-6.2513},{12.3422,-6.2513}}, color = {191,0,0}, visible = true, origin = {24.159,3.7486}));
-				connect(thermal_connector2.MSS,Conductance_MSS.port_a) annotation(Line(points = {{-21.2833,3.7327},{6.0944,3.7327},{6.0944,-3.7327},{9.0944,-3.7327}}, color = {191,0,0}, visible = true, origin = {-15.1875,-6.2673}));
-				connect(thermal_connector1.MSS,Conductance_MSS.port_b) annotation(Line(points = {{21.2833,6.2673},{-6.0944,6.2673},{-6.0944,-6.2673},{-9.0944,-6.2673}}, color = {191,0,0}, visible = true, origin = {15.1875,-3.7327}));
-				connect(thermal_connector2.ESS,Conductance_ESS.port_a) annotation(Line(points = {{-10.0846,14.9756},{-10.0846,-7.4878},{20.1691,-7.4878}}, color = {191,0,0}, visible = true, origin = {-26.3625,-22.5122}));
-				connect(thermal_connector1.ESS,Conductance_ESS.port_b) annotation(Line(points = {{16.9522,12.8293},{16.9522,18.2927},{-10.3015,18.2927},{-10.3015,-24.7073},{-13.3015,-24.7073}}, color = {191,0,0}, visible = true, origin = {19.4949,-5.2927}));
+				connect(Radiator.port_b,thermal_connector1.Rad) annotation(Line(
+					points={{6.3,30},{11.3,30},{35,30},{35,0},{40,0}},
+					color={191,0,0},
+					visible=true,
+					origin={19.5679,5.309}));
+				connect(thermal_connector2.Rad,Radiator.port_a) annotation(Line(
+					points={{-40,0},{-35,0},{-11.3,0},{-11.3,30},{-6.3,30}},
+					color={191,0,0},
+					visible=true,
+					origin={-26.4466,22.485}));
+				connect(thermal_connector2.TSS,Conductance_TIM_TSS.port_a) annotation(Line(
+					points={{-40,0},{-35,0},{-11,0},{-11,10},{-6,10}},
+					color={191,0,0},
+					visible=true,
+					origin={-15.2265,6.2513}));
+				connect(Conductance_TIM_TSS.port_b,thermal_connector1.TSS) annotation(Line(
+					points={{6,10},{11,10},{35,10},{35,0},{40,0}},
+					color={191,0,0},
+					visible=true,
+					origin={24.159,3.7486}));
+				connect(thermal_connector2.MSS,Conductance_MSS.port_a) annotation(Line(
+					points={{-40,0},{-35,0},{-11,0},{-11,-10},{-6,-10}},
+					color={191,0,0},
+					visible=true,
+					origin={-15.1875,-6.2673}));
+				connect(thermal_connector1.MSS,Conductance_MSS.port_b) annotation(Line(
+					points={{40,0},{35,0},{11,0},{11,-10},{6,-10}},
+					color={191,0,0},
+					visible=true,
+					origin={15.1875,-3.7327}));
+				connect(thermal_connector2.ESS,Conductance_ESS.port_a) annotation(Line(
+					points={{-40,0},{-35,0},{-11.3,0},{-11.3,-30},{-6.3,-30}},
+					color={191,0,0},
+					visible=true,
+					origin={-26.3625,-22.5122}));
+				connect(thermal_connector1.ESS,Conductance_ESS.port_b) annotation(Line(
+					points={{40,0},{35,0},{11.3,0},{11.3,-30},{6.3,-30}},
+					color={191,0,0},
+					visible=true,
+					origin={19.4949,-5.2927}));
 			annotation(
+				viewinfo[0](
+					viewSettings(clrRaster=12632256),
+					typename="ModelInfo"),
 				Icon(
-					coordinateSystem(
-						extent={{-100,-100},{100,100}},
-						grid={10,10}),
-					graphics={Rectangle(lineColor = {255,0,0}, fillColor = {255,255,255}, fillPattern = FillPattern.CrossDiag, extent = {{-20,-100},{20,100}}, visible = true, origin = {-80,0}),Rectangle(lineColor = {255,0,0}, fillColor = {255,255,255}, fillPattern = FillPattern.CrossDiag, extent = {{-20,-100},{20,100}}, visible = true, origin = {80,0}),Rectangle(lineColor = {255,0,0}, fillColor = {255,0,0}, fillPattern = FillPattern.Solid, extent = {{-40,-100},{40,100}}, visible = true),Text(textString = "%name", textStyle = {TextStyle.Bold}, fillPattern = FillPattern.Solid, extent = {{-100.0603,-40},{100.0603,40}}, visible = true, origin = {-0,0.0603}, rotation = 90)}),
+					coordinateSystem(grid={10,10}),
+					graphics={
+									Rectangle(
+										lineColor={255,0,0},
+										fillColor={255,255,255},
+										fillPattern=FillPattern.CrossDiag,
+										extent={{-20,-100},{20,100}},
+										visible=true,
+										origin={-80,0}),
+									Rectangle(
+										lineColor={255,0,0},
+										fillColor={255,255,255},
+										fillPattern=FillPattern.CrossDiag,
+										extent={{-20,-100},{20,100}},
+										visible=true,
+										origin={80,0}),
+									Rectangle(
+										lineColor={255,0,0},
+										fillColor={255,0,0},
+										fillPattern=FillPattern.Solid,
+										extent={{-40,-100},{40,100}},
+										visible=true),
+									Text(
+										textString="%name",
+										textStyle={TextStyle.Bold},
+										fillPattern=FillPattern.Solid,
+										extent={{-100.0603,-40},{100.0603,40}},
+										visible=true,
+										origin={-0,0.0603},
+										rotation=90)}),
 				Diagram(coordinateSystem(
 					extent={{-105,-74},{105,74}},
 					grid={5,5})),
@@ -1302,15 +1363,15 @@ An approppriate simulating time would be 10 seconds.
 				Icon(
 					coordinateSystem(extent={{-100,-100},{100,100}}),
 					graphics={
-																																																									Rectangle(
-																																																									lineColor={0,0,0},
-																																																								fillPattern=FillPattern.Solid,
-																																																								extent={{-100,100},{100,-100}}),
-																																																							Ellipse(
-																																																								lineColor={0,0,0},
-																																																								fillColor={255,255,0},
-																																																								fillPattern=FillPattern.Solid,
-																																																								extent={{98,-96},{-96,98}})}),
+																																																														Rectangle(
+																																																														lineColor={0,0,0},
+																																																													fillPattern=FillPattern.Solid,
+																																																													extent={{-100,100},{100,-100}}),
+																																																												Ellipse(
+																																																													lineColor={0,0,0},
+																																																													fillColor={255,255,0},
+																																																													fillPattern=FillPattern.Solid,
+																																																													extent={{98,-96},{-96,98}})}),
 				experiment(
 					StopTime=10,
 					StartTime=0));
@@ -2042,68 +2103,68 @@ An approppriate simulating time would be 10 seconds.
 					lower_Temp(y(flags=2)),
 					upper_Temp(y(flags=2))),
 				Icon(graphics={
-							Rectangle(
-								lineColor={255,0,0},
-								fillColor={255,255,255},
-								fillPattern=FillPattern.CrossDiag,
-								extent={{-10,-50},{10,50}}),
-							Rectangle(
-								lineColor={255,0,0},
-								fillColor={255,255,255},
-								fillPattern=FillPattern.CrossDiag,
-								extent={{-10.2751,-50},{9.7249,50}}),
-							Rectangle(
-								lineColor={255,0,0},
-								fillColor={255,255,255},
-								fillPattern=FillPattern.CrossDiag,
-								extent={{-50,-10},{50,10}}),
-							Rectangle(
-								lineColor={255,0,0},
-								fillColor={255,255,255},
-								fillPattern=FillPattern.CrossDiag,
-								extent={{-50,-10},{50,10}}),
-							Rectangle(
-								lineColor={255,0,0},
-								fillColor={255,255,255},
-								lineThickness=2,
-								extent={{-80,-80},{80,80}}),
-							Text(
-								textString="%name",
-								textStyle={TextStyle.Bold},
-								lineColor={0,0,0},
-								fillColor={255,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{-78.4853,-65.66710000000001},{78.4853,-25.6671}}),
-							Text(
-								textString="yp",
-								lineColor={0,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{-12.0277,70.2527},{14.7787,93.1585}}),
-							Text(
-								textString="yn",
-								lineColor={0,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{-12.3028,-89.8573},{14.5036,-66.9515}}),
-							Text(
-								textString="xp",
-								lineColor={0,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{67.47709999999999,-10.6276},{94.2835,12.2782}}),
-							Text(
-								textString="xn",
-								lineColor={0,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{-92.63290000000001,-12.5533},{-65.8265,10.3525}}),
-							Text(
-								textString="zp",
-								lineColor={0,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{-79.428,-79.95359999999999},{-52.6216,-57.0478}}),
-							Text(
-								textString="zn",
-								lineColor={0,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{55.2109,58.9977},{82.01730000000001,81.90349999999999}})}),
+											Rectangle(
+												lineColor={255,0,0},
+												fillColor={255,255,255},
+												fillPattern=FillPattern.CrossDiag,
+												extent={{-10,-50},{10,50}}),
+											Rectangle(
+												lineColor={255,0,0},
+												fillColor={255,255,255},
+												fillPattern=FillPattern.CrossDiag,
+												extent={{-10.2751,-50},{9.7249,50}}),
+											Rectangle(
+												lineColor={255,0,0},
+												fillColor={255,255,255},
+												fillPattern=FillPattern.CrossDiag,
+												extent={{-50,-10},{50,10}}),
+											Rectangle(
+												lineColor={255,0,0},
+												fillColor={255,255,255},
+												fillPattern=FillPattern.CrossDiag,
+												extent={{-50,-10},{50,10}}),
+											Rectangle(
+												lineColor={255,0,0},
+												fillColor={255,255,255},
+												lineThickness=2,
+												extent={{-80,-80},{80,80}}),
+											Text(
+												textString="%name",
+												textStyle={TextStyle.Bold},
+												lineColor={0,0,0},
+												fillColor={255,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{-78.4853,-65.66710000000001},{78.4853,-25.6671}}),
+											Text(
+												textString="yp",
+												lineColor={0,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{-12.0277,70.2527},{14.7787,93.1585}}),
+											Text(
+												textString="yn",
+												lineColor={0,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{-12.3028,-89.8573},{14.5036,-66.9515}}),
+											Text(
+												textString="xp",
+												lineColor={0,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{67.47709999999999,-10.6276},{94.2835,12.2782}}),
+											Text(
+												textString="xn",
+												lineColor={0,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{-92.63290000000001,-12.5533},{-65.8265,10.3525}}),
+											Text(
+												textString="zp",
+												lineColor={0,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{-79.428,-79.95359999999999},{-52.6216,-57.0478}}),
+											Text(
+												textString="zn",
+												lineColor={0,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{55.2109,58.9977},{82.01730000000001,81.90349999999999}})}),
 				Documentation(info="<HTML>
 <P>
 A constant voltage of 10 V is applied to a
@@ -2843,68 +2904,68 @@ An approppriate simulating time would be 10 seconds.
 					lower_Temp(y(flags=2)),
 					upper_Temp(y(flags=2))),
 				Icon(graphics={
-							Rectangle(
-								lineColor={255,0,0},
-								fillColor={255,255,255},
-								fillPattern=FillPattern.CrossDiag,
-								extent={{-10,-50},{10,50}}),
-							Rectangle(
-								lineColor={255,0,0},
-								fillColor={255,255,255},
-								fillPattern=FillPattern.CrossDiag,
-								extent={{-10.2751,-50},{9.7249,50}}),
-							Rectangle(
-								lineColor={255,0,0},
-								fillColor={255,255,255},
-								fillPattern=FillPattern.CrossDiag,
-								extent={{-50,-10},{50,10}}),
-							Rectangle(
-								lineColor={255,0,0},
-								fillColor={255,255,255},
-								fillPattern=FillPattern.CrossDiag,
-								extent={{-50,-10},{50,10}}),
-							Rectangle(
-								lineColor={255,0,0},
-								fillColor={255,255,255},
-								lineThickness=2,
-								extent={{-80,-80},{80,80}}),
-							Text(
-								textString="%name",
-								textStyle={TextStyle.Bold},
-								lineColor={0,0,0},
-								fillColor={255,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{-78.4853,-65.66710000000001},{78.4853,-25.6671}}),
-							Text(
-								textString="yp",
-								lineColor={0,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{-12.0277,70.2527},{14.7787,93.1585}}),
-							Text(
-								textString="yn",
-								lineColor={0,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{-12.3028,-89.8573},{14.5036,-66.9515}}),
-							Text(
-								textString="xp",
-								lineColor={0,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{67.47709999999999,-10.6276},{94.2835,12.2782}}),
-							Text(
-								textString="xn",
-								lineColor={0,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{-92.63290000000001,-12.5533},{-65.8265,10.3525}}),
-							Text(
-								textString="zp",
-								lineColor={0,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{-79.428,-79.95359999999999},{-52.6216,-57.0478}}),
-							Text(
-								textString="zn",
-								lineColor={0,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{55.2109,58.9977},{82.01730000000001,81.90349999999999}})}),
+											Rectangle(
+												lineColor={255,0,0},
+												fillColor={255,255,255},
+												fillPattern=FillPattern.CrossDiag,
+												extent={{-10,-50},{10,50}}),
+											Rectangle(
+												lineColor={255,0,0},
+												fillColor={255,255,255},
+												fillPattern=FillPattern.CrossDiag,
+												extent={{-10.2751,-50},{9.7249,50}}),
+											Rectangle(
+												lineColor={255,0,0},
+												fillColor={255,255,255},
+												fillPattern=FillPattern.CrossDiag,
+												extent={{-50,-10},{50,10}}),
+											Rectangle(
+												lineColor={255,0,0},
+												fillColor={255,255,255},
+												fillPattern=FillPattern.CrossDiag,
+												extent={{-50,-10},{50,10}}),
+											Rectangle(
+												lineColor={255,0,0},
+												fillColor={255,255,255},
+												lineThickness=2,
+												extent={{-80,-80},{80,80}}),
+											Text(
+												textString="%name",
+												textStyle={TextStyle.Bold},
+												lineColor={0,0,0},
+												fillColor={255,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{-78.4853,-65.66710000000001},{78.4853,-25.6671}}),
+											Text(
+												textString="yp",
+												lineColor={0,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{-12.0277,70.2527},{14.7787,93.1585}}),
+											Text(
+												textString="yn",
+												lineColor={0,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{-12.3028,-89.8573},{14.5036,-66.9515}}),
+											Text(
+												textString="xp",
+												lineColor={0,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{67.47709999999999,-10.6276},{94.2835,12.2782}}),
+											Text(
+												textString="xn",
+												lineColor={0,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{-92.63290000000001,-12.5533},{-65.8265,10.3525}}),
+											Text(
+												textString="zp",
+												lineColor={0,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{-79.428,-79.95359999999999},{-52.6216,-57.0478}}),
+											Text(
+												textString="zn",
+												lineColor={0,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{55.2109,58.9977},{82.01730000000001,81.90349999999999}})}),
 				Documentation(info="<HTML>
 <P>
 A constant voltage of 10 V is applied to a
