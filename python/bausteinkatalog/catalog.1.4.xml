@@ -2,7 +2,7 @@
 <Catalog version="1.4" xmlns="http://www.VEROSIM.de/namespaces/IBOSS" xmlns:VSD="http://www.VEROSIM.de/namespaces/VSD" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.VEROSIM.de/namespaces/IBOSS ../XSD/iboss.xsd">
 	<!--
         * Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)
-        * Date : 2014/02/10
+        * Date : 2014/02/13
         * Version: 1.4
         * All code (c)2013 Technische Universität Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved-->
 	<componentDefs>
@@ -189,7 +189,7 @@
 				</GenericVariable>
 				<GenericVariable>
 					<VSD:name>mass</VSD:name>
-					<value>0</value>
+					<value>0.0</value>
 				</GenericVariable>
 				<GenericVariable>
 					<VSD:name>name</VSD:name>
@@ -224,7 +224,7 @@
 				</GenericVariable>
 				<GenericVariable>
 					<VSD:name>mass</VSD:name>
-					<value>0</value>
+					<value>0.0</value>
 				</GenericVariable>
 				<GenericVariable>
 					<VSD:name>name</VSD:name>
@@ -4105,7 +4105,7 @@
 				</GenericVariable>
 				<GenericVariable>
 					<VSD:name>mass</VSD:name>
-					<value>0</value>
+					<value>0.0</value>
 				</GenericVariable>
 				<GenericVariable>
 					<VSD:name>name</VSD:name>
@@ -8034,17 +8034,17 @@
 			<components>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Li-Ion-Batterie-->
-					<num>20</num>
+					<num>20.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id73"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8053,12 +8053,12 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>48</num>
+					<num>48.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>6</num>
+					<num>6.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8097,32 +8097,32 @@
 			<components>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--CMG-->
-					<num>2</num>
+					<num>2.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id20"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<num>2</num>
+					<num>2.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>80</num>
+					<num>80.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>10</num>
+					<num>10.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8161,12 +8161,12 @@
 			<components>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8175,7 +8175,7 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>48</num>
+					<num>48.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8184,7 +8184,7 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>6</num>
+					<num>6.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 			</components>
@@ -8219,7 +8219,7 @@
 			<components>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8228,7 +8228,7 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
-					<num>2</num>
+					<num>2.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8237,17 +8237,17 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>104</num>
+					<num>104.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>13</num>
+					<num>13.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8290,12 +8290,12 @@
 			<components>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8304,12 +8304,12 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>40</num>
+					<num>40.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>5</num>
+					<num>5.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8348,12 +8348,12 @@
 			<components>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8362,12 +8362,12 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>40</num>
+					<num>40.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>5</num>
+					<num>5.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 			</components>
@@ -8402,12 +8402,12 @@
 			<components>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8416,12 +8416,12 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>40</num>
+					<num>40.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>5</num>
+					<num>5.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8464,27 +8464,27 @@
 			<components>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<num>2</num>
+					<num>2.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>80</num>
+					<num>80.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>10</num>
+					<num>10.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8523,12 +8523,12 @@
 			<components>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8541,12 +8541,12 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>48</num>
+					<num>48.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>6</num>
+					<num>6.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 			</components>
@@ -8581,22 +8581,22 @@
 			<components>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
-					<num>2</num>
+					<num>2.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<num>2</num>
+					<num>2.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>72</num>
+					<num>72.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8605,7 +8605,7 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>9</num>
+					<num>9.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8644,22 +8644,22 @@
 			<components>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 2-->
-					<num>2</num>
+					<num>2.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id129"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<num>2</num>
+					<num>2.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>72</num>
+					<num>72.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8668,7 +8668,7 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>9</num>
+					<num>9.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8715,7 +8715,7 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<num>12</num>
+					<num>12.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 			</components>
@@ -8758,7 +8758,7 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<num>12</num>
+					<num>12.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 			</components>
@@ -8797,17 +8797,17 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Magnetorquer-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id79"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8816,12 +8816,12 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>40</num>
+					<num>40.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>5</num>
+					<num>5.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 			</components>
@@ -8856,22 +8856,22 @@
 			<components>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
-					<num>2</num>
+					<num>2.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Bausteinstruktur1x1x1-->
-					<num>2</num>
+					<num>2.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id16"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>72</num>
+					<num>72.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8880,7 +8880,7 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>9</num>
+					<num>9.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8919,12 +8919,12 @@
 			<components>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8933,12 +8933,12 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>48</num>
+					<num>48.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>6</num>
+					<num>6.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8977,12 +8977,12 @@
 			<components>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -8995,12 +8995,12 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>48</num>
+					<num>48.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>6</num>
+					<num>6.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 			</components>
@@ -9035,12 +9035,12 @@
 			<components>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -9053,12 +9053,12 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>48</num>
+					<num>48.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>6</num>
+					<num>6.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 			</components>
@@ -9093,7 +9093,7 @@
 			<components>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -9106,7 +9106,7 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>8</num>
+					<num>8.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -9149,17 +9149,17 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
-					<num>2</num>
+					<num>2.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--entfalt. Solarflächen 2-->
-					<num>5</num>
+					<num>5.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id34"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -9168,12 +9168,12 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>48</num>
+					<num>48.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>6</num>
+					<num>6.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -9216,12 +9216,12 @@
 			<components>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -9234,12 +9234,12 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>24</num>
+					<num>24.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 			</components>
@@ -9308,7 +9308,7 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>40</num>
+					<num>40.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 			</components>
@@ -9347,7 +9347,7 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -9356,7 +9356,7 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -9369,12 +9369,12 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>40</num>
+					<num>40.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>5</num>
+					<num>5.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 			</components>
@@ -9409,17 +9409,17 @@
 			<components>
 				<GenericComponent>
 					<!--Antenne-->
-					<num>2</num>
+					<num>2.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id9"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -9432,12 +9432,12 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>40</num>
+					<num>40.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>5</num>
+					<num>5.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -9480,7 +9480,7 @@
 			<components>
 				<GenericComponent>
 					<!--Antenne-->
-					<num>2</num>
+					<num>2.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id9"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -9489,12 +9489,12 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Sonnensensor 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id128"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Hardware-Stack 1-->
-					<num>3</num>
+					<num>3.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id53"/>
 				</GenericComponent>
 				<GenericComponent>
@@ -9507,12 +9507,12 @@
 				</GenericComponent>
 				<GenericComponent>
 					<!--Versorgungsleitungen-->
-					<num>40</num>
+					<num>40.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id152"/>
 				</GenericComponent>
 				<GenericComponent>
 					<!--Schnittstelle-->
-					<num>5</num>
+					<num>5.0</num>
 					<definition xlink:href="../Catalogs/catalog.xml#id115"/>
 				</GenericComponent>
 			</components>

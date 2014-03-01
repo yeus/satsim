@@ -13,7 +13,6 @@
 		<BuildingBlock VSD:id="id2">
 			<position unit="cm">0 0 0</position>
 			<orientation unit="rad">0 0 0</orientation>
-			<definition xlink:href="../Catalogs/bbcatalog.xml#id1"/>
 			<interfaces>
 				<Interface VSD:id="id3">
 					<faceId>0</faceId>
@@ -25,6 +24,7 @@
 				</Interface>
 			</interfaces>
 			<currentPowerConsumption unit="W">0.1</currentPowerConsumption>
+			<definition xlink:href="../Catalogs/bbcatalog.xml#id1"/>
 		</BuildingBlock>
 		<BuildingBlock>
 			<VSD:extensions>
@@ -35,7 +35,6 @@
 			</VSD:extensions>
 			<position unit="cm">0 50 0</position>
 			<orientation unit="rad">0 0 0</orientation>
-			<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
 			<interfaces>
 				<Interface VSD:id="id4">
 					<faceId>6</faceId>
@@ -46,6 +45,7 @@
 					<neighbor xlink:href="#id3"/>
 				</Interface>
 			</interfaces>
+			<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
 		</BuildingBlock>
 	</buildingBlocks>
 </Satellite>

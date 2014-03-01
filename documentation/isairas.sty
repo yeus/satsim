@@ -1,0 +1,66 @@
+%
+% Basic deifinitions of LaTeX template for i-SAIRAS 2014
+%
+
+\twocolumn
+\columnsep 8mm
+\textheight 230mm
+\textwidth 170mm
+\topmargin -2.5mm
+\oddsidemargin -5mm
+\evensidemargin -5mm
+\parindent 6mm
+
+\pagestyle{empty}
+
+\def\title#1{\gdef\@title{#1}}
+\def\subtitle#1{\gdef\@subtitle{#1}}
+\def\author#1{\gdef\@author{#1}}
+\def\affiliation#1{\gdef\@affiliation{#1}}
+
+\def\@maketitle{\newpage%
+  \null%
+  \begin{center} %
+       \vskip -10mm %
+    {\Large\bf \@title \par} %
+       \vskip 1.5mm %
+     {\large\bf \@subtitle \par} %
+       \vskip 5.0mm %
+     {\large \@author \par} %
+       \vskip 3.8mm %
+     {\large \@affiliation \par} %
+  \end{center} %
+   \par
+    \vskip 25pt}
+
+\def\section{\@startsection {section}{1}{\z@}{-3.5ex plus
+    -0.5ex minus -.2ex}{2.0ex plus 0.3ex minus .2ex}{\large\bf\raggedright}}
+\def\subsection{\@startsection{subsection}{2}{\z@}{-1.8ex plus
+    -0.5ex minus -.2ex}{0.8ex plus .2ex}{\fontsize{11pt}{12pt}\selectfont \bf\raggedright}}
+\def\subsubsection{\@startsection{subsubsection}{3}{\z@}{1.5ex plus
+   0.5ex minus .2ex}{0.5ex plus .2ex}{\fontsize{11pt}{12pt}\selectfont \bf\raggedright}}
+%\def\paragraph{\@startsection{paragraph}{4}{\z@}{1.5ex plus
+%   0.5ex minus .2ex}{-1em}{\normalsize\bf}}
+%\def\subparagraph{\@startsection{subparagraph}{5}{\parindent}{1.5ex plus
+%   0.5ex minus .2ex}{-1em}{\normalsize\bf}}
+
+\renewcommand{\abstractname}{\large\bf\centering Abstract}
+\renewcommand{\refname}{\fontsize{11pt}{12pt}\selectfont \bf References}
+%\renewcommand{\figurename}{\bf Figure}
+%\renewcommand{\tablename}{\bf Table}
+
+\def\fnum@figure{{\bf Figure\ \thefigure .\ }\hspace{0mm}}
+\def\fnum@table{{\bf Table\ \thetable .\ }\hspace{0mm}}
+
+\long\def\@makecaption#1#2{
+ \vskip 10pt 
+  \setbox\@tempboxa\hbox{\bf #1 #2}
+  \ifdim \wd\@tempboxa >\hsize 
+  \begin{list}{}{\labelwidth 0pt \leftmargin 1.5cm \itemindent -0.5cm
+                 \rightmargin 1cm }
+    \item[#1] #2
+  \end{list}
+  \else \hbox
+  to\hsize{\hfil\box\@tempboxa\hfil} 
+  \fi
+  }

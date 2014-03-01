@@ -13,7 +13,7 @@
 			<VSD:name>Testsatellit 1</VSD:name>
 			<orbit>LEO</orbit>
 			<buildingBlocks>
-				<BuildingBlockSystemGeneral VSD:id="id150">
+				<BuildingBlock VSD:id="id150">
 					<VSD:flags>Show</VSD:flags>
 					<position unit="cm">0.0 0.0 0.0</position>
 					<orientation unit="rad">0.0 0.0 0.0</orientation>
@@ -37,8 +37,8 @@
 					<currentPowerConsumption unit="W">0.1
 					</currentPowerConsumption>
 					<definition xlink:href="../Catalogs/bbcatalog.xml#id3"/>
-				</BuildingBlockSystemGeneral>
-				<BuildingBlockStructure VSD:id="id101">
+				</BuildingBlock>
+				<BuildingBlock VSD:id="id101">
 					<position unit="cm">0.0 50.0 0.0</position>
 					<orientation unit="rad">0.0 0.0 0.0</orientation>
 					<interfaces>
@@ -66,14 +66,14 @@
 						</Interface>
 					</interfaces>
 					<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
-				</BuildingBlockStructure>
+				</BuildingBlock>
 			</buildingBlocks>
 		</Satellite>
 		<Satellite VSD:id="id200">
 			<VSD:name>Testsatellit 2</VSD:name>
 			<orbit>LEO</orbit>
 			<buildingBlocks>
-				<BuildingBlockSystemGeneral VSD:id="id250">
+				<BuildingBlock VSD:id="id250">
 					<VSD:flags>Show</VSD:flags>
 					<position unit="cm">0.0 0.0 0.0</position>
 					<orientation unit="rad">0.0 0.0 0.0</orientation>
@@ -97,8 +97,8 @@
 					<currentPowerConsumption unit="W">0.1
 					</currentPowerConsumption>
 					<definition xlink:href="../Catalogs/bbcatalog.xml#id3"/>
-				</BuildingBlockSystemGeneral>
-				<BuildingBlockStructure VSD:id="id201">
+				</BuildingBlock>
+				<BuildingBlock VSD:id="id201">
 					<position unit="cm">0.0 50.0 0.0</position>
 					<orientation unit="rad">0.0 0.0 0.0</orientation>
 					<interfaces>
@@ -126,14 +126,14 @@
 						</Interface>
 					</interfaces>
 					<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
-				</BuildingBlockStructure>
+				</BuildingBlock>
 			</buildingBlocks>
 		</Satellite>
 		<Satellite VSD:id="id300">
 			<VSD:name>Testsatellit 3</VSD:name>
 			<orbit>LEO</orbit>
 			<buildingBlocks>
-				<BuildingBlockSystemGeneral VSD:id="id350">
+				<BuildingBlock VSD:id="id350">
 					<VSD:flags>Show</VSD:flags>
 					<position unit="cm">0.0 0.0 0.0</position>
 					<orientation unit="rad">0.0 0.0 0.0</orientation>
@@ -157,8 +157,8 @@
 					<currentPowerConsumption unit="W">0.1
 					</currentPowerConsumption>
 					<definition xlink:href="../Catalogs/bbcatalog.xml#id3"/>
-				</BuildingBlockSystemGeneral>
-				<BuildingBlockStructure VSD:id="id301">
+				</BuildingBlock>
+				<BuildingBlock VSD:id="id301">
 					<position unit="cm">0.0 50.0 0.0</position>
 					<orientation unit="rad">0.0 0.0 0.0</orientation>
 					<interfaces>
@@ -186,14 +186,14 @@
 						</Interface>
 					</interfaces>
 					<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
-				</BuildingBlockStructure>
+				</BuildingBlock>
 			</buildingBlocks>
 		</Satellite>
 		<Satellite VSD:id="id400">
 			<VSD:name>Testsatellit 4</VSD:name>
 			<orbit>LEO</orbit>
 			<buildingBlocks>
-				<BuildingBlockSystemGeneral VSD:id="id450">
+				<BuildingBlock VSD:id="id450">
 					<VSD:flags>Show</VSD:flags>
 					<position unit="cm">0.0 0.0 0.0</position>
 					<orientation unit="rad">0.0 0.0 0.0</orientation>
@@ -216,8 +216,8 @@
 					<currentPowerConsumption unit="W">0.1
 					</currentPowerConsumption>
 					<definition xlink:href="../Catalogs/bbcatalog.xml#id3"/>
-				</BuildingBlockSystemGeneral>
-				<BuildingBlockStructure VSD:id="id401">
+				</BuildingBlock>
+				<BuildingBlock VSD:id="id401">
 					<position unit="cm">0.0 50.0 0.0</position>
 					<orientation unit="rad">0.0 0.0 0.0</orientation>
 					<interfaces>
@@ -244,14 +244,14 @@
 						</Interface>
 					</interfaces>
 					<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
-				</BuildingBlockStructure>
+				</BuildingBlock>
 			</buildingBlocks>
 		</Satellite>
 		<Satellite VSD:id="id500">
 			<VSD:name>Testsatellit 5</VSD:name>
 			<orbit>LEO</orbit>
 			<buildingBlocks>
-				<BuildingBlockSystemGeneral VSD:id="id550">
+				<BuildingBlock VSD:id="id550">
 					<VSD:flags>Show</VSD:flags>
 					<position unit="cm">0.0 0.0 0.0</position>
 					<orientation unit="rad">0.0 0.0 0.0</orientation>
@@ -274,8 +274,8 @@
 					<currentPowerConsumption unit="W">0.1
 					</currentPowerConsumption>
 					<definition xlink:href="../Catalogs/bbcatalog.xml#id3"/>
-				</BuildingBlockSystemGeneral>
-				<BuildingBlockStructure VSD:id="id501">
+				</BuildingBlock>
+				<BuildingBlock VSD:id="id501">
 					<position unit="cm">0.0 50.0 0.0</position>
 					<orientation unit="rad">0.0 0.0 0.0</orientation>
 					<interfaces>
@@ -302,14 +302,14 @@
 						</Interface>
 					</interfaces>
 					<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
-				</BuildingBlockStructure>
+				</BuildingBlock>
 			</buildingBlocks>
 		</Satellite>
 		<Satellite VSD:id="id600">
 			<VSD:name>Testsatellit 6</VSD:name>
 			<orbit>LEO</orbit>
 			<buildingBlocks>
-				<BuildingBlockSystemGeneral VSD:id="id650">
+				<BuildingBlock VSD:id="id650">
 					<VSD:flags>Show</VSD:flags>
 					<position unit="cm">0.0 0.0 0.0</position>
 					<orientation unit="rad">0.0 0.0 0.0</orientation>
@@ -332,8 +332,8 @@
 					<currentPowerConsumption unit="W">0.1
 					</currentPowerConsumption>
 					<definition xlink:href="../Catalogs/bbcatalog.xml#id3"/>
-				</BuildingBlockSystemGeneral>
-				<BuildingBlockStructure VSD:id="id601">
+				</BuildingBlock>
+				<BuildingBlock VSD:id="id601">
 					<position unit="cm">0.0 -50.0 0.0</position>
 					<orientation unit="rad">0.0 0.0 0.0</orientation>
 					<interfaces>
@@ -360,14 +360,14 @@
 						</Interface>
 					</interfaces>
 					<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
-				</BuildingBlockStructure>
+				</BuildingBlock>
 			</buildingBlocks>
 		</Satellite>
 		<Satellite VSD:id="id700">
 			<VSD:name>Testsatellit 7</VSD:name>
 			<orbit>LEO</orbit>
 			<buildingBlocks>
-				<BuildingBlockSystemGeneral VSD:id="id750">
+				<BuildingBlock VSD:id="id750">
 					<VSD:flags>Show</VSD:flags>
 					<position unit="cm">0.0 0.0 0.0</position>
 					<orientation unit="rad">0.0 0.0 0.0</orientation>
@@ -391,8 +391,8 @@
 					<currentPowerConsumption unit="W">0.1
 					</currentPowerConsumption>
 					<definition xlink:href="../Catalogs/bbcatalog.xml#id3"/>
-				</BuildingBlockSystemGeneral>
-				<BuildingBlockStructure VSD:id="id701">
+				</BuildingBlock>
+				<BuildingBlock VSD:id="id701">
 					<position unit="cm">0.0 -50.0 0.0</position>
 					<orientation unit="rad">0.0 0.0 0.0</orientation>
 					<interfaces>
@@ -420,14 +420,14 @@
 						</Interface>
 					</interfaces>
 					<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
-				</BuildingBlockStructure>
+				</BuildingBlock>
 			</buildingBlocks>
 		</Satellite>
 		<Satellite VSD:id="id800">
 			<VSD:name>Testsatellit 8</VSD:name>
 			<orbit>LEO</orbit>
 			<buildingBlocks>
-				<BuildingBlockSystemGeneral VSD:id="id850">
+				<BuildingBlock VSD:id="id850">
 					<VSD:flags>Show</VSD:flags>
 					<position unit="cm">0.0 0.0 0.0</position>
 					<orientation unit="rad">0.0 0.0 0.0</orientation>
@@ -451,8 +451,8 @@
 					<currentPowerConsumption unit="W">0.1
 					</currentPowerConsumption>
 					<definition xlink:href="../Catalogs/bbcatalog.xml#id3"/>
-				</BuildingBlockSystemGeneral>
-				<BuildingBlockStructure VSD:id="id801">
+				</BuildingBlock>
+				<BuildingBlock VSD:id="id801">
 					<position unit="cm">0.0 -50.0 0.0</position>
 					<orientation unit="rad">0.0 0.0 0.0</orientation>
 					<interfaces>
@@ -480,14 +480,14 @@
 						</Interface>
 					</interfaces>
 					<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
-				</BuildingBlockStructure>
+				</BuildingBlock>
 			</buildingBlocks>
 		</Satellite>
 		<Satellite VSD:id="id900">
 			<VSD:name>Testsatellit 9</VSD:name>
 			<orbit>LEO</orbit>
 			<buildingBlocks>
-				<BuildingBlockSystemGeneral VSD:id="id950">
+				<BuildingBlock VSD:id="id950">
 					<VSD:flags>Show</VSD:flags>
 					<position unit="cm">0.0 0.0 0.0</position>
 					<orientation unit="rad">0.0 0.0 0.0</orientation>
@@ -511,8 +511,8 @@
 					<currentPowerConsumption unit="W">0.1
 					</currentPowerConsumption>
 					<definition xlink:href="../Catalogs/bbcatalog.xml#id3"/>
-				</BuildingBlockSystemGeneral>
-				<BuildingBlockStructure VSD:id="id901">
+				</BuildingBlock>
+				<BuildingBlock VSD:id="id901">
 					<position unit="cm">0.0 -50.0 0.0</position>
 					<orientation unit="rad">0.0 0.0 0.0</orientation>
 					<interfaces>
@@ -540,7 +540,7 @@
 						</Interface>
 					</interfaces>
 					<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
-				</BuildingBlockStructure>
+				</BuildingBlock>
 			</buildingBlocks>
 		</Satellite>
 	</satellites>
