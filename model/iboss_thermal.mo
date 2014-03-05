@@ -2098,9 +2098,6 @@ package buildingblocks "buildingblocks"
 				cooler_power(port(Q_flow(flags=2))),
 				lower_Temp(y(flags=2)),
 				upper_Temp(y(flags=2))),
-			viewinfo[0](
-				viewSettings(clrRaster=12632256),
-				typename="ModelInfo"),
 			Icon(graphics={
 						Rectangle(
 							lineColor={255,0,0},
@@ -2903,9 +2900,6 @@ An approppriate simulating time would be 10 seconds.
 				cooler_power(port(Q_flow(flags=2))),
 				lower_Temp(y(flags=2)),
 				upper_Temp(y(flags=2))),
-			viewinfo[0](
-				viewSettings(clrRaster=12632256),
-				typename="ModelInfo"),
 			Icon(graphics={
 						Rectangle(
 							lineColor={255,0,0},

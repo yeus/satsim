@@ -3,7 +3,7 @@ size_y = 3
 size_z = 3
 modelname = "generic_satellite_"+str(size_x)+"x"+str(size_y)+"x"+str(size_z)
 import_to_model = ["illumination.*"]
-parameter =["Strahlungsleistung_3x3x3_LEO_EnMap_NadirPointing orbit_illumination"]
+parameter =["illumination.LEO.Strahlungsleistung_3x3x3_LEO_EnMap_NadirPointing orbit_illumination"]
 BB=[]
 connection_element=[]
 conncet=[]
@@ -24,28 +24,16 @@ while i<=size_x:
                 l=l+1
             if i>1:
                 connection_element.append(" iboss_thermal.components.thermal_TIM TIM_BB"+str(i-1)+str(j)+str(k)+"_BB"+str(i)+str(j)+str(k)+";")
-                env.remove("    iboss_thermal.components.environment BB"+str(i-1)+str(j)+str(k)+"pX(illumination=orbit_illumination.BB"+str(i-1)+str(j)+str(k)+"pX);")
                 conncet.append("    connect(BB"+str(i-1)+str(j)+str(k)+".thermal_connector_xp,TIM_BB"+str(i-1)+str(j)+str(k)+"_BB"+str(i)+str(j)+str(k)+".thermal_connector2);")
                 conncet.append("    connect(BB"+str(i)+str(j)+str(k)+".thermal_connector_xn,TIM_BB"+str(i-1)+str(j)+str(k)+"_BB"+str(i)+str(j)+str(k)+".thermal_connector1);")
-                conncet.remove("    connect(BB"+str(i-1)+str(j)+str(k)+"pX.thermal_connector_env,BB"+str(i-1)+str(j)+str(k)+".thermal_connector_xp);")
-                conncet.remove("    connect(BB"+str(i)+str(j)+str(k)+"nX.thermal_connector_env,BB"+str(i)+str(j)+str(k)+".thermal_connector_xn);")
-                env.remove("    iboss_thermal.components.environment BB"+str(i)+str(j)+str(k)+"nX(illumination=orbit_illumination.BB"+str(i)+str(j)+str(k)+"nX);")
             if j>1:
                 connection_element.append(" iboss_thermal.components.thermal_TIM TIM_BB"+str(i)+str(j-1)+str(k)+"_BB"+str(i)+str(j)+str(k)+";")
-                env.remove("    iboss_thermal.components.environment BB"+str(i)+str(j-1)+str(k)+"pY(illumination=orbit_illumination.BB"+str(i)+str(j-1)+str(k)+"pY);")
                 conncet.append("    connect(BB"+str(i)+str(j-1)+str(k)+".thermal_connector_yp,TIM_BB"+str(i)+str(j-1)+str(k)+"_BB"+str(i)+str(j)+str(k)+".thermal_connector2);")
                 conncet.append("    connect(BB"+str(i)+str(j)+str(k)+".thermal_connector_yn,TIM_BB"+str(i)+str(j-1)+str(k)+"_BB"+str(i)+str(j)+str(k)+".thermal_connector1);")
-                conncet.remove("    connect(BB"+str(i)+str(j-1)+str(k)+"pY.thermal_connector_env,BB"+str(i)+str(j-1)+str(k)+".thermal_connector_yp);")
-                conncet.remove("    connect(BB"+str(i)+str(j)+str(k)+"nY.thermal_connector_env,BB"+str(i)+str(j)+str(k)+".thermal_connector_yn);")
-                env.remove("    iboss_thermal.components.environment BB"+str(i)+str(j)+str(k)+"nY(illumination=orbit_illumination.BB"+str(i)+str(j)+str(k)+"nY);")
             if k>1:
                 connection_element.append(" iboss_thermal.components.thermal_TIM TIM_BB"+str(i)+str(j)+str(k-1)+"_BB"+str(i)+str(j)+str(k)+";")
-                env.remove("    iboss_thermal.components.environment BB"+str(i)+str(j)+str(k-1)+"pZ(illumination=orbit_illumination.BB"+str(i)+str(j)+str(k-1)+"pZ);")
                 conncet.append("    connect(BB"+str(i)+str(j)+str(k-1)+".thermal_connector_zp,TIM_BB"+str(i)+str(j)+str(k-1)+"_BB"+str(i)+str(j)+str(k)+".thermal_connector2);")
                 conncet.append("    connect(BB"+str(i)+str(j)+str(k)+".thermal_connector_zn,TIM_BB"+str(i)+str(j)+str(k-1)+"_BB"+str(i)+str(j)+str(k)+".thermal_connector1);")
-                conncet.remove("    connect(BB"+str(i)+str(j)+str(k-1)+"pZ.thermal_connector_env,BB"+str(i)+str(j)+str(k-1)+".thermal_connector_zp);")
-                conncet.remove("    connect(BB"+str(i)+str(j)+str(k)+"nZ.thermal_connector_env,BB"+str(i)+str(j)+str(k)+".thermal_connector_zn);")
-                env.remove("    iboss_thermal.components.environment BB"+str(i)+str(j)+str(k)+"nZ(illumination=orbit_illumination.BB"+str(i)+str(j)+str(k)+"nZ);")
             k=k+1
         j=j+1
     i=i+1
