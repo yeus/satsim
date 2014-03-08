@@ -11,15 +11,16 @@ BBx = 3
 BBy = 3
 BBz = 3
 component_Box=["port_b"]
-component_TIM=["Conductance_TIM_TSS"]
+component_TIM=["Conductance_"]
 component_Panel=["thermal_connector_"]
 component_Radiation=["timeTable1"]
 component_heater_cooler=["tCS1"]
 physical_quantity = ["T","dT","Q_flow","y","heater_on","cooler_on"]
 fig, el_Box_T = plt.subplots()
 fig, el_Box_qflow = plt.subplots()
-fig, TIM_qflow = plt.subplots()
-fig, TIM_dT = plt.subplots()
+fig, TIM_TSS_qflow = plt.subplots()
+fig, TIM_all_qflow = plt.subplots()
+fig, TIM_TSS_dT = plt.subplots()
 fig, Panel_T = plt.subplots()
 fig, Radiation_qflow = plt.subplots()
 fig, heater_on = plt.subplots()
@@ -45,14 +46,17 @@ while i<=BBx:
             i_c=1
             while i_c<=len(component_TIM):
                 if i>1:
-                    TIM_qflow.plot(a['time'],a["TIM_BB"+str(i-1)+str(j)+str(k)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+str(physical_quantity[2])],label="TIM-BB"+str(i-1)+str(j)+str(k)+"-BB"+str(i)+str(j)+str(k))
-                    TIM_dT.plot(a['time'],a["TIM_BB"+str(i-1)+str(j)+str(k)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+str(physical_quantity[1])],label="TIM-BB"+str(i-1)+str(j)+str(k)+"-BB"+str(i)+str(j)+str(k))
+                    TIM_TSS_qflow.plot(a['time'],a["TIM_BB"+str(i-1)+str(j)+str(k)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+"TIM_TSS"+str(physical_quantity[2])],label="TIM_BB"+str(i-1)+str(j)+str(k)+"_BB"+str(i)+str(j)+str(k))
+                    TIM_TSS_dT.plot(a['time'],a["TIM_BB"+str(i-1)+str(j)+str(k)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+"TIM_TSS"+str(physical_quantity[1])],label="TIM_BB"+str(i-1)+str(j)+str(k)+"_BB"+str(i)+str(j)+str(k))
+                    TIM_all_qflow.plot(a['time'],np.array(a["TIM_BB"+str(i-1)+str(j)+str(k)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+"TIM_TSS"+str(physical_quantity[2])])+np.array(a["TIM_BB"+str(i-1)+str(j)+str(k)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+"MSS"+str(physical_quantity[2])])+np.array(a["TIM_BB"+str(i-1)+str(j)+str(k)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+"ESS"+str(physical_quantity[2])])+np.array(a["TIM_BB"+str(i-1)+str(j)+str(k)+"_BB"+str(i)+str(j)+str(k)+"Radiator"+str(physical_quantity[2])]),label="TIM_BB"+str(i-1)+str(j)+str(k)+"_BB"+str(i)+str(j)+str(k))
                 if j>1:
-                    TIM_qflow.plot(a['time'],a["TIM_BB"+str(i)+str(j-1)+str(k)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+str(physical_quantity[2])],label="TIM-BB"+str(i-1)+str(j)+str(k)+"-BB"+str(i)+str(j)+str(k))
-                    TIM_dT.plot(a['time'],a["TIM_BB"+str(i)+str(j-1)+str(k)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+str(physical_quantity[1])],label="TIM-BB"+str(i-1)+str(j)+str(k)+"-BB"+str(i)+str(j)+str(k))
+                    TIM_TSS_qflow.plot(a['time'],a["TIM_BB"+str(i)+str(j-1)+str(k)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+"TIM_TSS"+str(physical_quantity[2])],label="TIM_BB"+str(i)+str(j-1)+str(k)+"_BB"+str(i)+str(j)+str(k))
+                    TIM_TSS_dT.plot(a['time'],a["TIM_BB"+str(i)+str(j-1)+str(k)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+"TIM_TSS"+str(physical_quantity[1])],label="TIM_BB"+str(i)+str(j-1)+str(k)+"_BB"+str(i)+str(j)+str(k))
+                    TIM_all_qflow.plot(a['time'],np.array(a["TIM_BB"+str(i)+str(j-1)+str(k)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+"TIM_TSS"+str(physical_quantity[2])])+np.array(a["TIM_BB"+str(i)+str(j-1)+str(k)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+"MSS"+str(physical_quantity[2])])+np.array(a["TIM_BB"+str(i)+str(j-1)+str(k)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+"ESS"+str(physical_quantity[2])])+np.array(a["TIM_BB"+str(i)+str(j-1)+str(k)+"_BB"+str(i)+str(j)+str(k)+"Radiator"+str(physical_quantity[2])]),label="TIM_BB"+str(i)+str(j-1)+str(k)+"_BB"+str(i)+str(j)+str(k))
                 if k>1:
-                    TIM_qflow.plot(a['time'],a["TIM_BB"+str(i)+str(j)+str(k-1)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+str(physical_quantity[2])],label="TIM-BB"+str(i-1)+str(j)+str(k)+"-BB"+str(i)+str(j)+str(k))
-                    TIM_dT.plot(a['time'],a["TIM_BB"+str(i)+str(j)+str(k-1)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+str(physical_quantity[1])],label="TIM-BB"+str(i-1)+str(j)+str(k)+"-BB"+str(i)+str(j)+str(k))
+                    TIM_TSS_qflow.plot(a['time'],a["TIM_BB"+str(i)+str(j)+str(k-1)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+"TIM_TSS"+str(physical_quantity[2])],label="TIM_BB"+str(i)+str(j)+str(k-1)+"_BB"+str(i)+str(j)+str(k))
+                    TIM_TSS_dT.plot(a['time'],a["TIM_BB"+str(i)+str(j)+str(k-1)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+"TIM_TSS"+str(physical_quantity[1])],label="TIM_BB"+str(i)+str(j)+str(k-1)+"_BB"+str(i)+str(j)+str(k))
+                    TIM_all_qflow.plot(a['time'],np.array(a["TIM_BB"+str(i)+str(j)+str(k-1)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+"TIM_TSS"+str(physical_quantity[2])])+np.array(a["TIM_BB"+str(i)+str(j)+str(k-1)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+"MSS"+str(physical_quantity[2])])+np.array(a["TIM_BB"+str(i)+str(j)+str(k-1)+"_BB"+str(i)+str(j)+str(k)+str(component_TIM[i_c-1])+"ESS"+str(physical_quantity[2])])+np.array(a["TIM_BB"+str(i)+str(j)+str(k-1)+"_BB"+str(i)+str(j)+str(k)+"Radiator"+str(physical_quantity[2])]),label="TIM_BB"+str(i)+str(j)+str(k-1)+"_BB"+str(i)+str(j)+str(k))
                 i_c=i_c+1
             i_c=1
             while i_c<=len(component_Panel):
@@ -93,8 +97,9 @@ while i<=BBx:
 #ax.plot(a['t'],summe)
 legend = el_Box_T.legend(loc='upper right', shadow=True)
 legend = el_Box_qflow.legend(loc='upper right', shadow=True)
-legend = TIM_qflow.legend(loc='upper right', shadow=True)
-legend = TIM_dT.legend(loc='upper right', shadow=True)
+legend = TIM_TSS_qflow.legend(loc='upper right', shadow=True)
+legend = TIM_all_qflow.legend(loc='upper right', shadow=True)
+legend = TIM_TSS_dT.legend(loc='upper right', shadow=True)
 legend = Panel_T.legend(loc='upper right', shadow=True)
 legend = Radiation_qflow.legend(loc='upper right', shadow=True)
 legend = heater_on.legend(loc='upper right', shadow=True)
