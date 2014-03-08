@@ -14,13 +14,16 @@ component_Box=["port_b"]
 component_TIM=["Conductance_TIM_TSS"]
 component_Panel=["thermal_connector_"]
 component_Radiation=["timeTable1"]
-physical_quantity = ["T","dT","Q_flow","y"]
+component_heater_cooler=["tCS1"]
+physical_quantity = ["T","dT","Q_flow","y","heater_on","cooler_on"]
 fig, el_Box_T = plt.subplots()
 fig, el_Box_qflow = plt.subplots()
 fig, TIM_qflow = plt.subplots()
 fig, TIM_dT = plt.subplots()
 fig, Panel_T = plt.subplots()
 fig, Radiation_qflow = plt.subplots()
+fig, heater_on = plt.subplots()
+fig, cooler_on = plt.subplots()
 a = np.genfromtxt('D:\sim_resutlts_thermal\sat_3x3x3\omnidirectional_radiation\generic_satellite_3x3x3_sun_res.csv', delimiter=',',names=True)
 i=1
 while i<=BBx:
@@ -33,6 +36,11 @@ while i<=BBx:
             while i_c<=len(component_Box):
                 el_Box_T.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+str(component_Box[i_c-1])+str(physical_quantity[0])],label="BB"+str(i)+str(j)+str(k))
                 el_Box_qflow.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+str(component_Box[i_c-1])+str(physical_quantity[2])],label="BB"+str(i)+str(j)+str(k))
+                i_c=i_c+1
+            i_c=1
+            while i_c<=len(component_heater_cooler):
+                heater_on.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+str(component_heater_cooler[i_c-1])+str(physical_quantity[4])],label="BB"+str(i)+str(j)+str(k))
+                cooler_on.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+str(component_heater_cooler[i_c-1])+str(physical_quantity[5])],label="BB"+str(i)+str(j)+str(k))
                 i_c=i_c+1
             i_c=1
             while i_c<=len(component_TIM):
@@ -89,6 +97,8 @@ legend = TIM_qflow.legend(loc='upper right', shadow=True)
 legend = TIM_dT.legend(loc='upper right', shadow=True)
 legend = Panel_T.legend(loc='upper right', shadow=True)
 legend = Radiation_qflow.legend(loc='upper right', shadow=True)
+legend = heater_on.legend(loc='upper right', shadow=True)
+legend = cooler_on.legend(loc='upper right', shadow=True)
 #ax2.plot(a['t'],a['BB121port_bT'],'r',label='BB121port_bT')
 #ax2.plot(a['t'],a['BB122port_bT'],'b',label='BB122port_bT')
 #legend = ax2.legend(loc='upper right', shadow=True)
