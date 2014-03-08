@@ -4,12 +4,12 @@ Created on Thu Mar  6 13:30:08 2014
 
 @author: jens
 """
-
+print("grap a coffee")
 import numpy as np
 import matplotlib.pyplot as plt
-BBx = 1
-BBy = 1
-BBz = 2
+BBx = 3
+BBy = 3
+BBz = 3
 component_Box=["port_b"]
 component_TIM=["Conductance_TIM_TSS"]
 component_Panel=["thermal_connector_"]
@@ -21,7 +21,7 @@ fig, TIM_qflow = plt.subplots()
 fig, TIM_dT = plt.subplots()
 fig, Panel_T = plt.subplots()
 fig, Radiation_qflow = plt.subplots()
-a = np.genfromtxt('/media/Data/sim_results/3x3x3/omnidirectional_radiation/generic_satellite_3x3x3_sun_res.csv', delimiter=',',names=True)
+a = np.genfromtxt('D:\sim_resutlts_thermal\sat_3x3x3\omnidirectional_radiation\generic_satellite_3x3x3_sun_res.csv', delimiter=',',names=True)
 i=1
 while i<=BBx:
     j=1
@@ -29,6 +29,7 @@ while i<=BBx:
         k=1
         while k<=BBz:
             i_c=1
+            print("BB"+str(i)+str(j)+str(k))
             while i_c<=len(component_Box):
                 el_Box_T.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+str(component_Box[i_c-1])+str(physical_quantity[0])],label="BB"+str(i)+str(j)+str(k))
                 el_Box_qflow.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+str(component_Box[i_c-1])+str(physical_quantity[2])],label="BB"+str(i)+str(j)+str(k))
@@ -91,4 +92,5 @@ legend = Radiation_qflow.legend(loc='upper right', shadow=True)
 #ax2.plot(a['t'],a['BB121port_bT'],'r',label='BB121port_bT')
 #ax2.plot(a['t'],a['BB122port_bT'],'b',label='BB122port_bT')
 #legend = ax2.legend(loc='upper right', shadow=True)
-#plt.show()
+plt.show()
+print("feddisch")
