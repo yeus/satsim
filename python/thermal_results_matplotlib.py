@@ -25,7 +25,7 @@ fig, Panel_T = plt.subplots()
 fig, Radiation_qflow = plt.subplots()
 fig, heater_on = plt.subplots()
 fig, cooler_on = plt.subplots()
-a = np.genfromtxt('D:\sim_resutlts_thermal\sat_3x3x3\omnidirectional_radiation\generic_satellite_3x3x3_sun_res.csv', delimiter=',',names=True)
+a = np.genfromtxt('D:\sim_resutlts_thermal\sat_3x3x3\omnidirectional_radiation\generic_satellite_3x3x3_sun_res_1000sec_euler.csv', delimiter=',',names=True)
 i=1
 while i<=BBx:
     j=1
