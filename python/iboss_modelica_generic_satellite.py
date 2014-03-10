@@ -1,5 +1,5 @@
-size_x = 1
-size_y = 1
+size_x = 2
+size_y = 2
 size_z = 2
 modelname = "generic_satellite_"+str(size_x)+"x"+str(size_y)+"x"+str(size_z)
 import_to_model = ["illumination.*"]
