@@ -1,6 +1,6 @@
-size_x = 2
-size_y = 2
-size_z = 2
+size_x = 3
+size_y = 3
+size_z = 3
 modelname = "generic_satellite_"+str(size_x)+"x"+str(size_y)+"x"+str(size_z)
 import_to_model = ["illumination.*"]
 parameter =["illumination.LEO.Strahlungsleistung_3x3x3_LEO_EnMap_NadirPointing orbit_illumination"]
