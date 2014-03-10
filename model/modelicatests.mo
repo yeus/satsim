@@ -279,19 +279,45 @@ package modelicatests
     model signalbustest
       modcom modcom1 annotation(Placement(transformation(extent = {{-70,20},{-50,40}})));
       modcom modcom2 annotation(Placement(transformation(extent = {{20,20},{40,40}})));
-      Modelica.Blocks.Sources.Pulse pulse1 annotation(Placement(transformation(origin = {-110,75}, extent = {{-10,-10},{10,10}})));
-      Modelica.Blocks.Sources.Sine sine1(amplitude = 2.0, freqHz = 0.1) annotation(Placement(transformation(origin = {-110,-5}, extent = {{-10,-10},{10,10}})));
-      Modelica.Blocks.Sources.IntegerConstant integerconstant1 annotation(Placement(transformation(origin = {-110,35}, extent = {{-10,-10},{10,10}})));
-      Modelica.Blocks.Math.Tanh tanh1 annotation(Placement(transformation(origin = {115,70}, extent = {{-10,-10},{10,10}})));
       Modelica.Blocks.Math.Cos cos1 annotation(Placement(transformation(origin = {115,-5}, extent = {{-10,-10},{10,10}})));
-      Modelica.Blocks.Interaction.Show.RealValue realValue1 annotation(Placement(transformation(extent = {{70,35},{90,55}})));
-      Modelica.Blocks.Sources.Sine sine2(amplitude = 2.0, freqHz = 0.1) annotation(Placement(transformation(origin = {-85,-30}, extent = {{-10,-10},{10,10}})));
+      modelicatests.bus_simulation.modcom modcom3 annotation(Placement(visible = true, transformation(origin = {-20,-20}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {-20,-20}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      modelicatests.bus_simulation.modcom modcom4 annotation(Placement(visible = true, transformation(origin = {20,-40}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {20,-40}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Blocks.Sources.Sine sine2(amplitude = 2.0, freqHz = 0.1) annotation(Placement(visible = true, transformation(origin = {-80,0}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Blocks.Sources.Sine sine1(amplitude = 2.0, freqHz = 0.1) annotation(Placement(visible = true, transformation(origin = {-20,-80}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Blocks.Math.Gain gain1 annotation(Placement(visible = true, transformation(origin = {-20,60}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     equation
-      connect(pulse1.y,modcom1.pulse) annotation(Line(points = {{-99,75},{-94,75},{-65,75},{-65,30},{-60,30}}, color = {0,0,127}, thickness = 0.0625));
-      connect(integerconstant1.y,modcom1.int) annotation(Line(points = {{-99,35},{-94,35},{-65,35},{-65,30},{-60,30}}, color = {255,127,0}, thickness = 0.0625));
-      connect(tanh1.u,modcom2.pulse) annotation(Line(points = {{103,70},{98,70},{35,70},{35,30},{30,30}}, color = {0,0,127}, thickness = 0.0625));
-      annotation(sine1(y(flags = 2)), tanh1(y(flags = 2)), realValue1(showNumber(flags = 2)), sine2(y(flags = 2)), experiment(StopTime = 100, StartTime = 0));
+      connect(modcom1.s2,gain1.u) annotation(Line(points = {{-60,30},{-33.0275,30},{-33.0275,60.0917},{-33.0275,60.0917}}));
+      connect(sine1.y,modcom4.s2) annotation(Line(points = {{-9,-80},{19.2661,-80},{19.2661,-41.7431},{19.2661,-41.7431}}));
+      connect(sine2.y,modcom1.s1) annotation(Line(points = {{-69,0},{-56.8807,0},{-56.8807,26.1468},{-56.8807,26.1468}}));
+      connect(modcom4,modcom2) annotation(Line(points = {{20,-40},{27.9817,-40},{27.9817,24.3119},{27.9817,24.3119}}));
+      connect(modcom3,modcom4) annotation(Line(points = {{-20,-20},{17.8899,-20},{17.8899,-40.367},{17.8899,-40.367}}));
+      connect(modcom3,modcom1) annotation(Line(points = {{-20,-20},{-51.8349,-20},{-51.8349,29.8165},{-51.8349,29.8165}}));
+      connect(modcom2.s1,cos1.u) annotation(Line(points = {{30,30},{65.5963,30},{65.5963,-4.58716},{101.835,-4.58716},{101.835,-4.58716}}));
+      annotation(sine1(y(flags = 2)), tanh1(y(flags = 2)), realValue1(showNumber(flags = 2)), sine2(y(flags = 2)), experiment(StartTime = 0, StopTime = 100, Tolerance = 0.0001, Interval = 0.2));
     end signalbustest;
+    model signalbusarraytest
+      modcom modcom1 annotation(Placement(transformation(extent = {{-70,20},{-50,40}})));
+      modcom modcom2 annotation(Placement(transformation(extent = {{20,20},{40,40}})));
+      Modelica.Blocks.Math.Cos cos1 annotation(Placement(transformation(origin = {115,-5}, extent = {{-10,-10},{10,10}})));
+      modelicatests.bus_simulation.modcom modcom3 annotation(Placement(visible = true, transformation(origin = {-20,-20}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {-20,-20}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      modelicatests.bus_simulation.modcom modcom4 annotation(Placement(visible = true, transformation(origin = {20,-40}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {20,-40}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Blocks.Sources.Sine sine2(amplitude = 4.0, freqHz = 0.1) annotation(Placement(visible = true, transformation(origin = {-80,0}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Blocks.Sources.Sine sine1(amplitude = 2.0, freqHz = 0.1) annotation(Placement(visible = true, transformation(origin = {-20,-80}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Modelica.Blocks.Math.Gain gain1 annotation(Placement(visible = true, transformation(origin = {-20,60}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      Real a1[10](start = {0,0,0,0,0,0,0,0,0,0});
+      Real a2[10];
+    equation
+      connect(cos1.u,a2[1]) annotation(Line(points = {{103,-5},{42.6606,-5},{42.6606,-39.9083},{22.9358,-39.9083},{22.9358,-39.9083}}));
+      connect(modcom1.a,a1);
+      connect(modcom4.a,a2);
+      connect(a2[0],gain1.u) annotation(Line(points = {{-60,30},{-32.5688,30},{-32.5688,60.5505},{-32.5688,60.5505}}));
+      connect(sine1.y,a1[0]) annotation(Line(points = {{-9,-80},{19.2661,-80},{19.2661,-41.7431},{19.2661,-41.7431}}));
+      connect(sine2.y,a1[1]) annotation(Line(points = {{-69,0},{-56.8807,0},{-56.8807,26.1468},{-56.8807,26.1468}}));
+      connect(modcom4,modcom2) annotation(Line(points = {{20,-40},{27.9817,-40},{27.9817,24.3119},{27.9817,24.3119}}));
+      connect(modcom3,modcom4) annotation(Line(points = {{-20,-20},{17.8899,-20},{17.8899,-40.367},{17.8899,-40.367}}));
+      connect(modcom3,modcom1) annotation(Line(points = {{-20,-20},{-51.8349,-20},{-51.8349,29.8165},{-51.8349,29.8165}}));
+      annotation(sine1(y(flags = 2)), tanh1(y(flags = 2)), realValue1(showNumber(flags = 2)), sine2(y(flags = 2)), experiment(StartTime = 0, StopTime = 100, Tolerance = 0.0001, Interval = 0.2));
+    end signalbusarraytest;
   end bus_simulation;
   package openmodelica_cpp
     model coding_interface
