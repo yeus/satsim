@@ -60,8 +60,8 @@ package iboss
       Modelica.Electrical.Analog.Interfaces.NegativePin GND annotation(Placement(visible = true, transformation(origin = {61.9524,-60.6435}, extent = {{-28.2954,-28.2954},{28.2954,28.2954}}, rotation = 0)));
       annotation(defaultComponentName = "iBoss_connector", Diagram(graphics = {Text(rotation = 0, lineColor = {0,0,0}, fillColor = {0,0,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-102.764,-102.343},{97.23560000000001,-162.343}}, textString = "%name"),Rectangle(rotation = 0, lineColor = {0,0,0}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.CrossDiag, lineThickness = 1, extent = {{-14.1125,15.3798},{12.5283,-10.6274}})}), Icon(graphics = {Rectangle(rotation = 0, lineColor = {0,0,0}, fillColor = {0,0,0}, pattern = LinePattern.Solid, fillPattern = FillPattern.CrossDiag, lineThickness = 1, extent = {{-100,100},{100,-100}})}));
     end iboss_connector;
-    connector iboss_int "general iboss interface"
-      satcomponents.AOCS.ctrl.ACS_bus acs_bus;
+    expandable connector iboss_int "general iboss interface"
+      satcomponents.AOCS.ctrl.sat_bus sat_bus;
       annotation(defaultComponentName = "iBoss_connector", Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2}), graphics = {Rectangle(origin = {0.22,0}, fillColor = {255,220,168}, fillPattern = FillPattern.Solid, lineThickness = 1, extent = {{-100,100},{100,-100}})}), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2}), graphics = {Text(fillPattern = FillPattern.Solid, extent = {{-102.764,-102.343},{97.23560000000001,-162.343}}, textString = "%name"),Rectangle(origin = {-1.11,1.88}, fillColor = {255,220,168}, fillPattern = FillPattern.Solid, extent = {{-91.81,87.72},{91.81,-87.72}})}));
     end iboss_int;
     connector iboss_int_mech
@@ -287,18 +287,26 @@ package iboss
     model basic
       extends icons.basic;
       extends basic_structure;
+      outer Modelica.Mechanics.MultiBody.World world;
+      parameter Integer id "TODO: automatisch id zuweisen (über \"outer\" parameter)";
       iboss.components.iboss_int Zp annotation(Placement(visible = true, transformation(origin = {-60,60}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {-60,60}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       iboss.components.iboss_int Zn annotation(Placement(visible = true, transformation(origin = {60,-60}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {60,-60}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       iboss.components.iboss_int Xn annotation(Placement(visible = true, transformation(origin = {-80,0}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {-80,0}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       iboss.components.iboss_int Xp annotation(Placement(visible = true, transformation(origin = {80,0}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {80,0}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       iboss.components.iboss_int Yp annotation(Placement(visible = true, transformation(origin = {0,80}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {0,80}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       iboss.components.iboss_int Yn annotation(Placement(visible = true, transformation(origin = {0,-80}, extent = {{-10,-10},{10,10}}, rotation = 0), iconTransformation(origin = {0,-80}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      satcomponents.AOCS.Parts.IMU imu(id = id) annotation(Placement(visible = true, transformation(origin = {0,-40}, extent = {{-15,-15},{15,15}}, rotation = 0)));
+      satcomponents.AOCS.ctrl.sat_bus sat_bus annotation(Placement(visible = true, transformation(origin = {20,20}, extent = {{-10,-10},{10,10}}, rotation = 0)));
     equation
-      connect(Zn,Yn) annotation(Line(points = {{60,-60},{59.7544,-60},{59.7544,-86.7667},{-1.63711,-86.7667},{-1.63711,-86.7667}}));
-      connect(Xp,Zn) annotation(Line(points = {{80,0},{88.9495,0},{88.9495,-66.5757},{58.3902,-66.5757},{58.3902,-66.5757}}));
-      connect(Yp,Xp) annotation(Line(points = {{0,80},{3.81992,80},{3.81992,87.5853},{85.4025,87.5853},{85.4025,-2.18281},{85.4025,-2.18281}}));
-      connect(Zp,Yp) annotation(Line(points = {{-60,60},{-60.3001,60},{-60.3001,75.8527},{-7.36698,75.8527},{-7.36698,75.8527}}));
-      connect(Xn,Zp) annotation(Line(points = {{-80,0},{-91.40519999999999,0},{-91.40519999999999,57.0259},{-68.7585,57.0259},{-68.7585,57.0259}}));
+      connect(imu.acs_bus,sat_bus.acs_bus) annotation(Line(points = {{15,-40},{21.1009,-40},{21.1009,20.1835},{21.1009,20.1835}}));
+      connect(imu.frame_a,rYn.frame_a) annotation(Line(points = {{-15,-40},{-20.3343,-40},{-20.3343,-50.1393},{-20.3343,-50.1393}}));
+      connect(Xp.sat_bus,sat_bus);
+      connect(Xn.sat_bus,sat_bus);
+      connect(Yp.sat_bus,sat_bus);
+      connect(Yn.sat_bus,sat_bus);
+      connect(Zp.sat_bus,sat_bus);
+      connect(Zn.sat_bus,sat_bus);
+      annotation(experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-06, Interval = 0.2));
     end basic;
     package icons
       model basic
@@ -570,11 +578,11 @@ package iboss
       Modelica.Mechanics.MultiBody.Joints.FreeMotion r(w_rel_a_start = {0.1,0.5,0.0}, r_rel_a(start = {0.0,0.0,0.0}), v_rel_a(start = {0.0,0.0,0.0}));
       iboss.buildingblocks.basic_structure bs[size_x];
     equation
-      connect(bs[2].Yp,r.frame_b);
+      connect(bs[0].Yps,r.frame_b);
       connect(world.frame_b,r.frame_a);
       //connect other buildingblocks
       for i in 1:size_x - 1 loop
-      connect(bs[i].Xp,bs[i + 1].Xn);
+      connect(bs[i].Xps,bs[i + 1].Xns);
 
       end for;
       /*for i in 1:size_x - 1, j in 1:size_y, k in 1:size_z loop
@@ -595,24 +603,18 @@ package iboss
       annotation(experiment(StartTime = 0.0, StopTime = 100.0, Tolerance = 1e-06));
     end generic_sat_aocs;
     model ass3x1x1
-      iboss.buildingblocks.basic bb2 annotation(Placement(visible = true, transformation(origin = {40,20}, extent = {{-27.5,-27.5},{27.5,27.5}}, rotation = 0)));
-      iboss.buildingblocks.basic bb3 annotation(Placement(visible = true, transformation(origin = {40,-40}, extent = {{-27.5,-27.5},{27.5,27.5}}, rotation = 0)));
-      iboss.buildingblocks.basic bb4 annotation(Placement(visible = true, transformation(origin = {-40,-40}, extent = {{-27.5,-27.5},{27.5,27.5}}, rotation = 0)));
+      iboss.buildingblocks.basic bb2(id = 2) annotation(Placement(visible = true, transformation(origin = {40,20}, extent = {{-27.5,-27.5},{27.5,27.5}}, rotation = 0)));
       Modelica.Mechanics.MultiBody.Joints.FreeMotion r(w_rel_a_start = {0.1,0.5,0.0}, r_rel_a(start = {0.0,0.0,0.0}), v_rel_a(start = {0.0,0.0,0.0})) annotation(Placement(visible = true, transformation(origin = {20,80}, extent = {{-10,-10},{10,10}}, rotation = 0)));
       inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(visible = true, transformation(origin = {-20,80}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      satcomponents.AOCS.ctrl.ACS acs1 annotation(Placement(visible = true, transformation(origin = {-80,60}, extent = {{-10,-10},{10,10}}, rotation = 0)));
-      iboss.buildingblocks.basic bb1 annotation(Placement(visible = true, transformation(origin = {-40,20}, extent = {{-25,-25},{25,25}}, rotation = 0)));
+      satcomponents.AOCS.ctrl.ACS acs1 annotation(Placement(visible = true, transformation(origin = {20,60}, extent = {{-10,-10},{10,10}}, rotation = 0)));
+      iboss.buildingblocks.basic bb1(id = 1) annotation(Placement(visible = true, transformation(origin = {-42.5,17.5}, extent = {{-22.5,-22.5},{22.5,22.5}}, rotation = 0)));
     equation
-      connect(bb4.Yp,bb1.Yn) annotation(Line(points = {{-40,-18},{-39.8329,-18},{-39.8329,0},{-39.8329,0}}));
-      connect(bb2.Yn,bb3.Yp) annotation(Line(points = {{40,-2},{40.1114,-2},{40.1114,-19.2201},{40.1114,-19.2201}}));
-      connect(bb1.Xp,bb2.Xn) annotation(Line(points = {{-20,20},{17.5487,20},{17.5487,19.7772},{17.5487,19.7772}}));
-      connect(bb2.Yns,bb3.Yps) annotation(Line(points = {{34.5,-2},{34.5404,-2},{34.5404,-9.470750000000001},{45.961,-9.470750000000001},{45.961,-17.5487},{45.961,-17.5487}}));
-      connect(bb1.Yns,bb4.Yps) annotation(Line(points = {{-45,0},{-45.961,0},{-45.961,-7.79944},{-33.9833,-7.79944},{-33.9833,-17.5487},{-33.9833,-17.5487}}));
-      connect(bb2.Xns,bb1.Xps) annotation(Line(points = {{18,25.5},{-1.39276,25.5},{-1.39276,15.5989},{-19.4986,15.5989},{-19.4986,15.5989}}));
-      connect(acs1.acs_bus,bb1.Yp.acs_bus) annotation(Line(points = {{-70,60},{-40.39,60},{-40.39,41.7827},{-40.39,41.7827}}));
+      connect(bb2.Xns,bb1.Xps) annotation(Line(points = {{18,25.5},{-6.88073,25.5},{-6.88073,13.3028},{-23.3945,13.3028},{-23.3945,13.3028}}));
+      connect(bb1.Xp,bb2.Xn) annotation(Line(points = {{-24.5,17.5},{16.9725,17.5},{16.9725,20.6422},{16.9725,20.6422}}));
+      connect(acs1.acs_bus,bb2.Yp.sat_bus.acs_bus) annotation(Line(points = {{30,60},{40.8257,60},{40.8257,44.0367},{40.8257,44.0367}}));
       connect(r.frame_b,bb2.Yps) annotation(Line(points = {{30,80},{46.5181,80},{46.5181,41.5042},{46.5181,41.5042}}));
       connect(world.frame_b,r.frame_a) annotation(Line(points = {{-10,80},{9.822649999999999,80},{9.822649999999999,80.4911},{9.822649999999999,80.4911}}));
-      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})));
+      annotation(Icon(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), Diagram(coordinateSystem(extent = {{-100,-100},{100,100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2,2})), experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-06, Interval = 0.2));
     end ass3x1x1;
   end satellites;
   package ControlBlocks "Controlblocks for iBoss-Components"
