@@ -25,7 +25,7 @@ fig, Panel_T = plt.subplots()
 fig, Radiation_qflow = plt.subplots()
 fig, heater_on = plt.subplots()
 fig, cooler_on = plt.subplots()
-a = np.genfromtxt('C:\Users\iBOSS-Team\AppData\Local\Temp\OpenModelica\generic_satellite_1x1x2_res.csv', delimiter=',',names=True)
+a = np.genfromtxt('E:\generic_satellite_1x1x2_res.csv', delimiter=',',names=True)
 i=1
 while i<=BBx:
     j=1
