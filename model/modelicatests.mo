@@ -643,15 +643,15 @@ package modelicatests
 		expandable connector modcom "modcom"
 			Real a[10];
 			annotation(Icon(graphics={
-					Rectangle(
-						lineColor={0,0,0},
-						fillColor={255,255,255},
-						fillPattern=FillPattern.Solid,
-						extent={{-73.3,76.7},{80,-76.7}}),
-					Text(
-						textString="iCOM",
-						lineColor={0,0,0},
-						extent={{-46.7,50},{53.3,-50}})}));
+								Rectangle(
+									lineColor={0,0,0},
+									fillColor={255,255,255},
+									fillPattern=FillPattern.Solid,
+									extent={{-73.3,76.7},{80,-76.7}}),
+								Text(
+									textString="iCOM",
+									lineColor={0,0,0},
+									extent={{-46.7,50},{53.3,-50}})}));
 		end modcom;
 		block Sensor
 			Modelica.Blocks.Interfaces.RealOutput speed;
@@ -821,6 +821,22 @@ package modelicatests
 					color={0,0,127},
 					thickness=0.0625));
 				connect(gain1.u,modcom3.a[1]) annotation(Line(
+					points={{3,70},{-2,70},{-15,70},{-15,-20},{-20,-20}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(sine1.y,modcom1.a) annotation(Line(
+					points={{-74,45},{-69,45},{-55,45},{-55,30},{-50,30}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(sine2.y,modcom3.a) annotation(Line(
+					points={{-69,-25},{-64,-25},{-25,-25},{-25,-20},{-20,-20}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(cos1.u,modcom2.a) annotation(Line(
+					points={{103,-5},{98,-5},{45,-5},{45,30},{40,30}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(gain1.u,modcom3.a) annotation(Line(
 					points={{3,70},{-2,70},{-15,70},{-15,-20},{-20,-20}},
 					color={0,0,127},
 					thickness=0.0625));
