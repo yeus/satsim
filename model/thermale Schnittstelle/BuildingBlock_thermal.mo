@@ -737,30 +737,6 @@ model BuildingBlock_thermal "thermisches model eines Bausteins mit 6 Seiten mit 
 			color={191,0,0},
 			thickness=0.0625));
 	annotation(
-		port_b(
-			T(flags=2),
-			Q_flow(flags=2)),
-		fixedHeatFlow1(port(Q_flow(flags=2))),
-		bB_heater1(
-			lower_Temp(y(flags=2)),
-			temperature_EB(
-				T(flags=2),
-				port(T(flags=2))),
-			gain1(y(flags=2)),
-			heater_power(port(Q_flow(flags=2)))),
-		bB_cooler1(
-			upper_Temp(y(flags=2)),
-			temperature_EB(
-				T(flags=2),
-				port(T(flags=2))),
-			gain1(y(flags=2)),
-			heater_power(port(Q_flow(flags=2)))),
-		viewinfo[0](
-			simViewInfos[0](
-				runtimeClass="CSimView",
-				tabGroup=0,
-				typename="ModelViewInfo"),
-			typename="ModelInfo"),
 		Icon(
 			coordinateSystem(extent={{-100,-100},{100,100}}),
 			graphics={
