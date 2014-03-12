@@ -7,9 +7,9 @@ Created on Thu Mar  6 13:30:08 2014
 print("grap a coffee")
 import numpy as np
 import matplotlib.pyplot as plt
-BBx = 1
-BBy = 1
-BBz = 2
+BBx = 3
+BBy = 3
+BBz = 3
 component_Box=["port_b"]
 component_TIM=["Conductance_"]
 component_Panel=["thermal_connector_"]
@@ -25,7 +25,7 @@ fig, Panel_T = plt.subplots()
 fig, Radiation_qflow = plt.subplots()
 fig, heater_on = plt.subplots()
 fig, cooler_on = plt.subplots()
-a = np.genfromtxt('E:\generic_satellite_1x1x2_res.csv', delimiter=',',names=True)
+a = np.genfromtxt('E:\generic_satellite_3x3x3_sun_res.csv', delimiter=',',names=True)
 i=1
 while i<=BBx:
     j=1
