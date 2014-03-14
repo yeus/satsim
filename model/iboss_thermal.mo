@@ -1014,9 +1014,6 @@ An approppriate simulating time would be 10 seconds.
 			equation
 				Q_flow = Gr * Modelica.Constants.sigma * (port_a.T ^ 4 - port_b.T ^ 4);
 			annotation(
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(graphics={
 							Rectangle(
 								lineColor={0,0,0},
