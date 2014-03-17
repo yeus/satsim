@@ -3898,144 +3898,190 @@ package satcomponents
 						graphics={Ellipse(origin = {19.7977,-28.6127}, fillColor = {192,192,255}, fillPattern = FillPattern.Solid, extent = {{-49.5665,9.537570000000001},{49.5665,-9.537570000000001}}, endAngle = 360),Rectangle(origin = {19.6532,-22.5434}, fillColor = {192,192,255}, pattern = LinePattern.None, fillPattern = FillPattern.Solid, extent = {{-48.8439,6.93642},{48.8439,-6.93642}}),Ellipse(origin = {19.2775,-17.2832}, fillPattern = FillPattern.Solid, extent = {{-49.5665,9.537570000000001},{49.5665,-9.537570000000001}}, endAngle = 360),Text(origin = {5.67671,-6.18507}, extent = {{-38.1503,29.0462},{1.94049,-3.66549}}, textString = "1D"),Rectangle(origin = {18.0636,18.3526}, fillColor = {255,0,0}, pattern = LinePattern.None, fillPattern = FillPattern.VerticalCylinder, extent = {{-4.19075,13.4393},{5.34682,-34.5376}}),Polygon(origin = {19.0566,42.6365}, fillColor = {255,0,0}, pattern = LinePattern.None, fillPattern = FillPattern.VerticalCylinder, points = {{-1.42648,13.1438},{11.0013,-12.5788},{-10.9641,-12.5788},{-1.42648,13.1438}}),Rectangle(origin = {21.3873,-62.4277}, extent = {{-8.67052,24.2775},{2.31214,-25.7225}}),Rectangle(origin = {18.3526,-61.5607}, fillColor = {0,64,0}, fillPattern = FillPattern.VerticalCylinder, extent = {{-17.7746,11.8497},{17.7746,-11.8497}}),Line(origin = {56.9364,-46.9653}, points = {{-30.9249,-8.81503},{20.5202,-8.81503},{20.5202,8.81503},{30.9249,8.81503}}),Line(origin = {61.9942,-69.79770000000001}, points = {{26.1561,-3.90173},{16.0405,-3.90173},{16.0405,3.90173},{-26.1561,3.90173}}),Text(origin = {82.6589,-11.5607}, extent = {{-15.896,13.0058},{15.896,-13.0058}}, textString = "+"),Text(origin = {80.20229999999999,-95.2312}, extent = {{-18.6416,23.5549},{18.9306,-18.3526}}, textString = "-"),Text(origin = {-47.8536,39.6233}, extent = {{-33.6717,47.8849},{133.164,11.3368}}, textString = "%name")}));
 			end reactionwheelsimple;
 			model reactionwheel3axis
+				parameter Integer id;
 				Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(
-					visible=true,
 					transformation(
 						origin={-99.422,5.20231},
-						extent={{-10,-10},{10,10}},
-						rotation=0),
+						extent={{-10,-10},{10,10}}),
 					iconTransformation(
 						origin={-99.422,5.20231},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
-				satcomponents.AOCS.Parts.reactionwheelsimple X_wheel annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-23.1503,61.0694},
-						extent={{-16.2717,-16.2717},{16.2717,16.2717}},
-						rotation=-90)));
-				satcomponents.AOCS.Parts.reactionwheelsimple Z_wheel annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-23.6705,-38.0058},
-						extent={{-16.2717,-16.2717},{16.2717,16.2717}},
-						rotation=-90)));
-				satcomponents.AOCS.Parts.reactionwheelsimple Y_wheel annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-21.763,14.4798},
-						extent={{-16.2717,-16.2717},{16.2717,16.2717}},
-						rotation=-90)));
-				Modelica.Electrical.Analog.Sources.SignalVoltage signalvoltage2 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={18.5549,-1.6763},
-						extent={{-10,-10},{10,10}},
-						rotation=-90)));
-				Modelica.Electrical.Analog.Sources.SignalVoltage signalvoltage3 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={20.0578,-53.9306},
-						extent={{-10,-10},{10,10}},
-						rotation=-90)));
-				Modelica.Mechanics.MultiBody.Parts.FixedRotation X_axis annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-54.2418,57.8035},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
-				Modelica.Mechanics.MultiBody.Parts.FixedRotation Y_axis(angles={-90,0,0}) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-55.7601,11.066},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
-				Modelica.Mechanics.MultiBody.Parts.FixedRotation Z_axis(angles={0,-90,0}) annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-54.6141,-41.1629},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Sources.SignalVoltage signalvoltage1 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={19.9422,52.8902},
-						extent={{-10,-10},{10,10}},
-						rotation=-90)));
+						extent={{-10,-10},{10,10}})));
+				reactionwheelsimple X_wheel annotation(Placement(transformation(
+					origin={-23.8,63.7},
+					extent={{-16.2717,-16.2717},{16.2717,16.2717}},
+					rotation=-90)));
+				reactionwheelsimple Z_wheel annotation(Placement(transformation(
+					origin={-23.7,-31.3},
+					extent={{-16.2717,-16.2717},{16.2717,16.2717}},
+					rotation=-90)));
+				reactionwheelsimple Y_wheel annotation(Placement(transformation(
+					origin={-23.8,18.8},
+					extent={{-16.2717,-16.2717},{16.2717,16.2717}},
+					rotation=-90)));
+				Modelica.Electrical.Analog.Sources.SignalVoltage signalvoltageY annotation(Placement(transformation(
+					origin={18.5549,-1.6763},
+					extent={{-10,-10},{10,10}},
+					rotation=-90)));
+				Modelica.Electrical.Analog.Sources.SignalVoltage signalvoltageZ annotation(Placement(transformation(
+					origin={20.0578,-53.9306},
+					extent={{-10,-10},{10,10}},
+					rotation=-90)));
+				Modelica.Mechanics.MultiBody.Parts.FixedRotation X_axis annotation(Placement(transformation(
+					origin={-59.9,60.1},
+					extent={{-10,-10},{10,10}})));
+				Modelica.Mechanics.MultiBody.Parts.FixedRotation Y_axis(angles={-90,0,0}) annotation(Placement(transformation(
+					origin={-60.1,15.1},
+					extent={{-10,-10},{10,10}})));
+				Modelica.Mechanics.MultiBody.Parts.FixedRotation Z_axis(angles={0,-90,0}) annotation(Placement(transformation(
+					origin={-59.9,-35.2},
+					extent={{-10,-10},{10,10}})));
+				Modelica.Electrical.Analog.Sources.SignalVoltage signalvoltageX annotation(Placement(transformation(
+					origin={19.9422,52.8902},
+					extent={{-10,-10},{10,10}},
+					rotation=-90)));
 				Modelica.Electrical.Analog.Interfaces.PositivePin pin_p annotation(Placement(
-					visible=true,
 					transformation(
 						origin={-26.8786,-97.9769},
-						extent={{-10,-10},{10,10}},
-						rotation=0),
+						extent={{-10,-10},{10,10}}),
 					iconTransformation(
 						origin={-26.8786,-97.9769},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
+						extent={{-10,-10},{10,10}})));
 				Modelica.Electrical.Analog.Interfaces.NegativePin pin_n annotation(Placement(
-					visible=true,
 					transformation(
 						origin={26.3006,-96.82080000000001},
-						extent={{-10,-10},{10,10}},
-						rotation=0),
+						extent={{-10,-10},{10,10}}),
 					iconTransformation(
 						origin={26.3006,-96.82080000000001},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
-				Modelica.Electrical.Analog.Basic.Resistor resistor1 annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-2.60116,-81.2139},
-						extent={{-10,-10},{10,10}},
-						rotation=0)));
-				Modelica.Blocks.Interfaces.RealInput u[3] annotation(Placement(
-					visible=true,
-					transformation(
-						origin={-7.80347,90.1734},
-						extent={{-10,-10},{10,10}},
-						rotation=360),
-					iconTransformation(
-						origin={-7.80347,90.1734},
-						extent={{-10,-10},{10,10}},
-						rotation=-90)));
+						extent={{-10,-10},{10,10}})));
+				ctrl.ACS_bus acs_bus annotation(Placement(transformation(extent={{70,-5},{90,15}})));
+				Modelica.Electrical.Analog.Basic.Resistor resistor1 annotation(Placement(transformation(
+					origin={-2.60116,-81.2139},
+					extent={{-10,-10},{10,10}})));
+				Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(transformation(extent={{25,10},{45,30}})));
+				Modelica.Electrical.Analog.Basic.Ground ground2 annotation(Placement(transformation(extent={{25,-35},{45,-15}})));
+				Modelica.Electrical.Analog.Basic.Ground ground3 annotation(Placement(transformation(extent={{40,-85},{60,-65}})));
 				equation
-					connect(signalvoltage2.n,pin_n) annotation(Line(points = {{18.5549,-11.6763},{18.5549,-11.8497},{52.6012,-11.8497},{52.6012,-96.2428},{26.8786,-96.2428},{26.8786,-96.2428}}));
-					connect(signalvoltage1.n,pin_n) annotation(Line(points = {{19.9422,42.8902},{19.9422,43.0636},{52.6012,43.0636},{52.6012,-96.2428},{26.5896,-96.2428},{26.5896,-96.2428}}));
-					connect(signalvoltage3.n,pin_n) annotation(Line(points = {{20.0578,-63.9306},{20.0578,-70.5202},{52.6012,-70.5202},{52.6012,-96.2428},{27.1676,-96.2428},{27.1676,-96.2428}}));
-					connect(u[3],signalvoltage3.v) annotation(Line(points = {{-7.80347,90.1734},{61.2717,90.1734},{61.2717,-54.0462},{27.7457,-54.0462},{27.7457,-54.0462}}));
-					connect(u[1],signalvoltage1.v) annotation(Line(points = {{-7.80347,90.1734},{36.1272,90.1734},{36.1272,52.8902},{27.7457,52.8902},{27.7457,52.8902}}));
-					connect(u[2],signalvoltage2.v) annotation(Line(points = {{-7.80347,90.1734},{48.5549,90.1734},{48.5549,-1.44509},{26.0116,-1.44509},{26.0116,-1.44509}}));
-					connect(resistor1.n,pin_n) annotation(Line(points = {{7.39884,-81.2139},{26.0116,-81.2139},{26.0116,-96.2428},{26.0116,-96.2428}}));
-					connect(resistor1.p,pin_p) annotation(Line(points = {{-12.6012,-81.2139},{-27.4566,-81.2139},{-27.4566,-95.6647},{-27.4566,-95.6647}}));
-					connect(signalvoltage1.n,X_wheel.pin_n) annotation(Line(points = {{19.9422,42.8902},{19.9422,35.2601},{-34.9711,35.2601},{-34.9711,45.0867},{-34.9711,45.0867}}));
-					connect(signalvoltage1.p,X_wheel.pin_p) annotation(Line(points = {{19.9422,62.8902},{19.9422,63.5838},{-2.89017,63.5838},{-2.89017,44.7977},{-28.6127,44.7977},{-28.6127,44.7977}}));
-					connect(Z_axis.frame_b,Z_wheel.frame_a) annotation(Line(points = {{-44.6141,-41.1629},{-38.1503,-41.1629},{-38.1503,-41.0405},{-38.1503,-41.0405}}));
-					connect(Y_axis.frame_b,Y_wheel.frame_a) annotation(Line(points = {{-45.7601,11.066},{-36.1272,11.066},{-36.1272,10.9827},{-36.1272,10.9827}}));
-					connect(Z_axis.frame_a,frame_a) annotation(Line(points = {{-64.61409999999999,-41.1629},{-81.7919,-41.1629},{-81.7919,4.91329},{-99.711,4.91329},{-99.711,4.91329}}));
-					connect(Y_axis.frame_a,frame_a) annotation(Line(points = {{-65.76009999999999,11.066},{-81.7919,11.066},{-81.7919,4.91329},{-99.711,4.91329},{-99.711,4.91329}}));
-					connect(X_axis.frame_a,frame_a) annotation(Line(points = {{-64.2418,57.8035},{-81.7919,57.8035},{-81.7919,4.91329},{-100,4.91329},{-100,4.91329}}));
-					connect(X_axis.frame_b,X_wheel.frame_a) annotation(Line(points = {{-44.2418,57.8035},{-37.5723,57.8035},{-37.5723,57.5145},{-37.5723,57.5145}}));
-					connect(signalvoltage2.n,Y_wheel.pin_n) annotation(Line(points = {{18.5549,-11.6763},{18.5549,-12.1387},{-33.237,-12.1387},{-33.237,-2.02312},{-33.237,-2.02312}}));
-					connect(signalvoltage2.p,Y_wheel.pin_p) annotation(Line(points = {{18.5549,8.323700000000001},{18.5549,8.67052},{-3.75723,8.67052},{-3.75723,-1.7341},{-27.4566,-1.7341},{-27.4566,-1.7341}}));
-					connect(signalvoltage3.n,Z_wheel.pin_n) annotation(Line(points = {{20.0578,-63.9306},{20.0578,-64.4509},{-34.9711,-64.4509},{-34.9711,-54.6243},{-34.9711,-54.6243}}));
-					connect(signalvoltage3.p,Z_wheel.pin_p) annotation(Line(points = {{20.0578,-43.9306},{20.0578,-43.6416},{-2.60116,-43.6416},{-2.60116,-54.3353},{-29.4798,-54.3353},{-29.4798,-54.3353}}));
+					connect(resistor1.n,pin_n) annotation(Line(points={{7.3,-81.3},{12.3,-81.3},{21.3,-81.3},{21.3,-96.7},{26.3,-96.7}}));
+					connect(resistor1.p,pin_p) annotation(Line(points={{-12.7,-81.3},{-17.7,-81.3},{-22,-81.3},{-22,-98},{-27,-98}}));
+					
+					
+					connect(Z_axis.frame_b,Z_wheel.frame_a) annotation(Line(points={{-50,-35.3},{-45,-35.3},{-45,-34.3},{-40,-34.3}}));
+					connect(Y_axis.frame_b,Y_wheel.frame_a) annotation(Line(points={{-50,15},{-45,15},{-45,15.7},{-40,15.7}}));
+					connect(Z_axis.frame_a,frame_a) annotation(Line(points={{-70,-35.3},{-75,-35.3},{-94.3,-35.3},{-94.3,5.3},{-99.3,5.3}}));
+					connect(Y_axis.frame_a,frame_a) annotation(Line(points={{-70,15},{-75,15},{-94.3,15},{-94.3,5.3},{-99.3,5.3}}));
+					connect(X_axis.frame_a,frame_a) annotation(Line(points={{-70,60},{-75,60},{-94.3,60},{-94.3,5.3},{-99.3,5.3}}));
+					connect(X_axis.frame_b,X_wheel.frame_a) annotation(Line(points={{-50,60},{-45,60},{-45,60.7},{-40,60.7}}));
+					connect(signalvoltageY.n,ground2.p) annotation(Line(
+						points={{18.7,-11.7},{18.7,-16.7},{26.7,-16.7},{26.7,-10},{35,-10},{35,
+						-15}},
+						thickness=0.0625));
+					connect(signalvoltageY.p,Y_wheel.pin_p) annotation(Line(points={{18.7,8.300000000000001},{18.7,13.3},{-5.7,13.3},{-5.7,-2.3},{-30,-2.3},{-30,
+					2.7}}));
+					connect(signalvoltageY.n,Y_wheel.pin_n) annotation(Line(points={{18.7,-11.7},{18.7,-16.7},{-35.7,-16.7},{-35.7,-2.3},{-35.7,2.7}}));
+					connect(ground1.p,signalvoltageX.n) annotation(Line(
+						points={{35,30},{35,35},{35,38},{20,38},{20,43}},
+						thickness=0.0625));
+					connect(signalvoltageX.p,X_wheel.pin_p) annotation(Line(points={{20,63},{20,68},{-5,68},{-5,42.7},{-30,42.7},{-30,
+					47.7}}));
+					connect(signalvoltageX.n,X_wheel.pin_n) annotation(Line(points={{20,43},{20,38},{-35.7,38},{-35.7,42.7},{-35.7,47.7}}));
+					connect(signalvoltageZ.n,ground3.p) annotation(Line(
+						points={{20,-64},{20,-69},{35,-69},{35,-60},{50,-60},{50,
+						-65}},
+						thickness=0.0625));
+					connect(signalvoltageZ.p,Z_wheel.pin_p) annotation(Line(points={{20,-44},{20,-39},{-5,-39},{-5,-52.3},{-30,-52.3},{-30,
+					-47.3}}));
+					connect(signalvoltageZ.n,Z_wheel.pin_n) annotation(Line(points={{20,-64},{20,-69},{-35.7,-69},{-35.7,-52.3},{-35.7,-47.3}}));
+					connect(signalvoltageX.v,acs_bus.w_a[id,1]) annotation(Line(
+						points={{27,53},{32,53},{75,53},{75,5},{80,5}},
+						color={0,0,127},
+						thickness=0.0625));
 				annotation(
-					Diagram(coordinateSystem(
-						extent={{-100,-100},{100,100}},
-						preserveAspectRatio=true,
-						initialScale=0.1,
-						grid={2,2})),
+					viewinfo[0](
+						viewSettings(clrRaster=12632256),
+						typename="ModelInfo"),
+					Icon(graphics={
+													Rectangle(
+														fillColor={128,128,128},
+														fillPattern=FillPattern.Solid,
+														extent={{-90.02889999999999,54.3352},{61.7052,-76.87860000000001}},
+														origin={0.144508,13.2948}),
+													Rectangle(
+														fillColor={88,88,88},
+														fillPattern=FillPattern.Solid,
+														extent={{-71.2428,-8.092499999999999},{5.6358,-80.0578}},
+														origin={2.16763,20.2312}),
+													Rectangle(
+														fillColor={88,88,88},
+														fillPattern=FillPattern.Solid,
+														extent={{35.6936,25.7225},{70.6647,-52.0231}},
+														origin={-0.144509,13.2948}),
+													Rectangle(
+														fillColor={88,88,88},
+														fillPattern=FillPattern.Solid,
+														extent={{2.45662,-18.2081},{85.98260000000001,-50.8671}},
+														origin={-46.9653,97.6879}),
+													Rectangle(
+														pattern=LinePattern.None,
+														fillColor={255,0,0},
+														fillPattern=FillPattern.VerticalCylinder,
+														extent={{-16.0405,25.8671},{-12.8613,5.92483}},
+														origin={11.4162,-3.32367}),
+													Polygon(
+														points={{-2.87157,16.034},{1.46373,-3.90828},{-6.91786,-3.61926},{-2.87157,16.034}},
+														pattern=LinePattern.None,
+														fillColor={255,0,0},
+														fillPattern=FillPattern.VerticalCylinder,
+														origin={-0.307609,23.5614}),
+													Text(
+														textString="+",
+														extent={{-15.896,13.0058},{15.896,-13.0058}},
+														origin={-26.3006,-74.2775}),
+													Text(
+														textString="-",
+														extent={{-18.6416,23.5549},{18.9306,-18.3526}},
+														origin={25.578,-76.1561}),
+													Polygon(
+														points={{-2.87157,16.034},{1.46373,-3.90828},{-6.91786,-3.61926},{-2.87157,16.034}},
+														pattern=LinePattern.None,
+														fillColor={255,0,0},
+														fillPattern=FillPattern.VerticalCylinder,
+														origin={19.6924,1.07585},
+														rotation=-90),
+													Rectangle(
+														pattern=LinePattern.None,
+														fillColor={255,0,0},
+														fillPattern=FillPattern.VerticalCylinder,
+														extent={{-16.0405,25.8671},{-12.8613,5.92483}},
+														origin={-9.91328,-10.4913},
+														rotation=-90),
+													Polygon(
+														points={{-7.80347,-5.05026},{5.49133,7.08847},{7.80347,4.77633},{-5.78035,-7.07338},{-7.80347,-5.05026}},
+														fillColor={255,0,0},
+														fillPattern=FillPattern.Solid,
+														origin={-9.537570000000001,-2.17522}),
+													Polygon(
+														points={{-2.00451,2.45016},{5.22095,-9.68863},{-6.91786,-3.61926},{-2.00451,2.45016}},
+														pattern=LinePattern.None,
+														fillColor={255,0,0},
+														fillPattern=FillPattern.VerticalCylinder,
+														origin={-14.9319,-12.1611},
+														rotation=-90),
+													Text(
+														textString="Z",
+														extent={{-14.4509,10.8382},{14.4509,-10.8382}},
+														origin={-4.62427,56.2139}),
+													Text(
+														textString="Y",
+														extent={{-14.4509,10.8382},{14.4509,-10.8382}},
+														origin={47.4567,3.38154}),
+													Text(
+														textString="X",
+														extent={{-14.4509,10.8382},{14.4509,-10.8382}},
+														origin={-31.9652,-24.5953})}),
 					experiment(
-						StartTime=0,
 						StopTime=30,
-						Tolerance=0.0001),
-					Icon(
-						coordinateSystem(
-							extent={{-100,-100},{100,100}},
-							preserveAspectRatio=true,
-							initialScale=0.1,
-							grid={2,2}),
-						graphics={Rectangle(origin = {0.144508,13.2948}, fillColor = {128,128,128}, fillPattern = FillPattern.Solid, extent = {{-90.02889999999999,54.3352},{61.7052,-76.87860000000001}}),Rectangle(origin = {2.16763,20.2312}, fillColor = {88,88,88}, fillPattern = FillPattern.Solid, extent = {{-71.2428,-8.092499999999999},{5.6358,-80.0578}}),Rectangle(origin = {-0.144509,13.2948}, fillColor = {88,88,88}, fillPattern = FillPattern.Solid, extent = {{35.6936,25.7225},{70.6647,-52.0231}}),Rectangle(origin = {-46.9653,97.6879}, fillColor = {88,88,88}, fillPattern = FillPattern.Solid, extent = {{2.45662,-18.2081},{85.98260000000001,-50.8671}}),Rectangle(origin = {11.4162,-3.32367}, fillColor = {255,0,0}, pattern = LinePattern.None, fillPattern = FillPattern.VerticalCylinder, extent = {{-16.0405,25.8671},{-12.8613,5.92483}}),Polygon(origin = {-0.307609,23.5614}, fillColor = {255,0,0}, pattern = LinePattern.None, fillPattern = FillPattern.VerticalCylinder, points = {{-2.87157,16.034},{1.46373,-3.90828},{-6.91786,-3.61926},{-2.87157,16.034}}),Text(origin = {-26.3006,-74.2775}, extent = {{-15.896,13.0058},{15.896,-13.0058}}, textString = "+"),Text(origin = {25.578,-76.1561}, extent = {{-18.6416,23.5549},{18.9306,-18.3526}}, textString = "-"),Polygon(origin = {19.6924,1.07585}, rotation = -90, fillColor = {255,0,0}, pattern = LinePattern.None, fillPattern = FillPattern.VerticalCylinder, points = {{-2.87157,16.034},{1.46373,-3.90828},{-6.91786,-3.61926},{-2.87157,16.034}}),Rectangle(origin = {-9.91328,-10.4913}, rotation = -90, fillColor = {255,0,0}, pattern = LinePattern.None, fillPattern = FillPattern.VerticalCylinder, extent = {{-16.0405,25.8671},{-12.8613,5.92483}}),Polygon(origin = {-9.537570000000001,-2.17522}, fillColor = {255,0,0}, fillPattern = FillPattern.Solid, points = {{-7.80347,-5.05026},{5.49133,7.08847},{7.80347,4.77633},{-5.78035,-7.07338},{-7.80347,-5.05026}}),Polygon(origin = {-14.9319,-12.1611}, rotation = -90, fillColor = {255,0,0}, pattern = LinePattern.None, fillPattern = FillPattern.VerticalCylinder, points = {{-2.00451,2.45016},{5.22095,-9.68863},{-6.91786,-3.61926},{-2.00451,2.45016}}),Text(origin = {-4.62427,56.2139}, extent = {{-14.4509,10.8382},{14.4509,-10.8382}}, textString = "Z"),Text(origin = {47.4567,3.38154}, extent = {{-14.4509,10.8382},{14.4509,-10.8382}}, textString = "Y"),Text(origin = {-31.9652,-24.5953}, extent = {{-14.4509,10.8382},{14.4509,-10.8382}}, textString = "X")}));
+						StartTime=0,
+						Tolerance=0.0001));
 			end reactionwheel3axis;
 			model IMU
 				parameter Integer id;
@@ -4056,14 +4102,7 @@ package satcomponents
 					iconTransformation(
 						origin={-100,0},
 						extent={{-10,-10},{10,10}})));
-				Modelica.Blocks.Sources.SawTooth sawtooth1 annotation(Placement(transformation(
-					origin={20,40},
-					extent={{-10,-10},{10,10}})));
 				equation
-					connect(sawtooth1.y,acs_bus.u[id]) annotation(Line(
-						points={{31,40},{36,40},{95,40},{95,0},{100,0}},
-						color={0,0,127},
-						thickness=0.0625));
 					connect(frame_a,absoluteangularvelocity1.frame_a) annotation(Line(points = {{-100,0},{-9.470750000000001,0},{-9.470750000000001,0.278552},{-9.470750000000001,0.278552}}));
 					connect(absoluteangularvelocity1.w,acs_bus.w[id,:]) annotation(Line(
 						points={{11,0},{16,0},{95,0},{100,0}},
@@ -4094,6 +4133,159 @@ package satcomponents
 						StopTime=1,
 						StartTime=0));
 			end IMU;
+			model reactionwheelsimple_noelectricity "reactionwheelsimple_noelectricity"
+				parameter Integer id;
+				ctrl.ACS_bus acs_bus annotation(Placement(
+					transformation(extent={{90,-30},{110,-10}}),
+					iconTransformation(extent={{90,-30},{110,-10}})));
+				Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(
+					transformation(
+						origin={19.0752,-86.99420000000001},
+						extent={{-10,-10},{10,10}},
+						rotation=90),
+					iconTransformation(
+						origin={19,-100},
+						extent={{-10,-10},{10,10}},
+						rotation=-90)));
+				Modelica.Mechanics.MultiBody.Joints.Revolute revolute1 annotation(Placement(transformation(
+					origin={-15,-50},
+					extent={{-10,-10},{10,10}},
+					rotation=90)));
+				Modelica.Mechanics.MultiBody.Parts.BodyShape bodyShape1(
+					animation=false,
+					animateSphere=false) annotation(Placement(transformation(
+					origin={-15,-15},
+					extent={{-10,-10},{10,10}},
+					rotation=-90)));
+				Modelica.Mechanics.MultiBody.Forces.Torque torque1(resolveInFrame=Modelica.Mechanics.MultiBody.Types.ResolveInFrameAB.frame_a) annotation(Placement(transformation(
+					origin={25,-35},
+					extent={{-10,-10},{10,10}},
+					rotation=-90)));
+				Modelica.Blocks.Sources.Pulse pulse1(
+					amplitude=0.001,
+					period=5,
+					nperiod=1,
+					startTime=10) annotation(Placement(transformation(extent={{40,-85},{60,-65}})));
+				equation
+					connect(revolute1.frame_a,frame_a) annotation(Line(
+						points={{-15,-60},{-15,-65},{-15,-87},{14,-87},{19,-87}},
+						color={95,95,95},
+						thickness=0.0625));
+					connect(bodyShape1.frame_b,revolute1.frame_b) annotation(Line(
+						points={{-15,-25},{-15,-30},{-15,-35},{-15,-40}},
+						color={95,95,95},
+						thickness=0.0625));
+					connect(torque1.frame_a,bodyShape1.frame_a) annotation(Line(
+						points={{25,-25},{25,-20},{25,0},{-15,0},{-15,-5}},
+						color={95,95,95},
+						thickness=0.0625));
+					connect(torque1.frame_b,frame_a) annotation(Line(
+						points={{25,-45},{25,-50},{25,-87},{24,-87},{19,-87}},
+						color={95,95,95},
+						thickness=0.0625));
+					connect(pulse1.y,torque1.torque[3]) annotation(Line(
+						points={{61,-75},{66,-75},{66,-29.3},{42,-29.3},{37,-29.3}},
+						color={0,0,127},
+						thickness=0.0625));
+				annotation(
+					bodyShape1(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						frame_b(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						r_0(flags=2),
+						v_0(flags=2),
+						a_0(flags=2),
+						frameTranslation(
+							frame_a(
+								r_0(flags=2),
+								R(
+									T(flags=2),
+									w(flags=2)),
+								f(flags=2),
+								t(flags=2)),
+							frame_b(
+								r_0(flags=2),
+								R(
+									T(flags=2),
+									w(flags=2)),
+								f(flags=2),
+								t(flags=2))),
+						body(
+							frame_a(
+								r_0(flags=2),
+								R(
+									T(flags=2),
+									w(flags=2)),
+								f(flags=2),
+								t(flags=2)),
+							r_0(flags=2),
+							v_0(flags=2),
+							a_0(flags=2),
+							w_a(flags=2),
+							z_a(flags=2),
+							g_0(flags=2))),
+					viewinfo[0](
+						viewSettings(clrRaster=12632256),
+						typename="ModelInfo"),
+					Icon(graphics={
+								Ellipse(
+									fillColor={192,192,255},
+									fillPattern=FillPattern.Solid,
+									extent={{-49.5665,9.537570000000001},{49.5665,-9.537570000000001}},
+									origin={19.7977,-28.6127}),
+								Rectangle(
+									pattern=LinePattern.None,
+									fillColor={192,192,255},
+									fillPattern=FillPattern.Solid,
+									extent={{-48.8439,6.93642},{48.8439,-6.93642}},
+									origin={19.6532,-22.5434}),
+								Ellipse(
+									fillPattern=FillPattern.Solid,
+									extent={{-49.5665,9.537570000000001},{49.5665,-9.537570000000001}},
+									origin={19.2775,-17.2832}),
+								Text(
+									textString="1D",
+									extent={{-38.1503,29.0462},{1.94049,-3.66549}},
+									origin={5.67671,-6.18507}),
+								Rectangle(
+									pattern=LinePattern.None,
+									fillColor={255,0,0},
+									fillPattern=FillPattern.VerticalCylinder,
+									extent={{-4.19075,13.4393},{5.34682,-34.5376}},
+									origin={18.0636,18.3526}),
+								Polygon(
+									points={{-1.42648,13.1438},{11.0013,-12.5788},{-10.9641,-12.5788},{-1.42648,13.1438}},
+									pattern=LinePattern.None,
+									fillColor={255,0,0},
+									fillPattern=FillPattern.VerticalCylinder,
+									origin={19.0566,42.6365}),
+								Rectangle(
+									extent={{-8.67052,24.2775},{2.31214,-25.7225}},
+									origin={21.3873,-62.4277}),
+								Rectangle(
+									fillColor={0,64,0},
+									fillPattern=FillPattern.VerticalCylinder,
+									extent={{-17.7746,11.8497},{17.7746,-11.8497}},
+									origin={18.3526,-61.5607}),
+								Text(
+									textString="%name",
+									extent={{-33.6717,47.8849},{133.164,11.3368}},
+									origin={-47.8536,39.6233})}),
+					experiment(
+						StopTime=100,
+						StartTime=0));
+			end reactionwheelsimple_noelectricity;
 		end Parts;
 		package ctrl
 			model ACS
@@ -4104,25 +4296,27 @@ package satcomponents
 					iconTransformation(
 						origin={100,0},
 						extent={{-10,-10},{10,10}})));
-				Modelica.Blocks.Sources.Sine sine1 annotation(Placement(transformation(
-					origin={12.5,27.5},
-					extent={{-7.5,-7.5},{7.5,7.5}})));
+				Modelica.Blocks.Sources.Pulse pulse1(
+					amplitude=0.0001,
+					period=10,
+					nperiod=3,
+					startTime=20.0) annotation(Placement(transformation(extent={{-5,-20},{15,0}})));
 				equation
-					connect(sine1.y,acs_bus.y[4]) annotation(Line(points = {{20.75,27.5},{92.25660000000001,27.5},{92.25660000000001,2.87611},{92.25660000000001,2.87611}}));
+					acs_bus.w[4,1]=if time > 20.0 then 0.0001 else 0.0;
 				annotation(
 					viewinfo[0](
 						viewSettings(clrRaster=12632256),
 						typename="ModelInfo"),
 					Icon(graphics={
-													Rectangle(
-														fillColor={255,255,255},
-														fillPattern=FillPattern.Solid,
-														extent={{-86.39,85.40000000000001},{93.6909,-86.0637}},
-														origin={1.22,1.55}),
-													Text(
-														textString="ACS",
-														extent={{-80.75,56.53},{80.75,-56.53}},
-														origin={0.44,3.43})}),
+								Rectangle(
+									fillColor={255,255,255},
+									fillPattern=FillPattern.Solid,
+									extent={{-86.39,85.40000000000001},{93.6909,-86.0637}},
+									origin={1.22,1.55}),
+								Text(
+									textString="ACS",
+									extent={{-80.75,56.53},{80.75,-56.53}},
+									origin={0.44,3.43})}),
 					experiment(
 						StopTime=1,
 						StartTime=0));
@@ -4149,26 +4343,29 @@ package satcomponents
 				Real w[10,3](
 					each final quantity="AngularVelocity",
 					each final unit="rad/s");
-				Real y[10];
+				Real w_a[10,3](
+					final quantity="AngularAcceleration",
+					final unit="rad/s2");
 				Real u[10];
+				Real y[10];
 				annotation(
 					Icon(graphics={
-								Rectangle(
-									fillColor={220,220,220},
-									fillPattern=FillPattern.Solid,
-									extent={{-88.27,88.61},{88.27,-88.61}},
-									origin={0.44,1})}),
+													Rectangle(
+														fillColor={220,220,220},
+														fillPattern=FillPattern.Solid,
+														extent={{-88.27,88.61},{88.27,-88.61}},
+														origin={0.44,1})}),
 					Diagram(graphics={
-								Rectangle(
-									fillColor={220,220,220},
-									fillPattern=FillPattern.Solid,
-									extent={{-88.27,88.61},{88.27,-88.61}},
-									origin={-0.674206,-1.50696}),
-								Text(
-									textString="ACS
+													Rectangle(
+														fillColor={220,220,220},
+														fillPattern=FillPattern.Solid,
+														extent={{-88.27,88.61},{88.27,-88.61}},
+														origin={-0.674206,-1.50696}),
+													Text(
+														textString="ACS
 bus",
-									extent={{-81.06,67.83},{81.06,-67.83}},
-									origin={0.28,-1.25206})}));
+														extent={{-81.06,67.83},{81.06,-67.83}},
+														origin={0.28,-1.25206})}));
 			end ACS_bus;
 			model busexample
 				satcomponents.AOCS.ctrl.ACS_bus acs_bus1 annotation(Placement(

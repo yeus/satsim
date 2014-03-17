@@ -221,15 +221,15 @@ package iboss
 				Icon(
 					coordinateSystem(extent={{-101.7,-51.7},{101.7,51.7}}),
 					graphics={
-						Rectangle(
-							lineColor={0,0,0},
-							fillColor={255,255,255},
-							fillPattern=FillPattern.Solid,
-							extent={{-80,83.3},{86.7,-86.7}}),
-						Text(
-							textString="ROUT",
-							lineColor={0,0,0},
-							extent={{-50,43.3},{53.3,-46.7}})}),
+																										Rectangle(
+																											lineColor={0,0,0},
+																											fillColor={255,255,255},
+																											fillPattern=FillPattern.Solid,
+																											extent={{-80,83.3},{86.7,-86.7}}),
+																										Text(
+																											textString="ROUT",
+																											lineColor={0,0,0},
+																											extent={{-50,43.3},{53.3,-46.7}})}),
 				experiment(
 					StopTime=1,
 					StartTime=0));
@@ -1183,15 +1183,327 @@ package iboss
 					StartTime=0));
 		end basic_structure;
 		model basic_wheel3x
-			extends basic_structure;
-			satcomponents.AOCS.Parts.reactionwheel3axis reactionwheel3axis1 annotation(Placement(
-				visible=true,
-				transformation(
-					origin={-51.9584,-31.2554},
-					extent={{13.1779,-13.1779},{-13.1779,13.1779}},
-					rotation=0)));
+			extends basic annotation(Placement(transformation(extent={{-10,-10},{10,10}})));
+			satcomponents.AOCS.Parts.reactionwheel3axis reactionwheel3axis1(id=id) annotation(Placement(transformation(
+				origin={-36.7,-23.3},
+				extent={{13.1779,-13.1779},{-13.1779,13.1779}})));
 			equation
-				connect(Struktur.frame_a,reactionwheel3axis1.frame_a) annotation(Line(points = {{-7.88732,-0.469484},{-20.373,-0.469484},{-20.373,-30.4161},{-38.7374,-30.4161},{-38.7374,-30.4161}}));
+				connect(Struktur.frame_a,reactionwheel3axis1.frame_a) annotation(Line(points={{-8,-0.3},{-13,-0.3},{-18.7,-0.3},{-18.7,-22.7},{-23.7,-22.7}}));
+				connect(reactionwheel3axis1.acs_bus,Xn.sat_bus.acs_bus) annotation(Line(
+					points={{-47.3,-22.7},{-52.3,-22.7},{-75,-22.7},{-75,0},{-80,0}},
+					thickness=0.0625));
+			annotation(
+				Struktur(
+					cylinder(viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+					sphere(viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+					viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+				rZp(
+					shape(viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+					viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+				rYp(
+					shape(viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+					viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+				rZn(
+					shape(viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+					viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+				rYn(
+					shape(viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+					viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+				rXn(
+					shape(viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+					viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+				rXp(
+					shape(viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+					viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+				viewinfo[0](
+					property[0](
+						id=2004,
+						val="2005"),
+					property[1](
+						id=2012,
+						val="2013"),
+					property[2](
+						id=2017,
+						val="000000"),
+					property[3](
+						id=2018,
+						val="True"),
+					property[4](
+						id=6012,
+						val="False"),
+					property[5](
+						id=6013,
+						val="True"),
+					property[6](
+						id=6022,
+						val="True"),
+					typename="3DObjectInfo"),
+				imu(
+					acs_bus(
+						w(flags=2),
+						u(flags=2),
+						y(flags=2)),
+					viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+				viewinfo[0](
+					property[0](
+						id=2004,
+						val="2005"),
+					property[1](
+						id=2012,
+						val="2013"),
+					property[2](
+						id=2017,
+						val="000000"),
+					property[3](
+						id=2018,
+						val="True"),
+					property[4](
+						id=6012,
+						val="False"),
+					property[5](
+						id=6013,
+						val="True"),
+					property[6](
+						id=6022,
+						val="True"),
+					typename="3DObjectInfo"),
+				viewinfo[0](
+					property[0](
+						id=2004,
+						val="2005"),
+					property[1](
+						id=2012,
+						val="2013"),
+					property[2](
+						id=2017,
+						val="000000"),
+					property[3](
+						id=2018,
+						val="True"),
+					property[4](
+						id=6012,
+						val="False"),
+					property[5](
+						id=6013,
+						val="True"),
+					property[6](
+						id=6022,
+						val="True"),
+					typename="3DObjectInfo"),
+				viewinfo[1](
+					viewSettings(clrRaster=12632256),
+					typename="ModelInfo"),
+				experiment(
+					StopTime=1,
+					StartTime=0));
 		end basic_wheel3x;
 		model basic
 			extends icons.basic;
@@ -1199,42 +1511,42 @@ package iboss
 			outer Modelica.Mechanics.MultiBody.World world;
 			parameter Boolean animation=false "= true, if animation shall be enabled (show cylinder and sphere)";
 			parameter Integer id "TODO: automatisch id zuweisen (über \"outer\" parameter)";
-			iboss.components.iboss_int Zp annotation(Placement(
+			components.iboss_int Zp annotation(Placement(
 				transformation(
 					origin={-60,60},
 					extent={{-10,-10},{10,10}}),
 				iconTransformation(
 					origin={-60,60},
 					extent={{-10,-10},{10,10}})));
-			iboss.components.iboss_int Zn annotation(Placement(
+			components.iboss_int Zn annotation(Placement(
 				transformation(
 					origin={60,-60},
 					extent={{-10,-10},{10,10}}),
 				iconTransformation(
 					origin={60,-60},
 					extent={{-10,-10},{10,10}})));
-			iboss.components.iboss_int Xn annotation(Placement(
+			components.iboss_int Xn annotation(Placement(
 				transformation(
 					origin={-80,0},
 					extent={{-10,-10},{10,10}}),
 				iconTransformation(
 					origin={-80,0},
 					extent={{-10,-10},{10,10}})));
-			iboss.components.iboss_int Xp annotation(Placement(
+			components.iboss_int Xp annotation(Placement(
 				transformation(
 					origin={80,0},
 					extent={{-10,-10},{10,10}}),
 				iconTransformation(
 					origin={80,0},
 					extent={{-10,-10},{10,10}})));
-			iboss.components.iboss_int Yp annotation(Placement(
+			components.iboss_int Yp annotation(Placement(
 				transformation(
 					origin={0,80},
 					extent={{-10,-10},{10,10}}),
 				iconTransformation(
 					origin={0,80},
 					extent={{-10,-10},{10,10}})));
-			iboss.components.iboss_int Yn annotation(Placement(
+			components.iboss_int Yn annotation(Placement(
 				transformation(
 					origin={0,-80},
 					extent={{-10,-10},{10,10}}),
@@ -1551,10 +1863,43 @@ package iboss
 					Interval=0.2));
 		end basic;
 		package icons
-			model basic
-				annotation(
-					Diagram,
-					Icon(graphics={Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-77.2278,76.02549999999999},{74.95610000000001,-75.256}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-69.51909999999999,69.42019999999999},{66.9674,-68.4328}}),Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-20.2122,18.7864},{19.355,-20.778}}),Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-15.3692,13.9434},{14.512,-15.6521}}),Ellipse(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-1.42575,0.571424},{0.288544,-1.14286}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-74.37909999999999,15.6917},{-79.2362,-16.0226}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-15.9916,77.18810000000001},{15.1513,72.0453}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{73.239,13.1174},{77.5247,-13.7397}}),Rectangle(rotation = 0, lineColor = {0,0,255}, fillColor = {255,255,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.Solid, lineThickness = 0.25, extent = {{-15.4145,-72.9759},{16.5855,-77.833}}),Text(rotation = 0, lineColor = {0,0,255}, fillColor = {0,0,255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-49.505,66.761},{55.4455,27.4399}}, textString = "%name")}));
+			model basic "basic"
+				annotation(Icon(graphics={
+														Rectangle(
+															fillColor={0,0,255},
+															extent={{-77.2278,76.02549999999999},{74.95610000000001,-75.256}}),
+														Rectangle(
+															fillColor={0,0,255},
+															extent={{-69.5191,69.42019999999999},{66.9674,-68.4328}}),
+														Ellipse(
+															fillColor={0,0,255},
+															extent={{-20.2122,18.7864},{19.355,-20.778}}),
+														Ellipse(
+															fillColor={0,0,255},
+															extent={{-15.3692,13.9434},{14.512,-15.6521}}),
+														Ellipse(
+															fillColor={0,0,255},
+															extent={{-1.42575,0.571424},{0.288544,-1.14286}}),
+														Rectangle(
+															fillColor={255,255,255},
+															fillPattern=FillPattern.Solid,
+															extent={{-74.37909999999999,15.6917},{-79.2362,-16.0226}}),
+														Rectangle(
+															fillColor={255,255,255},
+															fillPattern=FillPattern.Solid,
+															extent={{-15.9916,77.18810000000001},{15.1513,72.0453}}),
+														Rectangle(
+															fillColor={255,255,255},
+															fillPattern=FillPattern.Solid,
+															extent={{73.239,13.1174},{77.5247,-13.7397}}),
+														Rectangle(
+															fillColor={255,255,255},
+															fillPattern=FillPattern.Solid,
+															extent={{-15.4145,-72.9759},{16.5855,-77.833}}),
+														Text(
+															textString="%id",
+															fillColor={0,0,255},
+															extent={{-49.505,66.761},{55.4455,27.4399}})}));
 			end basic;
 			annotation(
 				Icon(coordinateSystem(
@@ -1568,6 +1913,380 @@ package iboss
 					initialScale=0.1,
 					grid={2,2})));
 		end icons;
+		model basic_wheel1x
+			extends basic annotation(Placement(transformation(extent={{-10,-10},{10,10}})));
+			satcomponents.AOCS.Parts.reactionwheelsimple_noelectricity reactionwheelsimple_noelectricity1(id=id) annotation(Placement(transformation(
+				origin={-35,-30},
+				extent={{-25,-20},{10,10}},
+				rotation=-180)));
+			equation
+				connect(reactionwheelsimple_noelectricity1.acs_bus,Xn.sat_bus.acs_bus) annotation(Line(
+					points={{-45,-22},{-50,-22},{-75,-22},{-75,0},{-80,0}},
+					thickness=0.0625));
+				connect(Struktur.frame_a,reactionwheelsimple_noelectricity1.frame_a) annotation(Line(
+					points={{-8,-0.3},{-13,-0.3},{-30.7,-0.3},{-30.7,-5},{-30.7,-10}},
+					color={95,95,95},
+					thickness=0.0625));
+			annotation(
+				Struktur(
+					cylinder(viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+					sphere(viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+					viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+				rZp(
+					shape(viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+					viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+				rYp(
+					shape(viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+					viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+				rZn(
+					shape(viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+					viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+				rYn(
+					shape(viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+					viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+				rXn(
+					shape(viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+					viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+				rXp(
+					shape(viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+					viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+				viewinfo[0](
+					property[0](
+						id=2004,
+						val="2005"),
+					property[1](
+						id=2012,
+						val="2013"),
+					property[2](
+						id=2017,
+						val="000000"),
+					property[3](
+						id=2018,
+						val="True"),
+					property[4](
+						id=6012,
+						val="False"),
+					property[5](
+						id=6013,
+						val="True"),
+					property[6](
+						id=6022,
+						val="True"),
+					typename="3DObjectInfo"),
+				imu(
+					acs_bus(
+						w(flags=2),
+						u(flags=2),
+						y(flags=2)),
+					viewinfo[0](
+						property[0](
+							id=2004,
+							val="2005"),
+						property[1](
+							id=2012,
+							val="2013"),
+						property[2](
+							id=2017,
+							val="000000"),
+						property[3](
+							id=2018,
+							val="True"),
+						typename="3DObjectInfo")),
+				viewinfo[0](
+					property[0](
+						id=2004,
+						val="2005"),
+					property[1](
+						id=2012,
+						val="2013"),
+					property[2](
+						id=2017,
+						val="000000"),
+					property[3](
+						id=2018,
+						val="True"),
+					property[4](
+						id=6012,
+						val="False"),
+					property[5](
+						id=6013,
+						val="True"),
+					property[6](
+						id=6022,
+						val="True"),
+					typename="3DObjectInfo"),
+				reactionwheelsimple_noelectricity1(bodyShape1(
+					frame_a(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					frame_b(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					r_0(flags=2),
+					v_0(flags=2),
+					a_0(flags=2),
+					frameTranslation(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						frame_b(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2))),
+					body(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						r_0(flags=2),
+						v_0(flags=2),
+						a_0(flags=2),
+						w_a(flags=2),
+						z_a(flags=2),
+						g_0(flags=2)))),
+				viewinfo[0](
+					property[0](
+						id=2004,
+						val="2005"),
+					property[1](
+						id=2012,
+						val="2013"),
+					property[2](
+						id=2017,
+						val="000000"),
+					property[3](
+						id=2018,
+						val="True"),
+					property[4](
+						id=6012,
+						val="False"),
+					property[5](
+						id=6013,
+						val="True"),
+					property[6](
+						id=6022,
+						val="True"),
+					typename="3DObjectInfo"),
+				viewinfo[1](
+					viewSettings(clrRaster=12632256),
+					typename="ModelInfo"),
+				experiment(
+					StopTime=1,
+					StartTime=0));
+		end basic_wheel1x;
 	end buildingblocks;
 	package satellites
 		model generic_sat
@@ -5019,60 +5738,42 @@ package iboss
 				Tolerance=1e-06));
 		end generic_sat_aocs;
 		model ass3x1x1
-			Modelica.Mechanics.MultiBody.Joints.FreeMotion r(
-				animation=false,
-				r_rel_a(start={0.0,0.0,0.0}),
-				v_rel_a(start={0.0,0.0,0.0}),
-				w_rel_a_start={0.1,0.5,0.0}) annotation(Placement(transformation(
-				origin={20,80},
-				extent={{-10,-10},{10,10}})));
 			inner Modelica.Mechanics.MultiBody.World world(
 				enableAnimation=animation,
 				gravityType=Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(transformation(
 				origin={-20,80},
 				extent={{-10,-10},{10,10}})));
 			satcomponents.AOCS.ctrl.ACS acs1 annotation(Placement(transformation(
-				origin={15,55},
+				origin={10,30},
 				extent={{-10,-10},{10,10}})));
-			buildingblocks.basic bb1(id=1) annotation(Placement(transformation(
-				origin={-12.5,22.5},
-				extent={{-22.5,-22.5},{17.5,17.5}})));
-			buildingblocks.basic bb2(id=4) annotation(Placement(transformation(
-				origin={47.6,30},
-				extent={{-27.5,-27.5},{12.7,10}})));
-			buildingblocks.basic bb3(id=3) annotation(Placement(transformation(
-				origin={-12.5,-32.5},
-				extent={{-22.5,-22.5},{17.5,17.5}})));
 			parameter Boolean animation=false "= true, if animation shall be enabled (show cylinder and sphere)";
-			iboss.buildingblocks.basic bb4(id=2) annotation(Placement(transformation(
-				origin={47.6,-25},
-				extent={{-27.5,-27.5},{12.7,10}})));
+			Modelica.Mechanics.MultiBody.Joints.FreeMotion r(
+				animation=false,
+				r_rel_a(start={0.0,0.0,0.0}),
+				v_rel_a(start={0.0,0.0,0.0}),
+				w_rel_a_start={0.0,0.0,0.0},
+				enforceStates=false) annotation(Placement(transformation(
+				origin={20,80},
+				extent={{-10,-10},{10,10}})));
+			iboss.buildingblocks.basic_wheel1x basic_wheel1x1(id=4) annotation(Placement(transformation(
+				origin={62.5,22.5},
+				extent={{-17.5,-17.5},{17.5,17.5}})));
 			equation
-				connect(r.frame_b,bb2.Yps) annotation(Line(points={{30,80},{35,80},{44.3,80},{44.3,41.3},{44.3,36.3}}));
-				connect(world.frame_b,r.frame_a) annotation(Line(points={{-10,80},{-5,80},{5,80},{10,80}}));
-				connect(bb1.Xp,bb2.Xn) annotation(Line(points={{1,20},{6,20},{19,20},{19,21.3},{24,21.3}}));
-				connect(bb2.Xns,bb1.Xps) annotation(
-					Line(
-						points={{24,25},{19,25},{10,25},{10,16},{1,16}},
-						color={95,95,95},
-						thickness=0.0625),
-					AutoRoute=false);
-				connect(acs1.acs_bus,bb2.Yp.sat_bus.acs_bus) annotation(Line(
-					points={{25,55},{30,55},{40.3,55},{40.3,41.3},{40.3,36.3}},
-					thickness=0.0625));
-				connect(bb1.Yn,bb3.Yp) annotation(Line(points={{-15,4},{-15,-1},{-15,-14},{-15,-19}}));
-				connect(bb1.Yns,bb3.Yps) annotation(Line(
-					points={{-19,4},{-19,-1},{-19,-14},{-11,-14},{-11,-19}},
+				connect(world.frame_b,r.frame_a) annotation(Line(
+					points={{-10,80},{-5,80},{5,80},{10,80}},
 					color={95,95,95},
-					thickness=0.0625));
-				connect(bb2.Yn,bb4.Yp) annotation(Line(points={{40.3,6.3},{40.3,1.3},{40.3,-13.7},{40.3,-18.7}}));
-				connect(bb2.Yns,bb4.Yps) annotation(
-					Line(
-						points={{36,6.3},{36,1.3},{36,-5},{44,-5},{44,-18.7}},
-						color={95,95,95},
-						thickness=0.0625),
-					AutoRoute=false);
+					thickness=0.015625));
+				connect(acs1.acs_bus,basic_wheel1x1.Xn.sat_bus.acs_bus) annotation(Line(
+					points={{20,30},{25,30},{25,70},{-150,110}},
+					thickness=0.015625));
+				connect(r.frame_b,basic_wheel1x1.Yps) annotation(Line(
+					points={{30,80},{35,80},{66,80},{66,41.7},{66,36.7}},
+					color={95,95,95},
+					thickness=0.015625));
 			annotation(
+				acs1(acs_bus(
+					w(flags=2),
+					u(flags=2))),
 				r(
 					arrow(
 						arrowLine(viewinfo[0](
@@ -5131,12 +5832,23 @@ package iboss
 							id=2018,
 							val="True"),
 						typename="3DObjectInfo")),
-				acs1(acs_bus(
+				basic_wheel1x1(
+					r(flags=2),
 					w(flags=2),
-					y(flags=2),
-					u(flags=2))),
-				bb1(
 					Struktur(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						r_0(flags=2),
+						v_0(flags=2),
+						a_0(flags=2),
+						w_a(flags=2),
+						z_a(flags=2),
+						g_0(flags=2),
 						cylinder(viewinfo[0](
 							property[0](
 								id=2004,
@@ -5146,7 +5858,7 @@ package iboss
 								val="2013"),
 							property[2](
 								id=2017,
-								val="ffffff"),
+								val="000000"),
 							property[3](
 								id=2018,
 								val="True"),
@@ -5160,7 +5872,7 @@ package iboss
 								val="2013"),
 							property[2](
 								id=2017,
-								val="ffffff"),
+								val="000000"),
 							property[3](
 								id=2018,
 								val="True"),
@@ -5179,7 +5891,63 @@ package iboss
 								id=2018,
 								val="True"),
 							typename="3DObjectInfo")),
+					Zps(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					Yps(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					Xps(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					Zns(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					Yns(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					Xns(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
 					rZp(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						frame_b(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
 						shape(viewinfo[0](
 							property[0](
 								id=2004,
@@ -5189,7 +5957,7 @@ package iboss
 								val="2013"),
 							property[2](
 								id=2017,
-								val="ffffff"),
+								val="000000"),
 							property[3](
 								id=2018,
 								val="True"),
@@ -5209,6 +5977,20 @@ package iboss
 								val="True"),
 							typename="3DObjectInfo")),
 					rYp(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						frame_b(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
 						shape(viewinfo[0](
 							property[0](
 								id=2004,
@@ -5218,7 +6000,7 @@ package iboss
 								val="2013"),
 							property[2](
 								id=2017,
-								val="ffffff"),
+								val="000000"),
 							property[3](
 								id=2018,
 								val="True"),
@@ -5238,6 +6020,20 @@ package iboss
 								val="True"),
 							typename="3DObjectInfo")),
 					rZn(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						frame_b(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
 						shape(viewinfo[0](
 							property[0](
 								id=2004,
@@ -5247,7 +6043,7 @@ package iboss
 								val="2013"),
 							property[2](
 								id=2017,
-								val="ffffff"),
+								val="000000"),
 							property[3](
 								id=2018,
 								val="True"),
@@ -5267,6 +6063,20 @@ package iboss
 								val="True"),
 							typename="3DObjectInfo")),
 					rYn(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						frame_b(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
 						shape(viewinfo[0](
 							property[0](
 								id=2004,
@@ -5276,7 +6086,7 @@ package iboss
 								val="2013"),
 							property[2](
 								id=2017,
-								val="ffffff"),
+								val="000000"),
 							property[3](
 								id=2018,
 								val="True"),
@@ -5296,6 +6106,20 @@ package iboss
 								val="True"),
 							typename="3DObjectInfo")),
 					rXn(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						frame_b(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
 						shape(viewinfo[0](
 							property[0](
 								id=2004,
@@ -5305,7 +6129,7 @@ package iboss
 								val="2013"),
 							property[2](
 								id=2017,
-								val="ffffff"),
+								val="000000"),
 							property[3](
 								id=2018,
 								val="True"),
@@ -5325,6 +6149,20 @@ package iboss
 								val="True"),
 							typename="3DObjectInfo")),
 					rXp(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						frame_b(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
 						shape(viewinfo[0](
 							property[0](
 								id=2004,
@@ -5334,7 +6172,7 @@ package iboss
 								val="2013"),
 							property[2](
 								id=2017,
-								val="ffffff"),
+								val="000000"),
 							property[3](
 								id=2018,
 								val="True"),
@@ -5354,6 +6192,9 @@ package iboss
 								val="True"),
 							typename="3DObjectInfo")),
 					viewinfo[0](
+						viewSettings(clrRaster=12632256),
+						typename="ModelInfo"),
+					viewinfo[1](
 						property[0](
 							id=2004,
 							val="2005"),
@@ -5376,827 +6217,60 @@ package iboss
 							id=6022,
 							val="True"),
 						typename="3DObjectInfo"),
-					imu(
-						acs_bus(
-							w(flags=2),
-							y(flags=2),
-							u(flags=2)),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					viewinfo[0](
-						property[0](
-							id=2004,
-							val="2005"),
-						property[1](
-							id=2012,
-							val="2013"),
-						property[2](
-							id=2017,
-							val="000000"),
-						property[3](
-							id=2018,
-							val="True"),
-						property[4](
-							id=6012,
-							val="False"),
-						property[5](
-							id=6013,
-							val="True"),
-						property[6](
-							id=6022,
-							val="True"),
-						typename="3DObjectInfo")),
-				bb2(
-					Struktur(
-						cylinder(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						sphere(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					rZp(
-						shape(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					rYp(
-						shape(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					rZn(
-						shape(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					rYn(
-						shape(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					rXn(
-						shape(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					rXp(
-						shape(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					viewinfo[0](
-						property[0](
-							id=2004,
-							val="2005"),
-						property[1](
-							id=2012,
-							val="2013"),
-						property[2](
-							id=2017,
-							val="000000"),
-						property[3](
-							id=2018,
-							val="True"),
-						property[4](
-							id=6012,
-							val="False"),
-						property[5](
-							id=6013,
-							val="True"),
-						property[6](
-							id=6022,
-							val="True"),
-						typename="3DObjectInfo"),
+					Zp(sat_bus(acs_bus(
+						w(flags=2),
+						w_a(flags=2),
+						u(flags=2),
+						y(flags=2)))),
+					Zn(sat_bus(acs_bus(
+						w(flags=2),
+						w_a(flags=2),
+						u(flags=2),
+						y(flags=2)))),
 					Xn(sat_bus(acs_bus(
 						w(flags=2),
-						y(flags=2),
-						u(flags=2)))),
-					imu(
-						acs_bus(
-							w(flags=2),
-							y(flags=2),
-							u(flags=2)),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					viewinfo[0](
-						property[0](
-							id=2004,
-							val="2005"),
-						property[1](
-							id=2012,
-							val="2013"),
-						property[2](
-							id=2017,
-							val="000000"),
-						property[3](
-							id=2018,
-							val="True"),
-						property[4](
-							id=6012,
-							val="False"),
-						property[5](
-							id=6013,
-							val="True"),
-						property[6](
-							id=6022,
-							val="True"),
-						typename="3DObjectInfo")),
-				bb3(
-					Struktur(
-						cylinder(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						sphere(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					rZp(
-						shape(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					rYp(
-						shape(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					rZn(
-						shape(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					rYn(
-						shape(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					rXn(
-						shape(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					rXp(
-						shape(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					viewinfo[0](
-						property[0](
-							id=2004,
-							val="2005"),
-						property[1](
-							id=2012,
-							val="2013"),
-						property[2](
-							id=2017,
-							val="000000"),
-						property[3](
-							id=2018,
-							val="True"),
-						property[4](
-							id=6012,
-							val="False"),
-						property[5](
-							id=6013,
-							val="True"),
-						property[6](
-							id=6022,
-							val="True"),
-						typename="3DObjectInfo"),
+						w_a(flags=2),
+						u(flags=2),
+						y(flags=2)))),
+					Xp(sat_bus(acs_bus(
+						w(flags=2),
+						w_a(flags=2),
+						u(flags=2),
+						y(flags=2)))),
+					Yp(sat_bus(acs_bus(
+						w(flags=2),
+						w_a(flags=2),
+						u(flags=2),
+						y(flags=2)))),
 					Yn(sat_bus(acs_bus(
 						w(flags=2),
-						y(flags=2),
-						u(flags=2)))),
+						w_a(flags=2),
+						u(flags=2),
+						y(flags=2)))),
 					imu(
 						acs_bus(
 							w(flags=2),
-							y(flags=2),
-							u(flags=2)),
+							w_a(flags=2),
+							u(flags=2),
+							y(flags=2)),
+						absoluteangularvelocity1(frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2))),
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
 						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					viewinfo[0](
-						property[0](
-							id=2004,
-							val="2005"),
-						property[1](
-							id=2012,
-							val="2013"),
-						property[2](
-							id=2017,
-							val="000000"),
-						property[3](
-							id=2018,
-							val="True"),
-						property[4](
-							id=6012,
-							val="False"),
-						property[5](
-							id=6013,
-							val="True"),
-						property[6](
-							id=6022,
-							val="True"),
-						typename="3DObjectInfo")),
-				bb4(
-					Struktur(
-						cylinder(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						sphere(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					rZp(
-						shape(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					rYp(
-						shape(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					rZn(
-						shape(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					rYn(
-						shape(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					rXn(
-						shape(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-					rXp(
-						shape(viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="ffffff"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
-						viewinfo[0](
+							viewSettings(clrRaster=12632256),
+							typename="ModelInfo"),
+						viewinfo[1](
 							property[0](
 								id=2004,
 								val="2005"),
@@ -6233,29 +6307,72 @@ package iboss
 							id=6022,
 							val="True"),
 						typename="3DObjectInfo"),
-					Xn(sat_bus(acs_bus(
-						w(flags=2),
-						y(flags=2),
-						u(flags=2)))),
-					imu(
+					viewinfo[1](
+						viewSettings(clrRaster=12632256),
+						typename="ModelInfo"),
+					reactionwheelsimple_noelectricity1(
 						acs_bus(
 							w(flags=2),
-							y(flags=2),
-							u(flags=2)),
+							w_a(flags=2),
+							u(flags=2),
+							y(flags=2)),
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						bodyShape1(
+							frame_a(
+								r_0(flags=2),
+								R(
+									T(flags=2),
+									w(flags=2)),
+								f(flags=2),
+								t(flags=2)),
+							frame_b(
+								r_0(flags=2),
+								R(
+									T(flags=2),
+									w(flags=2)),
+								f(flags=2),
+								t(flags=2)),
+							r_0(flags=2),
+							v_0(flags=2),
+							a_0(flags=2),
+							frameTranslation(
+								frame_a(
+									r_0(flags=2),
+									R(
+										T(flags=2),
+										w(flags=2)),
+									f(flags=2),
+									t(flags=2)),
+								frame_b(
+									r_0(flags=2),
+									R(
+										T(flags=2),
+										w(flags=2)),
+									f(flags=2),
+									t(flags=2))),
+							body(
+								frame_a(
+									r_0(flags=2),
+									R(
+										T(flags=2),
+										w(flags=2)),
+									f(flags=2),
+									t(flags=2)),
+								r_0(flags=2),
+								v_0(flags=2),
+								a_0(flags=2),
+								w_a(flags=2),
+								z_a(flags=2),
+								g_0(flags=2))),
 						viewinfo[0](
-							property[0](
-								id=2004,
-								val="2005"),
-							property[1](
-								id=2012,
-								val="2013"),
-							property[2](
-								id=2017,
-								val="000000"),
-							property[3](
-								id=2018,
-								val="True"),
-							typename="3DObjectInfo")),
+							viewSettings(clrRaster=12632256),
+							typename="ModelInfo")),
 					viewinfo[0](
 						property[0](
 							id=2004,
@@ -6278,7 +6395,10 @@ package iboss
 						property[6](
 							id=6022,
 							val="True"),
-						typename="3DObjectInfo")),
+						typename="3DObjectInfo"),
+					viewinfo[1](
+						viewSettings(clrRaster=12632256),
+						typename="ModelInfo")),
 				viewinfo[0](
 					viewSettings(clrRaster=12632256),
 					typename="ModelInfo"),
@@ -6305,10 +6425,22 @@ package iboss
 						id=6022,
 						val="True"),
 					typename="3DObjectInfo"),
+				viewinfo[2](
+					noSymJacMat=true,
+					optimizeForODE=true,
+					typename="GSASettings"),
+				viewinfo[3](
+					projectPath="C:\\Users\\indahouse\\Documents\\SimulationX 3.6\\Exported C-Code",
+					projectType=0,
+					saveOutputsApproach=1,
+					showAdditionalLibPage=false,
+					useCodeOptimization=true,
+					m_x64=false,
+					solverMode=1,
+					typename="CodeExportInfo"),
 				experiment(
 					StopTime=100,
 					StartTime=0,
-					Tolerance=1e-006,
 					Interval=0.2));
 		end ass3x1x1;
 	end satellites;
