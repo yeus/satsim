@@ -840,16 +840,6 @@ package modelicatests
 					points={{3,70},{-2,70},{-15,70},{-15,-20},{-20,-20}},
 					color={0,0,127},
 					thickness=0.0625));
-			annotation(
-				modcom1(a(flags=2)),
-				modcom2(a(flags=2)),
-				cos1(y(flags=2)),
-				modcom3(a(flags=2)),
-				modcom4(a(flags=2)),
-				sine2(y(flags=2)),
-				sine1(y(flags=2)),
-					Tolerance=1e-006,
-					Interval=0.2));
 		end signalbusarraytest;
 	end bus_simulation;
 	package openmodelica_cpp

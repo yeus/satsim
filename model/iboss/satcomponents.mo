@@ -1,7 +1,6 @@
   within iboss;
 // CP: 65001
 // SimulationX Version: 3.6.1.26028
-within ;
 package satcomponents
 	model Cubesat
 		Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(
@@ -3996,11 +3995,7 @@ package satcomponents
 						points={{27,53},{32,53},{75,53},{75,5},{80,5}},
 						color={0,0,127},
 						thickness=0.0625));
-				annotation(
-					viewinfo[0](
-						viewSettings(clrRaster=12632256),
-						typename="ModelInfo"),
-					Icon(graphics={
+				annotation(Icon(graphics={
 													Rectangle(
 														fillColor={128,128,128},
 														fillPattern=FillPattern.Solid,
@@ -4109,11 +4104,7 @@ package satcomponents
 						points={{11,0},{16,0},{95,0},{100,0}},
 						color={0,0,127},
 						thickness=0.0625));
-				annotation(
-					viewinfo[0](
-						viewSettings(clrRaster=12632256),
-						typename="ModelInfo"),
-					Icon(graphics={
+				annotation(Icon(graphics={
 								Rectangle(
 									fillColor={128,128,128},
 									fillPattern=FillPattern.Sphere,
@@ -4236,9 +4227,6 @@ package satcomponents
 							w_a(flags=2),
 							z_a(flags=2),
 							g_0(flags=2))),
-					viewinfo[0](
-						viewSettings(clrRaster=12632256),
-						typename="ModelInfo"),
 					Icon(graphics={
 								Ellipse(
 									fillColor={192,192,255},
@@ -4304,11 +4292,7 @@ package satcomponents
 					startTime=20.0) annotation(Placement(transformation(extent={{-5,-20},{15,0}})));
 				equation
 					acs_bus.w[4,1]=if time > 20.0 then 0.0001 else 0.0;
-				annotation(
-					viewinfo[0](
-						viewSettings(clrRaster=12632256),
-						typename="ModelInfo"),
-					Icon(graphics={
+				annotation(Icon(graphics={
 								Rectangle(
 									fillColor={255,255,255},
 									fillPattern=FillPattern.Solid,
