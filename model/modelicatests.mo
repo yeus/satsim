@@ -1,6 +1,5 @@
 // CP: 65001
 // SimulationX Version: 3.6.1.26028
-within ;
 package modelicatests
 	model test
 		Modelica.Electrical.Analog.Basic.Resistor resistor1(R=0.1) annotation(Placement(
@@ -753,23 +752,7 @@ package modelicatests
 				sine1(y(flags=2)),
 				tanh1(y(flags=2)),
 				realValue1(showNumber(flags=2)),
-				sine2(y(flags=2)),
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
-				viewinfo[1](
-					minOrder=0.5,
-					maxOrder=12,
-					mode=0,
-					minStep=0.01,
-					maxStep=0.1,
-					relTol=1e-005,
-					oversampling=4,
-					anaAlgorithm=0,
-					typename="AnaStatInfo"),
-				experiment(
-					StopTime=100,
-					StartTime=0));
+				sine2(y(flags=2)));
 		end signalbustest;
 	end bus_simulation;
 	package openmodelica_cpp
@@ -809,13 +792,6 @@ package modelicatests
 			x:=mod(a * y + c, m);
 		annotation(
 			x(flags=2),
-			y(flags=2),
-			viewinfo[0](
-				viewSettings(clrRaster=12632256),
-				typename="ModelInfo"),
-			experiment(
-				StopTime=20,
-				StartTime=0,
-				Tolerance=1e-006));
+			y(flags=2));
 	end noise_ung;
 end modelicatests;

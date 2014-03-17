@@ -1,4 +1,4 @@
-within Modelica;
+within ;
 package iboss_all "Library of all iboss system components to model electrical, thermal an AOCS behaviour of the modualar Satellite"
   extends Modelica.Icons.Package;
 
@@ -19,4 +19,4 @@ package iboss_all "Library of all iboss system components to model electrical, t
 This package contains libraries to model electrical, thermal an AOCS behaviour of the modualar Satellite.
 </p>
 </html>"));
-end Thermal;
+end iboss_all;
