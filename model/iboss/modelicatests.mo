@@ -1,6 +1,6 @@
-  within iboss;
 // CP: 65001
 // SimulationX Version: 3.6.1.26028
+within iboss;
 package modelicatests
 	model test
 		Modelica.Electrical.Analog.Basic.Resistor resistor1(R=0.1) annotation(Placement(
@@ -643,15 +643,15 @@ package modelicatests
 		expandable connector modcom "modcom"
 			Real a[10];
 			annotation(Icon(graphics={
-								Rectangle(
-									lineColor={0,0,0},
-									fillColor={255,255,255},
-									fillPattern=FillPattern.Solid,
-									extent={{-73.3,76.7},{80,-76.7}}),
-								Text(
-									textString="iCOM",
-									lineColor={0,0,0},
-									extent={{-46.7,50},{53.3,-50}})}));
+											Rectangle(
+												lineColor={0,0,0},
+												fillColor={255,255,255},
+												fillPattern=FillPattern.Solid,
+												extent={{-73.3,76.7},{80,-76.7}}),
+											Text(
+												textString="iCOM",
+												lineColor={0,0,0},
+												extent={{-46.7,50},{53.3,-50}})}));
 		end modcom;
 		block Sensor
 			Modelica.Blocks.Interfaces.RealOutput speed;
@@ -787,14 +787,10 @@ package modelicatests
 				freqHz=0.1) annotation(Placement(transformation(
 				origin={-80,-25},
 				extent={{-10,-10},{10,10}})));
-			Modelica.Blocks.Sources.Sine sine1(
-				amplitude=2.0,
-				freqHz=0.1) annotation(Placement(transformation(
-				origin={-85,45},
-				extent={{-10,-10},{10,10}})));
 			Modelica.Blocks.Math.Gain gain1 annotation(Placement(transformation(
 				origin={15,70},
 				extent={{-10,-10},{10,10}})));
+			Modelica.Blocks.Sources.Pulse pulse1(startTime=5) annotation(Placement(transformation(extent={{-110,35},{-90,55}})));
 			equation
 				connect(modcom1,modcom3) annotation(Line(
 					points={{-50,30},{-45,30},{-25,30},{-25,-20},{-20,-20}},
@@ -808,10 +804,7 @@ package modelicatests
 					points={{40,30},{35,30},{25,30},{25,-40},{20,-40}},
 					color={0,0,0},
 					thickness=0.0625));
-				connect(sine1.y,modcom1.a[1]) annotation(Line(
-					points={{-74,45},{-69,45},{-55,45},{-55,30},{-50,30}},
-					color={0,0,127},
-					thickness=0.0625));
+				
 				connect(sine2.y,modcom3.a[2]) annotation(Line(
 					points={{-69,-25},{-64,-25},{-25,-25},{-25,-20},{-20,-20}},
 					color={0,0,127},
@@ -824,22 +817,18 @@ package modelicatests
 					points={{3,70},{-2,70},{-15,70},{-15,-20},{-20,-20}},
 					color={0,0,127},
 					thickness=0.0625));
-				connect(sine1.y,modcom1.a) annotation(Line(
-					points={{-74,45},{-69,45},{-55,45},{-55,30},{-50,30}},
+				connect(pulse1.y,modcom1.a[1]) annotation(Line(
+					points={{-89,45},{-84,45},{-55,45},{-55,30},{-50,30}},
 					color={0,0,127},
 					thickness=0.0625));
-				connect(sine2.y,modcom3.a) annotation(Line(
-					points={{-69,-25},{-64,-25},{-25,-25},{-25,-20},{-20,-20}},
-					color={0,0,127},
-					thickness=0.0625));
-				connect(cos1.u,modcom2.a) annotation(Line(
-					points={{103,-5},{98,-5},{45,-5},{45,30},{40,30}},
-					color={0,0,127},
-					thickness=0.0625));
-				connect(gain1.u,modcom3.a) annotation(Line(
-					points={{3,70},{-2,70},{-15,70},{-15,-20},{-20,-20}},
-					color={0,0,127},
-					thickness=0.0625));
+			annotation(
+				modcom2(a(flags=2)),
+				viewinfo[0](
+					viewSettings(clrRaster=12632256),
+					typename="ModelInfo"),
+				experiment(
+					StopTime=100,
+					StartTime=0));
 		end signalbusarraytest;
 	end bus_simulation;
 	package openmodelica_cpp
