@@ -1,3 +1,4 @@
+  within iboss;
 package satcomponents
   // CP: 65001
   // SimulationX Version: 3.5.706.23 x64
