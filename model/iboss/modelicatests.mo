@@ -1,6 +1,6 @@
+  within iboss;
 // CP: 65001
 // SimulationX Version: 3.6.1.26028
-within ;
 package modelicatests
 	model test
 		Modelica.Electrical.Analog.Basic.Resistor resistor1(R=0.1) annotation(Placement(
@@ -848,12 +848,6 @@ package modelicatests
 				modcom4(a(flags=2)),
 				sine2(y(flags=2)),
 				sine1(y(flags=2)),
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
-				experiment(
-					StopTime=100,
-					StartTime=0,
 					Tolerance=1e-006,
 					Interval=0.2));
 		end signalbusarraytest;
@@ -895,10 +889,6 @@ package modelicatests
 			x:=mod(a * y + c, m);
 		annotation(
 			x(flags=2),
-			y(flags=2),
-			experiment(
-				StopTime=20,
-				StartTime=0,
-				Tolerance=1e-06));
+			y(flags=2));
 	end noise_ung;
 end modelicatests;

@@ -24,8 +24,13 @@ fig, TIM_TSS_dT = plt.subplots()
 fig, Panel_T = plt.subplots()
 fig, Radiation_qflow = plt.subplots()
 fig, heater_on = plt.subplots()
+fig, sum_heater_on = plt.subplots()
 fig, cooler_on = plt.subplots()
-a = np.genfromtxt('D:\sim_resutlts_thermal\sat_3x3x3\omnidirectional_radiation\generic_satellite_3x3x3_sun_res_1000sec_euler.csv', delimiter=',',names=True)
+a = np.genfromtxt('E:\sim_results\sat_3x3x3\omnidirectional_radiation\generic_satellite_3x3x3_sun_res.csv', delimiter=',',names=True,dtype=float)
+summe = np.zeros(len(np.array(a)))
+print(len(np.array(a)))
+print(type(a))
+print(summe.size)
 i=1
 while i<=BBx:
     j=1
@@ -42,6 +47,7 @@ while i<=BBx:
             while i_c<=len(component_heater_cooler):
                 heater_on.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+str(component_heater_cooler[i_c-1])+str(physical_quantity[4])],label="BB"+str(i)+str(j)+str(k))
                 cooler_on.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+str(component_heater_cooler[i_c-1])+str(physical_quantity[5])],label="BB"+str(i)+str(j)+str(k))
+                summe = summe + a["BB"+str(i)+str(j)+str(k)+str(component_heater_cooler[i_c-1])+str(physical_quantity[4])]
                 i_c=i_c+1
             i_c=1
             while i_c<=len(component_TIM):
@@ -92,20 +98,30 @@ while i<=BBx:
         j=j+1
     i=i+1
 
-
+sum_heater_on.plot(a['time'],summe,label="BB"+str(i)+str(j)+str(k))
 #summe=np.array(a['BB222port_bT'])+np.array(a['BB222port_bT'])
 #ax.plot(a['t'],summe)
-legend = el_Box_T.legend(loc='upper right', shadow=True)
-legend = el_Box_qflow.legend(loc='upper right', shadow=True)
-legend = TIM_TSS_qflow.legend(loc='upper right', shadow=True)
-legend = TIM_all_qflow.legend(loc='upper right', shadow=True)
-legend = TIM_TSS_dT.legend(loc='upper right', shadow=True)
-legend = Panel_T.legend(loc='upper right', shadow=True)
-legend = Radiation_qflow.legend(loc='upper right', shadow=True)
-legend = heater_on.legend(loc='upper right', shadow=True)
-legend = cooler_on.legend(loc='upper right', shadow=True)
+el_Box_T.legend(loc='upper right', shadow=True)
+el_Box_T.set_title('Temperature of the electronic Boxes')
+el_Box_T.set_ylabel('Temperature / K')
+el_Box_T.set_xlabel('Time / sec')
+el_Box_qflow.legend(loc='upper right', shadow=True)
+el_Box_qflow.set_title('Power transfer at the electronic Boxes')
+TIM_TSS_qflow.legend(loc='upper right', shadow=True)
+TIM_TSS_qflow.set_title('Power transfer at the TSS')
+TIM_all_qflow.legend(loc='upper right', shadow=True)
+TIM_all_qflow.set_title('Power transfer between the building blocks')
+TIM_TSS_dT.legend(loc='upper right', shadow=True)
+TIM_TSS_dT.set_title('Temperature gradient between the building blocks')
+Panel_T.legend(loc='upper right', shadow=True)
+Panel_T.set_title('Temperature at the building blocks panels')
+Radiation_qflow.legend(loc='upper right', shadow=True)
+Radiation_qflow.set_title('Power of the Radiation')
+heater_on.legend(loc='upper right', shadow=True)
+heater_on.set_title('switching state of the heater')
+cooler_on.legend(loc='upper right', shadow=True)
+cooler_on.set_title('switching state of the cooler')
 #ax2.plot(a['t'],a['BB121port_bT'],'r',label='BB121port_bT')
 #ax2.plot(a['t'],a['BB122port_bT'],'b',label='BB122port_bT')
-#legend = ax2.legend(loc='upper right', shadow=True)
 plt.show()
 print("feddisch")
