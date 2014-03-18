@@ -7,7 +7,7 @@ Created on Thu Mar  6 13:30:08 2014
 # Function for printing
 def plotparameter( fig, title, x_label, y_label):
    "This prints a passed string into this function"
-   fig.legend(loc='upper right', shadow=True)
+   fig.legend(bbox_to_anchor=(1.01, 1), loc=2, borderaxespad=0.)
    fig.set_title(title)
    fig.set_xlabel(x_label)
    fig.set_ylabel(y_label)
