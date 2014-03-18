@@ -1,7 +1,6 @@
-// CP: 65001
-// SimulationX Version: 3.6.1.26028 x64
-  within iboss;
+within iboss;
 package iboss_thermal "iboss_thermal"
+	extends Modelica.Icons.Package;
 	import MaterialDatabase.*;
 	package components "components"
 		connector thermal_connector "Verbindungselement fuer mehr als eine Schnittstelle"
