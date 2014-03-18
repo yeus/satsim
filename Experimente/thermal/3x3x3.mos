@@ -3,4 +3,4 @@ loadFile("/home/jens/iBOSS2/Simulation_Linux/ibosssim/model/illumination.mo");
 loadFile("/home/jens/iBOSS2/Simulation_Linux/ibosssim/model/MaterialDatabase.mo");
 loadFile("/home/jens/iBOSS2/Simulation_Linux/ibosssim/model/iboss_thermal.mo");
 loadFile("/home/jens/iBOSS2/Simulation_Linux/ibosssim/Experimente/thermal/generic_satellite_3x3x3_sun.mo");
-simulate(generic_satellite_3x3x3_sun, startTime=0, stopTime=20000, numberOfIntervals=4000, tolerance=1e-2, method="euler", outputFormat="csv");
+simulate(generic_satellite_3x3x3_sun, startTime=0, stopTime=20000, numberOfIntervals=4000, tolerance=1e-2, method="lobatto6", outputFormat="csv");
