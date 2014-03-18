@@ -4,6 +4,15 @@ Created on Thu Mar  6 13:30:08 2014
 
 @author: jens
 """
+# Function for printing
+def plotparameter( fig, title, x_label, y_label):
+   "This prints a passed string into this function"
+   fig.legend(loc='upper right', shadow=True)
+   fig.set_title(title)
+   fig.set_xlabel(x_label)
+   fig.set_ylabel(y_label)
+   return;
+
 print("grap a coffee")
 import numpy as np
 import matplotlib.pyplot as plt
@@ -24,13 +33,11 @@ fig, TIM_TSS_dT = plt.subplots()
 fig, Panel_T = plt.subplots()
 fig, Radiation_qflow = plt.subplots()
 fig, heater_on = plt.subplots()
-fig, sum_heater_on = plt.subplots()
+fig, sum_heater_cooler_on = plt.subplots()
 fig, cooler_on = plt.subplots()
-a = np.genfromtxt('E:\sim_results\sat_3x3x3\omnidirectional_radiation\generic_satellite_3x3x3_sun_res.csv', delimiter=',',names=True,dtype=float)
-summe = np.zeros(len(np.array(a)))
-print(len(np.array(a)))
-print(type(a))
-print(summe.size)
+a = np.genfromtxt('E:\sim_results\sat_3x3x3\omnidirectional_radiation\generic_satellite_3x3x3_sun_res_1000sec_euler.csv', delimiter=',',names=True,dtype=float)
+sum_heat = np.zeros(len(np.array(a)))
+sum_cool = np.zeros(len(np.array(a)))
 i=1
 while i<=BBx:
     j=1
@@ -47,7 +54,8 @@ while i<=BBx:
             while i_c<=len(component_heater_cooler):
                 heater_on.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+str(component_heater_cooler[i_c-1])+str(physical_quantity[4])],label="BB"+str(i)+str(j)+str(k))
                 cooler_on.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+str(component_heater_cooler[i_c-1])+str(physical_quantity[5])],label="BB"+str(i)+str(j)+str(k))
-                summe = summe + a["BB"+str(i)+str(j)+str(k)+str(component_heater_cooler[i_c-1])+str(physical_quantity[4])]
+                sum_heat = sum_heat + a["BB"+str(i)+str(j)+str(k)+str(component_heater_cooler[i_c-1])+str(physical_quantity[4])]
+                sum_cool = sum_cool + a["BB"+str(i)+str(j)+str(k)+str(component_heater_cooler[i_c-1])+str(physical_quantity[5])]
                 i_c=i_c+1
             i_c=1
             while i_c<=len(component_TIM):
@@ -97,45 +105,17 @@ while i<=BBx:
             k=k+1
         j=j+1
     i=i+1
-
-sum_heater_on.plot(a['time'],summe,label="BB"+str(i)+str(j)+str(k))
-#summe=np.array(a['BB222port_bT'])+np.array(a['BB222port_bT'])
-#ax.plot(a['t'],summe)
-el_Box_T.legend(loc='upper right', shadow=True)
-el_Box_T.set_title('Temperature of the electronic Boxes')
-el_Box_T.set_ylabel('Temperature / K')
-el_Box_T.set_xlabel('Time / sec')
-el_Box_qflow.legend(loc='upper right', shadow=True)
-el_Box_qflow.set_title('Power transfer at the electronic Boxes')
-el_Box_qflow.set_ylabel('heat power transfer / W')
-el_Box_qflow.set_xlabel('Time / sec')
-TIM_TSS_qflow.legend(loc='upper right', shadow=True)
-TIM_TSS_qflow.set_title('Power transfer at the TSS')
-TIM_TSS_qflow.set_ylabel('heat power transfer / W')
-TIM_TSS_qflow.set_xlabel('Time / sec')
-TIM_all_qflow.legend(loc='upper right', shadow=True)
-TIM_all_qflow.set_title('Power transfer between the building blocks')
-TIM_all_qflow.set_ylabel('heat power transfer / W')
-TIM_all_qflow.set_xlabel('Time / sec')
-TIM_TSS_dT.legend(loc='upper right', shadow=True)
-TIM_TSS_dT.set_title('Temperature gradient between the building blocks')
-TIM_TSS_dT.set_ylabel('Temperature difference / K')
-TIM_TSS_dT.set_xlabel('Time / sec')
-Panel_T.legend(loc='upper right', shadow=True)
-Panel_T.set_title('Temperature at the building blocks panels')
-Panel_T.set_ylabel('Temperature / K')
-Panel_T.set_xlabel('Time / sec')
-Radiation_qflow.legend(loc='upper right', shadow=True)
-Radiation_qflow.set_title('Power of the Radiation')
-Radiation_qflow.set_ylabel('heat power transfer / W')
-Radiation_qflow.set_xlabel('Time / sec')
-heater_on.legend(loc='upper right', shadow=True)
-heater_on.set_title('switching state of the heater')
-heater_on.set_ylabel('on/off')
-heater_on.set_xlabel('Time / sec')
-cooler_on.legend(loc='upper right', shadow=True)
-cooler_on.set_title('switching state of the cooler')
-cooler_on.set_ylabel('on/off')
-cooler_on.set_xlabel('Time / sec')
+sum_heater_cooler_on.plot(a['time'], sum_heat,label="sum of all heaters")
+sum_heater_cooler_on.plot(a['time'], sum_cool,label="sum of coolers")
+plotparameter(el_Box_T, 'Temperature of the electronic Boxes','Time / sec','Temperature / K')
+plotparameter(el_Box_qflow, 'Power transfer at the electronic Boxes','Time / sec','heat power transfer / W')
+plotparameter(TIM_TSS_qflow, 'Power transfer at the TSS','Time / sec','heat power transfer / W')
+plotparameter(TIM_all_qflow, 'Power transfer between the building blocks','Time / sec','heat power transfer / W')
+plotparameter(TIM_TSS_dT, 'Temperature gradient between the building blocks','Time / sec','Temperature difference / K')
+plotparameter(Panel_T, 'Temperature at the building blocks panels','Time / sec','Temperature / K')
+plotparameter(Radiation_qflow, 'Power of the Radiation','Time / sec','heat power transfer / W')
+plotparameter(heater_on, 'switching state of the heater','Time / sec','on/off')
+plotparameter(cooler_on, 'switching state of the cooler','Time / sec','on/off')
+plotparameter(sum_heater_cooler_on, 'sum of the switching states of all heaters and coolers','Time / sec','on/off')
 plt.show()
 print("feddisch")
