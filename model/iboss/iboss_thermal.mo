@@ -1,7 +1,9 @@
+// CP: 65001
+// SimulationX Version: 3.6.1.26028 x64
 within iboss;
 package iboss_thermal "iboss_thermal"
-	extends Modelica.Icons.Package;
 	import MaterialDatabase.*;
+	extends Modelica.Icons.Package;
 	package components "components"
 		connector thermal_connector "Verbindungselement fuer mehr als eine Schnittstelle"
 			import Modelica.Thermal.HeatTransfer.Interfaces;
@@ -1003,6 +1005,152 @@ An approppriate simulating time would be 10 seconds.
 					StopTime=10,
 					StartTime=0));
 		end environment;
+		model environment_var_rad
+			parameter Modelica.SIunits.Area effective_area_total=0.16 "Flaeche des Seitenpaneels";
+			parameter Modelica.SIunits.Area effective_area_Rad=0.1048 "Flaeche des Radiators";
+			parameter Modelica.SIunits.Area effective_area_TSS=0.05 "Flaeche der thermalen Schnittstelle";
+			parameter Modelica.SIunits.Area effective_area_MSS=0.005 "Flaeche der mechanischen Schnittstelle";
+			parameter Modelica.SIunits.Area effective_area_ESS=0.0002 "Flaeche der elektrischen Schnittstelle";
+			parameter Modelica.SIunits.Emissivity alpha_Rad=0.44 "Absorptionskoeffizient des Radiators";
+			parameter Modelica.SIunits.Emissivity alpha_TSS=0.9 "Absorptionskoeffizient der thermalen Schnittstelle";
+			parameter Modelica.SIunits.Emissivity alpha_MSS=0.4 "Absorptionskoeffizient der mechanischen Schnittstelle";
+			parameter Modelica.SIunits.Emissivity alpha_ESS=0.3 "Absorptionskoeffizient der elektrischen Schnittstelle";
+			parameter Modelica.SIunits.Emissivity epsilon_Rad=0.5600000000000001 "Emmisionskoeffizient des Radiators tbd";
+			parameter Modelica.SIunits.Emissivity epsilon_TSS=0.1 "Emmisionskoeffizient der thermalen Schnittstelle tbd";
+			parameter Modelica.SIunits.Emissivity epsilon_MSS=0.4 "Emmisionskoeffizient der mechanischen Schnittstelle tbd";
+			parameter Modelica.SIunits.Emissivity epsilon_ESS=0.3 "Emmisionskoeffizient der elektrischen Schnittstelle tbd Materialdatenbank";
+			parameter Real illumination[:,2]=[0,0;1,1];
+			Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow HeatFlow_TSS annotation(Placement(transformation(extent={{10,40},{30,60}})));
+			Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow HeatFlow_MSS annotation(Placement(transformation(extent={{10,10},{30,30}})));
+			Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow HeatFlow_ESS annotation(Placement(transformation(extent={{10,-20},{30,0}})));
+			Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow HeatFlow_Rad(alpha=0) annotation(Placement(transformation(extent={{10,-50},{30,-30}})));
+			Modelica.Blocks.Math.Gain factor_Rad(k=effective_area_Rad * alpha_Rad / effective_area_total) annotation(Placement(transformation(extent={{-35,-50},{-15,-30}})));
+			Modelica.Blocks.Sources.TimeTable timeTable1(
+				table=illumination,
+				offset=0) annotation(Placement(transformation(extent={{-95,-5},{-75,15}})));
+			Modelica.Blocks.Math.Gain factor_TSS(k=effective_area_TSS * alpha_TSS / effective_area_total) annotation(Placement(transformation(extent={{-35,40},{-15,60}})));
+			Modelica.Blocks.Math.Gain factor_MSS(k=effective_area_MSS * alpha_MSS / effective_area_total) annotation(Placement(transformation(extent={{-35,10},{-15,30}})));
+			Modelica.Blocks.Math.Gain factor_ESS(k=effective_area_ESS * alpha_ESS / effective_area_total) annotation(Placement(transformation(extent={{-35,-20},{-15,0}})));
+			iboss.iboss_thermal.components.VariableRad bodyRadiation_Rad annotation(Placement(transformation(
+				origin={130,-40},
+				extent={{-10,-10},{10,10}})));
+			Modelica.Thermal.HeatTransfer.Components.BodyRadiation bodyRadiation_TSS(Gr=epsilon_TSS * effective_area_TSS) annotation(Placement(transformation(
+				origin={130,50},
+				extent={{-10,-10},{10,10}})));
+			Modelica.Thermal.HeatTransfer.Components.BodyRadiation bodyRadiation_MSS(Gr=epsilon_MSS * effective_area_MSS) annotation(Placement(transformation(
+				origin={130,20},
+				extent={{-10,-10},{10,10}})));
+			Modelica.Thermal.HeatTransfer.Components.BodyRadiation bodyRadiation_ESS(Gr=epsilon_ESS * effective_area_ESS) annotation(Placement(transformation(
+				origin={130,-10},
+				extent={{-10,-10},{10,10}})));
+			iboss_thermal.components.thermal_connector thermal_connector_env "Verbindungselement fuer mehr als eine Schnittstelle" annotation(Placement(
+				transformation(
+					origin={90,10},
+					extent={{10,10},{-10,-10}},
+					rotation=180),
+				iconTransformation(
+					origin={100,0},
+					extent={{-20,20},{20,-20}},
+					rotation=270)));
+			Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedTemperature1(T(displayUnit="K")=3) annotation(Placement(transformation(
+				origin={175,5},
+				extent={{10,10},{-10,-10}},
+				rotation=180)));
+			Modelica.Blocks.Tables.CombiTable1Ds combiTable1Ds1(
+				tableOnFile=true,
+				table=[250,0.5,0.9;290,0.7,0.7],
+				tableName="thermochromLaCaMnO3",
+				fileName="E:\\Eigene Dateien\\iBOSS-2\\Gesamtsimulation_TuE\\ibosssim\\model\\iboss\\thermochrom_alpha_epsilon.txt",
+				columns=2:size(self.table, 2)) annotation(Placement(transformation(extent={{135,-80},{155,-60}})));
+			Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperatureSensor_Radiator annotation(Placement(transformation(extent={{100,-80},{120,-60}})));
+			equation
+				connect(timeTable1.y,factor_TSS.u) annotation(Line(
+					points={{-74,5},{-69,5},{-42,5},{-42,50},{-37,50}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(timeTable1.y,factor_MSS.u) annotation(Line(
+					points={{-74,5},{-69,5},{-42,5},{-42,20},{-37,20}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(factor_Rad.y,HeatFlow_Rad.Q_flow) annotation(Line(
+					points={{-14,-40},{-9,-40},{5,-40},{10,-40}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(factor_ESS.y,HeatFlow_ESS.Q_flow) annotation(Line(
+					points={{-14,-10},{-9,-10},{5,-10},{10,-10}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(factor_MSS.y,HeatFlow_MSS.Q_flow) annotation(Line(
+					points={{-14,20},{-9,20},{5,20},{10,20}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(factor_TSS.y,HeatFlow_TSS.Q_flow) annotation(Line(
+					points={{-14,50},{-9,50},{5,50},{10,50}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(fixedTemperature1.port,bodyRadiation_TSS.port_b) annotation(Line(
+					points={{185,5},{190,5},{190,50},{145,50},{140,50}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(fixedTemperature1.port,bodyRadiation_MSS.port_b) annotation(Line(
+					points={{185,5},{190,5},{190,20},{145,20},{140,20}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(fixedTemperature1.port,bodyRadiation_ESS.port_b) annotation(Line(
+					points={{185,5},{190,5},{190,-10},{145,-10},{140,-10}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(fixedTemperature1.port,bodyRadiation_Rad.port_b) annotation(Line(
+					points={{185,5},{190,5},{190,-40},{145,-40},{140,-40}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(timeTable1.y,factor_ESS.u) annotation(Line(
+					points={{-74,5},{-69,5},{-42,5},{-42,-10},{-37,-10}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(timeTable1.y,factor_Rad.u) annotation(Line(
+					points={{-74,5},{-69,5},{-42,5},{-42,-40},{-37,-40}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(bodyRadiation_ESS.port_a,thermal_connector_env.ESS) annotation(Line(points={{120,-10},{115,-10},{95,-10},{95,10},{90,10}}));
+				connect(bodyRadiation_MSS.port_a,thermal_connector_env.MSS) annotation(Line(points={{120,20},{115,20},{95,20},{95,10},{90,10}}));
+				connect(bodyRadiation_TSS.port_a,thermal_connector_env.TSS) annotation(Line(points={{120,50},{115,50},{95,50},{95,10},{90,10}}));
+				connect(bodyRadiation_Rad.port_a,thermal_connector_env.Rad) annotation(Line(points={{120,-40},{115,-40},{95,-40},{95,10},{90,10}}));
+				connect(HeatFlow_ESS.port,thermal_connector_env.ESS) annotation(Line(points={{30,-10},{35,-10},{85,-10},{85,10},{90,10}}));
+				connect(HeatFlow_MSS.port,thermal_connector_env.MSS) annotation(Line(points={{30,20},{35,20},{85,20},{85,10},{90,10}}));
+				connect(HeatFlow_TSS.port,thermal_connector_env.TSS) annotation(Line(points={{30,50},{35,50},{85,50},{85,10},{90,10}}));
+				connect(HeatFlow_Rad.port,thermal_connector_env.Rad) annotation(Line(points={{30,-40},{35,-40},{85,-40},{85,10},{90,10}}));
+				connect(temperatureSensor_Radiator.T,combiTable1Ds1.u) annotation(Line(
+					points={{120,-70},{125,-70},{128,-70},{133,-70}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(temperatureSensor_Radiator.port,bodyRadiation_Rad.port_a) annotation(Line(
+					points={{100,-70},{95,-70},{95,-40},{115,-40},{120,-40}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(combiTable1Ds1.y[1],bodyRadiation_Rad.u) annotation(Line(
+					points={{156,-70},{161,-70},{161,-26},{130,-26},{130,-31}},
+					color={0,0,127},
+					thickness=0.0625));
+			annotation(
+				combiTable1Ds1(y(flags=2)),
+				viewinfo[0](
+					viewSettings(clrRaster=12632256),
+					typename="ModelInfo"),
+				Icon(graphics={
+							Rectangle(
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-100,100},{100,-100}}),
+							Ellipse(
+								lineColor={0,0,0},
+								fillColor={255,255,0},
+								fillPattern=FillPattern.Solid,
+								extent={{98,-96},{-96,98}})}),
+				experiment(
+					StopTime=10,
+					StartTime=0));
+		end environment_var_rad;
 		model VariableRad "the same like the BodyRadiation class from Modelica, but with Gr as discrete"
 			extends Modelica.Thermal.HeatTransfer.Interfaces.Element1D;
 			discrete Real Gr(unit="m2")=u "Net radiation conductance between two surfaces (see docu)";
@@ -1014,124 +1162,124 @@ An approppriate simulating time would be 10 seconds.
 				Q_flow = Gr * Modelica.Constants.sigma * (port_a.T ^ 4 - port_b.T ^ 4);
 			annotation(
 				Icon(graphics={
-																							Rectangle(
-																								lineColor={0,0,0},
-																								fillColor={192,192,192},
-																								fillPattern=FillPattern.Backward,
-																								extent={{50,80},{90,-80}}),
-																							Rectangle(
-																								lineColor={0,0,0},
-																								fillColor={192,192,192},
-																								fillPattern=FillPattern.Backward,
-																								extent={{-90,80},{-50,-80}}),
-																							Line(
-																								points={{-36,10},{36,10}},
-																								color={191,0,0}),
-																							Line(
-																								points={{-36,10},{-26,16}},
-																								color={191,0,0}),
-																							Line(
-																								points={{-36,10},{-26,4}},
-																								color={191,0,0}),
-																							Line(
-																								points={{-36,-10},{36,-10}},
-																								color={191,0,0}),
-																							Line(
-																								points={{26,-16},{36,-10}},
-																								color={191,0,0}),
-																							Line(
-																								points={{26,-4},{36,-10}},
-																								color={191,0,0}),
-																							Line(
-																								points={{-36,-30},{36,-30}},
-																								color={191,0,0}),
-																							Line(
-																								points={{-36,-30},{-26,-24}},
-																								color={191,0,0}),
-																							Line(
-																								points={{-36,-30},{-26,-36}},
-																								color={191,0,0}),
-																							Line(
-																								points={{-36,30},{36,30}},
-																								color={191,0,0}),
-																							Line(
-																								points={{26,24},{36,30}},
-																								color={191,0,0}),
-																							Line(
-																								points={{26,36},{36,30}},
-																								color={191,0,0}),
-																							Text(
-																								textString="%name",
-																								extent={{-150,125},{150,85}}),
-																							Text(
-																								textString="Gr=%Gr",
-																								lineColor={0,0,0},
-																								extent={{-150,-90},{150,-120}}),
-																							Rectangle(
-																								lineColor={191,0,0},
-																								fillColor={191,0,0},
-																								fillPattern=FillPattern.Solid,
-																								extent={{-50,80},{-44,-80}}),
-																							Rectangle(
-																								lineColor={191,0,0},
-																								fillColor={191,0,0},
-																								fillPattern=FillPattern.Solid,
-																								extent={{45,80},{50,-80}})}),
+																											Rectangle(
+																												lineColor={0,0,0},
+																												fillColor={192,192,192},
+																												fillPattern=FillPattern.Backward,
+																												extent={{50,80},{90,-80}}),
+																											Rectangle(
+																												lineColor={0,0,0},
+																												fillColor={192,192,192},
+																												fillPattern=FillPattern.Backward,
+																												extent={{-90,80},{-50,-80}}),
+																											Line(
+																												points={{-36,10},{36,10}},
+																												color={191,0,0}),
+																											Line(
+																												points={{-36,10},{-26,16}},
+																												color={191,0,0}),
+																											Line(
+																												points={{-36,10},{-26,4}},
+																												color={191,0,0}),
+																											Line(
+																												points={{-36,-10},{36,-10}},
+																												color={191,0,0}),
+																											Line(
+																												points={{26,-16},{36,-10}},
+																												color={191,0,0}),
+																											Line(
+																												points={{26,-4},{36,-10}},
+																												color={191,0,0}),
+																											Line(
+																												points={{-36,-30},{36,-30}},
+																												color={191,0,0}),
+																											Line(
+																												points={{-36,-30},{-26,-24}},
+																												color={191,0,0}),
+																											Line(
+																												points={{-36,-30},{-26,-36}},
+																												color={191,0,0}),
+																											Line(
+																												points={{-36,30},{36,30}},
+																												color={191,0,0}),
+																											Line(
+																												points={{26,24},{36,30}},
+																												color={191,0,0}),
+																											Line(
+																												points={{26,36},{36,30}},
+																												color={191,0,0}),
+																											Text(
+																												textString="%name",
+																												extent={{-150,125},{150,85}}),
+																											Text(
+																												textString="Gr=%Gr",
+																												lineColor={0,0,0},
+																												extent={{-150,-90},{150,-120}}),
+																											Rectangle(
+																												lineColor={191,0,0},
+																												fillColor={191,0,0},
+																												fillPattern=FillPattern.Solid,
+																												extent={{-50,80},{-44,-80}}),
+																											Rectangle(
+																												lineColor={191,0,0},
+																												fillColor={191,0,0},
+																												fillPattern=FillPattern.Solid,
+																												extent={{45,80},{50,-80}})}),
 				Diagram(graphics={
-																							Rectangle(
-																								lineColor={0,0,0},
-																								fillColor={192,192,192},
-																								fillPattern=FillPattern.Backward,
-																								extent={{-90,80},{-56,-80}}),
-																							Line(
-																								points={{-56,80},{-56,-80}},
-																								color={0,0,0},
-																								thickness=1),
-																							Line(
-																								points={{50,80},{50,-80}},
-																								color={0,0,0},
-																								thickness=1),
-																							Rectangle(
-																								lineColor={0,0,0},
-																								fillColor={192,192,192},
-																								fillPattern=FillPattern.Backward,
-																								extent={{50,80},{90,-80}}),
-																							Line(
-																								points={{-40,10},{40,10}},
-																								color={191,0,0}),
-																							Line(
-																								points={{-40,10},{-30,16}},
-																								color={191,0,0}),
-																							Line(
-																								points={{-40,10},{-30,4}},
-																								color={191,0,0}),
-																							Line(
-																								points={{-40,-10},{40,-10}},
-																								color={191,0,0}),
-																							Line(
-																								points={{30,-16},{40,-10}},
-																								color={191,0,0}),
-																							Line(
-																								points={{30,-4},{40,-10}},
-																								color={191,0,0}),
-																							Line(
-																								points={{-40,-30},{40,-30}},
-																								color={191,0,0}),
-																							Line(
-																								points={{-40,-30},{-30,-24}},
-																								color={191,0,0}),
-																							Line(
-																								points={{-40,-30},{-30,-36}},
-																								color={191,0,0}),
-																							Line(
-																								points={{-40,30},{40,30}},
-																								color={191,0,0}),
-																							Line(
-																								points={{30,24},{40,30}},
-																								color={191,0,0}),
-																							Line(
-																								points={{30,36},{40,30}},
-																								color={191,0,0})}),
+																											Rectangle(
+																												lineColor={0,0,0},
+																												fillColor={192,192,192},
+																												fillPattern=FillPattern.Backward,
+																												extent={{-90,80},{-56,-80}}),
+																											Line(
+																												points={{-56,80},{-56,-80}},
+																												color={0,0,0},
+																												thickness=1),
+																											Line(
+																												points={{50,80},{50,-80}},
+																												color={0,0,0},
+																												thickness=1),
+																											Rectangle(
+																												lineColor={0,0,0},
+																												fillColor={192,192,192},
+																												fillPattern=FillPattern.Backward,
+																												extent={{50,80},{90,-80}}),
+																											Line(
+																												points={{-40,10},{40,10}},
+																												color={191,0,0}),
+																											Line(
+																												points={{-40,10},{-30,16}},
+																												color={191,0,0}),
+																											Line(
+																												points={{-40,10},{-30,4}},
+																												color={191,0,0}),
+																											Line(
+																												points={{-40,-10},{40,-10}},
+																												color={191,0,0}),
+																											Line(
+																												points={{30,-16},{40,-10}},
+																												color={191,0,0}),
+																											Line(
+																												points={{30,-4},{40,-10}},
+																												color={191,0,0}),
+																											Line(
+																												points={{-40,-30},{40,-30}},
+																												color={191,0,0}),
+																											Line(
+																												points={{-40,-30},{-30,-24}},
+																												color={191,0,0}),
+																											Line(
+																												points={{-40,-30},{-30,-36}},
+																												color={191,0,0}),
+																											Line(
+																												points={{-40,30},{40,30}},
+																												color={191,0,0}),
+																											Line(
+																												points={{30,24},{40,30}},
+																												color={191,0,0}),
+																											Line(
+																												points={{30,36},{40,30}},
+																												color={191,0,0})}),
 				Documentation(info="<HTML>
 	<p>
 	This is a model describing the thermal radiation, i.e., electromagnetic
