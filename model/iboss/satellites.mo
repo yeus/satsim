@@ -3906,63 +3906,49 @@ package satellites
 			enforceStates=true) annotation(Placement(transformation(
 			origin={20,80},
 			extent={{-10,-10},{10,10}})));
-		buildingblocks.basic_wheel1x basic_wheel1x1(id=4) annotation(Placement(transformation(
-			origin={117.5,47.5},
-			extent={{-17.5,-17.5},{17.5,17.5}})));
-		buildingblocks.basic basic1(id=1) annotation(Placement(transformation(extent={{140,30},{175,65}})));
-		buildingblocks.basic basic4(id=2) annotation(Placement(transformation(extent={{60,30},{95,65}})));
 		Modelica.Blocks.Sources.Constant const(k=0) annotation(Placement(transformation(
-			origin={-105,35},
+			origin={-100,45},
 			extent={{-10,-10},{10,10}})));
-		Modelica.Blocks.Math.Gain gain1(k=10.0) annotation(Placement(transformation(extent={{-40,25},{-20,45}})));
-		Modelica.Blocks.Math.Add error(k2=-1) annotation(Placement(transformation(extent={{-75,20},{-55,40}})));
+		Modelica.Blocks.Math.Gain gain1(k=0.001) annotation(Placement(transformation(extent={{-30,30},{-10,50}})));
+		Modelica.Blocks.Math.Add error(k2=-1) annotation(Placement(transformation(extent={{-70,30},{-50,50}})));
+		buildingblocks.basic_wheel3x basic_wheel3x1(id=1) annotation(Placement(transformation(extent={{60,25},{95,60}})));
 		equation
 			connect(world.frame_b,r.frame_a) annotation(Line(
 				points={{-10,80},{-5,80},{5,80},{10,80}},
 				color={95,95,95},
 				thickness=0.015625));
-			connect(r.frame_b,basic_wheel1x1.Yps) annotation(Line(
-				points={{30,80},{35,80},{121,80},{121,66.7},{121,61.7}},
-				color={95,95,95},
-				thickness=0.015625));
-			connect(basic4.Xps,basic_wheel1x1.Xns) annotation(Line(
-				points={{91.3,44},{96.3,44},{98.7,44},{98.7,51},{103.7,51}},
-				color={95,95,95},
-				thickness=0.0625));
-			connect(basic_wheel1x1.Xps,basic1.Xns) annotation(Line(
-				points={{131.3,44},{136.3,44},{138.7,44},{138.7,51},{143.7,51}},
-				color={95,95,95},
-				thickness=0.0625));
-			connect(basic4.Xp,basic_wheel1x1.Xn) annotation(Line(points={{91.3,47.3},{96.3,47.3},{98.7,47.3},{103.7,47.3}}));
-			connect(basic_wheel1x1.Xp,basic1.Xn) annotation(Line(points={{131.3,47.3},{136.3,47.3},{138.7,47.3},{143.7,47.3}}));
-			connect(basic4.Xn.sat_bus.acs_bus,aCS_bus1) annotation(Line(points={{63.7,47.3},{58.7,47.3},{40,47.3},{40,35},{35,35}}));
 			connect(const.y,error.u1) annotation(Line(
-				points={{-94,35},{-89,35},{-82,35},{-82,36},{-77,36}},
+				points={{-89,45},{-84,45},{-77,45},{-77,46},{-72,46}},
 				color={0,0,127},
 				thickness=0.0625));
 			connect(error.y,gain1.u) annotation(Line(
-				points={{-54,30},{-49,30},{-47,30},{-47,35},{-42,35}},
+				points={{-49,40},{-44,40},{-37,40},{-32,40}},
 				color={0,0,127},
 				thickness=0.0625));
-			connect(error.u2,aCS_bus1.w[2,3]) annotation(
+			connect(error.u2,aCS_bus1.w[1,3]) annotation(
 				Line(
 					points={{-77,24},{-82,24},{-82,0},{30,0},{35,35}},
 					color={0,0,127},
 					thickness=0.0625),
 				AutoRoute=false);
-			connect(gain1.y,aCS_bus1.w_a[4,3]) annotation(Line(
+			connect(gain1.y,aCS_bus1.w_a[1,3]) annotation(Line(
 				points={{-19,35},{-14,35},{30,35},{35,35}},
 				color={0,0,127},
 				thickness=0.0625));
+			connect(r.frame_b,basic_wheel3x1.Yps) annotation(Line(
+				points={{30,80},{35,80},{81,80},{81,61.7},{81,56.7}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(basic_wheel3x1.Xn.sat_bus.acs_bus,aCS_bus1) annotation(Line(points={{63.7,42.3},{58.7,42.3},{40,42.3},{40,35},{35,35}}));
 		annotation(
 			aCS_bus1(
 				w(flags=2),
 				w_a(flags=2),
 				u(flags=2),
 				y(flags=2)),
-			basic_wheel1x1(
-				r(flags=2),
-				w(flags=2),
+			gain1(y(flags=2)),
+			error(y(flags=2)),
+			basic_wheel3x1(
 				Struktur(
 					frame_a(
 						r_0(flags=2),
@@ -3977,222 +3963,8 @@ package satellites
 					w_a(flags=2),
 					z_a(flags=2),
 					g_0(flags=2)),
-				Zps(
-					r_0(flags=2),
-					R(
-						T(flags=2),
-						w(flags=2)),
-					f(flags=2),
-					t(flags=2)),
-				Yps(
-					r_0(flags=2),
-					R(
-						T(flags=2),
-						w(flags=2)),
-					f(flags=2),
-					t(flags=2)),
-				Xps(
-					r_0(flags=2),
-					R(
-						T(flags=2),
-						w(flags=2)),
-					f(flags=2),
-					t(flags=2)),
-				Zns(
-					r_0(flags=2),
-					R(
-						T(flags=2),
-						w(flags=2)),
-					f(flags=2),
-					t(flags=2)),
-				Yns(
-					r_0(flags=2),
-					R(
-						T(flags=2),
-						w(flags=2)),
-					f(flags=2),
-					t(flags=2)),
-				Xns(
-					r_0(flags=2),
-					R(
-						T(flags=2),
-						w(flags=2)),
-					f(flags=2),
-					t(flags=2)),
-				rZp(
-					frame_a(
-						r_0(flags=2),
-						R(
-							T(flags=2),
-							w(flags=2)),
-						f(flags=2),
-						t(flags=2)),
-					frame_b(
-						r_0(flags=2),
-						R(
-							T(flags=2),
-							w(flags=2)),
-						f(flags=2),
-						t(flags=2))),
-				rYp(
-					frame_a(
-						r_0(flags=2),
-						R(
-							T(flags=2),
-							w(flags=2)),
-						f(flags=2),
-						t(flags=2)),
-					frame_b(
-						r_0(flags=2),
-						R(
-							T(flags=2),
-							w(flags=2)),
-						f(flags=2),
-						t(flags=2))),
-				rZn(
-					frame_a(
-						r_0(flags=2),
-						R(
-							T(flags=2),
-							w(flags=2)),
-						f(flags=2),
-						t(flags=2)),
-					frame_b(
-						r_0(flags=2),
-						R(
-							T(flags=2),
-							w(flags=2)),
-						f(flags=2),
-						t(flags=2))),
-				rYn(
-					frame_a(
-						r_0(flags=2),
-						R(
-							T(flags=2),
-							w(flags=2)),
-						f(flags=2),
-						t(flags=2)),
-					frame_b(
-						r_0(flags=2),
-						R(
-							T(flags=2),
-							w(flags=2)),
-						f(flags=2),
-						t(flags=2))),
-				rXn(
-					frame_a(
-						r_0(flags=2),
-						R(
-							T(flags=2),
-							w(flags=2)),
-						f(flags=2),
-						t(flags=2)),
-					frame_b(
-						r_0(flags=2),
-						R(
-							T(flags=2),
-							w(flags=2)),
-						f(flags=2),
-						t(flags=2))),
-				rXp(
-					frame_a(
-						r_0(flags=2),
-						R(
-							T(flags=2),
-							w(flags=2)),
-						f(flags=2),
-						t(flags=2)),
-					frame_b(
-						r_0(flags=2),
-						R(
-							T(flags=2),
-							w(flags=2)),
-						f(flags=2),
-						t(flags=2))),
-				Zp(sat_bus(acs_bus(
-					w(flags=2),
-					w_a(flags=2),
-					u(flags=2),
-					y(flags=2)))),
-				Zn(sat_bus(acs_bus(
-					w(flags=2),
-					w_a(flags=2),
-					u(flags=2),
-					y(flags=2)))),
-				Xn(sat_bus(acs_bus(
-					w(flags=2),
-					w_a(flags=2),
-					u(flags=2),
-					y(flags=2)))),
-				Xp(sat_bus(acs_bus(
-					w(flags=2),
-					w_a(flags=2),
-					u(flags=2),
-					y(flags=2)))),
-				Yp(sat_bus(acs_bus(
-					w(flags=2),
-					w_a(flags=2),
-					u(flags=2),
-					y(flags=2)))),
-				Yn(sat_bus(acs_bus(
-					w(flags=2),
-					w_a(flags=2),
-					u(flags=2),
-					y(flags=2)))),
-				imu(
-					acs_bus(
-						w(flags=2),
-						w_a(flags=2),
-						u(flags=2),
-						y(flags=2)),
-					absoluteangularvelocity1(frame_a(
-						r_0(flags=2),
-						R(
-							T(flags=2),
-							w(flags=2)),
-						f(flags=2),
-						t(flags=2))),
-					frame_a(
-						r_0(flags=2),
-						R(
-							T(flags=2),
-							w(flags=2)),
-						f(flags=2),
-						t(flags=2))),
-				reactionwheelsimple_noelectricity1(
-					acs_bus(
-						w(flags=2),
-						w_a(flags=2),
-						u(flags=2),
-						y(flags=2)),
-					frame_a(
-						r_0(flags=2),
-						R(
-							T(flags=2),
-							w(flags=2)),
-						f(flags=2),
-						t(flags=2)),
-					revolute1(
-						frame_a(
-							r_0(flags=2),
-							R(
-								T(flags=2),
-								w(flags=2)),
-							f(flags=2),
-							t(flags=2)),
-						frame_b(
-							r_0(flags=2),
-							R(
-								T(flags=2),
-								w(flags=2)),
-							f(flags=2),
-							t(flags=2)),
-						phi(flags=2),
-						w(flags=2),
-						a(flags=2),
-						tau(flags=2),
-						angle(flags=2)),
-					bodyShape1(
+				reactionwheel3axis_noelectricity1(
+					wheel_x(
 						frame_a(
 							r_0(flags=2),
 							R(
@@ -4239,7 +4011,7 @@ package satellites
 							w_a(flags=2),
 							z_a(flags=2),
 							g_0(flags=2))),
-					torque1(
+					wheel_y(
 						frame_a(
 							r_0(flags=2),
 							R(
@@ -4254,7 +4026,10 @@ package satellites
 								w(flags=2)),
 							f(flags=2),
 							t(flags=2)),
-						basicTorque(
+						r_0(flags=2),
+						v_0(flags=2),
+						a_0(flags=2),
+						frameTranslation(
 							frame_a(
 								r_0(flags=2),
 								R(
@@ -4268,8 +4043,9 @@ package satellites
 									T(flags=2),
 									w(flags=2)),
 								f(flags=2),
-								t(flags=2)),
-							frame_resolve(
+								t(flags=2))),
+						body(
+							frame_a(
 								r_0(flags=2),
 								R(
 									T(flags=2),
@@ -4277,55 +4053,59 @@ package satellites
 								f(flags=2),
 								t(flags=2)),
 							r_0(flags=2),
-							t_b_0(flags=2))))),
-			basic1(
-				Struktur(
-					frame_a(
+							v_0(flags=2),
+							a_0(flags=2),
+							w_a(flags=2),
+							z_a(flags=2),
+							g_0(flags=2))),
+					wheel_z(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						frame_b(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
 						r_0(flags=2),
-						R(
-							T(flags=2),
-							w(flags=2)),
-						f(flags=2),
-						t(flags=2)),
-					r_0(flags=2),
-					v_0(flags=2),
-					a_0(flags=2),
-					w_a(flags=2),
-					z_a(flags=2),
-					g_0(flags=2)),
-				Zp(sat_bus(acs_bus(
-					w(flags=2),
-					w_a(flags=2),
-					u(flags=2),
-					y(flags=2))))),
-			basic4(
-				Struktur(
-					frame_a(
-						r_0(flags=2),
-						R(
-							T(flags=2),
-							w(flags=2)),
-						f(flags=2),
-						t(flags=2)),
-					r_0(flags=2),
-					v_0(flags=2),
-					a_0(flags=2),
-					w_a(flags=2),
-					z_a(flags=2),
-					g_0(flags=2)),
-				Zp(sat_bus(acs_bus(
-					w(flags=2),
-					w_a(flags=2),
-					u(flags=2),
-					y(flags=2)))),
-				Xp(sat_bus(acs_bus(
-					w(flags=2),
-					w_a(flags=2),
-					u(flags=2),
-					y(flags=2))))),
-			gain1(y(flags=2)),
-			error(y(flags=2)),
-			viewinfo[1](
+						v_0(flags=2),
+						a_0(flags=2),
+						frameTranslation(
+							frame_a(
+								r_0(flags=2),
+								R(
+									T(flags=2),
+									w(flags=2)),
+								f(flags=2),
+								t(flags=2)),
+							frame_b(
+								r_0(flags=2),
+								R(
+									T(flags=2),
+									w(flags=2)),
+								f(flags=2),
+								t(flags=2))),
+						body(
+							frame_a(
+								r_0(flags=2),
+								R(
+									T(flags=2),
+									w(flags=2)),
+								f(flags=2),
+								t(flags=2)),
+							r_0(flags=2),
+							v_0(flags=2),
+							a_0(flags=2),
+							w_a(flags=2),
+							z_a(flags=2),
+							g_0(flags=2))))),
+			viewinfo[0](
 				minOrder=0.5,
 				maxOrder=12,
 				mode=0,
@@ -4334,9 +4114,10 @@ package satellites
 				relTol=1e-005,
 				oversampling=4,
 				anaAlgorithm=0,
-				bPerMinStates=true,
-				bPerScaleRows=false,
 				typename="AnaStatInfo"),
+			viewinfo[1](
+				viewSettings(clrRaster=12632256),
+				typename="ModelInfo"),
 			experiment(
 				StopTime=100,
 				StartTime=0));

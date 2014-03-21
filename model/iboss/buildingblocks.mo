@@ -599,7 +599,7 @@ package buildingblocks
 			I_22=0.0017,
 			I_33=0.0016,
 			useQuaternions=false) annotation(Placement(transformation(
-			origin={2.11268,-0.469484},
+			origin={5.1,-0.1},
 			extent={{-10,-10},{10,10}})));
 		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Zps annotation(Placement(
 			transformation(
@@ -678,43 +678,245 @@ package buildingblocks
 		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rXn(
 			animation=false,
 			r={-0.205,0.0,0.0}) annotation(Placement(transformation(
-			origin={-60,0},
+			origin={-60,20},
 			extent={{10,-10},{-10,10}})));
 		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rXp(
 			animation=false,
 			r={0.205,0.0,0.0}) annotation(Placement(transformation(
-			origin={60,0},
+			origin={60,-20},
 			extent={{-10,-10},{10,10}})));
 		equation
-			connect(rYp.frame_b,Yps) annotation(Line(points = {{20,70},{20,79.8673},{19.9115,79.8673},{19.9115,79.8673}}));
-			connect(Zps,rZp.frame_b) annotation(Line(points = {{-40,60},{-40,50},{-40.4867,50},{-40.4867,50}}));
-			connect(Yns,rYn.frame_b) annotation(Line(points = {{-20,-80},{-20,-68.36279999999999},{-19.9115,-68.36279999999999},{-19.9115,-68.36279999999999}}));
-			connect(rZn.frame_b,Zns) annotation(Line(points = {{40,-50},{40,-59.7345},{40.4867,-59.7345},{40.4867,-59.7345}}));
-			connect(rXp.frame_b,Xps) annotation(Line(points = {{70,0},{79.646,0},{79.646,-18.5841},{79.646,-18.5841}}));
-			connect(Struktur.frame_a,rZn.frame_a) annotation(Line(points = {{-7.88732,-0.469484},{-13.2743,-0.469484},{-13.2743,-29.646},{40.0442,-29.646},{40.0442,-29.646}}));
-			connect(Struktur.frame_a,rXp.frame_a) annotation(Line(points = {{-7.88732,-0.469484},{-13.2743,-0.469484},{-13.2743,31.1947},{49.7788,31.1947},{49.7788,0.663717},{49.7788,0.663717}}));
-			connect(Struktur.frame_a,rYp.frame_a) annotation(Line(points = {{-7.88732,-0.469484},{-13.0531,-0.469484},{-13.0531,31.1947},{19.9115,31.1947},{19.9115,50},{19.9115,50}}));
-			connect(Struktur.frame_a,rZp.frame_a) annotation(Line(points = {{-7.88732,-0.469484},{-40.2655,-0.469484},{-40.2655,29.646},{-40.2655,29.646}}));
-			connect(Struktur.frame_a,rYn.frame_a) annotation(Line(points = {{-7.88732,-0.469484},{-20.354,-0.469484},{-20.354,-49.5575},{-20.354,-49.5575}}));
-			connect(rXn.frame_a,Struktur.frame_a) annotation(Line(points = {{-50,0},{-7.74336,0},{-7.74336,-0.221239},{-7.74336,-0.221239}}));
-			connect(Xns,rXn.frame_b) annotation(Line(points = {{-80,20},{-69.9115,20},{-69.9115,0.221239},{-69.9115,0.221239}}));
 			Struktur.r_0 = r;
 			Struktur.phi = w;
+		equation
+			connect(Struktur.frame_a,rXp.frame_a) annotation(Line(
+				points={{-5,0},{-10,0},{-10,-20},{45,-20},{50,-20}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(rXp.frame_b,Xps) annotation(Line(
+				points={{70,-20},{75,-20},{80,-20}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(Struktur.frame_a,rZn.frame_a) annotation(
+				Line(
+					points={{-5,0},{-10,0},{-10,-20},{40,-20},{40,-25},{40,
+					-30}},
+					color={95,95,95},
+					thickness=0.0625),
+				AutoRoute=false);
+			connect(rZn.frame_b,Zns) annotation(Line(
+				points={{40,-50},{40,-55},{45,-55},{45,-60},{40,-60}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(rYn.frame_b,Yns) annotation(Line(
+				points={{-20,-70},{-20,-75},{-15,-75},{-15,-80},{-20,-80}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(rXn.frame_b,Xns) annotation(Line(
+				points={{-70,20},{-75,20},{-80,20}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(rZp.frame_a,Struktur.frame_a) annotation(Line(
+				points={{-40,30},{-40,25},{-40,0},{-10,0},{-5,0}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(Struktur.frame_a,rXn.frame_a) annotation(
+				Line(
+					points={{-5,0},{-10,0},{-40,0},{-40,20},{-50,20}},
+					color={95,95,95},
+					thickness=0.0625),
+				AutoRoute=false);
+			connect(rZp.frame_b,Zps) annotation(Line(
+				points={{-40,50},{-40,55},{-35,55},{-35,60},{-40,60}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(Struktur.frame_a,rYp.frame_a) annotation(Line(
+				points={{-5,0},{-10,0},{-10,22.3},{20,22.3},{20,45},{20,
+				50}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(Struktur.frame_a,rYn.frame_a) annotation(
+				Line(
+					points={{-5,0},{-10,0},{-10,-45},{-20,-50}},
+					color={95,95,95},
+					thickness=0.0625),
+				AutoRoute=false);
+			connect(rYp.frame_b,Yps) annotation(Line(
+				points={{20,70},{20,75},{25,75},{25,80},{20,80}},
+				color={95,95,95},
+				thickness=0.0625));
+		annotation(
+			viewinfo[2](
+				viewSettings(clrRaster=12632256),
+				typename="ModelInfo"),
+			experiment(
+				StopTime=1,
+				StartTime=0));
 	end basic_structure;
 	model basic_wheel3x
-		extends basic annotation(Placement(transformation(extent={{-10,-10},{10,10}})));
-		satcomponents.AOCS.Parts.reactionwheel3axis reactionwheel3axis1(id=id) annotation(Placement(transformation(
-			origin={-36.7,-23.3},
-			extent={{13.1779,-13.1779},{-13.1779,13.1779}})));
+		extends basic;
+		satcomponents.AOCS.Parts.reactionwheel3axis_noelectricity reactionwheel3axis_noelectricity1(id=id) annotation(Placement(transformation(extent={{-25,-35},{-45,-15}})));
 		equation
-			connect(Struktur.frame_a,reactionwheel3axis1.frame_a) annotation(Line(points={{-8,-0.3},{-13,-0.3},{-18.7,-0.3},{-18.7,-22.7},{-23.7,-22.7}}));
-			connect(reactionwheel3axis1.acs_bus,Xn.sat_bus.acs_bus) annotation(Line(
-				points={{-47.3,-22.7},{-52.3,-22.7},{-75,-22.7},{-75,0},{-80,0}},
+			connect(reactionwheel3axis_noelectricity1.frame_a,Struktur.frame_a) annotation(Line(
+				points={{-25,-24.3},{-20,-24.3},{-13,-24.3},{-13,-0.3},{-8,-0.3}},
+				color={95,95,95},
 				thickness=0.0625));
+			connect(reactionwheel3axis_noelectricity1.acs_bus,Xn.sat_bus.acs_bus) annotation(Line(
+				points={{-43.7,-23},{-48.7,-23},{-75,-23},{-75,0},{-80,0}},
+				thickness=0.0625));
+		annotation(
+			reactionwheel3axis_noelectricity1(
+				wheel_x(
+					frame_a(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					frame_b(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					r_0(flags=2),
+					v_0(flags=2),
+					a_0(flags=2),
+					frameTranslation(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						frame_b(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2))),
+					body(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						r_0(flags=2),
+						v_0(flags=2),
+						a_0(flags=2),
+						w_a(flags=2),
+						z_a(flags=2),
+						g_0(flags=2))),
+				wheel_y(
+					frame_a(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					frame_b(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					r_0(flags=2),
+					v_0(flags=2),
+					a_0(flags=2),
+					frameTranslation(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						frame_b(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2))),
+					body(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						r_0(flags=2),
+						v_0(flags=2),
+						a_0(flags=2),
+						w_a(flags=2),
+						z_a(flags=2),
+						g_0(flags=2))),
+				wheel_z(
+					frame_a(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					frame_b(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					r_0(flags=2),
+					v_0(flags=2),
+					a_0(flags=2),
+					frameTranslation(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						frame_b(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2))),
+					body(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						r_0(flags=2),
+						v_0(flags=2),
+						a_0(flags=2),
+						w_a(flags=2),
+						z_a(flags=2),
+						g_0(flags=2)))),
+			viewinfo[0](
+				viewSettings(clrRaster=12632256),
+				typename="ModelInfo"),
+			experiment(
+				StopTime=1,
+				StartTime=0));
 	end basic_wheel3x;
 	model basic
 		extends icons.basic;
-		extends basic_structure annotation(Placement(transformation(extent={{-10,-10},{10,10}})));
+		extends basic_structure;
 		outer Modelica.Mechanics.MultiBody.World world;
 		parameter Boolean animation=false "= true, if animation shall be enabled (show cylinder and sphere)";
 		parameter Integer id "TODO: automatisch id zuweisen (über \"outer\" parameter)";
@@ -777,45 +979,48 @@ package buildingblocks
 			connect(Yp,Xp) annotation(Line(points={{0,80},{5,80},{75,80},{75,0},{80,0}}));
 			connect(Xp,Zn) annotation(Line(points={{80,0},{75,0},{65,0},{65,-60},{60,-60}}));
 			connect(Zn,Yn) annotation(Line(points={{60,-60},{55,-60},{5,-60},{5,-80},{0,-80}}));
+		annotation(experiment(
+			StopTime=1,
+			StartTime=0));
 	end basic;
 	package icons
 		model basic "basic"
 			annotation(Icon(graphics={
-																	Rectangle(
-																		fillColor={0,0,255},
-																		extent={{-77.2278,76.02549999999999},{74.95610000000001,-75.256}}),
-																	Rectangle(
-																		fillColor={0,0,255},
-																		extent={{-69.5191,69.42019999999999},{66.9674,-68.4328}}),
-																	Ellipse(
-																		fillColor={0,0,255},
-																		extent={{-20.2122,18.7864},{19.355,-20.778}}),
-																	Ellipse(
-																		fillColor={0,0,255},
-																		extent={{-15.3692,13.9434},{14.512,-15.6521}}),
-																	Ellipse(
-																		fillColor={0,0,255},
-																		extent={{-1.42575,0.571424},{0.288544,-1.14286}}),
-																	Rectangle(
-																		fillColor={255,255,255},
-																		fillPattern=FillPattern.Solid,
-																		extent={{-74.37909999999999,15.6917},{-79.2362,-16.0226}}),
-																	Rectangle(
-																		fillColor={255,255,255},
-																		fillPattern=FillPattern.Solid,
-																		extent={{-15.9916,77.18810000000001},{15.1513,72.0453}}),
-																	Rectangle(
-																		fillColor={255,255,255},
-																		fillPattern=FillPattern.Solid,
-																		extent={{73.239,13.1174},{77.5247,-13.7397}}),
-																	Rectangle(
-																		fillColor={255,255,255},
-																		fillPattern=FillPattern.Solid,
-																		extent={{-15.4145,-72.9759},{16.5855,-77.833}}),
-																	Text(
-																		textString="%id",
-																		fillColor={0,0,255},
-																		extent={{-49.505,66.761},{55.4455,27.4399}})}));
+																				Rectangle(
+																					fillColor={0,0,255},
+																					extent={{-77.2278,76.02549999999999},{74.95610000000001,-75.256}}),
+																				Rectangle(
+																					fillColor={0,0,255},
+																					extent={{-69.5191,69.42019999999999},{66.9674,-68.4328}}),
+																				Ellipse(
+																					fillColor={0,0,255},
+																					extent={{-20.2122,18.7864},{19.355,-20.778}}),
+																				Ellipse(
+																					fillColor={0,0,255},
+																					extent={{-15.3692,13.9434},{14.512,-15.6521}}),
+																				Ellipse(
+																					fillColor={0,0,255},
+																					extent={{-1.42575,0.571424},{0.288544,-1.14286}}),
+																				Rectangle(
+																					fillColor={255,255,255},
+																					fillPattern=FillPattern.Solid,
+																					extent={{-74.37909999999999,15.6917},{-79.2362,-16.0226}}),
+																				Rectangle(
+																					fillColor={255,255,255},
+																					fillPattern=FillPattern.Solid,
+																					extent={{-15.9916,77.18810000000001},{15.1513,72.0453}}),
+																				Rectangle(
+																					fillColor={255,255,255},
+																					fillPattern=FillPattern.Solid,
+																					extent={{73.239,13.1174},{77.5247,-13.7397}}),
+																				Rectangle(
+																					fillColor={255,255,255},
+																					fillPattern=FillPattern.Solid,
+																					extent={{-15.4145,-72.9759},{16.5855,-77.833}}),
+																				Text(
+																					textString="%id",
+																					fillColor={0,0,255},
+																					extent={{-49.505,66.761},{55.4455,27.4399}})}));
 		end basic;
 		annotation(
 			Icon(coordinateSystem(
