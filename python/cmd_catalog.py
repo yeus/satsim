@@ -88,22 +88,26 @@ def report2file(report):
   reportfile.close()
 
 helpstring="""
-Usage: katalogreport <Options>
+
+This programm
+
+Usage: cmd_catalog.py <Options>
 
 Options:
 
 "w": report2file(writereport())
 "p": print(writereport())
 "odt": first convert *.odt catalogue to xml
+
+When no Options are given, the program opens an ipython Shell
 """
 
 def main(argv=None):
   if argv is None:
     argv = sys.argv
-    if len(argv)<2: print(helpstring)
     try:
       if 'odt' in argv:
-         iboss_odt2xml.save_catalogue()
+        iboss_odt2xml.save_catalogue()
       if 'w' in argv: 
         report2file(writereport())
       if 'p' in argv: 
@@ -118,6 +122,17 @@ def main(argv=None):
         cat.update()
         cat.save()
         #filecmp  um den neuen und den alten file zu vergleichen (überprüft Konsistenz der Datenbank)
+      else:
+        if len(argv)<2: print(helpstring+"\n\n\n")
+        cat=iboss_catalogue.Catalog()
+        cat.loadxmldata()
+        bannerhelp="""interactive iBoss catalogue
+
+-> type \"cat.\" and then press \"tab\" for available options!
+
+"""
+        import IPython
+        IPython.embed(banner1=bannerhelp)   
     except:
       raise
       return
