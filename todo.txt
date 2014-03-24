@@ -54,6 +54,7 @@ Modell-Struktur in Modelica:
 Experimente:
 ============
   * Ein simulierter "Lockdown" der Solarzellen als Verifikation
+  * Versuch mithilfe von Magnetspulen den Satelliten zu stabilisieren
   * Rückkopplungsverhalten bei Tag & Nachtwechsel zeigen
   * Anzahl der Bausteine und Stabilität des EVS in Abhängigkeit der Energieerzeugung
   * Anzahl der benötigten Batterien
