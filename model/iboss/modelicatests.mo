@@ -113,17 +113,20 @@ package modelicatests
 		constant Integer m=2 ^ 31 - 1;
 		parameter Integer a=7 ^ 5;
 		parameter Integer c=10;
-		algorithm
+		equation
 			//x:=mod(a * integer(time) + c, m); //LCG Noise
-			when sample(0, 0.01) then
-			      x:=mod(a * pre(x) + c, m);    
+			when sample(0, 0.0001) then
+			      x=mod(a * x + c, m);    
 			end when;
 		annotation(
 			x(flags=2),
+			viewinfo[0](
+				viewSettings(clrRaster=12632256),
+				typename="ModelInfo"),
 			experiment(
 				StopTime=20,
 				StartTime=0,
-				Tolerance=1e-06));
+				Tolerance=1e-006));
 	end noise_sampled;
 	model simplependulum
 		inner Modelica.Mechanics.MultiBody.World world annotation(Placement(transformation(
@@ -643,15 +646,15 @@ package modelicatests
 		expandable connector modcom "modcom"
 			Real a[10];
 			annotation(Icon(graphics={
-											Rectangle(
-												lineColor={0,0,0},
-												fillColor={255,255,255},
-												fillPattern=FillPattern.Solid,
-												extent={{-73.3,76.7},{80,-76.7}}),
-											Text(
-												textString="iCOM",
-												lineColor={0,0,0},
-												extent={{-46.7,50},{53.3,-50}})}));
+														Rectangle(
+															lineColor={0,0,0},
+															fillColor={255,255,255},
+															fillPattern=FillPattern.Solid,
+															extent={{-73.3,76.7},{80,-76.7}}),
+														Text(
+															textString="iCOM",
+															lineColor={0,0,0},
+															extent={{-46.7,50},{53.3,-50}})}));
 		end modcom;
 		block Sensor
 			Modelica.Blocks.Interfaces.RealOutput speed;
@@ -870,4 +873,77 @@ package modelicatests
 			x(flags=2),
 			y(flags=2));
 	end noise_ung;
+	model statespace_control "statespace_control"
+		Modelica.Blocks.Continuous.StateSpace stateSpace1 annotation(Placement(transformation(extent={{15,35},{35,55}})));
+		annotation(
+			viewinfo[1](
+				projectPath="C:\\Users\\indahouse\\Documents\\SimulationX 3.6\\Exported C-Code",
+				projectType=0,
+				saveOutputsApproach=1,
+				showAdditionalLibPage=false,
+				useCodeOptimization=true,
+				m_x64=false,
+				solverMode=1,
+				typename="CodeExportInfo"),
+			experiment(
+				StopTime=1,
+				StartTime=0));
+	end statespace_control;
+	package Random
+		import Modelica.Math;
+		constant Real NV_MAGICCONST=4*exp(-0.5)/sqrt(2.0);
+		type Seed = Integer[3];
+		function random "input random number generator with external storage of the seed"
+			input Seed si "input random seed";
+			output Real x "uniform random variate between 0 and 1";
+			output Seed so "output random seed";
+			algorithm
+				so[1] := rem((171 * si[1]),30269);
+				so[2] := rem((172 * si[2]),30307);
+				so[3] := rem((170 * si[3]),30323);
+				// zero is a poor Seed, therfore substitute 1;
+				if so[1] == 0 then
+				  so[1] := 1;
+				end if;
+				if so[2] == 0 then
+				  so[2] := 1;
+				end if;
+				if so[3] == 0 then
+				  so[3] := 1;
+				end if;
+				x := rem((so[1]/30269.0 +so[2]/30307.0 + so[3]/30323.0),1.0);
+		end random;
+		function normalvariate "normally distributed random variable"
+			input Real mu "mean value";
+			input Real sigma "standard deviation";
+			input Seed si "input random seed";
+			output Real x "gaussian random variate";
+			output Seed so "output random seed";
+			protected
+				Seed s1;
+				Seed s2;
+				Real z;
+				Real zz;
+				Real u1;
+				Real u2;
+			algorithm
+				s1 := si;
+				u2 := 1;
+				while true loop
+				  (u1,s2) := random(s1);
+				  (u2,s1) := random(s2);
+				  z := NV_MAGICCONST*(u1-0.5)/u2;
+				  zz := z*z/4.0;
+				  if zz <= (- Math.log(u2)) then
+				    break;
+				  end if;
+				end while;
+				x := mu + z*sigma;
+				so := s1;
+		end normalvariate;
+		connector discreteConnector
+			discrete Boolean dcon;
+		end discreteConnector;
+		annotation(dateModified="2014-03-25 16:26:09Z");
+	end Random;
 end modelicatests;
