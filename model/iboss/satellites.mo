@@ -3902,7 +3902,7 @@ package satellites
 			r_rel_a(start={0.0,0.0,0.0}),
 			v_rel_a(start={0.0,0.0,0.0}),
 			w_rel_a_fixed=true,
-			w_rel_a_start={0.0,0.0,0.2},
+			w_rel_a_start={0.0,0.1,0.5},
 			enforceStates=true) annotation(Placement(transformation(
 			origin={20,80},
 			extent={{-10,-10},{10,10}})));
@@ -3951,12 +3951,6 @@ package satellites
 				color={95,95,95},
 				thickness=0.0625));
 		annotation(
-			aCS_bus1(
-				w(flags=2),
-				w_a(flags=2),
-				u(flags=2),
-				y(flags=2)),
-			gain1(y(flags=2)),
 			error(y(flags=2)),
 			basic_wheel3x1(reactionwheel3axis_noelectricity1(
 				wheel_x(
