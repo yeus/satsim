@@ -16,7 +16,7 @@ component_Panel=["thermal_connector_"]
 component_Radiation=["timeTable1"]
 component_heater_cooler=["tCS1"]
 physical_quantity = ["T","dT","Q_flow","y","heater_on","cooler_on"]
-a = np.genfromtxt('/media/Data/sim_results/sat_3x3x3/omnidirectional_radiation/generic_satellite_3x3x3_sun_res_1000sec_euler.csv', delimiter=',',names=True,dtype=float)
+a = np.genfromtxt('E:/generic_satellite_3x3x3_sun_res_20000sec_rungekutta.csv', delimiter=',',names=True,dtype=float)
 to_file = np.array(a['time'], dtype=[('time',float)])
 # to_file = append_fields(to_file,'BB111port_bT',a['BB111port_bT'], usemask=False)
 
@@ -110,6 +110,5 @@ while i<=BBx:
             k=k+1
         j=j+1
     i=i+1
+np.savetxt('E:/bla.csv',to_file,delimiter=",",fmt='%s',header=str(','.join(to_file.dtype.names)),comments='')
 print("feddisch")
-
-np.savetxt('/home/jens/csvwrite_test.csv',to_file,delimiter=",",fmt='%s',header=str(','.join(to_file.dtype.names)),comments='')
