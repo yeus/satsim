@@ -27,6 +27,7 @@ import traceback
 import pickle
 import copy
 import re
+import sys
 
 pq.krad=pq.UnitQuantity('kilorad', pq.rads*1000, symbol='krad')
 pq.blocks=pq.UnitQuantity('blocks', 1, symbol='blocks')
@@ -232,7 +233,7 @@ class ibossxml(object):
           for i in names[1:]:
             retstr +=" "*40+" "+"{:<99};\n".format(i)
       else:
-        retstr += "{:<30}\n".format(val)
+        retstr += "{:<30}\n".format(str(val))
 
     retstr+=("="*40)+" "+"="*100+"\n"
     

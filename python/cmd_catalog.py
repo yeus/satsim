@@ -131,8 +131,8 @@ def main(argv=None):
 -> type \"cat.\" and then press \"tab\" for available options!
 
 """
-        import IPython
-        IPython.embed(banner1=bannerhelp)   
+        #import IPython
+        #IPython.embed(banner1=bannerhelp)   
     except:
       raise
       return

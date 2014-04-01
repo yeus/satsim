@@ -33,48 +33,47 @@ cat=iboss_catalogue.Catalog()
 cat.loadxmldata()
 sat = cat.sat["EnMAP"]
 
-sat.variables = []
-for i in sat.variables
+sat.variables = ""
+for bb in sat.bb:
+  bb.mo_id = bb._id[2:]
+  bb.mo_name = bb.name[:6]
+  sat.variables += "\t\tbuildingbocks.basic basic_{bb.mo_id}(id = {bb.mo_id}) \"{bb.name}\";\n".format(bb=bb)
+  #todo: add "buildingblocks.basic_wheel1x basic_wheel1x1(id=4);" models
 
 skel="""
-package components
-        model {model.name}
-          {model.vars}
-        end {model.name};
-end components;
-        model ass3x1x1
+within iboss;
+package referencemissions
+  model {model.name} \"{model.name}\"
                 satcomponents.AOCS.ctrl.ACS_bus aCS_bus1;
                 inner Modelica.Mechanics.MultiBody.World world(
                         enableAnimation=animation,
-                        gravityType=Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(transformation(
-                        origin={-20,80},
-                        extent={{-10,-10},{10,10}})));
+                        gravityType=Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity);
                 parameter Boolean animation=false "= true, if animation shall be enabled (show cylinder and sphere)";
                 Modelica.Mechanics.MultiBody.Joints.FreeMotion r(
                         animation=false,
-                        r_rel_a(start={0.0,0.0,0.0}),
-                        v_rel_a(start={0.0,0.0,0.0}),
+                        r_rel_a(start={{0.0,0.0,0.0}}),
+                        v_rel_a(start={{0.0,0.0,0.0}}),
                         w_rel_a_fixed=true,
-                        w_rel_a_start={0.0,0.0,0.2},
+                        w_rel_a_start={{0.0,0.0,0.2}}[,
                         enforceStates=true);
-                buildingblocks.basic_wheel1x basic_wheel1x1(id=4);
-                buildingblocks.basic basic1(id=1);
-                buildingblocks.basic basic4(id=2);
+                        
+{model.variables}           
                 Modelica.Blocks.Math.Gain gain1(k=10.0);
                 Modelica.Blocks.Math.Add error(k2=-1);
-                equation
-                        connect(world.frame_b,r.frame_a);
-                        connect(r.frame_b,basic_wheel1x1.Yps);
-                        connect(basic4.Xps,basic_wheel1x1.Xns);
-                        connect(basic_wheel1x1.Xps,basic1.Xns);
-                        connect(basic4.Xp,basic_wheel1x1.Xn);
-                        connect(basic_wheel1x1.Xp,basic1.Xn);
-                        connect(basic4.Xn.sat_bus.acs_bus,aCS_bus1);
-                        connect(const.y,error.u1);
-                        connect(error.y,gain1.u);
-                        connect(error.u2,aCS_bus1.w[2,3]);
-                        connect(gain1.y,aCS_bus1.w_a[4,3]);
-        end ass3x1x1;
+        equation
+                connect(world.frame_b,r.frame_a);
+                connect(r.frame_b,basic_wheel1x1.Yps);
+                connect(basic4.Xps,basic_wheel1x1.Xns);
+                connect(basic_wheel1x1.Xps,basic1.Xns);
+                connect(basic4.Xp,basic_wheel1x1.Xn);
+                connect(basic_wheel1x1.Xp,basic1.Xn);
+                connect(basic4.Xn.sat_bus.acs_bus,aCS_bus1);
+                connect(const.y,error.u1);
+                connect(error.y,gain1.u);
+                connect(error.u2,aCS_bus1.w[2,3]);
+                connect(gain1.y,aCS_bus1.w_a[4,3]);
+  end {model.name};
+end referencemissions;
 """.format(model=sat)
 
 print(skel)
