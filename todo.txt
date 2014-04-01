@@ -71,6 +71,7 @@ Bausteinkatalog/XML:
 spezifische Werte:
 ------------------
 - neue Werte: min_power, nominal_power und mean power (mean power wird in Simulation berechnet), max_power. 
+- Orientierung der Thruster/Drallräder/Sensoren innerhalb der Bausteine muss noch aufgeschrieben werden.
 - Baustein Positionen sind noch fehlerhaft
 - Bausteingrößen müssen noch angegeben werden
 - Baustein Orientierung muss in den Katalog

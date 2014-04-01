@@ -27,7 +27,6 @@ import traceback
 import pickle
 import copy
 import re
-import IPython
 
 pq.krad=pq.UnitQuantity('kilorad', pq.rads*1000, symbol='krad')
 pq.blocks=pq.UnitQuantity('blocks', 1, symbol='blocks')
@@ -582,6 +581,7 @@ def savedata(data, filename = "./bausteinkatalog/katalogdata_new.iboss"):
 def main():
   cat=Catalog()
   cat.loadxmlfile()
+  import IPython
   IPython.embed()
   #cat.bbvarchange("power",delete=True)
   
