@@ -12,6 +12,7 @@
 """defines data structures for iboss project"""
 
 Version="1.5" #catalog version
+newVersion="1.6" #next catalog version
 
 from copy import copy
 import numpy as np
@@ -28,6 +29,7 @@ import pickle
 import copy
 import re
 import sys
+import json
 
 pq.krad=pq.UnitQuantity('kilorad', pq.rads*1000, symbol='krad')
 pq.blocks=pq.UnitQuantity('blocks', 1, symbol='blocks')
@@ -101,6 +103,9 @@ class ibossxml(object):
   def getid():
     ibossxml.idcounter+=1
     return "id"+str(ibossxml.idcounter)
+
+  def defaultvariables(self):
+    return {}
 
   @property
   def xmlmapping(self):
@@ -197,11 +202,11 @@ class ibossxml(object):
     mapping=self.xmlmapping
     variables=et.Element("genericVariables")
     for vkey,vvalue in sorted(vars(self).items(),key=lambda instance: mapping[instance[0]].lower() if instance[0] in mapping else instance[0].lower()): #sort alphabetically with mapped names
-      if vkey[0]=="_" or isinstance(vvalue, list): continue #skip lists and private variables
+      if vkey[0]=="_": continue  #skip private variables
       if vkey in mapping:
-        root.append(self.property2xml(mapping[vkey],vvalue)) #speichern sämtlicher Klassenvariablen
+        root.append(self.property2xml(mapping[vkey],vvalue)) #speichern sämtlicher "default" Klassenvariablen
       else:
-        variables.append(self.genericvariable2xml(vkey,vvalue)) #speichern sämtlicher Klassenvariablen
+        variables.append(self.genericvariable2xml(vkey,vvalue)) #speichern sämtlicher generischer Klassenvariablen
     
     root.append(variables)
     
@@ -264,8 +269,8 @@ class buildingblock(ibossxml):
     super(buildingblock, self).__init__()
      #initialize with default variables
     vars(self).update(self.defaultvariables())
-    name=bbtype,
-    type=bbtype,
+    self.name=bbtype,
+    self.type=bbtype,
     
     self._xmltype="BuildingBlockDef"
 
@@ -276,7 +281,7 @@ class buildingblock(ibossxml):
                 size=vec(Blocksize+gap,Blocksize+gap,Blocksize+gap)*pq.m,
                 name="generic",
                 type="generic",
-                components=[],
+                _co=[],
                 mass=0*pq.kg,
                 power_max=0*pq.W,
                 com=vec(0,0,0)*Blocksize,
@@ -285,7 +290,8 @@ class buildingblock(ibossxml):
                               (0.0,0.85,0.0),
                               (0.0,0.0,0.85),)*pq.kg*pq.m**2,
                 orbit="ANY",
-                geometry="../../Models/Library/BuildingBlocks/EnMAP_Frame.mod"+"TODO, noch keine baustiene generiert...")
+                geometry = "../../Models/Library/BuildingBlocks/EnMAP_Frame.mod"+"TODO, noch keine baustiene generiert...",
+                grid = [(0,0,0)])
     
   @property
   def xmlmapping(self):
@@ -301,7 +307,7 @@ class buildingblock(ibossxml):
 
   def xmllist(self):
     root=et.Element("components")
-    for co in self.components:
+    for co in self._co:
       newelem=et.Element("GenericComponent")
       newelem.insert(0,et.Comment(co.name))
       if hasattr(co,'position'): newelem.append(self.property2xml("position",co.position))
@@ -318,14 +324,14 @@ class buildingblock(ibossxml):
     
   def add_co(self,co): #todo variable length argument list
     if "num" not in vars(co): co.num=1
-    self.components.append(copy.copy(co))  #use copy of component for an update with state variables
+    self._co.append(copy.copy(co))  #use copy of component for an update with state variables
   
   def update(self):
     self.power_max=0*pq.W
-    for co in self.components:
+    for co in self._co:
       if "power_max" in vars(co): 
         self.power_max+=co.power_max
-    self.mass=np.sum([co.mass*co.num for co in self.components])*pq.kg
+    self.mass=np.sum([co.mass*co.num for co in self._co])*pq.kg
 
 class Satellite(ibossxml):
   def __init__(self,mitype):
@@ -337,8 +343,9 @@ class Satellite(ibossxml):
     self.orbit="LEO"
     self.mass=0*pq.kg
     self.type=mitype
-    self.bb=[]#list of building blocks
+    self._bb=[]#list of building blocks
     #self.orbparam="2-line-elem"
+    self._grid={}
     
   @property
   def xmlmapping(self): #maps values to xml class
@@ -346,7 +353,7 @@ class Satellite(ibossxml):
 
   def xmllist(self):
     root=et.Element("buildingBlocks")
-    for bb in self.bb:
+    for bb in self._bb:
       newelem=et.Element("BuildingBlock")
       newelem.set("VSD:id",bb._id)#"".join([str(int(i)) for i in bb.pos]))
       #newelem.set("type",bb.type)
@@ -363,12 +370,23 @@ class Satellite(ibossxml):
     
   #adds a new building block to the satellite
   def add_bb(self,bb):  #todo variable length argument list
-    newbs=copy.copy(bb)
-    self.bb.append(newbs)
-   
+    newbs = copy.copy(bb)
+    newbs.index = tuple((newbs.pos/newbs.size).magnitude.astype(int))
+    for i in newbs.grid:
+      #print(i, newbs.index[0]+i[0])
+      self._grid[(newbs.index[0]+i[0],newbs.index[1]+i[1],newbs.index[2]+i[2])] = newbs.name
+      #self.grid = newbs
+    self._bb.append(newbs)
+  
+  def get_bb_neighbours(self,bb):
+    nbb = []
+    
+    return nbb
+    
+  
   def update(self):
-    self.mass=np.sum([bb.mass for bb in self.bb])*pq.kg
-    self.com=np.sum([(vec(*bb.pos)*(self.bbsize+self.bbgap))*bb.mass for bb in self.bb],axis=0)*pq.kg*pq.m/self.mass
+    self.mass=np.sum([bb.mass for bb in self._bb])*pq.kg
+    self.com=np.sum([(vec(*bb.pos)*(self.bbsize+self.bbgap))*bb.mass for bb in self._bb],axis=0)*pq.kg*pq.m/self.mass
 
 class Catalog(object):
   def __init__(self):
@@ -408,13 +426,13 @@ class Catalog(object):
       
     for bb in sorted(self.bb.values(),key=lambda instance: instance.name.lower()):
       bb._id=ibossxml.getid()
-      for co in sorted(bb.components,key=lambda instance: instance.name.lower()):
+      for co in sorted(bb._co,key=lambda instance: instance.name.lower()):
         co._id = ibossxml.getid()
         co._refid = self.co[co.name]._id
     
     for sat in sorted(self.sat.values(),key=lambda instance: instance.name.lower()):
       sat._id=ibossxml.getid()
-      for bb in sorted(sat.bb,key=lambda instance: instance.name.lower()):
+      for bb in sorted(sat._bb,key=lambda instance: instance.name.lower()):
         bb._id = ibossxml.getid()
         bb._refid = self.bb[bb.name]._id
     
@@ -465,7 +483,7 @@ class Catalog(object):
     f.write(prettyprintxml(xml))
     f.close()
 
-  def save(self, version=Version):
+  def save(self, version=newVersion):
     self.update()
     katalog=et.Element("Catalog",version=Version)
     katalog.append(self.ibosslist2xml("componentDefs",self.co.values()))#TODO: componentDefs und buildingBlockDefs 
@@ -581,7 +599,14 @@ def savedata(data, filename = "./bausteinkatalog/katalogdata_new.iboss"):
 
 def main():
   cat=Catalog()
-  cat.loadxmlfile()
+  cat.loadxmldata()
+  cat.update()
+  #for bb in cat.bb.values():
+  #  if 'Kernstruktur' in bb.name:
+  #    bb.grid
+  
+  sat=cat.sat["EnMAP"]
+  bb=sat._bb[0]
   import IPython
   IPython.embed()
   #cat.bbvarchange("power",delete=True)
