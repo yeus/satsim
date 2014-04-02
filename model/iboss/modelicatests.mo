@@ -1,6 +1,6 @@
-  within iboss;
 // CP: 65001
 // SimulationX Version: 3.6.1.26028
+within iboss;
 package modelicatests
 	model test
 		Modelica.Electrical.Analog.Basic.Resistor resistor1(R=0.1) annotation(Placement(
@@ -110,16 +110,19 @@ package modelicatests
 	end tabletest;
 	model noise_sampled "noise_sampled"
 		Integer x(start=0);
-		constant Integer m=2^31-1;
-		parameter Integer a=7^5;
+		constant Integer m=2 ^ 31 - 1;
+		parameter Integer a=7 ^ 5;
 		parameter Integer c=10;
-		algorithm
+		equation
 			//x:=mod(a * integer(time) + c, m); //LCG Noise
-			when sample(0, 0.01) then
-			      x:=mod(a * pre(x) + c, m);    
+			when sample(0, 0.0001) then
+			      x=mod(a * x + c, m);    
 			end when;
 		annotation(
 			x(flags=2),
+			viewinfo[0](
+				viewSettings(clrRaster=12632256),
+				typename="ModelInfo"),
 			experiment(
 				StopTime=20,
 				StartTime=0,
@@ -641,6 +644,7 @@ package modelicatests
 	end PointGravityWithPointMasses2;
 	package bus_simulation
 		expandable connector modcom "modcom"
+			Real a[10];
 			annotation(Icon(graphics={
 														Rectangle(
 															lineColor={0,0,0},
@@ -697,64 +701,138 @@ package modelicatests
 		model signalbustest
 			modcom modcom1 annotation(Placement(transformation(extent={{-70,20},{-50,40}})));
 			modcom modcom2 annotation(Placement(transformation(extent={{20,20},{40,40}})));
-			Modelica.Blocks.Sources.Pulse pulse1 annotation(Placement(transformation(
-				origin={-110,75},
-				extent={{-10,-10},{10,10}})));
-			Modelica.Blocks.Sources.Sine sine1(
-				amplitude=2.0,
-				freqHz=0.1) annotation(Placement(transformation(
-				origin={-110,-5},
-				extent={{-10,-10},{10,10}})));
-			Modelica.Blocks.Sources.IntegerConstant integerconstant1 annotation(Placement(transformation(
-				origin={-110,35},
-				extent={{-10,-10},{10,10}})));
-			Modelica.Blocks.Math.Tanh tanh1 annotation(Placement(transformation(
-				origin={115,70},
-				extent={{-10,-10},{10,10}})));
 			Modelica.Blocks.Math.Cos cos1 annotation(Placement(transformation(
 				origin={115,-5},
 				extent={{-10,-10},{10,10}})));
-			Modelica.Blocks.Interaction.Show.RealValue realValue1 annotation(Placement(transformation(extent={{70,35},{90,55}})));
+			modelicatests.bus_simulation.modcom modcom3 annotation(Placement(
+				visible=true,
+				transformation(
+					origin={-20,-20},
+					extent={{-10,-10},{10,10}},
+					rotation=0),
+				iconTransformation(
+					origin={-20,-20},
+					extent={{-10,-10},{10,10}},
+					rotation=0)));
+			modelicatests.bus_simulation.modcom modcom4 annotation(Placement(
+				visible=true,
+				transformation(
+					origin={20,-40},
+					extent={{-10,-10},{10,10}},
+					rotation=0),
+				iconTransformation(
+					origin={20,-40},
+					extent={{-10,-10},{10,10}},
+					rotation=0)));
 			Modelica.Blocks.Sources.Sine sine2(
 				amplitude=2.0,
-				freqHz=0.1) annotation(Placement(transformation(
-				origin={-85,-30},
-				extent={{-10,-10},{10,10}})));
+				freqHz=0.1) annotation(Placement(
+				visible=true,
+				transformation(
+					origin={-80,0},
+					extent={{-10,-10},{10,10}},
+					rotation=0)));
+			Modelica.Blocks.Sources.Sine sine1(
+				amplitude=2.0,
+				freqHz=0.1) annotation(Placement(
+				visible=true,
+				transformation(
+					origin={-20,-80},
+					extent={{-10,-10},{10,10}},
+					rotation=0)));
+			Modelica.Blocks.Math.Gain gain1 annotation(Placement(
+				visible=true,
+				transformation(
+					origin={-20,60},
+					extent={{-10,-10},{10,10}},
+					rotation=0)));
 			equation
-				connect(pulse1.y,modcom1.pulse) annotation(Line(
-					points={{-99,75},{-94,75},{-65,75},{-65,30},{-60,30}},
-					color={0,0,127},
-					thickness=0.0625));
-				connect(integerconstant1.y,modcom1.int) annotation(Line(
-					points={{-99,35},{-94,35},{-65,35},{-65,30},{-60,30}},
-					color={255,127,0},
-					thickness=0.0625));
-				connect(tanh1.u,modcom2.pulse) annotation(Line(
-					points={{103,70},{98,70},{35,70},{35,30},{30,30}},
-					color={0,0,127},
-					thickness=0.0625));
-				connect(sine1.y,modcom1.u[0]) annotation(Line(
-					points={{-69,-40},{-64,-40},{-35,-40},{-35,-5},{-30,-5}},
-					color={0,0,127},
-					thickness=0.0625));
-				connect(sine2.y,modcom1.u[1]) annotation(Line(
-					points={{-44,-65},{-39,-65},{-35,-65},{-35,-5},{-30,-5}},
-					color={0,0,127},
-					thickness=0.0625));
-				connect(realValue1.numberPort,modcom2.u[0]) annotation(Line(
-					points={{43.7,5},{38.7,5},{15,5},{15,-5},{10,-5}},
-					color={0,0,127},
-					thickness=0.0625));
-				connect(cos1.u,modcom2.u[1]) annotation(Line(
-					points={{83,-40},{78,-40},{15,-40},{15,-5},{10,-5}},
-					color={0,0,127},
-					thickness=0.0625));
+				connect(modcom1.s2,gain1.u) annotation(Line(points = {{-60,30},{-33.0275,30},{-33.0275,60.0917},{-33.0275,60.0917}}));
+				connect(sine1.y,modcom4.s2) annotation(Line(points = {{-9,-80},{19.2661,-80},{19.2661,-41.7431},{19.2661,-41.7431}}));
+				connect(sine2.y,modcom1.s1) annotation(Line(points = {{-69,0},{-56.8807,0},{-56.8807,26.1468},{-56.8807,26.1468}}));
+				connect(modcom4,modcom2) annotation(Line(points = {{20,-40},{27.9817,-40},{27.9817,24.3119},{27.9817,24.3119}}));
+				connect(modcom3,modcom4) annotation(Line(points = {{-20,-20},{17.8899,-20},{17.8899,-40.367},{17.8899,-40.367}}));
+				connect(modcom3,modcom1) annotation(Line(points = {{-20,-20},{-51.8349,-20},{-51.8349,29.8165},{-51.8349,29.8165}}));
+				connect(modcom2.s1,cos1.u) annotation(Line(points = {{30,30},{65.5963,30},{65.5963,-4.58716},{101.835,-4.58716},{101.835,-4.58716}}));
 			annotation(
 				sine1(y(flags=2)),
 				tanh1(y(flags=2)),
 				realValue1(showNumber(flags=2)),
-				sine2(y(flags=2)));
+				sine2(y(flags=2)),
+				experiment(
+					StartTime=0,
+					StopTime=100,
+					Tolerance=0.0001,
+					Interval=0.2));
 		end signalbustest;
+		model signalbusarraytest
+			modcom modcom1 annotation(Placement(transformation(extent={{-60,20},{-40,40}})));
+			modcom modcom2 annotation(Placement(transformation(extent={{30,20},{50,40}})));
+			Modelica.Blocks.Math.Cos cos1 annotation(Placement(transformation(
+				origin={115,-5},
+				extent={{-10,-10},{10,10}})));
+			modcom modcom3 annotation(Placement(
+				transformation(
+					origin={-20,-20},
+					extent={{-10,-10},{10,10}}),
+				iconTransformation(
+					origin={-20,-20},
+					extent={{-10,-10},{10,10}})));
+			modcom modcom4 annotation(Placement(
+				transformation(
+					origin={20,-40},
+					extent={{-10,-10},{10,10}}),
+				iconTransformation(
+					origin={20,-40},
+					extent={{-10,-10},{10,10}})));
+			Modelica.Blocks.Sources.Sine sine2(
+				amplitude=4.0,
+				freqHz=0.1) annotation(Placement(transformation(
+				origin={-80,-25},
+				extent={{-10,-10},{10,10}})));
+			Modelica.Blocks.Math.Gain gain1 annotation(Placement(transformation(
+				origin={15,70},
+				extent={{-10,-10},{10,10}})));
+			Modelica.Blocks.Sources.Pulse pulse1(startTime=5) annotation(Placement(transformation(extent={{-110,35},{-90,55}})));
+			equation
+				connect(modcom1,modcom3) annotation(Line(
+					points={{-50,30},{-45,30},{-25,30},{-25,-20},{-20,-20}},
+					color={0,0,0},
+					thickness=0.0625));
+				connect(modcom3,modcom4) annotation(Line(
+					points={{-20,-20},{-15,-20},{15,-20},{15,-40},{20,-40}},
+					color={0,0,0},
+					thickness=0.0625));
+				connect(modcom2,modcom4) annotation(Line(
+					points={{40,30},{35,30},{25,30},{25,-40},{20,-40}},
+					color={0,0,0},
+					thickness=0.0625));
+				
+				connect(sine2.y,modcom3.a[2]) annotation(Line(
+					points={{-69,-25},{-64,-25},{-25,-25},{-25,-20},{-20,-20}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(cos1.u,modcom2.a[2]) annotation(Line(
+					points={{103,-5},{98,-5},{45,-5},{45,30},{40,30}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(gain1.u,modcom3.a[1]) annotation(Line(
+					points={{3,70},{-2,70},{-15,70},{-15,-20},{-20,-20}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(pulse1.y,modcom1.a[1]) annotation(Line(
+					points={{-89,45},{-84,45},{-55,45},{-55,30},{-50,30}},
+					color={0,0,127},
+					thickness=0.0625));
+			annotation(
+				modcom2(a(flags=2)),
+				viewinfo[0](
+					viewSettings(clrRaster=12632256),
+					typename="ModelInfo"),
+				experiment(
+					StopTime=100,
+					StartTime=0));
+		end signalbusarraytest;
 	end bus_simulation;
 	package openmodelica_cpp
 		model coding_interface
@@ -783,16 +861,89 @@ package modelicatests
 				grid={2,2})));
 	end openmodelica_cpp;
 	model noise_ung "noise_sampled"
-		constant Integer m=2^31-1;
-		parameter Integer a=7^5;
+		constant Integer m=2 ^ 31 - 1;
+		parameter Integer a=7 ^ 5;
 		parameter Integer c=10;
 		Integer x(start=0);
 		Integer y(start=0);
 		algorithm
-			y:=mod(a * integer(time*m) + c, m);
+			y:=mod(a * integer(time * m) + c, m);
 			x:=mod(a * y + c, m);
 		annotation(
 			x(flags=2),
 			y(flags=2));
 	end noise_ung;
+	model statespace_control "statespace_control"
+		Modelica.Blocks.Continuous.StateSpace stateSpace1 annotation(Placement(transformation(extent={{15,35},{35,55}})));
+		annotation(
+			viewinfo[1](
+				projectPath="C:\\Users\\indahouse\\Documents\\SimulationX 3.6\\Exported C-Code",
+				projectType=0,
+				saveOutputsApproach=1,
+				showAdditionalLibPage=false,
+				useCodeOptimization=true,
+				m_x64=false,
+				solverMode=1,
+				typename="CodeExportInfo"),
+			experiment(
+				StopTime=1,
+				StartTime=0));
+	end statespace_control;
+	package Random
+		import Modelica.Math;
+		constant Real NV_MAGICCONST=4*exp(-0.5)/sqrt(2.0);
+		type Seed = Integer[3];
+		function random "input random number generator with external storage of the seed"
+			input Seed si "input random seed";
+			output Real x "uniform random variate between 0 and 1";
+			output Seed so "output random seed";
+			algorithm
+				so[1] := rem((171 * si[1]),30269);
+				so[2] := rem((172 * si[2]),30307);
+				so[3] := rem((170 * si[3]),30323);
+				// zero is a poor Seed, therfore substitute 1;
+				if so[1] == 0 then
+				  so[1] := 1;
+				end if;
+				if so[2] == 0 then
+				  so[2] := 1;
+				end if;
+				if so[3] == 0 then
+				  so[3] := 1;
+				end if;
+				x := rem((so[1]/30269.0 +so[2]/30307.0 + so[3]/30323.0),1.0);
+		end random;
+		function normalvariate "normally distributed random variable"
+			input Real mu "mean value";
+			input Real sigma "standard deviation";
+			input Seed si "input random seed";
+			output Real x "gaussian random variate";
+			output Seed so "output random seed";
+			protected
+				Seed s1;
+				Seed s2;
+				Real z;
+				Real zz;
+				Real u1;
+				Real u2;
+			algorithm
+				s1 := si;
+				u2 := 1;
+				while true loop
+				  (u1,s2) := random(s1);
+				  (u2,s1) := random(s2);
+				  z := NV_MAGICCONST*(u1-0.5)/u2;
+				  zz := z*z/4.0;
+				  if zz <= (- Math.log(u2)) then
+				    break;
+				  end if;
+				end while;
+				x := mu + z*sigma;
+				so := s1;
+		end normalvariate;
+		connector discreteConnector
+			discrete Boolean dcon;
+		end discreteConnector;
+		annotation(dateModified="2014-03-25 16:26:09Z");
+	end Random;
 end modelicatests;
