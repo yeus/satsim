@@ -114,45 +114,46 @@ class ibossxml(object):
   def xmllist(self):
     return None
   
+
+  def str2prop(self, name, val, unit=None):
+    n=name
+    u=1
+    if unit:
+       try: v=str2vec(val)
+       except ValueError:v=val
+       
+       u = pq.Quantity(1,unit)
+    else:
+       try: v=float(val)
+       except ValueError: v=val
+    
+    return n,v,u
+
   def addxmlprop(self,xmlprop):
     #convert to floats and vectors
-    unit=1
-    try:
-      if 'unit' in xmlprop.attrib:
-        val=str2vec(xmlprop.text)
-        unit=pq.Quantity(1,xmlprop.attrib['unit'])
-      else: 
-        try: val=float(xmlprop.text)
-        except ValueError: val=xmlprop.text
-    except:
-      print("hat nicht funktioniert",prettyprintxml(xmlprop))
-      print(xmlprop.text.rsplit())
-      raise
+    strname = xmlprop.tag
+    strunit = None
+    if 'unit' in xmlprop.attrib: strunit = xmlprop.attrib['unit']
+    strval = val=xmlprop.text
+    
+    name, val, unit = self.str2prop(strname, strval, strunit)
     
     #change name according to xmlmapping
     inv_map = {v:k for k, v in self.xmlmapping.items()}
-    if xmlprop.tag in inv_map.keys(): name = inv_map[xmlprop.tag]
+    if name in inv_map.keys(): name = inv_map[xmlprop.tag]
     else: name = xmlprop.tag
-      
-    vars(self)[name]=val*unit
-  
-  def addgenericxmlvar(self,xmlvar):
-    #convert to floats and vectors
-    try:
-      strvalue= xmlvar.find("value").text
-      try: value=str2vec(strvalue)
-      except ValueError:value=strvalue
     
-      try: unit = pq.Quantity(1,xmlvar.find("unit").text)
-      except: unit = 1
-            
-      name = xmlvar.find("name").text
-      vars(self)[name]=value*unit
-      
-      #startconsole(localvariables=locals())#import pdb; pdb.set_trace()
-    except:
-      print("hat nicht funktioniert",prettyprintxml(xmlvar))
-      raise
+    vars(self)[name]=val*unit #add variable to class
+  
+  def addgenericxmlvar(self,xmlprop):
+    #convert to floats and vectors
+    strname = xmlprop.find("name").text
+    try: strunit = xmlprop.find("unit").text
+    except: strunit=None
+    strval = xmlprop.find("value").text
+
+    name, val, unit = self.str2prop(strname, strval, strunit)
+    vars(self)[name]=val*unit #add variable to class
       
   @staticmethod
   def property2strlist(vkey,value):
