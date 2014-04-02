@@ -162,13 +162,12 @@ class ibossxml(object):
       if value.size==1:    val = str(value.magnitude)
       elif value.size<=3:  val = vec2str(value.magnitude)
       else:                val = mat2str(value.magnitude)
+    elif isinstance(value,list) or isinstance(value,dict): #save as json, if it is a list or dict
+      unit='json'
+      val = json.dumps(value)
     else:
       unit = None
-      try:
-        if value.size>1:  val = vec2str(vvalue.magnitude)
-        else:              val = str(value)
-      except AttributeError: #in case of vvalue not beeing an array
-        val = str(value)
+      val = str(value)
         
     return name,val,unit
   
