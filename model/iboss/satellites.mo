@@ -3391,9 +3391,6 @@ package satellites
 				color={95,95,95},
 				thickness=0.0625));
 		annotation(
-			viewinfo[0](
-				viewSettings(clrRaster=12632256),
-				typename="ModelInfo"),
 			experiment(
 				StopTime=100,
 				StartTime=0));
@@ -3872,19 +3869,6 @@ package satellites
 					y(flags=2))))),
 			gain1(y(flags=2)),
 			error(y(flags=2)),
-			viewinfo[0](
-				viewSettings(clrRaster=12632256),
-				typename="ModelInfo"),
-			viewinfo[1](
-				minOrder=0.5,
-				maxOrder=12,
-				mode=0,
-				minStep=0.01,
-				maxStep=0.1,
-				relTol=1e-005,
-				oversampling=4,
-				anaAlgorithm=0,
-				typename="AnaStatInfo"),
 			experiment(
 				StopTime=100,
 				StartTime=0));
@@ -4094,19 +4078,6 @@ package satellites
 						w_a(flags=2),
 						z_a(flags=2),
 						g_0(flags=2))))),
-			viewinfo[0](
-				minOrder=0.5,
-				maxOrder=12,
-				mode=0,
-				minStep=0.01,
-				maxStep=0.1,
-				relTol=1e-005,
-				oversampling=4,
-				anaAlgorithm=0,
-				typename="AnaStatInfo"),
-			viewinfo[1](
-				viewSettings(clrRaster=12632256),
-				typename="ModelInfo"),
 			experiment(
 				StopTime=100,
 				StartTime=0));

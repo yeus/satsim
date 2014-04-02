@@ -120,9 +120,6 @@ package modelicatests
 			end when;
 		annotation(
 			x(flags=2),
-			viewinfo[0](
-				viewSettings(clrRaster=12632256),
-				typename="ModelInfo"),
 			experiment(
 				StopTime=20,
 				StartTime=0,
@@ -826,9 +823,6 @@ package modelicatests
 					thickness=0.0625));
 			annotation(
 				modcom2(a(flags=2)),
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				experiment(
 					StopTime=100,
 					StartTime=0));
@@ -876,15 +870,6 @@ package modelicatests
 	model statespace_control "statespace_control"
 		Modelica.Blocks.Continuous.StateSpace stateSpace1 annotation(Placement(transformation(extent={{15,35},{35,55}})));
 		annotation(
-			viewinfo[1](
-				projectPath="C:\\Users\\indahouse\\Documents\\SimulationX 3.6\\Exported C-Code",
-				projectType=0,
-				saveOutputsApproach=1,
-				showAdditionalLibPage=false,
-				useCodeOptimization=true,
-				m_x64=false,
-				solverMode=1,
-				typename="CodeExportInfo"),
 			experiment(
 				StopTime=1,
 				StartTime=0));

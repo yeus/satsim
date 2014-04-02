@@ -746,9 +746,6 @@ package buildingblocks
 				color={95,95,95},
 				thickness=0.0625));
 		annotation(
-			viewinfo[2](
-				viewSettings(clrRaster=12632256),
-				typename="ModelInfo"),
 			experiment(
 				StopTime=1,
 				StartTime=0));
@@ -907,9 +904,6 @@ package buildingblocks
 						w_a(flags=2),
 						z_a(flags=2),
 						g_0(flags=2)))),
-			viewinfo[0](
-				viewSettings(clrRaster=12632256),
-				typename="ModelInfo"),
 			experiment(
 				StopTime=1,
 				StartTime=0));
@@ -1096,9 +1090,6 @@ package buildingblocks
 					w_a(flags=2),
 					z_a(flags=2),
 					g_0(flags=2)))),
-			viewinfo[0](
-				viewSettings(clrRaster=12632256),
-				typename="ModelInfo"),
 			experiment(
 				StopTime=1,
 				StartTime=0));
