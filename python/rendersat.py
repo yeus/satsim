@@ -76,7 +76,9 @@ newobj.location=mission.com
             
  #render the result
 bpy.context.scene.render.use_edge_enhance=True
-bpy.ops.render.render()
-bpy.data.images['Render Result'].save_render("satellite.png")
+if 'render' in sys.argv:
+  print("rendering image")
+  bpy.ops.render.render()
+  bpy.data.images['Render Result'].save_render("satellite.png")
     
 #todo: render the COG together with a "forcemap"  and a "space of forces"/moments
