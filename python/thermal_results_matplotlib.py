@@ -35,7 +35,7 @@ fig, Radiation_qflow = plt.subplots()
 fig, heater_on = plt.subplots()
 fig, sum_heater_cooler_on = plt.subplots()
 fig, cooler_on = plt.subplots()
-a = np.genfromtxt('E:\generic_satellite_3x3x3_sun_res_20000_lobatto6.csv', delimiter=',',names=True,dtype=float)
+a = np.genfromtxt('E:/bla.csv', delimiter=',',names=True,dtype=float)
 sum_heat = np.zeros(len(np.array(a)))
 sum_cool = np.zeros(len(np.array(a)))
 i=1
