@@ -2,8 +2,8 @@
 <Satellite VSD:id="id367" xmlns="http://www.VEROSIM.de/namespaces/IBOSS" xmlns:VSD="http://www.VEROSIM.de/namespaces/VSD" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.VEROSIM.de/namespaces/IBOSS ../XSD/iboss.xsd">
 	<!--
         * Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)
-        * Date : 2014/04/02
-        * Version: 1.5
+        * Date : 2014/04/03
+        * Version: 1.6
         * All code (c)2013 Technische Universität Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved-->
 	<orbit>LEO</orbit>
 	<VSD:name>ADM-Aeolus_ctank</VSD:name>
