@@ -46,7 +46,7 @@ bpy.data.scenes['Scene'].layers=[False]*19+[True]
 
 #render satellit with forces
 mode=""#".transparent"  #transparent render
-for bs in mission.bb:
+for bs in mission._bb:
     if bs.name   == "test Lageregelungsbaustein": newobj=cpobj("düsenbaustein"+mode)
     elif bs.name == "Kernstruktur2x2x2": newobj=cpobj("2x2x2"+mode)
     else: newobj=cpobj("baustein"+mode)

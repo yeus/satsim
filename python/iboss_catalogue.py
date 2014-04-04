@@ -11,8 +11,8 @@
 
 """defines data structures for iboss project"""
 
-Version="1.5" #catalog version
-newVersion="1.6" #next catalog version
+Version="1.6" #catalog version
+newVersion="1.7" #next catalog version
 
 from copy import copy
 import numpy as np
@@ -119,10 +119,13 @@ class ibossxml(object):
     n=name
     u=1
     if unit:
-       try: v=str2vec(val)
-       except ValueError:v=val
-       
-       u = pq.Quantity(1,unit)
+      if unit == 'json':
+        v=json.loads(val)
+      else:
+        try: v=str2vec(val)
+        except ValueError:v=val
+        
+        u = pq.Quantity(1,unit)
     else:
        try: v=float(val)
        except ValueError: v=val
@@ -374,12 +377,30 @@ class Satellite(ibossxml):
     newbs.index = tuple((newbs.pos/newbs.size).magnitude.astype(int))
     for i in newbs.grid:
       #print(i, newbs.index[0]+i[0])
-      self._grid[(newbs.index[0]+i[0],newbs.index[1]+i[1],newbs.index[2]+i[2])] = newbs.name
+      self._grid[(newbs.index[0]+i[0],newbs.index[1]+i[1],newbs.index[2]+i[2])] = newbs
       #self.grid = newbs
     self._bb.append(newbs)
   
   def get_bb_neighbours(self,bb):
+    """return direct neigbours of buildingblocks in a list
+the list looks like this:
+[<iboss_catalogue.buildingblock object at 0x7f4dfed03be0>, array([-1,  0,  0])]
+[<iboss_catalogue.buildingblock object at 0x7f4dfed03828>, array([0, 1, 0])]
+[<iboss_catalogue.buildingblock object at 0x7f4dfed037b8>, array([ 0,  0, -1])]
+
+where the first element is a reference to a buildingblock and the second reference is a vector to this bulidingblock
+
+    """
+    #TODO: right now only neighbours of 1x1x1 buildingblocks are supported
     nbb = []
+    for i in (0,1,2):
+      for j in (-1,1):
+        ind = np.array(bb.index)
+        ind[i] += j 
+        ind= tuple(ind)
+        if ind in self._grid:
+          conn_vec = vec(*ind) - vec(*bb.index)
+          nbb.append([self._grid[ind], conn_vec])
     
     return nbb
     
