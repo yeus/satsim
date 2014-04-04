@@ -93,6 +93,8 @@ spezifische Werte:
 - Baustein Positionen sind noch fehlerhaft
 - Bausteingrößen müssen noch angegeben werden
 - Baustein Orientierung muss in den Katalog
+- bausteinpositionen und Orientierung im Satelliten müssen in ordnung gebracht werden (z.B. Enmap Ausrichtung mit launchadapter in Zn Richtung)
+- Definitionen für Mehrfachbausteine anpassen
 
 verschiedenes:
 --------------
