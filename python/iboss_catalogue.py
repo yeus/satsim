@@ -383,14 +383,19 @@ class Satellite(ibossxml):
   
   def get_bb_neighbours(self,bb):
     """return direct neigbours of buildingblocks in a list
-the list looks like this:
-[<iboss_catalogue.buildingblock object at 0x7f4dfed03be0>, array([-1,  0,  0])]
-[<iboss_catalogue.buildingblock object at 0x7f4dfed03828>, array([0, 1, 0])]
-[<iboss_catalogue.buildingblock object at 0x7f4dfed037b8>, array([ 0,  0, -1])]
+      
+      Args:
+        bb: an iboss building block
+        
+      Returns:
+        the returned list looks for example like this:
+        [[<iboss_catalogue.buildingblock object at 0x7f4dfed03be0>, array([-1,  0,  0])],
+        [<iboss_catalogue.buildingblock object at 0x7f4dfed03828>, array([0, 1, 0])],
+        [<iboss_catalogue.buildingblock object at 0x7f4dfed037b8>, array([ 0,  0, -1])]]
 
-where the first element is a reference to a buildingblock and the second reference is a vector to this bulidingblock
-
-    """
+        where the first element in the 2d-list is a reference to a buildingblock and the second 
+        reference is a vector to this bulidingblock
+        """
     #TODO: right now only neighbours of 1x1x1 buildingblocks are supported
     nbb = []
     for i in (0,1,2):
