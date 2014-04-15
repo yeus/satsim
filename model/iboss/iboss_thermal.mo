@@ -1331,7 +1331,7 @@ An approppriate simulating time would be 10 seconds.
 				fileName="/home/jens/iBOSS2/Simulation_Linux/ibosssim/model/iboss/thermochrom_alpha_epsilon.txt")
 				annotation(Placement(transformation(extent={{135,-80},{155,-60}})));
 			Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperatureSensor_Radiator annotation(Placement(transformation(extent={{100,-80},{120,-60}})));
-			Modelica.Blocks.Math.Gain factor_Area_Rad(k=effective_area_Rad / effective_area_total) annotation(Placement(transformation(extent={{180,-80},{200,-60}})));
+			Modelica.Blocks.Math.Gain factor_Area_Rad(k=effective_area_Rad) annotation(Placement(transformation(extent={{180,-80},{200,-60}})));
 			equation
 				connect(timeTable1.y,factor_TSS.u) annotation(Line(
 					points={{-74,5},{-69,5},{-42,5},{-42,50},{-37,50}},
