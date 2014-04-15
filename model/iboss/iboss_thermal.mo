@@ -1328,8 +1328,8 @@ An approppriate simulating time would be 10 seconds.
 				tableOnFile=true,
 				table=[250,0.5,0.9;290,0.7,0.7],
 				tableName="thermochromLaCaMnO3",
-				fileName="E:\\Eigene Dateien\\iBOSS-2\\Gesamtsimulation_TuE\\ibosssim\\model\\iboss\\thermochrom_alpha_epsilon.txt",
-				columns=2:size(self.table, 2)) annotation(Placement(transformation(extent={{135,-80},{155,-60}})));
+				fileName="/home/jens/iBOSS2/Simulation_Linux/ibosssim/model/iboss/thermochrom_alpha_epsilon.txt")
+				annotation(Placement(transformation(extent={{135,-80},{155,-60}})));
 			Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperatureSensor_Radiator annotation(Placement(transformation(extent={{100,-80},{120,-60}})));
 			Modelica.Blocks.Math.Gain factor_Area_Rad(k=effective_area_Rad / effective_area_total) annotation(Placement(transformation(extent={{180,-80},{200,-60}})));
 			equation
