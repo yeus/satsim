@@ -16,9 +16,9 @@ def plotparameter( fig, title, x_label, y_label):
 print("grap a coffee")
 import numpy as np
 import matplotlib.pyplot as plt
-BBx = 2
-BBy = 1
-BBz = 1
+BBx = 3
+BBy = 3
+BBz = 3
 component_Box=["port_b"]
 component_TIM=["Conductance_"]
 component_Panel=["thermal_connector_"]
@@ -35,7 +35,7 @@ fig, Radiation_qflow = plt.subplots()
 fig, heater_on = plt.subplots()
 fig, sum_heater_cooler_on = plt.subplots()
 fig, cooler_on = plt.subplots()
-a = np.genfromtxt('/home/jens/generic_satellite_2x1x1_VEROSIM_res.csv', delimiter=',',names=True,dtype=float)
+a = np.genfromtxt('E:/sim_results/sat_3x3x3/omnidirectional_radiation/generic_satellite_3x3x3_sun_var_rad_res_20000sec_lobatto6.csv', delimiter=',',names=True,dtype=float)
 sum_heat = np.zeros(len(np.array(a)))
 sum_cool = np.zeros(len(np.array(a)))
 i=1
