@@ -123,6 +123,30 @@ package modelicatests
 			viewinfo[0](
 				viewSettings(clrRaster=12632256),
 				typename="ModelInfo"),
+			viewinfo[1](
+				projectName="noise_sampled",
+				projectPath="C:\\Users\\indahouse\\Documents\\SimulationX 3.6\\Exported C-Code",
+				projectType=21,
+				saveOutputsApproach=1,
+				outputs[0](
+					port="x",
+					interpolation=true,
+					paramTypeSPCK=3,
+					typename="CEPort"),
+				descriptionProject="noise_sampled",
+				version="1.0",
+				author="tom",
+				fmiIncludeDllWin32=true,
+				fmiIncludeDllWin64=true,
+				fmiIncludeSources=true,
+				guid="{253B72D8-5AD5-49FD-B1A4-2A844B8265CF}",
+				showAdditionalLibPage=false,
+				useCodeOptimization=true,
+				m_x64=false,
+				solverMode=1,
+				checkSum=1503,
+				fmiVersion="1.0",
+				typename="CodeExportInfo"),
 			experiment(
 				StopTime=20,
 				StartTime=0,
@@ -646,15 +670,15 @@ package modelicatests
 		expandable connector modcom "modcom"
 			Real a[10];
 			annotation(Icon(graphics={
-														Rectangle(
-															lineColor={0,0,0},
-															fillColor={255,255,255},
-															fillPattern=FillPattern.Solid,
-															extent={{-73.3,76.7},{80,-76.7}}),
-														Text(
-															textString="iCOM",
-															lineColor={0,0,0},
-															extent={{-46.7,50},{53.3,-50}})}));
+																				Rectangle(
+																					lineColor={0,0,0},
+																					fillColor={255,255,255},
+																					fillPattern=FillPattern.Solid,
+																					extent={{-73.3,76.7},{80,-76.7}}),
+																				Text(
+																					textString="iCOM",
+																					lineColor={0,0,0},
+																					extent={{-46.7,50},{53.3,-50}})}));
 		end modcom;
 		block Sensor
 			Modelica.Blocks.Interfaces.RealOutput speed;
@@ -946,4 +970,42 @@ package modelicatests
 		end discreteConnector;
 		annotation(dateModified="2014-03-25 16:26:09Z");
 	end Random;
+	model momentum_add "momentum_add"
+		inner Modelica.Mechanics.MultiBody.World world(
+			gravityType=Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity,
+			redeclare replaceable function gravityAcceleration = Modelica.Mechanics.MultiBody.Forces.Internal.standardGravityAcceleration) annotation(Placement(transformation(extent={{-115,70},{-95,90}})));
+		Modelica.Mechanics.MultiBody.Parts.BodyBox bodyBox1(
+			r={1.0,0,0},
+			r_shape={-0.5,0,0},
+			widthDirection={0,0.5,0},
+			density=300000) annotation(Placement(transformation(extent={{10,40},{30,60}})));
+		Modelica.Mechanics.MultiBody.Parts.BodyBox bodyBox2(
+			r={1.0,0,0},
+			r_shape={-0.5,0,0},
+			widthDirection={0,0.5,0},
+			density=300000) annotation(Placement(transformation(extent={{10,-25},{30,-5}})));
+		Modelica.Mechanics.MultiBody.Joints.FreeMotion freeMotion1 annotation(Placement(transformation(extent={{-55,70},{-35,90}})));
+		Modelica.Mechanics.MultiBody.Joints.FreeMotion freeMotion2 annotation(Placement(transformation(extent={{-50,-10},{-30,10}})));
+		Modelica.Mechanics.MultiBody.Joints.Cylindrical cylindrical1 annotation(Placement(transformation(extent={{55,-15},{75,5}})));
+		equation
+			connect(world.frame_b,freeMotion1.frame_a) annotation(Line(
+				points={{-95,80},{-90,80},{-60,80},{-55,80}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(freeMotion1.frame_b,bodyBox1.frame_a) annotation(Line(
+				points={{-35,80},{-30,80},{5,80},{5,50},{10,50}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(world.frame_b,freeMotion2.frame_a) annotation(Line(
+				points={{-95,80},{-90,80},{-55,80},{-55,0},{-50,0}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(freeMotion2.frame_b,bodyBox2.frame_a) annotation(Line(
+				points={{-30,0},{-25,0},{5,0},{5,-15},{10,-15}},
+				color={95,95,95},
+				thickness=0.0625));
+		annotation(experiment(
+			StopTime=1,
+			StartTime=0));
+	end momentum_add;
 end modelicatests;
