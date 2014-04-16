@@ -53,7 +53,8 @@ for bb in sat._bb:
   bb.mo_name = "{bb.mo_type}_{bb.mo_pos}_{bb.mo_id}".format(bb=bb)
   
   sat.variables += "\t\tbuildingbocks.{bb.mo_type} {bb.mo_name}(id = {bb.mo_id}) \"{bb.name}\";\n".format(bb=bb)
-  #todo: add "buildingblocks.basic_wheel1x basic_wheel1x1(id=4);" models
+  #TODO: add "buildingblocks.basic_wheel1x basic_wheel1x1(id=4);" models
+  #TODO: add annotations(Placement(transformation(extent={{-35,22},{-15,42}})))
   
   if bb.type != 'Kernstruktur2x2x2':   #connect buildingblocks to central structure
     nb_list = sat.get_bb_neighbours(bb) #get list of neighbouring buildingblocks and their vectors
@@ -84,7 +85,7 @@ package referencemissions
                         r_rel_a(start={{0.0,0.0,0.0}}),
                         v_rel_a(start={{0.0,0.0,0.0}}),
                         w_rel_a_fixed=true,
-                        w_rel_a_start={{0.0,0.0,0.2}}[,
+                        w_rel_a_start={{0.0,0.0,0.2}},
                         enforceStates=true);
                 Modelica.Blocks.Math.Gain gain1(k=10.0);
                 Modelica.Blocks.Math.Add error(k2=-1);
