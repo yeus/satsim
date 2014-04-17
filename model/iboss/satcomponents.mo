@@ -3519,20 +3519,23 @@ package satcomponents
 				extent={{-10,-10},{10,10}})));
 			Parts.IMU iMU1(
 				id=1,
-				noise_ung(gain=0.1)) annotation(Placement(transformation(extent={{45,5},{65,25}})));
-			Modelica.Blocks.Continuous.Integrator integrator1 annotation(Placement(transformation(extent={{85,5},{105,25}})));
+				noise_ung(
+					amplitude=0.1,
+					seed={1,2,3})) annotation(Placement(transformation(extent={{45,5},{65,25}})));
 			equation
 				connect(iMU1.frame_a,bodybox1.frame_b) annotation(Line(
 					points={{45,15},{40,15},{25.3,15},{25.3,17.7},{20.3,17.7}},
 					color={95,95,95},
 					thickness=0.0625));
-				connect(integrator1.u,iMU1.acs_bus.w[1,1]) annotation(Line(
-					points={{83,15},{78,15},{70,15},{65,15}},
-					color={0,0,127},
-					thickness=0.0625));
 			annotation(
-				iMU1(noise_ung(y(flags=2))),
-				integrator1(y(flags=2)),
+				iMU1(
+					acs_bus(
+						w(flags=2),
+						w_a(flags=2),
+						u(flags=2),
+						y(flags=2)),
+					noise_ung(y(flags=2)),
+					add1(y(flags=2))),
 				viewinfo[0](
 					viewSettings(clrRaster=12632256),
 					typename="ModelInfo"),
@@ -3999,84 +4002,84 @@ package satcomponents
 						thickness=0.0625));
 				annotation(
 					Icon(graphics={
-																																																													Rectangle(
-																																																														fillColor={128,128,128},
-																																																														fillPattern=FillPattern.Solid,
-																																																														extent={{-90.02889999999999,54.3352},{61.7052,-76.87860000000001}},
-																																																														origin={0.144508,13.2948}),
-																																																													Rectangle(
-																																																														fillColor={88,88,88},
-																																																														fillPattern=FillPattern.Solid,
-																																																														extent={{-71.2428,-8.092499999999999},{5.6358,-80.0578}},
-																																																														origin={2.16763,20.2312}),
-																																																													Rectangle(
-																																																														fillColor={88,88,88},
-																																																														fillPattern=FillPattern.Solid,
-																																																														extent={{35.6936,25.7225},{70.6647,-52.0231}},
-																																																														origin={-0.144509,13.2948}),
-																																																													Rectangle(
-																																																														fillColor={88,88,88},
-																																																														fillPattern=FillPattern.Solid,
-																																																														extent={{2.45662,-18.2081},{85.98260000000001,-50.8671}},
-																																																														origin={-46.9653,97.6879}),
-																																																													Rectangle(
-																																																														pattern=LinePattern.None,
-																																																														fillColor={255,0,0},
-																																																														fillPattern=FillPattern.VerticalCylinder,
-																																																														extent={{-16.0405,25.8671},{-12.8613,5.92483}},
-																																																														origin={11.4162,-3.32367}),
-																																																													Polygon(
-																																																														points={{-2.87157,16.034},{1.46373,-3.90828},{-6.91786,-3.61926},{-2.87157,16.034}},
-																																																														pattern=LinePattern.None,
-																																																														fillColor={255,0,0},
-																																																														fillPattern=FillPattern.VerticalCylinder,
-																																																														origin={-0.307609,23.5614}),
-																																																													Text(
-																																																														textString="+",
-																																																														extent={{-15.896,13.0058},{15.896,-13.0058}},
-																																																														origin={-26.3006,-74.2775}),
-																																																													Text(
-																																																														textString="-",
-																																																														extent={{-18.6416,23.5549},{18.9306,-18.3526}},
-																																																														origin={25.578,-76.1561}),
-																																																													Polygon(
-																																																														points={{-2.87157,16.034},{1.46373,-3.90828},{-6.91786,-3.61926},{-2.87157,16.034}},
-																																																														pattern=LinePattern.None,
-																																																														fillColor={255,0,0},
-																																																														fillPattern=FillPattern.VerticalCylinder,
-																																																														origin={19.6924,1.07585},
-																																																														rotation=-90),
-																																																													Rectangle(
-																																																														pattern=LinePattern.None,
-																																																														fillColor={255,0,0},
-																																																														fillPattern=FillPattern.VerticalCylinder,
-																																																														extent={{-16.0405,25.8671},{-12.8613,5.92483}},
-																																																														origin={-9.91328,-10.4913},
-																																																														rotation=-90),
-																																																													Polygon(
-																																																														points={{-7.80347,-5.05026},{5.49133,7.08847},{7.80347,4.77633},{-5.78035,-7.07338},{-7.80347,-5.05026}},
-																																																														fillColor={255,0,0},
-																																																														fillPattern=FillPattern.Solid,
-																																																														origin={-9.537570000000001,-2.17522}),
-																																																													Polygon(
-																																																														points={{-2.00451,2.45016},{5.22095,-9.68863},{-6.91786,-3.61926},{-2.00451,2.45016}},
-																																																														pattern=LinePattern.None,
-																																																														fillColor={255,0,0},
-																																																														fillPattern=FillPattern.VerticalCylinder,
-																																																														origin={-14.9319,-12.1611},
-																																																														rotation=-90),
-																																																													Text(
-																																																														textString="Z",
-																																																														extent={{-14.4509,10.8382},{14.4509,-10.8382}},
-																																																														origin={-4.62427,56.2139}),
-																																																													Text(
-																																																														textString="Y",
-																																																														extent={{-14.4509,10.8382},{14.4509,-10.8382}},
-																																																														origin={47.4567,3.38154}),
-																																																													Text(
-																																																														textString="X",
-																																																														extent={{-14.4509,10.8382},{14.4509,-10.8382}},
-																																																														origin={-31.9652,-24.5953})}),
+																																																																		Rectangle(
+																																																																			fillColor={128,128,128},
+																																																																			fillPattern=FillPattern.Solid,
+																																																																			extent={{-90.02889999999999,54.3352},{61.7052,-76.87860000000001}},
+																																																																			origin={0.144508,13.2948}),
+																																																																		Rectangle(
+																																																																			fillColor={88,88,88},
+																																																																			fillPattern=FillPattern.Solid,
+																																																																			extent={{-71.2428,-8.092499999999999},{5.6358,-80.0578}},
+																																																																			origin={2.16763,20.2312}),
+																																																																		Rectangle(
+																																																																			fillColor={88,88,88},
+																																																																			fillPattern=FillPattern.Solid,
+																																																																			extent={{35.6936,25.7225},{70.6647,-52.0231}},
+																																																																			origin={-0.144509,13.2948}),
+																																																																		Rectangle(
+																																																																			fillColor={88,88,88},
+																																																																			fillPattern=FillPattern.Solid,
+																																																																			extent={{2.45662,-18.2081},{85.98260000000001,-50.8671}},
+																																																																			origin={-46.9653,97.6879}),
+																																																																		Rectangle(
+																																																																			pattern=LinePattern.None,
+																																																																			fillColor={255,0,0},
+																																																																			fillPattern=FillPattern.VerticalCylinder,
+																																																																			extent={{-16.0405,25.8671},{-12.8613,5.92483}},
+																																																																			origin={11.4162,-3.32367}),
+																																																																		Polygon(
+																																																																			points={{-2.87157,16.034},{1.46373,-3.90828},{-6.91786,-3.61926},{-2.87157,16.034}},
+																																																																			pattern=LinePattern.None,
+																																																																			fillColor={255,0,0},
+																																																																			fillPattern=FillPattern.VerticalCylinder,
+																																																																			origin={-0.307609,23.5614}),
+																																																																		Text(
+																																																																			textString="+",
+																																																																			extent={{-15.896,13.0058},{15.896,-13.0058}},
+																																																																			origin={-26.3006,-74.2775}),
+																																																																		Text(
+																																																																			textString="-",
+																																																																			extent={{-18.6416,23.5549},{18.9306,-18.3526}},
+																																																																			origin={25.578,-76.1561}),
+																																																																		Polygon(
+																																																																			points={{-2.87157,16.034},{1.46373,-3.90828},{-6.91786,-3.61926},{-2.87157,16.034}},
+																																																																			pattern=LinePattern.None,
+																																																																			fillColor={255,0,0},
+																																																																			fillPattern=FillPattern.VerticalCylinder,
+																																																																			origin={19.6924,1.07585},
+																																																																			rotation=-90),
+																																																																		Rectangle(
+																																																																			pattern=LinePattern.None,
+																																																																			fillColor={255,0,0},
+																																																																			fillPattern=FillPattern.VerticalCylinder,
+																																																																			extent={{-16.0405,25.8671},{-12.8613,5.92483}},
+																																																																			origin={-9.91328,-10.4913},
+																																																																			rotation=-90),
+																																																																		Polygon(
+																																																																			points={{-7.80347,-5.05026},{5.49133,7.08847},{7.80347,4.77633},{-5.78035,-7.07338},{-7.80347,-5.05026}},
+																																																																			fillColor={255,0,0},
+																																																																			fillPattern=FillPattern.Solid,
+																																																																			origin={-9.537570000000001,-2.17522}),
+																																																																		Polygon(
+																																																																			points={{-2.00451,2.45016},{5.22095,-9.68863},{-6.91786,-3.61926},{-2.00451,2.45016}},
+																																																																			pattern=LinePattern.None,
+																																																																			fillColor={255,0,0},
+																																																																			fillPattern=FillPattern.VerticalCylinder,
+																																																																			origin={-14.9319,-12.1611},
+																																																																			rotation=-90),
+																																																																		Text(
+																																																																			textString="Z",
+																																																																			extent={{-14.4509,10.8382},{14.4509,-10.8382}},
+																																																																			origin={-4.62427,56.2139}),
+																																																																		Text(
+																																																																			textString="Y",
+																																																																			extent={{-14.4509,10.8382},{14.4509,-10.8382}},
+																																																																			origin={47.4567,3.38154}),
+																																																																		Text(
+																																																																			textString="X",
+																																																																			extent={{-14.4509,10.8382},{14.4509,-10.8382}},
+																																																																			origin={-31.9652,-24.5953})}),
 					experiment(
 						StopTime=30,
 						StartTime=0,
@@ -4084,6 +4087,8 @@ package satcomponents
 			end reactionwheel3axis;
 			model IMU
 				parameter Integer id;
+				parameter Real noiseamp=0.05;
+				parameter Real net_delay=0.001;
 				ctrl.ACS_bus acs_bus annotation(Placement(
 					transformation(
 						origin={100,0},
@@ -4101,20 +4106,47 @@ package satcomponents
 					iconTransformation(
 						origin={-100,0},
 						extent={{-10,-10},{10,10}})));
-				blocks.noise_ung noise_ung[3] annotation(Placement(transformation(extent={{15,-1},{36,10}})));
+				Modelica.Blocks.Math.Add add1[3] annotation(Placement(transformation(extent={{0,-10},{20,10}})));
+				Modelica.Blocks.Nonlinear.FixedDelay fixedDelay1[3](delayTime={net_delay,net_delay,net_delay}) annotation(Placement(transformation(extent={{45,-10},{65,10}})));
+				iboss.satcomponents.blocks.noise_ung noise_ung2(
+					amplitude=noiseamp,
+					seed=2+id) annotation(Placement(transformation(extent={{-40,14},{-19,25}})));
+				iboss.satcomponents.blocks.noise_ung noise_ung1(
+					amplitude=noiseamp,
+					seed=1+id) annotation(Placement(transformation(extent={{-40,29},{-19,40}})));
+				iboss.satcomponents.blocks.noise_ung noise_ung3(
+					amplitude=noiseamp,
+					seed=3+id) annotation(Placement(transformation(extent={{-40,44},{-20,55}})));
 				equation
 					connect(frame_a,absoluteangularvelocity1.frame_a) annotation(Line(points={{-100,0},{-95,0},{-45,0},{-45,-5},{-40,-5}}));
-					
-					connect(noise_ung.y,acs_bus.w[id,:]) annotation(Line(
-						points={{52.3,0.7},{57.3,0.7},{95,0.7},{95,0},{100,0}},
+					connect(absoluteangularvelocity1.w,add1.u2) annotation(Line(
+						points={{-19,-5.3},{-14,-5.3},{-7,-5.3},{-7,-6},{-2,-6}},
 						color={0,0,127},
 						thickness=0.0625));
-					connect(absoluteangularvelocity1.w,noise_ung.u) annotation(Line(
-						points={{-19,-5},{-14,-5},{-14,10.7},{19.7,10.7},{19.7,5.7}},
+					connect(add1.y,fixedDelay1.u) annotation(Line(
+						points={{21,0},{26,0},{38,0},{43,0}},
+						color={0,0,127},
+						thickness=0.015625));
+					connect(noise_ung2.y,add1[2].u1) annotation(Line(
+						points={{-18,19.3},{-13,19.3},{-7,19.3},{-7,6},{-2,6}},
+						color={0,0,127},
+						thickness=0.015625));
+					connect(noise_ung1.y,add1[1].u1) annotation(Line(
+						points={{-18,34.3},{-13,34.3},{-7,34.3},{-7,6},{-2,6}},
+						color={0,0,127},
+						thickness=0.015625));
+					connect(noise_ung3.y,add1[3].u1) annotation(Line(
+						points={{-19.3,49.3},{-14.3,49.3},{-7,49.3},{-7,6},{-2,6}},
+						color={0,0,127},
+						thickness=0.015625));
+					connect(fixedDelay1.y,acs_bus.w[id,:]) annotation(Line(
+						points={{66,0},{71,0},{95,0},{100,0}},
 						color={0,0,127},
 						thickness=0.0625));
 				annotation(
-					noise_ung(y(flags=2)),
+					noise_ung2(y(flags=2)),
+					noise_ung1(y(flags=2)),
+					noise_ung3(y(flags=2)),
 					viewinfo[0](
 						viewSettings(clrRaster=12632256),
 						typename="ModelInfo"),
@@ -4240,49 +4272,49 @@ package satcomponents
 						viewSettings(clrRaster=12632256),
 						typename="ModelInfo"),
 					Icon(graphics={
-																																				Ellipse(
-																																					fillColor={192,192,255},
-																																					fillPattern=FillPattern.Solid,
-																																					extent={{-49.5665,9.537570000000001},{49.5665,-9.537570000000001}},
-																																					origin={19.7977,-28.6127}),
-																																				Rectangle(
-																																					pattern=LinePattern.None,
-																																					fillColor={192,192,255},
-																																					fillPattern=FillPattern.Solid,
-																																					extent={{-48.8439,6.93642},{48.8439,-6.93642}},
-																																					origin={19.6532,-22.5434}),
-																																				Ellipse(
-																																					fillPattern=FillPattern.Solid,
-																																					extent={{-49.5665,9.537570000000001},{49.5665,-9.537570000000001}},
-																																					origin={19.2775,-17.2832}),
-																																				Text(
-																																					textString="1D",
-																																					extent={{-38.1503,29.0462},{1.94049,-3.66549}},
-																																					origin={5.67671,-6.18507}),
-																																				Rectangle(
-																																					pattern=LinePattern.None,
-																																					fillColor={255,0,0},
-																																					fillPattern=FillPattern.VerticalCylinder,
-																																					extent={{-4.19075,13.4393},{5.34682,-34.5376}},
-																																					origin={18.0636,18.3526}),
-																																				Polygon(
-																																					points={{-1.42648,13.1438},{11.0013,-12.5788},{-10.9641,-12.5788},{-1.42648,13.1438}},
-																																					pattern=LinePattern.None,
-																																					fillColor={255,0,0},
-																																					fillPattern=FillPattern.VerticalCylinder,
-																																					origin={19.0566,42.6365}),
-																																				Rectangle(
-																																					extent={{-8.67052,24.2775},{2.31214,-25.7225}},
-																																					origin={21.3873,-62.4277}),
-																																				Rectangle(
-																																					fillColor={0,64,0},
-																																					fillPattern=FillPattern.VerticalCylinder,
-																																					extent={{-17.7746,11.8497},{17.7746,-11.8497}},
-																																					origin={18.3526,-61.5607}),
-																																				Text(
-																																					textString="%name",
-																																					extent={{-33.6717,47.8849},{133.164,11.3368}},
-																																					origin={-47.8536,39.6233})}),
+																																									Ellipse(
+																																										fillColor={192,192,255},
+																																										fillPattern=FillPattern.Solid,
+																																										extent={{-49.5665,9.537570000000001},{49.5665,-9.537570000000001}},
+																																										origin={19.7977,-28.6127}),
+																																									Rectangle(
+																																										pattern=LinePattern.None,
+																																										fillColor={192,192,255},
+																																										fillPattern=FillPattern.Solid,
+																																										extent={{-48.8439,6.93642},{48.8439,-6.93642}},
+																																										origin={19.6532,-22.5434}),
+																																									Ellipse(
+																																										fillPattern=FillPattern.Solid,
+																																										extent={{-49.5665,9.537570000000001},{49.5665,-9.537570000000001}},
+																																										origin={19.2775,-17.2832}),
+																																									Text(
+																																										textString="1D",
+																																										extent={{-38.1503,29.0462},{1.94049,-3.66549}},
+																																										origin={5.67671,-6.18507}),
+																																									Rectangle(
+																																										pattern=LinePattern.None,
+																																										fillColor={255,0,0},
+																																										fillPattern=FillPattern.VerticalCylinder,
+																																										extent={{-4.19075,13.4393},{5.34682,-34.5376}},
+																																										origin={18.0636,18.3526}),
+																																									Polygon(
+																																										points={{-1.42648,13.1438},{11.0013,-12.5788},{-10.9641,-12.5788},{-1.42648,13.1438}},
+																																										pattern=LinePattern.None,
+																																										fillColor={255,0,0},
+																																										fillPattern=FillPattern.VerticalCylinder,
+																																										origin={19.0566,42.6365}),
+																																									Rectangle(
+																																										extent={{-8.67052,24.2775},{2.31214,-25.7225}},
+																																										origin={21.3873,-62.4277}),
+																																									Rectangle(
+																																										fillColor={0,64,0},
+																																										fillPattern=FillPattern.VerticalCylinder,
+																																										extent={{-17.7746,11.8497},{17.7746,-11.8497}},
+																																										origin={18.3526,-61.5607}),
+																																									Text(
+																																										textString="%name",
+																																										extent={{-33.6717,47.8849},{133.164,11.3368}},
+																																										origin={-47.8536,39.6233})}),
 					experiment(
 						StopTime=100,
 						StartTime=0));
@@ -4567,84 +4599,84 @@ package satcomponents
 						viewSettings(clrRaster=12632256),
 						typename="ModelInfo"),
 					Icon(graphics={
-																																				Rectangle(
-																																					fillColor={128,128,128},
-																																					fillPattern=FillPattern.Solid,
-																																					extent={{-90.02889999999999,54.3352},{61.7052,-76.87860000000001}},
-																																					origin={0.144508,13.2948}),
-																																				Rectangle(
-																																					fillColor={88,88,88},
-																																					fillPattern=FillPattern.Solid,
-																																					extent={{-71.2428,-8.092499999999999},{5.6358,-80.0578}},
-																																					origin={2.16763,20.2312}),
-																																				Rectangle(
-																																					fillColor={88,88,88},
-																																					fillPattern=FillPattern.Solid,
-																																					extent={{35.6936,25.7225},{70.6647,-52.0231}},
-																																					origin={-0.144509,13.2948}),
-																																				Rectangle(
-																																					fillColor={88,88,88},
-																																					fillPattern=FillPattern.Solid,
-																																					extent={{2.45662,-18.2081},{85.98260000000001,-50.8671}},
-																																					origin={-46.9653,97.6879}),
-																																				Rectangle(
-																																					pattern=LinePattern.None,
-																																					fillColor={255,0,0},
-																																					fillPattern=FillPattern.VerticalCylinder,
-																																					extent={{-16.0405,25.8671},{-12.8613,5.92483}},
-																																					origin={11.4162,-3.32367}),
-																																				Polygon(
-																																					points={{-2.87157,16.034},{1.46373,-3.90828},{-6.91786,-3.61926},{-2.87157,16.034}},
-																																					pattern=LinePattern.None,
-																																					fillColor={255,0,0},
-																																					fillPattern=FillPattern.VerticalCylinder,
-																																					origin={-0.307609,23.5614}),
-																																				Text(
-																																					textString="+",
-																																					extent={{-15.896,13.0058},{15.896,-13.0058}},
-																																					origin={-26.3006,-74.2775}),
-																																				Text(
-																																					textString="-",
-																																					extent={{-18.6416,23.5549},{18.9306,-18.3526}},
-																																					origin={25.578,-76.1561}),
-																																				Polygon(
-																																					points={{-2.87157,16.034},{1.46373,-3.90828},{-6.91786,-3.61926},{-2.87157,16.034}},
-																																					pattern=LinePattern.None,
-																																					fillColor={255,0,0},
-																																					fillPattern=FillPattern.VerticalCylinder,
-																																					origin={19.6924,1.07585},
-																																					rotation=-90),
-																																				Rectangle(
-																																					pattern=LinePattern.None,
-																																					fillColor={255,0,0},
-																																					fillPattern=FillPattern.VerticalCylinder,
-																																					extent={{-16.0405,25.8671},{-12.8613,5.92483}},
-																																					origin={-9.91328,-10.4913},
-																																					rotation=-90),
-																																				Polygon(
-																																					points={{-7.80347,-5.05026},{5.49133,7.08847},{7.80347,4.77633},{-5.78035,-7.07338},{-7.80347,-5.05026}},
-																																					fillColor={255,0,0},
-																																					fillPattern=FillPattern.Solid,
-																																					origin={-9.537570000000001,-2.17522}),
-																																				Polygon(
-																																					points={{-2.00451,2.45016},{5.22095,-9.68863},{-6.91786,-3.61926},{-2.00451,2.45016}},
-																																					pattern=LinePattern.None,
-																																					fillColor={255,0,0},
-																																					fillPattern=FillPattern.VerticalCylinder,
-																																					origin={-14.9319,-12.1611},
-																																					rotation=-90),
-																																				Text(
-																																					textString="Z",
-																																					extent={{-14.4509,10.8382},{14.4509,-10.8382}},
-																																					origin={-4.62427,56.2139}),
-																																				Text(
-																																					textString="Y",
-																																					extent={{-14.4509,10.8382},{14.4509,-10.8382}},
-																																					origin={47.4567,3.38154}),
-																																				Text(
-																																					textString="X",
-																																					extent={{-14.4509,10.8382},{14.4509,-10.8382}},
-																																					origin={-31.9652,-24.5953})}),
+																																									Rectangle(
+																																										fillColor={128,128,128},
+																																										fillPattern=FillPattern.Solid,
+																																										extent={{-90.02889999999999,54.3352},{61.7052,-76.87860000000001}},
+																																										origin={0.144508,13.2948}),
+																																									Rectangle(
+																																										fillColor={88,88,88},
+																																										fillPattern=FillPattern.Solid,
+																																										extent={{-71.2428,-8.092499999999999},{5.6358,-80.0578}},
+																																										origin={2.16763,20.2312}),
+																																									Rectangle(
+																																										fillColor={88,88,88},
+																																										fillPattern=FillPattern.Solid,
+																																										extent={{35.6936,25.7225},{70.6647,-52.0231}},
+																																										origin={-0.144509,13.2948}),
+																																									Rectangle(
+																																										fillColor={88,88,88},
+																																										fillPattern=FillPattern.Solid,
+																																										extent={{2.45662,-18.2081},{85.98260000000001,-50.8671}},
+																																										origin={-46.9653,97.6879}),
+																																									Rectangle(
+																																										pattern=LinePattern.None,
+																																										fillColor={255,0,0},
+																																										fillPattern=FillPattern.VerticalCylinder,
+																																										extent={{-16.0405,25.8671},{-12.8613,5.92483}},
+																																										origin={11.4162,-3.32367}),
+																																									Polygon(
+																																										points={{-2.87157,16.034},{1.46373,-3.90828},{-6.91786,-3.61926},{-2.87157,16.034}},
+																																										pattern=LinePattern.None,
+																																										fillColor={255,0,0},
+																																										fillPattern=FillPattern.VerticalCylinder,
+																																										origin={-0.307609,23.5614}),
+																																									Text(
+																																										textString="+",
+																																										extent={{-15.896,13.0058},{15.896,-13.0058}},
+																																										origin={-26.3006,-74.2775}),
+																																									Text(
+																																										textString="-",
+																																										extent={{-18.6416,23.5549},{18.9306,-18.3526}},
+																																										origin={25.578,-76.1561}),
+																																									Polygon(
+																																										points={{-2.87157,16.034},{1.46373,-3.90828},{-6.91786,-3.61926},{-2.87157,16.034}},
+																																										pattern=LinePattern.None,
+																																										fillColor={255,0,0},
+																																										fillPattern=FillPattern.VerticalCylinder,
+																																										origin={19.6924,1.07585},
+																																										rotation=-90),
+																																									Rectangle(
+																																										pattern=LinePattern.None,
+																																										fillColor={255,0,0},
+																																										fillPattern=FillPattern.VerticalCylinder,
+																																										extent={{-16.0405,25.8671},{-12.8613,5.92483}},
+																																										origin={-9.91328,-10.4913},
+																																										rotation=-90),
+																																									Polygon(
+																																										points={{-7.80347,-5.05026},{5.49133,7.08847},{7.80347,4.77633},{-5.78035,-7.07338},{-7.80347,-5.05026}},
+																																										fillColor={255,0,0},
+																																										fillPattern=FillPattern.Solid,
+																																										origin={-9.537570000000001,-2.17522}),
+																																									Polygon(
+																																										points={{-2.00451,2.45016},{5.22095,-9.68863},{-6.91786,-3.61926},{-2.00451,2.45016}},
+																																										pattern=LinePattern.None,
+																																										fillColor={255,0,0},
+																																										fillPattern=FillPattern.VerticalCylinder,
+																																										origin={-14.9319,-12.1611},
+																																										rotation=-90),
+																																									Text(
+																																										textString="Z",
+																																										extent={{-14.4509,10.8382},{14.4509,-10.8382}},
+																																										origin={-4.62427,56.2139}),
+																																									Text(
+																																										textString="Y",
+																																										extent={{-14.4509,10.8382},{14.4509,-10.8382}},
+																																										origin={47.4567,3.38154}),
+																																									Text(
+																																										textString="X",
+																																										extent={{-14.4509,10.8382},{14.4509,-10.8382}},
+																																										origin={-31.9652,-24.5953})}),
 					experiment(
 						StopTime=30,
 						StartTime=0,
@@ -4675,28 +4707,27 @@ package satcomponents
 						points={{11,0},{16,0},{95,0},{100,0}},
 						color={0,0,127},
 						thickness=0.0625));
-					connect(absoluteangularvelocity1.w,acs_bus.w) annotation(Line(
-						points={{-4,-0.3},{1,-0.3},{95,-0.3},{95,0},{100,0}},
-						color={0,0,127},
-						thickness=0.0625));
 				annotation(
+					viewinfo[0](
+						viewSettings(clrRaster=12632256),
+						typename="ModelInfo"),
 					Icon(graphics={
-																Rectangle(
-																	fillColor={128,128,128},
-																	fillPattern=FillPattern.Sphere,
-																	extent={{-90.11,86.91},{90.11,-86.91}},
-																	origin={4.04682,-1.67855}),
-																Rectangle(
-																	fillColor={88,88,88},
-																	fillPattern=FillPattern.Solid,
-																	extent={{-75.20999999999999,71.87000000000001},{75.20999999999999,-71.87000000000001}},
-																	origin={0.00144847,-2.21986}),
-																Text(
-																	textString="IMU",
-																	lineColor={255,255,255},
-																	fillColor={255,255,255},
-																	extent={{-68.11,50.28},{68.11,-50.28}},
-																	origin={0.42,-4.6})}),
+													Rectangle(
+														fillColor={128,128,128},
+														fillPattern=FillPattern.Sphere,
+														extent={{-90.11,86.91},{90.11,-86.91}},
+														origin={4.04682,-1.67855}),
+													Rectangle(
+														fillColor={88,88,88},
+														fillPattern=FillPattern.Solid,
+														extent={{-75.20999999999999,71.87000000000001},{75.20999999999999,-71.87000000000001}},
+														origin={0.00144847,-2.21986}),
+													Text(
+														textString="IMU",
+														lineColor={255,255,255},
+														fillColor={255,255,255},
+														extent={{-68.11,50.28},{68.11,-50.28}},
+														origin={0.42,-4.6})}),
 					experiment(
 						StopTime=1,
 						StartTime=0));
@@ -4726,15 +4757,15 @@ package satcomponents
 						viewSettings(clrRaster=12632256),
 						typename="ModelInfo"),
 					Icon(graphics={
-																																																Rectangle(
-																																																	fillColor={255,255,255},
-																																																	fillPattern=FillPattern.Solid,
-																																																	extent={{-86.39,85.40000000000001},{93.6909,-86.0637}},
-																																																	origin={1.22,1.55}),
-																																																Text(
-																																																	textString="ACS",
-																																																	extent={{-80.75,56.53},{80.75,-56.53}},
-																																																	origin={0.44,3.43})}),
+																																																					Rectangle(
+																																																						fillColor={255,255,255},
+																																																						fillPattern=FillPattern.Solid,
+																																																						extent={{-86.39,85.40000000000001},{93.6909,-86.0637}},
+																																																						origin={1.22,1.55}),
+																																																					Text(
+																																																						textString="ACS",
+																																																						extent={{-80.75,56.53},{80.75,-56.53}},
+																																																						origin={0.44,3.43})}),
 					experiment(
 						StopTime=1,
 						StartTime=0));
@@ -4768,22 +4799,22 @@ package satcomponents
 				Real y[10];
 				annotation(
 					Icon(graphics={
-																																																Rectangle(
-																																																	fillColor={220,220,220},
-																																																	fillPattern=FillPattern.Solid,
-																																																	extent={{-88.27,88.61},{88.27,-88.61}},
-																																																	origin={0.44,1})}),
+																																																					Rectangle(
+																																																						fillColor={220,220,220},
+																																																						fillPattern=FillPattern.Solid,
+																																																						extent={{-88.27,88.61},{88.27,-88.61}},
+																																																						origin={0.44,1})}),
 					Diagram(graphics={
-																																																Rectangle(
-																																																	fillColor={220,220,220},
-																																																	fillPattern=FillPattern.Solid,
-																																																	extent={{-88.27,88.61},{88.27,-88.61}},
-																																																	origin={-0.674206,-1.50696}),
-																																																Text(
-																																																	textString="ACS
+																																																					Rectangle(
+																																																						fillColor={220,220,220},
+																																																						fillPattern=FillPattern.Solid,
+																																																						extent={{-88.27,88.61},{88.27,-88.61}},
+																																																						origin={-0.674206,-1.50696}),
+																																																					Text(
+																																																						textString="ACS
 bus",
-																																																	extent={{-81.06,67.83},{81.06,-67.83}},
-																																																	origin={0.28,-1.25206})}));
+																																																						extent={{-81.06,67.83},{81.06,-67.83}},
+																																																						origin={0.28,-1.25206})}));
 			end ACS_bus;
 			model busexample
 				satcomponents.AOCS.ctrl.ACS_bus acs_bus1 annotation(Placement(
@@ -4863,19 +4894,72 @@ bus",
 				annotation(
 					error(y(flags=2)),
 					Icon(graphics={
-																					Rectangle(
-																						fillColor={255,255,255},
-																						fillPattern=FillPattern.Solid,
-																						extent={{-86.39,85.40000000000001},{93.6909,-86.0637}},
-																						origin={1.22,1.55}),
-																					Text(
-																						textString="ACS",
-																						extent={{-80.75,56.53},{80.75,-56.53}},
-																						origin={0.44,3.43})}),
+																										Rectangle(
+																											fillColor={255,255,255},
+																											fillPattern=FillPattern.Solid,
+																											extent={{-86.39,85.40000000000001},{93.6909,-86.0637}},
+																											origin={1.22,1.55}),
+																										Text(
+																											textString="ACS",
+																											extent={{-80.75,56.53},{80.75,-56.53}},
+																											origin={0.44,3.43})}),
 					experiment(
 						StopTime=1,
 						StartTime=0));
 			end ACS_P;
+			model ACS_PID
+				ACS_bus acs_bus annotation(Placement(
+					transformation(
+						origin={90,15},
+						extent={{-10,-10},{10,10}}),
+					iconTransformation(
+						origin={100,0},
+						extent={{-10,-10},{10,10}})));
+				Modelica.Blocks.Sources.Constant const[3](k=0) annotation(Placement(transformation(
+					origin={-65,50},
+					extent={{-10,-10},{10,10}})));
+				Modelica.Blocks.Continuous.LimPID PID[3](
+					controllerType=Modelica.Blocks.Types.SimpleController.P,
+					k=2,
+					yMax=2,
+					strict=true) annotation(Placement(transformation(extent={{-10,40},{10,60}})));
+				Modelica.Blocks.Discrete.Sampler sampler1[3](
+					samplePeriod=0.1,
+					startTime=3) annotation(Placement(transformation(extent={{30,40},{50,60}})));
+				equation
+					connect(const.y,PID.u_s) annotation(Line(
+						points={{-54,50},{-49,50},{-17,50},{-12,50}},
+						color={0,0,127},
+						thickness=0.0625));
+					connect(PID.u_m,acs_bus.w[1,:]) annotation(
+						Line(
+							points={{20,13},{20,-10},{85,-10},{90,15}},
+							color={0,0,127},
+							thickness=0.0625),
+						AutoRoute=false);
+					connect(PID.y,sampler1.u) annotation(Line(
+						points={{11,50},{16,50},{23,50},{28,50}},
+						color={0,0,127},
+						thickness=0.0625));
+					connect(sampler1.y,acs_bus.w_a[1,:]) annotation(Line(
+						points={{51,50},{56,50},{85,50},{85,15},{90,15}},
+						color={0,0,127},
+						thickness=0.0625));
+				annotation(
+					Icon(graphics={
+						Rectangle(
+							fillColor={255,255,255},
+							fillPattern=FillPattern.Solid,
+							extent={{-86.39,85.40000000000001},{93.6909,-86.0637}},
+							origin={1.22,1.55}),
+						Text(
+							textString="ACS",
+							extent={{-80.75,56.53},{80.75,-56.53}},
+							origin={0.44,3.43})}),
+					experiment(
+						StopTime=1,
+						StartTime=0));
+			end ACS_PID;
 		end ctrl;
 		model momentum_add "momentum_add"
 			inner Modelica.Mechanics.MultiBody.World world(enableAnimation=false) annotation(Placement(transformation(extent={{-110,65},{-90,85}})));
@@ -5125,30 +5209,26 @@ bus",
 	end AOCS;
 	package blocks "blocks"
 		model noise_ung "noise_sampled"
-			parameter Real gain=1.0;
-			output Modelica.Blocks.Interfaces.RealOutput y annotation(Placement(
-				transformation(extent={{55,0},{75,20}}),
-				iconTransformation(extent={{55,0},{75,20}})));
-			input Modelica.Blocks.Interfaces.RealInput u annotation(Placement(
-				transformation(extent={{-75,-10},{-35,30}}),
-				iconTransformation(extent={{-75,-10},{-35,30}})));
+			extends Modelica.Blocks.Interfaces.SO;
+			parameter Real amplitude=1.0;
+			parameter Real seed=0.0;
 			function rand
 				input Real t;
+				input Real seed;
 				output Real r;
-				Real y;
 				protected
+					Real x;
 					constant Integer m:=2 ^ 31 - 1;
 					constant Integer a:=7 ^ 5;
-					constant Integer b:=10;
 				algorithm
-					y := t;
-					for i in 1:5 loop
-						y := mod((a * y + b), m);
+					x := t;
+					for i in 1:8 loop
+						x := mod((a * x + seed), m);
 					end for;
-					r := y/m;
+					r := x/m;
 			end rand;
 			equation
-				y=(rand(time)-0.5)*gain+u;
+				y=(rand(time, seed)-0.5)*amplitude;
 				annotation(
 					x(flags=2),
 					y(flags=2),
@@ -5187,26 +5267,27 @@ bus",
 				Icon(
 					coordinateSystem(extent={{-101.7,-51.7},{101.7,51.7}}),
 					graphics={
-										Rectangle(
-											lineColor={0,0,0},
-											fillColor={255,255,255},
-											fillPattern=FillPattern.Solid,
-											extent={{-80,56.7},{53.3,-40}}),
-										Line(
-											points={{-70,-20},{-66.7,20},{-66.7,-3.3},{-63.3,3.3},{-63.3,0},{-63.3,
-											10},{-60,-3.3},{-56.7,16.7},{-56.7,-13.3},{-53.3,36.7},{-50,-3.3},{-50,
-											10},{-46.7,-10},{-43.3,6.7},{-43.3,-3.3},{-36.7,-23.3},{-36.7,-10},{-33.3,
-											-3.3},{-30,-10},{-30,-3.3},{-30,30},{-26.7,30},{-20,6.7},{-20,
-											-13.3},{-16.7,-16.7},{-16.7,3.3},{-13.3,-10},{-13.3,3.3},{-13.3,-16.7},{-13.3,
-											43.3},{-10,-16.7},{-6.7,-6.7},{-6.7,-13.3},{-3.3,16.7},{-3.3,-3.3},{-3.3,
-											3.3},{0,-10},{3.3,-13.3},{6.7,23.3},{10,6.7},{13.3,0},{16.7,
-											-6.7},{16.7,-16.7},{16.7,-3.3},{20,-23.3},{23.3,-6.7},{23.3,-3.3},{33.3,
-											-23.3},{33.3,6.7},{36.7,6.7},{40,10},{43.3,46.7},{40,-10},{40,
-											-13.3},{43.3,0},{46.7,10},{50,-6.7},{50,3.3},{53.3,13.3}},
-											color={0,0,0})}),
+												Rectangle(
+													lineColor={0,0,0},
+													fillColor={255,255,255},
+													fillPattern=FillPattern.Solid,
+													extent={{-80,56.7},{53.3,-40}}),
+												Line(
+													points={{-70,-20},{-66.7,20},{-66.7,-3.3},{-63.3,3.3},{-63.3,0},{-63.3,
+													10},{-60,-3.3},{-56.7,16.7},{-56.7,-13.3},{-53.3,36.7},{-50,-3.3},{-50,
+													10},{-46.7,-10},{-43.3,6.7},{-43.3,-3.3},{-36.7,-23.3},{-36.7,-10},{-33.3,
+													-3.3},{-30,-10},{-30,-3.3},{-30,30},{-26.7,30},{-20,6.7},{-20,
+													-13.3},{-16.7,-16.7},{-16.7,3.3},{-13.3,-10},{-13.3,3.3},{-13.3,-16.7},{-13.3,
+													43.3},{-10,-16.7},{-6.7,-6.7},{-6.7,-13.3},{-3.3,16.7},{-3.3,-3.3},{-3.3,
+													3.3},{0,-10},{3.3,-13.3},{6.7,23.3},{10,6.7},{13.3,0},{16.7,
+													-6.7},{16.7,-16.7},{16.7,-3.3},{20,-23.3},{23.3,-6.7},{23.3,-3.3},{33.3,
+													-23.3},{33.3,6.7},{36.7,6.7},{40,10},{43.3,46.7},{40,-10},{40,
+													-13.3},{43.3,0},{46.7,10},{50,-6.7},{50,3.3},{53.3,13.3}},
+													color={0,0,0})}),
 				experiment(
 					StopTime=1,
 					StartTime=0),
+				x(flags=2),
 				y(flags=2),
 				viewinfo[0](
 					viewSettings(clrRaster=12632256),
@@ -5214,18 +5295,35 @@ bus",
 				Icon(
 					coordinateSystem(extent={{-101.7,-51.7},{101.7,51.7}}),
 					graphics={
-									Rectangle(
-										lineColor={0,0,0},
-										fillColor={255,255,255},
-										fillPattern=FillPattern.Solid,
-										extent={{-80,56.7},{53.3,-40}}),
-									Line(
-										points=":253:
-789C6C53CB09C240105D72B404CF39791214048530048324043F471BB00EDB880578F266035B40ECC9353B6FF06D3210262FF37F33C99C73BBF0644EE57EF1F1
-65ED3F7D90D71958806F83CCA27E9E800518A918E712F5D1E21F5D906BEB573F792F0578D0DD42F337EA576A7C6DF1C0C81FFD0EC01A5FC539FAB90073FD32DA
-DB8D618E97A45E6176E0697B2171AEAD61E235F4038C7995879106BFF0437DE2E9CF8E38E6B112C4C1AE7D8C7492D7F6437B1F6B7124F9A82FCCAD7CA31FC177
-F5B33CA88BBE80137EAC2FBAD3B04FD4A1F902E6FB15F3278C7EC2DDF1BEF6D63778D5BB4BED1E787A0FCE711CFE8FDAFA05E6FFAB319EBE000000FFFF",
-										color={0,0,0})}),
+															Rectangle(
+																lineColor={0,0,0},
+																fillColor={255,255,255},
+																fillPattern=FillPattern.Solid,
+																extent={{-80,56.7},{53.3,-40}}),
+															Line(
+																points={{-70,-20},{-66.7,20},{-66.7,-3.3},{-63.3,3.3},{-63.3,0},{-63.3,
+																10},{-60,-3.3},{-56.7,16.7},{-56.7,-13.3},{-53.3,36.7},{-50,-3.3},{-50,
+																10},{-46.7,-10},{-43.3,6.7},{-43.3,-3.3},{-36.7,-23.3},{-36.7,-10},{-33.3,
+																-3.3},{-30,-10},{-30,-3.3},{-30,30},{-26.7,30},{-20,6.7},{-20,
+																-13.3},{-16.7,-16.7},{-16.7,3.3},{-13.3,-10},{-13.3,3.3},{-13.3,-16.7},{-13.3,
+																43.3},{-10,-16.7},{-6.7,-6.7},{-6.7,-13.3},{-3.3,16.7},{-3.3,-3.3},{-3.3,
+																3.3},{0,-10},{3.3,-13.3},{6.7,23.3},{10,6.7},{13.3,0},{16.7,
+																-6.7},{16.7,-16.7},{16.7,-3.3},{20,-23.3},{23.3,-6.7},{23.3,-3.3},{33.3,
+																-23.3},{33.3,6.7},{36.7,6.7},{40,10},{43.3,46.7},{40,-10},{40,
+																-13.3},{43.3,0},{46.7,10},{50,-6.7},{50,3.3},{53.3,13.3}},
+																color={0,0,0})}),
+				experiment(
+					StopTime=1,
+					StartTime=0),
+				y(flags=2),
+				Icon(graphics={
+											Line(
+												points=":241:
+789C64524B0AC2400C2D5D7A04D75D15858205C18504A99442A99F2AD20BF41C5EA31EC0953B2F3007A82B2FE4B4C90BC40686F0269397CC4BC2200896FE84FE
+7C7A6FAFAB5B0DF6DEB860B48BF848713BD8932C6E6734E6D567B9AF1CF31DD9976BC51CCF84E7E01E9DB726D73CC63BF1A5F49310C70BC65FF4B19F78F0A00E
+3C7819A7C2B7451F8AE5FF041DC6BC2E26AB4BAA3AD9BA29FE2BEF135BBF8B271E7A02DBBE610DF3F673E933A33F8C3929461FD01179E65F4D4E323F8917925F
+91C591BEB7F3423C85EE84795B5D0B8EDF4FB69EC7A23BF687CCBE2C6AC29EC8DCA12BC9BE6A7F9C7F53FE1F000000FFFF",
+												color={0,0,0})}),
 				experiment(
 					StopTime=1,
 					StartTime=0));
