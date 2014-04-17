@@ -32,10 +32,11 @@ fig, TIM_all_qflow = plt.subplots()
 fig, TIM_TSS_dT = plt.subplots()
 fig, Panel_T = plt.subplots()
 fig, Radiation_qflow = plt.subplots()
+fig, emissivity_var_rad = plt.subplots() 
 fig, heater_on = plt.subplots()
 fig, sum_heater_cooler_on = plt.subplots()
 fig, cooler_on = plt.subplots()
-a = np.genfromtxt('D:/sim_resutlts_thermal/sat_3x3x3/omnidirectional_radiation/filtered_generic_satellite_3x3x3_sun_var_rad_res_20000sec_lobatto6.csv', delimiter=',',names=True,dtype=float)
+a = np.genfromtxt('D:/sim_resutlts_thermal/sat_3x3x3/omnidirectional_radiation/generic_satellite_3x3x3_sun_var_rad_res.csv', delimiter=',',names=True,dtype=float)
 sum_heat = np.zeros(len(np.array(a)))
 sum_cool = np.zeros(len(np.array(a)))
 i=1
@@ -89,6 +90,12 @@ while i<=BBx:
                 i_c=i_c+1
             i_c=1
             while i_c<=len(component_Radiation):
+                emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nX"+"bodyRadiation_RadGr"],label="BB"+str(i)+str(j)+str(k)+"xnRad")
+                emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"pX"+"bodyRadiation_RadGr"],label="BB"+str(i)+str(j)+str(k)+"xpRad")
+                emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nY"+"bodyRadiation_RadGr"],label="BB"+str(i)+str(j)+str(k)+"ynRad")
+                emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"pY"+"bodyRadiation_RadGr"],label="BB"+str(i)+str(j)+str(k)+"ypRad")
+                emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nZ"+"bodyRadiation_RadGr"],label="BB"+str(i)+str(j)+str(k)+"znRad")
+                emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"pZ"+"bodyRadiation_RadGr"],label="BB"+str(i)+str(j)+str(k)+"zpRad")
                 if i==1:
                     Radiation_qflow.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"xnRad")
                 if i==BBx:
@@ -117,5 +124,6 @@ plotparameter(Radiation_qflow, 'Power of the Radiation','Time / sec','heat power
 plotparameter(heater_on, 'switching state of the heater','Time / sec','on/off')
 plotparameter(cooler_on, 'switching state of the cooler','Time / sec','on/off')
 plotparameter(sum_heater_cooler_on, 'sum of the switching states of all heaters and coolers','Time / sec','on/off')
+plotparameter(emissivity_var_rad, 'emissivity of the variable radiators','Time / sec','epsilon')
 plt.show()
 print("feddisch")
