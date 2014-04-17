@@ -765,6 +765,10 @@ package buildingblocks
 				points={{-43.7,-23},{-48.7,-23},{-75,-23},{-75,0},{-80,0}},
 				thickness=0.0625));
 		annotation(
+			imu(
+				noise_ung2(y(flags=2)),
+				noise_ung1(y(flags=2)),
+				noise_ung3(y(flags=2))),
 			reactionwheel3axis_noelectricity1(
 				wheel_x(
 					frame_a(
@@ -907,9 +911,6 @@ package buildingblocks
 						w_a(flags=2),
 						z_a(flags=2),
 						g_0(flags=2)))),
-			viewinfo[0](
-				viewSettings(clrRaster=12632256),
-				typename="ModelInfo"),
 			experiment(
 				StopTime=1,
 				StartTime=0));
@@ -920,6 +921,7 @@ package buildingblocks
 		outer Modelica.Mechanics.MultiBody.World world;
 		parameter Boolean animation=false "= true, if animation shall be enabled (show cylinder and sphere)";
 		parameter Integer id "TODO: automatisch id zuweisen (über \"outer\" parameter)";
+		parameter Real net_delay=0.001 "delay of sensors and actors due to the network";
 		components.iboss_int Zp annotation(Placement(
 			transformation(
 				origin={-60,60},
@@ -962,16 +964,19 @@ package buildingblocks
 			iconTransformation(
 				origin={0,-80},
 				extent={{-10,-10},{10,10}})));
-		satcomponents.AOCS.Parts.IMU imu(id=id) annotation(Placement(transformation(
+		satcomponents.AOCS.Parts.IMU imu(
+			id=id,
+			noiseamp=0.02,
+			net_delay=net_delay) annotation(Placement(transformation(
 			origin={-60,-20},
 			extent={{-15,-15},{0,0}})));
 		equation
 			connect(imu.frame_a,rYn.frame_a) annotation(
-				Line(points={{-75,-27.7},{-80,-27.7},{-80,-45},{-20,-45},{-20,-50}}),
+				Line(points={{-75,-27.66666603088379},{-80,-27.7},{-80,-45},{-20,-45},{-20,-50}}),
 				AutoRoute=false);
 			connect(imu.acs_bus,Xn.sat_bus.acs_bus) annotation(
 				Line(
-					points={{-60,-27.7},{-55,-27.7},{-55,-5},{-75,-5},{-80,0}},
+					points={{-60,-27.66666603088379},{-55,-27.7},{-55,-5},{-75,-5},{-80,0}},
 					thickness=0.0625),
 				AutoRoute=false);
 			connect(Xn,Zp) annotation(Line(points={{-80,0},{-75,0},{-65,0},{-65,60},{-60,60}}));
@@ -979,48 +984,56 @@ package buildingblocks
 			connect(Yp,Xp) annotation(Line(points={{0,80},{5,80},{75,80},{75,0},{80,0}}));
 			connect(Xp,Zn) annotation(Line(points={{80,0},{75,0},{65,0},{65,-60},{60,-60}}));
 			connect(Zn,Yn) annotation(Line(points={{60,-60},{55,-60},{5,-60},{5,-80},{0,-80}}));
-		annotation(experiment(
-			StopTime=1,
-			StartTime=0));
+		annotation(
+			imu(
+				noise_ung2(y(flags=2)),
+				noise_ung1(y(flags=2)),
+				noise_ung3(y(flags=2))),
+			viewinfo[0](
+				viewSettings(clrRaster=12632256),
+				typename="ModelInfo"),
+			experiment(
+				StopTime=1,
+				StartTime=0));
 	end basic;
 	package icons
 		model basic "basic"
 			annotation(Icon(graphics={
-																				Rectangle(
-																					fillColor={0,0,255},
-																					extent={{-77.2278,76.02549999999999},{74.95610000000001,-75.256}}),
-																				Rectangle(
-																					fillColor={0,0,255},
-																					extent={{-69.5191,69.42019999999999},{66.9674,-68.4328}}),
-																				Ellipse(
-																					fillColor={0,0,255},
-																					extent={{-20.2122,18.7864},{19.355,-20.778}}),
-																				Ellipse(
-																					fillColor={0,0,255},
-																					extent={{-15.3692,13.9434},{14.512,-15.6521}}),
-																				Ellipse(
-																					fillColor={0,0,255},
-																					extent={{-1.42575,0.571424},{0.288544,-1.14286}}),
-																				Rectangle(
-																					fillColor={255,255,255},
-																					fillPattern=FillPattern.Solid,
-																					extent={{-74.37909999999999,15.6917},{-79.2362,-16.0226}}),
-																				Rectangle(
-																					fillColor={255,255,255},
-																					fillPattern=FillPattern.Solid,
-																					extent={{-15.9916,77.18810000000001},{15.1513,72.0453}}),
-																				Rectangle(
-																					fillColor={255,255,255},
-																					fillPattern=FillPattern.Solid,
-																					extent={{73.239,13.1174},{77.5247,-13.7397}}),
-																				Rectangle(
-																					fillColor={255,255,255},
-																					fillPattern=FillPattern.Solid,
-																					extent={{-15.4145,-72.9759},{16.5855,-77.833}}),
-																				Text(
-																					textString="%id",
-																					fillColor={0,0,255},
-																					extent={{-49.505,66.761},{55.4455,27.4399}})}));
+																																						Rectangle(
+																																							fillColor={0,0,255},
+																																							extent={{-77.2278,76.02549999999999},{74.95610000000001,-75.256}}),
+																																						Rectangle(
+																																							fillColor={0,0,255},
+																																							extent={{-69.5191,69.42019999999999},{66.9674,-68.4328}}),
+																																						Ellipse(
+																																							fillColor={0,0,255},
+																																							extent={{-20.2122,18.7864},{19.355,-20.778}}),
+																																						Ellipse(
+																																							fillColor={0,0,255},
+																																							extent={{-15.3692,13.9434},{14.512,-15.6521}}),
+																																						Ellipse(
+																																							fillColor={0,0,255},
+																																							extent={{-1.42575,0.571424},{0.288544,-1.14286}}),
+																																						Rectangle(
+																																							fillColor={255,255,255},
+																																							fillPattern=FillPattern.Solid,
+																																							extent={{-74.37909999999999,15.6917},{-79.2362,-16.0226}}),
+																																						Rectangle(
+																																							fillColor={255,255,255},
+																																							fillPattern=FillPattern.Solid,
+																																							extent={{-15.9916,77.18810000000001},{15.1513,72.0453}}),
+																																						Rectangle(
+																																							fillColor={255,255,255},
+																																							fillPattern=FillPattern.Solid,
+																																							extent={{73.239,13.1174},{77.5247,-13.7397}}),
+																																						Rectangle(
+																																							fillColor={255,255,255},
+																																							fillPattern=FillPattern.Solid,
+																																							extent={{-15.4145,-72.9759},{16.5855,-77.833}}),
+																																						Text(
+																																							textString="%id",
+																																							fillColor={0,0,255},
+																																							extent={{-49.505,66.761},{55.4455,27.4399}})}));
 		end basic;
 		annotation(
 			Icon(coordinateSystem(
@@ -1103,4 +1116,160 @@ package buildingblocks
 				StopTime=1,
 				StartTime=0));
 	end basic_wheel1x;
+	model Kernstruktur2x2x2 "Kernstruktur2x2x2"
+		extends icons.basic;
+		Modelica.Mechanics.MultiBody.Parts.Body structure(
+			animation=false,
+			r_CM={0,0,-0.01},
+			m=15.0,
+			I_11=0.0018,
+			I_22=0.0017,
+			I_33=0.0016,
+			useQuaternions=false);
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Zns000;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rZn000(
+			animation=false,
+			r={0.0,0.0,-0.5});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Yns000;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rYn000(
+			animation=false,
+			r={0.0,-0.5,0.0});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Xns000;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rXn000(
+			animation=false,
+			r={-0.5,0.0,0.0});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Yns001;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rYn001(
+			animation=false,
+			r={0.0,-0.5,1.0});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Xns001;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rXn001(
+			animation=false,
+			r={-0.5,0.0,1.0});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Zps001;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rZp001(
+			animation=false,
+			r={0.0,0.0,1.5});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Zns010;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rZn010(
+			animation=false,
+			r={0.0,1.0,-0.5});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Xns010;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rXn010(
+			animation=false,
+			r={-0.5,1.0,0.0});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Yps010;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rYp010(
+			animation=false,
+			r={0.0,1.5,0.0});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Zns100;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rZn100(
+			animation=false,
+			r={1.0,0.0,-0.5});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Yns100;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rYn100(
+			animation=false,
+			r={1.0,-0.5,0.0});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Xps100;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rXp100(
+			animation=false,
+			r={1.5,0.0,0.0});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Xns011;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rXn011(
+			animation=false,
+			r={-0.5,1.0,1.0});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Yps011;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rYp011(
+			animation=false,
+			r={0.0,1.5,1.0});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Zps011;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rZp011(
+			animation=false,
+			r={0.0,1.0,1.5});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Zns110;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rZn110(
+			animation=false,
+			r={1.0,1.0,-0.5});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Xps110;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rXp110(
+			animation=false,
+			r={1.5,1.0,0.0});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Yps110;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rYp110(
+			animation=false,
+			r={1.0,1.5,0.0});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Yns101;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rYn101(
+			animation=false,
+			r={1.0,-0.5,1.0});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Xps101;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rXp101(
+			animation=false,
+			r={1.5,0.0,1.0});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Zps101;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rZp101(
+			animation=false,
+			r={1.0,0.0,1.5});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Xps111;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rXp111(
+			animation=false,
+			r={1.5,1.0,1.0});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Yps111;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rYp111(
+			animation=false,
+			r={1.0,1.5,1.0});
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a Zps111;
+		Modelica.Mechanics.MultiBody.Parts.FixedTranslation rZp111(
+			animation=false,
+			r={1.0,1.0,1.5});
+		equation
+			connect(structure.frame_a, rZn000.frame_a) ;
+			connect(rZn000.frame_b, Zns000) ;
+			connect(structure.frame_a, rYn000.frame_a) ;
+			connect(rYn000.frame_b, Yns000) ;
+			connect(structure.frame_a, rXn000.frame_a) ;
+			connect(rXn000.frame_b, Xns000) ;
+			connect(structure.frame_a, rYn001.frame_a) ;
+			connect(rYn001.frame_b, Yns001) ;
+			connect(structure.frame_a, rXn001.frame_a) ;
+			connect(rXn001.frame_b, Xns001) ;
+			connect(structure.frame_a, rZp001.frame_a) ;
+			connect(rZp001.frame_b, Zps001) ;
+			connect(structure.frame_a, rZn010.frame_a) ;
+			connect(rZn010.frame_b, Zns010) ;
+			connect(structure.frame_a, rXn010.frame_a) ;
+			connect(rXn010.frame_b, Xns010) ;
+			connect(structure.frame_a, rYp010.frame_a) ;
+			connect(rYp010.frame_b, Yps010) ;
+			connect(structure.frame_a, rZn100.frame_a) ;
+			connect(rZn100.frame_b, Zns100) ;
+			connect(structure.frame_a, rYn100.frame_a) ;
+			connect(rYn100.frame_b, Yns100) ;
+			connect(structure.frame_a, rXp100.frame_a) ;
+			connect(rXp100.frame_b, Xps100) ;
+			connect(structure.frame_a, rXn011.frame_a) ;
+			connect(rXn011.frame_b, Xns011) ;
+			connect(structure.frame_a, rYp011.frame_a) ;
+			connect(rYp011.frame_b, Yps011) ;
+			connect(structure.frame_a, rZp011.frame_a) ;
+			connect(rZp011.frame_b, Zps011) ;
+			connect(structure.frame_a, rZn110.frame_a) ;
+			connect(rZn110.frame_b, Zns110) ;
+			connect(structure.frame_a, rXp110.frame_a) ;
+			connect(rXp110.frame_b, Xps110) ;
+			connect(structure.frame_a, rYp110.frame_a) ;
+			connect(rYp110.frame_b, Yps110) ;
+			connect(structure.frame_a, rYn101.frame_a) ;
+			connect(rYn101.frame_b, Yns101) ;
+			connect(structure.frame_a, rXp101.frame_a) ;
+			connect(rXp101.frame_b, Xps101) ;
+			connect(structure.frame_a, rZp101.frame_a) ;
+			connect(rZp101.frame_b, Zps101) ;
+			connect(structure.frame_a, rXp111.frame_a) ;
+			connect(rXp111.frame_b, Xps111) ;
+			connect(structure.frame_a, rYp111.frame_a) ;
+			connect(rYp111.frame_b, Yps111) ;
+			connect(structure.frame_a, rZp111.frame_a) ;
+			connect(rZp111.frame_b, Zps111) ;
+	end Kernstruktur2x2x2;
 end buildingblocks;
