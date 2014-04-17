@@ -868,10 +868,10 @@ An approppriate simulating time would be 10 seconds.
 				Icon(
 					coordinateSystem(grid={10,10}),
 					graphics={
-																											Rectangle(
-																										lineColor={255,0,0},
-																								fillColor={255,255,255},
-																						fillPattern=FillPattern.CrossDiag,
+																															Rectangle(
+																													lineColor={255,0,0},
+																										fillColor={255,255,255},
+																							fillPattern=FillPattern.CrossDiag,
 																				extent={{-20,-100},{20,100}},
 																				visible=true,
 																				origin={-80,0}),
@@ -1279,11 +1279,9 @@ model environment_var_rad
 	parameter Modelica.SIunits.Area effective_area_TSS=0.05 "Flaeche der thermalen Schnittstelle";
 	parameter Modelica.SIunits.Area effective_area_MSS=0.005 "Flaeche der mechanischen Schnittstelle";
 	parameter Modelica.SIunits.Area effective_area_ESS=0.0002 "Flaeche der elektrischen Schnittstelle";
-	parameter Modelica.SIunits.Emissivity alpha_Rad=0.44 "Absorptionskoeffizient des Radiators";
 	parameter Modelica.SIunits.Emissivity alpha_TSS=0.9 "Absorptionskoeffizient der thermalen Schnittstelle";
 	parameter Modelica.SIunits.Emissivity alpha_MSS=0.4 "Absorptionskoeffizient der mechanischen Schnittstelle";
 	parameter Modelica.SIunits.Emissivity alpha_ESS=0.3 "Absorptionskoeffizient der elektrischen Schnittstelle";
-	parameter Modelica.SIunits.Emissivity epsilon_Rad=0.5600000000000001 "Emmisionskoeffizient des Radiators tbd";
 	parameter Modelica.SIunits.Emissivity epsilon_TSS=0.1 "Emmisionskoeffizient der thermalen Schnittstelle tbd";
 	parameter Modelica.SIunits.Emissivity epsilon_MSS=0.4 "Emmisionskoeffizient der mechanischen Schnittstelle tbd";
 	parameter Modelica.SIunits.Emissivity epsilon_ESS=0.3 "Emmisionskoeffizient der elektrischen Schnittstelle tbd Materialdatenbank";
@@ -1445,7 +1443,7 @@ model var_Gain "Output the product of a variable gain value with the input signa
 		y = k*u;
 	annotation(
 		Icon(graphics={
-						Polygon(
+							Polygon(
 						points={{-100,-100},{-100,100},{100,0},{-100,-100}},
 						lineColor={0,0,127},
 						fillColor={255,255,255},
@@ -1492,7 +1490,7 @@ model VariableRad "the same like the BodyRadiation class from Modelica, but with
 		Q_flow = Gr * Modelica.Constants.sigma * (port_a.T ^ 4 - port_b.T ^ 4);
 	annotation(
 		Icon(graphics={
-																																																																																																									Rectangle(
+																																																																																																										Rectangle(
 																																																																																																								lineColor={0,0,0},
 																																																																																																								fillColor={192,192,192},
 																																																																																																								fillPattern=FillPattern.Backward,
@@ -1685,7 +1683,7 @@ model VariableRad_VEROSIM "the same like the BodyRadiation class from Modelica, 
 		Q_flow = Gr * Modelica.Constants.sigma * (port_a.T ^ 4 - port_b.T ^ 4);
 	annotation(
 		Icon(graphics={
-																					Rectangle(
+																						Rectangle(
 																				lineColor={0,0,0},
 																				fillColor={192,192,192},
 																				fillPattern=FillPattern.Backward,
@@ -1878,7 +1876,7 @@ model variable_ThermalConductor "Lumped thermal element transporting heat withou
 		Q_flow = G*dT;
 	annotation(
 		Icon(graphics={
-																	Rectangle(
+																		Rectangle(
 																pattern=LinePattern.None,
 																lineColor={0,0,0},
 																fillColor={192,192,192},
@@ -2038,7 +2036,7 @@ model aborption "figures in the absorption of the radiation"
 			thickness=0.0625));
 	annotation(
 		Icon(graphics={
-																																																																	Rectangle(
+																																																																		Rectangle(
 																																																																lineColor={0,0,0},
 																																																																fillColor={255,255,0},
 																																																																fillPattern=FillPattern.Solid,
@@ -2061,7 +2059,7 @@ block variable_Gain "Output the product of a variable gain value with the input 
 		y = k * u;
 	annotation(
 		Icon(graphics={
-																																					Polygon(
+																																						Polygon(
 																																				points={{-100,-100},{-100,100},{100,0},{-100,-100}},
 																																				lineColor={0,0,127},
 																																				fillColor={255,255,255},
@@ -3687,8 +3685,8 @@ An approppriate simulating time would be 10 seconds.
 				T(flags=2),
 				Q_flow(flags=2)),
 			Icon(graphics={
-																																																																																			Rectangle(
-																																																																																		lineColor={255,0,0},
+																																																																																					Rectangle(
+																																																																																			lineColor={255,0,0},
 																																																																																fillColor={255,255,255},
 																																																																																fillPattern=FillPattern.CrossDiag,
 																																																																																extent={{-10,-50},{10,50}}),
@@ -4662,7 +4660,7 @@ model thermal_for_verosim "thermisches model eines Bausteins mit 6 Seiten mit Sc
 			lower_Temp(y(flags=2)),
 			upper_Temp(y(flags=2))),
 		Icon(graphics={
-																																									Rectangle(
+																																										Rectangle(
 																																								lineColor={255,0,0},
 																																								fillColor={255,255,255},
 																																								fillPattern=FillPattern.CrossDiag,
