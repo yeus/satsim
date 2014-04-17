@@ -868,10 +868,10 @@ An approppriate simulating time would be 10 seconds.
 				Icon(
 					coordinateSystem(grid={10,10}),
 					graphics={
-																							Rectangle(
-																							lineColor={255,0,0},
-																						fillColor={255,255,255},
-																					fillPattern=FillPattern.CrossDiag,
+																											Rectangle(
+																										lineColor={255,0,0},
+																								fillColor={255,255,255},
+																						fillPattern=FillPattern.CrossDiag,
 																				extent={{-20,-100},{20,100}},
 																				visible=true,
 																				origin={-80,0}),
@@ -1292,7 +1292,7 @@ model environment_var_rad
 	Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow HeatFlow_MSS annotation(Placement(transformation(extent={{10,10},{30,30}})));
 	Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow HeatFlow_ESS annotation(Placement(transformation(extent={{10,-20},{30,0}})));
 	Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow HeatFlow_Rad(alpha=0) annotation(Placement(transformation(extent={{10,-50},{30,-30}})));
-	var_Gain factor_Rad(k=effective_area_Rad * alpha_Rad / effective_area_total) annotation(Placement(transformation(extent={{-35,-50},{-15,-30}})));
+	var_Gain factor_Rad annotation(Placement(transformation(extent={{-35,-50},{-15,-30}})));
 	Modelica.Blocks.Sources.TimeTable timeTable1(
 		table=illumination,
 		offset=0) annotation(Placement(transformation(extent={{-95,-5},{-75,15}})));
@@ -1445,7 +1445,7 @@ model var_Gain "Output the product of a variable gain value with the input signa
 		y = k*u;
 	annotation(
 		Icon(graphics={
-					Polygon(
+						Polygon(
 						points={{-100,-100},{-100,100},{100,0},{-100,-100}},
 						lineColor={0,0,127},
 						fillColor={255,255,255},
@@ -1457,7 +1457,7 @@ model var_Gain "Output the product of a variable gain value with the input signa
 					Text(
 						textString="%name",
 						extent={{-150,140},{150,100}})}),
-		Diagram(graphics={
+Diagram(graphics={
 					Polygon(
 						points={{-100,-100},{-100,100},{100,0},{-100,-100}},
 						lineColor={0,0,127},
@@ -1466,7 +1466,7 @@ model var_Gain "Output the product of a variable gain value with the input signa
 					Text(
 						textString="k",
 						extent={{-76,38},{0,-34}})}),
-		Documentation(info="<html>
+Documentation(info="<html>
 		<p>
 		This block computes output <i>y</i> as
 		<i>product</i> of gain <i>k</i> with the
@@ -1477,9 +1477,9 @@ model var_Gain "Output the product of a variable gain value with the input signa
 		</pre>
 
 		</html>"),
-		experiment(
-			StopTime=1,
-			StartTime=0));
+experiment(
+	StopTime=1,
+	StartTime=0));
 end var_Gain;
 model VariableRad "the same like the BodyRadiation class from Modelica, but with Gr as discrete"
 	extends Modelica.Thermal.HeatTransfer.Interfaces.Element1D;
@@ -1492,7 +1492,7 @@ model VariableRad "the same like the BodyRadiation class from Modelica, but with
 		Q_flow = Gr * Modelica.Constants.sigma * (port_a.T ^ 4 - port_b.T ^ 4);
 	annotation(
 		Icon(graphics={
-																																																																																																								Rectangle(
+																																																																																																									Rectangle(
 																																																																																																								lineColor={0,0,0},
 																																																																																																								fillColor={192,192,192},
 																																																																																																								fillPattern=FillPattern.Backward,
@@ -1685,7 +1685,7 @@ model VariableRad_VEROSIM "the same like the BodyRadiation class from Modelica, 
 		Q_flow = Gr * Modelica.Constants.sigma * (port_a.T ^ 4 - port_b.T ^ 4);
 	annotation(
 		Icon(graphics={
-																				Rectangle(
+																					Rectangle(
 																				lineColor={0,0,0},
 																				fillColor={192,192,192},
 																				fillPattern=FillPattern.Backward,
@@ -1878,7 +1878,7 @@ model variable_ThermalConductor "Lumped thermal element transporting heat withou
 		Q_flow = G*dT;
 	annotation(
 		Icon(graphics={
-																Rectangle(
+																	Rectangle(
 																pattern=LinePattern.None,
 																lineColor={0,0,0},
 																fillColor={192,192,192},
@@ -2038,7 +2038,7 @@ model aborption "figures in the absorption of the radiation"
 			thickness=0.0625));
 	annotation(
 		Icon(graphics={
-																																																																Rectangle(
+																																																																	Rectangle(
 																																																																lineColor={0,0,0},
 																																																																fillColor={255,255,0},
 																																																																fillPattern=FillPattern.Solid,
@@ -2061,7 +2061,7 @@ block variable_Gain "Output the product of a variable gain value with the input 
 		y = k * u;
 	annotation(
 		Icon(graphics={
-																																				Polygon(
+																																					Polygon(
 																																				points={{-100,-100},{-100,100},{100,0},{-100,-100}},
 																																				lineColor={0,0,127},
 																																				fillColor={255,255,255},
@@ -3687,8 +3687,8 @@ An approppriate simulating time would be 10 seconds.
 				T(flags=2),
 				Q_flow(flags=2)),
 			Icon(graphics={
-																																																																																	Rectangle(
-																																																																																	lineColor={255,0,0},
+																																																																																			Rectangle(
+																																																																																		lineColor={255,0,0},
 																																																																																fillColor={255,255,255},
 																																																																																fillPattern=FillPattern.CrossDiag,
 																																																																																extent={{-10,-50},{10,50}}),
@@ -4662,7 +4662,7 @@ model thermal_for_verosim "thermisches model eines Bausteins mit 6 Seiten mit Sc
 			lower_Temp(y(flags=2)),
 			upper_Temp(y(flags=2))),
 		Icon(graphics={
-																																								Rectangle(
+																																									Rectangle(
 																																								lineColor={255,0,0},
 																																								fillColor={255,255,255},
 																																								fillPattern=FillPattern.CrossDiag,
