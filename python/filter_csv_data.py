@@ -16,7 +16,7 @@ component_Panel=["thermal_connector_"]
 component_Radiation=["timeTable1"]
 component_heater_cooler=["tCS1"]
 physical_quantity = ["T","dT","Q_flow","y","heater_on","cooler_on"]
-a = np.genfromtxt('E:/sim_results/sat_3x3x3/omnidirectional_radiation/generic_satellite_3x3x3_sun_var_rad_res_20000sec_lobatto6.csv', delimiter=',',names=True,dtype=float)
+a = np.genfromtxt('D:/sim_resutlts_thermal/sat_3x3x3/omnidirectional_radiation/generic_satellite_3x3x3_sun_res_75900sec_dassl_compare_varrad_eps_054.csv', delimiter=',',names=True,dtype=float)
 to_file = np.array(a['time'], dtype=[('time',float)])
 # to_file = append_fields(to_file,'BB111port_bT',a['BB111port_bT'], usemask=False)
 
@@ -110,5 +110,5 @@ while i<=BBx:
             k=k+1
         j=j+1
     i=i+1
-np.savetxt('E:/sim_results/sat_3x3x3/omnidirectional_radiation/filtered_generic_satellite_3x3x3_sun_var_rad_res_20000sec_lobatto6.csv.csv',to_file,delimiter=",",fmt='%s',header=str(','.join(to_file.dtype.names)),comments='')
+np.savetxt('D:/sim_resutlts_thermal/sat_3x3x3/omnidirectional_radiation/filtered_generic_satellite_3x3x3_sun_res_75900sec_dassl_compare_varrad_eps_054.csv',to_file,delimiter=",",fmt='%s',header=str(','.join(to_file.dtype.names)),comments='')
 print("feddisch")
