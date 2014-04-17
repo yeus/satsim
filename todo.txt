@@ -51,8 +51,15 @@ Modell-Struktur in Modelica:
 - "terminate" Beendet Simulation nach einer vorgegeben Bedingung
 - Record classes benutzen, um verschiedene Bausteinarten und Schnittstellenanzahl usw zu parametrisieren.
 
+Fragen:
+=======
+- was ist besser?  kleine cmgs  in alles Bausteinen, oder ein großer baustein mit einem großen CMG?
+--> z.B. was Größe und gewicht und Energieverbrauch usw.. angeht
+
+
 Experimente:
 ============
+- momentum management scheme 
 - Ein simulierter "Lockdown" der Solarzellen als Verifikation
 - Versuch mithilfe von Magnetspulen den Satelliten zu stabilisieren
 - Rückkopplungsverhalten bei Tag & Nachtwechsel zeigen
@@ -95,6 +102,7 @@ spezifische Werte:
 - Baustein Orientierung muss in den Katalog
 - bausteinpositionen und Orientierung im Satelliten müssen in ordnung gebracht werden (z.B. Enmap Ausrichtung mit launchadapter in Zn Richtung)
 - Definitionen für Mehrfachbausteine anpassen
+- Definitionen für Schnittstellen in Bausteinen
 
 verschiedenes:
 --------------
