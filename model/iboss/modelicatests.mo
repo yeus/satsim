@@ -109,48 +109,24 @@ package modelicatests
 			Tolerance=0.0001));
 	end tabletest;
 	model noise_sampled "noise_sampled"
-		Integer x(start=0);
-		constant Integer m=2 ^ 31 - 1;
-		parameter Integer a=7 ^ 5;
-		parameter Integer c=10;
+		satcomponents.blocks.noise_ung noise_ung1[3](
+			amplitude=1.0,
+			seed={1,2,3}) annotation(Placement(transformation(extent={{-25,39},{-4,50}})));
+		Modelica.Blocks.Discrete.Sampler sampler1[3](samplePeriod=0.001) annotation(Placement(transformation(extent={{15,35},{35,55}})));
 		equation
-			//x:=mod(a * integer(time) + c, m); //LCG Noise
-			when sample(0, 0.0001) then
-			      x=mod(a * x + c, m);    
-			end when;
+			connect(noise_ung1.y,sampler1.u) annotation(Line(
+				points={{-7.7,45.7},{-2.7,45.7},{8,45.7},{8,45},{13,45}},
+				color={0,0,127},
+				thickness=0.0625));
 		annotation(
-			x(flags=2),
+			noise_ung1(y(flags=2)),
+			sampler1(y(flags=2)),
 			viewinfo[0](
 				viewSettings(clrRaster=12632256),
 				typename="ModelInfo"),
-			viewinfo[1](
-				projectName="noise_sampled",
-				projectPath="C:\\Users\\indahouse\\Documents\\SimulationX 3.6\\Exported C-Code",
-				projectType=21,
-				saveOutputsApproach=1,
-				outputs[0](
-					port="x",
-					interpolation=true,
-					paramTypeSPCK=3,
-					typename="CEPort"),
-				descriptionProject="noise_sampled",
-				version="1.0",
-				author="tom",
-				fmiIncludeDllWin32=true,
-				fmiIncludeDllWin64=true,
-				fmiIncludeSources=true,
-				guid="{253B72D8-5AD5-49FD-B1A4-2A844B8265CF}",
-				showAdditionalLibPage=false,
-				useCodeOptimization=true,
-				m_x64=false,
-				solverMode=1,
-				checkSum=1503,
-				fmiVersion="1.0",
-				typename="CodeExportInfo"),
 			experiment(
-				StopTime=20,
-				StartTime=0,
-				Tolerance=1e-006));
+				StopTime=100,
+				StartTime=0));
 	end noise_sampled;
 	model simplependulum
 		inner Modelica.Mechanics.MultiBody.World world annotation(Placement(transformation(
@@ -670,15 +646,15 @@ package modelicatests
 		expandable connector modcom "modcom"
 			Real a[10];
 			annotation(Icon(graphics={
-																				Rectangle(
-																					lineColor={0,0,0},
-																					fillColor={255,255,255},
-																					fillPattern=FillPattern.Solid,
-																					extent={{-73.3,76.7},{80,-76.7}}),
-																				Text(
-																					textString="iCOM",
-																					lineColor={0,0,0},
-																					extent={{-46.7,50},{53.3,-50}})}));
+																													Rectangle(
+																														lineColor={0,0,0},
+																														fillColor={255,255,255},
+																														fillPattern=FillPattern.Solid,
+																														extent={{-73.3,76.7},{80,-76.7}}),
+																													Text(
+																														textString="iCOM",
+																														lineColor={0,0,0},
+																														extent={{-46.7,50},{53.3,-50}})}));
 		end modcom;
 		block Sensor
 			Modelica.Blocks.Interfaces.RealOutput speed;
@@ -884,19 +860,6 @@ package modelicatests
 				initialScale=0.1,
 				grid={2,2})));
 	end openmodelica_cpp;
-	model noise_ung "noise_sampled"
-		constant Integer m=2 ^ 31 - 1;
-		parameter Integer a=7 ^ 5;
-		parameter Integer c=10;
-		Integer x(start=0);
-		Integer y(start=0);
-		algorithm
-			y:=mod(a * integer(time * m) + c, m);
-			x:=mod(a * y + c, m);
-		annotation(
-			x(flags=2),
-			y(flags=2));
-	end noise_ung;
 	model statespace_control "statespace_control"
 		Modelica.Blocks.Continuous.StateSpace stateSpace1 annotation(Placement(transformation(extent={{15,35},{35,55}})));
 		annotation(
