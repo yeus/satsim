@@ -22,9 +22,9 @@ BBz = 3
 component_Box=["port_b"]
 component_TIM=["Conductance_"]
 component_Panel=["thermal_connector_"]
-component_Radiation=["timeTable1"]
+component_Radiation=["factor_Rad","factor_Area_Rad"]
 component_heater_cooler=["tCS1"]
-physical_quantity = ["T","dT","Q_flow","y","heater_on","cooler_on"]
+physical_quantity = ["T","dT","Q_flow","u","heater_on","cooler_on"]
 fig, el_Box_T = plt.subplots()
 fig, el_Box_qflow = plt.subplots()
 fig, TIM_TSS_qflow = plt.subplots()
@@ -36,7 +36,7 @@ fig, emissivity_var_rad = plt.subplots()
 fig, heater_on = plt.subplots()
 fig, sum_heater_cooler_on = plt.subplots()
 fig, cooler_on = plt.subplots()
-a = np.genfromtxt('D:/sim_resutlts_thermal/sat_3x3x3/omnidirectional_radiation/generic_satellite_3x3x3_sun_var_rad_res.csv', delimiter=',',names=True,dtype=float)
+a = np.genfromtxt('E:/sim_results/sat_3x3x3/omnidirectional_radiation/filtered_generic_satellite_3x3x3_sun_res.csv', delimiter=',',names=True,dtype=float)
 sum_heat = np.zeros(len(np.array(a)))
 sum_cool = np.zeros(len(np.array(a)))
 i=1
@@ -90,24 +90,20 @@ while i<=BBx:
                 i_c=i_c+1
             i_c=1
             while i_c<=len(component_Radiation):
-                emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nX"+"bodyRadiation_RadGr"],label="BB"+str(i)+str(j)+str(k)+"xnRad")
-                emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"pX"+"bodyRadiation_RadGr"],label="BB"+str(i)+str(j)+str(k)+"xpRad")
-                emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nY"+"bodyRadiation_RadGr"],label="BB"+str(i)+str(j)+str(k)+"ynRad")
-                emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"pY"+"bodyRadiation_RadGr"],label="BB"+str(i)+str(j)+str(k)+"ypRad")
-                emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nZ"+"bodyRadiation_RadGr"],label="BB"+str(i)+str(j)+str(k)+"znRad")
-                emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"pZ"+"bodyRadiation_RadGr"],label="BB"+str(i)+str(j)+str(k)+"zpRad")
-                if i==1:
-                    Radiation_qflow.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"xnRad")
-                if i==BBx:
-                    Radiation_qflow.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"pX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"xpRad")
-                if j==1:
-                    Radiation_qflow.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nY"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"ynRad")
-                if j==BBy:
-                    Radiation_qflow.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"pY"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"ypRad")
-                if k==1:
-                    Radiation_qflow.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nZ"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"znRad")
-                if k==BBz:
-                    Radiation_qflow.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"pZ"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"zpRad")
+                if i_c==2:
+                   emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"xnRad")
+                   emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"xpRad")
+                   emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"ynRad")
+                   emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"ypRad")
+                   emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"znRad")
+                   emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"zpRad")
+                if i_c==1:
+                   Radiation_qflow.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"xnRad")
+                   Radiation_qflow.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"pX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"xpRad")
+                   Radiation_qflow.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nY"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"ynRad")
+                   Radiation_qflow.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"pY"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"ypRad")
+                   Radiation_qflow.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nZ"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"znRad")
+                   Radiation_qflow.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"pZ"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"zpRad")
                 i_c=i_c+1
             k=k+1
         j=j+1
