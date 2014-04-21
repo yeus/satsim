@@ -964,7 +964,7 @@ package buildingblocks
 			iconTransformation(
 				origin={0,-80},
 				extent={{-10,-10},{10,10}})));
-		satcomponents.AOCS.Parts.IMU imu(
+		replaceable satcomponents.AOCS.Parts.IMU imu(
 			id=id,
 			noiseamp=0.02,
 			net_delay=net_delay) annotation(Placement(transformation(
@@ -999,41 +999,41 @@ package buildingblocks
 	package icons
 		model basic "basic"
 			annotation(Icon(graphics={
-																																						Rectangle(
-																																							fillColor={0,0,255},
-																																							extent={{-77.2278,76.02549999999999},{74.95610000000001,-75.256}}),
-																																						Rectangle(
-																																							fillColor={0,0,255},
-																																							extent={{-69.5191,69.42019999999999},{66.9674,-68.4328}}),
-																																						Ellipse(
-																																							fillColor={0,0,255},
-																																							extent={{-20.2122,18.7864},{19.355,-20.778}}),
-																																						Ellipse(
-																																							fillColor={0,0,255},
-																																							extent={{-15.3692,13.9434},{14.512,-15.6521}}),
-																																						Ellipse(
-																																							fillColor={0,0,255},
-																																							extent={{-1.42575,0.571424},{0.288544,-1.14286}}),
-																																						Rectangle(
-																																							fillColor={255,255,255},
-																																							fillPattern=FillPattern.Solid,
-																																							extent={{-74.37909999999999,15.6917},{-79.2362,-16.0226}}),
-																																						Rectangle(
-																																							fillColor={255,255,255},
-																																							fillPattern=FillPattern.Solid,
-																																							extent={{-15.9916,77.18810000000001},{15.1513,72.0453}}),
-																																						Rectangle(
-																																							fillColor={255,255,255},
-																																							fillPattern=FillPattern.Solid,
-																																							extent={{73.239,13.1174},{77.5247,-13.7397}}),
-																																						Rectangle(
-																																							fillColor={255,255,255},
-																																							fillPattern=FillPattern.Solid,
-																																							extent={{-15.4145,-72.9759},{16.5855,-77.833}}),
-																																						Text(
-																																							textString="%id",
-																																							fillColor={0,0,255},
-																																							extent={{-49.505,66.761},{55.4455,27.4399}})}));
+																																									Rectangle(
+																																										fillColor={0,0,255},
+																																										extent={{-77.2278,76.02549999999999},{74.95610000000001,-75.256}}),
+																																									Rectangle(
+																																										fillColor={0,0,255},
+																																										extent={{-69.5191,69.42019999999999},{66.9674,-68.4328}}),
+																																									Ellipse(
+																																										fillColor={0,0,255},
+																																										extent={{-20.2122,18.7864},{19.355,-20.778}}),
+																																									Ellipse(
+																																										fillColor={0,0,255},
+																																										extent={{-15.3692,13.9434},{14.512,-15.6521}}),
+																																									Ellipse(
+																																										fillColor={0,0,255},
+																																										extent={{-1.42575,0.571424},{0.288544,-1.14286}}),
+																																									Rectangle(
+																																										fillColor={255,255,255},
+																																										fillPattern=FillPattern.Solid,
+																																										extent={{-74.37909999999999,15.6917},{-79.2362,-16.0226}}),
+																																									Rectangle(
+																																										fillColor={255,255,255},
+																																										fillPattern=FillPattern.Solid,
+																																										extent={{-15.9916,77.18810000000001},{15.1513,72.0453}}),
+																																									Rectangle(
+																																										fillColor={255,255,255},
+																																										fillPattern=FillPattern.Solid,
+																																										extent={{73.239,13.1174},{77.5247,-13.7397}}),
+																																									Rectangle(
+																																										fillColor={255,255,255},
+																																										fillPattern=FillPattern.Solid,
+																																										extent={{-15.4145,-72.9759},{16.5855,-77.833}}),
+																																									Text(
+																																										textString="%id",
+																																										fillColor={0,0,255},
+																																										extent={{-49.505,66.761},{55.4455,27.4399}})}));
 		end basic;
 		annotation(
 			Icon(coordinateSystem(

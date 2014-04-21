@@ -3914,20 +3914,17 @@ package satellites
 			extent={{-10,-10},{10,10}})));
 		buildingblocks.basic_wheel3x basic_wheel3x1(
 			id=1,
-			net_delay=0.01) annotation(Placement(transformation(extent={{-20,20},{15,55}})));
+			net_delay=0,
+			redeclare replaceable iboss.satcomponents.AOCS.Parts.IMU_nonoise imu) annotation(Placement(transformation(extent={{-20,20},{15,55}})));
 		buildingblocks.basic basic1(
 			id=2,
-			net_delay=0.1) annotation(Placement(transformation(extent={{20,20},{55,55}})));
+			net_delay=0.1,
+			redeclare replaceable iboss.satcomponents.AOCS.Parts.IMU_no_sam_delay imu) annotation(Placement(transformation(extent={{20,20},{55,55}})));
 		buildingblocks.basic basic2(
 			id=3,
-			net_delay=0.08) annotation(Placement(transformation(extent={{-20,-20},{15,15}})));
-		buildingblocks.basic basic3(
-			id=4,
-			net_delay=0.12) annotation(Placement(transformation(extent={{20,-20},{55,15}})));
-		buildingblocks.basic basic4(
-			id=5,
-			net_delay=0.13) annotation(Placement(transformation(extent={{60,-20},{95,15}})));
-		satcomponents.AOCS.ctrl.ACS_PID aCS_PID1 annotation(Placement(transformation(extent={{-55,30},{-35,50}})));
+			net_delay=0.08,
+			redeclare replaceable iboss.satcomponents.AOCS.Parts.IMU_no_sam_delay imu) annotation(Placement(transformation(extent={{-20,-20},{15,15}})));
+		satcomponents.AOCS.ctrl.ACS_P aCS_P1(gain1(k=3.0)) annotation(Placement(transformation(extent={{-65,25},{-45,45}})));
 		equation
 			connect(world.frame_b,r.frame_a) annotation(Line(
 				points={{-10,80},{-5,80},{5,80},{10,80}},
@@ -3948,32 +3945,25 @@ package satellites
 				points={{-6,23.3},{-6,18.3},{-6,16.7},{1,16.7},{1,11.7}},
 				color={95,95,95},
 				thickness=0.0625));
-			connect(basic_wheel3x1.Yn,basic2.Yp) annotation(Line(points={{-2.3,23.3},{-2.3,18.3},{-2.3,16.7},{-2.3,11.7}}));
-			connect(basic_wheel3x1.Xp,basic1.Xn) annotation(Line(points={{11.3,37.3},{16.3,37.3},{18.7,37.3},{23.7,37.3}}));
-			connect(basic1.Yns,basic3.Yps) annotation(Line(
-				points={{34,23.3},{34,18.3},{34,16.7},{41,16.7},{41,11.7}},
-				color={95,95,95},
-				thickness=0.0625));
-			connect(basic1.Yn,basic3.Yp) annotation(Line(points={{37.7,23.3},{37.7,18.3},{37.7,16.7},{37.7,11.7}}));
-			connect(basic3.Xps,basic4.Xns) annotation(Line(
-				points={{51.3,-6},{56.3,-6},{58.7,-6},{58.7,1},{63.7,1}},
-				color={95,95,95},
-				thickness=0.0625));
-			connect(basic3.Xp,basic4.Xn) annotation(Line(points={{51.3,-2.7},{56.3,-2.7},{58.7,-2.7},{63.7,-2.7}}));
-			connect(aCS_PID1.acs_bus,basic_wheel3x1.Xn.sat_bus.acs_bus) annotation(Line(
-				points={{-35,40},{-30,40},{-21.3,40},{-21.3,37.3},{-16.3,37.3}},
+			connect(aCS_P1.acs_bus,basic_wheel3x1.Xn.sat_bus.acs_bus) annotation(Line(
+				points={{-45,35},{-40,35},{-21.3,35},{-21.3,37.3},{-16.3,37.3}},
 				thickness=0.0625));
 		annotation(
 			basic_wheel3x1(
-				Zp(sat_bus(acs_bus(
-					w(flags=2),
+				Struktur(
+					frame_a(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					r_0(flags=2),
+					v_0(flags=2),
+					a_0(flags=2),
 					w_a(flags=2),
-					u(flags=2),
-					y(flags=2)))),
-				imu(
-					noise_ung2(y(flags=2)),
-					noise_ung1(y(flags=2)),
-					noise_ung3(y(flags=2))),
+					z_a(flags=2),
+					g_0(flags=2)),
 				reactionwheel3axis_noelectricity1(
 					wheel_x(
 						frame_a(
@@ -4116,43 +4106,16 @@ package satellites
 							w_a(flags=2),
 							z_a(flags=2),
 							g_0(flags=2))))),
-			basic1(
-				Zp(sat_bus(acs_bus(
-					w(flags=2),
-					w_a(flags=2),
-					u(flags=2),
-					y(flags=2)))),
-				imu(
-					noise_ung2(y(flags=2)),
-					noise_ung1(y(flags=2)),
-					noise_ung3(y(flags=2)))),
+			basic1(imu(
+				add1(y(flags=2)),
+				noise_ung2(y(flags=2)),
+				noise_ung1(y(flags=2)),
+				noise_ung3(y(flags=2)))),
 			basic2(imu(
 				noise_ung2(y(flags=2)),
 				noise_ung1(y(flags=2)),
 				noise_ung3(y(flags=2)))),
-			basic3(
-				Zp(sat_bus(acs_bus(
-					w(flags=2),
-					w_a(flags=2),
-					u(flags=2),
-					y(flags=2)))),
-				imu(
-					noise_ung2(y(flags=2)),
-					noise_ung1(y(flags=2)),
-					noise_ung3(y(flags=2)))),
-			basic4(
-				Zp(sat_bus(acs_bus(
-					w(flags=2),
-					w_a(flags=2),
-					u(flags=2),
-					y(flags=2)))),
-				imu(
-					noise_ung2(y(flags=2)),
-					noise_ung1(y(flags=2)),
-					noise_ung3(y(flags=2)))),
-			aCS_PID1(PID(
-				y(flags=2),
-				controlError(flags=2))),
+			aCS_P1(error(y(flags=2))),
 			viewinfo[0](
 				minOrder=0.5,
 				maxOrder=12,
