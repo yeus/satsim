@@ -4273,9 +4273,6 @@ package satcomponents
 							w_a(flags=2),
 							z_a(flags=2),
 							g_0(flags=2))),
-					viewinfo[0](
-						viewSettings(clrRaster=12632256),
-						typename="ModelInfo"),
 					Icon(graphics={
 																																																			Ellipse(
 																																																				fillColor={192,192,255},
@@ -4600,9 +4597,6 @@ package satcomponents
 							w_a(flags=2),
 							z_a(flags=2),
 							g_0(flags=2))),
-					viewinfo[0](
-						viewSettings(clrRaster=12632256),
-						typename="ModelInfo"),
 					Icon(graphics={
 																																																			Rectangle(
 																																																				fillColor={128,128,128},
@@ -4837,9 +4831,6 @@ package satcomponents
 						color={0,0,127},
 						thickness=0.0625));
 				annotation(
-					viewinfo[0](
-						viewSettings(clrRaster=12632256),
-						typename="ModelInfo"),
 					Icon(graphics={
 																																																															Rectangle(
 																																																																fillColor={255,255,255},
