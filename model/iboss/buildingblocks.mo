@@ -1,6 +1,6 @@
 // CP: 65001
 // SimulationX Version: 3.6.1.26028
-within iboss;
+//within iboss;
 package buildingblocks
 	model solar
 		extends basic_ess_mss(capacitor1(C=9.999999999999999e-05));

@@ -1,6 +1,6 @@
 // CP: 65001
 // SimulationX Version: 3.6.1.26028
-within iboss;
+//within iboss;
 package satellites
 	model generic_sat
 		parameter Integer size_x=3;

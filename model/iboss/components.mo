@@ -1,6 +1,6 @@
 // CP: 65001
 // SimulationX Version: 3.6.1.26028
-within iboss;
+//within iboss;
 package components
 	model iboss_interface
 		Modelica.Electrical.Analog.Sensors.VoltageSensor voltageSensor2 annotation(Placement(transformation(

@@ -1,9 +1,3 @@
-satellites
-buildingblocks
-components
-controlblocks
 iboss_thermal
 illumination
 MaterialDatabase
-modelicatests
-satcomponents
