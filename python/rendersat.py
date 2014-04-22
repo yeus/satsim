@@ -46,7 +46,9 @@ bpy.data.scenes['Scene'].layers=[False]*19+[True]
 
 #render satellit with forces
 mode=""#".transparent"  #transparent render
-for bs in mission.bb:
+mo_id_counter = 0
+for bs in mission._bb:
+    mo_id_counter += 1
     if bs.name   == "test Lageregelungsbaustein": newobj=cpobj("düsenbaustein"+mode)
     elif bs.name == "Kernstruktur2x2x2": newobj=cpobj("2x2x2"+mode)
     else: newobj=cpobj("baustein"+mode)
@@ -56,7 +58,7 @@ for bs in mission.bb:
     newobj["blocktype"]=bs.name
     newobj["mission"]=mission.name
     newobj["test"]={"test2":1.0,"y":2.0}
-    newobj.name=bs.name
+    newobj.name="{bs.name}.{}".format(mo_id_counter, bs=bs)
     #TODO: hier python drivers hinzufügen, um die Position von Objekten zu bestimmen
     #http://blenderartists.org/forum/archive/index.php/t-209910.html?s=078384d8fb1235542564a869f33b6ab0
         
@@ -76,7 +78,9 @@ newobj.location=mission.com
             
  #render the result
 bpy.context.scene.render.use_edge_enhance=True
-bpy.ops.render.render()
-bpy.data.images['Render Result'].save_render("satellite.png")
+if 'render' in sys.argv:
+  print("rendering image")
+  bpy.ops.render.render()
+  bpy.data.images['Render Result'].save_render("satellite.png")
     
 #todo: render the COG together with a "forcemap"  and a "space of forces"/moments

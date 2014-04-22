@@ -11,7 +11,8 @@
 
 """defines data structures for iboss project"""
 
-Version="1.5" #catalog version
+Version="1.6" #catalog version
+newVersion="1.7" #next catalog version
 
 from copy import copy
 import numpy as np
@@ -27,7 +28,8 @@ import traceback
 import pickle
 import copy
 import re
-import IPython
+import sys
+import json
 
 pq.krad=pq.UnitQuantity('kilorad', pq.rads*1000, symbol='krad')
 pq.blocks=pq.UnitQuantity('blocks', 1, symbol='blocks')
@@ -102,6 +104,9 @@ class ibossxml(object):
     ibossxml.idcounter+=1
     return "id"+str(ibossxml.idcounter)
 
+  def defaultvariables(self):
+    return {}
+
   @property
   def xmlmapping(self):
     return {}
@@ -109,45 +114,49 @@ class ibossxml(object):
   def xmllist(self):
     return None
   
+
+  def str2prop(self, name, val, unit=None):
+    n=name
+    u=1
+    if unit:
+      if unit == 'json':
+        v=json.loads(val)
+      else:
+        try: v=str2vec(val)
+        except ValueError:v=val
+        
+        u = pq.Quantity(1,unit)
+    else:
+       try: v=float(val)
+       except ValueError: v=val
+    
+    return n,v,u
+
   def addxmlprop(self,xmlprop):
     #convert to floats and vectors
-    unit=1
-    try:
-      if 'unit' in xmlprop.attrib:
-        val=str2vec(xmlprop.text)
-        unit=pq.Quantity(1,xmlprop.attrib['unit'])
-      else: 
-        try: val=float(xmlprop.text)
-        except ValueError: val=xmlprop.text
-    except:
-      print("hat nicht funktioniert",prettyprintxml(xmlprop))
-      print(xmlprop.text.rsplit())
-      raise
+    strname = xmlprop.tag
+    strunit = None
+    if 'unit' in xmlprop.attrib: strunit = xmlprop.attrib['unit']
+    strval = val=xmlprop.text
+    
+    name, val, unit = self.str2prop(strname, strval, strunit)
     
     #change name according to xmlmapping
     inv_map = {v:k for k, v in self.xmlmapping.items()}
-    if xmlprop.tag in inv_map.keys(): name = inv_map[xmlprop.tag]
+    if name in inv_map.keys(): name = inv_map[xmlprop.tag]
     else: name = xmlprop.tag
-      
-    vars(self)[name]=val*unit
-  
-  def addgenericxmlvar(self,xmlvar):
-    #convert to floats and vectors
-    try:
-      strvalue= xmlvar.find("value").text
-      try: value=str2vec(strvalue)
-      except ValueError:value=strvalue
     
-      try: unit = pq.Quantity(1,xmlvar.find("unit").text)
-      except: unit = 1
-            
-      name = xmlvar.find("name").text
-      vars(self)[name]=value*unit
-      
-      #startconsole(localvariables=locals())#import pdb; pdb.set_trace()
-    except:
-      print("hat nicht funktioniert",prettyprintxml(xmlvar))
-      raise
+    vars(self)[name]=val*unit #add variable to class
+  
+  def addgenericxmlvar(self,xmlprop):
+    #convert to floats and vectors
+    strname = xmlprop.find("name").text
+    try: strunit = xmlprop.find("unit").text
+    except: strunit=None
+    strval = xmlprop.find("value").text
+
+    name, val, unit = self.str2prop(strname, strval, strunit)
+    vars(self)[name]=val*unit #add variable to class
       
   @staticmethod
   def property2strlist(vkey,value):
@@ -157,13 +166,12 @@ class ibossxml(object):
       if value.size==1:    val = str(value.magnitude)
       elif value.size<=3:  val = vec2str(value.magnitude)
       else:                val = mat2str(value.magnitude)
+    elif isinstance(value,list) or isinstance(value,dict): #save as json, if it is a list or dict
+      unit='json'
+      val = json.dumps(value)
     else:
       unit = None
-      try:
-        if value.size>1:  val = vec2str(vvalue.magnitude)
-        else:              val = str(value)
-      except AttributeError: #in case of vvalue not beeing an array
-        val = str(value)
+      val = str(value)
         
     return name,val,unit
   
@@ -197,11 +205,11 @@ class ibossxml(object):
     mapping=self.xmlmapping
     variables=et.Element("genericVariables")
     for vkey,vvalue in sorted(vars(self).items(),key=lambda instance: mapping[instance[0]].lower() if instance[0] in mapping else instance[0].lower()): #sort alphabetically with mapped names
-      if vkey[0]=="_" or isinstance(vvalue, list): continue #skip lists and private variables
+      if vkey[0]=="_": continue  #skip private variables
       if vkey in mapping:
-        root.append(self.property2xml(mapping[vkey],vvalue)) #speichern sämtlicher Klassenvariablen
+        root.append(self.property2xml(mapping[vkey],vvalue)) #speichern sämtlicher "default" Klassenvariablen
       else:
-        variables.append(self.genericvariable2xml(vkey,vvalue)) #speichern sämtlicher Klassenvariablen
+        variables.append(self.genericvariable2xml(vkey,vvalue)) #speichern sämtlicher generischer Klassenvariablen
     
     root.append(variables)
     
@@ -233,7 +241,7 @@ class ibossxml(object):
           for i in names[1:]:
             retstr +=" "*40+" "+"{:<99};\n".format(i)
       else:
-        retstr += "{:<30}\n".format(val)
+        retstr += "{:<30}\n".format(str(val))
 
     retstr+=("="*40)+" "+"="*100+"\n"
     
@@ -264,8 +272,8 @@ class buildingblock(ibossxml):
     super(buildingblock, self).__init__()
      #initialize with default variables
     vars(self).update(self.defaultvariables())
-    name=bbtype,
-    type=bbtype,
+    self.name=bbtype,
+    self.type=bbtype,
     
     self._xmltype="BuildingBlockDef"
 
@@ -276,7 +284,7 @@ class buildingblock(ibossxml):
                 size=vec(Blocksize+gap,Blocksize+gap,Blocksize+gap)*pq.m,
                 name="generic",
                 type="generic",
-                components=[],
+                _co=[],
                 mass=0*pq.kg,
                 power_max=0*pq.W,
                 com=vec(0,0,0)*Blocksize,
@@ -285,7 +293,8 @@ class buildingblock(ibossxml):
                               (0.0,0.85,0.0),
                               (0.0,0.0,0.85),)*pq.kg*pq.m**2,
                 orbit="ANY",
-                geometry="../../Models/Library/BuildingBlocks/EnMAP_Frame.mod"+"TODO, noch keine baustiene generiert...")
+                geometry = "../../Models/Library/BuildingBlocks/EnMAP_Frame.mod"+"TODO, noch keine baustiene generiert...",
+                grid = [(0,0,0)])
     
   @property
   def xmlmapping(self):
@@ -301,7 +310,7 @@ class buildingblock(ibossxml):
 
   def xmllist(self):
     root=et.Element("components")
-    for co in self.components:
+    for co in self._co:
       newelem=et.Element("GenericComponent")
       newelem.insert(0,et.Comment(co.name))
       if hasattr(co,'position'): newelem.append(self.property2xml("position",co.position))
@@ -318,14 +327,14 @@ class buildingblock(ibossxml):
     
   def add_co(self,co): #todo variable length argument list
     if "num" not in vars(co): co.num=1
-    self.components.append(copy.copy(co))  #use copy of component for an update with state variables
+    self._co.append(copy.copy(co))  #use copy of component for an update with state variables
   
   def update(self):
     self.power_max=0*pq.W
-    for co in self.components:
+    for co in self._co:
       if "power_max" in vars(co): 
         self.power_max+=co.power_max
-    self.mass=np.sum([co.mass*co.num for co in self.components])*pq.kg
+    self.mass=np.sum([co.mass*co.num for co in self._co])*pq.kg
 
 class Satellite(ibossxml):
   def __init__(self,mitype):
@@ -337,8 +346,9 @@ class Satellite(ibossxml):
     self.orbit="LEO"
     self.mass=0*pq.kg
     self.type=mitype
-    self.bb=[]#list of building blocks
+    self._bb=[]#list of building blocks
     #self.orbparam="2-line-elem"
+    self._grid={}
     
   @property
   def xmlmapping(self): #maps values to xml class
@@ -346,7 +356,7 @@ class Satellite(ibossxml):
 
   def xmllist(self):
     root=et.Element("buildingBlocks")
-    for bb in self.bb:
+    for bb in self._bb:
       newelem=et.Element("BuildingBlock")
       newelem.set("VSD:id",bb._id)#"".join([str(int(i)) for i in bb.pos]))
       #newelem.set("type",bb.type)
@@ -363,12 +373,46 @@ class Satellite(ibossxml):
     
   #adds a new building block to the satellite
   def add_bb(self,bb):  #todo variable length argument list
-    newbs=copy.copy(bb)
-    self.bb.append(newbs)
-   
+    newbs = copy.copy(bb)
+    newbs.index = tuple((newbs.pos/newbs.size).magnitude.astype(int))
+    for i in newbs.grid:
+      #print(i, newbs.index[0]+i[0])
+      self._grid[(newbs.index[0]+i[0],newbs.index[1]+i[1],newbs.index[2]+i[2])] = newbs
+      #self.grid = newbs
+    self._bb.append(newbs)
+  
+  def get_bb_neighbours(self,bb):
+    """return direct neigbours of buildingblocks in a list
+      
+      Args:
+        bb: an iboss building block
+        
+      Returns:
+        the returned list looks for example like this:
+        [[<iboss_catalogue.buildingblock object at 0x7f4dfed03be0>, array([-1,  0,  0])],
+        [<iboss_catalogue.buildingblock object at 0x7f4dfed03828>, array([0, 1, 0])],
+        [<iboss_catalogue.buildingblock object at 0x7f4dfed037b8>, array([ 0,  0, -1])]]
+
+        where the first element in the 2d-list is a reference to a buildingblock and the second 
+        reference is a vector to this bulidingblock
+        """
+    #TODO: right now only neighbours of 1x1x1 buildingblocks are supported
+    nbb = []
+    for i in (0,1,2):
+      for j in (-1,1):
+        ind = np.array(bb.index)
+        ind[i] += j 
+        ind= tuple(ind)
+        if ind in self._grid:
+          conn_vec = vec(*ind) - vec(*bb.index)
+          nbb.append([self._grid[ind], conn_vec])
+    
+    return nbb
+    
+  
   def update(self):
-    self.mass=np.sum([bb.mass for bb in self.bb])*pq.kg
-    self.com=np.sum([(vec(*bb.pos)*(self.bbsize+self.bbgap))*bb.mass for bb in self.bb],axis=0)*pq.kg*pq.m/self.mass
+    self.mass=np.sum([bb.mass for bb in self._bb])*pq.kg
+    self.com=np.sum([(vec(*bb.pos)*(self.bbsize+self.bbgap))*bb.mass for bb in self._bb],axis=0)*pq.kg*pq.m/self.mass
 
 class Catalog(object):
   def __init__(self):
@@ -408,13 +452,13 @@ class Catalog(object):
       
     for bb in sorted(self.bb.values(),key=lambda instance: instance.name.lower()):
       bb._id=ibossxml.getid()
-      for co in sorted(bb.components,key=lambda instance: instance.name.lower()):
+      for co in sorted(bb._co,key=lambda instance: instance.name.lower()):
         co._id = ibossxml.getid()
         co._refid = self.co[co.name]._id
     
     for sat in sorted(self.sat.values(),key=lambda instance: instance.name.lower()):
       sat._id=ibossxml.getid()
-      for bb in sorted(sat.bb,key=lambda instance: instance.name.lower()):
+      for bb in sorted(sat._bb,key=lambda instance: instance.name.lower()):
         bb._id = ibossxml.getid()
         bb._refid = self.bb[bb.name]._id
     
@@ -465,7 +509,7 @@ class Catalog(object):
     f.write(prettyprintxml(xml))
     f.close()
 
-  def save(self, version=Version):
+  def save(self, version=newVersion):
     self.update()
     katalog=et.Element("Catalog",version=Version)
     katalog.append(self.ibosslist2xml("componentDefs",self.co.values()))#TODO: componentDefs und buildingBlockDefs 
@@ -581,7 +625,15 @@ def savedata(data, filename = "./bausteinkatalog/katalogdata_new.iboss"):
 
 def main():
   cat=Catalog()
-  cat.loadxmlfile()
+  cat.loadxmldata()
+  cat.update()
+  #for bb in cat.bb.values():
+  #  if 'Kernstruktur' in bb.name:
+  #    bb.grid
+  
+  sat=cat.sat["EnMAP"]
+  bb=sat._bb[0]
+  import IPython
   IPython.embed()
   #cat.bbvarchange("power",delete=True)
   

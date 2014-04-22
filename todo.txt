@@ -44,36 +44,65 @@ Analyse von Simulationsergebnisse:
 
 Modell-Struktur in Modelica:
 ============================
-  - Wiederstände und andere Komponenten lassen sich über das Stichwort "replacable" parametrisieren
-  - separate Modelle für Thermal, EVS, Lageregelung und dann die einzelnen Bausteinklassen in einem "Supermodell" verheiraten?
-  - cardinality keyword -> feststellen, welche Schnittstellen verbunden sind, und welche nicht.
-  - connections können auch in for-loops/if Abfragen usw... deklariert werden!
-  - "terminate" Beendet Simulation nach einer vorgegeben Bedingung
-  - Record classes benutzen, um verschiedene Bausteinarten und Schnittstellenanzahl usw zu parametrisieren.
+- Wiederstände und andere Komponenten lassen sich über das Stichwort "replacable" parametrisieren
+- separate Modelle für Thermal, EVS, Lageregelung und dann die einzelnen Bausteinklassen in einem "Supermodell" verheiraten?
+- cardinality keyword -> feststellen, welche Schnittstellen verbunden sind, und welche nicht.
+- connections können auch in for-loops/if Abfragen usw... deklariert werden!
+- "terminate" Beendet Simulation nach einer vorgegeben Bedingung
+- Record classes benutzen, um verschiedene Bausteinarten und Schnittstellenanzahl usw zu parametrisieren.
+
+Fragen:
+=======
+- was ist besser?  kleine cmgs  in alles Bausteinen, oder ein großer baustein mit einem großen CMG?
+--> z.B. was Größe und gewicht und Energieverbrauch usw.. angeht
+
 
 Experimente:
 ============
-  * Ein simulierter "Lockdown" der Solarzellen als Verifikation
-  * Versuch mithilfe von Magnetspulen den Satelliten zu stabilisieren
-  * Rückkopplungsverhalten bei Tag & Nachtwechsel zeigen
-  * Anzahl der Bausteine und Stabilität des EVS in Abhängigkeit der Energieerzeugung
-  * Anzahl der benötigten Batterien
-  * Anzahl der benötigten Solarzellen
-  * Maximale Verbrauchswerte für einzelne Bausteine in Abhängigkeit der Energieerzeugung (damit z.B. keine Thermalgrenzwerte überschritten werden.)
-  * Stabilität des EVS?
-  * PCU Regler testen
-  * AOCS testen
+- momentum management scheme 
+- Ein simulierter "Lockdown" der Solarzellen als Verifikation
+- Versuch mithilfe von Magnetspulen den Satelliten zu stabilisieren
+- Rückkopplungsverhalten bei Tag & Nachtwechsel zeigen
+- Anzahl der Bausteine und Stabilität des EVS in Abhängigkeit der Energieerzeugung
+- Anzahl der benötigten Batterien
+- Anzahl der benötigten Solarzellen
+- Maximale Verbrauchswerte für einzelne Bausteine in Abhängigkeit der Energieerzeugung (damit z.B. keine Thermalgrenzwerte überschritten werden.)
+- Stabilität des EVS?
+- PCU Regler testen
+- AOCS testen
 
 
 Bausteinkatalog/XML:
 ====================
 
+parametrisierte Komponenten
+---------------------------
+- Komponenten durch Parameterfunktion darstellen
+- Beispiel: Wenn Komponente "Reaktionsrad" doppelt so viele Moment erzeugen kann, dann ist sie viermal so schwer. (m = 2 * tau_max)
+- Komponenten durch modelica Modelle ersetzen
+- Optimierung Anhand dieser Funktionen
+- benötigte Komponenten 
+  - Bausteinstruktur
+  - Raktionsräder
+  - Tank
+  - Batterien
+  - Solarzellen
+  - Thruster
+  - Bausteintypen: 
+    - Verbraucher
+    - Tankbausteine
+    - ...
+
 spezifische Werte:
 ------------------
 - neue Werte: min_power, nominal_power und mean power (mean power wird in Simulation berechnet), max_power. 
+- Orientierung der Thruster/Drallräder/Sensoren innerhalb der Bausteine muss noch aufgeschrieben werden.
 - Baustein Positionen sind noch fehlerhaft
 - Bausteingrößen müssen noch angegeben werden
 - Baustein Orientierung muss in den Katalog
+- bausteinpositionen und Orientierung im Satelliten müssen in ordnung gebracht werden (z.B. Enmap Ausrichtung mit launchadapter in Zn Richtung)
+- Definitionen für Mehrfachbausteine anpassen
+- Definitionen für Schnittstellen in Bausteinen
 
 verschiedenes:
 --------------

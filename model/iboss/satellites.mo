@@ -1,6 +1,6 @@
 // CP: 65001
 // SimulationX Version: 3.6.1.26028
-within iboss;
+//within iboss;
 package satellites
 	model generic_sat
 		parameter Integer size_x=3;
@@ -3401,12 +3401,12 @@ package satellites
 		parameter Integer size_z=1;
 		inner Modelica.Mechanics.MultiBody.World world(gravityType=Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity);
 		Modelica.Mechanics.MultiBody.Joints.FreeMotion r(
-			w_rel_a_start={0.1,0.5,0.0},
 			r_rel_a(start={0.0,0.0,0.0}),
-			v_rel_a(start={0.0,0.0,0.0}));
-		iboss.buildingblocks.basic_structure bs[size_x];
+			v_rel_a(start={0.0,0.0,0.0}),
+			w_rel_a_start={0.1,0.5,0.0});
+		iboss.buildingblocks.basic_structure bs[size_x] annotation(Placement(transformation(extent={{-10,-10},{10,10}})));
 		equation
-			    connect(bs[0].Yps,r.frame_b);
+			    connect(bs[1].Yps,r.frame_b);
 			    connect(world.frame_b,r.frame_a);
 			    //connect other buildingblocks
 			    for i in 1:size_x - 1 loop
@@ -3428,10 +3428,14 @@ package satellites
 			
 			end for;
 			//*/
-		annotation(experiment(
-			StartTime=0.0,
-			StopTime=100.0,
-			Tolerance=1e-06));
+		annotation(
+			viewinfo[0](
+				viewSettings(clrRaster=12632256),
+				typename="ModelInfo"),
+			experiment(
+				StopTime=100,
+				StartTime=0,
+				Tolerance=1e-006));
 	end generic_sat_aocs;
 	model ass3x1x1
 		satcomponents.AOCS.ctrl.ACS_bus aCS_bus1 annotation(Placement(transformation(extent={{25,25},{45,45}})));
@@ -3702,7 +3706,8 @@ package satellites
 							T(flags=2),
 							w(flags=2)),
 						f(flags=2),
-						t(flags=2))),
+						t(flags=2)),
+					noise_ung(y(flags=2))),
 				reactionwheelsimple_noelectricity1(
 					acs_bus(
 						w(flags=2),
@@ -3841,7 +3846,8 @@ package satellites
 					w(flags=2),
 					w_a(flags=2),
 					u(flags=2),
-					y(flags=2))))),
+					y(flags=2)))),
+				imu(noise_ung(y(flags=2)))),
 			basic4(
 				Struktur(
 					frame_a(
@@ -3866,7 +3872,8 @@ package satellites
 					w(flags=2),
 					w_a(flags=2),
 					u(flags=2),
-					y(flags=2))))),
+					y(flags=2)))),
+				imu(noise_ung(y(flags=2)))),
 			gain1(y(flags=2)),
 			error(y(flags=2)),
 			experiment(
@@ -3874,7 +3881,6 @@ package satellites
 				StartTime=0));
 	end ass3x1x1;
 	model ass3x2x1
-		satcomponents.AOCS.ctrl.ACS_bus aCS_bus1 annotation(Placement(transformation(extent={{25,25},{45,45}})));
 		inner Modelica.Mechanics.MultiBody.World world(
 			enableAnimation=animation,
 			gravityType=Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(transformation(
@@ -3886,57 +3892,497 @@ package satellites
 			r_rel_a(start={0.0,0.0,0.0}),
 			v_rel_a(start={0.0,0.0,0.0}),
 			w_rel_a_fixed=true,
-			w_rel_a_start={0.0,0.1,0.5},
+			w_rel_a_start={0.05,0.1,0.1},
 			enforceStates=true) annotation(Placement(transformation(
 			origin={20,80},
 			extent={{-10,-10},{10,10}})));
-		Modelica.Blocks.Sources.Constant const[3](k=0) annotation(Placement(transformation(
-			origin={-100,45},
-			extent={{-10,-10},{10,10}})));
-		Modelica.Blocks.Math.Gain gain1[3](k=1.0) annotation(Placement(transformation(extent={{-30,30},{-10,50}})));
-		Modelica.Blocks.Math.Add error[3](k2=-1) annotation(Placement(transformation(extent={{-70,30},{-50,50}})));
-		buildingblocks.basic_wheel3x basic_wheel3x1(id=1) annotation(Placement(transformation(extent={{60,25},{95,60}})));
-		buildingblocks.basic basic1(id=2) annotation(Placement(transformation(extent={{100,25},{135,60}})));
-		iboss.buildingblocks.basic basic2(id=3) annotation(Placement(transformation(extent={{60,-15},{95,20}})));
+		buildingblocks.basic_wheel3x basic_wheel3x1(
+			id=1,
+			net_delay=0,
+			redeclare replaceable iboss.satcomponents.AOCS.Parts.IMU_nonoise imu) annotation(Placement(transformation(extent={{-20,20},{15,55}})));
+		buildingblocks.basic basic1(
+			id=2,
+			net_delay=0.1,
+			redeclare replaceable iboss.satcomponents.AOCS.Parts.IMU_no_sam_delay imu) annotation(Placement(transformation(extent={{20,20},{55,55}})));
+		buildingblocks.basic basic2(
+			id=3,
+			net_delay=0.08,
+			redeclare replaceable iboss.satcomponents.AOCS.Parts.IMU_no_sam_delay imu) annotation(Placement(transformation(extent={{-20,-20},{15,15}})));
+		satcomponents.AOCS.ctrl.ACS_P aCS_P1(gain1(k=3.0)) annotation(Placement(transformation(extent={{-65,25},{-45,45}})));
 		equation
 			connect(world.frame_b,r.frame_a) annotation(Line(
 				points={{-10,80},{-5,80},{5,80},{10,80}},
 				color={95,95,95},
 				thickness=0.015625));
-			connect(const.y,error.u1) annotation(Line(
-				points={{-89,45},{-84,45},{-77,45},{-77,46},{-72,46}},
-				color={0,0,127},
+			
+			
+			connect(r.frame_b,basic_wheel3x1.Yps) annotation(Line(
+				points={{30,80},{35,80},{35,68.3},{1,68.3},{1,56.7},{1,
+				51.7}},
+				color={95,95,95},
 				thickness=0.0625));
-			connect(error.y,gain1.u) annotation(Line(
-				points={{-49,40},{-44,40},{-37,40},{-32,40}},
-				color={0,0,127},
+			connect(basic_wheel3x1.Xps,basic1.Xns) annotation(Line(
+				points={{11.3,34},{16.3,34},{18.7,34},{18.7,41},{23.7,41}},
+				color={95,95,95},
 				thickness=0.0625));
-			connect(error.u2,aCS_bus1.w[1,:]) annotation(
-				Line(
-					points={{-77,24},{-82,24},{-82,0},{30,0},{35,35}},
-					color={0,0,127},
-					thickness=0.0625),
-				AutoRoute=false);
-			connect(gain1.y,aCS_bus1.w_a[1,:]) annotation(Line(
-				points={{-19,35},{-14,35},{30,35},{35,35}},
-				color={0,0,127},
+			connect(basic_wheel3x1.Yns,basic2.Yps) annotation(Line(
+				points={{-6,23.3},{-6,18.3},{-6,16.7},{1,16.7},{1,11.7}},
+				color={95,95,95},
 				thickness=0.0625));
+			connect(aCS_P1.acs_bus,basic_wheel3x1.Xn.sat_bus.acs_bus) annotation(Line(
+				points={{-45,35},{-40,35},{-21.3,35},{-21.3,37.3},{-16.3,37.3}},
+				thickness=0.0625));
+		annotation(
+			basic_wheel3x1(
+				Struktur(
+					frame_a(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					r_0(flags=2),
+					v_0(flags=2),
+					a_0(flags=2),
+					w_a(flags=2),
+					z_a(flags=2),
+					g_0(flags=2)),
+				reactionwheel3axis_noelectricity1(
+					wheel_x(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						frame_b(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						r_0(flags=2),
+						v_0(flags=2),
+						a_0(flags=2),
+						frameTranslation(
+							frame_a(
+								r_0(flags=2),
+								R(
+									T(flags=2),
+									w(flags=2)),
+								f(flags=2),
+								t(flags=2)),
+							frame_b(
+								r_0(flags=2),
+								R(
+									T(flags=2),
+									w(flags=2)),
+								f(flags=2),
+								t(flags=2))),
+						body(
+							frame_a(
+								r_0(flags=2),
+								R(
+									T(flags=2),
+									w(flags=2)),
+								f(flags=2),
+								t(flags=2)),
+							r_0(flags=2),
+							v_0(flags=2),
+							a_0(flags=2),
+							w_a(flags=2),
+							z_a(flags=2),
+							g_0(flags=2))),
+					wheel_y(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						frame_b(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						r_0(flags=2),
+						v_0(flags=2),
+						a_0(flags=2),
+						frameTranslation(
+							frame_a(
+								r_0(flags=2),
+								R(
+									T(flags=2),
+									w(flags=2)),
+								f(flags=2),
+								t(flags=2)),
+							frame_b(
+								r_0(flags=2),
+								R(
+									T(flags=2),
+									w(flags=2)),
+								f(flags=2),
+								t(flags=2))),
+						body(
+							frame_a(
+								r_0(flags=2),
+								R(
+									T(flags=2),
+									w(flags=2)),
+								f(flags=2),
+								t(flags=2)),
+							r_0(flags=2),
+							v_0(flags=2),
+							a_0(flags=2),
+							w_a(flags=2),
+							z_a(flags=2),
+							g_0(flags=2))),
+					wheel_z(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						frame_b(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						r_0(flags=2),
+						v_0(flags=2),
+						a_0(flags=2),
+						frameTranslation(
+							frame_a(
+								r_0(flags=2),
+								R(
+									T(flags=2),
+									w(flags=2)),
+								f(flags=2),
+								t(flags=2)),
+							frame_b(
+								r_0(flags=2),
+								R(
+									T(flags=2),
+									w(flags=2)),
+								f(flags=2),
+								t(flags=2))),
+						body(
+							frame_a(
+								r_0(flags=2),
+								R(
+									T(flags=2),
+									w(flags=2)),
+								f(flags=2),
+								t(flags=2)),
+							r_0(flags=2),
+							v_0(flags=2),
+							a_0(flags=2),
+							w_a(flags=2),
+							z_a(flags=2),
+							g_0(flags=2))))),
+			basic1(imu(
+				add1(y(flags=2)),
+				noise_ung2(y(flags=2)),
+				noise_ung1(y(flags=2)),
+				noise_ung3(y(flags=2)))),
+			basic2(imu(
+				noise_ung2(y(flags=2)),
+				noise_ung1(y(flags=2)),
+				noise_ung3(y(flags=2)))),
+			aCS_P1(error(y(flags=2))),
+			viewinfo[0](
+				minOrder=0.5,
+				maxOrder=12,
+				mode=0,
+				minStep=0.01,
+				maxStep=0.1,
+				relTol=1e-005,
+				oversampling=4,
+				anaAlgorithm=0,
+				typename="AnaStatInfo"),
+			viewinfo[1](
+				viewSettings(clrRaster=12632256),
+				typename="ModelInfo"),
+			experiment(
+				StopTime=100,
+				StartTime=0));
+	end ass3x2x1;
+	model ass3x2x1_spring
+		inner Modelica.Mechanics.MultiBody.World world(
+			enableAnimation=animation,
+			gravityType=Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(transformation(
+			origin={-20,80},
+			extent={{-10,-10},{10,10}})));
+		parameter Boolean animation=false "= true, if animation shall be enabled (show cylinder and sphere)";
+		parameter Real C_const;
+		Modelica.Mechanics.MultiBody.Joints.FreeMotion r(
+			animation=false,
+			r_rel_a(start={0.0,0.0,0.0}),
+			v_rel_a(start={0.0,0.0,0.0}),
+			w_rel_a_fixed=true,
+			w_rel_a_start={0.0,0.1,0.5},
+			enforceStates=true) annotation(Placement(transformation(
+			origin={20,80},
+			extent={{-10,-10},{10,10}})));
+		buildingblocks.basic_wheel3x basic_wheel3x1(id=1) annotation(Placement(transformation(extent={{60,25},{95,60}})));
+		buildingblocks.basic basic1(
+			r(start={0.41,0,0}),
+			id=2) annotation(Placement(transformation(extent={{145,25},{180,60}})));
+		buildingblocks.basic basic4(
+			r(start={0.82,0,0}),
+			id=3) annotation(Placement(transformation(extent={{225,25},{260,60}})));
+		satcomponents.AOCS.ctrl.ACS_P aCS_P1 annotation(Placement(transformation(extent={{-5,25},{15,45}})));
+		buildingblocks.basic_wheel3x basic_wheel3x2(id=1) annotation(Placement(transformation(extent={{60,-55},{95,-20}})));
+		buildingblocks.basic basic2(
+			r(start={0.41,0,0}),
+			id=2) annotation(Placement(transformation(extent={{145,-55},{180,-20}})));
+		buildingblocks.basic basic3(
+			r(start={0.82,0,0}),
+			id=3) annotation(Placement(transformation(extent={{225,-55},{260,-20}})));
+		components.spring_connection spring_connection1 annotation(Placement(transformation(extent={{105,35},{125,45}})));
+		iboss.components.spring_connection spring_connection2 annotation(Placement(transformation(extent={{110,-40},{130,-30}})));
+		iboss.components.spring_connection spring_connection3 annotation(Placement(transformation(extent={{190,35},{210,45}})));
+		iboss.components.spring_connection spring_connection4 annotation(Placement(transformation(extent={{195,-40},{215,-30}})));
+		iboss.components.spring_connection spring_connection7(prismatic4(n={0,1,0})) annotation(Placement(transformation(
+			origin={75,5},
+			extent={{-10,-5},{10,5}},
+			rotation=-90)));
+		iboss.components.spring_connection spring_connection5(prismatic4(n={0,1,0})) annotation(Placement(transformation(
+			origin={160,5},
+			extent={{-10,-5},{10,5}},
+			rotation=-90)));
+		iboss.components.spring_connection spring_connection6(prismatic4(n={0,1,0})) annotation(Placement(transformation(
+			origin={240,5},
+			extent={{-10,-5},{10,5}},
+			rotation=-90)));
+		equation
+			connect(world.frame_b,r.frame_a) annotation(Line(
+				points={{-10,80},{-5,80},{5,80},{10,80}},
+				color={95,95,95},
+				thickness=0.015625));
+			
+			
 			connect(r.frame_b,basic_wheel3x1.Yps) annotation(Line(
 				points={{30,80},{35,80},{81,80},{81,61.7},{81,56.7}},
 				color={95,95,95},
 				thickness=0.0625));
-			connect(basic_wheel3x1.Xn.sat_bus.acs_bus,aCS_bus1) annotation(Line(points={{63.7,42.3},{58.7,42.3},{40,42.3},{40,35},{35,35}}));
-			connect(basic_wheel3x1.Xps,basic1.Xns) annotation(Line(
-				points={{91.3,39},{96.3,39},{98.7,39},{98.7,46},{103.7,46}},
+			connect(aCS_P1.acs_bus,basic_wheel3x1.Xn.sat_bus.acs_bus) annotation(Line(
+				points={{15,35},{20,35},{58.7,35},{58.7,42.3},{63.7,42.3}},
+				thickness=0.0625));
+			connect(basic_wheel3x1.Xps,spring_connection1.frame_a) annotation(Line(
+				points={{91.3,39},{96.3,39},{96.3,46.3},{109.3,46.3},{109.3,41.3}},
 				color={95,95,95},
 				thickness=0.0625));
-			connect(basic_wheel3x1.Yns,basic2.Yps) annotation(Line(
-				points={{74,28.3},{74,23.3},{74,21.7},{81,21.7},{81,16.7}},
+			connect(spring_connection1.frame_b,basic1.Xns) annotation(Line(
+				points={{122.3,41.3},{127.3,41.3},{143.7,41.3},{143.7,46},{148.7,46}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(basic1.Xps,spring_connection3.frame_a) annotation(Line(
+				points={{176.3,39},{181.3,39},{181.3,46.3},{194.3,46.3},{194.3,41.3}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(spring_connection3.frame_b,basic4.Xns) annotation(Line(
+				points={{207.3,41.3},{212.3,41.3},{223.7,41.3},{223.7,46},{228.7,46}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(basic4.Yns,spring_connection6.frame_a) annotation(Line(
+				points={{239,28.3},{239,23.3},{246.3,23.3},{246.3,10.7},{241.3,10.7}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(spring_connection6.frame_b,basic3.Yps) annotation(Line(
+				points={{241.3,-2.3},{241.3,-7.3},{241.3,-18.3},{246,-18.3},{246,-23.3}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(basic3.Xns,spring_connection4.frame_b) annotation(Line(
+				points={{228.7,-34},{223.7,-34},{217.3,-34},{217.3,-33.7},{212.3,-33.7}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(spring_connection4.frame_a,basic2.Xps) annotation(Line(
+				points={{199.3,-33.7},{199.3,-28.7},{190.3,-28.7},{190.3,-41},{181.3,-41},{176.3,
+				-41}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(basic2.Xns,spring_connection2.frame_b) annotation(Line(
+				points={{148.7,-34},{143.7,-34},{132.3,-34},{132.3,-33.7},{127.3,-33.7}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(spring_connection2.frame_a,basic_wheel3x2.Xps) annotation(Line(
+				points={{114.3,-33.7},{114.3,-28.7},{105.3,-28.7},{105.3,-41},{96.3,-41},{91.3,
+				-41}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(spring_connection7.frame_b,basic_wheel3x2.Yps) annotation(Line(
+				points={{76.3,-2.3},{76.3,-7.3},{76.3,-18.3},{81,-18.3},{81,-23.3}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(spring_connection7.frame_a,basic_wheel3x1.Yns) annotation(Line(
+				points={{76.3,10.7},{81.3,10.7},{81.3,17},{74,17},{74,23.3},{74,
+				28.3}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(basic1.Yns,spring_connection5.frame_a) annotation(Line(
+				points={{159,28.3},{159,23.3},{166.3,23.3},{166.3,10.7},{161.3,10.7}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(spring_connection5.frame_b,basic2.Yps) annotation(Line(
+				points={{161.3,-2.3},{161.3,-7.3},{161.3,-18.3},{166,-18.3},{166,-23.3}},
 				color={95,95,95},
 				thickness=0.0625));
 		annotation(
-			error(y(flags=2)),
 			basic_wheel3x1(reactionwheel3axis_noelectricity1(
+				wheel_x(
+					frame_a(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					frame_b(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					r_0(flags=2),
+					v_0(flags=2),
+					a_0(flags=2),
+					frameTranslation(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						frame_b(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2))),
+					body(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						r_0(flags=2),
+						v_0(flags=2),
+						a_0(flags=2),
+						w_a(flags=2),
+						z_a(flags=2),
+						g_0(flags=2))),
+				wheel_y(
+					frame_a(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					frame_b(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					r_0(flags=2),
+					v_0(flags=2),
+					a_0(flags=2),
+					frameTranslation(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						frame_b(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2))),
+					body(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						r_0(flags=2),
+						v_0(flags=2),
+						a_0(flags=2),
+						w_a(flags=2),
+						z_a(flags=2),
+						g_0(flags=2))),
+				wheel_z(
+					frame_a(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					frame_b(
+						r_0(flags=2),
+						R(
+							T(flags=2),
+							w(flags=2)),
+						f(flags=2),
+						t(flags=2)),
+					r_0(flags=2),
+					v_0(flags=2),
+					a_0(flags=2),
+					frameTranslation(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						frame_b(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2))),
+					body(
+						frame_a(
+							r_0(flags=2),
+							R(
+								T(flags=2),
+								w(flags=2)),
+							f(flags=2),
+							t(flags=2)),
+						r_0(flags=2),
+						v_0(flags=2),
+						a_0(flags=2),
+						w_a(flags=2),
+						z_a(flags=2),
+						g_0(flags=2))))),
+			aCS_P1(error(y(flags=2))),
+			basic_wheel3x2(reactionwheel3axis_noelectricity1(
 				wheel_x(
 					frame_a(
 						r_0(flags=2),
@@ -4081,5 +4527,56 @@ package satellites
 			experiment(
 				StopTime=100,
 				StartTime=0));
-	end ass3x2x1;
+	end ass3x2x1_spring;
+	model ass1x1x1
+		inner Modelica.Mechanics.MultiBody.World world(
+			enableAnimation=animation,
+			gravityType=Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(transformation(
+			origin={-20,80},
+			extent={{-10,-10},{10,10}})));
+		parameter Boolean animation=false "= true, if animation shall be enabled (show cylinder and sphere)";
+		Modelica.Mechanics.MultiBody.Joints.FreeMotion r(
+			animation=false,
+			r_rel_a(start={0.0,0.0,0.0}),
+			v_rel_a(start={0.0,0.0,0.0}),
+			w_rel_a_fixed=true,
+			w_rel_a_start={0.0,0.4,0.2},
+			enforceStates=true) annotation(Placement(transformation(
+			origin={20,80},
+			extent={{-10,-10},{10,10}})));
+		buildingblocks.basic basic1(
+			id=1,
+			delay=0.001) annotation(Placement(transformation(extent={{45,10},{80,45}})));
+		equation
+			connect(world.frame_b,r.frame_a) annotation(Line(
+				points={{-10,80},{-5,80},{5,80},{10,80}},
+				color={95,95,95},
+				thickness=0.015625));
+			
+			
+			connect(r.frame_b,basic1.Yps) annotation(Line(
+				points={{30,80},{35,80},{66,80},{66,46.7},{66,41.7}},
+				color={95,95,95},
+				thickness=0.0625));
+		annotation(
+			basic1(imu(
+				noise_ung2(y(flags=2)),
+				noise_ung1(y(flags=2)),
+				noise_ung3(y(flags=2)))),
+			viewinfo[0](
+				minOrder=0.5,
+				maxOrder=12,
+				mode=0,
+				minStep=0.01,
+				maxStep=0.1,
+				relTol=1e-005,
+				oversampling=4,
+				anaAlgorithm=0,
+				bPerMinStates=true,
+				bPerScaleRows=false,
+				typename="AnaStatInfo"),
+			experiment(
+				StopTime=100,
+				StartTime=0));
+	end ass1x1x1;
 end satellites;

@@ -1,6 +1,6 @@
 // CP: 65001
 // SimulationX Version: 3.6.1.26028
-within iboss;
+//within iboss;
 package components
 	model iboss_interface
 		Modelica.Electrical.Analog.Sensors.VoltageSensor voltageSensor2 annotation(Placement(transformation(
@@ -192,22 +192,22 @@ package components
 		annotation(
 			defaultComponentName="iBoss_connector",
 			Icon(graphics={
-						Rectangle(
-							fillColor={255,220,168},
-							fillPattern=FillPattern.Solid,
-							lineThickness=1,
-							extent={{-100,100},{100,-100}},
-							origin={0.22,0})}),
+									Rectangle(
+										fillColor={255,220,168},
+										fillPattern=FillPattern.Solid,
+										lineThickness=1,
+										extent={{-100,100},{100,-100}},
+										origin={0.22,0})}),
 			Diagram(graphics={
-						Text(
-							textString="%name",
-							fillPattern=FillPattern.Solid,
-							extent={{-102.764,-102.343},{97.23560000000001,-162.343}}),
-						Rectangle(
-							fillColor={255,220,168},
-							fillPattern=FillPattern.Solid,
-							extent={{-91.81,87.72},{91.81,-87.72}},
-							origin={-1.11,1.88})}));
+									Text(
+										textString="%name",
+										fillPattern=FillPattern.Solid,
+										extent={{-102.764,-102.343},{97.23560000000001,-162.343}}),
+									Rectangle(
+										fillColor={255,220,168},
+										fillPattern=FillPattern.Solid,
+										extent={{-91.81,87.72},{91.81,-87.72}},
+										origin={-1.11,1.88})}));
 	end iboss_int;
 	connector iboss_int_mech
 		annotation(
@@ -223,17 +223,58 @@ package components
 			Icon(
 				coordinateSystem(extent={{-101.7,-51.7},{101.7,51.7}}),
 				graphics={
-																														Rectangle(
-																															lineColor={0,0,0},
-																															fillColor={255,255,255},
-																															fillPattern=FillPattern.Solid,
-																															extent={{-80,83.3},{86.7,-86.7}}),
-																														Text(
-																															textString="ROUT",
-																															lineColor={0,0,0},
-																															extent={{-50,43.3},{53.3,-46.7}})}),
+																																		Rectangle(
+																																			lineColor={0,0,0},
+																																			fillColor={255,255,255},
+																																			fillPattern=FillPattern.Solid,
+																																			extent={{-80,83.3},{86.7,-86.7}}),
+																																		Text(
+																																			textString="ROUT",
+																																			lineColor={0,0,0},
+																																			extent={{-50,43.3},{53.3,-46.7}})}),
 			experiment(
 				StopTime=1,
 				StartTime=0));
 	end router;
+	model spring_connection "spring connection between iboss elements"
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(
+			transformation(extent={{-75,-2},{-43,30}}),
+			iconTransformation(extent={{-75,-2},{-43,30}})));
+		Modelica.Mechanics.MultiBody.Interfaces.Frame_b frame_b annotation(Placement(
+			transformation(extent={{60,-2},{92,30}}),
+			iconTransformation(extent={{60,-2},{92,30}})));
+		Modelica.Mechanics.MultiBody.Joints.Prismatic prismatic4(
+			useAxisFlange=true,
+			animation=false) annotation(Placement(transformation(extent={{-5,5},{15,25}})));
+		Modelica.Mechanics.Translational.Components.Spring spring4 annotation(Placement(transformation(extent={{-5,30},{15,50}})));
+		equation
+			connect(spring4.flange_a,prismatic4.support) annotation(Line(
+				points={{-5,40},{-10,40},{-10,33},{1,33},{1,26},{1,
+				21}},
+				color={0,127,0},
+				thickness=0.0625));
+			connect(spring4.flange_b,prismatic4.axis) annotation(Line(
+				points={{15,40},{20,40},{20,21},{18,21},{13,21}},
+				color={0,127,0},
+				thickness=0.0625));
+			connect(prismatic4.frame_b,frame_b) annotation(Line(
+				points={{15,15},{20,15},{71,15},{71,14},{76,14}},
+				color={95,95,95},
+				thickness=0.0625));
+			connect(prismatic4.frame_a,frame_a) annotation(Line(
+				points={{-5,15},{-10,15},{-54,15},{-54,14},{-59,14}},
+				color={95,95,95},
+				thickness=0.0625));
+		annotation(
+			Icon(
+				coordinateSystem(extent={{-101.7,-51.7},{101.7,51.7}}),
+				graphics={
+					Line(
+						points={{-50,6.7},{-33.3,26.7},{-23.3,0},{-10,26.7},{6.7,-6.7},{13.3,
+						23.3},{30,0},{40,26.7},{50,-3.3},{70,20},{73.3,23.3}},
+						color={0,0,0})}),
+			experiment(
+				StopTime=1,
+				StartTime=0));
+	end spring_connection;
 end components;

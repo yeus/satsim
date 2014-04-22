@@ -1,0 +1,188 @@
+<?xml version="1.0" ?>
+<Satellite VSD:id="id387" xmlns="http://www.VEROSIM.de/namespaces/IBOSS" xmlns:VSD="http://www.VEROSIM.de/namespaces/VSD" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.VEROSIM.de/namespaces/IBOSS ../XSD/iboss.xsd">
+	<!--
+        * Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)
+        * Date : 2014/04/03
+        * Version: 1.6
+        * All code (c)2013 Technische Universität Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved-->
+	<orbit>LEO</orbit>
+	<VSD:name>EnMAP</VSD:name>
+	<genericVariables>
+		<GenericVariable>
+			<VSD:name>Anwendung</VSD:name>
+			<value>Erdbeobachtung</value>
+		</GenericVariable>
+		<GenericVariable>
+			<VSD:name>bbgap</VSD:name>
+			<unit>m</unit>
+			<value>0.01</value>
+		</GenericVariable>
+		<GenericVariable>
+			<VSD:name>bbsize</VSD:name>
+			<unit>m</unit>
+			<value>0.4</value>
+		</GenericVariable>
+		<GenericVariable>
+			<VSD:name>Bodensegment</VSD:name>
+			<value>Command &amp; Control: DLR Oberpfaffenhofen; Wissenschaftliche Leitung: GFZ Potsdam</value>
+		</GenericVariable>
+		<GenericVariable>
+			<VSD:name>com</VSD:name>
+			<unit>m</unit>
+			<value>0.25641891 0.041609309 0.24699084</value>
+		</GenericVariable>
+		<GenericVariable>
+			<VSD:name>Inklination</VSD:name>
+			<unit>deg</unit>
+			<value>97.96</value>
+		</GenericVariable>
+		<GenericVariable>
+			<VSD:name>Launchtime</VSD:name>
+			<value>2016.0</value>
+		</GenericVariable>
+		<GenericVariable>
+			<VSD:name>Lebensdauer</VSD:name>
+			<value>Min. 5</value>
+		</GenericVariable>
+		<GenericVariable>
+			<VSD:name>mass</VSD:name>
+			<unit>kg</unit>
+			<value>585.35</value>
+		</GenericVariable>
+		<GenericVariable>
+			<VSD:name>mission_objective</VSD:name>
+			<value>Hypersprektrale Aufnahmen der Erde</value>
+		</GenericVariable>
+		<GenericVariable>
+			<VSD:name>Nutzlast</VSD:name>
+			<value>2 Hyperspektralsensoren</value>
+		</GenericVariable>
+		<GenericVariable>
+			<VSD:name>Orbitart</VSD:name>
+			<value>sonnensynchron, polar</value>
+		</GenericVariable>
+		<GenericVariable>
+			<VSD:name>Orbithoehe</VSD:name>
+			<unit>km</unit>
+			<value>653.0</value>
+		</GenericVariable>
+		<GenericVariable>
+			<VSD:name>semimajor_axis</VSD:name>
+			<unit>km</unit>
+			<value>7021.8</value>
+		</GenericVariable>
+		<GenericVariable>
+			<VSD:name>type</VSD:name>
+			<value>EnMAP</value>
+		</GenericVariable>
+		<GenericVariable>
+			<VSD:name>Umlaufzeit</VSD:name>
+			<unit>h</unit>
+			<value>1.63</value>
+		</GenericVariable>
+	</genericVariables>
+	<buildingBlocks>
+		<BuildingBlock VSD:id="id393">
+			<VSD:name>Kernstruktur2x2x2</VSD:name>
+			<position unit="m">0.41 0.0 0.41</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id246"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id390">
+			<VSD:name>GPS-Baustein (Standard)</VSD:name>
+			<position unit="m">0.41 0.41 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id208"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id391">
+			<VSD:name>GPS-Baustein (Standard)</VSD:name>
+			<position unit="m">0.82 0.41 1.23</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id208"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id401">
+			<VSD:name>Sternsensorbaustein</VSD:name>
+			<position unit="m">0.41 0.41 1.23</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id304"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id402">
+			<VSD:name>Sternsensorbaustein</VSD:name>
+			<position unit="m">0.0 0.41 0.82</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id304"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id392">
+			<VSD:name>Inertial Measurement Unit Baustein (sehr genau)</VSD:name>
+			<position unit="m">0.0 0.41 0.41</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id216"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id397">
+			<VSD:name>Reaktionsradbaustein</VSD:name>
+			<position unit="m">1.23 0.41 0.41</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id282"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id398">
+			<VSD:name>Reaktionsradbaustein</VSD:name>
+			<position unit="m">1.23 0.41 0.82</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id282"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id399">
+			<VSD:name>Reaktionsradbaustein</VSD:name>
+			<position unit="m">0.82 0.0 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id282"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id394">
+			<VSD:name>Magnetorquer-Baustein</VSD:name>
+			<position unit="m">0.41 0.0 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id252"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id403">
+			<VSD:name>TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)</VSD:name>
+			<position unit="m">0.82 0.41 0.0</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id319"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id404">
+			<VSD:name>TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)</VSD:name>
+			<position unit="m">0.41 0.0 1.23</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id319"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id400">
+			<VSD:name>Solargeneratorbaustein (entfaltbar, nachführbar)</VSD:name>
+			<position unit="m">0.82 0.0 1.23</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id295"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id388">
+			<VSD:name>Batteriebaustein</VSD:name>
+			<position unit="m">0.0 0.0 0.82</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id162"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id389">
+			<VSD:name>Batteriebaustein</VSD:name>
+			<position unit="m">1.23 0.0 0.41</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id162"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id395">
+			<VSD:name>Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)</VSD:name>
+			<position unit="m">1.23 0.0 0.82</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id260"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id396">
+			<VSD:name>Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)</VSD:name>
+			<position unit="m">0.0 0.0 0.41</position>
+			<orientation unit="deg">0.0 0.0 0.0</orientation>
+			<definition xlink:href="../Catalogs/catalog.xml#id260"/>
+		</BuildingBlock>
+	</buildingBlocks>
+</Satellite>
