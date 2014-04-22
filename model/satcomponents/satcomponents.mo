@@ -1,6 +1,5 @@
 // CP: 65001
 // SimulationX Version: 3.6.1.26028
-within iboss;
 package satcomponents
 	model Cubesat
 		Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(

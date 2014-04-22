@@ -1,6 +1,5 @@
 // CP: 65001
 // SimulationX Version: 3.6.1.26028
-within iboss;
 package modelicatests
 	model test
 		Modelica.Electrical.Analog.Basic.Resistor resistor1(R=0.1) annotation(Placement(
