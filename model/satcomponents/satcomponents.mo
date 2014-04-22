@@ -769,15 +769,15 @@ package satcomponents
           i1 = 0;
         end if;
         /*if v1 < V_in_max and v1 > V_in_min then
-                                                                                                					  v2 = V_out;
-                                                                                                					  i1 = (-i2 * v2) / v1;
-                                                                                                					elseif v1 >= V_in_min - slope then
-                                                                                                					  v2 = V_out / slope * (v1 - V_in_min + slope);
-                                                                                                					  i1 = (-i2 * v2) / v1;
-                                                                                                					else
-                                                                                                					  v2 = 0;
-                                                                                                					  i1 = 0;
-                                                                                                					end if;*/
+                                                                                                                                                					  v2 = V_out;
+                                                                                                                                                					  i1 = (-i2 * v2) / v1;
+                                                                                                                                                					elseif v1 >= V_in_min - slope then
+                                                                                                                                                					  v2 = V_out / slope * (v1 - V_in_min + slope);
+                                                                                                                                                					  i1 = (-i2 * v2) / v1;
+                                                                                                                                                					else
+                                                                                                                                                					  v2 = 0;
+                                                                                                                                                					  i1 = 0;
+                                                                                                                                                					end if;*/
         annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}), graphics = {Rectangle(fillColor = {0, 0, 255}, extent = {{-87.69450000000001, 78.6421}, {88.5431, -74.6818}}), Text(textString = "%V_out", fillColor = {0, 0, 255}, extent = {{10.4668, 68.1754}, {76.37909999999999, 30.2687}}), Text(textString = "DCDC", fillColor = {0, 0, 255}, extent = {{-63.6492, 18.9533}, {57.9915, -33.0976}})}), experiment(StopTime = 1, StartTime = 0));
       end dcdc_ideal_simple;
 
@@ -1513,7 +1513,7 @@ package satcomponents
         Real w[10, 3](each start = 0.0, each final quantity = "AngularVelocity", each final unit = "rad/s");
         Real w_a[10, 3](each start = 0.0, each final quantity = "AngularAcceleration", each final unit = "rad/s2");
         annotation(Icon(graphics = {Rectangle(fillColor = {220, 220, 220}, fillPattern = FillPattern.Solid, extent = {{-88.27, 88.61}, {88.27, -88.61}}, origin = {0.44, 1})}), Diagram(graphics = {Rectangle(fillColor = {220, 220, 220}, fillPattern = FillPattern.Solid, extent = {{-88.27, 88.61}, {88.27, -88.61}}, origin = {-0.674206, -1.50696}), Text(textString = "ACS
-           bus", extent = {{-81.06, 67.83}, {81.06, -67.83}}, origin = {0.28, -1.25206})}));
+                 bus", extent = {{-81.06, 67.83}, {81.06, -67.83}}, origin = {0.28, -1.25206})}));
       end ACS_bus;
 
       model busexample
@@ -1587,6 +1587,7 @@ package satcomponents
       extends Modelica.Blocks.Interfaces.SO;
       parameter Real amplitude = 1.0;
       parameter Real seed = 0.0;
+      constant Real m = 111.11 "int(2 ^ 31 - 1)";
 
       function rand
         input Real t;
@@ -1598,19 +1599,19 @@ package satcomponents
         constant Integer a = 16807 "7 ^ 5";
       algorithm
         x := t;
-        for i in 1:8 loop
+        for i in 1:10 loop
           x := mod(a * x + seed, m);
         end for;
         r := x / m;
       end rand;
     equation
-      y = (rand(time, seed) - 0.5) * amplitude;
+      y = (rand(time * m, seed) - 0.5) * amplitude;
       annotation(x(flags = 2), y(flags = 2), Icon(coordinateSystem(extent = {{-101.7, -51.7}, {101.7, 51.7}}), graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = {{-70, -20}, {-66.7, 20}, {-66.7, -3.3}, {-63.3, 3.3}, {-63.3, 0}, {-63.3, 10}, {-60, -3.3}, {-56.7, 16.7}, {-56.7, -13.3}, {-53.3, 36.7}, {-50, -3.3}, {-50, 10}, {-46.7, -10}, {-43.3, 6.7}, {-43.3, -3.3}, {-36.7, -23.3}, {-36.7, -10}, {-33.3, -3.3}, {-30, -10}, {-30, -3.3}, {-30, 30}, {-26.7, 30}, {-20, 6.7}, {-20, -13.3}, {-16.7, -16.7}, {-16.7, 3.3}, {-13.3, -10}, {-13.3, 3.3}, {-13.3, -16.7}, {-13.3, 43.3}, {-10, -16.7}, {-6.7, -6.7}, {-6.7, -13.3}, {-3.3, 16.7}, {-3.3, -3.3}, {-3.3, 3.3}, {0, -10}, {3.3, -13.3}, {6.7, 23.3}, {10, 6.7}, {13.3, 0}, {16.7, -6.7}, {16.7, -16.7}, {16.7, -3.3}, {20, -23.3}, {23.3, -6.7}, {23.3, -3.3}, {33.3, -23.3}, {33.3, 6.7}, {36.7, 6.7}, {40, 10}, {43.3, 46.7}, {40, -10}, {40, -13.3}, {43.3, 0}, {46.7, 10}, {50, -6.7}, {50, 3.3}, {53.3, 13.3}}, color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0));
       annotation(x(flags = 2), y(flags = 2), Icon(coordinateSystem(extent = {{-101.7, -51.7}, {101.7, 51.7}}), graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = {{-70, -20}, {-66.7, 20}, {-66.7, -3.3}, {-63.3, 3.3}, {-63.3, 0}, {-63.3, 10}, {-60, -3.3}, {-56.7, 16.7}, {-56.7, -13.3}, {-53.3, 36.7}, {-50, -3.3}, {-50, 10}, {-46.7, -10}, {-43.3, 6.7}, {-43.3, -3.3}, {-36.7, -23.3}, {-36.7, -10}, {-33.3, -3.3}, {-30, -10}, {-30, -3.3}, {-30, 30}, {-26.7, 30}, {-20, 6.7}, {-20, -13.3}, {-16.7, -16.7}, {-16.7, 3.3}, {-13.3, -10}, {-13.3, 3.3}, {-13.3, -16.7}, {-13.3, 43.3}, {-10, -16.7}, {-6.7, -6.7}, {-6.7, -13.3}, {-3.3, 16.7}, {-3.3, -3.3}, {-3.3, 3.3}, {0, -10}, {3.3, -13.3}, {6.7, 23.3}, {10, 6.7}, {13.3, 0}, {16.7, -6.7}, {16.7, -16.7}, {16.7, -3.3}, {20, -23.3}, {23.3, -6.7}, {23.3, -3.3}, {33.3, -23.3}, {33.3, 6.7}, {36.7, 6.7}, {40, 10}, {43.3, 46.7}, {40, -10}, {40, -13.3}, {43.3, 0}, {46.7, 10}, {50, -6.7}, {50, 3.3}, {53.3, 13.3}}, color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0), x(flags = 2), y(flags = 2), Icon(coordinateSystem(extent = {{-101.7, -51.7}, {101.7, 51.7}}), graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = {{-70, -20}, {-66.7, 20}, {-66.7, -3.3}, {-63.3, 3.3}, {-63.3, 0}, {-63.3, 10}, {-60, -3.3}, {-56.7, 16.7}, {-56.7, -13.3}, {-53.3, 36.7}, {-50, -3.3}, {-50, 10}, {-46.7, -10}, {-43.3, 6.7}, {-43.3, -3.3}, {-36.7, -23.3}, {-36.7, -10}, {-33.3, -3.3}, {-30, -10}, {-30, -3.3}, {-30, 30}, {-26.7, 30}, {-20, 6.7}, {-20, -13.3}, {-16.7, -16.7}, {-16.7, 3.3}, {-13.3, -10}, {-13.3, 3.3}, {-13.3, -16.7}, {-13.3, 43.3}, {-10, -16.7}, {-6.7, -6.7}, {-6.7, -13.3}, {-3.3, 16.7}, {-3.3, -3.3}, {-3.3, 3.3}, {0, -10}, {3.3, -13.3}, {6.7, 23.3}, {10, 6.7}, {13.3, 0}, {16.7, -6.7}, {16.7, -16.7}, {16.7, -3.3}, {20, -23.3}, {23.3, -6.7}, {23.3, -3.3}, {33.3, -23.3}, {33.3, 6.7}, {36.7, 6.7}, {40, 10}, {43.3, 46.7}, {40, -10}, {40, -13.3}, {43.3, 0}, {46.7, 10}, {50, -6.7}, {50, 3.3}, {53.3, 13.3}}, color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0), x(flags = 2), y(flags = 2), Icon(coordinateSystem(extent = {{-101.7, -51.7}, {101.7, 51.7}}), graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = {{-70, -20}, {-66.7, 20}, {-66.7, -3.3}, {-63.3, 3.3}, {-63.3, 0}, {-63.3, 10}, {-60, -3.3}, {-56.7, 16.7}, {-56.7, -13.3}, {-53.3, 36.7}, {-50, -3.3}, {-50, 10}, {-46.7, -10}, {-43.3, 6.7}, {-43.3, -3.3}, {-36.7, -23.3}, {-36.7, -10}, {-33.3, -3.3}, {-30, -10}, {-30, -3.3}, {-30, 30}, {-26.7, 30}, {-20, 6.7}, {-20, -13.3}, {-16.7, -16.7}, {-16.7, 3.3}, {-13.3, -10}, {-13.3, 3.3}, {-13.3, -16.7}, {-13.3, 43.3}, {-10, -16.7}, {-6.7, -6.7}, {-6.7, -13.3}, {-3.3, 16.7}, {-3.3, -3.3}, {-3.3, 3.3}, {0, -10}, {3.3, -13.3}, {6.7, 23.3}, {10, 6.7}, {13.3, 0}, {16.7, -6.7}, {16.7, -16.7}, {16.7, -3.3}, {20, -23.3}, {23.3, -6.7}, {23.3, -3.3}, {33.3, -23.3}, {33.3, 6.7}, {36.7, 6.7}, {40, 10}, {43.3, 46.7}, {40, -10}, {40, -13.3}, {43.3, 0}, {46.7, 10}, {50, -6.7}, {50, 3.3}, {53.3, 13.3}}, color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0), x(flags = 2), y(flags = 2), Icon(coordinateSystem(extent = {{-101.7, -51.7}, {101.7, 51.7}}), graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = {{-70, -20}, {-66.7, 20}, {-66.7, -3.3}, {-63.3, 3.3}, {-63.3, 0}, {-63.3, 10}, {-60, -3.3}, {-56.7, 16.7}, {-56.7, -13.3}, {-53.3, 36.7}, {-50, -3.3}, {-50, 10}, {-46.7, -10}, {-43.3, 6.7}, {-43.3, -3.3}, {-36.7, -23.3}, {-36.7, -10}, {-33.3, -3.3}, {-30, -10}, {-30, -3.3}, {-30, 30}, {-26.7, 30}, {-20, 6.7}, {-20, -13.3}, {-16.7, -16.7}, {-16.7, 3.3}, {-13.3, -10}, {-13.3, 3.3}, {-13.3, -16.7}, {-13.3, 43.3}, {-10, -16.7}, {-6.7, -6.7}, {-6.7, -13.3}, {-3.3, 16.7}, {-3.3, -3.3}, {-3.3, 3.3}, {0, -10}, {3.3, -13.3}, {6.7, 23.3}, {10, 6.7}, {13.3, 0}, {16.7, -6.7}, {16.7, -16.7}, {16.7, -3.3}, {20, -23.3}, {23.3, -6.7}, {23.3, -3.3}, {33.3, -23.3}, {33.3, 6.7}, {36.7, 6.7}, {40, 10}, {43.3, 46.7}, {40, -10}, {40, -13.3}, {43.3, 0}, {46.7, 10}, {50, -6.7}, {50, 3.3}, {53.3, 13.3}}, color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0), y(flags = 2), Icon(graphics = {Line(points = ":241:
-              789C64524B0AC2400C2D5D7A04D75D15858205C18504A99442A99F2AD20BF41C5EA31EC0953B2F3007A82B2FE4B4C90BC40686F0269397CC4BC2200896FE84FE
-              7C7A6FAFAB5B0DF6DEB860B48BF848713BD8932C6E6734E6D567B9AF1CF31DD9976BC51CCF84E7E01E9DB726D73CC63BF1A5F49310C70BC65FF4B19F78F0A00E
-              3C7819A7C2B7451F8AE5FF041DC6BC2E26AB4BAA3AD9BA29FE2BEF135BBF8B271E7A02DBBE610DF3F673E933A33F8C3929461FD01179E65F4D4E323F8917925F
-              91C591BEB7F3423C85EE84795B5D0B8EDF4FB69EC7A23BF687CCBE2C6AC29EC8DCA12BC9BE6A7F9C7F53FE1F000000FFFF", color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0));
+                     789C64524B0AC2400C2D5D7A04D75D15858205C18504A99442A99F2AD20BF41C5EA31EC0953B2F3007A82B2FE4B4C90BC40686F0269397CC4BC2200896FE84FE
+                     7C7A6FAFAB5B0DF6DEB860B48BF848713BD8932C6E6734E6D567B9AF1CF31DD9976BC51CCF84E7E01E9DB726D73CC63BF1A5F49310C70BC65FF4B19F78F0A00E
+                     3C7819A7C2B7451F8AE5FF041DC6BC2E26AB4BAA3AD9BA29FE2BEF135BBF8B271E7A02DBBE610DF3F673E933A33F8C3929461FD01179E65F4D4E323F8917925F
+                     91C591BEB7F3423C85EE84795B5D0B8EDF4FB69EC7A23BF687CCBE2C6AC29EC8DCA12BC9BE6A7F9C7F53FE1F000000FFFF", color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0));
     end noise_ung;
 
     model noise_sampled
@@ -1618,10 +1619,10 @@ package satcomponents
       Modelica.Blocks.Sources.Constant const(k = 0.0) annotation(Placement(visible = true, transformation(origin = {-40, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       satcomponents.blocks.noise_ung noise_ung1 annotation(Placement(visible = true, transformation(origin = {-40, 20}, extent = {{-10.17, -5.17}, {10.17, 5.17}}, rotation = 0)));
       Modelica.Blocks.Interfaces.RealOutput y annotation(Placement(visible = true, transformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {60, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-      Modelica.Blocks.Discrete.Sampler sampler1(samplePeriod = 1.0) annotation(Placement(visible = true, transformation(origin = {60, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Blocks.Discrete.ZeroOrderHold zeroorderhold1(samplePeriod = 1.0) annotation(Placement(visible = true, transformation(origin = {60, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
     equation
-      connect(sampler1.y, y) annotation(Line(points = {{71, 0}, {93.38679999999999, 0}, {93.38679999999999, 0}, {93.38679999999999, 0}}));
-      connect(add1.y, sampler1.u) annotation(Line(points = {{31, 0}, {46.493, 0}, {46.493, 0.400802}, {46.493, 0.400802}}));
+      connect(zeroorderhold1.y, y) annotation(Line(points = {{71, 0}, {92.5852, 0}, {92.5852, 0.801603}, {92.5852, 0.801603}}));
+      connect(add1.y, zeroorderhold1.u) annotation(Line(points = {{31, 0}, {46.493, 0}, {46.493, 0}, {46.493, 0}}));
       connect(noise_ung1.y, add1.u1) annotation(Line(points = {{-29, 20}, {-9.218439999999999, 20}, {-9.218439999999999, 6.81363}, {8, 6.81363}, {8, 6}}));
       connect(const.y, add1.u2) annotation(Line(points = {{-29, -20}, {-10.02, -20}, {-10.02, -5.61122}, {6.81363, -5.61122}, {6.81363, -5.61122}}));
       annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})));
