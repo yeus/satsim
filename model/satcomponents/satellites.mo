@@ -3429,9 +3429,6 @@ package satellites
 			end for;
 			//*/
 		annotation(
-			viewinfo[0](
-				viewSettings(clrRaster=12632256),
-				typename="ModelInfo"),
 			experiment(
 				StopTime=100,
 				StartTime=0,
@@ -4100,19 +4097,6 @@ package satellites
 				noise_ung1(y(flags=2)),
 				noise_ung3(y(flags=2)))),
 			aCS_P1(error(y(flags=2))),
-			viewinfo[0](
-				minOrder=0.5,
-				maxOrder=12,
-				mode=0,
-				minStep=0.01,
-				maxStep=0.1,
-				relTol=1e-005,
-				oversampling=4,
-				anaAlgorithm=0,
-				typename="AnaStatInfo"),
-			viewinfo[1](
-				viewSettings(clrRaster=12632256),
-				typename="ModelInfo"),
 			experiment(
 				StopTime=100,
 				StartTime=0));
@@ -4563,18 +4547,6 @@ package satellites
 				noise_ung2(y(flags=2)),
 				noise_ung1(y(flags=2)),
 				noise_ung3(y(flags=2)))),
-			viewinfo[0](
-				minOrder=0.5,
-				maxOrder=12,
-				mode=0,
-				minStep=0.01,
-				maxStep=0.1,
-				relTol=1e-005,
-				oversampling=4,
-				anaAlgorithm=0,
-				bPerMinStates=true,
-				bPerScaleRows=false,
-				typename="AnaStatInfo"),
 			experiment(
 				StopTime=100,
 				StartTime=0));

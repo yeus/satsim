@@ -986,9 +986,6 @@ package buildingblocks
 				noise_ung2(y(flags=2)),
 				noise_ung1(y(flags=2)),
 				noise_ung3(y(flags=2))),
-			viewinfo[0](
-				viewSettings(clrRaster=12632256),
-				typename="ModelInfo"),
 			experiment(
 				StopTime=1,
 				StartTime=0));
