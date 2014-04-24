@@ -4040,10 +4040,6 @@ package satcomponents
 						points={{51,0},{56,0},{53,0},{58,0}},
 						color={0,0,127},
 						thickness=0.0625));
-					connect(fixedDelay1.y,acs_bus.w) annotation(Line(
-						points={{81,0},{86,0},{95,0},{100,0}},
-						color={0,0,127},
-						thickness=0.0625));
 				annotation(
 					noise_ung2(y(flags=2)),
 					noise_ung1(y(flags=2)),
@@ -4163,57 +4159,57 @@ package satcomponents
 				parameter Integer id;
 				Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(
 					transformation(
-						origin={-99.422, 5.20231},
-						extent={{-10, -10}, {10, 10}}),
+						origin={-99.422,5.20231},
+						extent={{-10,-10},{10,10}}),
 					iconTransformation(
-						origin={-99.422, 5.20231},
-						extent={{-10, -10}, {10, 10}})));
-				ctrl.ACS_bus acs_bus annotation(Placement(transformation(extent={{75, 10}, {95, 30}})));
+						origin={-99.422,5.20231},
+						extent={{-10,-10},{10,10}})));
+				ctrl.ACS_bus acs_bus annotation(Placement(transformation(extent={{75,10},{95,30}})));
 				Modelica.Mechanics.MultiBody.Joints.Revolute x_axis(
 					animation=false,
 					n={1, 0, 0}) annotation(Placement(transformation(
-					origin={-30, 90},
-					extent={{-10, -10}, {10, 10}})));
+					origin={-30,90},
+					extent={{-10,-10},{10,10}})));
 				Modelica.Mechanics.MultiBody.Parts.BodyShape wheel_x(
 					animation=false,
 					animateSphere=false) annotation(Placement(transformation(
-					origin={5, 90},
-					extent={{-10, -10}, {10, 10}},
+					origin={5,90},
+					extent={{-10,-10},{10,10}},
 					rotation=-180)));
 				Modelica.Mechanics.MultiBody.Forces.Torque torque_x(resolveInFrame=Modelica.Mechanics.MultiBody.Types.ResolveInFrameAB.frame_a) annotation(Placement(transformation(
-					origin={-10, 60},
-					extent={{-10, -10}, {10, 10}},
+					origin={-10,60},
+					extent={{-10,-10},{10,10}},
 					rotation=-180)));
 				Modelica.Mechanics.MultiBody.Joints.Revolute y_axis(
 					animation=false,
 					n={0, 1, 0}) annotation(Placement(transformation(
-					origin={-30, 25},
-					extent={{-10, -10}, {10, 10}})));
+					origin={-30,25},
+					extent={{-10,-10},{10,10}})));
 				Modelica.Mechanics.MultiBody.Parts.BodyShape wheel_y(
 					animation=false,
 					animateSphere=false) annotation(Placement(transformation(
-					origin={5, 25},
-					extent={{-10, -10}, {10, 10}},
+					origin={5,25},
+					extent={{-10,-10},{10,10}},
 					rotation=-180)));
 				Modelica.Mechanics.MultiBody.Forces.Torque torque_y(resolveInFrame=Modelica.Mechanics.MultiBody.Types.ResolveInFrameAB.frame_a) annotation(Placement(transformation(
-					origin={-10, -5},
-					extent={{-10, -10}, {10, 10}},
+					origin={-10,-5},
+					extent={{-10,-10},{10,10}},
 					rotation=-180)));
 				Modelica.Mechanics.MultiBody.Joints.Revolute z_axis(
 					useAxisFlange=false,
 					animation=false,
 					n={0, 0, 1}) annotation(Placement(transformation(
-					origin={-30, -40},
-					extent={{-10, -10}, {10, 10}})));
+					origin={-30,-40},
+					extent={{-10,-10},{10,10}})));
 				Modelica.Mechanics.MultiBody.Parts.BodyShape wheel_z(
 					animation=false,
 					animateSphere=false) annotation(Placement(transformation(
-					origin={5, -40},
-					extent={{-10, -10}, {10, 10}},
+					origin={5,-40},
+					extent={{-10,-10},{10,10}},
 					rotation=-180)));
 				Modelica.Mechanics.MultiBody.Forces.Torque torque_z(resolveInFrame=Modelica.Mechanics.MultiBody.Types.ResolveInFrameAB.frame_a) annotation(Placement(transformation(
-					origin={-10, -70},
-					extent={{-10, -10}, {10, 10}},
+					origin={-10,-70},
+					extent={{-10,-10},{10,10}},
 					rotation=-180)));
 				equation
 					torque_x.torque[2:3] = {0, 0};
@@ -4226,13 +4222,13 @@ package satcomponents
 					connect(x_axis.frame_a, frame_a) annotation(Line(points = {{-40, 90}, {-45, 90}, {-94.3, 90}, {-94.3, 5.3}, {-99.3, 5.3}}, color = {95, 95, 95}, thickness = 0.0625));
 					connect(y_axis.frame_a, frame_a) annotation(Line(points = {{-40, 25}, {-45, 25}, {-94.3, 25}, {-94.3, 5.3}, {-99.3, 5.3}}, color = {95, 95, 95}, thickness = 0.0625));
 					connect(z_axis.frame_a, frame_a) annotation(Line(points = {{-40, -40}, {-45, -40}, {-94.3, -40}, {-94.3, 5.3}, {-99.3, 5.3}}, color = {95, 95, 95}, thickness = 0.0625));
-					connect(torque_x.torque[1], acs_bus.w_a[id, 1]) annotation(Line(points = {{-5, 48}, {-5, 43}, {-5, 40}, {40, 40}, {40, 20}, {85, 20}}, color = {0, 0, 127}, thickness = 0.0625));
+					connect(torque_x.torque[1], acs_bus.w_a[1]) annotation(Line(points = {{-5, 48}, {-5, 43}, {-5, 40}, {40, 40}, {40, 20}, {85, 20}}, color = {0, 0, 127}, thickness = 0.0625));
 					connect(torque_x.frame_b, x_axis.frame_a) annotation(Line(points = {{-20, 60}, {-25, 60}, {-45, 60}, {-45, 90}, {-40, 90}}, color = {95, 95, 95}, thickness = 0.0625));
 					connect(torque_x.frame_a, wheel_x.frame_a) annotation(Line(points = {{0, 60}, {5, 60}, {20, 60}, {20, 90}, {15, 90}}, color = {95, 95, 95}, thickness = 0.0625));
-					connect(torque_y.torque[2], acs_bus.w_a[id, 2]) annotation(Line(points = {{-5, -17}, {-5, -22}, {37.3, -22}, {37.3, 20}, {80, 20}, {85, 20}}, color = {0, 0, 127}, thickness = 0.0625));
+					connect(torque_y.torque[2], acs_bus.w_a[2]) annotation(Line(points = {{-5, -17}, {-5, -22}, {37.3, -22}, {37.3, 20}, {80, 20}, {85, 20}}, color = {0, 0, 127}, thickness = 0.0625));
 					connect(torque_y.frame_a, wheel_y.frame_a) annotation(Line(points = {{0, -5}, {5, -5}, {20, -5}, {20, 25}, {15, 25}}, color = {95, 95, 95}, thickness = 0.0625));
 					connect(torque_y.frame_b, y_axis.frame_a) annotation(Line(points = {{-20, -5}, {-25, -5}, {-45, -5}, {-45, 25}, {-40, 25}}, color = {95, 95, 95}, thickness = 0.0625));
-					connect(torque_z.torque[3], acs_bus.w_a[id, 3]) annotation(Line(points = {{-5, -82}, {-5, -87}, {37.3, -87}, {37.3, 20}, {80, 20}, {85, 20}}, color = {0, 0, 127}, thickness = 0.0625));
+					connect(torque_z.torque[3], acs_bus.w_a[3]) annotation(Line(points = {{-5, -82}, {-5, -87}, {37.3, -87}, {37.3, 20}, {80, 20}, {85, 20}}, color = {0, 0, 127}, thickness = 0.0625));
 					connect(torque_z.frame_a, wheel_z.frame_a) annotation(Line(points = {{0, -70}, {5, -70}, {20, -70}, {20, -40}, {15, -40}}, color = {95, 95, 95}, thickness = 0.0625));
 					connect(torque_z.frame_b, z_axis.frame_a) annotation(Line(points = {{-20, -70}, {-25, -70}, {-45, -70}, {-45, -40}, {-40, -40}}, color = {95, 95, 95}, thickness = 0.0625));
 				annotation(
@@ -4377,7 +4373,85 @@ package satcomponents
 							w_a(flags=2),
 							z_a(flags=2),
 							g_0(flags=2))),
-					Icon(graphics={Rectangle(fillColor = {128, 128, 128}, fillPattern = FillPattern.Solid, extent = {{-90.02889999999999, 54.3352}, {61.7052, -76.87860000000001}}, origin = {0.144508, 13.2948}), Rectangle(fillColor = {88, 88, 88}, fillPattern = FillPattern.Solid, extent = {{-71.2428, -8.092499999999999}, {5.6358, -80.0578}}, origin = {2.16763, 20.2312}), Rectangle(fillColor = {88, 88, 88}, fillPattern = FillPattern.Solid, extent = {{35.6936, 25.7225}, {70.6647, -52.0231}}, origin = {-0.144509, 13.2948}), Rectangle(fillColor = {88, 88, 88}, fillPattern = FillPattern.Solid, extent = {{2.45662, -18.2081}, {85.98260000000001, -50.8671}}, origin = {-46.9653, 97.6879}), Rectangle(pattern = LinePattern.None, fillColor = {255, 0, 0}, fillPattern = FillPattern.VerticalCylinder, extent = {{-16.0405, 25.8671}, {-12.8613, 5.92483}}, origin = {11.4162, -3.32367}), Polygon(points = {{-2.87157, 16.034}, {1.46373, -3.90828}, {-6.91786, -3.61926}, {-2.87157, 16.034}}, pattern = LinePattern.None, fillColor = {255, 0, 0}, fillPattern = FillPattern.VerticalCylinder, origin = {-0.307609, 23.5614}), Text(textString = "+", extent = {{-15.896, 13.0058}, {15.896, -13.0058}}, origin = {-26.3006, -74.2775}), Text(textString = "-", extent = {{-18.6416, 23.5549}, {18.9306, -18.3526}}, origin = {25.578, -76.1561}), Polygon(points = {{-2.87157, 16.034}, {1.46373, -3.90828}, {-6.91786, -3.61926}, {-2.87157, 16.034}}, pattern = LinePattern.None, fillColor = {255, 0, 0}, fillPattern = FillPattern.VerticalCylinder, origin = {19.6924, 1.07585}, rotation = -90), Rectangle(pattern = LinePattern.None, fillColor = {255, 0, 0}, fillPattern = FillPattern.VerticalCylinder, extent = {{-16.0405, 25.8671}, {-12.8613, 5.92483}}, origin = {-9.91328, -10.4913}, rotation = -90), Polygon(points = {{-7.80347, -5.05026}, {5.49133, 7.08847}, {7.80347, 4.77633}, {-5.78035, -7.07338}, {-7.80347, -5.05026}}, fillColor = {255, 0, 0}, fillPattern = FillPattern.Solid, origin = {-9.537570000000001, -2.17522}), Polygon(points = {{-2.00451, 2.45016}, {5.22095, -9.68863}, {-6.91786, -3.61926}, {-2.00451, 2.45016}}, pattern = LinePattern.None, fillColor = {255, 0, 0}, fillPattern = FillPattern.VerticalCylinder, origin = {-14.9319, -12.1611}, rotation = -90), Text(textString = "Z", extent = {{-14.4509, 10.8382}, {14.4509, -10.8382}}, origin = {-4.62427, 56.2139}), Text(textString = "Y", extent = {{-14.4509, 10.8382}, {14.4509, -10.8382}}, origin = {47.4567, 3.38154}), Text(textString = "X", extent = {{-14.4509, 10.8382}, {14.4509, -10.8382}}, origin = {-31.9652, -24.5953})}),
+					Icon(graphics={
+								Rectangle(
+									fillColor={128,128,128},
+									fillPattern=FillPattern.Solid,
+									extent={{-90.02889999999999,54.3352},{61.7052,-76.87860000000001}},
+									origin={0.144508,13.2948}),
+								Rectangle(
+									fillColor={88,88,88},
+									fillPattern=FillPattern.Solid,
+									extent={{-71.2428,-8.092499999999999},{5.6358,-80.0578}},
+									origin={2.16763,20.2312}),
+								Rectangle(
+									fillColor={88,88,88},
+									fillPattern=FillPattern.Solid,
+									extent={{35.6936,25.7225},{70.6647,-52.0231}},
+									origin={-0.144509,13.2948}),
+								Rectangle(
+									fillColor={88,88,88},
+									fillPattern=FillPattern.Solid,
+									extent={{2.45662,-18.2081},{85.98260000000001,-50.8671}},
+									origin={-46.9653,97.6879}),
+								Rectangle(
+									pattern=LinePattern.None,
+									fillColor={255,0,0},
+									fillPattern=FillPattern.VerticalCylinder,
+									extent={{-16.0405,25.8671},{-12.8613,5.92483}},
+									origin={11.4162,-3.32367}),
+								Polygon(
+									points={{-2.87157,16.034},{1.46373,-3.90828},{-6.91786,-3.61926},{-2.87157,16.034}},
+									pattern=LinePattern.None,
+									fillColor={255,0,0},
+									fillPattern=FillPattern.VerticalCylinder,
+									origin={-0.307609,23.5614}),
+								Text(
+									textString="+",
+									extent={{-15.896,13.0058},{15.896,-13.0058}},
+									origin={-26.3006,-74.2775}),
+								Text(
+									textString="-",
+									extent={{-18.6416,23.5549},{18.9306,-18.3526}},
+									origin={25.578,-76.1561}),
+								Polygon(
+									points={{-2.87157,16.034},{1.46373,-3.90828},{-6.91786,-3.61926},{-2.87157,16.034}},
+									pattern=LinePattern.None,
+									fillColor={255,0,0},
+									fillPattern=FillPattern.VerticalCylinder,
+									origin={19.6924,1.07585},
+									rotation=-90),
+								Rectangle(
+									pattern=LinePattern.None,
+									fillColor={255,0,0},
+									fillPattern=FillPattern.VerticalCylinder,
+									extent={{-16.0405,25.8671},{-12.8613,5.92483}},
+									origin={-9.91328,-10.4913},
+									rotation=-90),
+								Polygon(
+									points={{-7.80347,-5.05026},{5.49133,7.08847},{7.80347,4.77633},{-5.78035,-7.07338},{-7.80347,-5.05026}},
+									fillColor={255,0,0},
+									fillPattern=FillPattern.Solid,
+									origin={-9.537570000000001,-2.17522}),
+								Polygon(
+									points={{-2.00451,2.45016},{5.22095,-9.68863},{-6.91786,-3.61926},{-2.00451,2.45016}},
+									pattern=LinePattern.None,
+									fillColor={255,0,0},
+									fillPattern=FillPattern.VerticalCylinder,
+									origin={-14.9319,-12.1611},
+									rotation=-90),
+								Text(
+									textString="Z",
+									extent={{-14.4509,10.8382},{14.4509,-10.8382}},
+									origin={-4.62427,56.2139}),
+								Text(
+									textString="Y",
+									extent={{-14.4509,10.8382},{14.4509,-10.8382}},
+									origin={47.4567,3.38154}),
+								Text(
+									textString="X",
+									extent={{-14.4509,10.8382},{14.4509,-10.8382}},
+									origin={-31.9652,-24.5953})}),
 					experiment(
 						StopTime=30,
 						StartTime=0,
@@ -4567,28 +4641,37 @@ package satcomponents
 			model ACS_P
 				ACS_bus acs_bus annotation(Placement(
 					transformation(
-						origin={90, 15},
-						extent={{-10, -10}, {10, 10}}),
+						origin={90,15},
+						extent={{-10,-10},{10,10}}),
 					iconTransformation(
-						origin={100, 0},
-						extent={{-10, -10}, {10, 10}})));
+						origin={100,0},
+						extent={{-10,-10},{10,10}})));
 				Modelica.Blocks.Sources.Constant const[3](k=0) annotation(Placement(transformation(
-					origin={-50, 20},
-					extent={{-10, -10}, {10, 10}})));
-				Modelica.Blocks.Math.Gain gain1[3](k=1.0) annotation(Placement(transformation(extent={{15, 5}, {35, 25}})));
-				Modelica.Blocks.Math.Add error[3](k2=-1) annotation(Placement(transformation(extent={{-20, 5}, {0, 25}})));
-				Modelica.Blocks.Math.Product product1[3] annotation(Placement(transformation(extent={{50, 10}, {70, 30}})));
-				Modelica.Blocks.Sources.Step step1[3](startTime=20) annotation(Placement(transformation(extent={{10, 40}, {30, 60}})));
+					origin={-50,20},
+					extent={{-10,-10},{10,10}})));
+				Modelica.Blocks.Math.Gain gain1[3](k=1.0) annotation(Placement(transformation(extent={{15,5},{35,25}})));
+				Modelica.Blocks.Math.Add error[3](k2=-1) annotation(Placement(transformation(extent={{-20,5},{0,25}})));
+				Modelica.Blocks.Math.Product product1[3] annotation(Placement(transformation(extent={{50,10},{70,30}})));
+				Modelica.Blocks.Sources.Step step1[3](startTime=20) annotation(Placement(transformation(extent={{10,40},{30,60}})));
 				equation
 					connect(const.y, error.u1) annotation(Line(points = {{-39, 20}, {-34, 20}, {-27, 20}, {-27, 21}, {-22, 21}}, color = {0, 0, 127}, thickness = 0.0625));
 					connect(error.y, gain1.u) annotation(Line(points = {{1, 15}, {6, 15}, {8, 15}, {13, 15}}, color = {0, 0, 127}, thickness = 0.0625));
 					connect(error.u2, acs_bus.w[1, :]) annotation(Line(points = {{-22, 9}, {-27, 9}, {-27, -15}, {85, -15}, {85, 15}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625), AutoRoute = false);
 					connect(gain1.y, product1.u2) annotation(Line(points = {{36, 15}, {41, 15}, {43, 15}, {43, 14}, {48, 14}}, color = {0, 0, 127}, thickness = 0.0625));
-					connect(product1.y, acs_bus.w_a[1, :]) annotation(Line(points = {{71, 20}, {76, 20}, {85, 20}, {85, 15}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625));
+					connect(product1.y, acs_bus.w_a) annotation(Line(points = {{71, 20}, {76, 20}, {85, 20}, {85, 15}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625));
 					connect(step1.y, product1.u1) annotation(Line(points = {{31, 50}, {36, 50}, {43, 50}, {43, 26}, {48, 26}}, color = {0, 0, 127}, thickness = 0.0625));
 				annotation(
 					error(y(flags=2)),
-					Icon(graphics={Rectangle(fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-86.39, 85.40000000000001}, {93.6909, -86.0637}}, origin = {1.22, 1.55}), Text(textString = "ACS", extent = {{-80.75, 56.53}, {80.75, -56.53}}, origin = {0.44, 3.43})}),
+					Icon(graphics={
+								Rectangle(
+									fillColor={255,255,255},
+									fillPattern=FillPattern.Solid,
+									extent={{-86.39,85.40000000000001},{93.6909,-86.0637}},
+									origin={1.22,1.55}),
+								Text(
+									textString="ACS",
+									extent={{-80.75,56.53},{80.75,-56.53}},
+									origin={0.44,3.43})}),
 					experiment(
 						StopTime=1,
 						StartTime=0));
