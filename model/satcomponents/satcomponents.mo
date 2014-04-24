@@ -4048,22 +4048,22 @@ package satcomponents
 						viewSettings(clrRaster=12632256),
 						typename="ModelInfo"),
 					Icon(graphics={
-								Rectangle(
-									fillColor={128,128,128},
-									fillPattern=FillPattern.Sphere,
-									extent={{-90.11,86.91},{90.11,-86.91}},
-									origin={4.04682,-1.67855}),
-								Rectangle(
-									fillColor={88,88,88},
-									fillPattern=FillPattern.Solid,
-									extent={{-75.20999999999999,71.87000000000001},{75.20999999999999,-71.87000000000001}},
-									origin={0.00144847,-2.21986}),
-								Text(
-									textString="IMU",
-									lineColor={255,255,255},
-									fillColor={255,255,255},
-									extent={{-68.11,50.28},{68.11,-50.28}},
-									origin={0.42,-4.6})}),
+																		Rectangle(
+																			fillColor={128,128,128},
+																			fillPattern=FillPattern.Sphere,
+																			extent={{-90.11,86.91},{90.11,-86.91}},
+																			origin={4.04682,-1.67855}),
+																		Rectangle(
+																			fillColor={88,88,88},
+																			fillPattern=FillPattern.Solid,
+																			extent={{-75.20999999999999,71.87000000000001},{75.20999999999999,-71.87000000000001}},
+																			origin={0.00144847,-2.21986}),
+																		Text(
+																			textString="IMU",
+																			lineColor={255,255,255},
+																			fillColor={255,255,255},
+																			extent={{-68.11,50.28},{68.11,-50.28}},
+																			origin={0.42,-4.6})}),
 					experiment(
 						StopTime=1,
 						StartTime=0));
@@ -4374,117 +4374,133 @@ package satcomponents
 							z_a(flags=2),
 							g_0(flags=2))),
 					Icon(graphics={
-								Rectangle(
-									fillColor={128,128,128},
-									fillPattern=FillPattern.Solid,
-									extent={{-90.02889999999999,54.3352},{61.7052,-76.87860000000001}},
-									origin={0.144508,13.2948}),
-								Rectangle(
-									fillColor={88,88,88},
-									fillPattern=FillPattern.Solid,
-									extent={{-71.2428,-8.092499999999999},{5.6358,-80.0578}},
-									origin={2.16763,20.2312}),
-								Rectangle(
-									fillColor={88,88,88},
-									fillPattern=FillPattern.Solid,
-									extent={{35.6936,25.7225},{70.6647,-52.0231}},
-									origin={-0.144509,13.2948}),
-								Rectangle(
-									fillColor={88,88,88},
-									fillPattern=FillPattern.Solid,
-									extent={{2.45662,-18.2081},{85.98260000000001,-50.8671}},
-									origin={-46.9653,97.6879}),
-								Rectangle(
-									pattern=LinePattern.None,
-									fillColor={255,0,0},
-									fillPattern=FillPattern.VerticalCylinder,
-									extent={{-16.0405,25.8671},{-12.8613,5.92483}},
-									origin={11.4162,-3.32367}),
-								Polygon(
-									points={{-2.87157,16.034},{1.46373,-3.90828},{-6.91786,-3.61926},{-2.87157,16.034}},
-									pattern=LinePattern.None,
-									fillColor={255,0,0},
-									fillPattern=FillPattern.VerticalCylinder,
-									origin={-0.307609,23.5614}),
-								Text(
-									textString="+",
-									extent={{-15.896,13.0058},{15.896,-13.0058}},
-									origin={-26.3006,-74.2775}),
-								Text(
-									textString="-",
-									extent={{-18.6416,23.5549},{18.9306,-18.3526}},
-									origin={25.578,-76.1561}),
-								Polygon(
-									points={{-2.87157,16.034},{1.46373,-3.90828},{-6.91786,-3.61926},{-2.87157,16.034}},
-									pattern=LinePattern.None,
-									fillColor={255,0,0},
-									fillPattern=FillPattern.VerticalCylinder,
-									origin={19.6924,1.07585},
-									rotation=-90),
-								Rectangle(
-									pattern=LinePattern.None,
-									fillColor={255,0,0},
-									fillPattern=FillPattern.VerticalCylinder,
-									extent={{-16.0405,25.8671},{-12.8613,5.92483}},
-									origin={-9.91328,-10.4913},
-									rotation=-90),
-								Polygon(
-									points={{-7.80347,-5.05026},{5.49133,7.08847},{7.80347,4.77633},{-5.78035,-7.07338},{-7.80347,-5.05026}},
-									fillColor={255,0,0},
-									fillPattern=FillPattern.Solid,
-									origin={-9.537570000000001,-2.17522}),
-								Polygon(
-									points={{-2.00451,2.45016},{5.22095,-9.68863},{-6.91786,-3.61926},{-2.00451,2.45016}},
-									pattern=LinePattern.None,
-									fillColor={255,0,0},
-									fillPattern=FillPattern.VerticalCylinder,
-									origin={-14.9319,-12.1611},
-									rotation=-90),
-								Text(
-									textString="Z",
-									extent={{-14.4509,10.8382},{14.4509,-10.8382}},
-									origin={-4.62427,56.2139}),
-								Text(
-									textString="Y",
-									extent={{-14.4509,10.8382},{14.4509,-10.8382}},
-									origin={47.4567,3.38154}),
-								Text(
-									textString="X",
-									extent={{-14.4509,10.8382},{14.4509,-10.8382}},
-									origin={-31.9652,-24.5953})}),
+																		Rectangle(
+																			fillColor={128,128,128},
+																			fillPattern=FillPattern.Solid,
+																			extent={{-90.02889999999999,54.3352},{61.7052,-76.87860000000001}},
+																			origin={0.144508,13.2948}),
+																		Rectangle(
+																			fillColor={88,88,88},
+																			fillPattern=FillPattern.Solid,
+																			extent={{-71.2428,-8.092499999999999},{5.6358,-80.0578}},
+																			origin={2.16763,20.2312}),
+																		Rectangle(
+																			fillColor={88,88,88},
+																			fillPattern=FillPattern.Solid,
+																			extent={{35.6936,25.7225},{70.6647,-52.0231}},
+																			origin={-0.144509,13.2948}),
+																		Rectangle(
+																			fillColor={88,88,88},
+																			fillPattern=FillPattern.Solid,
+																			extent={{2.45662,-18.2081},{85.98260000000001,-50.8671}},
+																			origin={-46.9653,97.6879}),
+																		Rectangle(
+																			pattern=LinePattern.None,
+																			fillColor={255,0,0},
+																			fillPattern=FillPattern.VerticalCylinder,
+																			extent={{-16.0405,25.8671},{-12.8613,5.92483}},
+																			origin={11.4162,-3.32367}),
+																		Polygon(
+																			points={{-2.87157,16.034},{1.46373,-3.90828},{-6.91786,-3.61926},{-2.87157,16.034}},
+																			pattern=LinePattern.None,
+																			fillColor={255,0,0},
+																			fillPattern=FillPattern.VerticalCylinder,
+																			origin={-0.307609,23.5614}),
+																		Text(
+																			textString="+",
+																			extent={{-15.896,13.0058},{15.896,-13.0058}},
+																			origin={-26.3006,-74.2775}),
+																		Text(
+																			textString="-",
+																			extent={{-18.6416,23.5549},{18.9306,-18.3526}},
+																			origin={25.578,-76.1561}),
+																		Polygon(
+																			points={{-2.87157,16.034},{1.46373,-3.90828},{-6.91786,-3.61926},{-2.87157,16.034}},
+																			pattern=LinePattern.None,
+																			fillColor={255,0,0},
+																			fillPattern=FillPattern.VerticalCylinder,
+																			origin={19.6924,1.07585},
+																			rotation=-90),
+																		Rectangle(
+																			pattern=LinePattern.None,
+																			fillColor={255,0,0},
+																			fillPattern=FillPattern.VerticalCylinder,
+																			extent={{-16.0405,25.8671},{-12.8613,5.92483}},
+																			origin={-9.91328,-10.4913},
+																			rotation=-90),
+																		Polygon(
+																			points={{-7.80347,-5.05026},{5.49133,7.08847},{7.80347,4.77633},{-5.78035,-7.07338},{-7.80347,-5.05026}},
+																			fillColor={255,0,0},
+																			fillPattern=FillPattern.Solid,
+																			origin={-9.537570000000001,-2.17522}),
+																		Polygon(
+																			points={{-2.00451,2.45016},{5.22095,-9.68863},{-6.91786,-3.61926},{-2.00451,2.45016}},
+																			pattern=LinePattern.None,
+																			fillColor={255,0,0},
+																			fillPattern=FillPattern.VerticalCylinder,
+																			origin={-14.9319,-12.1611},
+																			rotation=-90),
+																		Text(
+																			textString="Z",
+																			extent={{-14.4509,10.8382},{14.4509,-10.8382}},
+																			origin={-4.62427,56.2139}),
+																		Text(
+																			textString="Y",
+																			extent={{-14.4509,10.8382},{14.4509,-10.8382}},
+																			origin={47.4567,3.38154}),
+																		Text(
+																			textString="X",
+																			extent={{-14.4509,10.8382},{14.4509,-10.8382}},
+																			origin={-31.9652,-24.5953})}),
 					experiment(
 						StopTime=30,
 						StartTime=0,
 						Tolerance=0.0001));
 			end reactionwheel3axis_noelectricity;
-			model IMU_nonoise "IMU_nonoise"
+			model IMU_simple "IMU_simple"
 				parameter Integer id;
 				ctrl.ACS_bus acs_bus annotation(Placement(
 					transformation(
-						origin={100, 0},
-						extent={{-10, -10}, {10, 10}}),
+						origin={100,0},
+						extent={{-10,-10},{10,10}}),
 					iconTransformation(
-						origin={100, 0},
-						extent={{-10, -10}, {10, 10}})));
+						origin={100,0},
+						extent={{-10,-10},{10,10}})));
 				Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity absoluteangularvelocity1 annotation(Placement(transformation(
-					origin={-15, 0},
-					extent={{-10, -10}, {10, 10}})));
+					origin={-15,0},
+					extent={{-10,-10},{10,10}})));
 				Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(
 					transformation(
-						origin={-100, 0},
-						extent={{-10, -10}, {10, 10}}),
+						origin={-100,0},
+						extent={{-10,-10},{10,10}}),
 					iconTransformation(
-						origin={-100, 0},
-						extent={{-10, -10}, {10, 10}})));
+						origin={-100,0},
+						extent={{-10,-10},{10,10}})));
 				equation
 					connect(frame_a, absoluteangularvelocity1.frame_a) annotation(Line(points = {{-100, 0}, {-95, 0}, {-30, 0}, {-25, 0}}));
 					connect(absoluteangularvelocity1.w, acs_bus.w[id, :]) annotation(Line(points = {{11, 0}, {16, 0}, {95, 0}, {100, 0}}, color = {0, 0, 127}, thickness = 0.0625));
 				annotation(
-					Icon(graphics={Rectangle(fillColor = {128, 128, 128}, fillPattern = FillPattern.Sphere, extent = {{-90.11, 86.91}, {90.11, -86.91}}, origin = {4.04682, -1.67855}), Rectangle(fillColor = {88, 88, 88}, fillPattern = FillPattern.Solid, extent = {{-75.20999999999999, 71.87}, {75.20999999999999, -71.87}}, origin = {0.00144847, -2.21986}), Text(textString = "IMU", lineColor = {255, 255, 255}, fillColor = {255, 255, 255}, extent = {{-68.11, 50.28}, {68.11, -50.28}}, origin = {0.42, -4.6})}),
+					Icon(graphics={
+								Rectangle(
+									fillColor={128,128,128},
+									fillPattern=FillPattern.Sphere,
+									extent={{-90.11,86.91},{90.11,-86.91}},
+									origin={4.04682,-1.67855}),
+								Rectangle(
+									fillColor={88,88,88},
+									fillPattern=FillPattern.Solid,
+									extent={{-75.20999999999999,71.87000000000001},{75.20999999999999,-71.87000000000001}},
+									origin={0.00144847,-2.21986}),
+								Text(
+									textString="IMU",
+									lineColor={255,255,255},
+									fillColor={255,255,255},
+									extent={{-68.11,50.28},{68.11,-50.28}},
+									origin={0.42,-4.6})}),
 					experiment(
 						StopTime=1,
 						StartTime=0));
-			end IMU_nonoise;
+			end IMU_simple;
 			model IMU_no_sam_delay
 				parameter Integer id;
 				parameter Real noiseamp=0.05;
@@ -4532,6 +4548,57 @@ package satcomponents
 						StopTime=1,
 						StartTime=0));
 			end IMU_no_sam_delay;
+			model IMU_nonoise
+				parameter Integer id;
+				parameter Real noiseamp=0.05;
+				parameter Real net_delay=0.001;
+				ctrl.ACS_bus acs_bus annotation(Placement(
+					transformation(
+						origin={100,0},
+						extent={{-10,-10},{10,10}}),
+					iconTransformation(
+						origin={100,0},
+						extent={{-10,-10},{10,10}})));
+				Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity absoluteangularvelocity1 annotation(Placement(transformation(
+					origin={-20,0},
+					extent={{-10,-10},{10,10}})));
+				Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(
+					transformation(
+						origin={-100,0},
+						extent={{-10,-10},{10,10}}),
+					iconTransformation(
+						origin={-100,0},
+						extent={{-10,-10},{10,10}})));
+				Modelica.Blocks.Nonlinear.FixedDelay fixedDelay1[3](each delayTime=net_delay) annotation(Placement(transformation(extent={{60,-10},{80,10}})));
+				equation
+					connect(frame_a,absoluteangularvelocity1.frame_a) annotation(Line(points={{-100,0},{-95,0},{-35,0},{-30,0}}));
+					connect(fixedDelay1.y, acs_bus.w[id,:]) annotation(Line(points = {{66, 0}, {71, 0}, {95, 0}, {100, 0}}, color = {0, 0, 127}, thickness = 0.0625));
+					connect(absoluteangularvelocity1.w[:],fixedDelay1.u) annotation(Line(
+						points={{-9,0},{-4,0},{53,0},{58,0}},
+						color={0,0,127},
+						thickness=0.0625));
+				annotation(
+					Icon(graphics={
+						Rectangle(
+							fillColor={128,128,128},
+							fillPattern=FillPattern.Sphere,
+							extent={{-90.11,86.91},{90.11,-86.91}},
+							origin={4.04682,-1.67855}),
+						Rectangle(
+							fillColor={88,88,88},
+							fillPattern=FillPattern.Solid,
+							extent={{-75.20999999999999,71.87000000000001},{75.20999999999999,-71.87000000000001}},
+							origin={0.00144847,-2.21986}),
+						Text(
+							textString="IMU",
+							lineColor={255,255,255},
+							fillColor={255,255,255},
+							extent={{-68.11,50.28},{68.11,-50.28}},
+							origin={0.42,-4.6})}),
+					experiment(
+						StopTime=1,
+						StartTime=0));
+			end IMU_nonoise;
 		end Parts;
 		package ctrl
 			model ACS
@@ -4579,22 +4646,22 @@ package satcomponents
 					each final unit="rad/s2");
 				annotation(
 					Icon(graphics={
-													Rectangle(
-														fillColor={220,220,220},
-														fillPattern=FillPattern.Solid,
-														extent={{-88.27,88.61},{88.27,-88.61}},
-														origin={0.44,1})}),
+																							Rectangle(
+																								fillColor={220,220,220},
+																								fillPattern=FillPattern.Solid,
+																								extent={{-88.27,88.61},{88.27,-88.61}},
+																								origin={0.44,1})}),
 					Diagram(graphics={
-													Rectangle(
-														fillColor={220,220,220},
-														fillPattern=FillPattern.Solid,
-														extent={{-88.27,88.61},{88.27,-88.61}},
-														origin={-0.674206,-1.50696}),
-													Text(
-														textString="ACS
+																							Rectangle(
+																								fillColor={220,220,220},
+																								fillPattern=FillPattern.Solid,
+																								extent={{-88.27,88.61},{88.27,-88.61}},
+																								origin={-0.674206,-1.50696}),
+																							Text(
+																								textString="ACS
                                        bus",
-														extent={{-81.06,67.83},{81.06,-67.83}},
-														origin={0.28,-1.25206})}));
+																								extent={{-81.06,67.83},{81.06,-67.83}},
+																								origin={0.28,-1.25206})}));
 			end ACS_bus;
 			model busexample
 				satcomponents.AOCS.ctrl.ACS_bus acs_bus1 annotation(Placement(
@@ -4646,22 +4713,91 @@ package satcomponents
 					iconTransformation(
 						origin={100,0},
 						extent={{-10,-10},{10,10}})));
-				Modelica.Blocks.Sources.Constant const[3](k=0) annotation(Placement(transformation(
-					origin={-50,20},
-					extent={{-10,-10},{10,10}})));
+				parameter Integer id;
 				Modelica.Blocks.Math.Gain gain1[3](k=1.0) annotation(Placement(transformation(extent={{15,5},{35,25}})));
 				Modelica.Blocks.Math.Add error[3](k2=-1) annotation(Placement(transformation(extent={{-20,5},{0,25}})));
 				Modelica.Blocks.Math.Product product1[3] annotation(Placement(transformation(extent={{50,10},{70,30}})));
-				Modelica.Blocks.Sources.Step step1[3](startTime=20) annotation(Placement(transformation(extent={{10,40},{30,60}})));
+				Modelica.Blocks.Sources.Step step1[3](
+					offset=1,
+					startTime=5) annotation(Placement(transformation(extent={{10,40},{30,60}})));
+				Modelica.Blocks.Sources.Step step3[3](
+					height={-0.1,0.02,0.05},
+					offset={0.1,0.0,0.0},
+					startTime=10) annotation(Placement(transformation(extent={{-75,10},{-55,30}})));
 				equation
-					connect(const.y, error.u1) annotation(Line(points = {{-39, 20}, {-34, 20}, {-27, 20}, {-27, 21}, {-22, 21}}, color = {0, 0, 127}, thickness = 0.0625));
-					connect(error.y, gain1.u) annotation(Line(points = {{1, 15}, {6, 15}, {8, 15}, {13, 15}}, color = {0, 0, 127}, thickness = 0.0625));
-					connect(error.u2, acs_bus.w[1, :]) annotation(Line(points = {{-22, 9}, {-27, 9}, {-27, -15}, {85, -15}, {85, 15}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625), AutoRoute = false);
-					connect(gain1.y, product1.u2) annotation(Line(points = {{36, 15}, {41, 15}, {43, 15}, {43, 14}, {48, 14}}, color = {0, 0, 127}, thickness = 0.0625));
-					connect(product1.y, acs_bus.w_a) annotation(Line(points = {{71, 20}, {76, 20}, {85, 20}, {85, 15}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625));
-					connect(step1.y, product1.u1) annotation(Line(points = {{31, 50}, {36, 50}, {43, 50}, {43, 26}, {48, 26}}, color = {0, 0, 127}, thickness = 0.0625));
+					connect(error.y,gain1.u) annotation(Line(
+						points={{1,15},{6,15},{8,15},{13,15}},
+						color={0,0,127},
+						thickness=0.0625));
+					connect(error.u2, acs_bus.w[id, :]) annotation(Line(points = {{-22, 9}, {-27, 9}, {-27, -15}, {85, -15}, {85, 15}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625), AutoRoute = false);
+					connect(gain1.y,product1.u2) annotation(Line(
+						points={{36,15},{41,15},{43,15},{43,14},{48,14}},
+						color={0,0,127},
+						thickness=0.0625));
+					connect(product1.y,acs_bus.w_a) annotation(Line(
+						points={{71,20},{76,20},{85,20},{85,15},{90,15}},
+						color={0,0,127},
+						thickness=0.0625));
+					connect(step1.y,product1.u1) annotation(Line(
+						points={{31,50},{36,50},{43,50},{43,26},{48,26}},
+						color={0,0,127},
+						thickness=0.0625));
+					connect(step3.y,error.u1) annotation(Line(
+						points={{-54,20},{-49,20},{-27,20},{-27,21},{-22,21}},
+						color={0,0,127},
+						thickness=0.0625));
 				annotation(
 					error(y(flags=2)),
+					viewinfo[0](
+						viewSettings(clrRaster=12632256),
+						typename="ModelInfo"),
+					Icon(graphics={
+													Rectangle(
+														fillColor={255,255,255},
+														fillPattern=FillPattern.Solid,
+														extent={{-86.39,85.40000000000001},{93.6909,-86.0637}},
+														origin={1.22,1.55}),
+													Text(
+														textString="ACS",
+														extent={{-80.75,56.53},{80.75,-56.53}},
+														origin={0.44,3.43})}),
+					experiment(
+						StopTime=1,
+						StartTime=0));
+			end ACS_P;
+			model ACS_PID
+				parameter Integer id=1;
+				ACS_bus acs_bus annotation(Placement(
+					transformation(
+						origin={90,15},
+						extent={{-10,-10},{10,10}}),
+					iconTransformation(
+						origin={100,0},
+						extent={{-10,-10},{10,10}})));
+				Modelica.Blocks.Continuous.LimPID PID[3](
+					controllerType=Modelica.Blocks.Types.SimpleController.PI,
+					k=1,
+					Ti=.1,
+					yMax=2,
+					strict=true) annotation(Placement(transformation(extent={{15,5},{35,25}})));
+				Modelica.Blocks.Sources.CombiTimeTable combiTimeTable1(
+					table={{0,0,0,0},{5,0.1,0,0},{10,0.05,0.1,0.1}},
+					smoothness=Modelica.Blocks.Types.Smoothness.ConstantSegments,
+					extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint) annotation(Placement(transformation(extent={{-30,5},{-10,25}})));
+				equation
+					connect(PID.u_m, acs_bus.w[id, :]) annotation(Line(points = {{20, 13}, {20, -10}, {85, -10}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625), AutoRoute = false);
+					connect(PID.y,acs_bus.w_a) annotation(Line(
+						points={{36,15},{41,15},{85,15},{90,15}},
+						color={0,0,127},
+						thickness=0.0625));
+					connect(combiTimeTable1.y[:],PID.u_s) annotation(Line(
+						points={{-9,15},{-4,15},{8,15},{13,15}},
+						color={0,0,127},
+						thickness=0.0625));
+				annotation(
+					viewinfo[0](
+						viewSettings(clrRaster=12632256),
+						typename="ModelInfo"),
 					Icon(graphics={
 								Rectangle(
 									fillColor={255,255,255},
@@ -4672,36 +4808,6 @@ package satcomponents
 									textString="ACS",
 									extent={{-80.75,56.53},{80.75,-56.53}},
 									origin={0.44,3.43})}),
-					experiment(
-						StopTime=1,
-						StartTime=0));
-			end ACS_P;
-			model ACS_PID
-				ACS_bus acs_bus annotation(Placement(
-					transformation(
-						origin={90, 15},
-						extent={{-10, -10}, {10, 10}}),
-					iconTransformation(
-						origin={100, 0},
-						extent={{-10, -10}, {10, 10}})));
-				Modelica.Blocks.Sources.Constant const[3](k=0) annotation(Placement(transformation(
-					origin={-65, 50},
-					extent={{-10, -10}, {10, 10}})));
-				Modelica.Blocks.Continuous.LimPID PID[3](
-					controllerType=Modelica.Blocks.Types.SimpleController.PID,
-					k=2,
-					yMax=2,
-					strict=true) annotation(Placement(transformation(extent={{-10, 40}, {10, 60}})));
-				Modelica.Blocks.Discrete.Sampler sampler1[3](
-					samplePeriod=0.1,
-					startTime=3) annotation(Placement(transformation(extent={{30, 40}, {50, 60}})));
-				equation
-					connect(const.y, PID.u_s) annotation(Line(points = {{-54, 50}, {-49, 50}, {-17, 50}, {-12, 50}}, color = {0, 0, 127}, thickness = 0.0625));
-					connect(PID.u_m, acs_bus.w[1, :]) annotation(Line(points = {{20, 13}, {20, -10}, {85, -10}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625), AutoRoute = false);
-					connect(PID.y, sampler1.u) annotation(Line(points = {{11, 50}, {16, 50}, {23, 50}, {28, 50}}, color = {0, 0, 127}, thickness = 0.0625));
-					connect(sampler1.y, acs_bus.w_a[1, :]) annotation(Line(points = {{51, 50}, {56, 50}, {85, 50}, {85, 15}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625));
-				annotation(
-					Icon(graphics={Rectangle(fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-86.39, 85.40000000000001}, {93.6909, -86.0637}}, origin = {1.22, 1.55}), Text(textString = "ACS", extent = {{-80.75, 56.53}, {80.75, -56.53}}, origin = {0.44, 3.43})}),
 					experiment(
 						StopTime=1,
 						StartTime=0));
@@ -4730,15 +4836,15 @@ package satcomponents
 						viewSettings(clrRaster=12632256),
 						typename="ModelInfo"),
 					Icon(graphics={
-													Rectangle(
-														fillColor={255,255,255},
-														fillPattern=FillPattern.Solid,
-														extent={{-86.39,85.40000000000001},{93.6909,-86.0637}},
-														origin={1.22,1.55}),
-													Text(
-														textString="Bus\\nCtrl",
-														extent={{-80.75,56.53},{80.75,-56.53}},
-														origin={0.44,3.43})}),
+																							Rectangle(
+																								fillColor={255,255,255},
+																								fillPattern=FillPattern.Solid,
+																								extent={{-86.39,85.40000000000001},{93.6909,-86.0637}},
+																								origin={1.22,1.55}),
+																							Text(
+																								textString="Bus\\nCtrl",
+																								extent={{-80.75,56.53},{80.75,-56.53}},
+																								origin={0.44,3.43})}),
 					experiment(
 						StopTime=1,
 						StartTime=0));
@@ -4960,7 +5066,7 @@ package satcomponents
 		end momentum_add;
 	end AOCS;
 	package blocks "blocks"
-		model noise_ung "noise_sampled"
+		model noise_ung "noise_sampled TODO: noch eine normal-distribution erzuegen (Box-Muller oder ziggurat)"
 			extends Modelica.Blocks.Interfaces.SO;
 			parameter Real amplitude=1.0;
 			parameter Real seed=0.0;
@@ -5008,36 +5114,22 @@ package satcomponents
 				experiment(
 					StopTime=1,
 					StartTime=0),
-				x(flags=2),
 				y(flags=2),
 				Icon(
-					coordinateSystem(extent={{-101.7, -51.7}, {101.7, 51.7}}),
-					graphics={Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = {{-70, -20}, {-66.7, 20}, {-66.7, -3.3}, {-63.3, 3.3}, {-63.3, 0}, {-63.3, 10}, {-60, -3.3}, {-56.7, 16.7}, {-56.7, -13.3}, {-53.3, 36.7}, {-50, -3.3}, {-50, 10}, {-46.7, -10}, {-43.3, 6.7}, {-43.3, -3.3}, {-36.7, -23.3}, {-36.7, -10}, {-33.3, -3.3}, {-30, -10}, {-30, -3.3}, {-30, 30}, {-26.7, 30}, {-20, 6.7}, {-20, -13.3}, {-16.7, -16.7}, {-16.7, 3.3}, {-13.3, -10}, {-13.3, 3.3}, {-13.3, -16.7}, {-13.3, 43.3}, {-10, -16.7}, {-6.7, -6.7}, {-6.7, -13.3}, {-3.3, 16.7}, {-3.3, -3.3}, {-3.3, 3.3}, {0, -10}, {3.3, -13.3}, {6.7, 23.3}, {10, 6.7}, {13.3, 0}, {16.7, -6.7}, {16.7, -16.7}, {16.7, -3.3}, {20, -23.3}, {23.3, -6.7}, {23.3, -3.3}, {33.3, -23.3}, {33.3, 6.7}, {36.7, 6.7}, {40, 10}, {43.3, 46.7}, {40, -10}, {40, -13.3}, {43.3, 0}, {46.7, 10}, {50, -6.7}, {50, 3.3}, {53.3, 13.3}}, color = {0, 0, 0})}),
-				experiment(
-					StopTime=1,
-					StartTime=0),
-				x(flags=2),
-				y(flags=2),
-				Icon(
-					coordinateSystem(extent={{-101.7, -51.7}, {101.7, 51.7}}),
-					graphics={Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = {{-70, -20}, {-66.7, 20}, {-66.7, -3.3}, {-63.3, 3.3}, {-63.3, 0}, {-63.3, 10}, {-60, -3.3}, {-56.7, 16.7}, {-56.7, -13.3}, {-53.3, 36.7}, {-50, -3.3}, {-50, 10}, {-46.7, -10}, {-43.3, 6.7}, {-43.3, -3.3}, {-36.7, -23.3}, {-36.7, -10}, {-33.3, -3.3}, {-30, -10}, {-30, -3.3}, {-30, 30}, {-26.7, 30}, {-20, 6.7}, {-20, -13.3}, {-16.7, -16.7}, {-16.7, 3.3}, {-13.3, -10}, {-13.3, 3.3}, {-13.3, -16.7}, {-13.3, 43.3}, {-10, -16.7}, {-6.7, -6.7}, {-6.7, -13.3}, {-3.3, 16.7}, {-3.3, -3.3}, {-3.3, 3.3}, {0, -10}, {3.3, -13.3}, {6.7, 23.3}, {10, 6.7}, {13.3, 0}, {16.7, -6.7}, {16.7, -16.7}, {16.7, -3.3}, {20, -23.3}, {23.3, -6.7}, {23.3, -3.3}, {33.3, -23.3}, {33.3, 6.7}, {36.7, 6.7}, {40, 10}, {43.3, 46.7}, {40, -10}, {40, -13.3}, {43.3, 0}, {46.7, 10}, {50, -6.7}, {50, 3.3}, {53.3, 13.3}}, color = {0, 0, 0})}),
-				experiment(
-					StopTime=1,
-					StartTime=0),
-				x(flags=2),
-				y(flags=2),
-				Icon(
-					coordinateSystem(extent={{-101.7, -51.7}, {101.7, 51.7}}),
-					graphics={Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = {{-70, -20}, {-66.7, 20}, {-66.7, -3.3}, {-63.3, 3.3}, {-63.3, 0}, {-63.3, 10}, {-60, -3.3}, {-56.7, 16.7}, {-56.7, -13.3}, {-53.3, 36.7}, {-50, -3.3}, {-50, 10}, {-46.7, -10}, {-43.3, 6.7}, {-43.3, -3.3}, {-36.7, -23.3}, {-36.7, -10}, {-33.3, -3.3}, {-30, -10}, {-30, -3.3}, {-30, 30}, {-26.7, 30}, {-20, 6.7}, {-20, -13.3}, {-16.7, -16.7}, {-16.7, 3.3}, {-13.3, -10}, {-13.3, 3.3}, {-13.3, -16.7}, {-13.3, 43.3}, {-10, -16.7}, {-6.7, -6.7}, {-6.7, -13.3}, {-3.3, 16.7}, {-3.3, -3.3}, {-3.3, 3.3}, {0, -10}, {3.3, -13.3}, {6.7, 23.3}, {10, 6.7}, {13.3, 0}, {16.7, -6.7}, {16.7, -16.7}, {16.7, -3.3}, {20, -23.3}, {23.3, -6.7}, {23.3, -3.3}, {33.3, -23.3}, {33.3, 6.7}, {36.7, 6.7}, {40, 10}, {43.3, 46.7}, {40, -10}, {40, -13.3}, {43.3, 0}, {46.7, 10}, {50, -6.7}, {50, 3.3}, {53.3, 13.3}}, color = {0, 0, 0})}),
-				experiment(
-					StopTime=1,
-					StartTime=0),
-				y(flags=2),
-				Icon(graphics={Line(points = ":241:
-                                                    789C64524B0AC2400C2D5D7A04D75D15858205C18504A99442A99F2AD20BF41C5EA31EC0953B2F3007A82B2FE4B4C90BC40686F0269397CC4BC2200896FE84FE
-                                                    7C7A6FAFAB5B0DF6DEB860B48BF848713BD8932C6E6734E6D567B9AF1CF31DD9976BC51CCF84E7E01E9DB726D73CC63BF1A5F49310C70BC65FF4B19F78F0A00E
-                                                    3C7819A7C2B7451F8AE5FF041DC6BC2E26AB4BAA3AD9BA29FE2BEF135BBF8B271E7A02DBBE610DF3F673E933A33F8C3929461FD01179E65F4D4E323F8917925F
-                                                    91C591BEB7F3423C85EE84795B5D0B8EDF4FB69EC7A23BF687CCBE2C6AC29EC8DCA12BC9BE6A7F9C7F53FE1F000000FFFF", color = {0, 0, 0})}),
+					coordinateSystem(extent={{-101.7,-51.7},{101.7,51.7}}),
+					graphics={
+																			Rectangle(
+																				lineColor={0,0,0},
+																				fillColor={255,255,255},
+																				fillPattern=FillPattern.Solid,
+																				extent={{-80,56.7},{53.3,-40}}),
+																			Line(
+																				points=":253:
+789C6C53CB09C240105D72B404CF39791214048530048324043F471BB00EDB880578F266035B40ECC9353B6FF06D3210262FF37F33C99C73BBF0644EE57EF1F1
+65ED3F7D90D71958806F83CCA27E9E800518A918E712F5D1E21F5D906BEB573F792F0578D0DD42F337EA576A7C6DF1C0C81FFD0EC01A5FC539FAB90073FD32DA
+DB8D618E97A45E6176E0697B2171AEAD61E235F4038C7995879106BFF0437DE2E9CF8E38E6B112C4C1AE7D8C7492D7F6437B1F6B7124F9A82FCCAD7CA31FC177
+F5B33CA88BBE80137EAC2FBAD3B04FD4A1F902E6FB15F3278C7EC2DDF1BEF6D63778D5BB4BED1E787A0FCE711CFE8FDAFA05E6FFAB319EBE000000FFFF",
+																				color={0,0,0})}),
 				experiment(
 					StopTime=1,
 					StartTime=0));
