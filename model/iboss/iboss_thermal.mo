@@ -2209,12 +2209,13 @@ An approppriate simulating time would be 10 seconds.
 				input Real ref_low;
 				input Real hys;
 				input Real value;
+				input Real prevalue;
 				input Boolean actual_state;
 				output Boolean state_out;
 				algorithm
-					if (value < ref_low) then
+					if ((value < ref_low) and (prevalue< ref_low))  then
 						state_out := true;
-					elseif (value > ref_low+hys) then
+					elseif ((value > ref_low+hys) and (prevalue > ref_low+hys)) then
 						state_out := false;
 					else
 						state_out := actual_state;
@@ -2222,7 +2223,7 @@ An approppriate simulating time would be 10 seconds.
 				Modelica.Utilities.Streams.print("tata " + String(actual_state) + " blub " + String(value) + " ref " + String(ref_low));
 			end bangbang_heat;
 			equation
-				y = bangbang_heat(reference_low,hysteresis,u,pre(y));
+				y = bangbang_heat(reference_low,hysteresis,u,pre(u),pre(y));
 				Modelica.Utilities.Streams.print(String(time) + "   " + String(pre(y)) + "   " + String(y) + "   " + String(u));
 			annotation(
 				Icon(graphics={
