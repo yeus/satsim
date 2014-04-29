@@ -634,9 +634,6 @@ An approppriate simulating time would be 10 seconds.
 					color={0,0,127},
 					thickness=0.0625));
 			annotation(
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(graphics={
 							Rectangle(
 								radius=4,
@@ -751,9 +748,6 @@ An approppriate simulating time would be 10 seconds.
 				cooler_power(port(Q_flow(flags=2))),
 				lower_Temp(y(flags=2)),
 				upper_Temp(y(flags=2)),
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(graphics={
 							Rectangle(
 								lineColor={255,255,255},
@@ -2294,7 +2288,7 @@ signal <b>u</b> exceeds the <b>reference</b> signal plus half of the bandwidth.<
 			input Modelica.Blocks.Interfaces.RealInput u "Connector of Real input signal used as measurement signal" annotation(Placement(
 				transformation(extent={{-140,-40},{-100,-80}}),
 				iconTransformation(extent={{-140,-40},{-100,-80}})));
-			output Modelica.Blocks.Interfaces.RealOutput y(start=false) "Connector of Real output signal used as actuator signal" annotation(Placement(
+			output Modelica.Blocks.Interfaces.RealOutput y(start=0) "Connector of Real output signal used as actuator signal" annotation(Placement(
 				transformation(extent={{100,-10},{120,10}}),
 				iconTransformation(extent={{100,-10},{120,10}})));
 			extends Modelica.Blocks.Icons.PartialBooleanBlock;
@@ -2302,8 +2296,8 @@ signal <b>u</b> exceeds the <b>reference</b> signal plus half of the bandwidth.<
 				input Real ref_high;
 				input Real hys;
 				input Real value;
-				input Boolean actual_state;
-				output Boolean state_out;
+				input Real actual_state;
+				output Real state_out;
 				algorithm
 					if value > ref_high then
 					  state_out := 1;
@@ -2313,12 +2307,9 @@ signal <b>u</b> exceeds the <b>reference</b> signal plus half of the bandwidth.<
 					  state_out := actual_state;
 					end if;
 			end bangbang_cool;
-			algorithm
-				y := noEvent(bangbang_cool(reference_high,hysteresis,u,y));
+			equation
+				y = noEvent(bangbang_cool(reference_high,hysteresis,u,y));
 			annotation(
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(graphics={
 							Text(
 								textString="low",
