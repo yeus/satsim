@@ -2,6 +2,9 @@ size_x = 1
 size_y = 1
 size_z = 1
 modelname = "propulsion_tank_"+str(size_x)+"x"+str(size_y)+"x"+str(size_z)
+material =["material_Tank", "material_ESS", "Material_MSS", "Material_TSS", "Material_Panel"]
+component_length = ["x_ESS","y_ESS","z_ESS","x_MSS","y_MSS","z_MSS","x_TSS","y_TSS","z_TSS","x_Panel","y_Panel","z_Panel",]
+thermal_interaction = ["eps_tank","eps_Panel","h_tank_Panel","A_thermal_coupling_tank"]
 BB=[]
 connection_element=[]
 conncet=[]
@@ -79,6 +82,16 @@ while i<=size_x:
 modelica_obj = open(modelname+".mo","w")
 print("model "+ modelname)
 modelica_obj.write("model "+ modelname + "\n")
+i=0
+while i<=len(component_length)-1:
+    print(" parameter "+ component_length[i] + ";")
+    modelica_obj.write(" parameter "+ component_length[i] + ";" + "\n")
+    i=i+1
+i=0
+while i<=len(thermal_interaction)-1:
+    print(" parameter "+ thermal_interaction[i] + ";")
+    modelica_obj.write(" parameter "+ thermal_interaction[i] + ";" + "\n")
+    i=i+1
 i=0
 while i<=len(BB)-1:
     print(BB[i])
