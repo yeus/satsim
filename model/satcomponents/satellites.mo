@@ -4050,9 +4050,6 @@ package satellites
 					w(flags=2),
 					w_a(flags=2)),
 				error(y(flags=2))),
-			viewinfo[0](
-				viewSettings(clrRaster=12632256),
-				typename="ModelInfo"),
 			experiment(
 				StopTime=100,
 				StartTime=0));
@@ -4472,9 +4469,6 @@ package satellites
 					noise_ung2(y(flags=2)),
 					noise_ung1(y(flags=2)),
 					noise_ung3(y(flags=2)))),
-			viewinfo[0](
-				viewSettings(clrRaster=12632256),
-				typename="ModelInfo"),
 			experiment(
 				StopTime=100,
 				StartTime=0));
@@ -5045,12 +5039,6 @@ package satellites
 			aCS_PID3(acs_bus(
 				w(flags=2),
 				w_a(flags=2))),
-			viewinfo[0](
-				optimizeForODE=true,
-				typename="GSASettings"),
-			viewinfo[1](
-				viewSettings(clrRaster=12632256),
-				typename="ModelInfo"),
 			experiment(
 				StopTime=15,
 				StartTime=0));
