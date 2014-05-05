@@ -565,31 +565,31 @@ An approppriate simulating time would be 10 seconds.
 		end BB_heater;
 		model TCS "TCS.mo"
 			Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a Temp "Thermal port for 1-dim. heat transfer (filled rectangular icon)" annotation(Placement(
-				transformation(extent={{-50,20},{-30,40}}),
+				transformation(extent={{-35,20},{-15,40}}),
 				iconTransformation(
 					origin={-100,0},
 					extent={{-10,-10},{10,10}},
 					rotation=-90)));
 			input Modelica.Blocks.Interfaces.RealInput Tmax "'input Real' as connector" annotation(Placement(
-				transformation(extent={{40,-20},{80,20}}),
+				transformation(extent={{30,-5},{70,35}}),
 				iconTransformation(
 					origin={50,100},
 					extent={{-20,-20},{20,20}},
 					rotation=270)));
 			input Modelica.Blocks.Interfaces.RealInput Tmin "'input Real' as connector" annotation(Placement(
-				transformation(extent={{45,35},{85,75}}),
+				transformation(extent={{30,30},{70,70}}),
 				iconTransformation(
 					origin={-50,100},
 					extent={{-20,-20},{20,20}},
 					rotation=270)));
-			output Modelica.Blocks.Interfaces.RealOutput heater_on "'output Boolean' as connector" annotation(Placement(
-				transformation(extent={{165,40},{185,60}}),
+			output Modelica.Blocks.Interfaces.BooleanOutput heater_on "'output Boolean' as connector" annotation(Placement(
+				transformation(extent={{165,55},{185,75}}),
 				iconTransformation(
 					origin={-50,-100},
 					extent={{-10,-10},{10,10}},
 					rotation=-90)));
-			output Modelica.Blocks.Interfaces.IntegerOutput cooler_on "'output Boolean' as connector" annotation(Placement(
-				transformation(extent={{165,-5},{185,15}}),
+			output Modelica.Blocks.Interfaces.BooleanOutput cooler_on "'output Boolean' as connector" annotation(Placement(
+				transformation(extent={{165,-10},{185,10}}),
 				iconTransformation(
 					origin={50,-100},
 					extent={{-10,-10},{10,10}},
@@ -599,79 +599,99 @@ An approppriate simulating time would be 10 seconds.
 			Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperature_EB annotation(Placement(transformation(
 				origin={15,30},
 				extent={{-10,-10},{10,10}})));
-			heater_OnOff_noEvent onOffController_heat(hysteresis=hysteresis_heater) annotation(Placement(transformation(extent={{120,40},{140,60}})));
-			cooler_OnOff_noEvent onOffController_cool(hysteresis=hysteresis_cooler) annotation(Placement(transformation(extent={{120,-5},{140,15}})));
+			Modelica.Blocks.Logical.OnOffController onOffController_heat(bandwidth=hysteresis_heater) annotation(Placement(transformation(extent={{120,55},{140,75}})));
+			Modelica.Blocks.Logical.OnOffController onOffController_cool(bandwidth=hysteresis_cooler) annotation(Placement(transformation(extent={{120,-10},{140,10}})));
+			Modelica.Blocks.Sources.Constant comp_hys_cool(k=-(hysteresis_heater/2)) annotation(Placement(transformation(extent={{50,-25},{70,-5}})));
+			Modelica.Blocks.Sources.Constant comp_hys_heat(k=(hysteresis_heater/2)) annotation(Placement(transformation(extent={{50,70},{70,90}})));
+			Modelica.Blocks.Math.Add add1 annotation(Placement(transformation(extent={{85,60},{105,80}})));
+			Modelica.Blocks.Math.Add add2 annotation(Placement(transformation(extent={{85,-15},{105,5}})));
 			equation
 				connect(Temp,temperature_EB.port) annotation(Line(
-					points={{-40,30},{-35,30},{0,30},{5,30}},
+					points={{-25,30},{-20,30},{0,30},{5,30}},
 					color={191,0,0},
 					thickness=0.0625));
 				
-				connect(onOffController_heat.reference_low,Tmin) annotation(Line(
-					points={{118,56},{113,56},{70,56},{70,55},{65,55}},
-					color={0,0,127},
-					thickness=0.0625));
-				connect(temperature_EB.T,onOffController_heat.u) annotation(Line(
-					points={{25,30},{30,30},{113,30},{113,44},{118,44}},
-					color={0,0,127},
-					thickness=0.0625));
-				connect(onOffController_cool.reference_high,Tmax) annotation(Line(
-					points={{120,5},{115,5},{65,5},{65,0},{60,0}},
-					color={0,0,127},
-					thickness=0.0625));
-				connect(onOffController_cool.u,temperature_EB.T) annotation(
-					Line(
-						points={{118,-1},{113,-1},{110,-1},{110,30},{25,30}},
-						color={0,0,127},
-						thickness=0.0625),
-					AutoRoute=false);
+				
+				
 				connect(onOffController_heat.y,heater_on) annotation(Line(
-					points={{141,50},{146,50},{170,50},{175,50}},
+					points={{141,65},{146,65},{170,65},{175,65}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(onOffController_cool.y,cooler_on) annotation(Line(
-					points={{141,5},{146,5},{170,5},{175,5}},
+					points={{141,0},{146,0},{170,0},{175,0}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(comp_hys_heat.y,add1.u1) annotation(Line(
+					points={{71,80},{76,80},{78,80},{78,76},{83,76}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(add1.u2,Tmin) annotation(Line(
+					points={{83,64},{78,64},{55,64},{55,50},{50,50}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(add2.u1,Tmax) annotation(Line(
+					points={{83,1},{78,1},{55,1},{55,15},{50,15}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(comp_hys_cool.y,add2.u2) annotation(Line(
+					points={{71,-15},{76,-15},{78,-15},{78,-11},{83,-11}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(temperature_EB.T,onOffController_cool.reference) annotation(Line(
+					points={{25,30},{30,30},{113,30},{113,6},{118,6}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(add2.y,onOffController_cool.u) annotation(Line(
+					points={{106,-5},{111,-5},{113,-5},{113,-6},{118,-6}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(add1.y,onOffController_heat.reference) annotation(Line(
+					points={{106,70},{111,70},{113,70},{113,71},{118,71}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(temperature_EB.T,onOffController_heat.u) annotation(Line(
+					points={{25,30},{30,30},{113,30},{113,59},{118,59}},
 					color={0,0,127},
 					thickness=0.0625));
 			annotation(
 				Icon(graphics={
-							Rectangle(
-								radius=4,
-								lineColor={0,0,0},
-								fillColor={255,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{-100,100},{100,-100}}),
-							Text(
-								textString="TCS",
-								textStyle={TextStyle.Bold},
-								lineColor={0,0,0},
-								extent={{-40,10},{-43,10}}),
-							Text(
-								textString="TCS",
-								fontSize=16,
-								textStyle={TextStyle.Bold},
-								lineColor={0,0,0},
-								extent={{-99,99},{101,-98}}),
-							Text(
-								textString="Tmin",
-								fontSize=8,
-								lineColor={0,0,0},
-								extent={{-108,86},{-3,51}}),
-							Text(
-								textString="Tmax",
-								fontSize=8,
-								lineColor={0,0,0},
-								extent={{-4,84},{107,52}}),
-							Text(
-								textString="heat",
-								fontSize=8,
-								lineColor={0,0,0},
-								extent={{-95,-61},{-4,-87}}),
-							Text(
-								textString="cool",
-								fontSize=8,
-								lineColor={0,0,0},
-								extent={{8,-62},{94,-86}})}),
+											Rectangle(
+												radius=4,
+												lineColor={0,0,0},
+												fillColor={255,0,0},
+												fillPattern=FillPattern.Solid,
+												extent={{-100,100},{100,-100}}),
+											Text(
+												textString="TCS",
+												textStyle={TextStyle.Bold},
+												lineColor={0,0,0},
+												extent={{-40,10},{-43,10}}),
+											Text(
+												textString="TCS",
+												fontSize=16,
+												textStyle={TextStyle.Bold},
+												lineColor={0,0,0},
+												extent={{-99,99},{101,-98}}),
+											Text(
+												textString="Tmin",
+												fontSize=8,
+												lineColor={0,0,0},
+												extent={{-108,86},{-3,51}}),
+											Text(
+												textString="Tmax",
+												fontSize=8,
+												lineColor={0,0,0},
+												extent={{-4,84},{107,52}}),
+											Text(
+												textString="heat",
+												fontSize=8,
+												lineColor={0,0,0},
+												extent={{-95,-61},{-4,-87}}),
+											Text(
+												textString="cool",
+												fontSize=8,
+												lineColor={0,0,0},
+												extent={{8,-62},{94,-86}})}),
 				experiment(
 					StopTime=1,
 					StartTime=0));
@@ -680,10 +700,10 @@ An approppriate simulating time would be 10 seconds.
 			Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b Power_heating_cooling "Thermal port for 1-dim. heat transfer (unfilled rectangular icon)" annotation(Placement(
 				transformation(extent={{75,-30},{95,-10}}),
 				iconTransformation(extent={{-10,90},{10,110}})));
-			input Modelica.Blocks.Interfaces.RealInput heater_on "'input Boolean' as connector" annotation(Placement(
+			input Modelica.Blocks.Interfaces.BooleanInput heater_on "'input Boolean' as connector" annotation(Placement(
 				transformation(extent={{-125,-20},{-85,20}}),
 				iconTransformation(extent={{-120,30},{-80,70}})));
-			input Modelica.Blocks.Interfaces.IntegerInput cooler_on "'input Boolean' as connector" annotation(Placement(
+			input Modelica.Blocks.Interfaces.BooleanInput cooler_on "'input Boolean' as connector" annotation(Placement(
 				transformation(extent={{-125,-60},{-85,-20}}),
 				iconTransformation(extent={{-120,-70},{-80,-30}})));
 			output Modelica.Blocks.Interfaces.RealOutput Tmin "'output Real' as connector" annotation(Placement(
@@ -708,7 +728,8 @@ An approppriate simulating time would be 10 seconds.
 				origin={-30,-75},
 				extent={{-10,-10},{10,10}},
 				rotation=-180)));
-			Modelica.Blocks.Math.IntegerToReal integerToReal1 annotation(Placement(transformation(extent={{-55,-50},{-35,-30}})));
+			Modelica.Blocks.Math.BooleanToReal booleanToReal_heat annotation(Placement(transformation(extent={{-60,-10},{-40,10}})));
+			Modelica.Blocks.Math.BooleanToReal booleanToReal_cool annotation(Placement(transformation(extent={{-60,-50},{-40,-30}})));
 			equation
 				connect(heating_power.y,heater_power.Q_flow) annotation(Line(
 					points={{16,0},{21,0},{20,0},{25,0}},
@@ -734,17 +755,21 @@ An approppriate simulating time would be 10 seconds.
 					points={{16,-40},{21,-40},{20,-40},{25,-40}},
 					color={0,0,127},
 					thickness=0.0625));
-				connect(heating_power.u,heater_on) annotation(Line(
-					points={{-7,0},{-12,0},{-100,0},{-105,0}},
+				connect(booleanToReal_cool.y,cooling_power.u) annotation(Line(
+					points={{-39,-40},{-34,-40},{-12,-40},{-7,-40}},
 					color={0,0,127},
 					thickness=0.0625));
-				connect(integerToReal1.u,cooler_on) annotation(Line(
-					points={{-57,-40},{-62,-40},{-100,-40},{-105,-40}},
-					color={255,127,0},
+				connect(booleanToReal_cool.u,cooler_on) annotation(Line(
+					points={{-62,-40},{-67,-40},{-100,-40},{-105,-40}},
+					color={255,0,255},
 					thickness=0.0625));
-				connect(integerToReal1.y,cooling_power.u) annotation(Line(
-					points={{-34,-40},{-29,-40},{-12,-40},{-7,-40}},
+				connect(booleanToReal_heat.y,heating_power.u) annotation(Line(
+					points={{-39,0},{-34,0},{-12,0},{-7,0}},
 					color={0,0,127},
+					thickness=0.0625));
+				connect(booleanToReal_heat.u,heater_on) annotation(Line(
+					points={{-62,0},{-67,0},{-100,0},{-105,0}},
+					color={255,0,255},
 					thickness=0.0625));
 			annotation(
 				heating_power(y(flags=2)),
@@ -754,48 +779,48 @@ An approppriate simulating time would be 10 seconds.
 				lower_Temp(y(flags=2)),
 				upper_Temp(y(flags=2)),
 				Icon(graphics={
-							Rectangle(
-								lineColor={255,255,255},
-								fillColor={255,0,0},
-								fillPattern=FillPattern.CrossDiag,
-								extent={{-100,100},{100,0}}),
-							Rectangle(
-								lineColor={0,0,0},
-								fillColor={0,0,255},
-								fillPattern=FillPattern.CrossDiag,
-								extent={{-100,1},{100,-99}}),
-							Text(
-								textString="heater",
-								fontSize=12,
-								textStyle={TextStyle.Bold},
-								lineColor={0,0,0},
-								extent={{-97,54},{100,0}}),
-							Text(
-								textString="cooler",
-								fontSize=12,
-								textStyle={TextStyle.Bold},
-								lineColor={255,255,255},
-								extent={{-98,-2},{100,-57}}),
-							Text(
-								textString="heat",
-								fontSize=8,
-								lineColor={0,0,0},
-								extent={{-100,96},{-13,66}}),
-							Text(
-								textString="cool",
-								fontSize=8,
-								lineColor={255,255,255},
-								extent={{-102,-70},{-15,-100}}),
-							Text(
-								textString="Tmin",
-								fontSize=8,
-								lineColor={0,0,0},
-								extent={{0,97},{99,64}}),
-							Text(
-								textString="Tmax",
-								fontSize=8,
-								lineColor={255,255,255},
-								extent={{-9,-69},{99,-102}})}),
+															Rectangle(
+																lineColor={255,255,255},
+																fillColor={255,0,0},
+																fillPattern=FillPattern.CrossDiag,
+																extent={{-100,100},{100,0}}),
+															Rectangle(
+																lineColor={0,0,0},
+																fillColor={0,0,255},
+																fillPattern=FillPattern.CrossDiag,
+																extent={{-100,1},{100,-99}}),
+															Text(
+																textString="heater",
+																fontSize=12,
+																textStyle={TextStyle.Bold},
+																lineColor={0,0,0},
+																extent={{-97,54},{100,0}}),
+															Text(
+																textString="cooler",
+																fontSize=12,
+																textStyle={TextStyle.Bold},
+																lineColor={255,255,255},
+																extent={{-98,-2},{100,-57}}),
+															Text(
+																textString="heat",
+																fontSize=8,
+																lineColor={0,0,0},
+																extent={{-100,96},{-13,66}}),
+															Text(
+																textString="cool",
+																fontSize=8,
+																lineColor={255,255,255},
+																extent={{-102,-70},{-15,-100}}),
+															Text(
+																textString="Tmin",
+																fontSize=8,
+																lineColor={0,0,0},
+																extent={{0,97},{99,64}}),
+															Text(
+																textString="Tmax",
+																fontSize=8,
+																lineColor={255,255,255},
+																extent={{-9,-69},{99,-102}})}),
 				Documentation(info="<HTML>
 		<P>
 		A constant voltage of 10 V is applied to a
@@ -994,34 +1019,34 @@ An approppriate simulating time would be 10 seconds.
 				Icon(
 					coordinateSystem(grid={10,10}),
 					graphics={
-																																																																																																																										Rectangle(
-																																																																																																																						lineColor={255,0,0},
-																																																																																																																	fillColor={255,255,255},
-																																																																																																													fillPattern=FillPattern.CrossDiag,
-																																																																																																									extent={{-20,-100},{20,100}},
-																																																																																																									visible=true,
-																																																																																																									origin={-80,0}),
-																																																																																																								Rectangle(
-																																																																																																									lineColor={255,0,0},
-																																																																																																									fillColor={255,255,255},
-																																																																																																									fillPattern=FillPattern.CrossDiag,
-																																																																																																									extent={{-20,-100},{20,100}},
-																																																																																																									visible=true,
-																																																																																																									origin={80,0}),
-																																																																																																								Rectangle(
-																																																																																																									lineColor={255,0,0},
-																																																																																																									fillColor={255,0,0},
-																																																																																																									fillPattern=FillPattern.Solid,
-																																																																																																									extent={{-40,-100},{40,100}},
-																																																																																																									visible=true),
-																																																																																																								Text(
-																																																																																																									textString="%name",
-																																																																																																									textStyle={TextStyle.Bold},
-																																																																																																									fillPattern=FillPattern.Solid,
-																																																																																																									extent={{-100.0603,-40},{100.0603,40}},
-																																																																																																									visible=true,
-																																																																																																									origin={-0,0.0603},
-																																																																																																									rotation=90)}),
+																																																																																																																																									Rectangle(
+																																																																																																																																					lineColor={255,0,0},
+																																																																																																																																fillColor={255,255,255},
+																																																																																																																												fillPattern=FillPattern.CrossDiag,
+																																																																																																																								extent={{-20,-100},{20,100}},
+																																																																																																																								visible=true,
+																																																																																																																								origin={-80,0}),
+																																																																																																																							Rectangle(
+																																																																																																																								lineColor={255,0,0},
+																																																																																																																								fillColor={255,255,255},
+																																																																																																																								fillPattern=FillPattern.CrossDiag,
+																																																																																																																								extent={{-20,-100},{20,100}},
+																																																																																																																								visible=true,
+																																																																																																																								origin={80,0}),
+																																																																																																																							Rectangle(
+																																																																																																																								lineColor={255,0,0},
+																																																																																																																								fillColor={255,0,0},
+																																																																																																																								fillPattern=FillPattern.Solid,
+																																																																																																																								extent={{-40,-100},{40,100}},
+																																																																																																																								visible=true),
+																																																																																																																							Text(
+																																																																																																																								textString="%name",
+																																																																																																																								textStyle={TextStyle.Bold},
+																																																																																																																								fillPattern=FillPattern.Solid,
+																																																																																																																								extent={{-100.0603,-40},{100.0603,40}},
+																																																																																																																								visible=true,
+																																																																																																																								origin={-0,0.0603},
+																																																																																																																								rotation=90)}),
 				Diagram(coordinateSystem(
 					extent={{-105,-74},{105,74}},
 					grid={5,5})),
@@ -1544,15 +1569,15 @@ An approppriate simulating time would be 10 seconds.
 			annotation(
 				combiTable1Ds1(y(flags=2)),
 				Icon(graphics={
-																																																																											Rectangle(
-																																																																										lineColor={0,0,0},
-																																																																										fillPattern=FillPattern.Solid,
-																																																																										extent={{-100,100},{100,-100}}),
-																																																																									Ellipse(
-																																																																										lineColor={0,0,0},
-																																																																										fillColor={255,255,0},
-																																																																										fillPattern=FillPattern.Solid,
-																																																																										extent={{98,-96},{-96,98}})}),
+																																																																																							Rectangle(
+																																																																																						lineColor={0,0,0},
+																																																																																						fillPattern=FillPattern.Solid,
+																																																																																						extent={{-100,100},{100,-100}}),
+																																																																																					Ellipse(
+																																																																																						lineColor={0,0,0},
+																																																																																						fillColor={255,255,0},
+																																																																																						fillPattern=FillPattern.Solid,
+																																																																																						extent={{98,-96},{-96,98}})}),
 				experiment(
 					StopTime=10,
 					StartTime=0));
@@ -1569,27 +1594,27 @@ An approppriate simulating time would be 10 seconds.
 				y = k*u;
 			annotation(
 				Icon(graphics={
-																																																																													Polygon(
-																																																																										points={{-100,-100},{-100,100},{100,0},{-100,-100}},
-																																																																										lineColor={0,0,127},
-																																																																										fillColor={255,255,255},
-																																																																										fillPattern=FillPattern.Solid),
-																																																																									Text(
-																																																																										textString="k=%k",
-																																																																										lineColor={0,0,0},
-																																																																										extent={{-150,-140},{150,-100}}),
-																																																																									Text(
-																																																																										textString="%name",
-																																																																										extent={{-150,140},{150,100}})}),
+																																																																																									Polygon(
+																																																																																						points={{-100,-100},{-100,100},{100,0},{-100,-100}},
+																																																																																						lineColor={0,0,127},
+																																																																																						fillColor={255,255,255},
+																																																																																						fillPattern=FillPattern.Solid),
+																																																																																					Text(
+																																																																																						textString="k=%k",
+																																																																																						lineColor={0,0,0},
+																																																																																						extent={{-150,-140},{150,-100}}),
+																																																																																					Text(
+																																																																																						textString="%name",
+																																																																																						extent={{-150,140},{150,100}})}),
 				Diagram(graphics={
-																																																																									Polygon(
-																																																																										points={{-100,-100},{-100,100},{100,0},{-100,-100}},
-																																																																										lineColor={0,0,127},
-																																																																										fillColor={255,255,255},
-																																																																										fillPattern=FillPattern.Solid),
-																																																																									Text(
-																																																																										textString="k",
-																																																																										extent={{-76,38},{0,-34}})}),
+																																																																																					Polygon(
+																																																																																						points={{-100,-100},{-100,100},{100,0},{-100,-100}},
+																																																																																						lineColor={0,0,127},
+																																																																																						fillColor={255,255,255},
+																																																																																						fillPattern=FillPattern.Solid),
+																																																																																					Text(
+																																																																																						textString="k",
+																																																																																						extent={{-76,38},{0,-34}})}),
 				Documentation(info="<html>
 		<p>
 		This block computes output <i>y</i> as
@@ -1616,124 +1641,124 @@ An approppriate simulating time would be 10 seconds.
 				Q_flow = Gr * Modelica.Constants.sigma * (port_a.T ^ 4 - port_b.T ^ 4);
 			annotation(
 				Icon(graphics={
-																																																																																																																																																																																Rectangle(
-																																																																																																																																																																												lineColor={0,0,0},
-																																																																																																																																																																												fillColor={192,192,192},
-																																																																																																																																																																												fillPattern=FillPattern.Backward,
-																																																																																																																																																																												extent={{50,80},{90,-80}}),
-																																																																																																																																																																											Rectangle(
-																																																																																																																																																																												lineColor={0,0,0},
-																																																																																																																																																																												fillColor={192,192,192},
-																																																																																																																																																																												fillPattern=FillPattern.Backward,
-																																																																																																																																																																												extent={{-90,80},{-50,-80}}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{-36,10},{36,10}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{-36,10},{-26,16}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{-36,10},{-26,4}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{-36,-10},{36,-10}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{26,-16},{36,-10}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{26,-4},{36,-10}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{-36,-30},{36,-30}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{-36,-30},{-26,-24}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{-36,-30},{-26,-36}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{-36,30},{36,30}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{26,24},{36,30}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{26,36},{36,30}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Text(
-																																																																																																																																																																												textString="%name",
-																																																																																																																																																																												extent={{-150,125},{150,85}}),
-																																																																																																																																																																											Text(
-																																																																																																																																																																												textString="Gr=%Gr",
-																																																																																																																																																																												lineColor={0,0,0},
-																																																																																																																																																																												extent={{-150,-90},{150,-120}}),
-																																																																																																																																																																											Rectangle(
-																																																																																																																																																																												lineColor={191,0,0},
-																																																																																																																																																																												fillColor={191,0,0},
-																																																																																																																																																																												fillPattern=FillPattern.Solid,
-																																																																																																																																																																												extent={{-50,80},{-44,-80}}),
-																																																																																																																																																																											Rectangle(
-																																																																																																																																																																												lineColor={191,0,0},
-																																																																																																																																																																												fillColor={191,0,0},
-																																																																																																																																																																												fillPattern=FillPattern.Solid,
-																																																																																																																																																																												extent={{45,80},{50,-80}})}),
+																																																																																																																																																																																												Rectangle(
+																																																																																																																																																																																								lineColor={0,0,0},
+																																																																																																																																																																																								fillColor={192,192,192},
+																																																																																																																																																																																								fillPattern=FillPattern.Backward,
+																																																																																																																																																																																								extent={{50,80},{90,-80}}),
+																																																																																																																																																																																							Rectangle(
+																																																																																																																																																																																								lineColor={0,0,0},
+																																																																																																																																																																																								fillColor={192,192,192},
+																																																																																																																																																																																								fillPattern=FillPattern.Backward,
+																																																																																																																																																																																								extent={{-90,80},{-50,-80}}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{-36,10},{36,10}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{-36,10},{-26,16}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{-36,10},{-26,4}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{-36,-10},{36,-10}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{26,-16},{36,-10}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{26,-4},{36,-10}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{-36,-30},{36,-30}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{-36,-30},{-26,-24}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{-36,-30},{-26,-36}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{-36,30},{36,30}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{26,24},{36,30}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{26,36},{36,30}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Text(
+																																																																																																																																																																																								textString="%name",
+																																																																																																																																																																																								extent={{-150,125},{150,85}}),
+																																																																																																																																																																																							Text(
+																																																																																																																																																																																								textString="Gr=%Gr",
+																																																																																																																																																																																								lineColor={0,0,0},
+																																																																																																																																																																																								extent={{-150,-90},{150,-120}}),
+																																																																																																																																																																																							Rectangle(
+																																																																																																																																																																																								lineColor={191,0,0},
+																																																																																																																																																																																								fillColor={191,0,0},
+																																																																																																																																																																																								fillPattern=FillPattern.Solid,
+																																																																																																																																																																																								extent={{-50,80},{-44,-80}}),
+																																																																																																																																																																																							Rectangle(
+																																																																																																																																																																																								lineColor={191,0,0},
+																																																																																																																																																																																								fillColor={191,0,0},
+																																																																																																																																																																																								fillPattern=FillPattern.Solid,
+																																																																																																																																																																																								extent={{45,80},{50,-80}})}),
 				Diagram(graphics={
-																																																																																																																																																																											Rectangle(
-																																																																																																																																																																												lineColor={0,0,0},
-																																																																																																																																																																												fillColor={192,192,192},
-																																																																																																																																																																												fillPattern=FillPattern.Backward,
-																																																																																																																																																																												extent={{-90,80},{-56,-80}}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{-56,80},{-56,-80}},
-																																																																																																																																																																												color={0,0,0},
-																																																																																																																																																																												thickness=1),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{50,80},{50,-80}},
-																																																																																																																																																																												color={0,0,0},
-																																																																																																																																																																												thickness=1),
-																																																																																																																																																																											Rectangle(
-																																																																																																																																																																												lineColor={0,0,0},
-																																																																																																																																																																												fillColor={192,192,192},
-																																																																																																																																																																												fillPattern=FillPattern.Backward,
-																																																																																																																																																																												extent={{50,80},{90,-80}}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{-40,10},{40,10}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{-40,10},{-30,16}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{-40,10},{-30,4}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{-40,-10},{40,-10}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{30,-16},{40,-10}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{30,-4},{40,-10}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{-40,-30},{40,-30}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{-40,-30},{-30,-24}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{-40,-30},{-30,-36}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{-40,30},{40,30}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{30,24},{40,30}},
-																																																																																																																																																																												color={191,0,0}),
-																																																																																																																																																																											Line(
-																																																																																																																																																																												points={{30,36},{40,30}},
-																																																																																																																																																																												color={191,0,0})}),
+																																																																																																																																																																																							Rectangle(
+																																																																																																																																																																																								lineColor={0,0,0},
+																																																																																																																																																																																								fillColor={192,192,192},
+																																																																																																																																																																																								fillPattern=FillPattern.Backward,
+																																																																																																																																																																																								extent={{-90,80},{-56,-80}}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{-56,80},{-56,-80}},
+																																																																																																																																																																																								color={0,0,0},
+																																																																																																																																																																																								thickness=1),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{50,80},{50,-80}},
+																																																																																																																																																																																								color={0,0,0},
+																																																																																																																																																																																								thickness=1),
+																																																																																																																																																																																							Rectangle(
+																																																																																																																																																																																								lineColor={0,0,0},
+																																																																																																																																																																																								fillColor={192,192,192},
+																																																																																																																																																																																								fillPattern=FillPattern.Backward,
+																																																																																																																																																																																								extent={{50,80},{90,-80}}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{-40,10},{40,10}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{-40,10},{-30,16}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{-40,10},{-30,4}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{-40,-10},{40,-10}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{30,-16},{40,-10}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{30,-4},{40,-10}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{-40,-30},{40,-30}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{-40,-30},{-30,-24}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{-40,-30},{-30,-36}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{-40,30},{40,30}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{30,24},{40,30}},
+																																																																																																																																																																																								color={191,0,0}),
+																																																																																																																																																																																							Line(
+																																																																																																																																																																																								points={{30,36},{40,30}},
+																																																																																																																																																																																								color={191,0,0})}),
 				Documentation(info="<HTML>
 	<p>
 	This is a model describing the thermal radiation, i.e., electromagnetic
@@ -1809,124 +1834,124 @@ An approppriate simulating time would be 10 seconds.
 				Q_flow = Gr * Modelica.Constants.sigma * (port_a.T ^ 4 - port_b.T ^ 4);
 			annotation(
 				Icon(graphics={
-																																																																																												Rectangle(
-																																																																																								lineColor={0,0,0},
-																																																																																								fillColor={192,192,192},
-																																																																																								fillPattern=FillPattern.Backward,
-																																																																																								extent={{50,80},{90,-80}}),
-																																																																																							Rectangle(
-																																																																																								lineColor={0,0,0},
-																																																																																								fillColor={192,192,192},
-																																																																																								fillPattern=FillPattern.Backward,
-																																																																																								extent={{-90,80},{-50,-80}}),
-																																																																																							Line(
-																																																																																								points={{-36,10},{36,10}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{-36,10},{-26,16}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{-36,10},{-26,4}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{-36,-10},{36,-10}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{26,-16},{36,-10}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{26,-4},{36,-10}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{-36,-30},{36,-30}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{-36,-30},{-26,-24}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{-36,-30},{-26,-36}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{-36,30},{36,30}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{26,24},{36,30}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{26,36},{36,30}},
-																																																																																								color={191,0,0}),
-																																																																																							Text(
-																																																																																								textString="%name",
-																																																																																								extent={{-150,125},{150,85}}),
-																																																																																							Text(
-																																																																																								textString="Gr=%Gr",
-																																																																																								lineColor={0,0,0},
-																																																																																								extent={{-150,-90},{150,-120}}),
-																																																																																							Rectangle(
-																																																																																								lineColor={191,0,0},
-																																																																																								fillColor={191,0,0},
-																																																																																								fillPattern=FillPattern.Solid,
-																																																																																								extent={{-50,80},{-44,-80}}),
-																																																																																							Rectangle(
-																																																																																								lineColor={191,0,0},
-																																																																																								fillColor={191,0,0},
-																																																																																								fillPattern=FillPattern.Solid,
-																																																																																								extent={{45,80},{50,-80}})}),
+																																																																																																								Rectangle(
+																																																																																																				lineColor={0,0,0},
+																																																																																																				fillColor={192,192,192},
+																																																																																																				fillPattern=FillPattern.Backward,
+																																																																																																				extent={{50,80},{90,-80}}),
+																																																																																																			Rectangle(
+																																																																																																				lineColor={0,0,0},
+																																																																																																				fillColor={192,192,192},
+																																																																																																				fillPattern=FillPattern.Backward,
+																																																																																																				extent={{-90,80},{-50,-80}}),
+																																																																																																			Line(
+																																																																																																				points={{-36,10},{36,10}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{-36,10},{-26,16}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{-36,10},{-26,4}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{-36,-10},{36,-10}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{26,-16},{36,-10}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{26,-4},{36,-10}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{-36,-30},{36,-30}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{-36,-30},{-26,-24}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{-36,-30},{-26,-36}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{-36,30},{36,30}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{26,24},{36,30}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{26,36},{36,30}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Text(
+																																																																																																				textString="%name",
+																																																																																																				extent={{-150,125},{150,85}}),
+																																																																																																			Text(
+																																																																																																				textString="Gr=%Gr",
+																																																																																																				lineColor={0,0,0},
+																																																																																																				extent={{-150,-90},{150,-120}}),
+																																																																																																			Rectangle(
+																																																																																																				lineColor={191,0,0},
+																																																																																																				fillColor={191,0,0},
+																																																																																																				fillPattern=FillPattern.Solid,
+																																																																																																				extent={{-50,80},{-44,-80}}),
+																																																																																																			Rectangle(
+																																																																																																				lineColor={191,0,0},
+																																																																																																				fillColor={191,0,0},
+																																																																																																				fillPattern=FillPattern.Solid,
+																																																																																																				extent={{45,80},{50,-80}})}),
 				Diagram(graphics={
-																																																																																							Rectangle(
-																																																																																								lineColor={0,0,0},
-																																																																																								fillColor={192,192,192},
-																																																																																								fillPattern=FillPattern.Backward,
-																																																																																								extent={{-90,80},{-56,-80}}),
-																																																																																							Line(
-																																																																																								points={{-56,80},{-56,-80}},
-																																																																																								color={0,0,0},
-																																																																																								thickness=1),
-																																																																																							Line(
-																																																																																								points={{50,80},{50,-80}},
-																																																																																								color={0,0,0},
-																																																																																								thickness=1),
-																																																																																							Rectangle(
-																																																																																								lineColor={0,0,0},
-																																																																																								fillColor={192,192,192},
-																																																																																								fillPattern=FillPattern.Backward,
-																																																																																								extent={{50,80},{90,-80}}),
-																																																																																							Line(
-																																																																																								points={{-40,10},{40,10}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{-40,10},{-30,16}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{-40,10},{-30,4}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{-40,-10},{40,-10}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{30,-16},{40,-10}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{30,-4},{40,-10}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{-40,-30},{40,-30}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{-40,-30},{-30,-24}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{-40,-30},{-30,-36}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{-40,30},{40,30}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{30,24},{40,30}},
-																																																																																								color={191,0,0}),
-																																																																																							Line(
-																																																																																								points={{30,36},{40,30}},
-																																																																																								color={191,0,0})}),
+																																																																																																			Rectangle(
+																																																																																																				lineColor={0,0,0},
+																																																																																																				fillColor={192,192,192},
+																																																																																																				fillPattern=FillPattern.Backward,
+																																																																																																				extent={{-90,80},{-56,-80}}),
+																																																																																																			Line(
+																																																																																																				points={{-56,80},{-56,-80}},
+																																																																																																				color={0,0,0},
+																																																																																																				thickness=1),
+																																																																																																			Line(
+																																																																																																				points={{50,80},{50,-80}},
+																																																																																																				color={0,0,0},
+																																																																																																				thickness=1),
+																																																																																																			Rectangle(
+																																																																																																				lineColor={0,0,0},
+																																																																																																				fillColor={192,192,192},
+																																																																																																				fillPattern=FillPattern.Backward,
+																																																																																																				extent={{50,80},{90,-80}}),
+																																																																																																			Line(
+																																																																																																				points={{-40,10},{40,10}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{-40,10},{-30,16}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{-40,10},{-30,4}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{-40,-10},{40,-10}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{30,-16},{40,-10}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{30,-4},{40,-10}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{-40,-30},{40,-30}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{-40,-30},{-30,-24}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{-40,-30},{-30,-36}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{-40,30},{40,30}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{30,24},{40,30}},
+																																																																																																				color={191,0,0}),
+																																																																																																			Line(
+																																																																																																				points={{30,36},{40,30}},
+																																																																																																				color={191,0,0})}),
 				Documentation(info="<HTML>
 	<p>
 	This is a model describing the thermal radiation, i.e., electromagnetic
@@ -2002,41 +2027,41 @@ An approppriate simulating time would be 10 seconds.
 				Q_flow = G*dT;
 			annotation(
 				Icon(graphics={
-																																																																																								Rectangle(
-																																																																																				pattern=LinePattern.None,
-																																																																																				lineColor={0,0,0},
-																																																																																				fillColor={192,192,192},
-																																																																																				fillPattern=FillPattern.Backward,
-																																																																																				extent={{-90,70},{90,-70}}),
-																																																																																			Line(
-																																																																																				points={{-90,70},{-90,-70}},
-																																																																																				color={0,0,0},
-																																																																																				thickness=0.5),
-																																																																																			Line(
-																																																																																				points={{90,70},{90,-70}},
-																																																																																				color={0,0,0},
-																																																																																				thickness=0.5),
-																																																																																			Text(
-																																																																																				textString="%name",
-																																																																																				extent={{-150,115},{150,75}}),
-																																																																																			Text(
-																																																																																				textString="G=%G",
-																																																																																				lineColor={0,0,0},
-																																																																																				extent={{-150,-75},{150,-105}})}),
+																																																																																																				Rectangle(
+																																																																																																pattern=LinePattern.None,
+																																																																																																lineColor={0,0,0},
+																																																																																																fillColor={192,192,192},
+																																																																																																fillPattern=FillPattern.Backward,
+																																																																																																extent={{-90,70},{90,-70}}),
+																																																																																															Line(
+																																																																																																points={{-90,70},{-90,-70}},
+																																																																																																color={0,0,0},
+																																																																																																thickness=0.5),
+																																																																																															Line(
+																																																																																																points={{90,70},{90,-70}},
+																																																																																																color={0,0,0},
+																																																																																																thickness=0.5),
+																																																																																															Text(
+																																																																																																textString="%name",
+																																																																																																extent={{-150,115},{150,75}}),
+																																																																																															Text(
+																																																																																																textString="G=%G",
+																																																																																																lineColor={0,0,0},
+																																																																																																extent={{-150,-75},{150,-105}})}),
 				Diagram(graphics={
-																																																																																			Line(
-																																																																																				points={{-80,0},{80,0}},
-																																																																																				color={255,0,0},
-																																																																																				arrow={Arrow.None,Arrow.Filled},
-																																																																																				thickness=0.5),
-																																																																																			Text(
-																																																																																				textString="Q_flow",
-																																																																																				lineColor={255,0,0},
-																																																																																				extent={{-100,-20},{100,-40}}),
-																																																																																			Text(
-																																																																																				textString="dT = port_a.T - port_b.T",
-																																																																																				lineColor={0,0,0},
-																																																																																				extent={{-100,40},{100,20}})}),
+																																																																																															Line(
+																																																																																																points={{-80,0},{80,0}},
+																																																																																																color={255,0,0},
+																																																																																																arrow={Arrow.None,Arrow.Filled},
+																																																																																																thickness=0.5),
+																																																																																															Text(
+																																																																																																textString="Q_flow",
+																																																																																																lineColor={255,0,0},
+																																																																																																extent={{-100,-20},{100,-40}}),
+																																																																																															Text(
+																																																																																																textString="dT = port_a.T - port_b.T",
+																																																																																																lineColor={0,0,0},
+																																																																																																extent={{-100,40},{100,20}})}),
 				Documentation(info="<HTML>
 		<p>
 		This is a model for transport of heat without storing it; see also:
@@ -2162,15 +2187,15 @@ An approppriate simulating time would be 10 seconds.
 					thickness=0.0625));
 			annotation(
 				Icon(graphics={
-																																																																																																																																								Rectangle(
-																																																																																																																																				lineColor={0,0,0},
-																																																																																																																																				fillColor={255,255,0},
-																																																																																																																																				fillPattern=FillPattern.Solid,
-																																																																																																																																				extent={{-100,100},{100,-100}}),
-																																																																																																																																			Text(
-																																																																																																																																				textString="VEROSIM",
-																																																																																																																																				lineColor={255,0,0},
-																																																																																																																																				extent={{-100,100},{100,-100}})}),
+																																																																																																																																																				Rectangle(
+																																																																																																																																																lineColor={0,0,0},
+																																																																																																																																																fillColor={255,255,0},
+																																																																																																																																																fillPattern=FillPattern.Solid,
+																																																																																																																																																extent={{-100,100},{100,-100}}),
+																																																																																																																																															Text(
+																																																																																																																																																textString="VEROSIM",
+																																																																																																																																																lineColor={255,0,0},
+																																																																																																																																																extent={{-100,100},{100,-100}})}),
 				experiment(
 					StopTime=10,
 					StartTime=0));
@@ -2185,27 +2210,27 @@ An approppriate simulating time would be 10 seconds.
 				y = k * u;
 			annotation(
 				Icon(graphics={
-																																																																																																												Polygon(
-																																																																																																								points={{-100,-100},{-100,100},{100,0},{-100,-100}},
-																																																																																																								lineColor={0,0,127},
-																																																																																																								fillColor={255,255,255},
-																																																																																																								fillPattern=FillPattern.Solid),
-																																																																																																							Text(
-																																																																																																								textString="k=%k",
-																																																																																																								lineColor={0,0,0},
-																																																																																																								extent={{-150,-140},{150,-100}}),
-																																																																																																							Text(
-																																																																																																								textString="%name",
-																																																																																																								extent={{-150,140},{150,100}})}),
+																																																																																																																								Polygon(
+																																																																																																																				points={{-100,-100},{-100,100},{100,0},{-100,-100}},
+																																																																																																																				lineColor={0,0,127},
+																																																																																																																				fillColor={255,255,255},
+																																																																																																																				fillPattern=FillPattern.Solid),
+																																																																																																																			Text(
+																																																																																																																				textString="k=%k",
+																																																																																																																				lineColor={0,0,0},
+																																																																																																																				extent={{-150,-140},{150,-100}}),
+																																																																																																																			Text(
+																																																																																																																				textString="%name",
+																																																																																																																				extent={{-150,140},{150,100}})}),
 				Diagram(graphics={
-																																																																																																							Polygon(
-																																																																																																								points={{-100,-100},{-100,100},{100,0},{-100,-100}},
-																																																																																																								lineColor={0,0,127},
-																																																																																																								fillColor={255,255,255},
-																																																																																																								fillPattern=FillPattern.Solid),
-																																																																																																							Text(
-																																																																																																								textString="k",
-																																																																																																								extent={{-76,38},{0,-34}})}),
+																																																																																																																			Polygon(
+																																																																																																																				points={{-100,-100},{-100,100},{100,0},{-100,-100}},
+																																																																																																																				lineColor={0,0,127},
+																																																																																																																				fillColor={255,255,255},
+																																																																																																																				fillPattern=FillPattern.Solid),
+																																																																																																																			Text(
+																																																																																																																				textString="k",
+																																																																																																																				extent={{-76,38},{0,-34}})}),
 				Documentation(info="<html>
  <p>
  This block computes output <i>y</i> as
@@ -2249,32 +2274,32 @@ An approppriate simulating time would be 10 seconds.
 				y = noEvent(bangbang_heat(reference_low, hysteresis, u, y));
 			annotation(
 				Icon(graphics={
-											Text(
-												textString="low",
-												lineThickness=0.5,
-												extent={{-108.5,14.5},{27.5,-15.5}}),
-											Text(
-												textString="u",
-												extent={{-94,-52},{-34,-74}}),
-											Line(
-												points={{-76,-32},{-68,-6},{-50,26},{-24,40},{-2,42},{16,
-												36},{32,28},{48,12},{58,-6},{68,-28}},
-												color={255,0,0}),
-											Line(
-												points={{-78,-2},{-6,18},{82,-12}},
-												color={255,0,0}),
-											Line(
-												points={{-78,12},{-6,30},{82,0}}),
-											Line(
-												points={{-78,-16},{-6,4},{82,-26}}),
-											Line(
-												points={{-82,-18},{-56,-18},{-56,-40},{64,-40},{64,-20},{90,
-												-20}},
-												color={255,0,255}),
-											Text(
-												textString="high",
-												lineThickness=0.5,
-												extent={{-105.5,66.7},{30.5,36.7}})}),
+																							Text(
+																								textString="low",
+																								lineThickness=0.5,
+																								extent={{-108.5,14.5},{27.5,-15.5}}),
+																							Text(
+																								textString="u",
+																								extent={{-94,-52},{-34,-74}}),
+																							Line(
+																								points={{-76,-32},{-68,-6},{-50,26},{-24,40},{-2,42},{16,
+																								36},{32,28},{48,12},{58,-6},{68,-28}},
+																								color={255,0,0}),
+																							Line(
+																								points={{-78,-2},{-6,18},{82,-12}},
+																								color={255,0,0}),
+																							Line(
+																								points={{-78,12},{-6,30},{82,0}}),
+																							Line(
+																								points={{-78,-16},{-6,4},{82,-26}}),
+																							Line(
+																								points={{-82,-18},{-56,-18},{-56,-40},{64,-40},{64,-20},{90,
+																								-20}},
+																								color={255,0,255}),
+																							Text(
+																								textString="high",
+																								lineThickness=0.5,
+																								extent={{-105.5,66.7},{30.5,36.7}})}),
 				Documentation(info="<html>
 <p>The block OnOffController sets the output signal <b>y</b> to <b>true</b> when
 the input signal <b>u</b> falls below the <b>reference</b> signal minus half of
@@ -2317,32 +2342,32 @@ signal <b>u</b> exceeds the <b>reference</b> signal plus half of the bandwidth.<
 				y = bangbang_cool(reference_high,hysteresis,u,y,pre(y));
 			annotation(
 				Icon(graphics={
-											Text(
-												textString="low",
-												lineThickness=0.5,
-												extent={{-108.5,14.5},{27.5,-15.5}}),
-											Text(
-												textString="u",
-												extent={{-94,-52},{-34,-74}}),
-											Line(
-												points={{-76,-32},{-68,-6},{-50,26},{-24,40},{-2,42},{16,
-												36},{32,28},{48,12},{58,-6},{68,-28}},
-												color={255,0,0}),
-											Line(
-												points={{-78,-2},{-6,18},{82,-12}},
-												color={255,0,0}),
-											Line(
-												points={{-78,12},{-6,30},{82,0}}),
-											Line(
-												points={{-78,-16},{-6,4},{82,-26}}),
-											Line(
-												points={{-82,-18},{-56,-18},{-56,-40},{64,-40},{64,-20},{90,
-												-20}},
-												color={255,0,255}),
-											Text(
-												textString="high",
-												lineThickness=0.5,
-												extent={{-105.5,66.7},{30.5,36.7}})}),
+																							Text(
+																								textString="low",
+																								lineThickness=0.5,
+																								extent={{-108.5,14.5},{27.5,-15.5}}),
+																							Text(
+																								textString="u",
+																								extent={{-94,-52},{-34,-74}}),
+																							Line(
+																								points={{-76,-32},{-68,-6},{-50,26},{-24,40},{-2,42},{16,
+																								36},{32,28},{48,12},{58,-6},{68,-28}},
+																								color={255,0,0}),
+																							Line(
+																								points={{-78,-2},{-6,18},{82,-12}},
+																								color={255,0,0}),
+																							Line(
+																								points={{-78,12},{-6,30},{82,0}}),
+																							Line(
+																								points={{-78,-16},{-6,4},{82,-26}}),
+																							Line(
+																								points={{-82,-18},{-56,-18},{-56,-40},{64,-40},{64,-20},{90,
+																								-20}},
+																								color={255,0,255}),
+																							Text(
+																								textString="high",
+																								lineThickness=0.5,
+																								extent={{-105.5,66.7},{30.5,36.7}})}),
 				Documentation(info="<html>
 <p>The block OnOffController sets the output signal <b>y</b> to <b>true</b> when
 the input signal <b>u</b> falls below the <b>reference</b> signal minus half of
@@ -2410,8 +2435,8 @@ signal <b>u</b> exceeds the <b>reference</b> signal plus half of the bandwidth.<
 			parameter Modelica.SIunits.Emissivity eps_EB=0.5 "Emmisivity of the electronic box";
 			parameter Modelica.SIunits.Temp_K lower_Temp_boundary=270 "Coldest allowed temperatur in the Box";
 			parameter Modelica.SIunits.Temp_K upper_Temp_boundary=310 "highest allowed temperatur in the Box";
-			parameter Modelica.SIunits.ActivePower heating_power=100 "heat Power of the heater";
-			parameter Modelica.SIunits.ActivePower cooling_power=-100 "heat Power of the cooler";
+			parameter Modelica.SIunits.ActivePower heating_power=20 "heat Power of the heater";
+			parameter Modelica.SIunits.ActivePower cooling_power=-20 "heat Power of the cooler";
 			parameter Real hysteresis_heater=5 "Bandwidth of the controller / K";
 			parameter Real hysteresis_cooler=5 "Bandwidth of the controller / K";
 			thermal_Panel_with_Interface Panel_xp(
@@ -3074,68 +3099,68 @@ signal <b>u</b> exceeds the <b>reference</b> signal plus half of the bandwidth.<
 					lower_Temp(y(flags=2)),
 					upper_Temp(y(flags=2))),
 				Icon(graphics={
-																									Rectangle(
-																									lineColor={255,0,0},
-																								fillColor={255,255,255},
-																								fillPattern=FillPattern.CrossDiag,
-																								extent={{-10,-50},{10,50}}),
-																							Rectangle(
-																								lineColor={255,0,0},
-																								fillColor={255,255,255},
-																								fillPattern=FillPattern.CrossDiag,
-																								extent={{-10.2751,-50},{9.7249,50}}),
-																							Rectangle(
-																								lineColor={255,0,0},
-																								fillColor={255,255,255},
-																								fillPattern=FillPattern.CrossDiag,
-																								extent={{-50,-10},{50,10}}),
-																							Rectangle(
-																								lineColor={255,0,0},
-																								fillColor={255,255,255},
-																								fillPattern=FillPattern.CrossDiag,
-																								extent={{-50,-10},{50,10}}),
-																							Rectangle(
-																								lineColor={255,0,0},
-																								fillColor={255,255,255},
-																								lineThickness=2,
-																								extent={{-80,-80},{80,80}}),
-																							Text(
-																								textString="%name",
-																								textStyle={TextStyle.Bold},
-																								lineColor={0,0,0},
-																								fillColor={255,0,0},
-																								fillPattern=FillPattern.Solid,
-																								extent={{-78.4853,-65.66710000000001},{78.4853,-25.6671}}),
-																							Text(
-																								textString="yp",
-																								lineColor={0,0,0},
-																								fillPattern=FillPattern.Solid,
-																								extent={{-12.0277,70.2527},{14.7787,93.1585}}),
-																							Text(
-																								textString="yn",
-																								lineColor={0,0,0},
-																								fillPattern=FillPattern.Solid,
-																								extent={{-12.3028,-89.8573},{14.5036,-66.9515}}),
-																							Text(
-																								textString="xp",
-																								lineColor={0,0,0},
-																								fillPattern=FillPattern.Solid,
-																								extent={{67.47709999999999,-10.6276},{94.2835,12.2782}}),
-																							Text(
-																								textString="xn",
-																								lineColor={0,0,0},
-																								fillPattern=FillPattern.Solid,
-																								extent={{-92.63290000000001,-12.5533},{-65.8265,10.3525}}),
-																							Text(
-																								textString="zp",
-																								lineColor={0,0,0},
-																								fillPattern=FillPattern.Solid,
-																								extent={{-79.428,-79.95359999999999},{-52.6216,-57.0478}}),
-																							Text(
-																								textString="zn",
-																								lineColor={0,0,0},
-																								fillPattern=FillPattern.Solid,
-																								extent={{55.2109,58.9977},{82.01730000000001,81.90349999999999}})}),
+							Rectangle(
+								lineColor={255,0,0},
+								fillColor={255,255,255},
+								fillPattern=FillPattern.CrossDiag,
+								extent={{-10,-50},{10,50}}),
+							Rectangle(
+								lineColor={255,0,0},
+								fillColor={255,255,255},
+								fillPattern=FillPattern.CrossDiag,
+								extent={{-10.2751,-50},{9.7249,50}}),
+							Rectangle(
+								lineColor={255,0,0},
+								fillColor={255,255,255},
+								fillPattern=FillPattern.CrossDiag,
+								extent={{-50,-10},{50,10}}),
+							Rectangle(
+								lineColor={255,0,0},
+								fillColor={255,255,255},
+								fillPattern=FillPattern.CrossDiag,
+								extent={{-50,-10},{50,10}}),
+							Rectangle(
+								lineColor={255,0,0},
+								fillColor={255,255,255},
+								lineThickness=2,
+								extent={{-80,-80},{80,80}}),
+							Text(
+								textString="%name",
+								textStyle={TextStyle.Bold},
+								lineColor={0,0,0},
+								fillColor={255,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-78.4853,-65.66710000000001},{78.4853,-25.6671}}),
+							Text(
+								textString="yp",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-12.0277,70.2527},{14.7787,93.1585}}),
+							Text(
+								textString="yn",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-12.3028,-89.8573},{14.5036,-66.9515}}),
+							Text(
+								textString="xp",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{67.47709999999999,-10.6276},{94.2835,12.2782}}),
+							Text(
+								textString="xn",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-92.63290000000001,-12.5533},{-65.8265,10.3525}}),
+							Text(
+								textString="zp",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-79.428,-79.95359999999999},{-52.6216,-57.0478}}),
+							Text(
+								textString="zn",
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{55.2109,58.9977},{82.01730000000001,81.90349999999999}})}),
 				Documentation(info="<HTML>
 <P>
 A constant voltage of 10 V is applied to a
@@ -4199,68 +4224,68 @@ An approppriate simulating time would be 10 seconds.
 					T(flags=2),
 					Q_flow(flags=2)),
 				Icon(graphics={
-																																																																																																																																																												Rectangle(
-																																																																																																																																																								lineColor={255,0,0},
-																																																																																																																																																				fillColor={255,255,255},
-																																																																																																																																																				fillPattern=FillPattern.CrossDiag,
-																																																																																																																																																				extent={{-10,-50},{10,50}}),
-																																																																																																																																																			Rectangle(
-																																																																																																																																																				lineColor={255,0,0},
-																																																																																																																																																				fillColor={255,255,255},
-																																																																																																																																																				fillPattern=FillPattern.CrossDiag,
-																																																																																																																																																				extent={{-10.2751,-50},{9.7249,50}}),
-																																																																																																																																																			Rectangle(
-																																																																																																																																																				lineColor={255,0,0},
-																																																																																																																																																				fillColor={255,255,255},
-																																																																																																																																																				fillPattern=FillPattern.CrossDiag,
-																																																																																																																																																				extent={{-50,-10},{50,10}}),
-																																																																																																																																																			Rectangle(
-																																																																																																																																																				lineColor={255,0,0},
-																																																																																																																																																				fillColor={255,255,255},
-																																																																																																																																																				fillPattern=FillPattern.CrossDiag,
-																																																																																																																																																				extent={{-50,-10},{50,10}}),
-																																																																																																																																																			Rectangle(
-																																																																																																																																																				lineColor={255,0,0},
-																																																																																																																																																				fillColor={255,255,255},
-																																																																																																																																																				lineThickness=2,
-																																																																																																																																																				extent={{-80,-80},{80,80}}),
-																																																																																																																																																			Text(
-																																																																																																																																																				textString="%name",
-																																																																																																																																																				textStyle={TextStyle.Bold},
-																																																																																																																																																				lineColor={0,0,0},
-																																																																																																																																																				fillColor={255,0,0},
-																																																																																																																																																				fillPattern=FillPattern.Solid,
-																																																																																																																																																				extent={{-78.4853,-65.66710000000001},{78.4853,-25.6671}}),
-																																																																																																																																																			Text(
-																																																																																																																																																				textString="yp",
-																																																																																																																																																				lineColor={0,0,0},
-																																																																																																																																																				fillPattern=FillPattern.Solid,
-																																																																																																																																																				extent={{-12.0277,70.2527},{14.7787,93.1585}}),
-																																																																																																																																																			Text(
-																																																																																																																																																				textString="yn",
-																																																																																																																																																				lineColor={0,0,0},
-																																																																																																																																																				fillPattern=FillPattern.Solid,
-																																																																																																																																																				extent={{-12.3028,-89.8573},{14.5036,-66.9515}}),
-																																																																																																																																																			Text(
-																																																																																																																																																				textString="xp",
-																																																																																																																																																				lineColor={0,0,0},
-																																																																																																																																																				fillPattern=FillPattern.Solid,
-																																																																																																																																																				extent={{67.47709999999999,-10.6276},{94.2835,12.2782}}),
-																																																																																																																																																			Text(
-																																																																																																																																																				textString="xn",
-																																																																																																																																																				lineColor={0,0,0},
-																																																																																																																																																				fillPattern=FillPattern.Solid,
-																																																																																																																																																				extent={{-92.63290000000001,-12.5533},{-65.8265,10.3525}}),
-																																																																																																																																																			Text(
-																																																																																																																																																				textString="zp",
-																																																																																																																																																				lineColor={0,0,0},
-																																																																																																																																																				fillPattern=FillPattern.Solid,
-																																																																																																																																																				extent={{-79.428,-79.95359999999999},{-52.6216,-57.0478}}),
-																																																																																																																																																			Text(
-																																																																																																																																																				textString="zn",
-																																																																																																																																																				lineColor={0,0,0},
-																																																																																																																																																				fillPattern=FillPattern.Solid,
-																																																																																																																																																				extent={{55.2109,58.9977},{82.01730000000001,81.90349999999999}})}),
+																																																																																																																																																																								Rectangle(
+																																																																																																																																																																				lineColor={255,0,0},
+																																																																																																																																																																fillColor={255,255,255},
+																																																																																																																																																																fillPattern=FillPattern.CrossDiag,
+																																																																																																																																																																extent={{-10,-50},{10,50}}),
+																																																																																																																																																															Rectangle(
+																																																																																																																																																																lineColor={255,0,0},
+																																																																																																																																																																fillColor={255,255,255},
+																																																																																																																																																																fillPattern=FillPattern.CrossDiag,
+																																																																																																																																																																extent={{-10.2751,-50},{9.7249,50}}),
+																																																																																																																																																															Rectangle(
+																																																																																																																																																																lineColor={255,0,0},
+																																																																																																																																																																fillColor={255,255,255},
+																																																																																																																																																																fillPattern=FillPattern.CrossDiag,
+																																																																																																																																																																extent={{-50,-10},{50,10}}),
+																																																																																																																																																															Rectangle(
+																																																																																																																																																																lineColor={255,0,0},
+																																																																																																																																																																fillColor={255,255,255},
+																																																																																																																																																																fillPattern=FillPattern.CrossDiag,
+																																																																																																																																																																extent={{-50,-10},{50,10}}),
+																																																																																																																																																															Rectangle(
+																																																																																																																																																																lineColor={255,0,0},
+																																																																																																																																																																fillColor={255,255,255},
+																																																																																																																																																																lineThickness=2,
+																																																																																																																																																																extent={{-80,-80},{80,80}}),
+																																																																																																																																																															Text(
+																																																																																																																																																																textString="%name",
+																																																																																																																																																																textStyle={TextStyle.Bold},
+																																																																																																																																																																lineColor={0,0,0},
+																																																																																																																																																																fillColor={255,0,0},
+																																																																																																																																																																fillPattern=FillPattern.Solid,
+																																																																																																																																																																extent={{-78.4853,-65.66710000000001},{78.4853,-25.6671}}),
+																																																																																																																																																															Text(
+																																																																																																																																																																textString="yp",
+																																																																																																																																																																lineColor={0,0,0},
+																																																																																																																																																																fillPattern=FillPattern.Solid,
+																																																																																																																																																																extent={{-12.0277,70.2527},{14.7787,93.1585}}),
+																																																																																																																																																															Text(
+																																																																																																																																																																textString="yn",
+																																																																																																																																																																lineColor={0,0,0},
+																																																																																																																																																																fillPattern=FillPattern.Solid,
+																																																																																																																																																																extent={{-12.3028,-89.8573},{14.5036,-66.9515}}),
+																																																																																																																																																															Text(
+																																																																																																																																																																textString="xp",
+																																																																																																																																																																lineColor={0,0,0},
+																																																																																																																																																																fillPattern=FillPattern.Solid,
+																																																																																																																																																																extent={{67.47709999999999,-10.6276},{94.2835,12.2782}}),
+																																																																																																																																																															Text(
+																																																																																																																																																																textString="xn",
+																																																																																																																																																																lineColor={0,0,0},
+																																																																																																																																																																fillPattern=FillPattern.Solid,
+																																																																																																																																																																extent={{-92.63290000000001,-12.5533},{-65.8265,10.3525}}),
+																																																																																																																																																															Text(
+																																																																																																																																																																textString="zp",
+																																																																																																																																																																lineColor={0,0,0},
+																																																																																																																																																																fillPattern=FillPattern.Solid,
+																																																																																																																																																																extent={{-79.428,-79.95359999999999},{-52.6216,-57.0478}}),
+																																																																																																																																																															Text(
+																																																																																																																																																																textString="zn",
+																																																																																																																																																																lineColor={0,0,0},
+																																																																																																																																																																fillPattern=FillPattern.Solid,
+																																																																																																																																																																extent={{55.2109,58.9977},{82.01730000000001,81.90349999999999}})}),
 				Documentation(info="<HTML>
 <P>
 A constant voltage of 10 V is applied to a
@@ -5174,68 +5199,68 @@ An approppriate simulating time would be 10 seconds.
 					lower_Temp(y(flags=2)),
 					upper_Temp(y(flags=2))),
 				Icon(graphics={
-																																																																																																																Rectangle(
-																																																																																																												lineColor={255,0,0},
-																																																																																																												fillColor={255,255,255},
-																																																																																																												fillPattern=FillPattern.CrossDiag,
-																																																																																																												extent={{-10,-50},{10,50}}),
-																																																																																																											Rectangle(
-																																																																																																												lineColor={255,0,0},
-																																																																																																												fillColor={255,255,255},
-																																																																																																												fillPattern=FillPattern.CrossDiag,
-																																																																																																												extent={{-10.2751,-50},{9.7249,50}}),
-																																																																																																											Rectangle(
-																																																																																																												lineColor={255,0,0},
-																																																																																																												fillColor={255,255,255},
-																																																																																																												fillPattern=FillPattern.CrossDiag,
-																																																																																																												extent={{-50,-10},{50,10}}),
-																																																																																																											Rectangle(
-																																																																																																												lineColor={255,0,0},
-																																																																																																												fillColor={255,255,255},
-																																																																																																												fillPattern=FillPattern.CrossDiag,
-																																																																																																												extent={{-50,-10},{50,10}}),
-																																																																																																											Rectangle(
-																																																																																																												lineColor={255,0,0},
-																																																																																																												fillColor={255,255,255},
-																																																																																																												lineThickness=2,
-																																																																																																												extent={{-80,-80},{80,80}}),
-																																																																																																											Text(
-																																																																																																												textString="%name",
-																																																																																																												textStyle={TextStyle.Bold},
-																																																																																																												lineColor={0,0,0},
-																																																																																																												fillColor={255,0,0},
-																																																																																																												fillPattern=FillPattern.Solid,
-																																																																																																												extent={{-78.4853,-65.66710000000001},{78.4853,-25.6671}}),
-																																																																																																											Text(
-																																																																																																												textString="yp",
-																																																																																																												lineColor={0,0,0},
-																																																																																																												fillPattern=FillPattern.Solid,
-																																																																																																												extent={{-12.0277,70.2527},{14.7787,93.1585}}),
-																																																																																																											Text(
-																																																																																																												textString="yn",
-																																																																																																												lineColor={0,0,0},
-																																																																																																												fillPattern=FillPattern.Solid,
-																																																																																																												extent={{-12.3028,-89.8573},{14.5036,-66.9515}}),
-																																																																																																											Text(
-																																																																																																												textString="xp",
-																																																																																																												lineColor={0,0,0},
-																																																																																																												fillPattern=FillPattern.Solid,
-																																																																																																												extent={{67.47709999999999,-10.6276},{94.2835,12.2782}}),
-																																																																																																											Text(
-																																																																																																												textString="xn",
-																																																																																																												lineColor={0,0,0},
-																																																																																																												fillPattern=FillPattern.Solid,
-																																																																																																												extent={{-92.63290000000001,-12.5533},{-65.8265,10.3525}}),
-																																																																																																											Text(
-																																																																																																												textString="zp",
-																																																																																																												lineColor={0,0,0},
-																																																																																																												fillPattern=FillPattern.Solid,
-																																																																																																												extent={{-79.428,-79.95359999999999},{-52.6216,-57.0478}}),
-																																																																																																											Text(
-																																																																																																												textString="zn",
-																																																																																																												lineColor={0,0,0},
-																																																																																																												fillPattern=FillPattern.Solid,
-																																																																																																												extent={{55.2109,58.9977},{82.01730000000001,81.90349999999999}})}),
+																																																																																																																												Rectangle(
+																																																																																																																								lineColor={255,0,0},
+																																																																																																																								fillColor={255,255,255},
+																																																																																																																								fillPattern=FillPattern.CrossDiag,
+																																																																																																																								extent={{-10,-50},{10,50}}),
+																																																																																																																							Rectangle(
+																																																																																																																								lineColor={255,0,0},
+																																																																																																																								fillColor={255,255,255},
+																																																																																																																								fillPattern=FillPattern.CrossDiag,
+																																																																																																																								extent={{-10.2751,-50},{9.7249,50}}),
+																																																																																																																							Rectangle(
+																																																																																																																								lineColor={255,0,0},
+																																																																																																																								fillColor={255,255,255},
+																																																																																																																								fillPattern=FillPattern.CrossDiag,
+																																																																																																																								extent={{-50,-10},{50,10}}),
+																																																																																																																							Rectangle(
+																																																																																																																								lineColor={255,0,0},
+																																																																																																																								fillColor={255,255,255},
+																																																																																																																								fillPattern=FillPattern.CrossDiag,
+																																																																																																																								extent={{-50,-10},{50,10}}),
+																																																																																																																							Rectangle(
+																																																																																																																								lineColor={255,0,0},
+																																																																																																																								fillColor={255,255,255},
+																																																																																																																								lineThickness=2,
+																																																																																																																								extent={{-80,-80},{80,80}}),
+																																																																																																																							Text(
+																																																																																																																								textString="%name",
+																																																																																																																								textStyle={TextStyle.Bold},
+																																																																																																																								lineColor={0,0,0},
+																																																																																																																								fillColor={255,0,0},
+																																																																																																																								fillPattern=FillPattern.Solid,
+																																																																																																																								extent={{-78.4853,-65.66710000000001},{78.4853,-25.6671}}),
+																																																																																																																							Text(
+																																																																																																																								textString="yp",
+																																																																																																																								lineColor={0,0,0},
+																																																																																																																								fillPattern=FillPattern.Solid,
+																																																																																																																								extent={{-12.0277,70.2527},{14.7787,93.1585}}),
+																																																																																																																							Text(
+																																																																																																																								textString="yn",
+																																																																																																																								lineColor={0,0,0},
+																																																																																																																								fillPattern=FillPattern.Solid,
+																																																																																																																								extent={{-12.3028,-89.8573},{14.5036,-66.9515}}),
+																																																																																																																							Text(
+																																																																																																																								textString="xp",
+																																																																																																																								lineColor={0,0,0},
+																																																																																																																								fillPattern=FillPattern.Solid,
+																																																																																																																								extent={{67.47709999999999,-10.6276},{94.2835,12.2782}}),
+																																																																																																																							Text(
+																																																																																																																								textString="xn",
+																																																																																																																								lineColor={0,0,0},
+																																																																																																																								fillPattern=FillPattern.Solid,
+																																																																																																																								extent={{-92.63290000000001,-12.5533},{-65.8265,10.3525}}),
+																																																																																																																							Text(
+																																																																																																																								textString="zp",
+																																																																																																																								lineColor={0,0,0},
+																																																																																																																								fillPattern=FillPattern.Solid,
+																																																																																																																								extent={{-79.428,-79.95359999999999},{-52.6216,-57.0478}}),
+																																																																																																																							Text(
+																																																																																																																								textString="zn",
+																																																																																																																								lineColor={0,0,0},
+																																																																																																																								fillPattern=FillPattern.Solid,
+																																																																																																																								extent={{55.2109,58.9977},{82.01730000000001,81.90349999999999}})}),
 				Documentation(info="<HTML>
 <P>
 A constant voltage of 10 V is applied to a
