@@ -611,6 +611,10 @@ package iboss_thermal "iboss_thermal"
 				Placement(transformation(extent={{-10,-10},{10,10}})),
 				choicesAllMatching=true);
 			Modelica.Blocks.Sources.Constant const(k=0.5) annotation(Placement(transformation(extent={{-5,59},{15,79}})));
+			Modelica.Blocks.Sources.Constant A_Rad annotation(Placement(transformation(extent={{105,39},{125,59}})));
+			Modelica.Blocks.Sources.Constant A_TSS annotation(Placement(transformation(extent={{105,4},{125,24}})));
+			Modelica.Blocks.Sources.Constant A_MSS annotation(Placement(transformation(extent={{105,-26},{125,-6}})));
+			Modelica.Blocks.Sources.Constant A_ESS annotation(Placement(transformation(extent={{105,-56},{125,-36}})));
 			equation
 				connect(BuildingBlock_Panel.port_b_xp,schnittstelle1.port_a) annotation(Line(
 					points={{-10,0},{-5,0},{12.3,0},{17.3,0}},
@@ -653,62 +657,81 @@ package iboss_thermal "iboss_thermal"
 					color={191,0,0},
 					thickness=0.0625));
 				connect(const.y,panel_surface1.alpha_ESS) annotation(Line(
-					points={{16,69},{21,69},{50,69},{50,49},{55,49}},
+					points={{16,69},{21,69},{25,69},{25,-30},{30,-30}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(const.y,panel_surface1.alpha_MSS) annotation(Line(
-					points={{16,69},{21,69},{50,69},{50,49},{55,49}},
+					points={{16,69},{21,69},{25,69},{25,-30},{30,-30}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(const.y,panel_surface1.alpha_Rad) annotation(Line(
-					points={{16,69},{21,69},{50,69},{50,49},{55,49}},
+					points={{16,69},{21,69},{25,69},{25,-30},{30,-30}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(const.y,panel_surface1.alpha_TSS) annotation(Line(
-					points={{16,69},{21,69},{50,69},{50,49},{55,49}},
+					points={{16,69},{21,69},{25,69},{25,-30},{30,-30}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(const.y,panel_surface1.epsilon_ESS) annotation(Line(
-					points={{16,69},{21,69},{50,69},{50,49},{55,49}},
+					points={{16,69},{21,69},{25,69},{25,-30},{30,-30}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(const.y,panel_surface1.epsilon_MSS) annotation(Line(
-					points={{16,69},{21,69},{50,69},{50,49},{55,49}},
+					points={{16,69},{21,69},{25,69},{25,-30},{30,-30}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(const.y,panel_surface1.epsilon_Rad) annotation(Line(
-					points={{16,69},{21,69},{50,69},{50,49},{55,49}},
+					points={{16,69},{21,69},{25,69},{25,-30},{30,-30}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(const.y,panel_surface1.epsilon_TSS) annotation(Line(
-					points={{16,69},{21,69},{50,69},{50,49},{55,49}},
+					points={{16,69},{21,69},{25,69},{25,-30},{30,-30}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(A_Rad.y,panel_surface1.A_Rad) annotation(Line(
+					points={{126,49},{131,49},{131,-30},{35,-30},{30,-30}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(A_TSS.y,panel_surface1.A_TSS) annotation(Line(
+					points={{126,14},{131,14},{131,-30},{35,-30},{30,-30}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(A_MSS.y,panel_surface1.A_MSS) annotation(Line(
+					points={{126,-16},{131,-16},{131,-30},{35,-30},{30,-30}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(A_ESS.y,panel_surface1.A_ESS) annotation(Line(
+					points={{126,-46},{131,-46},{131,-30},{35,-30},{30,-30}},
 					color={0,0,127},
 					thickness=0.0625));
 			annotation(
+				viewinfo[2](
+					viewSettings(clrRaster=12632256),
+					typename="ModelInfo"),
 				Icon(
 					coordinateSystem(grid={10,10}),
 					graphics={
-														Rectangle(
-															lineColor={255,0,0},
-															fillColor={255,255,255},
-															fillPattern=FillPattern.VerticalCylinder,
-															extent={{-10,-100},{10,100}},
-															visible=true,
-															origin={-10,0}),
-														Rectangle(
-															lineColor={255,0,0},
-															fillColor={255,255,255},
-															fillPattern=FillPattern.CrossDiag,
-															extent={{-10,-50},{10,50}},
-															visible=true,
-															origin={10,0}),
-														Text(
-															textString="%name",
-															textStyle={TextStyle.Bold},
-															fillPattern=FillPattern.Solid,
-															extent={{-100,-20},{100,20}},
-															visible=true,
-															rotation=90)}),
+									Rectangle(
+										lineColor={255,0,0},
+										fillColor={255,255,255},
+										fillPattern=FillPattern.VerticalCylinder,
+										extent={{-10,-100},{10,100}},
+										visible=true,
+										origin={-10,0}),
+									Rectangle(
+										lineColor={255,0,0},
+										fillColor={255,255,255},
+										fillPattern=FillPattern.CrossDiag,
+										extent={{-10,-50},{10,50}},
+										visible=true,
+										origin={10,0}),
+									Text(
+										textString="%name",
+										textStyle={TextStyle.Bold},
+										fillPattern=FillPattern.Solid,
+										extent={{-100,-20},{100,20}},
+										visible=true,
+										rotation=90)}),
 				Diagram(coordinateSystem(
 					extent={{-105,-74},{105,74}},
 					grid={5,5})),
