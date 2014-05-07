@@ -1212,13 +1212,13 @@ An approppriate simulating time would be 10 seconds.
 				origin={-35,69},
 				extent={{-10,-10},{10,10}},
 				rotation=90)));
-			Modelica.Thermal.HeatTransfer.Components.ThermalConductor Conductance_TIM_TSS(G=h_TSS * A_TSS) "Lumped thermal element transporting heat without storing it" annotation(Placement(transformation(
+			Modelica.Thermal.HeatTransfer.Components.ThermalConductor Conductance_TIM_TSS(G=h_TSS * panel_surface1.A_TSS) "Lumped thermal element transporting heat without storing it" annotation(Placement(transformation(
 				origin={-0,10},
 				extent={{-6.1349,-6.1349},{6.1349,6.1349}})));
-			Modelica.Thermal.HeatTransfer.Components.ThermalConductor Conductance_MSS(G=h_MSS * A_MSS) "Lumped thermal element transporting heat without storing it" annotation(Placement(transformation(
+			Modelica.Thermal.HeatTransfer.Components.ThermalConductor Conductance_MSS(G=h_MSS * panel_surface1.A_MSS) "Lumped thermal element transporting heat without storing it" annotation(Placement(transformation(
 				origin={-0,-10},
 				extent={{-6.0931,-6.0931},{6.0931,6.0931}})));
-			Modelica.Thermal.HeatTransfer.Components.ThermalConductor Conductance_ESS(G=h_ESS * A_ESS) "Lumped thermal element transporting heat without storing it" annotation(Placement(transformation(
+			Modelica.Thermal.HeatTransfer.Components.ThermalConductor Conductance_ESS(G=h_ESS * panel_surface1.A_ESS) "Lumped thermal element transporting heat without storing it" annotation(Placement(transformation(
 				origin={0,-30},
 				extent={{-6.1934,-6.1934},{6.1934,6.1934}})));
 			parameter Real h_TSS(unit="W/(m³·K)")=300 "Heat transfer coefficient TSS - TSS";
