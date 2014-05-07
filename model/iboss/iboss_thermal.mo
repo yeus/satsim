@@ -705,9 +705,6 @@ package iboss_thermal "iboss_thermal"
 					color={0,0,127},
 					thickness=0.0625));
 			annotation(
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(
 					coordinateSystem(grid={10,10}),
 					graphics={
@@ -1290,9 +1287,6 @@ An approppriate simulating time would be 10 seconds.
 					color={0,0,127},
 					thickness=0.0625));
 			annotation(
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(
 					coordinateSystem(grid={10,10}),
 					graphics={
