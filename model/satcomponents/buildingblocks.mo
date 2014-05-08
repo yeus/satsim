@@ -371,4 +371,10 @@ package buildingblocks
     connect(structure.frame_a, rZp111.frame_a);
     connect(rZp111.frame_b, Zps111);
   end Kernstruktur2x2x2;
+
+  model verosim_basic
+    extends icons.basic;
+    satcomponents.AOCS.Parts.reactionwheel3axis_noelectricity reactionwheel3axis_noelectricity1(id = 1) annotation(Placement(visible = true, transformation(origin = {-20, 40}, extent = {{-22.5, -22.5}, {22.5, 22.5}}, rotation = 0)));
+    annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})));
+  end verosim_basic;
 end buildingblocks;
