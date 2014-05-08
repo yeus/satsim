@@ -523,6 +523,29 @@ class Catalog(object):
       #missionen=ibosslist2xml("Satellites",referenzmissionen.values())
       self.savexml("bausteinkatalog/tub_sats/{}.{}.xml".format(vkeys,version),vvalues.xml)
 
+  def save_csv(self,filename, catalog, properties):
+    """save specific properties of a catalog into a csv-file"""  
+    with open(filename, 'w') as csvfile:
+      csvstr="bb\n{:<40}".format('name,')
+      for p in properties:
+        csvstr += "{:>15}, {:>15}".format(p, p+"-unit")
+      csvstr += "\n"
+      
+      for objname, obj in vars(self)[catalog].items():
+        row = "{:<40}".format(objname+',') 
+        for p in properties:
+          if p in vars(obj):
+            name, val, unit = ibossxml.property2strlist("gen",vars(obj)[p])
+            if not unit: unit = 'N.A.'
+            row += "{:>15}, {:>15}".format(val, unit)
+          else:
+            print("Property: " + p +" does not exist in object: " + obj.name)
+            row += "{:>15}, {:>15}".format("N.A.", "N.A.")
+            
+        csvstr += row + "\n"
+          
+      csvfile.write(csvstr)
+
   #load xml file and strips it from namespaces
   def loadxmlfile(self,filename):
     import re

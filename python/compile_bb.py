@@ -48,7 +48,7 @@ mo_id_counter = 0
 bb.variables = ""
 bb.connections = ""
 #build kernstruktur
-for i,j,k in bb.grid:bb
+for i,j,k in bb.grid:
   for indx, int_name in interface_table.items():
     if (int_name == 'Xp') and (i != 1): continue
     if (int_name == 'Xn') and (i != 0): continue
