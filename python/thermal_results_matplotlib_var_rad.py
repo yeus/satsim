@@ -17,8 +17,8 @@ print("grap a coffee")
 import numpy as np
 import matplotlib.pyplot as plt
 BBx = 3
-BBy = 3
-BBz = 3
+BBy = 2
+BBz = 2
 component_Box=["port_b"]
 component_TIM=["Conductance_"]
 component_Panel=["thermal_connector_"]
@@ -36,7 +36,7 @@ fig, emissivity_var_rad = plt.subplots()
 fig, heater_on = plt.subplots()
 fig, sum_heater_cooler_on = plt.subplots()
 fig, cooler_on = plt.subplots()
-a = np.genfromtxt('E:/sim_results/sat_3x3x3/omnidirectional_radiation/filtered_generic_satellite_3x3x3_sun_res.csv', delimiter=',',names=True,dtype=float)
+a = np.genfromtxt('/media/Data/sim_results/sat_3x3x3/omnidirectional_radiation/generic_satellite_3x2x2_sun_var_rad_res_noEvent.csv', delimiter=',',names=True,dtype=float)
 sum_heat = np.zeros(len(np.array(a)))
 sum_cool = np.zeros(len(np.array(a)))
 i=1
