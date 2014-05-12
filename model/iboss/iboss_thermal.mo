@@ -1729,8 +1729,9 @@ An approppriate simulating time would be 10 seconds.
 			Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow HeatFlow_ESS annotation(Placement(transformation(extent={{10,-20},{30,0}})));
 			Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow HeatFlow_Rad(alpha=0) annotation(Placement(transformation(extent={{10,-50},{30,-30}})));
 			Modelica.Blocks.Math.Gain factor_Rad(k=effective_area_Rad * alpha_Rad / effective_area_total) annotation(Placement(transformation(extent={{-35,-50},{-15,-30}})));
-			Modelica.Blocks.Sources.TimeTable timeTable1(
+			Modelica.Blocks.Sources.CombiTimeTable timeTable1(
 				table=illumination,
+				smoothness=Modelica.Blocks.Types.Smoothness.ContinuousDerivative,
 				offset=0) annotation(Placement(transformation(extent={{-95,-5},{-75,15}})));
 			Modelica.Blocks.Math.Gain factor_TSS(k=effective_area_TSS * alpha_TSS / effective_area_total) annotation(Placement(transformation(extent={{-35,40},{-15,60}})));
 			Modelica.Blocks.Math.Gain factor_MSS(k=effective_area_MSS * alpha_MSS / effective_area_total) annotation(Placement(transformation(extent={{-35,10},{-15,30}})));
@@ -1761,28 +1762,76 @@ An approppriate simulating time would be 10 seconds.
 				extent={{10,10},{-10,-10}},
 				rotation=180)));
 			equation
-				connect(timeTable1.y,factor_TSS.u) annotation(Line(points = {{-74,5},{-69,5},{-42,5},{-42,50},{-37,50}}, color = {0,0,127}, thickness = 0.0625));
-				connect(timeTable1.y,factor_MSS.u) annotation(Line(points = {{-74,5},{-69,5},{-42,5},{-42,20},{-37,20}}, color = {0,0,127}, thickness = 0.0625));
-				connect(factor_Rad.y,HeatFlow_Rad.Q_flow) annotation(Line(points = {{-14,-40},{-9,-40},{5,-40},{10,-40}}, color = {0,0,127}, thickness = 0.0625));
-				connect(factor_ESS.y,HeatFlow_ESS.Q_flow) annotation(Line(points = {{-14,-10},{-9,-10},{5,-10},{10,-10}}, color = {0,0,127}, thickness = 0.0625));
-				connect(factor_MSS.y,HeatFlow_MSS.Q_flow) annotation(Line(points = {{-14,20},{-9,20},{5,20},{10,20}}, color = {0,0,127}, thickness = 0.0625));
-				connect(factor_TSS.y,HeatFlow_TSS.Q_flow) annotation(Line(points = {{-14,50},{-9,50},{5,50},{10,50}}, color = {0,0,127}, thickness = 0.0625));
-				connect(fixedTemperature1.port,bodyRadiation_TSS.port_b) annotation(Line(points = {{165,5},{160,5},{145,5},{145,50},{140,50}}, color = {191,0,0}, thickness = 0.0625));
-				connect(fixedTemperature1.port,bodyRadiation_MSS.port_b) annotation(Line(points = {{165,5},{160,5},{145,5},{145,20},{140,20}}, color = {191,0,0}, thickness = 0.0625));
-				connect(fixedTemperature1.port,bodyRadiation_ESS.port_b) annotation(Line(points = {{165,5},{160,5},{145,5},{145,-10},{140,-10}}, color = {191,0,0}, thickness = 0.0625));
-				connect(fixedTemperature1.port,bodyRadiation_Rad.port_b) annotation(Line(points = {{165,5},{160,5},{145,5},{145,-40},{140,-40}}, color = {191,0,0}, thickness = 0.0625));
-				connect(timeTable1.y,factor_ESS.u) annotation(Line(points = {{-74,5},{-69,5},{-42,5},{-42,-10},{-37,-10}}, color = {0,0,127}, thickness = 0.0625));
-				connect(timeTable1.y,factor_Rad.u) annotation(Line(points = {{-74,5},{-69,5},{-42,5},{-42,-40},{-37,-40}}, color = {0,0,127}, thickness = 0.0625));
-				connect(bodyRadiation_ESS.port_a,thermal_connector_env.ESS) annotation(Line(points = {{120,-10},{115,-10},{95,-10},{95,10},{90,10}}));
-				connect(bodyRadiation_MSS.port_a,thermal_connector_env.MSS) annotation(Line(points = {{120,20},{115,20},{95,20},{95,10},{90,10}}));
-				connect(bodyRadiation_TSS.port_a,thermal_connector_env.TSS) annotation(Line(points = {{120,50},{115,50},{95,50},{95,10},{90,10}}));
-				connect(bodyRadiation_Rad.port_a,thermal_connector_env.Rad) annotation(Line(points = {{120,-40},{115,-40},{95,-40},{95,10},{90,10}}));
-				connect(HeatFlow_ESS.port,thermal_connector_env.ESS) annotation(Line(points = {{30,-10},{35,-10},{85,-10},{85,10},{90,10}}));
-				connect(HeatFlow_MSS.port,thermal_connector_env.MSS) annotation(Line(points = {{30,20},{35,20},{85,20},{85,10},{90,10}}));
-				connect(HeatFlow_TSS.port,thermal_connector_env.TSS) annotation(Line(points = {{30,50},{35,50},{85,50},{85,10},{90,10}}));
-				connect(HeatFlow_Rad.port,thermal_connector_env.Rad) annotation(Line(points = {{30,-40},{35,-40},{85,-40},{85,10},{90,10}}));
+				connect(timeTable1.y,factor_TSS.u) annotation(Line(
+					points={{-74,5},{-69,5},{-42,5},{-42,50},{-37,50}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(timeTable1.y,factor_MSS.u) annotation(Line(
+					points={{-74,5},{-69,5},{-42,5},{-42,20},{-37,20}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(factor_Rad.y,HeatFlow_Rad.Q_flow) annotation(Line(
+					points={{-14,-40},{-9,-40},{5,-40},{10,-40}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(factor_ESS.y,HeatFlow_ESS.Q_flow) annotation(Line(
+					points={{-14,-10},{-9,-10},{5,-10},{10,-10}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(factor_MSS.y,HeatFlow_MSS.Q_flow) annotation(Line(
+					points={{-14,20},{-9,20},{5,20},{10,20}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(factor_TSS.y,HeatFlow_TSS.Q_flow) annotation(Line(
+					points={{-14,50},{-9,50},{5,50},{10,50}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(fixedTemperature1.port,bodyRadiation_TSS.port_b) annotation(Line(
+					points={{185,5},{190,5},{190,50},{145,50},{140,50}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(fixedTemperature1.port,bodyRadiation_MSS.port_b) annotation(Line(
+					points={{185,5},{190,5},{190,20},{145,20},{140,20}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(fixedTemperature1.port,bodyRadiation_ESS.port_b) annotation(Line(
+					points={{185,5},{190,5},{190,-10},{145,-10},{140,-10}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(fixedTemperature1.port,bodyRadiation_Rad.port_b) annotation(Line(
+					points={{185,5},{190,5},{190,-40},{145,-40},{140,-40}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(timeTable1.y,factor_ESS.u) annotation(Line(
+					points={{-74,5},{-69,5},{-42,5},{-42,-10},{-37,-10}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(timeTable1.y,factor_Rad.u) annotation(Line(
+					points={{-74,5},{-69,5},{-42,5},{-42,-40},{-37,-40}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(bodyRadiation_ESS.port_a,thermal_connector_env.ESS) annotation(Line(points={{120,-10},{115,-10},{95,-10},{95,10},{90,10}}));
+				connect(bodyRadiation_MSS.port_a,thermal_connector_env.MSS) annotation(Line(points={{120,20},{115,20},{95,20},{95,10},{90,10}}));
+				connect(bodyRadiation_TSS.port_a,thermal_connector_env.TSS) annotation(Line(points={{120,50},{115,50},{95,50},{95,10},{90,10}}));
+				connect(bodyRadiation_Rad.port_a,thermal_connector_env.Rad) annotation(Line(points={{120,-40},{115,-40},{95,-40},{95,10},{90,10}}));
+				connect(HeatFlow_ESS.port,thermal_connector_env.ESS) annotation(Line(points={{30,-10},{35,-10},{85,-10},{85,10},{90,10}}));
+				connect(HeatFlow_MSS.port,thermal_connector_env.MSS) annotation(Line(points={{30,20},{35,20},{85,20},{85,10},{90,10}}));
+				connect(HeatFlow_TSS.port,thermal_connector_env.TSS) annotation(Line(points={{30,50},{35,50},{85,50},{85,10},{90,10}}));
+				connect(HeatFlow_Rad.port,thermal_connector_env.Rad) annotation(Line(points={{30,-40},{35,-40},{85,-40},{85,10},{90,10}}));
 			annotation(
-				Icon(graphics={Rectangle(lineColor = {0,0,0}, fillPattern = FillPattern.Solid, extent = {{-100,100},{100,-100}}),Ellipse(lineColor = {0,0,0}, fillColor = {255,255,0}, fillPattern = FillPattern.Solid, extent = {{98,-96},{-96,98}})}),
+				viewinfo[0](
+					viewSettings(clrRaster=12632256),
+					typename="ModelInfo"),
+				Icon(graphics={
+							Rectangle(
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-100,100},{100,-100}}),
+							Ellipse(
+								lineColor={0,0,0},
+								fillColor={255,255,0},
+								fillPattern=FillPattern.Solid,
+								extent={{98,-96},{-96,98}})}),
 				experiment(
 					StopTime=10,
 					StartTime=0));
@@ -1798,8 +1847,9 @@ An approppriate simulating time would be 10 seconds.
 			Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow HeatFlow_ESS annotation(Placement(transformation(extent={{10,-20},{30,0}})));
 			Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow HeatFlow_Rad(alpha=0) annotation(Placement(transformation(extent={{10,-50},{30,-30}})));
 			variable_Gain factor_Rad(k=panel_surface1.A_Rad * panel_surface1.alpha_Rad / (panel_surface1.A_TSS+panel_surface1.A_MSS+panel_surface1.A_ESS+panel_surface1.A_Rad)) annotation(Placement(transformation(extent={{-35,-50},{-15,-30}})));
-			Modelica.Blocks.Sources.TimeTable timeTable1(
+			Modelica.Blocks.Sources.CombiTimeTable timeTable1(
 				table=illumination,
+				smoothness=Modelica.Blocks.Types.Smoothness.ContinuousDerivative,
 				offset=0) annotation(Placement(transformation(extent={{-95,-5},{-75,15}})));
 			variable_Gain factor_TSS(k=panel_surface1.A_TSS * panel_surface1.alpha_TSS / (panel_surface1.A_TSS+panel_surface1.A_MSS+panel_surface1.A_ESS+panel_surface1.A_Rad)) annotation(Placement(transformation(extent={{-35,40},{-15,60}})));
 			variable_Gain factor_MSS(k=panel_surface1.A_MSS * panel_surface1.alpha_MSS / (panel_surface1.A_TSS+panel_surface1.A_MSS+panel_surface1.A_ESS+panel_surface1.A_Rad)) annotation(Placement(transformation(extent={{-35,10},{-15,30}})));
@@ -1888,16 +1938,19 @@ An approppriate simulating time would be 10 seconds.
 				connect(HeatFlow_TSS.port,thermal_connector_env.TSS) annotation(Line(points={{30,50},{35,50},{85,50},{85,10},{90,10}}));
 				connect(HeatFlow_Rad.port,thermal_connector_env.Rad) annotation(Line(points={{30,-40},{35,-40},{85,-40},{85,10},{90,10}}));
 			annotation(
+				viewinfo[0](
+					viewSettings(clrRaster=12632256),
+					typename="ModelInfo"),
 				Icon(graphics={
-											Rectangle(
-												lineColor={0,0,0},
-												fillPattern=FillPattern.Solid,
-												extent={{-100,100},{100,-100}}),
-											Ellipse(
-												lineColor={0,0,0},
-												fillColor={255,255,0},
-												fillPattern=FillPattern.Solid,
-												extent={{98,-96},{-96,98}})}),
+							Rectangle(
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								extent={{-100,100},{100,-100}}),
+							Ellipse(
+								lineColor={0,0,0},
+								fillColor={255,255,0},
+								fillPattern=FillPattern.Solid,
+								extent={{98,-96},{-96,98}})}),
 				experiment(
 					StopTime=10,
 					StartTime=0));
@@ -1920,8 +1973,9 @@ An approppriate simulating time would be 10 seconds.
 			Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow HeatFlow_ESS annotation(Placement(transformation(extent={{10,-20},{30,0}})));
 			Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow HeatFlow_Rad(alpha=0) annotation(Placement(transformation(extent={{10,-50},{30,-30}})));
 			var_Gain factor_Rad annotation(Placement(transformation(extent={{-35,-50},{-15,-30}})));
-			Modelica.Blocks.Sources.TimeTable timeTable1(
+			Modelica.Blocks.Sources.CombiTimeTable timeTable1(
 				table=illumination,
+				smoothness=Modelica.Blocks.Types.Smoothness.ContinuousDerivative,
 				offset=0) annotation(Placement(transformation(extent={{-95,-5},{-75,15}})));
 			Modelica.Blocks.Math.Gain factor_TSS(k=effective_area_TSS * alpha_TSS / effective_area_total) annotation(Placement(transformation(extent={{-35,40},{-15,60}})));
 			Modelica.Blocks.Math.Gain factor_MSS(k=effective_area_MSS * alpha_MSS / effective_area_total) annotation(Placement(transformation(extent={{-35,10},{-15,30}})));
@@ -2047,7 +2101,7 @@ An approppriate simulating time would be 10 seconds.
 					thickness=0.0625));
 			annotation(
 				combiTable1Ds1(y(flags=2)),
-				viewinfo[2](
+				viewinfo[0](
 					viewSettings(clrRaster=12632256),
 					typename="ModelInfo"),
 				Icon(graphics={
