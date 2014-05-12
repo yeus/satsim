@@ -953,9 +953,6 @@ package iboss_thermal "iboss_thermal"
 					thickness=0.0625));
 			annotation(
 				combiTable1Ds1(y(flags=2)),
-				viewinfo[2](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(
 					coordinateSystem(grid={10,10}),
 					graphics={
@@ -1819,9 +1816,6 @@ An approppriate simulating time would be 10 seconds.
 				connect(HeatFlow_TSS.port,thermal_connector_env.TSS) annotation(Line(points={{30,50},{35,50},{85,50},{85,10},{90,10}}));
 				connect(HeatFlow_Rad.port,thermal_connector_env.Rad) annotation(Line(points={{30,-40},{35,-40},{85,-40},{85,10},{90,10}}));
 			annotation(
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(graphics={
 							Rectangle(
 								lineColor={0,0,0},
@@ -1938,9 +1932,6 @@ An approppriate simulating time would be 10 seconds.
 				connect(HeatFlow_TSS.port,thermal_connector_env.TSS) annotation(Line(points={{30,50},{35,50},{85,50},{85,10},{90,10}}));
 				connect(HeatFlow_Rad.port,thermal_connector_env.Rad) annotation(Line(points={{30,-40},{35,-40},{85,-40},{85,10},{90,10}}));
 			annotation(
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(graphics={
 							Rectangle(
 								lineColor={0,0,0},
@@ -2101,9 +2092,6 @@ An approppriate simulating time would be 10 seconds.
 					thickness=0.0625));
 			annotation(
 				combiTable1Ds1(y(flags=2)),
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(graphics={
 							Rectangle(
 								lineColor={0,0,0},
