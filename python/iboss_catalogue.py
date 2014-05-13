@@ -166,7 +166,7 @@ class ibossxml(object):
     vars(self)[name]=val*unit #add variable to class
       
   @staticmethod
-  def property2strlist(vkey,value):
+  def property2strlist(vkey,value, withquotes = False):
     name = vkey
     if isinstance(value,pq.Quantity):    
       unit = value.dimensionality.string
@@ -178,8 +178,9 @@ class ibossxml(object):
       val = json.dumps(value)
     else:
       unit = None
-      val = "\"" + str(value) + "\""
-        
+      if withquotes: val = "\"" + str(value) + "\""
+      else: val = str(value)
+      
     return name,val,unit
   
   @staticmethod
@@ -545,7 +546,7 @@ class Catalog(object):
         row = "{:<40}".format('\"'+objname+'\",') 
         for p in properties:
           if p in vars(obj):
-            name, val, unit = ibossxml.property2strlist("gen",vars(obj)[p])
+            name, val, unit = ibossxml.property2strlist("gen",vars(obj)[p], withquotes = True)
             if not unit: unit = np.nan
             row += "{:>15}, {:>15},".format(val, unit)
           else:
@@ -578,7 +579,7 @@ class Catalog(object):
           if val != None or val != "nan":
             #print(prop,val, type(val),unit)
             prop, val, unit= ibossxml.str2prop(prop, val, unit)
-            print(prop,val,unit)
+            #print(prop,val,unit)
             catalog[name].varchange(prop, val*unit)
       
     return data

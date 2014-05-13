@@ -27,5 +27,7 @@ data = cat.update_with_csv("csv/tutorial_table_update.csv")
 #Put properties of a catalog in a csv table:
 cat.save_csv("csv/tutorial_table1.csv","co", ["mass","power_max", "Bemerkungen"])
 
+cat.save("new")
+
 #print changes
 #cat.load_csv("csv/tutorial_table2.csv", "bb")
