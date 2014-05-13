@@ -30,6 +30,9 @@ import copy
 import re
 import sys
 import json
+import math
+
+import pandas as pd  #for csv file loading
 
 pq.krad=pq.UnitQuantity('kilorad', pq.rads*1000, symbol='krad')
 pq.blocks=pq.UnitQuantity('blocks', 1, symbol='blocks')
@@ -40,6 +43,8 @@ vec= lambda x,y,z: np.array([x,y,z])  #create a vector
 helpstring="""
 Dieses Skript verwaltet den Bausteinkatalog im XML-Format
 """
+
+NA = np.nan
 
 #convert vector to string (python list)
 def vec2str(vec):
@@ -114,22 +119,24 @@ class ibossxml(object):
   def xmllist(self):
     return None
   
-
-  def str2prop(self, name, val, unit=None):
-    n=name
-    u=1
+  @staticmethod
+  def str2prop(name, val, unit=None):
+    n = name
+    u = 1
     if unit:
       if unit == 'json':
-        v=json.loads(val)
+        v = json.loads(val)
       else:
-        try: v=str2vec(val)
-        except ValueError:v=val
+        if type(val) == str:
+          try: v=str2vec(val)
+          except ValueError:v=val
+        else: v = val
         
         u = pq.Quantity(1,unit)
     else:
-       try: v=float(val)
-       except ValueError: v=val
-    
+       try: v = float(val)
+       except ValueError:v = val
+        
     return n,v,u
 
   def addxmlprop(self,xmlprop):
@@ -139,7 +146,7 @@ class ibossxml(object):
     if 'unit' in xmlprop.attrib: strunit = xmlprop.attrib['unit']
     strval = val=xmlprop.text
     
-    name, val, unit = self.str2prop(strname, strval, strunit)
+    name, val, unit = ibossxml.str2prop(strname, strval, strunit)
     
     #change name according to xmlmapping
     inv_map = {v:k for k, v in self.xmlmapping.items()}
@@ -155,7 +162,7 @@ class ibossxml(object):
     except: strunit=None
     strval = xmlprop.find("value").text
 
-    name, val, unit = self.str2prop(strname, strval, strunit)
+    name, val, unit = ibossxml.str2prop(strname, strval, strunit)
     vars(self)[name]=val*unit #add variable to class
       
   @staticmethod
@@ -171,7 +178,7 @@ class ibossxml(object):
       val = json.dumps(value)
     else:
       unit = None
-      val = str(value)
+      val = "\"" + str(value) + "\""
         
     return name,val,unit
   
@@ -246,7 +253,7 @@ class ibossxml(object):
     retstr+=("="*40)+" "+"="*100+"\n"
     
     return retstr
-#end class ibossxml
+
   def update(self):
     pass
   
@@ -256,6 +263,9 @@ class ibossxml(object):
       del vars(self)[varname]
       return
     vars(self)[varname]=val
+
+#end class ibossxml
+
 
 class component(ibossxml):
   def __init__(self,cotype):
@@ -526,25 +536,52 @@ class Catalog(object):
   def save_csv(self,filename, catalog, properties):
     """save specific properties of a catalog into a csv-file"""  
     with open(filename, 'w') as csvfile:
-      csvstr="bb\n{:<40}".format('name,')
+      csvstr=catalog + "\n{:<40}".format('name,')
       for p in properties:
-        csvstr += "{:>15}, {:>15}".format(p, p+"-unit")
+        csvstr += "{:>15}, {:>15},".format(p, p+"-unit")
       csvstr += "\n"
       
-      for objname, obj in vars(self)[catalog].items():
-        row = "{:<40}".format(objname+',') 
+      for objname, obj in sorted(vars(self)[catalog].items(), key=lambda instance: instance[0].lower()): 
+        row = "{:<40}".format('\"'+objname+'\",') 
         for p in properties:
           if p in vars(obj):
             name, val, unit = ibossxml.property2strlist("gen",vars(obj)[p])
-            if not unit: unit = 'N.A.'
-            row += "{:>15}, {:>15}".format(val, unit)
+            if not unit: unit = np.nan
+            row += "{:>15}, {:>15},".format(val, unit)
           else:
-            print("Property: " + p +" does not exist in object: " + obj.name)
-            row += "{:>15}, {:>15}".format("N.A.", "N.A.")
+            #print("Property: \"" + p +"\" does not exist in object: " + obj.name)
+            row += "{:>15}, {:>15},".format(np.nan, np.nan)
             
         csvstr += row + "\n"
           
       csvfile.write(csvstr)
+
+  def update_with_csv(self, filename):
+    """load specific properties of a csv-file and update the catalog with it"""
+    with open(filename, 'r') as csvfile:
+      catname = csvfile.readline().strip()
+      data = pd.read_csv(filename,skipinitialspace=True, header = 1)
+      data.columns.values.tolist()
+      
+      catalog = vars(self)[catname]
+      for row in data.iterrows():
+        for prop in data.columns[1:-1:2]:
+          val = row[1][prop]
+          if type(val) == float and np.isnan(val): continue
+          name = row[1][0]
+          unit = row[1][prop + "-unit"]
+          ##print(name, prop, val, unit)
+          if unit == np.nan or unit == None: unit = None
+          elif type(unit) == float:
+            if math.isnan(unit): unit = None
+          
+          if val != None or val != "nan":
+            #print(prop,val, type(val),unit)
+            prop, val, unit= ibossxml.str2prop(prop, val, unit)
+            print(prop,val,unit)
+            catalog[name].varchange(prop, val*unit)
+      
+    return data
 
   #load xml file and strips it from namespaces
   def loadxmlfile(self,filename):

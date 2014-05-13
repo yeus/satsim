@@ -27,7 +27,11 @@ import copy
 import quantities as pq
 import time
 
-cat=iboss_catalogue.Catalog()
+#damit alles funktioniert:
+#Python Distribution "WinPython" in der Version > 3.3.0 von  http://winpython.sourceforge.net/ herunterladen und installieren
+#Alle benötigten Pakete sind da bereits dabei
+
+cat = iboss_catalogue.Catalog()
 cat.loadxmldata()
 
 #drei Kataloge:  cat.co, cat.bb, cat.sat

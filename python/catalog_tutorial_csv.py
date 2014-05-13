@@ -20,9 +20,12 @@ cat=iboss_catalogue.Catalog()
 cat.loadxmldata()
 
 #drei Kataloge:  cat.co, cat.bb, cat.sat
+cat.save_csv("csv/tutorial_tmp.csv","co", ["mass","power_max", "Bemerkungen"])
+
+data = cat.update_with_csv("csv/tutorial_table_update.csv")
 
 #Put properties of a catalog in a csv table:
-cat.save_csv("csv/tutorial_table1.csv","co", ["mass","power_max"])
+cat.save_csv("csv/tutorial_table1.csv","co", ["mass","power_max", "Bemerkungen"])
 
 #print changes
 #cat.load_csv("csv/tutorial_table2.csv", "bb")
