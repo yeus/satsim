@@ -848,7 +848,7 @@ package iboss_thermal "iboss_thermal"
 			Modelica.Blocks.Sources.Constant epsilonMSS(k=epsilon_MSS) annotation(Placement(transformation(extent={{-55,-126},{-35,-106}})));
 			Modelica.Blocks.Sources.Constant epsilonESS(k=epsilon_ESS) annotation(Placement(transformation(extent={{-25,-126},{-5,-106}})));
 			Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperatureSensor1 annotation(Placement(transformation(extent={{5,59},{25,79}})));
-			iboss.iboss_thermal.components.CombiTable1Ds_noEvent combiTable1Ds1(
+			Modelica.Blocks.Tables.CombiTable1Ds combiTable1Ds1(
 				tableOnFile=true,
 				table=[250,0.5,0.9;290,0.7,0.7],
 				tableName="thermochromLaCaMnO3",
