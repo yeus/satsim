@@ -2144,9 +2144,6 @@ An approppriate simulating time would be 10 seconds.
 					color={0,0,127},
 					thickness=0.0625));
 			annotation(
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(graphics={
 											Rectangle(
 												lineColor={0,0,0},
@@ -2330,9 +2327,6 @@ An approppriate simulating time would be 10 seconds.
 			equation
 				y = noEvent(k_gain*u);
 			annotation(
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(graphics={
 											Polygon(
 												points={{-100,-100},{-100,100},{100,0},{-100,-100}},
