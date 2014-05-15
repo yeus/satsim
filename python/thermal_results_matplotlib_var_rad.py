@@ -16,7 +16,7 @@ def plotparameter( fig, title, x_label, y_label):
 print("grap a coffee")
 import numpy as np
 import matplotlib.pyplot as plt
-BBx = 3
+BBx = 2
 BBy = 2
 BBz = 2
 component_Box=["port_b"]
@@ -36,7 +36,7 @@ fig, emissivity_var_rad = plt.subplots()
 fig, heater_on = plt.subplots()
 fig, sum_heater_cooler_on = plt.subplots()
 fig, cooler_on = plt.subplots()
-a = np.genfromtxt('/media/Data/sim_results/sat_3x3x3/omnidirectional_radiation/generic_satellite_3x2x2_sun_var_rad_res_noEvent.csv', delimiter=',',names=True,dtype=float)
+a = np.genfromtxt('E:/sim_results/generic_satellite_optical_properties_2x2x2_res.csv', delimiter=',',names=True,dtype=float)
 sum_heat = np.zeros(len(np.array(a)))
 sum_cool = np.zeros(len(np.array(a)))
 i=1
@@ -91,12 +91,12 @@ while i<=BBx:
             i_c=1
             while i_c<=len(component_Radiation):
                 if i_c==2:
-                   emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"xnRad")
+                   """emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"xnRad")
                    emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"xpRad")
                    emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"ynRad")
                    emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"ypRad")
                    emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"znRad")
-                   emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"zpRad")
+                   emissivity_var_rad.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"zpRad")"""
                 if i_c==1:
                    Radiation_qflow.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"nX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"xnRad")
                    Radiation_qflow.plot(a['time'],a["BB"+str(i)+str(j)+str(k)+"pX"+str(component_Radiation[i_c-1])+str(physical_quantity[3])],label="BB"+str(i)+str(j)+str(k)+"xpRad")
@@ -120,6 +120,6 @@ plotparameter(Radiation_qflow, 'Power of the Radiation','Time / sec','heat power
 plotparameter(heater_on, 'switching state of the heater','Time / sec','on/off')
 plotparameter(cooler_on, 'switching state of the cooler','Time / sec','on/off')
 plotparameter(sum_heater_cooler_on, 'sum of the switching states of all heaters and coolers','Time / sec','on/off')
-plotparameter(emissivity_var_rad, 'emissivity of the variable radiators','Time / sec','epsilon')
+#plotparameter(emissivity_var_rad, 'emissivity of the variable radiators','Time / sec','epsilon')
 plt.show()
 print("feddisch")
