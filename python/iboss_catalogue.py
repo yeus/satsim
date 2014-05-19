@@ -558,28 +558,30 @@ class Catalog(object):
 
   def update_with_csv(self, filename):
     """load specific properties of a csv-file and update the catalog with it"""
-    with open(filename, 'r') as csvfile:
-      catname = csvfile.readline().strip()
-      data = pd.read_csv(filename,skipinitialspace=True, header = 1)
-      data.columns.values.tolist()
-      
-      catalog = vars(self)[catname]
-      for row in data.iterrows():
-        for prop in data.columns[1:-1:2]:
-          val = row[1][prop]
-          if type(val) == float and np.isnan(val): continue
-          name = row[1][0]
-          unit = row[1][prop + "-unit"]
-          ##print(name, prop, val, unit)
-          if unit == np.nan or unit == None: unit = None
-          elif type(unit) == float:
-            if math.isnan(unit): unit = None
-          
-          if val != None or val != "nan":
-            #print(prop,val, type(val),unit)
-            prop, val, unit= ibossxml.str2prop(prop, val, unit)
-            #print(prop,val,unit)
-            catalog[name].varchange(prop, val*unit)
+    catname = filename.readline().strip()
+    data = pd.read_csv(filename, skipinitialspace=True, header = 0)
+    data.columns.values.tolist()
+    
+    #import IPython
+    #IPython.embed()
+    
+    catalog = vars(self)[catname]
+    for row in data.iterrows():
+      for prop in data.columns[1:-1:2]:
+        val = row[1][prop]
+        if type(val) == float and np.isnan(val): continue
+        name = row[1][0]
+        unit = row[1][prop + "-unit"]
+        logging.debug((name, prop, val, unit))
+        if unit == np.nan or unit == None: unit = None
+        elif type(unit) == float:
+          if math.isnan(unit): unit = None
+        
+        if val != None or val != "nan":
+          #print(prop,val, type(val),unit)
+          prop, val, unit= ibossxml.str2prop(prop, val, unit)
+          #print(prop,val,unit)
+          catalog[name].varchange(prop, val*unit)
       
     return data
 

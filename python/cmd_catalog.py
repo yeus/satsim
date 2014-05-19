@@ -31,7 +31,7 @@ def set2str(dt):
   out+=("="*59)+" "+"="*33+"\n"
   return out
 
-def writereport():
+def writereport(cat):
   report="""
 Katalogreport:
 ===============
@@ -42,12 +42,7 @@ Katalogreport:
 \u00A9TU Berlin
 
 \n\n""".format(time.strftime("%Y/%m/%d"),iboss_catalogue.Version)
-  
-  
-  cat=iboss_catalogue.Catalog()
-  cat.loadxmldata()
-  cat.update()
-  
+ 
   def listmsmass(sats):
     ret="Referenzmissionen:\n------------------\n\n"
     
@@ -86,32 +81,48 @@ def main():
   
   description='Program to start operations on the iboss catalog and generate reports'
   parser = argparse.ArgumentParser(description=description,
-                                    epilog='When no Options are given, the program opens an ipython Shell')
+                                    epilog='Copyright (C) @ TU-Berlin 2014')
+  
+  #parser.add_argument('file', nargs='?', type=argparse.FileType('rw'),  default=None)
 
-  #parser.add_argument('f',action='store',nargs=1,
-                      #help='File Name where result is stored.',
-                      #metavar="outFileName")
-
-  #group = parser.add_mutually_exclusive_group(required=False)
-  #group.add_argument
+  group = parser.add_mutually_exclusive_group(required=False)
+  group.add_argument('-csvs', action='store', help='save properties in a table as csv-file', metavar='PROPERTIES')
+  group.add_argument('-csvl', action='store', nargs=1, type=argparse.FileType('r'),help='load properties from a table in csv-file and update the catalog with it', metavar='FILE')
+  group.add_argument('-save', action='store', help='save catalog in a new catalog with the provided version string', metavar='VERSION')
   parser.add_argument('-w','--write',action='store_true',help='write catalog report to a rst-file')
   parser.add_argument('-p','--print',action='store_true',help='print content of catalog to commandline')
   parser.add_argument('-t','--test',action='store_true',help='test catalog consistency')
+  parser.add_argument('-s','--shell',action='store_true',help='start catalog with ipython shell')
 
+  print("\n\n")
   opts = parser.parse_args()
+
+  if len(sys.argv) < 2: 
+    parser.print_help(file=None)
+    return
   
   print(opts)
   
+  cat=iboss_catalogue.Catalog()
+  cat.loadxmldata()
+  cat.update()
+  
+  if opts.csvl:
+    cat.update_with_csv(opts.csvl[0])
+  if opts.save:
+    cat.save(opts.save)
   if opts.write: 
-    report2file(writereport())
+    report2file(writereport(cat))
   if opts.print: 
-    print(writereport())
-  if opts.test:
+    print(writereport(cat))
+  if opts.shell:
+    import IPython
+    IPython.embed()
+  if opts.save:
     cat=iboss_catalogue.Catalog()
     cat.loadxmldata()
     cat.update()
     cat.save()
-    #filecmp  um den neuen und den alten file zu vergleichen (überprüft Konsistenz der Datenbank)
 
 if __name__ == "__main__":
   main()

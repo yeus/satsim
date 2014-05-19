@@ -25,8 +25,8 @@ ADM-Aeolus                                                                      
 ADM-Aeolus_ctank                                                                    858.23 kg
 SmallGEO                                                                            843.99 kg
 SmallGEO_ctank                                                                      843.99 kg
-EnMAP_ctank                                                                         585.35 kg
 EnMAP                                                                               585.35 kg
+EnMAP_ctank                                                                         585.35 kg
 =========================================================== =================================
 
 
@@ -82,15 +82,15 @@ Control Momentum Gyroscope Baustein                                             
 Inertial Measurement Unit Baustein (sehr genau)                                      44.00 W
 Magnetorquer-Baustein                                                                35.30 W
 Inertial Measurement Unit Baustein (Standard)                                        35.00 W
-GPS-Baustein (Standard)                                                              30.00 W
 Sternsensorbaustein                                                                  30.00 W
+GPS-Baustein (Standard)                                                              30.00 W
 Erdsensor-Baustein                                                                   28.00 W
 Batteriebaustein                                                                     20.00 W
-GPS-Baustein (GPS und GLONASS)                                                       20.00 W
 PCU-Baustein                                                                         20.00 W
-test Lageregelungsbaustein                                                            0.00 W
+GPS-Baustein (GPS und GLONASS)                                                       20.00 W
 Kernstruktur2x2x3                                                                     0.00 W
 Kernstruktur2x2x2                                                                     0.00 W
+test Lageregelungsbaustein                                                            0.00 W
 =========================================================== =================================
 
 
