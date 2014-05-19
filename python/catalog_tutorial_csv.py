@@ -16,6 +16,11 @@ import iboss_catalogue
 from iboss_catalogue import pq, loaddata
 from iboss_catalogue import str2vec, rstheader
 
+#damit alles funktioniert:
+#Python Distribution "WinPython" in der Version > 3.3.0 von  http://winpython.sourceforge.net/ herunterladen und installieren
+#Alle benötigten Pakete sind dort bereits dabei danach diese Datei hier ausführen
+
+#Katalog laden
 cat=iboss_catalogue.Catalog()
 cat.loadxmldata()
 
