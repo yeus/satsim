@@ -22,17 +22,11 @@ import xml
 import utils.odspy
 import quantities as pq
 import xml.etree.ElementTree as et
-import codecs
-import time
-import traceback
-import pickle
-import copy
-import re
-import sys
-import json
-import math
-
+import codecs, time, traceback, pickle
+import copy, re, sys, json, math
 import pandas as pd  #for csv file loading
+import logging
+import textwrap
 
 pq.krad=pq.UnitQuantity('kilorad', pq.rads*1000, symbol='krad')
 pq.blocks=pq.UnitQuantity('blocks', 1, symbol='blocks')
@@ -231,27 +225,32 @@ class ibossxml(object):
 
   #returns a string representation of the object
   def __str__(self):#__repr__
+    l1_width = 40
     retstr=rstheader(self.name,"'")
-    
-    retstr+=("="*40)+" "+"="*100+"\n"
+    logging.debug("creating str representation: " + self.name)
+    retstr+=("="*l1_width)+" "+"="*100+"\n"
     for key,val in sorted(vars(self).items()):
-      if key[0]=="_" and key!="_bb": continue
+      if key[0]=="_" and key != "_bb" and key != "_co": continue  #omit "internal" variables
       
       namestr= key if key!="_bb" else "Buildingblocks"
       retstr+="{:40} ".format(namestr)
-      #retstr+=":{}: ".format(key)
-      if isinstance(val,pq.Quantity) and val.ndim == 2:#val.shape==(3,3): #print matrices as strings
-        retstr+="[{},{},{}] * {}\n".format(val[0].magnitude,val[1].magnitude,val[2].magnitude,val.dimensionality.string)
-      elif isinstance(val, list):
-        names=[elem.name for elem in val]
-        retstr += "{:<30};\n".format(names[0])
-        if len(names)>1:
-          for i in names[1:]:
-            retstr +=" "*40+" "+"{:<99};\n".format(i)
-      else:
-        retstr += "{:<30}\n".format(str(val))
+      logging.debug(key)
+      if key == "_bb" or key == '_co':
+        val = [elem.name for elem in val]
 
-    retstr+=("="*40)+" "+"="*100+"\n"
+      n,v,u = ibossxml.property2strlist(key,val)
+      logging.debug((n,v,u))
+      unit = ''
+      if u: unit = u
+      
+      valstr = textwrap.wrap(" ".join(v.split()),width = 100, subsequent_indent = " "*41)
+      valstr = "\n".join(valstr)
+      logging.debug(valstr)
+      
+      retstr+="{:<30}\n".format(valstr)
+      #for i in valstr[1:]: retstr+="{:<30}\n".format(valstr)
+
+    retstr+=("="*l1_width)+" "+"="*100+"\n"
     
     return retstr
 
@@ -486,9 +485,9 @@ class Catalog(object):
   def __str__(self):
     returnstring=rstheader("Katalog:","-")
   
-    for i,name in [(self.sat.values(),"Satelliten"),
-                    (self.bb.values(),"Bausteine"),
-                    (self.co.values(),"Komponenten")]:
+    for i,name in [(sorted(self.sat.values(), key = lambda x: x.name.lower()),"Satelliten"),
+                    (sorted(self.bb.values(), key = lambda x: x.name.lower()),"Bausteine"),
+                    (sorted(self.co.values(), key = lambda x: x.name.lower()),"Komponenten")]:
       returnstring+=rstheader(name,"^")
       for j in i:
         returnstring+=str(j)+"\n\n"
@@ -693,7 +692,7 @@ def main():
   #    bb.grid
   
   sat=cat.sat["EnMAP"]
-  bb=sat._bb[0]
+  bb=cat.bb["test Lageregelungsbaustein"]
   import IPython
   IPython.embed()
   #cat.bbvarchange("power",delete=True)

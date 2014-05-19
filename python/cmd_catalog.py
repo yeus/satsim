@@ -16,16 +16,10 @@
 #    sys.path.append(pythonpath)
 #import numpypy
 
-import sys
-import utils.odspy
-from utils.odspy import ods2table
-import numpy as np
+import sys, argparse, time, logging
 import iboss_catalogue
 from iboss_catalogue import pq, loaddata
 from iboss_catalogue import str2vec, rstheader
-import copy
-import quantities as pq
-import time
 
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector
 
@@ -87,56 +81,37 @@ def report2file(report):
   reportfile.write(report)
   reportfile.close()
 
-helpstring="""
+def main():
+  logging.root.setLevel(logging.DEBUG)
+  
+  description='Program to start operations on the iboss catalog and generate reports'
+  parser = argparse.ArgumentParser(description=description,
+                                    epilog='When no Options are given, the program opens an ipython Shell')
 
-This programm
+  #parser.add_argument('f',action='store',nargs=1,
+                      #help='File Name where result is stored.',
+                      #metavar="outFileName")
 
-Usage: cmd_catalog.py <Options>
+  #group = parser.add_mutually_exclusive_group(required=False)
+  #group.add_argument
+  parser.add_argument('-w','--write',action='store_true',help='write catalog report to a rst-file')
+  parser.add_argument('-p','--print',action='store_true',help='print content of catalog to commandline')
+  parser.add_argument('-t','--test',action='store_true',help='test catalog consistency')
 
-Options:
-
-"w": report2file(writereport())
-"p": print(writereport())
-"odt": first convert *.odt catalogue to xml
-
-When no Options are given, the program opens an ipython Shell
-"""
-
-def main(argv=None):
-  if argv is None:
-    argv = sys.argv
-    try:
-      if 'odt' in argv:
-        iboss_odt2xml.save_catalogue()
-      if 'w' in argv: 
-        report2file(writereport())
-      if 'p' in argv: 
-        print(writereport())
-      if 'py2xml' in argv: 
-        cat=iboss_catalogue.loaddata()
-        cat.make_consistent()
-        cat.save()
-      if 'test' in argv:
-        cat=iboss_catalogue.Catalog()
-        cat.loadxmldata()
-        cat.update()
-        cat.save()
-        #filecmp  um den neuen und den alten file zu vergleichen (überprüft Konsistenz der Datenbank)
-      else:
-        if len(argv)<2: print(helpstring+"\n\n\n")
-        cat=iboss_catalogue.Catalog()
-        cat.loadxmldata()
-        bannerhelp="""interactive iBoss catalogue
-
--> type \"cat.\" and then press \"tab\" for available options!
-
-"""
-        #import IPython
-        #IPython.embed(banner1=bannerhelp)   
-    except:
-      raise
-      return
+  opts = parser.parse_args()
+  
+  print(opts)
+  
+  if opts.write: 
+    report2file(writereport())
+  if opts.print: 
+    print(writereport())
+  if opts.test:
+    cat=iboss_catalogue.Catalog()
+    cat.loadxmldata()
+    cat.update()
+    cat.save()
+    #filecmp  um den neuen und den alten file zu vergleichen (überprüft Konsistenz der Datenbank)
 
 if __name__ == "__main__":
   main()
-  #komponenten, bausteine, referenzmissionen=iboss_xml_load.loadxmldata("bausteinkatalog/katalog.xml")
