@@ -2660,9 +2660,6 @@ An approppriate simulating time would be 10 seconds.
 					thickness=0.0625));
 			annotation(
 				combiTable1Ds1(y(flags=2)),
-				viewinfo[2](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(graphics={
 							Rectangle(
 								lineColor={0,0,0},
