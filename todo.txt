@@ -55,6 +55,11 @@ Fragen:
 =======
 - was ist besser?  kleine cmgs  in alles Bausteinen, oder ein großer baustein mit einem großen CMG?
 --> z.B. was Größe und gewicht und Energieverbrauch usw.. angeht
+- acs: publish-subscribe, oder broadcast?
+  - Regelgenauigkeit/Accuracy (Regler muss optimiert sein)
+  - Regelgeschwindigkeit (Regler muss optimiert sein)
+  - Einfluß von Delayzeiten auf Regelgenauigkeit --> ein einzelnes Rad mit kurzer Delay-Zeit kann mehrere Räder mit langen Zeiten "auffangen".
+  - 
 
 
 Experimente:

@@ -4,7 +4,6 @@ package satcomponents
 
   model Cubesat
     Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(visible = true, transformation(origin = {-99.711, 0.289017}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-99.711, 0.289017}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-    satcomponents.AOCS.Parts.reactionwheel3axis reactionwheel3axis1 annotation(Placement(visible = true, transformation(origin = {22.6012, 58.0347}, extent = {{-13.815, -13.815}, {13.815, 13.815}}, rotation = 0)));
     satcomponents.AOCS.Parts.Struktur struktur1 annotation(Placement(visible = true, transformation(origin = {-54.711, 0.086705}, extent = {{-24.6532, -24.6532}, {24.6532, 24.6532}}, rotation = 0)));
     Modelica.Electrical.Analog.Ideal.IdealDiode idealdiode1 annotation(Placement(visible = true, transformation(origin = {-0.843931, -68.1985}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
     Modelica.Electrical.Analog.Ideal.IdealDiode idealdiode2 annotation(Placement(visible = true, transformation(origin = {-0.984619, -41.1638}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
@@ -14,26 +13,25 @@ package satcomponents
     satcomponents.power.batteries.battery battery1 annotation(Placement(visible = true, transformation(origin = {25.7225, -20.5202}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
     Modelica.Blocks.Interfaces.RealInput u annotation(Placement(visible = true, transformation(origin = {2.02312, -101.445}, extent = {{-10, -10}, {10, 10}}, rotation = 90), iconTransformation(origin = {-0.867052, -96.5318}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
     satcomponents.data.OBC obc1 annotation(Placement(visible = true, transformation(origin = {24.8555, 25.4335}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-    Modelica.Blocks.Sources.Pulse pulse1[3](width = {1, 1, 1}, period = {2000, 1000, 1500}, nperiod = {1, 2, 3}, startTime = {2000, 2000, 2000}, amplitude = {0.001, 0.001, 0.001}) annotation(Placement(visible = true, transformation(origin = {53.1792, 25.1445}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-    Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedtranslation1(r = {0, 0.04, 0.03}) annotation(Placement(visible = true, transformation(origin = {-10.1156, 58.6705}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedtranslation1(r = {0, 0.04, 0.03}) annotation(Placement(visible = true, transformation(origin = {-20, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    satcomponents.AOCS.Parts.reactionwheel3axis_noelectricity reactionwheel3axis_noelectricity1(id = 1) annotation(Placement(visible = true, transformation(origin = {20, 60}, extent = {{-15, -15}, {15, 15}}, rotation = 0)));
+    satcomponents.AOCS.ctrl.ACS acs1 annotation(Placement(visible = true, transformation(origin = {60, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   equation
-    connect(fixedtranslation1.frame_a, struktur1.frame_a) annotation(Line(points = {{-20.1156, 58.6705}, {-54.3353, 58.6705}, {-54.3353, 0.867052}, {-54.3353, 0.867052}}));
-    connect(fixedtranslation1.frame_b, reactionwheel3axis1.frame_a) annotation(Line(points = {{-0.115607, 58.6705}, {8.959540000000001, 58.6705}, {8.959540000000001, 58.9595}, {8.959540000000001, 58.9595}}));
-    connect(pulse1.y, reactionwheel3axis1.u) annotation(Line(points = {{53.1792, 36.1445}, {53.1792, 84.68210000000001}, {21.9653, 84.68210000000001}, {21.9653, 70.5202}, {21.9653, 70.5202}}));
+    connect(acs1.acs_bus, reactionwheel3axis_noelectricity1.acs_bus) annotation(Line(points = {{70, 40}, {78.59650000000001, 40}, {78.59650000000001, 62.807}, {33.6842, 62.807}, {33.6842, 62.807}}));
+    connect(fixedtranslation1.frame_b, reactionwheel3axis_noelectricity1.frame_a) annotation(Line(points = {{-10, 60}, {5.61404, 60}, {5.61404, 61.0526}, {5.61404, 61.0526}}));
+    connect(fixedtranslation1.frame_a, struktur1.frame_a) annotation(Line(points = {{-30, 60}, {-54.3353, 60}, {-54.3353, 0.867052}, {-54.3353, 0.867052}}));
     connect(obc1.pin_n, battery1.n) annotation(Line(points = {{24.7989, 15.5325}, {35.8382, 15.5325}, {35.8382, -20.8092}, {35.8382, -20.8092}}));
     connect(obc1.pin_p, battery1.p) annotation(Line(points = {{20.5839, 15.6174}, {15.0289, 15.6174}, {15.0289, -20.5202}, {15.0289, -20.5202}}));
     connect(u, solarcell_simple1.E_s) annotation(Line(points = {{2.02312, -101.445}, {2.02312, -89.8844}, {23.9884, -89.8844}, {23.9884, -86.4162}, {23.9884, -86.4162}}));
     connect(zdiode1.p, ground1.p) annotation(Line(points = {{33.998, -54.422}, {54.9133, -54.422}, {54.9133, -79.1908}, {54.9133, -79.1908}}));
     connect(battery1.n, ground1.p) annotation(Line(points = {{35.7225, -20.5202}, {54.9133, -20.5202}, {54.9133, -78.6127}, {54.9133, -78.6127}}));
     connect(zdiode1.n, idealdiode2.p) annotation(Line(points = {{13.998, -54.422}, {-0.867052, -54.422}, {-0.867052, -51.1561}, {-0.867052, -51.1561}}));
-    connect(reactionwheel3axis1.pin_n, battery1.n) annotation(Line(points = {{26.2346, 44.6589}, {35.8382, 44.6589}, {35.8382, -20.5202}, {35.8382, -20.5202}}));
-    connect(battery1.p, reactionwheel3axis1.pin_p) annotation(Line(points = {{15.7225, -20.5202}, {15.0289, -20.5202}, {15.0289, 44.5087}, {18.7861, 44.5087}, {18.7861, 44.5087}}));
     connect(idealdiode2.n, battery1.p) annotation(Line(points = {{-0.984619, -31.1638}, {-0.984619, -20.5202}, {15.6069, -20.5202}, {15.6069, -20.5202}}));
     connect(idealdiode1.n, idealdiode2.p) annotation(Line(points = {{-0.843931, -58.1985}, {-0.843931, -51.4451}, {-0.867052, -51.4451}, {-0.867052, -51.4451}}));
     connect(idealdiode1.p, solarcell_simple1.n) annotation(Line(points = {{-0.843931, -78.1985}, {-0.843931, -78.90170000000001}, {13.8728, -78.90170000000001}, {13.8728, -78.90170000000001}}));
     connect(solarcell_simple1.p, ground1.p) annotation(Line(points = {{33.9884, -78.6127}, {54.6243, -78.6127}, {54.6243, -78.3237}, {54.6243, -78.3237}}));
     connect(frame_a, struktur1.frame_a) annotation(Line(points = {{-99.711, 0.289017}, {-56.0694, 0.289017}, {-53.9273, 0.289017}, {-53.9273, 0.94173}}));
-    annotation(Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2}), graphics = {Rectangle(origin = {-8.81503, 2.02312}, fillColor = {160, 160, 160}, fillPattern = FillPattern.Solid, extent = {{-67.1966, 69.36409999999999}, {89.4509, -89.01730000000001}}), Polygon(origin = {2.45663, 25.1445}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{-72.6878, 41.0405}, {-72.10980000000001, -19.0752}, {-55.6358, -32.3699}, {60.8381, -31.7919}, {73.2659, -15.029}, {73.5549, 40.7515}, {-72.6878, 41.0405}}), Text(origin = {-3.49187e-07, 85.4046}, fillColor = {255, 255, 255}, extent = {{-68.7861, 16.3295}, {68.7861, -16.3295}}, textString = "%name"), Polygon(origin = {3.09246, -50.8092}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{-72.6878, 41.0405}, {-72.10980000000001, -19.0752}, {-55.6358, -32.3699}, {60.8381, -31.7919}, {73.2659, -15.029}, {73.5549, 40.7515}, {-72.6878, 41.0405}})}), experiment(StartTime = 0.0, StopTime = 20000.0, Tolerance = 0.0001));
+    annotation(Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2}), graphics = {Rectangle(origin = {-8.81503, 2.02312}, fillColor = {160, 160, 160}, fillPattern = FillPattern.Solid, extent = {{-67.1966, 69.36409999999999}, {89.4509, -89.01730000000001}}), Polygon(origin = {2.45663, 25.1445}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{-72.6878, 41.0405}, {-72.10980000000001, -19.0752}, {-55.6358, -32.3699}, {60.8381, -31.7919}, {73.2659, -15.029}, {73.5549, 40.7515}, {-72.6878, 41.0405}}), Text(origin = {-3.49187e-07, 85.4046}, fillColor = {255, 255, 255}, extent = {{-68.7861, 16.3295}, {68.7861, -16.3295}}, textString = "%name"), Polygon(origin = {3.09246, -50.8092}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{-72.6878, 41.0405}, {-72.10980000000001, -19.0752}, {-55.6358, -32.3699}, {60.8381, -31.7919}, {73.2659, -15.029}, {73.5549, 40.7515}, {-72.6878, 41.0405}})}), experiment(StartTime = 0, StopTime = 20000, Tolerance = 0.0001, Interval = 40));
   end Cubesat;
 
   package data
@@ -769,15 +767,15 @@ package satcomponents
           i1 = 0;
         end if;
         /*if v1 < V_in_max and v1 > V_in_min then
-        					  v2 = V_out;
-        					  i1 = (-i2 * v2) / v1;
-        					elseif v1 >= V_in_min - slope then
-        					  v2 = V_out / slope * (v1 - V_in_min + slope);
-        					  i1 = (-i2 * v2) / v1;
-        					else
-        					  v2 = 0;
-        					  i1 = 0;
-        					end if;*/
+        					                                                                                                                                                                                                                                                                                                                                                                                                					  v2 = V_out;
+        					                                                                                                                                                                                                                                                                                                                                                                                                					  i1 = (-i2 * v2) / v1;
+        					                                                                                                                                                                                                                                                                                                                                                                                                					elseif v1 >= V_in_min - slope then
+        					                                                                                                                                                                                                                                                                                                                                                                                                					  v2 = V_out / slope * (v1 - V_in_min + slope);
+        					                                                                                                                                                                                                                                                                                                                                                                                                					  i1 = (-i2 * v2) / v1;
+        					                                                                                                                                                                                                                                                                                                                                                                                                					else
+        					                                                                                                                                                                                                                                                                                                                                                                                                					  v2 = 0;
+        					                                                                                                                                                                                                                                                                                                                                                                                                					  i1 = 0;
+        					                                                                                                                                                                                                                                                                                                                                                                                                					end if;*/
         annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}), graphics = {Rectangle(fillColor = {0, 0, 255}, extent = {{-87.69450000000001, 78.6421}, {88.5431, -74.6818}}), Text(textString = "%V_out", fillColor = {0, 0, 255}, extent = {{10.4668, 68.1754}, {76.37909999999999, 30.2687}}), Text(textString = "DCDC", fillColor = {0, 0, 255}, extent = {{-63.6492, 18.9533}, {57.9915, -33.0976}})}), experiment(StopTime = 1, StartTime = 0));
       end dcdc_ideal_simple;
 
@@ -1282,14 +1280,14 @@ package satcomponents
     model cubesatwith3axisreactionwheel
       extends Modelica.Icons.Example;
       inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(visible = true, transformation(origin = {-74.9845, 45.4769}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-      Modelica.Mechanics.MultiBody.Joints.FreeMotion freemotion1(useQuaternions = false, w_rel_a_start = {3.0, 0, 0}) annotation(Placement(visible = true, transformation(origin = {-44.2197, 45.3757}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Mechanics.MultiBody.Joints.FreeMotion freemotion1(useQuaternions = false, w_rel_a_start = {0.0, 0, 0}) annotation(Placement(visible = true, transformation(origin = {-44.2197, 45.3757}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       Modelica.Blocks.Sources.Trapezoid trapezoid1(rising = 20, width = 1000, falling = 20, startTime = 2000, period = 5000, nperiod = -1, amplitude = 1367) annotation(Placement(visible = true, transformation(origin = {-29.8712, -10.2364}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       satcomponents.Cubesat cubesat1 annotation(Placement(visible = true, transformation(origin = {-7.80347, 46.2428}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
     equation
       connect(cubesat1.u, trapezoid1.y) annotation(Line(points = {{-7.60116, 36.0983}, {-7.22543, 36.0983}, {-7.22543, -10.4046}, {-18.7861, -10.4046}, {-18.7861, -10.4046}}));
       connect(freemotion1.frame_b, cubesat1.frame_a) annotation(Line(points = {{-34.2197, 45.3757}, {-18.2081, 45.3757}, {-18.2081, 46.5318}, {-18.2081, 46.5318}}));
       connect(world.frame_b, freemotion1.frame_a) annotation(Line(points = {{-64.9845, 45.4769}, {-54.6243, 45.4769}, {-54.2197, 45.6647}, {-54.2197, 45.3757}}));
-      annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), experiment(StartTime = 0.0, StopTime = 20000.0, Tolerance = 0.0001));
+      annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-05, Interval = 0.2));
     end cubesatwith3axisreactionwheel;
 
     model reactionwheelexample
@@ -1395,11 +1393,11 @@ package satcomponents
         Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity absoluteangularvelocity1 annotation(Placement(transformation(origin = {-30, -5}, extent = {{-10, -10}, {10, 10}})));
         Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(transformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}})));
         Modelica.Blocks.Math.Add add1[3] annotation(Placement(transformation(extent = {{0, -10}, {20, 10}})));
-        Modelica.Blocks.Nonlinear.FixedDelay fixedDelay1[3](delayTime = {net_delay, net_delay, net_delay}) annotation(Placement(transformation(extent = {{60, -10}, {80, 10}})));
-        iboss.satcomponents.blocks.noise_ung noise_ung2(amplitude = noiseamp, seed = 2 + id) annotation(Placement(transformation(extent = {{-40, 14}, {-19, 25}})));
-        iboss.satcomponents.blocks.noise_ung noise_ung1(amplitude = noiseamp, seed = 1 + id) annotation(Placement(transformation(extent = {{-40, 29}, {-19, 40}})));
-        iboss.satcomponents.blocks.noise_ung noise_ung3(amplitude = noiseamp, seed = 3 + id) annotation(Placement(transformation(extent = {{-40, 44}, {-20, 55}})));
-        Modelica.Blocks.Discrete.Sampler sampler1[3](samplePeriod = 0.05) annotation(Placement(transformation(extent = {{30, -10}, {50, 10}})));
+        Modelica.Blocks.Nonlinear.FixedDelay fixedDelay1[3](each delayTime = net_delay) annotation(Placement(transformation(extent = {{60, -10}, {80, 10}})));
+        satcomponents.blocks.noise_ung noise_ung2(amplitude = noiseamp, seed = 2 + id) annotation(Placement(transformation(extent = {{-40, 14}, {-19, 25}})));
+        satcomponents.blocks.noise_ung noise_ung1(amplitude = noiseamp, seed = 1 + id) annotation(Placement(transformation(extent = {{-40, 29}, {-19, 40}})));
+        satcomponents.blocks.noise_ung noise_ung3(amplitude = noiseamp, seed = 3 + id) annotation(Placement(transformation(extent = {{-40, 44}, {-20, 55}})));
+        Modelica.Blocks.Discrete.Sampler sampler1[3](each samplePeriod = 0.05) annotation(Placement(transformation(extent = {{30, -10}, {50, 10}})));
       equation
         connect(frame_a, absoluteangularvelocity1.frame_a) annotation(Line(points = {{-100, 0}, {-95, 0}, {-45, 0}, {-45, -5}, {-40, -5}}));
         connect(absoluteangularvelocity1.w, add1.u2) annotation(Line(points = {{-19, -5.3}, {-14, -5.3}, {-7, -5.3}, {-7, -6}, {-2, -6}}, color = {0, 0, 127}, thickness = 0.0625));
@@ -1442,25 +1440,29 @@ package satcomponents
         Modelica.Mechanics.MultiBody.Parts.BodyShape wheel_z(animation = false, animateSphere = false) annotation(Placement(transformation(origin = {5, -40}, extent = {{-10, -10}, {10, 10}}, rotation = -180)));
         Modelica.Mechanics.MultiBody.Forces.Torque torque_z(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameAB.frame_a) annotation(Placement(transformation(origin = {-10, -70}, extent = {{-10, -10}, {10, 10}}, rotation = -180)));
       equation
+        torque_x.torque[2:3] = {0, 0};
+        torque_y.torque[1] = 0;
+        torque_y.torque[3] = 0;
+        torque_z.torque[1:2] = {0, 0};
         connect(wheel_x.frame_b, x_axis.frame_b) annotation(Line(points = {{-5, 90}, {-10, 90}, {-15, 90}, {-20, 90}}, color = {95, 95, 95}, thickness = 0.0625));
         connect(wheel_z.frame_b, z_axis.frame_b) annotation(Line(points = {{-5, -40}, {-10, -40}, {-15, -40}, {-20, -40}}, color = {95, 95, 95}, thickness = 0.0625));
         connect(wheel_y.frame_b, y_axis.frame_b) annotation(Line(points = {{-5, 25}, {-10, 25}, {-15, 25}, {-20, 25}}, color = {95, 95, 95}, thickness = 0.0625));
         connect(x_axis.frame_a, frame_a) annotation(Line(points = {{-40, 90}, {-45, 90}, {-94.3, 90}, {-94.3, 5.3}, {-99.3, 5.3}}, color = {95, 95, 95}, thickness = 0.0625));
         connect(y_axis.frame_a, frame_a) annotation(Line(points = {{-40, 25}, {-45, 25}, {-94.3, 25}, {-94.3, 5.3}, {-99.3, 5.3}}, color = {95, 95, 95}, thickness = 0.0625));
         connect(z_axis.frame_a, frame_a) annotation(Line(points = {{-40, -40}, {-45, -40}, {-94.3, -40}, {-94.3, 5.3}, {-99.3, 5.3}}, color = {95, 95, 95}, thickness = 0.0625));
-        connect(torque_x.torque[1], acs_bus.w_a[id, 1]) annotation(Line(points = {{-5, 48}, {-5, 43}, {-5, 40}, {40, 40}, {40, 20}, {85, 20}}, color = {0, 0, 127}, thickness = 0.0625), AutoRoute = false);
+        connect(torque_x.torque[1], acs_bus.w_a[1]) annotation(Line(points = {{-5, 48}, {-5, 43}, {-5, 40}, {40, 40}, {40, 20}, {85, 20}}, color = {0, 0, 127}, thickness = 0.0625));
         connect(torque_x.frame_b, x_axis.frame_a) annotation(Line(points = {{-20, 60}, {-25, 60}, {-45, 60}, {-45, 90}, {-40, 90}}, color = {95, 95, 95}, thickness = 0.0625));
         connect(torque_x.frame_a, wheel_x.frame_a) annotation(Line(points = {{0, 60}, {5, 60}, {20, 60}, {20, 90}, {15, 90}}, color = {95, 95, 95}, thickness = 0.0625));
-        connect(torque_y.torque[2], acs_bus.w_a[id, 2]) annotation(Line(points = {{-5, -17}, {-5, -22}, {37.3, -22}, {37.3, 20}, {80, 20}, {85, 20}}, color = {0, 0, 127}, thickness = 0.0625));
+        connect(torque_y.torque[2], acs_bus.w_a[2]) annotation(Line(points = {{-5, -17}, {-5, -22}, {37.3, -22}, {37.3, 20}, {80, 20}, {85, 20}}, color = {0, 0, 127}, thickness = 0.0625));
         connect(torque_y.frame_a, wheel_y.frame_a) annotation(Line(points = {{0, -5}, {5, -5}, {20, -5}, {20, 25}, {15, 25}}, color = {95, 95, 95}, thickness = 0.0625));
         connect(torque_y.frame_b, y_axis.frame_a) annotation(Line(points = {{-20, -5}, {-25, -5}, {-45, -5}, {-45, 25}, {-40, 25}}, color = {95, 95, 95}, thickness = 0.0625));
-        connect(torque_z.torque[3], acs_bus.w_a[id, 3]) annotation(Line(points = {{-5, -82}, {-5, -87}, {37.3, -87}, {37.3, 20}, {80, 20}, {85, 20}}, color = {0, 0, 127}, thickness = 0.0625));
+        connect(torque_z.torque[3], acs_bus.w_a[3]) annotation(Line(points = {{-5, -82}, {-5, -87}, {37.3, -87}, {37.3, 20}, {80, 20}, {85, 20}}, color = {0, 0, 127}, thickness = 0.0625));
         connect(torque_z.frame_a, wheel_z.frame_a) annotation(Line(points = {{0, -70}, {5, -70}, {20, -70}, {20, -40}, {15, -40}}, color = {95, 95, 95}, thickness = 0.0625));
         connect(torque_z.frame_b, z_axis.frame_a) annotation(Line(points = {{-20, -70}, {-25, -70}, {-45, -70}, {-45, -40}, {-40, -40}}, color = {95, 95, 95}, thickness = 0.0625));
         annotation(wheel_x(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), frameTranslation(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2))), body(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), w_a(flags = 2), z_a(flags = 2), g_0(flags = 2))), wheel_y(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), frameTranslation(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2))), body(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), w_a(flags = 2), z_a(flags = 2), g_0(flags = 2))), wheel_z(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), frameTranslation(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2))), body(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), w_a(flags = 2), z_a(flags = 2), g_0(flags = 2))), Icon(graphics = {Rectangle(fillColor = {128, 128, 128}, fillPattern = FillPattern.Solid, extent = {{-90.02889999999999, 54.3352}, {61.7052, -76.87860000000001}}, origin = {0.144508, 13.2948}), Rectangle(fillColor = {88, 88, 88}, fillPattern = FillPattern.Solid, extent = {{-71.2428, -8.092499999999999}, {5.6358, -80.0578}}, origin = {2.16763, 20.2312}), Rectangle(fillColor = {88, 88, 88}, fillPattern = FillPattern.Solid, extent = {{35.6936, 25.7225}, {70.6647, -52.0231}}, origin = {-0.144509, 13.2948}), Rectangle(fillColor = {88, 88, 88}, fillPattern = FillPattern.Solid, extent = {{2.45662, -18.2081}, {85.98260000000001, -50.8671}}, origin = {-46.9653, 97.6879}), Rectangle(pattern = LinePattern.None, fillColor = {255, 0, 0}, fillPattern = FillPattern.VerticalCylinder, extent = {{-16.0405, 25.8671}, {-12.8613, 5.92483}}, origin = {11.4162, -3.32367}), Polygon(points = {{-2.87157, 16.034}, {1.46373, -3.90828}, {-6.91786, -3.61926}, {-2.87157, 16.034}}, pattern = LinePattern.None, fillColor = {255, 0, 0}, fillPattern = FillPattern.VerticalCylinder, origin = {-0.307609, 23.5614}), Text(textString = "+", extent = {{-15.896, 13.0058}, {15.896, -13.0058}}, origin = {-26.3006, -74.2775}), Text(textString = "-", extent = {{-18.6416, 23.5549}, {18.9306, -18.3526}}, origin = {25.578, -76.1561}), Polygon(points = {{-2.87157, 16.034}, {1.46373, -3.90828}, {-6.91786, -3.61926}, {-2.87157, 16.034}}, pattern = LinePattern.None, fillColor = {255, 0, 0}, fillPattern = FillPattern.VerticalCylinder, origin = {19.6924, 1.07585}, rotation = -90), Rectangle(pattern = LinePattern.None, fillColor = {255, 0, 0}, fillPattern = FillPattern.VerticalCylinder, extent = {{-16.0405, 25.8671}, {-12.8613, 5.92483}}, origin = {-9.91328, -10.4913}, rotation = -90), Polygon(points = {{-7.80347, -5.05026}, {5.49133, 7.08847}, {7.80347, 4.77633}, {-5.78035, -7.07338}, {-7.80347, -5.05026}}, fillColor = {255, 0, 0}, fillPattern = FillPattern.Solid, origin = {-9.537570000000001, -2.17522}), Polygon(points = {{-2.00451, 2.45016}, {5.22095, -9.68863}, {-6.91786, -3.61926}, {-2.00451, 2.45016}}, pattern = LinePattern.None, fillColor = {255, 0, 0}, fillPattern = FillPattern.VerticalCylinder, origin = {-14.9319, -12.1611}, rotation = -90), Text(textString = "Z", extent = {{-14.4509, 10.8382}, {14.4509, -10.8382}}, origin = {-4.62427, 56.2139}), Text(textString = "Y", extent = {{-14.4509, 10.8382}, {14.4509, -10.8382}}, origin = {47.4567, 3.38154}), Text(textString = "X", extent = {{-14.4509, 10.8382}, {14.4509, -10.8382}}, origin = {-31.9652, -24.5953})}), experiment(StopTime = 30, StartTime = 0, Tolerance = 0.0001));
       end reactionwheel3axis_noelectricity;
 
-      model IMU_nonoise "IMU_nonoise"
+      model IMU_simple "IMU_simple"
         parameter Integer id;
         ctrl.ACS_bus acs_bus annotation(Placement(transformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}})));
         Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity absoluteangularvelocity1 annotation(Placement(transformation(origin = {-15, 0}, extent = {{-10, -10}, {10, 10}})));
@@ -1469,7 +1471,7 @@ package satcomponents
         connect(frame_a, absoluteangularvelocity1.frame_a) annotation(Line(points = {{-100, 0}, {-95, 0}, {-30, 0}, {-25, 0}}));
         connect(absoluteangularvelocity1.w, acs_bus.w[id, :]) annotation(Line(points = {{11, 0}, {16, 0}, {95, 0}, {100, 0}}, color = {0, 0, 127}, thickness = 0.0625));
         annotation(Icon(graphics = {Rectangle(fillColor = {128, 128, 128}, fillPattern = FillPattern.Sphere, extent = {{-90.11, 86.91}, {90.11, -86.91}}, origin = {4.04682, -1.67855}), Rectangle(fillColor = {88, 88, 88}, fillPattern = FillPattern.Solid, extent = {{-75.20999999999999, 71.87}, {75.20999999999999, -71.87}}, origin = {0.00144847, -2.21986}), Text(textString = "IMU", lineColor = {255, 255, 255}, fillColor = {255, 255, 255}, extent = {{-68.11, 50.28}, {68.11, -50.28}}, origin = {0.42, -4.6})}), experiment(StopTime = 1, StartTime = 0));
-      end IMU_nonoise;
+      end IMU_simple;
 
       model IMU_no_sam_delay
         parameter Integer id;
@@ -1491,15 +1493,29 @@ package satcomponents
         connect(add1.y, acs_bus.w[id, :]) annotation(Line(points = {{21, 0}, {26, 0}, {95, 0}, {100, 0}}, color = {0, 0, 127}, thickness = 0.0625));
         annotation(noise_ung2(y(flags = 2)), noise_ung1(y(flags = 2)), noise_ung3(y(flags = 2)), Icon(graphics = {Rectangle(fillColor = {128, 128, 128}, fillPattern = FillPattern.Sphere, extent = {{-90.11, 86.91}, {90.11, -86.91}}, origin = {4.04682, -1.67855}), Rectangle(fillColor = {88, 88, 88}, fillPattern = FillPattern.Solid, extent = {{-75.20999999999999, 71.87}, {75.20999999999999, -71.87}}, origin = {0.00144847, -2.21986}), Text(textString = "IMU", lineColor = {255, 255, 255}, fillColor = {255, 255, 255}, extent = {{-68.11, 50.28}, {68.11, -50.28}}, origin = {0.42, -4.6})}), experiment(StopTime = 1, StartTime = 0));
       end IMU_no_sam_delay;
+
+      model IMU_nonoise
+        parameter Integer id;
+        parameter Real noiseamp = 0.05;
+        parameter Real net_delay = 0.001;
+        ctrl.ACS_bus acs_bus annotation(Placement(transformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}})));
+        Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity absoluteangularvelocity1 annotation(Placement(transformation(origin = {-20, 0}, extent = {{-10, -10}, {10, 10}})));
+        Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(transformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}})));
+        Modelica.Blocks.Nonlinear.FixedDelay fixedDelay1[3](each delayTime = net_delay) annotation(Placement(transformation(extent = {{60, -10}, {80, 10}})));
+      equation
+        connect(frame_a, absoluteangularvelocity1.frame_a) annotation(Line(points = {{-100, 0}, {-95, 0}, {-35, 0}, {-30, 0}}));
+        connect(fixedDelay1.y, acs_bus.w[id, :]) annotation(Line(points = {{66, 0}, {71, 0}, {95, 0}, {100, 0}}, color = {0, 0, 127}, thickness = 0.0625));
+        connect(absoluteangularvelocity1.w[:], fixedDelay1.u) annotation(Line(points = {{-9, 0}, {-4, 0}, {53, 0}, {58, 0}}, color = {0, 0, 127}, thickness = 0.0625));
+        annotation(Icon(graphics = {Rectangle(fillColor = {128, 128, 128}, fillPattern = FillPattern.Sphere, extent = {{-90.11, 86.91}, {90.11, -86.91}}, origin = {4.04682, -1.67855}), Rectangle(fillColor = {88, 88, 88}, fillPattern = FillPattern.Solid, extent = {{-75.20999999999999, 71.87}, {75.20999999999999, -71.87}}, origin = {0.00144847, -2.21986}), Text(textString = "IMU", lineColor = {255, 255, 255}, fillColor = {255, 255, 255}, extent = {{-68.11, 50.28}, {68.11, -50.28}}, origin = {0.42, -4.6})}), experiment(StopTime = 1, StartTime = 0));
+      end IMU_nonoise;
     end Parts;
 
     package ctrl
       model ACS
         ACS_bus acs_bus annotation(Placement(transformation(origin = {90, 15}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}})));
-        Modelica.Blocks.Sources.Pulse pulse1(amplitude = 0.0001, period = 10, nperiod = 3, startTime = 20.0) annotation(Placement(transformation(extent = {{-5, -20}, {15, 0}})));
+        Modelica.Blocks.Sources.Pulse pulse1[3](each amplitude = 0.0001, each period = 10, each nperiod = 3, each startTime = 20.0) annotation(Placement(transformation(extent = {{-5, -20}, {15, 0}})));
       equation
-        connect(pulse1.y, acs_bus.w_a[4, 1]) annotation(Line(points = {{16, -10}, {21, -10}, {85, -10}, {85, 15}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625));
-        annotation(Icon(graphics = {Rectangle(fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-86.39, 85.40000000000001}, {93.6909, -86.0637}}, origin = {1.22, 1.55}), Text(textString = "ACS", extent = {{-80.75, 56.53}, {80.75, -56.53}}, origin = {0.44, 3.43})}), experiment(StopTime = 1, StartTime = 0));
+        connect(pulse1.y, acs_bus.w_a) annotation(Line(points = {{16, -10}, {21, -10}, {85, -10}, {85, 15}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625));
       end ACS;
 
       expandable connector sat_bus
@@ -1508,12 +1524,10 @@ package satcomponents
       end sat_bus;
 
       expandable connector ACS_bus
-        Real w[10, 3](each final quantity = "AngularVelocity", each final unit = "rad/s");
-        Real w_a[10, 3](each final quantity = "AngularAcceleration", each final unit = "rad/s2");
-        Real u[10];
-        Real y[10];
+        Real w[10, 3](each start = 0.0, each final quantity = "AngularVelocity", each final unit = "rad/s");
+        Real w_a[3](each start = 0.0, each final quantity = "AngularAcceleration", each final unit = "rad/s2");
         annotation(Icon(graphics = {Rectangle(fillColor = {220, 220, 220}, fillPattern = FillPattern.Solid, extent = {{-88.27, 88.61}, {88.27, -88.61}}, origin = {0.44, 1})}), Diagram(graphics = {Rectangle(fillColor = {220, 220, 220}, fillPattern = FillPattern.Solid, extent = {{-88.27, 88.61}, {88.27, -88.61}}, origin = {-0.674206, -1.50696}), Text(textString = "ACS
- bus", extent = {{-81.06, 67.83}, {81.06, -67.83}}, origin = {0.28, -1.25206})}));
+                                        bus", extent = {{-81.06, 67.83}, {81.06, -67.83}}, origin = {0.28, -1.25206})}));
       end ACS_bus;
 
       model busexample
@@ -1528,33 +1542,43 @@ package satcomponents
 
       model ACS_P
         ACS_bus acs_bus annotation(Placement(transformation(origin = {90, 15}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}})));
-        Modelica.Blocks.Sources.Constant const[3](k = 0) annotation(Placement(transformation(origin = {-50, 20}, extent = {{-10, -10}, {10, 10}})));
+        parameter Integer id;
         Modelica.Blocks.Math.Gain gain1[3](k = 1.0) annotation(Placement(transformation(extent = {{15, 5}, {35, 25}})));
         Modelica.Blocks.Math.Add error[3](k2 = -1) annotation(Placement(transformation(extent = {{-20, 5}, {0, 25}})));
         Modelica.Blocks.Math.Product product1[3] annotation(Placement(transformation(extent = {{50, 10}, {70, 30}})));
-        Modelica.Blocks.Sources.Step step1[3](startTime = 20) annotation(Placement(transformation(extent = {{10, 40}, {30, 60}})));
+        Modelica.Blocks.Sources.Step step1[3](offset = 1, startTime = 5) annotation(Placement(transformation(extent = {{10, 40}, {30, 60}})));
+        Modelica.Blocks.Sources.Step step3[3](height = {-0.1, 0.02, 0.05}, offset = {0.1, 0.0, 0.0}, startTime = 10) annotation(Placement(transformation(extent = {{-75, 10}, {-55, 30}})));
       equation
-        connect(const.y, error.u1) annotation(Line(points = {{-39, 20}, {-34, 20}, {-27, 20}, {-27, 21}, {-22, 21}}, color = {0, 0, 127}, thickness = 0.0625));
         connect(error.y, gain1.u) annotation(Line(points = {{1, 15}, {6, 15}, {8, 15}, {13, 15}}, color = {0, 0, 127}, thickness = 0.0625));
-        connect(error.u2, acs_bus.w[1, :]) annotation(Line(points = {{-22, 9}, {-27, 9}, {-27, -15}, {85, -15}, {85, 15}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625), AutoRoute = false);
+        connect(error.u2, acs_bus.w[id, :]) annotation(Line(points = {{-22, 9}, {-27, 9}, {-27, -15}, {85, -15}, {85, 15}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625), AutoRoute = false);
         connect(gain1.y, product1.u2) annotation(Line(points = {{36, 15}, {41, 15}, {43, 15}, {43, 14}, {48, 14}}, color = {0, 0, 127}, thickness = 0.0625));
-        connect(product1.y, acs_bus.w_a[1, :]) annotation(Line(points = {{71, 20}, {76, 20}, {85, 20}, {85, 15}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625));
+        connect(product1.y, acs_bus.w_a) annotation(Line(points = {{71, 20}, {76, 20}, {85, 20}, {85, 15}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625));
         connect(step1.y, product1.u1) annotation(Line(points = {{31, 50}, {36, 50}, {43, 50}, {43, 26}, {48, 26}}, color = {0, 0, 127}, thickness = 0.0625));
+        connect(step3.y, error.u1) annotation(Line(points = {{-54, 20}, {-49, 20}, {-27, 20}, {-27, 21}, {-22, 21}}, color = {0, 0, 127}, thickness = 0.0625));
         annotation(error(y(flags = 2)), Icon(graphics = {Rectangle(fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-86.39, 85.40000000000001}, {93.6909, -86.0637}}, origin = {1.22, 1.55}), Text(textString = "ACS", extent = {{-80.75, 56.53}, {80.75, -56.53}}, origin = {0.44, 3.43})}), experiment(StopTime = 1, StartTime = 0));
       end ACS_P;
 
       model ACS_PID
+        parameter Integer id = 1;
         ACS_bus acs_bus annotation(Placement(transformation(origin = {90, 15}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}})));
-        Modelica.Blocks.Sources.Constant const[3](k = 0) annotation(Placement(transformation(origin = {-65, 50}, extent = {{-10, -10}, {10, 10}})));
-        Modelica.Blocks.Continuous.LimPID PID[3](controllerType = Modelica.Blocks.Types.SimpleController.PID, k = 2, yMax = 2, strict = true) annotation(Placement(transformation(extent = {{-10, 40}, {10, 60}})));
-        Modelica.Blocks.Discrete.Sampler sampler1[3](samplePeriod = 0.1, startTime = 3) annotation(Placement(transformation(extent = {{30, 40}, {50, 60}})));
+        Modelica.Blocks.Continuous.LimPID PID[3](controllerType = Modelica.Blocks.Types.SimpleController.PI, k = 1, Ti = 0.1, yMax = 2, strict = true) annotation(Placement(transformation(extent = {{15, 5}, {35, 25}})));
+        Modelica.Blocks.Sources.CombiTimeTable combiTimeTable1(table = {{0, 0, 0, 0}, {5, 0.1, 0, 0}, {10, 0.05, 0.1, 0.1}}, smoothness = Modelica.Blocks.Types.Smoothness.ConstantSegments, extrapolation = Modelica.Blocks.Types.Extrapolation.HoldLastPoint) annotation(Placement(transformation(extent = {{-30, 5}, {-10, 25}})));
       equation
-        connect(const.y, PID.u_s) annotation(Line(points = {{-54, 50}, {-49, 50}, {-17, 50}, {-12, 50}}, color = {0, 0, 127}, thickness = 0.0625));
-        connect(PID.u_m, acs_bus.w[1, :]) annotation(Line(points = {{20, 13}, {20, -10}, {85, -10}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625), AutoRoute = false);
-        connect(PID.y, sampler1.u) annotation(Line(points = {{11, 50}, {16, 50}, {23, 50}, {28, 50}}, color = {0, 0, 127}, thickness = 0.0625));
-        connect(sampler1.y, acs_bus.w_a[1, :]) annotation(Line(points = {{51, 50}, {56, 50}, {85, 50}, {85, 15}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625));
+        connect(PID.u_m, acs_bus.w[id, :]) annotation(Line(points = {{20, 13}, {20, -10}, {85, -10}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625), AutoRoute = false);
+        connect(PID.y, acs_bus.w_a) annotation(Line(points = {{36, 15}, {41, 15}, {85, 15}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625));
+        connect(combiTimeTable1.y[:], PID.u_s) annotation(Line(points = {{-9, 15}, {-4, 15}, {8, 15}, {13, 15}}, color = {0, 0, 127}, thickness = 0.0625));
         annotation(Icon(graphics = {Rectangle(fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-86.39, 85.40000000000001}, {93.6909, -86.0637}}, origin = {1.22, 1.55}), Text(textString = "ACS", extent = {{-80.75, 56.53}, {80.75, -56.53}}, origin = {0.44, 3.43})}), experiment(StopTime = 1, StartTime = 0));
       end ACS_PID;
+
+      model ACS_bus_ctrl "ACS_bus_ctrl"
+        parameter Integer size = 10 "number of buildingblocks that get connected to bus";
+        Real w[size, 3](each start = 0.0, each final quantity = "AngularVelocity", each final unit = "rad/s");
+        Real w_a[3](each start = 0.0, each final quantity = "AngularAcceleration", each final unit = "rad/s2");
+        ACS_bus acs_bus annotation(Placement(transformation(origin = {90, 15}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}})));
+      equation
+        connect(w, acs_bus.w);
+        annotation(Icon(graphics = {Rectangle(fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-86.39, 85.40000000000001}, {93.6909, -86.0637}}, origin = {1.22, 1.55}), Text(textString = "Bus\\nCtrl", extent = {{-80.75, 56.53}, {80.75, -56.53}}, origin = {0.44, 3.43})}), experiment(StopTime = 1, StartTime = 0));
+      end ACS_bus_ctrl;
     end ctrl;
 
     model momentum_add "momentum_add"
@@ -1583,10 +1607,11 @@ package satcomponents
   end AOCS;
 
   package blocks "blocks"
-    model noise_ung "noise_sampled"
+    model noise_ung "noise_sampled TODO: noch eine normal-distribution erzuegen (Box-Muller oder ziggurat)"
       extends Modelica.Blocks.Interfaces.SO;
       parameter Real amplitude = 1.0;
       parameter Real seed = 0.0;
+      constant Real m = 111.11 "int(2 ^ 31 - 1)";
 
       function rand
         input Real t;
@@ -1594,24 +1619,43 @@ package satcomponents
         output Real r;
       protected
         Real x;
-        constant Integer m = 2 ^ 31 - 1;
-        constant Integer a = 7 ^ 5;
+        constant Integer m = 2147483647 "int(2 ^ 31 - 1)";
+        constant Integer a = 16807 "7 ^ 5";
       algorithm
         x := t;
-        for i in 1:8 loop
+        for i in 1:10 loop
           x := mod(a * x + seed, m);
         end for;
         r := x / m;
       end rand;
     equation
-      y = (rand(time, seed) - 0.5) * amplitude;
+      y = (rand(time * m, seed) - 0.5) * amplitude;
       annotation(x(flags = 2), y(flags = 2), Icon(coordinateSystem(extent = {{-101.7, -51.7}, {101.7, 51.7}}), graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = {{-70, -20}, {-66.7, 20}, {-66.7, -3.3}, {-63.3, 3.3}, {-63.3, 0}, {-63.3, 10}, {-60, -3.3}, {-56.7, 16.7}, {-56.7, -13.3}, {-53.3, 36.7}, {-50, -3.3}, {-50, 10}, {-46.7, -10}, {-43.3, 6.7}, {-43.3, -3.3}, {-36.7, -23.3}, {-36.7, -10}, {-33.3, -3.3}, {-30, -10}, {-30, -3.3}, {-30, 30}, {-26.7, 30}, {-20, 6.7}, {-20, -13.3}, {-16.7, -16.7}, {-16.7, 3.3}, {-13.3, -10}, {-13.3, 3.3}, {-13.3, -16.7}, {-13.3, 43.3}, {-10, -16.7}, {-6.7, -6.7}, {-6.7, -13.3}, {-3.3, 16.7}, {-3.3, -3.3}, {-3.3, 3.3}, {0, -10}, {3.3, -13.3}, {6.7, 23.3}, {10, 6.7}, {13.3, 0}, {16.7, -6.7}, {16.7, -16.7}, {16.7, -3.3}, {20, -23.3}, {23.3, -6.7}, {23.3, -3.3}, {33.3, -23.3}, {33.3, 6.7}, {36.7, 6.7}, {40, 10}, {43.3, 46.7}, {40, -10}, {40, -13.3}, {43.3, 0}, {46.7, 10}, {50, -6.7}, {50, 3.3}, {53.3, 13.3}}, color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0));
-      annotation(x(flags = 2), y(flags = 2), Icon(coordinateSystem(extent = {{-101.7, -51.7}, {101.7, 51.7}}), graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = {{-70, -20}, {-66.7, 20}, {-66.7, -3.3}, {-63.3, 3.3}, {-63.3, 0}, {-63.3, 10}, {-60, -3.3}, {-56.7, 16.7}, {-56.7, -13.3}, {-53.3, 36.7}, {-50, -3.3}, {-50, 10}, {-46.7, -10}, {-43.3, 6.7}, {-43.3, -3.3}, {-36.7, -23.3}, {-36.7, -10}, {-33.3, -3.3}, {-30, -10}, {-30, -3.3}, {-30, 30}, {-26.7, 30}, {-20, 6.7}, {-20, -13.3}, {-16.7, -16.7}, {-16.7, 3.3}, {-13.3, -10}, {-13.3, 3.3}, {-13.3, -16.7}, {-13.3, 43.3}, {-10, -16.7}, {-6.7, -6.7}, {-6.7, -13.3}, {-3.3, 16.7}, {-3.3, -3.3}, {-3.3, 3.3}, {0, -10}, {3.3, -13.3}, {6.7, 23.3}, {10, 6.7}, {13.3, 0}, {16.7, -6.7}, {16.7, -16.7}, {16.7, -3.3}, {20, -23.3}, {23.3, -6.7}, {23.3, -3.3}, {33.3, -23.3}, {33.3, 6.7}, {36.7, 6.7}, {40, 10}, {43.3, 46.7}, {40, -10}, {40, -13.3}, {43.3, 0}, {46.7, 10}, {50, -6.7}, {50, 3.3}, {53.3, 13.3}}, color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0), x(flags = 2), y(flags = 2), Icon(coordinateSystem(extent = {{-101.7, -51.7}, {101.7, 51.7}}), graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = {{-70, -20}, {-66.7, 20}, {-66.7, -3.3}, {-63.3, 3.3}, {-63.3, 0}, {-63.3, 10}, {-60, -3.3}, {-56.7, 16.7}, {-56.7, -13.3}, {-53.3, 36.7}, {-50, -3.3}, {-50, 10}, {-46.7, -10}, {-43.3, 6.7}, {-43.3, -3.3}, {-36.7, -23.3}, {-36.7, -10}, {-33.3, -3.3}, {-30, -10}, {-30, -3.3}, {-30, 30}, {-26.7, 30}, {-20, 6.7}, {-20, -13.3}, {-16.7, -16.7}, {-16.7, 3.3}, {-13.3, -10}, {-13.3, 3.3}, {-13.3, -16.7}, {-13.3, 43.3}, {-10, -16.7}, {-6.7, -6.7}, {-6.7, -13.3}, {-3.3, 16.7}, {-3.3, -3.3}, {-3.3, 3.3}, {0, -10}, {3.3, -13.3}, {6.7, 23.3}, {10, 6.7}, {13.3, 0}, {16.7, -6.7}, {16.7, -16.7}, {16.7, -3.3}, {20, -23.3}, {23.3, -6.7}, {23.3, -3.3}, {33.3, -23.3}, {33.3, 6.7}, {36.7, 6.7}, {40, 10}, {43.3, 46.7}, {40, -10}, {40, -13.3}, {43.3, 0}, {46.7, 10}, {50, -6.7}, {50, 3.3}, {53.3, 13.3}}, color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0), x(flags = 2), y(flags = 2), Icon(coordinateSystem(extent = {{-101.7, -51.7}, {101.7, 51.7}}), graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = {{-70, -20}, {-66.7, 20}, {-66.7, -3.3}, {-63.3, 3.3}, {-63.3, 0}, {-63.3, 10}, {-60, -3.3}, {-56.7, 16.7}, {-56.7, -13.3}, {-53.3, 36.7}, {-50, -3.3}, {-50, 10}, {-46.7, -10}, {-43.3, 6.7}, {-43.3, -3.3}, {-36.7, -23.3}, {-36.7, -10}, {-33.3, -3.3}, {-30, -10}, {-30, -3.3}, {-30, 30}, {-26.7, 30}, {-20, 6.7}, {-20, -13.3}, {-16.7, -16.7}, {-16.7, 3.3}, {-13.3, -10}, {-13.3, 3.3}, {-13.3, -16.7}, {-13.3, 43.3}, {-10, -16.7}, {-6.7, -6.7}, {-6.7, -13.3}, {-3.3, 16.7}, {-3.3, -3.3}, {-3.3, 3.3}, {0, -10}, {3.3, -13.3}, {6.7, 23.3}, {10, 6.7}, {13.3, 0}, {16.7, -6.7}, {16.7, -16.7}, {16.7, -3.3}, {20, -23.3}, {23.3, -6.7}, {23.3, -3.3}, {33.3, -23.3}, {33.3, 6.7}, {36.7, 6.7}, {40, 10}, {43.3, 46.7}, {40, -10}, {40, -13.3}, {43.3, 0}, {46.7, 10}, {50, -6.7}, {50, 3.3}, {53.3, 13.3}}, color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0), x(flags = 2), y(flags = 2), Icon(coordinateSystem(extent = {{-101.7, -51.7}, {101.7, 51.7}}), graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = {{-70, -20}, {-66.7, 20}, {-66.7, -3.3}, {-63.3, 3.3}, {-63.3, 0}, {-63.3, 10}, {-60, -3.3}, {-56.7, 16.7}, {-56.7, -13.3}, {-53.3, 36.7}, {-50, -3.3}, {-50, 10}, {-46.7, -10}, {-43.3, 6.7}, {-43.3, -3.3}, {-36.7, -23.3}, {-36.7, -10}, {-33.3, -3.3}, {-30, -10}, {-30, -3.3}, {-30, 30}, {-26.7, 30}, {-20, 6.7}, {-20, -13.3}, {-16.7, -16.7}, {-16.7, 3.3}, {-13.3, -10}, {-13.3, 3.3}, {-13.3, -16.7}, {-13.3, 43.3}, {-10, -16.7}, {-6.7, -6.7}, {-6.7, -13.3}, {-3.3, 16.7}, {-3.3, -3.3}, {-3.3, 3.3}, {0, -10}, {3.3, -13.3}, {6.7, 23.3}, {10, 6.7}, {13.3, 0}, {16.7, -6.7}, {16.7, -16.7}, {16.7, -3.3}, {20, -23.3}, {23.3, -6.7}, {23.3, -3.3}, {33.3, -23.3}, {33.3, 6.7}, {36.7, 6.7}, {40, 10}, {43.3, 46.7}, {40, -10}, {40, -13.3}, {43.3, 0}, {46.7, 10}, {50, -6.7}, {50, 3.3}, {53.3, 13.3}}, color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0), y(flags = 2), Icon(graphics = {Line(points = ":241:
- 789C64524B0AC2400C2D5D7A04D75D15858205C18504A99442A99F2AD20BF41C5EA31EC0953B2F3007A82B2FE4B4C90BC40686F0269397CC4BC2200896FE84FE
- 7C7A6FAFAB5B0DF6DEB860B48BF848713BD8932C6E6734E6D567B9AF1CF31DD9976BC51CCF84E7E01E9DB726D73CC63BF1A5F49310C70BC65FF4B19F78F0A00E
- 3C7819A7C2B7451F8AE5FF041DC6BC2E26AB4BAA3AD9BA29FE2BEF135BBF8B271E7A02DBBE610DF3F673E933A33F8C3929461FD01179E65F4D4E323F8917925F
- 91C591BEB7F3423C85EE84795B5D0B8EDF4FB69EC7A23BF687CCBE2C6AC29EC8DCA12BC9BE6A7F9C7F53FE1F000000FFFF", color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0));
+      annotation(x(flags = 2), y(flags = 2), Icon(coordinateSystem(extent = {{-101.7, -51.7}, {101.7, 51.7}}), graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = {{-70, -20}, {-66.7, 20}, {-66.7, -3.3}, {-63.3, 3.3}, {-63.3, 0}, {-63.3, 10}, {-60, -3.3}, {-56.7, 16.7}, {-56.7, -13.3}, {-53.3, 36.7}, {-50, -3.3}, {-50, 10}, {-46.7, -10}, {-43.3, 6.7}, {-43.3, -3.3}, {-36.7, -23.3}, {-36.7, -10}, {-33.3, -3.3}, {-30, -10}, {-30, -3.3}, {-30, 30}, {-26.7, 30}, {-20, 6.7}, {-20, -13.3}, {-16.7, -16.7}, {-16.7, 3.3}, {-13.3, -10}, {-13.3, 3.3}, {-13.3, -16.7}, {-13.3, 43.3}, {-10, -16.7}, {-6.7, -6.7}, {-6.7, -13.3}, {-3.3, 16.7}, {-3.3, -3.3}, {-3.3, 3.3}, {0, -10}, {3.3, -13.3}, {6.7, 23.3}, {10, 6.7}, {13.3, 0}, {16.7, -6.7}, {16.7, -16.7}, {16.7, -3.3}, {20, -23.3}, {23.3, -6.7}, {23.3, -3.3}, {33.3, -23.3}, {33.3, 6.7}, {36.7, 6.7}, {40, 10}, {43.3, 46.7}, {40, -10}, {40, -13.3}, {43.3, 0}, {46.7, 10}, {50, -6.7}, {50, 3.3}, {53.3, 13.3}}, color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0), x(flags = 2), y(flags = 2), Icon(coordinateSystem(extent = {{-101.7, -51.7}, {101.7, 51.7}}), graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = {{-70, -20}, {-66.7, 20}, {-66.7, -3.3}, {-63.3, 3.3}, {-63.3, 0}, {-63.3, 10}, {-60, -3.3}, {-56.7, 16.7}, {-56.7, -13.3}, {-53.3, 36.7}, {-50, -3.3}, {-50, 10}, {-46.7, -10}, {-43.3, 6.7}, {-43.3, -3.3}, {-36.7, -23.3}, {-36.7, -10}, {-33.3, -3.3}, {-30, -10}, {-30, -3.3}, {-30, 30}, {-26.7, 30}, {-20, 6.7}, {-20, -13.3}, {-16.7, -16.7}, {-16.7, 3.3}, {-13.3, -10}, {-13.3, 3.3}, {-13.3, -16.7}, {-13.3, 43.3}, {-10, -16.7}, {-6.7, -6.7}, {-6.7, -13.3}, {-3.3, 16.7}, {-3.3, -3.3}, {-3.3, 3.3}, {0, -10}, {3.3, -13.3}, {6.7, 23.3}, {10, 6.7}, {13.3, 0}, {16.7, -6.7}, {16.7, -16.7}, {16.7, -3.3}, {20, -23.3}, {23.3, -6.7}, {23.3, -3.3}, {33.3, -23.3}, {33.3, 6.7}, {36.7, 6.7}, {40, 10}, {43.3, 46.7}, {40, -10}, {40, -13.3}, {43.3, 0}, {46.7, 10}, {50, -6.7}, {50, 3.3}, {53.3, 13.3}}, color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0), x(flags = 2), y(flags = 2), Icon(coordinateSystem(extent = {{-101.7, -51.7}, {101.7, 51.7}}), graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = {{-70, -20}, {-66.7, 20}, {-66.7, -3.3}, {-63.3, 3.3}, {-63.3, 0}, {-63.3, 10}, {-60, -3.3}, {-56.7, 16.7}, {-56.7, -13.3}, {-53.3, 36.7}, {-50, -3.3}, {-50, 10}, {-46.7, -10}, {-43.3, 6.7}, {-43.3, -3.3}, {-36.7, -23.3}, {-36.7, -10}, {-33.3, -3.3}, {-30, -10}, {-30, -3.3}, {-30, 30}, {-26.7, 30}, {-20, 6.7}, {-20, -13.3}, {-16.7, -16.7}, {-16.7, 3.3}, {-13.3, -10}, {-13.3, 3.3}, {-13.3, -16.7}, {-13.3, 43.3}, {-10, -16.7}, {-6.7, -6.7}, {-6.7, -13.3}, {-3.3, 16.7}, {-3.3, -3.3}, {-3.3, 3.3}, {0, -10}, {3.3, -13.3}, {6.7, 23.3}, {10, 6.7}, {13.3, 0}, {16.7, -6.7}, {16.7, -16.7}, {16.7, -3.3}, {20, -23.3}, {23.3, -6.7}, {23.3, -3.3}, {33.3, -23.3}, {33.3, 6.7}, {36.7, 6.7}, {40, 10}, {43.3, 46.7}, {40, -10}, {40, -13.3}, {43.3, 0}, {46.7, 10}, {50, -6.7}, {50, 3.3}, {53.3, 13.3}}, color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0), y(flags = 2), Icon(coordinateSystem(extent = {{-101.7, -51.7}, {101.7, 51.7}}), graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = ":253:
+ 789C6C53CB09C240105D72B404CF39791214048530048324043F471BB00EDB880578F266035B40ECC9353B6FF06D3210262FF37F33C99C73BBF0644EE57EF1F1
+ 65ED3F7D90D71958806F83CCA27E9E800518A918E712F5D1E21F5D906BEB573F792F0578D0DD42F337EA576A7C6DF1C0C81FFD0EC01A5FC539FAB90073FD32DA
+ DB8D618E97A45E6176E0697B2171AEAD61E235F4038C7995879106BFF0437DE2E9CF8E38E6B112C4C1AE7D8C7492D7F6437B1F6B7124F9A82FCCAD7CA31FC177
+ F5B33CA88BBE80137EAC2FBAD3B04FD4A1F902E6FB15F3278C7EC2DDF1BEF6D63778D5BB4BED1E787A0FCE711CFE8FDAFA05E6FFAB319EBE000000FFFF", color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0));
     end noise_ung;
+
+    model noise_sampled
+      Modelica.Blocks.Math.Add add1 annotation(Placement(visible = true, transformation(origin = {20, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Blocks.Sources.Constant const(k = 0.0) annotation(Placement(visible = true, transformation(origin = {-40, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      satcomponents.blocks.noise_ung noise_ung1 annotation(Placement(visible = true, transformation(origin = {-40, 20}, extent = {{-10.17, -5.17}, {10.17, 5.17}}, rotation = 0)));
+      Modelica.Blocks.Interfaces.RealOutput y annotation(Placement(visible = true, transformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {60, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Blocks.Discrete.ZeroOrderHold zeroorderhold1(samplePeriod = 1.0) annotation(Placement(visible = true, transformation(origin = {60, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    equation
+      connect(zeroorderhold1.y, y) annotation(Line(points = {{71, 0}, {92.5852, 0}, {92.5852, 0.801603}, {92.5852, 0.801603}}));
+      connect(add1.y, zeroorderhold1.u) annotation(Line(points = {{31, 0}, {46.493, 0}, {46.493, 0}, {46.493, 0}}));
+      connect(noise_ung1.y, add1.u1) annotation(Line(points = {{-29, 20}, {-9.218439999999999, 20}, {-9.218439999999999, 6.81363}, {8, 6.81363}, {8, 6}}));
+      connect(const.y, add1.u2) annotation(Line(points = {{-29, -20}, {-10.02, -20}, {-10.02, -5.61122}, {6.81363, -5.61122}, {6.81363, -5.61122}}));
+      annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})));
+    end noise_sampled;
+
+    model noisetest
+      noise_ung noise_ung1 annotation(Placement(transformation(extent = {{15, 39}, {36, 50}})));
+      annotation(noise_ung1(y(flags = 2)), experiment(StopTime = 1, StartTime = 0));
+    end noisetest;
     annotation(dateModified = "2014-04-17 11:12:16Z");
   end blocks;
   annotation(dateModified = "2013-07-22 12:21:35Z", Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}), graphics = {Polygon(points = {{-11.5042, 31.4966}, {33.1625, 8.163309999999999}, {11.8292, -31.5034}, {-33.1708, -7.17002}, {-11.5042, 31.4966}}, origin = {-0.495835, -3.82998}), Polygon(points = {{-44.3475, -20.3811}, {-13.0141, -37.3811}, {25.6525, 27.2855}, {-5.68082, 43.9522}, {-44.3475, -20.3811}}, fillColor = {0, 0, 255}, fillPattern = FillPattern.VerticalCylinder, origin = {41.3475, 49.7145}), Polygon(points = {{-44.3475, -20.3811}, {-13.0141, -37.3811}, {25.6525, 27.2855}, {-5.68082, 43.9522}, {-44.3475, -20.3811}}, fillColor = {0, 0, 255}, fillPattern = FillPattern.VerticalCylinder, origin = {-23.6525, -62.9522}), Polygon(points = {{-8.16695, 13.1269}, {-13.1669, 4.12686}, {-0.500278, -13.5398}, {13.1664, 11.1269}, {-8.16695, 13.1269}}, origin = {36.1669, -23.4602}), Polygon(points = {{16.7693, 29.6823}, {14.7693, 5.68234}, {1.10267, -18.651}, {-16.8973, -29.3177}, {16.7693, 29.6823}}, origin = {-35.7693, 14.651})}), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}})));

@@ -16,16 +16,10 @@
 #    sys.path.append(pythonpath)
 #import numpypy
 
-import sys
-import utils.odspy
-from utils.odspy import ods2table
-import numpy as np
+import sys, argparse, time, logging
 import iboss_catalogue
 from iboss_catalogue import pq, loaddata
 from iboss_catalogue import str2vec, rstheader
-import copy
-import quantities as pq
-import time
 
 vec= lambda x,y,z: np.array([x,y,z])  #create a vector
 
@@ -37,7 +31,7 @@ def set2str(dt):
   out+=("="*59)+" "+"="*33+"\n"
   return out
 
-def writereport():
+def writereport(cat):
   report="""
 Katalogreport:
 ===============
@@ -48,12 +42,7 @@ Katalogreport:
 \u00A9TU Berlin
 
 \n\n""".format(time.strftime("%Y/%m/%d"),iboss_catalogue.Version)
-  
-  
-  cat=iboss_catalogue.Catalog()
-  cat.loadxmldata()
-  cat.update()
-  
+ 
   def listmsmass(sats):
     ret="Referenzmissionen:\n------------------\n\n"
     
@@ -87,56 +76,53 @@ def report2file(report):
   reportfile.write(report)
   reportfile.close()
 
-helpstring="""
+def main():
+  logging.root.setLevel(logging.DEBUG)
+  
+  description='Program to start operations on the iboss catalog and generate reports'
+  parser = argparse.ArgumentParser(description=description,
+                                    epilog='Copyright (C) @ TU-Berlin 2014')
+  
+  #parser.add_argument('file', nargs='?', type=argparse.FileType('rw'),  default=None)
 
-This programm
+  group = parser.add_mutually_exclusive_group(required=False)
+  group.add_argument('-csvs', action='store', help='save properties in a table as csv-file', metavar='PROPERTIES')
+  group.add_argument('-csvl', action='store', nargs=1, type=argparse.FileType('r'),help='load properties from a table in csv-file and update the catalog with it', metavar='FILE')
+  group.add_argument('-save', action='store', help='save catalog in a new catalog with the provided version string', metavar='VERSION')
+  parser.add_argument('-w','--write',action='store_true',help='write catalog report to a rst-file')
+  parser.add_argument('-p','--print',action='store_true',help='print content of catalog to commandline')
+  parser.add_argument('-t','--test',action='store_true',help='test catalog consistency')
+  parser.add_argument('-s','--shell',action='store_true',help='start catalog with ipython shell')
 
-Usage: cmd_catalog.py <Options>
+  print("\n\n")
+  opts = parser.parse_args()
 
-Options:
-
-"w": report2file(writereport())
-"p": print(writereport())
-"odt": first convert *.odt catalogue to xml
-
-When no Options are given, the program opens an ipython Shell
-"""
-
-def main(argv=None):
-  if argv is None:
-    argv = sys.argv
-    try:
-      if 'odt' in argv:
-        iboss_odt2xml.save_catalogue()
-      if 'w' in argv: 
-        report2file(writereport())
-      if 'p' in argv: 
-        print(writereport())
-      if 'py2xml' in argv: 
-        cat=iboss_catalogue.loaddata()
-        cat.make_consistent()
-        cat.save()
-      if 'test' in argv:
-        cat=iboss_catalogue.Catalog()
-        cat.loadxmldata()
-        cat.update()
-        cat.save()
-        #filecmp  um den neuen und den alten file zu vergleichen (überprüft Konsistenz der Datenbank)
-      else:
-        if len(argv)<2: print(helpstring+"\n\n\n")
-        cat=iboss_catalogue.Catalog()
-        cat.loadxmldata()
-        bannerhelp="""interactive iBoss catalogue
-
--> type \"cat.\" and then press \"tab\" for available options!
-
-"""
-        #import IPython
-        #IPython.embed(banner1=bannerhelp)   
-    except:
-      raise
-      return
+  if len(sys.argv) < 2: 
+    parser.print_help(file=None)
+    return
+  
+  print(opts)
+  
+  cat=iboss_catalogue.Catalog()
+  cat.loadxmldata()
+  cat.update()
+  
+  if opts.csvl:
+    cat.update_with_csv(opts.csvl[0])
+  if opts.save:
+    cat.save(opts.save)
+  if opts.write: 
+    report2file(writereport(cat))
+  if opts.print: 
+    print(writereport(cat))
+  if opts.shell:
+    import IPython
+    IPython.embed()
+  if opts.save:
+    cat=iboss_catalogue.Catalog()
+    cat.loadxmldata()
+    cat.update()
+    cat.save()
 
 if __name__ == "__main__":
   main()
-  #komponenten, bausteine, referenzmissionen=iboss_xml_load.loadxmldata("bausteinkatalog/katalog.xml")

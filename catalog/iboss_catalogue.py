@@ -22,14 +22,11 @@ import xml
 import utils.odspy
 import quantities as pq
 import xml.etree.ElementTree as et
-import codecs
-import time
-import traceback
-import pickle
-import copy
-import re
-import sys
-import json
+import codecs, time, traceback, pickle
+import copy, re, sys, json, math
+import pandas as pd  #for csv file loading
+import logging
+import textwrap
 
 pq.krad=pq.UnitQuantity('kilorad', pq.rads*1000, symbol='krad')
 pq.blocks=pq.UnitQuantity('blocks', 1, symbol='blocks')
@@ -40,6 +37,8 @@ vec= lambda x,y,z: np.array([x,y,z])  #create a vector
 helpstring="""
 Dieses Skript verwaltet den Bausteinkatalog im XML-Format
 """
+
+NA = np.nan
 
 #convert vector to string (python list)
 def vec2str(vec):
@@ -114,22 +113,24 @@ class ibossxml(object):
   def xmllist(self):
     return None
   
-
-  def str2prop(self, name, val, unit=None):
-    n=name
-    u=1
+  @staticmethod
+  def str2prop(name, val, unit=None):
+    n = name
+    u = 1
     if unit:
       if unit == 'json':
-        v=json.loads(val)
+        v = json.loads(val)
       else:
-        try: v=str2vec(val)
-        except ValueError:v=val
+        if type(val) == str:
+          try: v=str2vec(val)
+          except ValueError:v=val
+        else: v = val
         
         u = pq.Quantity(1,unit)
     else:
-       try: v=float(val)
-       except ValueError: v=val
-    
+       try: v = float(val)
+       except ValueError:v = val
+        
     return n,v,u
 
   def addxmlprop(self,xmlprop):
@@ -139,7 +140,7 @@ class ibossxml(object):
     if 'unit' in xmlprop.attrib: strunit = xmlprop.attrib['unit']
     strval = val=xmlprop.text
     
-    name, val, unit = self.str2prop(strname, strval, strunit)
+    name, val, unit = ibossxml.str2prop(strname, strval, strunit)
     
     #change name according to xmlmapping
     inv_map = {v:k for k, v in self.xmlmapping.items()}
@@ -155,11 +156,11 @@ class ibossxml(object):
     except: strunit=None
     strval = xmlprop.find("value").text
 
-    name, val, unit = self.str2prop(strname, strval, strunit)
+    name, val, unit = ibossxml.str2prop(strname, strval, strunit)
     vars(self)[name]=val*unit #add variable to class
       
   @staticmethod
-  def property2strlist(vkey,value):
+  def property2strlist(vkey,value, withquotes = False):
     name = vkey
     if isinstance(value,pq.Quantity):    
       unit = value.dimensionality.string
@@ -171,8 +172,9 @@ class ibossxml(object):
       val = json.dumps(value)
     else:
       unit = None
-      val = str(value)
-        
+      if withquotes: val = "\"" + str(value) + "\""
+      else: val = str(value)
+      
     return name,val,unit
   
   @staticmethod
@@ -223,30 +225,35 @@ class ibossxml(object):
 
   #returns a string representation of the object
   def __str__(self):#__repr__
+    l1_width = 40
     retstr=rstheader(self.name,"'")
-    
-    retstr+=("="*40)+" "+"="*100+"\n"
+    logging.debug("creating str representation: " + self.name)
+    retstr+=("="*l1_width)+" "+"="*100+"\n"
     for key,val in sorted(vars(self).items()):
-      if key[0]=="_" and key!="_bb": continue
+      if key[0]=="_" and key != "_bb" and key != "_co": continue  #omit "internal" variables
       
       namestr= key if key!="_bb" else "Buildingblocks"
       retstr+="{:40} ".format(namestr)
-      #retstr+=":{}: ".format(key)
-      if isinstance(val,pq.Quantity) and val.ndim == 2:#val.shape==(3,3): #print matrices as strings
-        retstr+="[{},{},{}] * {}\n".format(val[0].magnitude,val[1].magnitude,val[2].magnitude,val.dimensionality.string)
-      elif isinstance(val, list):
-        names=[elem.name for elem in val]
-        retstr += "{:<30};\n".format(names[0])
-        if len(names)>1:
-          for i in names[1:]:
-            retstr +=" "*40+" "+"{:<99};\n".format(i)
-      else:
-        retstr += "{:<30}\n".format(str(val))
+      logging.debug(key)
+      if key == "_bb" or key == '_co':
+        val = [elem.name for elem in val]
 
-    retstr+=("="*40)+" "+"="*100+"\n"
+      n,v,u = ibossxml.property2strlist(key,val)
+      logging.debug((n,v,u))
+      unit = ''
+      if u: unit = u
+      
+      valstr = textwrap.wrap(" ".join(v.split()),width = 100, subsequent_indent = " "*41)
+      valstr = "\n".join(valstr)
+      logging.debug(valstr)
+      
+      retstr+="{:<30}\n".format(valstr)
+      #for i in valstr[1:]: retstr+="{:<30}\n".format(valstr)
+
+    retstr+=("="*l1_width)+" "+"="*100+"\n"
     
     return retstr
-#end class ibossxml
+
   def update(self):
     pass
   
@@ -256,6 +263,9 @@ class ibossxml(object):
       del vars(self)[varname]
       return
     vars(self)[varname]=val
+
+#end class ibossxml
+
 
 class component(ibossxml):
   def __init__(self,cotype):
@@ -475,9 +485,9 @@ class Catalog(object):
   def __str__(self):
     returnstring=rstheader("Katalog:","-")
   
-    for i,name in [(self.sat.values(),"Satelliten"),
-                    (self.bb.values(),"Bausteine"),
-                    (self.co.values(),"Komponenten")]:
+    for i,name in [(sorted(self.sat.values(), key = lambda x: x.name.lower()),"Satelliten"),
+                    (sorted(self.bb.values(), key = lambda x: x.name.lower()),"Bausteine"),
+                    (sorted(self.co.values(), key = lambda x: x.name.lower()),"Komponenten")]:
       returnstring+=rstheader(name,"^")
       for j in i:
         returnstring+=str(j)+"\n\n"
@@ -522,6 +532,58 @@ class Catalog(object):
     for vkeys,vvalues in self.sat.items():
       #missionen=ibosslist2xml("Satellites",referenzmissionen.values())
       self.savexml("bausteinkatalog/tub_sats/{}.{}.xml".format(vkeys,version),vvalues.xml)
+
+  def save_csv(self,filename, catalog, properties):
+    """save specific properties of a catalog into a csv-file"""  
+    with open(filename, 'w') as csvfile:
+      csvstr=catalog + "\n{:<40}".format('name,')
+      for p in properties:
+        csvstr += "{:>15}, {:>15},".format(p, p+"-unit")
+      csvstr += "\n"
+      
+      for objname, obj in sorted(vars(self)[catalog].items(), key=lambda instance: instance[0].lower()): 
+        row = "{:<40}".format('\"'+objname+'\",') 
+        for p in properties:
+          if p in vars(obj):
+            name, val, unit = ibossxml.property2strlist("gen",vars(obj)[p], withquotes = True)
+            if not unit: unit = np.nan
+            row += "{:>15}, {:>15},".format(val, unit)
+          else:
+            #print("Property: \"" + p +"\" does not exist in object: " + obj.name)
+            row += "{:>15}, {:>15},".format(np.nan, np.nan)
+            
+        csvstr += row + "\n"
+          
+      csvfile.write(csvstr)
+
+  def update_with_csv(self, filename):
+    """load specific properties of a csv-file and update the catalog with it"""
+    catname = filename.readline().strip()
+    data = pd.read_csv(filename, skipinitialspace=True, header = 0)
+    data.columns.values.tolist()
+    
+    #import IPython
+    #IPython.embed()
+    
+    catalog = vars(self)[catname]
+    for row in data.iterrows():
+      for prop in data.columns[1:-1:2]:
+        val = row[1][prop]
+        if type(val) == float and np.isnan(val): continue
+        name = row[1][0]
+        unit = row[1][prop + "-unit"]
+        logging.debug((name, prop, val, unit))
+        if unit == np.nan or unit == None: unit = None
+        elif type(unit) == float:
+          if math.isnan(unit): unit = None
+        
+        if val != None or val != "nan":
+          #print(prop,val, type(val),unit)
+          prop, val, unit= ibossxml.str2prop(prop, val, unit)
+          #print(prop,val,unit)
+          catalog[name].varchange(prop, val*unit)
+      
+    return data
 
   #load xml file and strips it from namespaces
   def loadxmlfile(self,filename):
@@ -632,7 +694,7 @@ def main():
   #    bb.grid
   
   sat=cat.sat["EnMAP"]
-  bb=sat._bb[0]
+  bb=cat.bb["test Lageregelungsbaustein"]
   import IPython
   IPython.embed()
   #cat.bbvarchange("power",delete=True)
