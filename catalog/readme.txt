@@ -6,7 +6,7 @@ for use with the iboss catalogue for buildingblocks.
 
 The scripts can load XML-description files and databases
 as well as provide some analysis functions and a synchronization
-mechanism between XML and ODT file formats.
+mechanism between XML and CSV file formats.
 
 
 The main script is the "cmd_catalog.py"::
@@ -59,7 +59,7 @@ save it back into a catalog with the versionstring "new".
 This catalog can be found at the following place::
   
   bausteinkatalog/catalog.new.xml
-  bausteinkatalog/tub_sats/*.new.xml
+  bausteinkatalog/tub_sats.new/*.new.xml
   
 
 Installation

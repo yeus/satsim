@@ -25,7 +25,7 @@ import xml.etree.ElementTree as et
 import codecs, time, traceback, pickle
 import copy, re, sys, json, math
 import pandas as pd  #for csv file loading
-import logging
+import logging, os
 import textwrap
 
 pq.krad=pq.UnitQuantity('kilorad', pq.rads*1000, symbol='krad')
@@ -503,6 +503,7 @@ class Catalog(object):
     return root
   
   def savexml(self,filename,xml):
+    logging.debug("saving: " + filename)
     initstr="""
         * Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)
         * Date : {}
@@ -530,9 +531,12 @@ class Catalog(object):
     self.savexml("bausteinkatalog/catalog.{}.xml".format(version),katalog)
     
     print("saving satellite configurations")
+    path="bausteinkatalog/tub_sats.{}".format(version)
+    if not os.path.exists(path):
+      os.makedirs(path)
     for vkeys,vvalues in self.sat.items():
       #missionen=ibosslist2xml("Satellites",referenzmissionen.values())
-      self.savexml("bausteinkatalog/tub_sats/{}.{}.xml".format(vkeys,version),vvalues.xml)
+      self.savexml(path + "/{}.{}.xml".format(vkeys,version),vvalues.xml)
 
   def save_csv(self,filename, catalog, properties):
     """save specific properties of a catalog into a csv-file"""  
@@ -642,7 +646,7 @@ class Catalog(object):
       
     #add missions
     import glob
-    for i in glob.glob('bausteinkatalog/tub_sats/*.{}.xml'.format(Version)):  #get a file list of satxml files
+    for i in glob.glob('bausteinkatalog/tub_sats.{}/*.{}.xml'.format(Version,Version)):  #get a file list of satxml files
       data = self.loadxmlfile(i)#TODO: check if it is a valid Satellite XML
       
       new_sat = Satellite('generic')
