@@ -13,11 +13,23 @@ add_library(rosmo STATIC rosmo.cpp)
 #target_link_libraries(roma roma)
 #add_library(ibossi2c SHARED DS1621.cpp)
 
-#INSTALL(FILES roof.h
-#        DESTINATION include
-#        PERMISSIONS OWNER_READ GROUP_READ WORLD_READ)
+# copy custom required files
+# we don't want to copy if we're building in the source dir
+if (NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_CURRENT_BINARY_DIR)
 
-# Recurse into the "Hello" and "Demo" subdirectories. This does not actually
-# cause another cmake executable to run. The same process will walk through
-# the project's entire directory structure.
-#ADD_SUBDIRECTORY(src)
+    # list of files for which we add a copy rule
+    set(mysources factory createship.py factory_operator.py )
+    set(data_SHADOW spaceshipfactory.blend ${mysources} todo.txt readme.txt)
+
+    foreach(item IN LISTS data_SHADOW)
+        message(STATUS ${item})
+        add_custom_command(
+            OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${item}"
+            COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/${item}" "${CMAKE_CURRENT_BINARY_DIR}/${item}"
+            DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/${item}"
+        )
+    endforeach()
+endif()
+
+# files are only copied if a target depends on them
+add_custom_target(blenderdata ALL DEPENDS ${data_SHADOW} SOURCES ${mysources})
