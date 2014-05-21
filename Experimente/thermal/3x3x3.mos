@@ -1,4 +1,4 @@
 loadModel(Modelica);
 loadFile("/home/jens/iBOSS2/Simulation_Linux/ibosssim/model/iboss/package.mo");
-loadFile("/home/jens/Dropbox/generic_satellite_var_rad_optical_properties_1x1x2.mo");
-simulate(generic_satellite_var_rad_optical_properties_1x1x2, startTime=0, stopTime=75900, numberOfIntervals=4000, tolerance=1e-4, method="dassl", outputFormat="csv");""
+loadFile("/home/jens/Dropbox/generic_satellite_var_rad_optical_properties_3x3x3.mo");
+simulate(generic_satellite_var_rad_optical_properties_3x3x3, startTime=0, stopTime=75900, numberOfIntervals=4000, tolerance=1e-4, method="dassl", outputFormat="csv");""
