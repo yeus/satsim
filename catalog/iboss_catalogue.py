@@ -164,9 +164,10 @@ class ibossxml(object):
     name = vkey
     if isinstance(value,pq.Quantity):    
       unit = value.dimensionality.string
-      if value.size==1:    val = str(value.magnitude)
-      elif value.size<=3:  val = vec2str(value.magnitude)
-      else:                val = mat2str(value.magnitude)
+      magnitude = np.round(value.magnitude,7)
+      if value.size==1:    val = str(magnitude)
+      elif value.size<=3:  val = vec2str(magnitude)
+      else:                val = mat2str(magnitude)
     elif isinstance(value,list) or isinstance(value,dict): #save as json, if it is a list or dict
       unit='json'
       val = json.dumps(value)
@@ -535,26 +536,30 @@ class Catalog(object):
 
   def save_csv(self,filename, catalog, properties):
     """save specific properties of a catalog into a csv-file"""  
-    with open(filename, 'w') as csvfile:
-      csvstr=catalog + "\n{:<40}".format('name,')
+    
+    csvfile = filename
+    if isinstance(filename, str):
+      csvfile = open(filename, 'w', encoding='UTF-8')   
+        
+    csvstr=catalog + "\n{:<60}".format('name,')
+    for p in properties:
+      csvstr += "{:>15}, {:>15},".format(p, p+"-unit")
+    csvstr += "\n"
+    
+    for objname, obj in sorted(vars(self)[catalog].items(), key=lambda instance: instance[0].lower()): 
+      row = "{:<60}".format('\"'+objname+'\",') 
       for p in properties:
-        csvstr += "{:>15}, {:>15},".format(p, p+"-unit")
-      csvstr += "\n"
-      
-      for objname, obj in sorted(vars(self)[catalog].items(), key=lambda instance: instance[0].lower()): 
-        row = "{:<40}".format('\"'+objname+'\",') 
-        for p in properties:
-          if p in vars(obj):
-            name, val, unit = ibossxml.property2strlist("gen",vars(obj)[p], withquotes = True)
-            if not unit: unit = np.nan
-            row += "{:>15}, {:>15},".format(val, unit)
-          else:
-            #print("Property: \"" + p +"\" does not exist in object: " + obj.name)
-            row += "{:>15}, {:>15},".format(np.nan, np.nan)
-            
-        csvstr += row + "\n"
+        if p in vars(obj):
+          name, val, unit = ibossxml.property2strlist("gen",vars(obj)[p], withquotes = True)
+          if not unit: unit = np.nan
+          row += "{:>15}, {:>15},".format(val, unit)
+        else:
+          #print("Property: \"" + p +"\" does not exist in object: " + obj.name)
+          row += "{:>15}, {:>15},".format(np.nan, np.nan)
           
-      csvfile.write(csvstr)
+      csvstr += row + "\n"
+          
+    csvfile.write(csvstr)
 
   def update_with_csv(self, filename):
     """load specific properties of a csv-file and update the catalog with it"""

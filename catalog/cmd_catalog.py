@@ -81,14 +81,14 @@ def main():
   
   description='Program to start operations on the iboss catalog and generate reports'
   parser = argparse.ArgumentParser(description=description,
-                                    epilog='Copyright (C) @ TU-Berlin 2014')
+                                    epilog="""Example: python3 cmd_catalog.py -csvs table.csv -prop mass Bemerkungen""")
   
-  #parser.add_argument('file', nargs='?', type=argparse.FileType('rw'),  default=None)
-
   group = parser.add_mutually_exclusive_group(required=False)
-  group.add_argument('-csvs', action='store', help='save properties in a table as csv-file', metavar='PROPERTIES')
-  group.add_argument('-csvl', action='store', nargs=1, type=argparse.FileType('r'),help='load properties from a table in csv-file and update the catalog with it', metavar='FILE')
+  group.add_argument('-csvs', action='store', nargs=1, type=argparse.FileType('w'), help='save properties in a table as csv-file', metavar='FILE')
+  group.add_argument('-csvl', action='store', nargs=1, type=argparse.FileType('r'), help='load properties from a table in csv-file and update the catalog with it', metavar='FILE')
   group.add_argument('-save', action='store', help='save catalog in a new catalog with the provided version string', metavar='VERSION')
+  parser.add_argument('-prop','--properties', nargs='+',action='store',help='list of properties for csv file')
+  parser.add_argument('-c', '--catalog', nargs=1, action='store', help='which catalog to use', choices= ['co', 'bb', 'sat'])
   parser.add_argument('-w','--write',action='store_true',help='write catalog report to a rst-file')
   parser.add_argument('-p','--print',action='store_true',help='print content of catalog to commandline')
   parser.add_argument('-t','--test',action='store_true',help='test catalog consistency')
@@ -109,6 +109,10 @@ def main():
   
   if opts.csvl:
     cat.update_with_csv(opts.csvl[0])
+    cat.update()
+  if opts.csvs:
+    #print(opts.csvs)
+    cat.save_csv(opts.csvs[0], opts.catalog[0], opts.properties)
   if opts.save:
     cat.save(opts.save)
   if opts.write: 
@@ -118,11 +122,6 @@ def main():
   if opts.shell:
     import IPython
     IPython.embed()
-  if opts.save:
-    cat=iboss_catalogue.Catalog()
-    cat.loadxmldata()
-    cat.update()
-    cat.save()
 
 if __name__ == "__main__":
   main()
