@@ -9,12 +9,25 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
+#include <fstream>
+
+#include "rosmo.h"
 
 using namespace std;
 
 // *****************************************************************************
 // *****************************************************************************
 // *****************************************************************************
+
+void writetofile(double x1, double x2)
+{
+  ofstream  myfile;
+  myfile.open("test.dat", ios::app);
+  
+  myfile << x1 << " " << x2 << endl;
+  
+  myfile.close();
+}
 
 /* file: ExternalFunc1.c */
 double ExternalFunc1_ext(double x)
@@ -25,13 +38,9 @@ double ExternalFunc1_ext(double x)
 }
 
 /* file: ExternalFunc2.c */
-double ExternalFunc2(double x)
-{
-  double res;
-  res = (x-1.0)*(x+2.0);
-  return res;
-}
-
-void test() { 
-  cout << "testblabla";
-}
+// double ExternalFunc2(double x)
+// {
+//   double res;
+//   res = (x-1.0)*(x+2.0);
+//   return res;
+// }
