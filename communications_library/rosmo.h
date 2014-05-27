@@ -16,6 +16,10 @@
 #define EXTERNC
 #endif
 
+#include <ros/ros.h>
+#include <std_msgs/String.h>
+#include <sstream>
+
 /*
 //  typedef void* mylibrary_mytype_t;
 // 
