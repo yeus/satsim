@@ -5562,6 +5562,155 @@ signal <b>u</b> exceeds the <b>reference</b> signal plus half of the bandwidth.<
 						StopTime=1,
 						StartTime=0));
 			end thermal_5_conductor;
+			model Baustein5x5_Panel "Baustein5x5_Panel.mo"
+				iboss.iboss_thermal.Panel_5x5.components.panel_5x5_with_IF_3x3 panel_5x5_with_IF_yn annotation(Placement(transformation(
+					origin={35,-75},
+					extent={{-10,-10},{10,10}},
+					rotation=-90)));
+				iboss.iboss_thermal.Panel_5x5.components.panel_5x5_with_IF_3x3 panel_5x5_with_IF_xn annotation(Placement(transformation(
+					origin={-105,10},
+					extent={{-10,-10},{10,10}},
+					rotation=90)));
+				iboss.iboss_thermal.Panel_5x5.components.panel_5x5_with_IF_3x3 panel_5x5_with_IF_yp annotation(Placement(transformation(extent={{25,85},{45,105}})));
+				iboss.iboss_thermal.Panel_5x5.components.panel_5x5_with_IF_3x3 panel_5x5_with_IF_xp annotation(Placement(transformation(extent={{160,0},{180,20}})));
+				iboss.iboss_thermal.Panel_5x5.components.panel_5x5_with_IF_3x3 panel_5x5_with_IF_zn annotation(Placement(transformation(
+					origin={145,-110},
+					extent={{-10,-10},{10,10}})));
+				iboss.iboss_thermal.Panel_5x5.components.panel_5x5_with_IF_3x3 panel_5x5_with_IF_zp annotation(Placement(transformation(extent={{25,0},{45,20}})));
+				iboss.iboss_thermal.Panel_5x5.components.thermal_5_conductor thermal_5_conductor_xn_yn annotation(Placement(transformation(extent={{-55,-80},{-35,-70}})));
+				iboss.iboss_thermal.Panel_5x5.components.thermal_5_conductor thermal_5_conductor_xn_yp annotation(Placement(transformation(extent={{-55,90},{-35,100}})));
+				iboss.iboss_thermal.Panel_5x5.components.thermal_5_conductor thermal_5_conductor_xp_yp annotation(Placement(transformation(extent={{100,90},{120,100}})));
+				iboss.iboss_thermal.Panel_5x5.components.thermal_5_conductor thermal_5_conductor_xp_yn annotation(Placement(transformation(extent={{100,-80},{120,-70}})));
+				iboss.iboss_thermal.Panel_5x5.components.thermal_5_conductor thermal_5_conductor_xp_zp annotation(Placement(transformation(extent={{90,5},{110,15}})));
+				iboss.iboss_thermal.Panel_5x5.components.thermal_5_conductor thermal_5_conductor_xn_zp annotation(Placement(transformation(extent={{-45,5},{-25,15}})));
+				iboss.iboss_thermal.Panel_5x5.components.thermal_5_conductor thermal_5_conductor_yp_zp annotation(Placement(transformation(
+					origin={35,50},
+					extent={{-10,-5},{10,5}},
+					rotation=90)));
+				iboss.iboss_thermal.Panel_5x5.components.thermal_5_conductor thermal_5_conductor_yn_zp annotation(Placement(transformation(
+					origin={35,-35},
+					extent={{-10,-5},{10,5}},
+					rotation=-90)));
+				iboss.iboss_thermal.Panel_5x5.components.thermal_5_conductor thermal_5_conductor_yp_zn annotation(Placement(transformation(extent={{175,-115},{195,-105}})));
+				iboss.iboss_thermal.Panel_5x5.components.thermal_5_conductor thermal_5_conductor_yn_zn annotation(Placement(transformation(extent={{90,-115},{110,-105}})));
+				iboss.iboss_thermal.Panel_5x5.components.thermal_5_conductor thermal_5_conductor_xp_zn annotation(Placement(transformation(
+					origin={145,-40},
+					extent={{-10,-5},{10,5}},
+					rotation=-90)));
+				iboss.iboss_thermal.Panel_5x5.components.thermal_5_conductor thermal_5_conductor_xn_zn annotation(Placement(transformation(extent={{-50,-115},{-30,-105}})));
+				iboss.iboss_thermal.components.thermalModel_ElectronicBox thermalModel_ElectronicBox1(
+					material=iboss.MaterialDatabase.Elektronik_Box_Composit(),
+					x=0.08,
+					y=0.08,
+					z=0.08) annotation(Placement(transformation(extent={{90,40},{110,60}})));
+				Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor1(G=0.08*0.08*1000) annotation(Placement(transformation(extent={{60,20},{75,35}})));
+				equation
+					connect(thermal_5_conductor_xn_yn.thermal_connector_side_r,panel_5x5_with_IF_yn.thermal_connector_side_yn) annotation(Line(
+						points={{-35,-75},{-30,-75},{20,-75},{25,-75}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(thermal_5_conductor_xn_yn.thermal_connector_side_l,panel_5x5_with_IF_xn.thermal_connector_side_xn) annotation(Line(
+						points={{-55,-75},{-60,-75},{-105,-75},{-105,-5},{-105,0}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(thermal_5_conductor_xn_yp.thermal_connector_side_r,panel_5x5_with_IF_yp.thermal_connector_side_xn) annotation(Line(
+						points={{-35,95},{-30,95},{20,95},{25,95}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(thermal_5_conductor_xn_yp.thermal_connector_side_l,panel_5x5_with_IF_xn.thermal_connector_side_xp) annotation(Line(
+						points={{-55,95},{-60,95},{-105,95},{-105,25},{-105,20}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(panel_5x5_with_IF_yp.thermal_connector_side_xp,thermal_5_conductor_xp_yp.thermal_connector_side_l) annotation(Line(
+						points={{45,95},{50,95},{95,95},{100,95}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(thermal_5_conductor_xp_yp.thermal_connector_side_r,panel_5x5_with_IF_xp.thermal_connector_side_yp) annotation(Line(
+						points={{120,95},{125,95},{170,95},{170,25},{170,20}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(panel_5x5_with_IF_yn.thermal_connector_side_yp,thermal_5_conductor_xp_yn.thermal_connector_side_l) annotation(Line(
+						points={{45,-75},{50,-75},{95,-75},{100,-75}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(thermal_5_conductor_xp_yn.thermal_connector_side_r,panel_5x5_with_IF_xp.thermal_connector_side_yn) annotation(Line(
+						points={{120,-75},{125,-75},{170,-75},{170,-5},{170,0}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(panel_5x5_with_IF_yp.thermal_connector_side_yp,thermal_5_conductor_yp_zn.thermal_connector_side_r) annotation(Line(
+						points={{35,105},{35,110},{200,110},{200,-110},{195,-110}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(thermal_5_conductor_yn_zn.thermal_connector_side_l,panel_5x5_with_IF_yn.thermal_connector_side_xp) annotation(Line(
+						points={{90,-110},{85,-110},{35,-110},{35,-90},{35,-85}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(panel_5x5_with_IF_zn.thermal_connector_side_yp,thermal_5_conductor_xp_zn.thermal_connector_side_r) annotation(Line(
+						points={{145,-100},{145,-95},{145,-55},{145,-50}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(thermal_5_conductor_xp_zn.thermal_connector_side_l,panel_5x5_with_IF_xp.thermal_connector_side_xp) annotation(Line(
+						points={{145,-30},{145,-25},{185,-25},{185,10},{180,10}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(thermal_5_conductor_xn_zn.thermal_connector_side_r,panel_5x5_with_IF_zn.thermal_connector_side_yn) annotation(Line(
+						points={{-30,-110},{-25,-110},{-25,-125},{145,-125},{145,-120}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(panel_5x5_with_IF_xn.thermal_connector_side_yp,thermal_5_conductor_xn_zn.thermal_connector_side_l) annotation(Line(
+						points={{-115,10},{-120,10},{-120,-110},{-55,-110},{-50,-110}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(thermal_5_conductor_yp_zn.thermal_connector_side_l,panel_5x5_with_IF_zn.thermal_connector_side_xp) annotation(Line(
+						points={{175,-110},{170,-110},{160,-110},{155,-110}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(panel_5x5_with_IF_zn.thermal_connector_side_xn,thermal_5_conductor_yn_zn.thermal_connector_side_r) annotation(Line(
+						points={{135,-110},{130,-110},{115,-110},{110,-110}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(thermal_5_conductor_yn_zp.thermal_connector_side_r,panel_5x5_with_IF_yn.thermal_connector_side_xn) annotation(Line(
+						points={{35,-45},{35,-50},{35,-60},{35,-65}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(thermal_5_conductor_yn_zp.thermal_connector_side_l,panel_5x5_with_IF_zp.thermal_connector_side_yn) annotation(Line(
+						points={{35,-25},{35,-20},{35,-5},{35,0}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(panel_5x5_with_IF_zp.thermal_connector_side_xn,thermal_5_conductor_xn_zp.thermal_connector_side_r) annotation(Line(
+						points={{25,10},{20,10},{-20,10},{-25,10}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(thermal_5_conductor_xn_zp.thermal_connector_side_l,panel_5x5_with_IF_xn.thermal_connector_side_yn) annotation(Line(
+						points={{-45,10},{-50,10},{-90,10},{-95,10}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(panel_5x5_with_IF_zp.thermal_connector_side_xp,thermal_5_conductor_xp_zp.thermal_connector_side_l) annotation(Line(
+						points={{45,10},{50,10},{85,10},{90,10}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(thermal_5_conductor_xp_zp.thermal_connector_side_r,panel_5x5_with_IF_xp.thermal_connector_side_xn) annotation(Line(
+						points={{110,10},{115,10},{155,10},{160,10}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(panel_5x5_with_IF_zp.thermal_connector_side_yp,thermal_5_conductor_yp_zp.thermal_connector_side_l) annotation(Line(
+						points={{35,20},{35,25},{35,35},{35,40}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(thermal_5_conductor_yp_zp.thermal_connector_side_r,panel_5x5_with_IF_yp.thermal_connector_side_yn) annotation(Line(
+						points={{35,60},{35,65},{35,80},{35,85}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(panel_5x5_with_IF_zp.thermal_connector_Panel_IF_5x5_zn.port_33,thermalConductor1.port_a) annotation(Line(
+						points={{40,20},{40,25},{40,27.3},{55,27.3},{60,27.3}},
+						color={0,0,0},
+						thickness=0.0625));
+					connect(thermalConductor1.port_b,thermalModel_ElectronicBox1.EB_yn) annotation(Line(
+						points={{75,27.3},{80,27.3},{100,27.3},{100,35},{100,40}},
+						color={191,0,0},
+						thickness=0.0625));
+			end Baustein5x5_Panel;
+
 		end components;
 	end Panel_5x5;
 	package buildingblocks "buildingblocks"
