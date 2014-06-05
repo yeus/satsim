@@ -34,6 +34,23 @@ EXTERNC void writetofile(double, double);
 /* Header file ExternalFunc2.h for ExternalFunc2 */
 /* EXTERNC double ExternalFunc2(double);*/
 
+EXTERNC void Send_Message();
+EXTERNC void InitRos();
+
+class node
+{
+public:
+  node(int argc, char **argv);  
+  ~node();
+
+  void Send_Message();
+  
+  ros::NodeHandle *n;
+  ros::Publisher chatter_pub;
+};
+
+extern node* mynode;
+
 #undef EXTERNC
 
 #endif /* __ROSMOS_H__*/

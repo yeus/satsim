@@ -19,6 +19,18 @@ using namespace std;
 // *****************************************************************************
 // *****************************************************************************
 
+node* mynode=NULL;
+
+void InitRos(){
+  mynode = new node(0,NULL);//argc, **argv
+}
+
+void Send_Message(){
+  if (mynode != NULL){
+    mynode->Send_Message();
+  }
+}
+
 void writetofile(double x1, double x2)
 {
   ofstream  myfile;
@@ -44,3 +56,31 @@ double ExternalFunc1_ext(double x)
 //   res = (x-1.0)*(x+2.0);
 //   return res;
 // }
+
+
+
+node::node(int argc, char **argv){
+    ros::init(argc, argv, "talker");
+   
+    n = new ros::NodeHandle();
+    
+    chatter_pub = n->advertise<std_msgs::String>("chatter", 1000);
+  }
+  
+node::~node(){
+  delete n;
+}
+
+void node::Send_Message(){
+  static int count = 0;
+  count++;
+  std_msgs::String msg;
+
+  std::stringstream ss;
+  ss << "rosmo test msg " << count;
+  msg.data = ss.str();
+
+  ROS_INFO("%s", msg.data.c_str());
+
+  chatter_pub.publish(msg);
+}
