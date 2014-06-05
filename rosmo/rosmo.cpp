@@ -13,11 +13,29 @@
 
 #include "rosmo.h"
 
+#include <ros/ros.h>
+#include <std_msgs/String.h>
+#include <sstream>
+
 using namespace std;
 
 // *****************************************************************************
 // *****************************************************************************
 // *****************************************************************************
+
+class node
+{
+public:
+  node(int argc, char **argv);  
+  ~node();
+
+  void Send_Message();
+  
+  ros::NodeHandle *n;
+  ros::Publisher chatter_pub;
+};
+
+extern node* mynode;
 
 node* mynode=NULL;
 

@@ -16,10 +16,6 @@
 #define EXTERNC
 #endif
 
-#include <ros/ros.h>
-#include <std_msgs/String.h>
-#include <sstream>
-
 /*
 //  typedef void* mylibrary_mytype_t;
 // 
@@ -36,20 +32,6 @@ EXTERNC void writetofile(double, double);
 
 EXTERNC void Send_Message();
 EXTERNC void InitRos();
-
-class node
-{
-public:
-  node(int argc, char **argv);  
-  ~node();
-
-  void Send_Message();
-  
-  ros::NodeHandle *n;
-  ros::Publisher chatter_pub;
-};
-
-extern node* mynode;
 
 #undef EXTERNC
 
