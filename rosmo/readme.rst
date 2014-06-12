@@ -21,6 +21,31 @@ or::
 bug reports:
 ============
 
+compiling ros functions into fmume10
+------------------------------------
+
+folling linker command is executed, when linking ros executables::
+  
+  /usr/bin/c++    -fPIC    -fPIC CMakeFiles/talker.dir/main.cpp.o  -o devel/lib/rosmo/talker -rdynamic devel/lib/librosmo.a 
+  /opt/ros/indigo/lib/libroscpp.so 
+  -lboost_signals 
+  -lboost_filesystem 
+  /opt/ros/indigo/lib/librosconsole.so 
+  /opt/ros/indigo/lib/librosconsole_log4cxx.so 
+  /opt/ros/indigo/lib/librosconsole_backend_interface.so 
+  -llog4cxx -lboost_regex /opt/ros/indigo/lib/libxmlrpcpp.so 
+  /opt/ros/indigo/lib/libroscpp_serialization.so 
+  /opt/ros/indigo/lib/librostime.so 
+  -lboost_date_time 
+  -lboost_system 
+  -lboost_thread 
+  -lpthread 
+  /opt/ros/indigo/lib/libcpp_common.so 
+  /opt/ros/indigo/lib/libconsole_bridge.so 
+  -Wl,-rpath,/opt/ros/indigo/lib 
+
+
+
 problem, compiling modelica model with external Functions
 ---------------------------------------------------------
 

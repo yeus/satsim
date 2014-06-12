@@ -26,7 +26,7 @@ using namespace std;
 class node
 {
 public:
-  node(int argc, char **argv);  
+  node(int argc, char *argv[]);  
   ~node();
 
   void Send_Message();
@@ -40,21 +40,46 @@ extern node* mynode;
 node* mynode=NULL;
 
 void InitRos(){
-  mynode = new node(0,NULL);//argc, **argv
+  char *argv[] = {const_cast<char *>("modelica_node")};
+  int argc = sizeof(argv) / sizeof(char*) - 1;
+  mynode = new node(1,argv);//argc, **argv
+  writetofile("node initialized");
 }
 
 void Send_Message(){
-  if (mynode != NULL){
-    mynode->Send_Message();
+  if (mynode == NULL)
+  {
+    InitRos();
   }
+
+  static int count = 0;
+  count++;
+  std::string msg;
+
+  if (mynode != NULL){
+    std::stringstream ss;
+    ss << "sent message # " << count;
+    msg = ss.str();
+    
+    mynode->Send_Message();
+  }else{
+    std::stringstream ss;
+    ss << "no node started! # " << count;
+    msg = ss.str();
+  }
+  
+  ros::spinOnce();
+  writetofile(msg.c_str());
 }
 
-void writetofile(double x1, double x2)
+void writetofile(const char* str)
 {
+  //std::string data
+  
   ofstream  myfile;
   myfile.open("test.dat", ios::app);
   
-  myfile << x1 << " " << x2 << endl;
+  myfile << str << endl;
   
   myfile.close();
 }
@@ -77,7 +102,7 @@ double ExternalFunc1_ext(double x)
 
 
 
-node::node(int argc, char **argv){
+node::node(int argc, char *argv[]){
     ros::init(argc, argv, "talker");
    
     n = new ros::NodeHandle();
@@ -87,6 +112,7 @@ node::node(int argc, char **argv){
   
 node::~node(){
   delete n;
+  n = NULL;
 }
 
 void node::Send_Message(){

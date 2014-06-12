@@ -9,13 +9,13 @@ using namespace std;
 int main(int argc, char **argv)
 {
   InitRos();
-  
-  ros::Rate loop_rate(10);  
+  //ros::Time::init();
+  ros::Rate loop_rate(10);
+  int counter = 0;
   while (ros::ok())
   {
+    counter++;
     Send_Message();
-
-    ros::spinOnce();
 
     loop_rate.sleep();
   }

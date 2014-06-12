@@ -26,7 +26,7 @@
 
 /* Header file ExternalFunc1_ext.h for ExternalFunc1 function */
 EXTERNC double ExternalFunc1_ext(double);
-EXTERNC void writetofile(double, double);
+EXTERNC void writetofile(const char*);
 /* Header file ExternalFunc2.h for ExternalFunc2 */
 /* EXTERNC double ExternalFunc2(double);*/
 
