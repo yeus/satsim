@@ -229,9 +229,6 @@ package iboss_thermal "iboss_thermal"
 					color={191,0,0},
 					thickness=0.0625));
 			annotation(
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(
 					coordinateSystem(grid={10,10}),
 					graphics={
@@ -4631,9 +4628,6 @@ signal <b>u</b> exceeds the <b>reference</b> signal plus half of the bandwidth.<
 						color={191,0,0},
 						thickness=0.0625));
 				annotation(
-					viewinfo[0](
-						viewSettings(clrRaster=12632256),
-						typename="ModelInfo"),
 					Icon(graphics={
 																												Rectangle(
 																													lineColor={0,0,0},
@@ -5698,9 +5692,6 @@ signal <b>u</b> exceeds the <b>reference</b> signal plus half of the bandwidth.<
 						color={191,0,0},
 						thickness=0.0625));
 				annotation(
-					viewinfo[0](
-						viewSettings(clrRaster=12632256),
-						typename="ModelInfo"),
 					Icon(graphics={
 								Rectangle(
 									lineColor={0,0,0},
@@ -6413,9 +6404,6 @@ signal <b>u</b> exceeds the <b>reference</b> signal plus half of the bandwidth.<
 						color={0,0,0},
 						thickness=0.0625));
 				annotation(
-					viewinfo[0](
-						viewSettings(clrRaster=12632256),
-						typename="ModelInfo"),
 					Icon(
 						coordinateSystem(grid={10,10}),
 						graphics={
@@ -6880,9 +6868,6 @@ signal <b>u</b> exceeds the <b>reference</b> signal plus half of the bandwidth.<
 						color={0,0,0},
 						thickness=0.0625));
 				annotation(
-					viewinfo[0](
-						viewSettings(clrRaster=12632256),
-						typename="ModelInfo"),
 					Icon(
 						coordinateSystem(extent={{-101.7,-101.7},{101.7,101.7}}),
 						graphics={
