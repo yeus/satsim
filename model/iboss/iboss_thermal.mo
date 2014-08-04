@@ -4302,6 +4302,23 @@ signal <b>u</b> exceeds the <b>reference</b> signal plus half of the bandwidth.<
 	end components;
 	package Panel_5x5 "Elemente für einen Baustein mit 25 Knoten pro Seitenwand"
 		package multi_connector "n-fache Thermalverbindungen"
+			connector thermal_connector_Panel_2x2 "Verbindungselement fuer mehr als eine Schnittstelle"
+				import Modelica.Thermal.HeatTransfer.Interfaces;
+				Interfaces.HeatPort_a port_00;
+				Interfaces.HeatPort_a port_01;
+				Interfaces.HeatPort_a port_10;
+				Interfaces.HeatPort_a port_11;
+				annotation(Icon(graphics={
+														Rectangle(
+															lineColor={0,0,0},
+															fillColor={255,0,0},
+															fillPattern=FillPattern.Solid,
+															extent={{-100,100},{100,-100}}),
+														Text(
+															textString="2x2",
+															lineColor={255,255,255},
+															extent={{-100,96.7},{96.7,-100}})}));
+			end thermal_connector_Panel_2x2;
 			connector thermal_connector_Panel_3x3 "Verbindungselement fuer mehr als eine Schnittstelle"
 				import Modelica.Thermal.HeatTransfer.Interfaces;
 				Interfaces.HeatPort_a port_00;
@@ -4362,6 +4379,21 @@ signal <b>u</b> exceeds the <b>reference</b> signal plus half of the bandwidth.<
 															lineColor={255,255,255},
 															extent={{-100,96.7},{96.7,-100}})}));
 			end thermal_connector_Panel_5x5;
+			connector thermal_connector_side_2 "Verbindungselement fuer mehr als eine Schnittstelle"
+				import Modelica.Thermal.HeatTransfer.Interfaces;
+				Interfaces.HeatPort_a port_0;
+				Interfaces.HeatPort_a port_1;
+				annotation(Icon(graphics={
+														Rectangle(
+															lineColor={0,0,0},
+															fillColor={255,0,0},
+															fillPattern=FillPattern.Solid,
+															extent={{-100,100},{100,-100}}),
+														Text(
+															textString="2",
+															lineColor={0,0,0},
+															extent={{-99,96.7},{97.7,-100}})}));
+			end thermal_connector_side_2;
 			connector thermal_connector_side_3 "Verbindungselement fuer mehr als eine Schnittstelle"
 				import Modelica.Thermal.HeatTransfer.Interfaces;
 				Interfaces.HeatPort_a port_0;
