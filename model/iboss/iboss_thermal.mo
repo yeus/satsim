@@ -11417,5 +11417,37 @@ An approppriate simulating time would be 10 seconds.
 					StartTime=0,
 					Interval=0.001));
 		end BuildingBlock_optical_properties_var_rad;
+		model Tank_2x2 "Tank_2x2.mo"
+			iboss.iboss_thermal.Panel_5x5.components.Tank_2x2_Panel tank_2x2_Panel_xp annotation(Placement(transformation(extent={{75,-15},{95,5}})));
+			iboss.iboss_thermal.Panel_5x5.components.Tank_2x2_Panel tank_2x2_Panel_xn annotation(Placement(transformation(
+				origin={-35,-5},
+				extent={{-10,-10},{10,10}},
+				rotation=180)));
+			iboss.iboss_thermal.Panel_5x5.components.Tank_2x2_Panel tank_2x2_Panel_yn annotation(Placement(transformation(
+				origin={25,-65},
+				extent={{-10,-10},{10,10}},
+				rotation=270)));
+			iboss.iboss_thermal.Panel_5x5.components.Tank_2x2_Panel tank_2x2_Panel_yp annotation(Placement(transformation(
+				origin={30,65},
+				extent={{-10,-10},{10,10}},
+				rotation=90)));
+			iboss.iboss_thermal.Panel_5x5.components.Tank_2x2_Panel tank_2x2_Panel_zn annotation(Placement(transformation(extent={{90,60},{110,80}})));
+			iboss.iboss_thermal.Panel_5x5.components.Tank_2x2_Panel tank_2x2_Panel_zp annotation(Placement(transformation(
+				origin={-40,-65},
+				extent={{-10,-10},{10,10}},
+				rotation=180)));
+			annotation(
+				__iti_viewinfo[0](
+					viewSettings(clrRaster=12632256),
+					simViewInfos[0](
+						viewSettings(clrRaster=12632256),
+						runtimeClass="CSimView",
+						tabGroup=0,
+						typename="ModelViewInfo"),
+					typename="ModelInfo"),
+				experiment(
+					StopTime=1,
+					StartTime=0));
+		end Tank_2x2;
 	end buildingblocks;
 end iboss_thermal;
