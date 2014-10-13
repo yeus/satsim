@@ -7,7 +7,7 @@ Feel free to edit this template as you like!
 
 import morse
 from morse.builder import *
-from virtual_satellite.builder.robots import Cubesat, Earth, Sun, Miss
+from vs.builder.robots import Earth, Sun, Satellite
 
 from math import pi
 
@@ -23,7 +23,7 @@ import numpy as np
 #robot = Morsy()
 
 #cubesat = Miss()
-iboss = Miss()
+iboss = Satellite()
 
 #bb = bbbasic()
 

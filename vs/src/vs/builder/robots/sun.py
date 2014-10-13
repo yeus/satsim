@@ -7,8 +7,8 @@ class Sun(Robot):
     def __init__(self, name = None, debug = True):
 
         # sun.blend is located in the data/robots directory
-        Robot.__init__(self, 'virtual_satellite/robots/sun.blend', name)
-        self.properties(classpath = "virtual_satellite.robots.sun.Sun")
+        Robot.__init__(self, 'vs/robots/sun.blend', name)
+        self.properties(classpath = "vs.robots.sun.Sun")
 
         ###################################
         # Actuators

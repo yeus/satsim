@@ -7,8 +7,8 @@ class Earth(Robot):
     def __init__(self, name = None, debug = True):
 
         # earth.blend is located in the data/robots directory
-        Robot.__init__(self, 'virtual_satellite/robots/earth.blend', name)
-        self.properties(classpath = "virtual_satellite.robots.earth.Earth")
+        Robot.__init__(self, 'vs/robots/earth.blend', name)
+        self.properties(classpath = "vs.robots.earth.Earth")
 
         ###################################
         # Actuators
