@@ -1,14 +1,14 @@
 from morse.builder import *
 
-class Bbbasic(Robot):
+class Satellite(GroundRobot):
     """
-    A template robot model for bbbasic, with a motion controller and a pose sensor.
+    A template robot model for satellite, with a motion controller and a pose sensor.
     """
     def __init__(self, name = None, debug = True):
 
-        # bbbasic.blend is located in the data/robots directory
-        Robot.__init__(self, 'virtual_satellite/robots/bbbasic.blend', name)
-        self.properties(classpath = "virtual_satellite.robots.bbbasic.Bbbasic")
+        # satellite.blend is located in the data/robots directory
+        GroundRobot.__init__(self, 'vs/robots/satellite.blend', name)
+        self.properties(classpath = "vs.robots.satellite.Satellite")
 
         ###################################
         # Actuators
@@ -24,6 +24,7 @@ class Bbbasic(Robot):
         # Optionally allow to move the robot with the keyboard
         if debug:
             keyboard = Keyboard()
+            keyboard.properties(ControlType = 'Position')
             self.append(keyboard)
 
         ###################################

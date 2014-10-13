@@ -1,12 +1,12 @@
 import logging; logger = logging.getLogger("morse." + __name__)
 import morse.core.robot
 
-class Cubesat(morse.core.robot.Robot):
+class Satellite(morse.core.robot.Robot):
     """ 
-    Class definition for the cubesat robot.
+    Class definition for the satellite robot.
     """
 
-    _name = 'cubesat robot'
+    _name = 'satellite robot'
 
     def __init__(self, obj, parent=None):
         """ Constructor method
@@ -17,7 +17,7 @@ class Cubesat(morse.core.robot.Robot):
         """
 
         logger.info('%s initialization' % obj.name)
-        super(self.__class__, self).__init__(obj, parent)
+        morse.core.robot.Robot.__init__(self, obj, parent)
 
         # Do here robot specific initializations
         logger.info('Component initialized')
