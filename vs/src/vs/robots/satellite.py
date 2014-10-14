@@ -52,9 +52,6 @@ class Satellite(morse.core.robot.Robot):
             ##obj.applyRotation((0,ay,az),1) 
             ##obj.setParent(sv.blobj)
 
-    def get_buildingblocks(self):
-      return None
-
     def default_action(self):
         """ Main loop of the robot
         """

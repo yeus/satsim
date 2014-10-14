@@ -27,7 +27,7 @@ iboss = Satellite()
 
 #bb = bbbasic()
 
-#earth = Earth()
+earth = Earth()
 sun = Sun()
 
 # The list of the main methods to manipulate your components
@@ -108,5 +108,6 @@ env.set_camera_clip(0.7,50.0e6)
 env.set_camera_speed(10.0)
 env.set_gravity(gravity=0.0)
 env.set_horizon_color(color=(0.0, 0.0, 0.0))
+env.show_physics(value=True)
 #bpymorse.fullscreen()
 #env.fullscreen(fullscreen=True)

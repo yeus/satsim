@@ -22,7 +22,16 @@ class Satellite(GroundRobot):
         from genutils import copyobject as cpobj
         from arrows import arrow
         
+        objlist = ["2x2x2","baustein","düsenbaustein"]
+        arrows = ["cross", "pfeil.spitze", "pfeil.schaft"]
+        other = ["Empty"]
         
+        #move generic objects to different layer
+        for obj in objlist + arrows + other + [i+".transparent" for i in objlist]:
+          blenderapi.bpy.data.objects[obj].layers[5] = True
+          blenderapi.bpy.data.objects[obj].layers[0] = False
+          blenderapi.bpy.data.objects[obj].layers[1] = False
+          
         for i in range(10):
           newobj=cpobj("baustein")
           newobj.location=Vector([i*2.0,0,0])
