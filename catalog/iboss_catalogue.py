@@ -502,6 +502,23 @@ class Catalog(object):
       root.append(i.xml)
     return root
   
+  def getproperties(self,catalog):
+    import itertools
+    if catalog == 'co':
+      props = [vars(co).keys() for co in self.co.values()]
+      allprops = set(itertools.chain(*props))
+    elif catalog == 'bb':
+      props = [vars(bb).keys() for bb in self.bb.values()]
+      allprops = set(itertools.chain(*props))
+    elif catalog == 'sat':
+      props = [vars(sat).keys() for sat in self.sat.values()]
+      allprops = set(itertools.chain(*props))
+    else:
+      sys.stderr.write("catalog" + str(catalog) +" not known")
+      allprops=set()
+      
+    return allprops
+  
   def savexml(self,filename,xml):
     logging.debug("saving: " + filename)
     initstr="""

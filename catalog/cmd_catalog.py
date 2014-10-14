@@ -87,12 +87,13 @@ def main():
   group.add_argument('-csvs', action='store', nargs=1, type=argparse.FileType('w'), help='save properties in a table as csv-file', metavar='FILE')
   group.add_argument('-csvl', action='store', nargs=1, type=argparse.FileType('r'), help='load properties from a table in csv-file and update the catalog with it', metavar='FILE')
   group.add_argument('-save', action='store', help='save catalog in a new catalog with the provided version string', metavar='VERSION')
-  parser.add_argument('-prop','--properties', nargs='+',action='store',help='list of properties for csv file')
+  parser.add_argument('-prop','--properties', nargs='+',action='store',help='list of properties to write into csv file (use \"all\" to use all available properties)')
   parser.add_argument('-c', '--catalog', nargs=1, action='store', help='which catalog to use', choices= ['co', 'bb', 'sat'])
   parser.add_argument('-w','--write',action='store_true',help='write catalog report to a rst-file')
   parser.add_argument('-p','--print',action='store_true',help='print content of catalog to commandline')
   parser.add_argument('-t','--test',action='store_true',help='test catalog consistency')
   parser.add_argument('-s','--shell',action='store_true',help='start catalog with ipython shell')
+  #parser.add_argument('-ap','--allprops',action='store_true',help='print all properties of a certain catalog')
 
   print("\n\n")
   opts = parser.parse_args()
@@ -107,12 +108,17 @@ def main():
   cat.loadxmldata()
   cat.update()
   
+  #if opts.allprops:
+  #  print("all properties")
   if opts.csvl:
     cat.update_with_csv(opts.csvl[0])
     cat.update()
   if opts.csvs:
     #print(opts.csvs)
-    cat.save_csv(opts.csvs[0], opts.catalog[0], opts.properties)
+    if opts.properties[0] == 'all':
+      allprops = cat.getproperties(opts.catalog[0]) #get all properties of a certain catalog
+      cat.save_csv(opts.csvs[0], opts.catalog[0], allprops)#print("all properties")
+    else: cat.save_csv(opts.csvs[0], opts.catalog[0], opts.properties)
   if opts.save:
     cat.save(opts.save)
   if opts.write: 
