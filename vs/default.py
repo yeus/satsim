@@ -27,7 +27,7 @@ iboss = Satellite()
 
 #bb = bbbasic()
 
-earth = Earth()
+#earth = Earth()
 sun = Sun()
 
 # The list of the main methods to manipulate your components
@@ -102,8 +102,8 @@ env = Environment('space.blend', fastmode = False)
 #        """
 
 
-env.place_camera(np.array([1.0,2.0,1.0]))
-env.aim_camera([pi*0.4,0.0,pi*0.9])
+env.set_camera_location(np.array([1.0,2.0,1.0]))
+env.set_camera_rotation([pi*0.4,0.0,pi*0.9])
 env.set_camera_clip(0.7,50.0e6)
 env.set_camera_speed(10.0)
 env.set_gravity(gravity=0.0)

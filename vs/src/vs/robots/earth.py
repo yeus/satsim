@@ -41,7 +41,7 @@ class Earth(morse.core.robot.Robot):
         
         self.alpha=pi*0.8
         self.rotspeed=pi*0.3
-        self.p=7.0000*scale
+        self.p=15.0000*scale
 #       planet.worldPosition( [speed,0,0], True )
 #       planet.worldRotation( [0,0,rotation], True )
         self.move()
@@ -54,7 +54,7 @@ class Earth(morse.core.robot.Robot):
     def move(self):
         dt=1.0/blenderapi.bge.logic.getLogicTicRate()
         
-        self.alpha+=dt*2.0*pi/(90.0*60) #todo implement "real" movement of a satellite (FMU model?)
+        self.alpha+=dt*2.0*pi/(180.0*60) #todo implement "real" movement of a satellite (FMU model?)
         self.rotspeed+=dt*2.0*pi/(3600.0*24)
         planet = self.bge_object #is a "bge.types.KX_GameObject" type object
         planet.worldPosition=vec3d(cos(self.alpha), sin(self.alpha),0.0)*self.p
