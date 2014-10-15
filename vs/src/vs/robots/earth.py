@@ -2,6 +2,7 @@ import logging; logger = logging.getLogger("morse." + __name__)
 import morse.core.robot
 
 from morse.core import blenderapi
+from mathutils import *
 
 from numpy import cos,sin,pi
 

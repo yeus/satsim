@@ -6,8 +6,13 @@ Feel free to edit this template as you like!
 """
 
 import morse
+import morse.core
 from morse.builder import *
+from morse.builder.morsebuilder import bpymorse
 from vs.builder.robots import Earth, Sun, Satellite
+from morse.core import blenderapi
+#from bpymorse import bpy
+#from blenderapi import bpy
 
 from math import pi
 
@@ -28,7 +33,13 @@ iboss = Satellite()
 #bb = bbbasic()
 
 earth = Earth()
+earth.translate(-70,0,0)
+earth.scale = (100,100,100)
+earth.rotate(0,0,pi*0.7)
 sun = Sun()
+sun.translate(50,50,0)
+sun.scale = (10,10,10)
+sun.rotate(0,pi*0.51,pi*0.25)
 
 # The list of the main methods to manipulate your components
 # is here: http://www.openrobots.org/morse/doc/stable/user/builder_overview.html
@@ -101,6 +112,9 @@ env = Environment('space.blend', fastmode = False)
 #        :param stereo: enum in ['NONE', 'STEREO', 'DOME'], default 'STEREO'
 #        """
 
+#print(dir(bpymorse.bpy.context.screen))
+#blenderapi.bpy.context.space_data.show_floor = False
+#bpymorse.get_context_window().space_data.show_floor = False
 
 env.set_camera_location(np.array([1.0,2.0,1.0]))
 env.set_camera_rotation([pi*0.4,0.0,pi*0.9])
@@ -109,6 +123,8 @@ env.set_camera_speed(10.0)
 env.set_gravity(gravity=0.0)
 env.set_horizon_color(color=(0.0, 0.0, 0.0))
 env.show_physics(value=True)
+#env.set_time_strategy(self, strategy)
+#env.set_debug(self, debug=True)
 #set_animation_record(self, record=True)
 #bpymorse.fullscreen()
 #env.fullscreen(fullscreen=True)

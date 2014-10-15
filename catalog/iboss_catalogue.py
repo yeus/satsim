@@ -624,8 +624,8 @@ class Catalog(object):
     return data
 
   #loads data from an XML file into catalog
-  def loadxmldata(self,filename='bausteinkatalog/catalog.{}.xml'.format(Version)): 
-    data=self.loadxmlfile(filename)
+  def loadxmldata(self,filename='catalog.{}.xml'.format(Version), directory="bausteinkatalog/"): 
+    data=self.loadxmlfile(os.path.join(directory,filename))
 
     #get list of componenents and buildingblocks
     co_list=data.findall("componentDefs/GenericComponent") #tree.find('foo:bar', namespaces={'foo': 'http://url.of.namespace'})
@@ -663,7 +663,8 @@ class Catalog(object):
       
     #add missions
     import glob
-    for i in glob.glob('bausteinkatalog/tub_sats.{}/*.{}.xml'.format(Version,Version)):  #get a file list of satxml files
+    for i in glob.glob(os.path.join(directory,'tub_sats.{}/*.{}.xml'.format(Version,Version))):  #get a file list of satxml files
+      print("loading satellite from file: ",i)
       data = self.loadxmlfile(i)#TODO: check if it is a valid Satellite XML
       
       new_sat = Satellite('generic')

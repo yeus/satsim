@@ -3,12 +3,24 @@ from morse.builder import *
 from morse.core import blenderapi
 import mathutils
 from mathutils import *
+import numpy as np
+from numpy import pi
+
+#iboss imports
+#add path for buildingblock catalogue
+import sys, os
+catalog_path = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../../../../catalog/'))
+sys.path.insert(0,catalog_path)
+
+import iboss_catalogue
+import imp
+imp.reload(iboss_catalogue)
 
 class Satellite(GroundRobot):
     """
     A template robot model for satellite, with a motion controller and a pose sensor.
     
-    #builds the robot in the blender scene BEFORE the actual game environment
+    #builds the robot in the blender scene BEFORE the actual game environment gets started
     """
     def __init__(self, name = None, debug = True):
 
@@ -32,11 +44,54 @@ class Satellite(GroundRobot):
           blenderapi.bpy.data.objects[obj].layers[0] = False
           blenderapi.bpy.data.objects[obj].layers[1] = False
           
-        for i in range(10):
-          newobj=cpobj("baustein")
-          newobj.location=Vector([i*2.0,0,0])
-          newobj.rotation_mode="XYZ"
+        #build a generic Satellite around a 2x2x2 central structure
+        cat=iboss_catalogue.Catalog()
+        catalog_path2 = os.path.join(catalog_path, "bausteinkatalog/")
+        print("Use catalog in: {}".format(catalog_path2))
+        cat.loadxmldata(directory = catalog_path2)
+        print(cat.sat)
+        mission = cat.sat["EnMAP"]
 
+        print("Build mission: ", mission.name)
+        
+        ##TODO:  mit dieser Seite hier:
+        ##http://www.blender.org/documentation/blender_python_api_2_69_release/info_tips_and_tricks.html
+        ##ein GUI entwickeln
+
+        ##render satellit with forces
+        mode=""#".transparent"  #transparent render
+        mo_id_counter = 0
+        for bs in mission._bb:
+            mo_id_counter += 1
+            if bs.name   == "test Lageregelungsbaustein": newobj=cpobj("düsenbaustein"+mode)
+            elif bs.name == "Kernstruktur2x2x2": newobj=cpobj("2x2x2"+mode)
+            else: newobj=cpobj("baustein"+mode)
+            newobj.location=Vector(bs.pos)
+            newobj.rotation_mode="XYZ"
+            newobj.rotation_euler=bs.orientation*pi/180
+            newobj["blocktype"]=bs.name
+            newobj["mission"]=mission.name
+            newobj["test"]={"test2":1.0,"y":2.0}
+            newobj.name="{bs.name}.{}".format(mo_id_counter, bs=bs)
+            newobj.parent = blenderapi.bpy.data.objects["satellite"]
+            #TODO: hier python drivers hinzufügen, um die Position von Objekten zu bestimmen
+            #http://blenderartists.org/forum/archive/index.php/t-209910.html?s=078384d8fb1235542564a869f33b6ab0
+                
+            #render forces
+            if bs.name=="test Lageregelungsbaustein": 
+                for co in bs.components:
+                    if co.type=="testdüse": 
+                        #newar=arrow(newobj.location-Vector((0.2,0.2,0.2))+Vector(co["pos"])*0.4,Vector(co["th_vec"])*0.1,0.1)
+                        newar=arrow(-Vector((0.2,0.2,0.2))+Vector(co.pos)*0.4,Vector(co.th_vec).normalized()*0.3,0.1)
+                        newar.name="force: {}{}".format(co.pos,co.th_vec)
+                        newar.parent=newobj
+
+        ##render center of gravity:
+        #newobj=cpobj("cross")
+        #newobj.location=mission.com
+        
+        ###############
+        #print(mission.com)
         #sce = blenderapi.bge.logic.getCurrentScene()
         #obj_list = sce.objects
         
@@ -44,6 +99,10 @@ class Satellite(GroundRobot):
         #own = con.owner
         #obj=sce.addObject("Cone", own)
         #obj.localPosition=(0,0,0)
+
+
+
+
 
         ###################################
         # Actuators
