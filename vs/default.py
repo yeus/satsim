@@ -33,7 +33,7 @@ iboss = Satellite()
 #bb = bbbasic()
 
 earth = Earth()
-earth.translate(-70,0,0)
+earth.translate(-70,-70,0)
 earth.scale = (100,100,100)
 earth.rotate(0,0,pi*0.7)
 sun = Sun()
