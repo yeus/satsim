@@ -9,6 +9,7 @@ from numpy import pi
 #iboss imports
 #add path for buildingblock catalogue
 import sys, os
+#print(sys.path)
 catalog_path = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../../../../catalog/'))
 sys.path.insert(0,catalog_path)
 
@@ -23,16 +24,30 @@ class Satellite(GroundRobot):
     #builds the robot in the blender scene BEFORE the actual game environment gets started
     """
     def __init__(self, name = None, debug = True):
-
         # satellite.blend is located in the data/robots directory
         Robot.__init__(self, 'vs/robots/satellite.blend', name)
         self.properties(classpath = "vs.robots.satellite.Satellite")
 
+        false_layer = [False]*20
+        orig_layer = [False]*20
+        orig_layer[5] = True
+
+        def cpobj(original):
+            #bpy.ops.object.select_all(action='TOGGLE')
+            blenderapi.bpy.data.objects[original].layers = [True]*20
+            blenderapi.bpy.ops.object.select_pattern(pattern=original, extend = False) #select the object to-be copied            
+            blenderapi.bpy.ops.object.duplicate(linked = True, mode = 'TRANSLATION')   
+
+            ob = blenderapi.bpy.context.selected_objects[0]
+            ob.layers = [True]*2 + [False]*18
+            blenderapi.bpy.data.objects[original].layers = orig_layer
+            return ob
+
         #select layer to put the satellite into:
         #bpy.data.scenes['Scene'].layers=[False]*19+[True]
         #import packages from Satellite blender file TODO: move this into default "scene file" or find another solution with importing python files or something similar
-        from genutils import copyobject as cpobj
-        from arrows import arrow
+        #from genutils import copyobject as cpobj
+        #from arrows import arrow
         
         objlist = ["2x2x2","baustein","düsenbaustein"]
         arrows = ["cross", "pfeil.spitze", "pfeil.schaft"]
@@ -40,9 +55,7 @@ class Satellite(GroundRobot):
         
         #move generic objects to different layer
         for obj in objlist + arrows + other + [i+".transparent" for i in objlist]:
-          blenderapi.bpy.data.objects[obj].layers[5] = True
-          blenderapi.bpy.data.objects[obj].layers[0] = False
-          blenderapi.bpy.data.objects[obj].layers[1] = False
+          blenderapi.bpy.data.objects[obj].layers = orig_layer
           
         #build a generic Satellite around a 2x2x2 central structure
         cat=iboss_catalogue.Catalog()
@@ -74,17 +87,18 @@ class Satellite(GroundRobot):
             newobj["test"]={"test2":1.0,"y":2.0}
             newobj.name="{bs.name}.{}".format(mo_id_counter, bs=bs)
             newobj.parent = blenderapi.bpy.data.objects["satellite"]
+            #if mo_id_counter > 2: break
             #TODO: hier python drivers hinzufügen, um die Position von Objekten zu bestimmen
             #http://blenderartists.org/forum/archive/index.php/t-209910.html?s=078384d8fb1235542564a869f33b6ab0
                 
             #render forces
-            if bs.name=="test Lageregelungsbaustein": 
-                for co in bs.components:
-                    if co.type=="testdüse": 
-                        #newar=arrow(newobj.location-Vector((0.2,0.2,0.2))+Vector(co["pos"])*0.4,Vector(co["th_vec"])*0.1,0.1)
-                        newar=arrow(-Vector((0.2,0.2,0.2))+Vector(co.pos)*0.4,Vector(co.th_vec).normalized()*0.3,0.1)
-                        newar.name="force: {}{}".format(co.pos,co.th_vec)
-                        newar.parent=newobj
+            #if bs.name=="test Lageregelungsbaustein": 
+                #for co in bs.components:
+                    #if co.type=="testdüse": 
+                        ##newar=arrow(newobj.location-Vector((0.2,0.2,0.2))+Vector(co["pos"])*0.4,Vector(co["th_vec"])*0.1,0.1)
+                        #newar=arrow(-Vector((0.2,0.2,0.2))+Vector(co.pos)*0.4,Vector(co.th_vec).normalized()*0.3,0.1)
+                        #newar.name="force: {}{}".format(co.pos,co.th_vec)
+                        #newar.parent=newobj
 
         ##render center of gravity:
         #newobj=cpobj("cross")
@@ -107,6 +121,12 @@ class Satellite(GroundRobot):
         ###################################
         # Actuators
         ###################################
+
+        forcetorque = ForceTorque()
+        
+        forcetorque.translate(1,0,0)
+        forcetorque.rotate(0,0,0)
+        self.append(forcetorque)
 
 
         # (v,w) motion controller

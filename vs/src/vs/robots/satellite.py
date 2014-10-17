@@ -2,7 +2,6 @@ import logging; logger = logging.getLogger("morse." + __name__)
 import morse.core.robot
 
 from morse.core import blenderapi
-from genutils import copyobject as cpobj
 
 class Satellite(morse.core.robot.Robot):
     """ 

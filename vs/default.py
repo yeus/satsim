@@ -100,7 +100,24 @@ env = Environment('space.blend', fastmode = False)
 #- ``GLSL`` GLSL, OpenGL shading language shaders.
 
 
-#env.set_stereo(mode='ANAGLYPH', eye_separation=0.1, stereo='STEREO')
+#print(dir(bpymorse.bpy.context.screen))
+#blenderapi.bpy.context.space_data.show_floor = False
+#bpymorse.get_context_window().space_data.show_floor = False
+
+env.set_camera_location(np.array([1.0,2.0,1.0]))
+env.set_camera_rotation([pi*0.4,0.0,pi*0.9])
+env.set_camera_clip(0.7,50.0e6)
+env.set_camera_speed(1000.0)
+env.set_gravity(gravity=0.0)
+env.set_horizon_color(color=(0.0, 0.0, 0.0))
+#env.show_physics(value=True)
+#env.set_time_strategy(self, strategy)
+#env.set_debug(self, debug=True)
+#set_animation_record(self, record=True)
+#bpymorse.fullscreen()
+#env.fullscreen(fullscreen=True)
+
+#env.set_stereo(mode='ANAGLYPH', eye_separation=0.3, stereo='STEREO')
 #        """ Configure to render image in stereo mode
 #
 #        (anaglyphs allows to see in 3d with special red-cyan glasses)
@@ -111,20 +128,3 @@ env = Environment('space.blend', fastmode = False)
 #        :param eye_separation: Distance between the eyes. float in [0.01, 5], default 0.1
 #        :param stereo: enum in ['NONE', 'STEREO', 'DOME'], default 'STEREO'
 #        """
-
-#print(dir(bpymorse.bpy.context.screen))
-#blenderapi.bpy.context.space_data.show_floor = False
-#bpymorse.get_context_window().space_data.show_floor = False
-
-env.set_camera_location(np.array([1.0,2.0,1.0]))
-env.set_camera_rotation([pi*0.4,0.0,pi*0.9])
-env.set_camera_clip(0.7,50.0e6)
-env.set_camera_speed(10.0)
-env.set_gravity(gravity=0.0)
-env.set_horizon_color(color=(0.0, 0.0, 0.0))
-env.show_physics(value=True)
-#env.set_time_strategy(self, strategy)
-#env.set_debug(self, debug=True)
-#set_animation_record(self, record=True)
-#bpymorse.fullscreen()
-#env.fullscreen(fullscreen=True)
