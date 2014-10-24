@@ -127,24 +127,43 @@ class Satellite(GroundRobot):
         forcetorque.translate(1,0,0)
         forcetorque.rotate(0,0,0)
         self.append(forcetorque)
+        
+        forcetorque.add_interface('ros', topic = 'iboss/forcetorque')
 
-
-        # (v,w) motion controller
-        # Check here the other available actuators:
-        # http://www.openrobots.org/morse/doc/stable/components_library.html#actuators
-        #self.motion = MotionVW()
-        #self.append(self.motion)
-
-        ## Optionally allow to move the robot with the keyboard
-        #if debug:
-            #keyboard = Keyboard()
-            #keyboard.properties(ControlType = 'Position')
-            #self.append(keyboard)
 
         ####################################
         ## Sensors
         ####################################
 
-        #self.pose = Pose()
-        #self.append(self.pose)
+        self.pose = Pose()
+        self.append(self.pose)
+        self.pose.add_interface('ros', topic = 'iboss/pose')
+        
+        """ Odometry Sensor """
+        odometry = Odometry()
+        self.append(odometry)
+        odometry.add_interface('ros', topic="/iboss/odom")
+        
+        """ IMU    """
+        # An IMU sensor is preinstalled in MORSE and can be used with ROS
+        self.imu = IMU()
+        self.imu.translate(0.0, 0.0, 0.0)
+        self.imu.rotate(0.0, 0.0, 0.0)
+        self.append(self.imu)
+        self.imu.add_interface('ros', topic="/iboss/imu_data")
+
+
+        """ Video Camera """
+        videocamera = VideoCamera()
+        videocamera.translate(0,0,5.0)
+        videocamera.rotate(0,0,0)
+        self.append(videocamera)
+        videocamera.add_interface('ros', topic = '/iboss/camera')
+        
+        """ Depth camera """
+        #self.depthimg = DepthCamera()
+        #self.depthimg.translate(0.0, 1.0, 0.0)
+        #self.depthimg.rotate(0.0,0.0,-pi*0.5)
+        #self.append(self.depthimg)
+        #self.depthimg.add_interface('ros', topic="Depth_IMG")
 
