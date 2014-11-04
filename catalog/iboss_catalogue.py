@@ -298,7 +298,7 @@ class buildingblock(ibossxml):
                 _co=[],
                 mass=0*pq.kg,
                 power_max=0*pq.W,
-                com=vec(0,0,0)*Blocksize,
+                com=vec(0,0,0),
                 heatcapacity=10*pq.J/pq.K,
                 inertia=((0.85,0.0,0.0),
                               (0.0,0.85,0.0),
@@ -339,13 +339,15 @@ class buildingblock(ibossxml):
   def add_co(self,co): #todo variable length argument list
     if "num" not in vars(co): co.num=1
     self._co.append(copy.copy(co))  #use copy of component for an update with state variables
+    self.update()
   
   def update(self):
     self.power_max=0*pq.W
     for co in self._co:
       if "power_max" in vars(co): 
         self.power_max+=co.power_max
-    self.mass=np.sum([co.mass*co.num for co in self._co])*pq.kg
+    self.mass = np.sum([co.mass*co.num for co in self._co])*pq.kg
+    self.com = np.sum(self.grid, axis=0)/len(self.grid)*self.size
 
 class Satellite(ibossxml):
   def __init__(self,mitype):
@@ -423,7 +425,9 @@ class Satellite(ibossxml):
   
   def update(self):
     self.mass=np.sum([bb.mass for bb in self._bb])*pq.kg
-    self.com=np.sum([(vec(*bb.pos)*(self.bbsize+self.bbgap))*bb.mass for bb in self._bb],axis=0)*pq.kg*pq.m/self.mass
+    self.com = np.sum([(bb.pos + bb.com) * bb.mass for bb in self._bb], axis = 0)*pq.kg * pq.m / self.mass
+    #import IPython
+    #IPython.embed()
 
 class Catalog(object):
   def __init__(self):
