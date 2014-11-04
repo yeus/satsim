@@ -62,10 +62,11 @@ class Satellite(GroundRobot):
         catalog_path2 = os.path.join(catalog_path, "bausteinkatalog/")
         print("Use catalog in: {}".format(catalog_path2))
         cat.loadxmldata(directory = catalog_path2)
-        print(cat.sat)
+        #print(cat.sat)
         mission = cat.sat["EnMAP"]
+        mission.update()
 
-        print("Build mission: ", mission.name)
+        print("\n\n Build mission: ", mission.name)
         
         ##TODO:  mit dieser Seite hier:
         ##http://www.blender.org/documentation/blender_python_api_2_69_release/info_tips_and_tricks.html
@@ -79,7 +80,7 @@ class Satellite(GroundRobot):
             if bs.name   == "test Lageregelungsbaustein": newobj=cpobj("düsenbaustein"+mode)
             elif bs.name == "Kernstruktur2x2x2": newobj=cpobj("2x2x2"+mode)
             else: newobj=cpobj("baustein"+mode)
-            newobj.location=Vector(bs.pos)
+            newobj.location=Vector(bs.pos) - Vector(mission.com)
             newobj.rotation_mode="XYZ"
             newobj.rotation_euler=bs.orientation*pi/180
             newobj["blocktype"]=bs.name
@@ -87,6 +88,7 @@ class Satellite(GroundRobot):
             newobj["test"]={"test2":1.0,"y":2.0}
             newobj.name="{bs.name}.{}".format(mo_id_counter, bs=bs)
             newobj.parent = blenderapi.bpy.data.objects["satellite"]
+            
             #if mo_id_counter > 2: break
             #TODO: hier python drivers hinzufügen, um die Position von Objekten zu bestimmen
             #http://blenderartists.org/forum/archive/index.php/t-209910.html?s=078384d8fb1235542564a869f33b6ab0
@@ -99,6 +101,14 @@ class Satellite(GroundRobot):
                         #newar=arrow(-Vector((0.2,0.2,0.2))+Vector(co.pos)*0.4,Vector(co.th_vec).normalized()*0.3,0.1)
                         #newar.name="force: {}{}".format(co.pos,co.th_vec)
                         #newar.parent=newobj
+
+        #blenderapi.bpy.ops.object.empty_add(type='PLAIN_AXES', view_align=False, location=(0,0,0), layers=[True]*2 + [False]*18) #add Center of Gravity
+        #com = blenderapi.bpy.context.selected_objects[0]
+        #com.name = "com"
+        #blenderapi.bpy.data.objects["satellite"].parent = com
+        #blenderapi.bpy.data.objects["satellite"].location = -mission.com
+        
+        #create cog as parent of the satellite compound
 
         ##render center of gravity:
         #newobj=cpobj("cross")

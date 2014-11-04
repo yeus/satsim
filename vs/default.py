@@ -77,7 +77,7 @@ iboss.translate(0,0,0)
 #
 # Check here: http://www.openrobots.org/morse/doc/stable/user/integration.html 
 # the other available interfaces (like ROS, YARP...)
-#cubesat.add_default_interface('socket')
+iboss.add_default_interface('ros')
 
 # creates a new instance of the sensor
 #videocamera = VideoCamera()
@@ -107,7 +107,7 @@ env = Environment('space.blend', fastmode = False)
 env.set_camera_location(np.array([1.0,2.0,1.0]))
 env.set_camera_rotation([pi*0.4,0.0,pi*0.9])
 env.set_camera_clip(0.7,50.0e6)
-env.set_camera_speed(1000.0)
+env.set_camera_speed(1.0)
 env.set_gravity(gravity=0.0)
 env.set_horizon_color(color=(0.0, 0.0, 0.0))
 #env.show_physics(value=True)

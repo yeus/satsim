@@ -16,6 +16,7 @@
 #    sys.path.append(pythonpath)
 #import numpypy
 
+import numpy as np
 import sys, argparse, time, logging
 import iboss_catalogue
 from iboss_catalogue import pq, loaddata
