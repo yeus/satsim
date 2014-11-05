@@ -87,7 +87,17 @@ class Satellite(GroundRobot):
             newobj["mission"]=mission.name
             newobj["test"]={"test2":1.0,"y":2.0}
             newobj.name="{bs.name}.{}".format(mo_id_counter, bs=bs)
-            newobj.parent = blenderapi.bpy.data.objects["satellite"]
+            #newobj.parent = blenderapi.bpy.data.objects["satellite"]
+            #newobj.select = True
+            blenderapi.bpy.context.scene.objects.active = newobj
+            #blenderapi.bpy.ops.object.select_pattern(pattern=newobj.name, extend = False)
+            #for i in blenderapi.bpy.context.selected_objects:
+            #  print(i.name,blenderapi.bpy.context.object)              
+            #print("")
+            blenderapi.bpy.ops.object.constraint_add(type='RIGID_BODY_JOINT')
+            blenderapi.bpy.context.object.constraints["Rigid Body Joint"].target = blenderapi.bpy.data.objects["satellite"]
+            newobj.game.mass = 1.5
+
             
             #if mo_id_counter > 2: break
             #TODO: hier python drivers hinzufügen, um die Position von Objekten zu bestimmen
@@ -101,6 +111,12 @@ class Satellite(GroundRobot):
                         #newar=arrow(-Vector((0.2,0.2,0.2))+Vector(co.pos)*0.4,Vector(co.th_vec).normalized()*0.3,0.1)
                         #newar.name="force: {}{}".format(co.pos,co.th_vec)
                         #newar.parent=newobj
+  
+        #set physics parameters
+        #blenderapi.bpy.data.objects["Cube"].game.physics_type = 'RIGID_BODY'
+        #blenderapi.bpy.data.objects["Cube"].game.mass = 1.5
+        #blenderapi.bpy.data.objects["Cube"].game.rotation_damping = 0.0
+        #blenderapi.bpy.data.objects["Cube"].game.damping = 0.0
 
         #blenderapi.bpy.ops.object.empty_add(type='PLAIN_AXES', view_align=False, location=(0,0,0), layers=[True]*2 + [False]*18) #add Center of Gravity
         #com = blenderapi.bpy.context.selected_objects[0]
@@ -164,11 +180,11 @@ class Satellite(GroundRobot):
 
 
         """ Video Camera """
-        videocamera = VideoCamera()
-        videocamera.translate(0,0,5.0)
-        videocamera.rotate(0,0,0)
-        self.append(videocamera)
-        videocamera.add_interface('ros', topic = '/iboss/camera')
+        #videocamera = VideoCamera()
+        #videocamera.translate(0,0,5.0)
+        #videocamera.rotate(0,0,0)
+        #self.append(videocamera)
+        #videocamera.add_interface('ros', topic = '/iboss/camera')
         
         """ Depth camera """
         #self.depthimg = DepthCamera()
