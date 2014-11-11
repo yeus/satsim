@@ -14,6 +14,7 @@ catalog_path = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__f
 sys.path.insert(0,catalog_path)
 
 import iboss_catalogue
+from iboss_catalogue import vec
 import imp
 imp.reload(iboss_catalogue)
 
@@ -65,6 +66,9 @@ class Satellite(GroundRobot):
         #print(cat.sat)
         mission = cat.sat["EnMAP"]
         mission.update()
+        #get center of satellite
+        mission.center = mission._bb[0].pos + mission._bb[0].com #bb[0] should be the "Kernstruktur"
+        sat = blenderapi.bpy.data.objects["satellite"]
 
         print("\n\n Build mission: ", mission.name)
         
@@ -75,29 +79,73 @@ class Satellite(GroundRobot):
         ##render satellit with forces
         mode=""#".transparent"  #transparent render
         mo_id_counter = 0
+        bs_mapping = {"Kernstruktur2x2x2":"2x2x2"}
         for bs in mission._bb:
             mo_id_counter += 1
-            if bs.name   == "test Lageregelungsbaustein": newobj=cpobj("düsenbaustein"+mode)
-            elif bs.name == "Kernstruktur2x2x2": newobj=cpobj("2x2x2"+mode)
-            else: newobj=cpobj("baustein"+mode)
-            newobj.location=Vector(bs.pos) - Vector(mission.com)
+            #if mo_id_counter > 5: break
+            #if bs.name   == "test Lageregelungsbaustein": newobj=cpobj("düsenbaustein"+mode)
+            if bs.name == "Kernstruktur2x2x2": 
+              newobj=cpobj(bs_mapping[bs.name]+mode)
+              newobj.location=Vector(bs.pos) - Vector(mission.center)#- Vector(mission.com)
+              newobj.parent = blenderapi.bpy.data.objects["satellite"]
+              newobj.game.physics_type = 'NO_COLLISION'
+              
+              #set physics parameters
+              sat.game.use_sleep = False
+              sat.game.use_ghost = True
+              sat.game.physics_type = 'RIGID_BODY'
+              sat.game.mass = bs.mass
+              sat.game.radius = 1.0 #must be relativly large, because otherwise the model gets messed up
+              #sat.game.rotation_damping = 0.0
+              #sat.game.damping = 0.0
+            else: 
+              newobj = cpobj("baustein"+mode)
+              newobj.location=Vector(bs.pos) - Vector(mission.center)#- Vector(mission.com)
+              
             newobj.rotation_mode="XYZ"
             newobj.rotation_euler=bs.orientation*pi/180
             newobj["blocktype"]=bs.name
             newobj["mission"]=mission.name
-            newobj["test"]={"test2":1.0,"y":2.0}
             newobj.name="{bs.name}.{}".format(mo_id_counter, bs=bs)
-            #newobj.parent = blenderapi.bpy.data.objects["satellite"]
-            #newobj.select = True
-            blenderapi.bpy.context.scene.objects.active = newobj
-            #blenderapi.bpy.ops.object.select_pattern(pattern=newobj.name, extend = False)
-            #for i in blenderapi.bpy.context.selected_objects:
-            #  print(i.name,blenderapi.bpy.context.object)              
-            #print("")
-            blenderapi.bpy.ops.object.constraint_add(type='RIGID_BODY_JOINT')
-            blenderapi.bpy.context.object.constraints["Rigid Body Joint"].target = blenderapi.bpy.data.objects["satellite"]
-            newobj.game.mass = 1.5
+            
+            if bs.name not in ["Kernstruktur2x2x2"]:
+              #newobj.select = True
+              #select object for rigid-body-joint addition:
+              blenderapi.bpy.context.scene.objects.active = newobj
+              blenderapi.bpy.ops.object.constraint_add(type='RIGID_BODY_JOINT')
+              newobj.constraints["Rigid Body Joint"].pivot_type = 'GENERIC_6_DOF'
+              newobj.constraints["Rigid Body Joint"].target = sat
+              newobj.constraints["Rigid Body Joint"].use_linked_collision = True
+              newobj.constraints["Rigid Body Joint"].use_limit_x = True
+              #newobj.constraints["Rigid Body Joint"].limit_min_x = 0.01
+              newobj.constraints["Rigid Body Joint"].use_limit_y = True
+              #newobj.constraints["Rigid Body Joint"].limit_min_x = 0.01
+              newobj.constraints["Rigid Body Joint"].use_limit_z = True
+              newobj.constraints["Rigid Body Joint"].use_angular_limit_z = True
+              newobj.constraints["Rigid Body Joint"].limit_angle_max_x = 0.01
+              newobj.constraints["Rigid Body Joint"].use_angular_limit_y = True
+              newobj.constraints["Rigid Body Joint"].limit_angle_max_y = 0.01
+              newobj.constraints["Rigid Body Joint"].use_angular_limit_x = True
+              newobj.constraints["Rigid Body Joint"].limit_angle_max_z = 0.01
 
+
+              newobj.game.mass = 0.5
+              newobj.game.rotation_damping = 0.0
+              newobj.game.damping = 0.0
+              newobj.game.use_sleep = False
+              newobj.game.use_ghost = False
+              newobj.game.use_collision_bounds = False
+              newobj.game.collision_bounds_type = 'BOX'
+              newobj.game.radius = 0.01
+
+
+
+            #put properties from catalog into blender-data
+            for key,val in sorted(vars(self).items()):
+              try:
+                newobj[key] = val
+              except:
+                print("unsupported property: {}={}".format(key,val))
             
             #if mo_id_counter > 2: break
             #TODO: hier python drivers hinzufügen, um die Position von Objekten zu bestimmen
@@ -112,12 +160,6 @@ class Satellite(GroundRobot):
                         #newar.name="force: {}{}".format(co.pos,co.th_vec)
                         #newar.parent=newobj
   
-        #set physics parameters
-        #blenderapi.bpy.data.objects["Cube"].game.physics_type = 'RIGID_BODY'
-        #blenderapi.bpy.data.objects["Cube"].game.mass = 1.5
-        #blenderapi.bpy.data.objects["Cube"].game.rotation_damping = 0.0
-        #blenderapi.bpy.data.objects["Cube"].game.damping = 0.0
-
         #blenderapi.bpy.ops.object.empty_add(type='PLAIN_AXES', view_align=False, location=(0,0,0), layers=[True]*2 + [False]*18) #add Center of Gravity
         #com = blenderapi.bpy.context.selected_objects[0]
         #com.name = "com"
@@ -150,7 +192,7 @@ class Satellite(GroundRobot):
 
         forcetorque = ForceTorque()
         
-        forcetorque.translate(1,0,0)
+        forcetorque.translate(0,0,0)
         forcetorque.rotate(0,0,0)
         self.append(forcetorque)
         
@@ -165,10 +207,10 @@ class Satellite(GroundRobot):
         self.append(self.pose)
         self.pose.add_interface('ros', topic = 'iboss/pose')
         
-        """ Odometry Sensor """
-        odometry = Odometry()
-        self.append(odometry)
-        odometry.add_interface('ros', topic="/iboss/odom")
+        #""" Odometry Sensor """
+        #odometry = Odometry()
+        #self.append(odometry)
+        #odometry.add_interface('ros', topic="/iboss/odom")
         
         """ IMU    """
         # An IMU sensor is preinstalled in MORSE and can be used with ROS
