@@ -11472,18 +11472,6 @@ An approppriate simulating time would be 10 seconds.
 					points={{-30,-65},{-35,-65},{-35,-20},{-35,-15}},
 					color={0,0,0},
 					thickness=0.0625));
-			annotation(
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					simViewInfos[0](
-						viewSettings(clrRaster=12632256),
-						runtimeClass="CSimView",
-						tabGroup=0,
-						typename="ModelViewInfo"),
-					typename="ModelInfo"),
-				experiment(
-					StopTime=1,
-					StartTime=0));
 		end Tank_2x2;
 	end buildingblocks;
 end iboss_thermal;
