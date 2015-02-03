@@ -1,3 +1,4 @@
+  within iboss;
 package OpticalPropertiesDatabase
   record OpticalProperties
     extends Modelica.Icons.Record;
