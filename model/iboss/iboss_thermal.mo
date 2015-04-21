@@ -4458,9 +4458,6 @@ signal <b>u</b> exceeds the <b>reference</b> signal plus half of the bandwidth.<
 					color={191,0,0},
 					thickness=0.0625));
 			annotation(
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(graphics={
 							Rectangle(
 								pattern=LinePattern.None,
@@ -4761,6 +4758,7 @@ place from the inner to the outer cylinder):
 					rotation=-180)));
 			Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b dissipation_power if dissipation_power_on "Thermal port for 1-dim. heat transfer (unfilled rectangular icon)" annotation(Placement(transformation(extent={{-40,35},{-20,55}})));
 			parameter Boolean dissipation_power_on=false "true if component has a disipation power(connection to electrical simulation)";
+			parameter Modelica.SIunits.HeatFlowRate Q_flow_dissipation=0 if dissipation_power_on "Fixed heat flow rate at port";
 			Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalconductorrechts_x(G=Gx / 2) annotation(Placement(transformation(
 				origin={47,20},
 				extent={{-12,-12},{0,0}})));
@@ -4837,6 +4835,7 @@ place from the inner to the outer cylinder):
 				Modelica.Blocks.Sources.Constant Area_yp(k=A_y) annotation(Placement(transformation(extent={{45,85},{65,105}})));
 				Modelica.Blocks.Sources.Constant Area_zn(k=A_z) annotation(Placement(transformation(extent={{110,45},{130,65}})));
 				Modelica.Blocks.Sources.Constant Area_zp(k=A_z) annotation(Placement(transformation(extent={{-70,-95},{-50,-75}})));
+				Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow fixed_dissipation_HeatFlow(Q_flow=Q_flow_dissipation)if dissipation_power_on annotation(Placement(transformation(extent={{-40,60},{-20,80}})));
 			equation
 				connect(heatcapacitor1.port,thermalConductorlinks_x.port_b) annotation(Line(
 					points={{0,18},{0,13},{-7.3,13},{-7.3,15},{-15,15},{-20,
@@ -4969,6 +4968,11 @@ place from the inner to the outer cylinder):
 				connect(heatcapacitor1.port,dissipation_power) annotation(Line(
 					points={{0,18},{0,13},{-12.3,13},{-12.3,45},{-25,45},{-30,
 					45}},
+					color={191,0,0},
+					thickness=0.0625));
+				
+				connect(fixed_dissipation_HeatFlow.port,dissipation_power) annotation(Line(
+					points={{-20,70},{-15,70},{-15,45},{-25,45},{-30,45}},
 					color={191,0,0},
 					thickness=0.0625));
 			annotation(
