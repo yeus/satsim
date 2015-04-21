@@ -4534,9 +4534,6 @@ especially if it shall be allowed that a ThermalResistance is defined to be zero
 					color={191,0,0},
 					thickness=0.0625));
 			annotation(
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(graphics={
 									Rectangle(
 										lineColor={0,0,0},
@@ -4965,9 +4962,6 @@ place from the inner to the outer cylinder):
 					color={0,0,127},
 					thickness=0.0625));
 			annotation(
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(
 					coordinateSystem(grid={10,10}),
 					graphics={
