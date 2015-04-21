@@ -4759,6 +4759,8 @@ place from the inner to the outer cylinder):
 					origin={0,-75},
 					extent={{-10,-10},{10,10}},
 					rotation=-180)));
+			Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b dissipation_power if dissipation_power_on "Thermal port for 1-dim. heat transfer (unfilled rectangular icon)" annotation(Placement(transformation(extent={{-40,35},{-20,55}})));
+			parameter Boolean dissipation_power_on=false "true if component has a disipation power(connection to electrical simulation)";
 			Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalconductorrechts_x(G=Gx / 2) annotation(Placement(transformation(
 				origin={47,20},
 				extent={{-12,-12},{0,0}})));
@@ -4964,31 +4966,36 @@ place from the inner to the outer cylinder):
 					90}},
 					color={0,0,127},
 					thickness=0.0625));
+				connect(heatcapacitor1.port,dissipation_power) annotation(Line(
+					points={{0,18},{0,13},{-12.3,13},{-12.3,45},{-25,45},{-30,
+					45}},
+					color={191,0,0},
+					thickness=0.0625));
 			annotation(
 				Icon(
 					coordinateSystem(grid={10,10}),
 					graphics={
-																	Rectangle(
-																		lineColor={255,0,0},
-																		fillColor={255,255,255},
-																		fillPattern=FillPattern.HorizontalCylinder,
-																		extent={{-94.63549999999999,-59.4223},{96.011,61.8982}},
-																		visible=true,
-																		origin={-0.6878,-1.238}),
-																	Text(
-																		textString="%name",
-																		textStyle={TextStyle.Bold},
-																		fillPattern=FillPattern.Solid,
-																		extent={{-101.2507,52.8171},{98.74930000000001,112.8171}},
-																		visible=true,
-																		origin={82.8171,1.2507},
-																		rotation=90),
-																	Text(
-																		textString="thermal element",
-																		fontSize=16,
-																		fillColor={0,0,255},
-																		extent={{-3,-2},{0,9}},
-																		visible=true)}),
+									Rectangle(
+										lineColor={255,0,0},
+										fillColor={255,255,255},
+										fillPattern=FillPattern.HorizontalCylinder,
+										extent={{-94.63549999999999,-59.4223},{96.011,61.8982}},
+										visible=true,
+										origin={-0.6878,-1.238}),
+									Text(
+										textString="%name",
+										textStyle={TextStyle.Bold},
+										fillPattern=FillPattern.Solid,
+										extent={{-101.2507,52.8171},{98.74930000000001,112.8171}},
+										visible=true,
+										origin={82.8171,1.2507},
+										rotation=90),
+									Text(
+										textString="thermal element",
+										fontSize=16,
+										fillColor={0,0,255},
+										extent={{-3,-2},{0,9}},
+										visible=true)}),
 				experiment(
 					StopTime=1,
 					StartTime=0));
