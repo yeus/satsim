@@ -5376,9 +5376,6 @@ place from the inner to the outer cylinder):
 					color={0,0,0},
 					thickness=0.0625));
 			annotation(
-				viewinfo[2](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(
 					coordinateSystem(extent={{-101.7,-101.7},{101.7,101.7}}),
 					graphics={
@@ -5811,6 +5808,167 @@ in order to simulate temperature dependent losses (which are given with respect 
 					StopTime=10,
 					StartTime=0));
 		end environment_opt_prop_external_Verosim;
+		model Panel_2x2_opt_prop
+			thermal_connector_opt_prop_out thermal_connector_opt_prop_out_outer_zp00 annotation(Placement(transformation(extent={{-110,-100},{-90,-80}})));
+			Panel_opt_prop Panel_BB_2x2_01 annotation(Placement(transformation(extent={{-45,29},{-24,50}})));
+			Panel_opt_prop Panel_BB_2x2_11 annotation(Placement(transformation(extent={{30,29},{51,50}})));
+			Panel_opt_prop Panel_BB_2x2_00 annotation(Placement(transformation(extent={{-45,-41},{-24,-20}})));
+			Panel_opt_prop Panel_BB_2x2_10 annotation(Placement(transformation(extent={{30,-41},{51,-20}})));
+			thermal_conductor_A thermal_conductor_A1(TIM=false) annotation(Placement(transformation(extent={{-5,-40},{15,-20}})));
+			thermal_conductor_A thermal_conductor_A2(TIM=false) annotation(Placement(transformation(extent={{-10,30},{10,50}})));
+			thermal_conductor_A thermal_conductor_A3(TIM=false) annotation(Placement(transformation(
+				origin={40,5},
+				extent={{-10,-10},{10,10}},
+				rotation=-90)));
+			thermal_conductor_A thermal_conductor_A4(TIM=false) annotation(Placement(transformation(
+				origin={-35,5},
+				extent={{-10,-10},{10,10}},
+				rotation=-90)));
+			thermal_connector_opt_prop_out thermal_connector_opt_prop_out_outer_zp01 annotation(Placement(transformation(extent={{-110,-75},{-90,-55}})));
+			thermal_connector_opt_prop_out thermal_connector_opt_prop_out_outer_zp11 annotation(Placement(transformation(extent={{-85,-75},{-65,-55}})));
+			thermal_connector_opt_prop_out thermal_connector_opt_prop_out_outer_zp10 annotation(Placement(transformation(extent={{-85,-100},{-65,-80}})));
+			thermal_connector_opt_prop_out thermal_connector_opt_prop_out_inner_zn00 annotation(Placement(transformation(extent={{65,60},{85,80}})));
+			thermal_connector_opt_prop_out thermal_connector_opt_prop_out_outer_inner_zn01 annotation(Placement(transformation(extent={{65,85},{85,105}})));
+			thermal_connector_opt_prop_out thermal_connector_opt_prop_out_inner_zn11 annotation(Placement(transformation(extent={{90,85},{110,105}})));
+			thermal_connector_opt_prop_out thermal_connector_opt_prop_out_inner_zn10 annotation(Placement(transformation(extent={{90,60},{110,80}})));
+			surface_properties_out surface_properties_out_00_xn annotation(Placement(transformation(
+				origin={-90,-30},
+				extent={{-10,-10},{10,10}},
+				rotation=90)));
+			surface_properties_out surface_properties_out_01_xn annotation(Placement(transformation(
+				origin={-90,40},
+				extent={{-10,-10},{10,10}},
+				rotation=90)));
+			surface_properties_out surface_properties_out_10_xp annotation(Placement(transformation(
+				origin={110,-30},
+				extent={{-10,-10},{10,10}},
+				rotation=270)));
+			surface_properties_out surface_properties_out_11_xp annotation(Placement(transformation(
+				origin={110,40},
+				extent={{-10,-10},{10,10}},
+				rotation=270)));
+			surface_properties_out surface_properties_out_10_yn annotation(Placement(transformation(
+				origin={40,-75},
+				extent={{-10,-10},{10,10}},
+				rotation=180)));
+			surface_properties_out surface_properties_out_00_yn annotation(Placement(transformation(
+				origin={-35,-75},
+				extent={{-10,-10},{10,10}},
+				rotation=180)));
+			surface_properties_out surface_properties_out_11_yp annotation(Placement(transformation(
+				origin={40,90},
+				extent={{-10,-10},{10,10}})));
+			surface_properties_out surface_properties_out_01_yp annotation(Placement(transformation(
+				origin={-35,90},
+				extent={{-10,-10},{10,10}})));
+			equation
+				connect(thermal_conductor_A4.surface_properties2,Panel_BB_2x2_00.surface_properties_out_yp) annotation(Line(
+					points={{-35,-5},{-35,-10},{-35,-15},{-34.7,-15},{-34.7,-20}},
+					color={255,0,0},
+					thickness=0.0625));
+				connect(thermal_conductor_A1.surface_properties1,Panel_BB_2x2_00.surface_properties_out_xp) annotation(Line(
+					points={{-5,-30},{-10,-30},{-19.3,-30},{-19.3,-30.3},{-24.3,-30.3}},
+					color={255,0,0},
+					thickness=0.0625));
+				connect(thermal_conductor_A3.surface_properties2,Panel_BB_2x2_10.surface_properties_out_yp) annotation(Line(
+					points={{40,-5},{40,-10},{40,-15},{40.3,-15},{40.3,-20}},
+					color={255,0,0},
+					thickness=0.0625));
+				connect(thermal_conductor_A1.surface_properties2,Panel_BB_2x2_10.surface_properties_out_xn) annotation(Line(
+					points={{15,-30},{20,-30},{25,-30},{25,-30.3},{30,-30.3}},
+					color={255,0,0},
+					thickness=0.0625));
+				connect(Panel_BB_2x2_01.surface_properties_out_yn,thermal_conductor_A4.surface_properties1) annotation(Line(
+					points={{-34.7,29.3},{-34.7,24.3},{-34.7,20},{-35,20},{-35,15}},
+					color={0,0,0},
+					thickness=0.0625));
+				connect(thermal_conductor_A2.surface_properties1,Panel_BB_2x2_01.surface_properties_out_xp) annotation(Line(
+					points={{-10,40},{-15,40},{-19.3,40},{-19.3,39.7},{-24.3,39.7}},
+					color={255,0,0},
+					thickness=0.0625));
+				connect(Panel_BB_2x2_11.surface_properties_out_yn,thermal_conductor_A3.surface_properties1) annotation(Line(
+					points={{40.3,29.3},{40.3,24.3},{40.3,20},{40,20},{40,15}},
+					color={0,0,0},
+					thickness=0.0625));
+				connect(thermal_conductor_A2.surface_properties2,Panel_BB_2x2_11.surface_properties_out_xn) annotation(Line(
+					points={{10,40},{15,40},{25,40},{25,39.7},{30,39.7}},
+					color={255,0,0},
+					thickness=0.0625));
+				connect(Panel_BB_2x2_00.thermal_connector_out_zp_multi,thermal_connector_opt_prop_out_outer_zp00) annotation(Line(
+					points={{-40,-40.7},{-40,-45.7},{-40,-90},{-95,-90},{-100,-90}},
+					thickness=0.0625));
+				connect(Panel_BB_2x2_10.thermal_connector_out_zp_multi,thermal_connector_opt_prop_out_outer_zp10) annotation(Line(
+					points={{35,-40.7},{35,-45.7},{35,-90},{-70,-90},{-75,-90}},
+					thickness=0.0625));
+				connect(Panel_BB_2x2_01.thermal_connector_out_zp_multi,thermal_connector_opt_prop_out_outer_zp01) annotation(Line(
+					points={{-40,29.3},{-40,24.3},{-40,-65},{-95,-65},{-100,-65}},
+					thickness=0.0625));
+				connect(Panel_BB_2x2_11.thermal_connector_out_zp_multi,thermal_connector_opt_prop_out_outer_zp11) annotation(Line(
+					points={{35,29.3},{35,24.3},{35,-65},{-70,-65},{-75,-65}},
+					thickness=0.0625));
+				
+				
+				
+				
+				
+				connect(Panel_BB_2x2_00.surface_properties_out_xn,surface_properties_out_00_xn) annotation(Line(
+					points={{-45,-30.3},{-50,-30.3},{-85,-30.3},{-85,-30},{-90,-30}},
+					color={0,0,0},
+					thickness=0.0625));
+				
+				connect(Panel_BB_2x2_01.surface_properties_out_xn,surface_properties_out_01_xn) annotation(Line(
+					points={{-45,39.7},{-50,39.7},{-85,39.7},{-85,40},{-90,40}},
+					color={0,0,0},
+					thickness=0.0625));
+				
+				
+				connect(Panel_BB_2x2_10.surface_properties_out_xp,surface_properties_out_10_xp) annotation(Line(
+					points={{50.7,-30.3},{55.7,-30.3},{105,-30.3},{105,-30},{110,-30}},
+					color={0,0,0},
+					thickness=0.0625));
+				
+				connect(Panel_BB_2x2_11.surface_properties_out_xp,surface_properties_out_11_xp) annotation(Line(
+					points={{50.7,39.7},{55.7,39.7},{105,39.7},{105,40},{110,40}},
+					color={0,0,0},
+					thickness=0.0625));
+				
+				connect(Panel_BB_2x2_10.surface_properties_out_yn,surface_properties_out_10_yn) annotation(Line(
+					points={{40.3,-40.7},{40.3,-45.7},{45,-45.7},{45,-75},{40,-75}},
+					color={0,0,0},
+					thickness=0.0625));
+				
+				connect(Panel_BB_2x2_00.surface_properties_out_yn,surface_properties_out_00_yn) annotation(Line(
+					points={{-34.7,-40.7},{-34.7,-45.7},{-30,-45.7},{-30,-75},{-35,-75}},
+					color={0,0,0},
+					thickness=0.0625));
+				
+				connect(Panel_BB_2x2_11.surface_properties_out_yp,surface_properties_out_11_yp) annotation(Line(
+					points={{40.3,50},{40.3,55},{45,55},{45,90},{40,90}},
+					color={0,0,0},
+					thickness=0.0625));
+				
+				connect(surface_properties_out_01_yp,Panel_BB_2x2_01.surface_properties_out_yp) annotation(Line(
+					points={{-35,90},{-30,90},{-30,72.7},{-34.7,72.7},{-34.7,55},{-34.7,
+					50}},
+					color={0,0,0},
+					thickness=0.0625));
+				connect(Panel_BB_2x2_10.thermal_connector_inner_zn_multi,thermal_connector_opt_prop_out_inner_zn10) annotation(Line(
+					points={{50.7,-25},{55.7,-25},{95,-25},{95,70},{100,70}},
+					thickness=0.0625));
+				connect(Panel_BB_2x2_00.thermal_connector_inner_zn_multi,thermal_connector_opt_prop_out_inner_zn00) annotation(Line(
+					points={{-24.3,-25},{-19.3,-25},{70,-25},{70,70},{75,70}},
+					thickness=0.0625));
+				connect(Panel_BB_2x2_01.thermal_connector_inner_zn_multi,thermal_connector_opt_prop_out_outer_inner_zn01) annotation(Line(
+					points={{-24.3,45},{-19.3,45},{70,45},{70,95},{75,95}},
+					thickness=0.0625));
+				connect(Panel_BB_2x2_11.thermal_connector_inner_zn_multi,thermal_connector_opt_prop_out_inner_zn11) annotation(Line(
+					points={{50.7,45},{55.7,45},{95,45},{95,95},{100,95}},
+					thickness=0.0625));
+			annotation(
+				experiment(
+					StopTime=1,
+					StartTime=0));
+		end Panel_2x2_opt_prop;
 	end components;
 	package Panel_5x5 "Elemente für einen Baustein mit 25 Knoten pro Seitenwand"
 		package multi_connector "n-fache Thermalverbindungen"
@@ -14376,9 +14534,6 @@ An approppriate simulating time would be 10 seconds.
 					color={255,0,0},
 					thickness=0.0625));
 			annotation(
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				experiment(
 					StopTime=1,
 					StartTime=0));
