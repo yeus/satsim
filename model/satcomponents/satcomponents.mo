@@ -235,6 +235,24 @@ package satcomponents
           connect(resistor1.p, ground1.p) annotation(Line(points = {{-51.5271, 49.1044}, {-61.285, 49.1044}, {-61.285, -21.4168}, {-47.7759, -21.4168}, {-47.7759, -21.4168}}));
           annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), experiment(StartTime = 0.0, StopTime = 10000.0, Tolerance = 0.01));
         end Batterycontrollertest2;
+
+        model battery_with_dcmotor
+          Modelica.Mechanics.Rotational.Components.Inertia inertia1 annotation(Placement(visible = true, transformation(origin = {22, 12}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+          Modelica.Electrical.Machines.BasicMachines.QuasiStationaryDCMachines.DC_PermanentMagnet dcpm annotation(Placement(visible = true, transformation(origin = {-26, 12}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+          Modelica.Mechanics.Rotational.Components.Fixed fixed1 annotation(Placement(visible = true, transformation(origin = {-16, -44}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+          battery battery1(capacity_Ah = 0.1) annotation(Placement(visible = true, transformation(origin = {-28, 52}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
+          Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {10, 42}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+          Modelica.Mechanics.Rotational.Components.BearingFriction bearingfriction1 annotation(Placement(visible = true, transformation(origin = {52, 12}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        equation
+          connect(bearingfriction1.support, fixed1.flange) annotation(Line(points = {{52, 2}, {36, 2}, {36, -44}, {-16, -44}, {-16, -44}}));
+          connect(inertia1.flange_b, bearingfriction1.flange_a) annotation(Line(points = {{32, 12}, {42, 12}, {42, 12}, {42, 12}}));
+          connect(battery1.p, ground1.p) annotation(Line(points = {{-18, 52}, {10, 52}}, color = {0, 0, 255}));
+          connect(battery1.n, dcpm.pin_an) annotation(Line(points = {{-38, 52}, {-48, 52}, {-48, 22}, {-32, 22}, {-32, 22}}, color = {0, 0, 255}));
+          connect(battery1.p, dcpm.pin_ap) annotation(Line(points = {{-18, 52}, {-14, 52}, {-14, 22}, {-20, 22}, {-20, 22}}, color = {0, 0, 255}));
+          connect(fixed1.flange, dcpm.support) annotation(Line(points = {{-16, -44}, {-16, 2}}));
+          connect(dcpm.flange, inertia1.flange_a) annotation(Line(points = {{-16, 12}, {12, 12}, {12, 12}, {12, 12}}));
+          annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})));
+        end battery_with_dcmotor;
         annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})));
       end examples;
 
@@ -767,15 +785,15 @@ package satcomponents
           i1 = 0;
         end if;
         /*if v1 < V_in_max and v1 > V_in_min then
-        					                                                                                                                                                                                                                                                                                                                                                                                                					  v2 = V_out;
-        					                                                                                                                                                                                                                                                                                                                                                                                                					  i1 = (-i2 * v2) / v1;
-        					                                                                                                                                                                                                                                                                                                                                                                                                					elseif v1 >= V_in_min - slope then
-        					                                                                                                                                                                                                                                                                                                                                                                                                					  v2 = V_out / slope * (v1 - V_in_min + slope);
-        					                                                                                                                                                                                                                                                                                                                                                                                                					  i1 = (-i2 * v2) / v1;
-        					                                                                                                                                                                                                                                                                                                                                                                                                					else
-        					                                                                                                                                                                                                                                                                                                                                                                                                					  v2 = 0;
-        					                                                                                                                                                                                                                                                                                                                                                                                                					  i1 = 0;
-        					                                                                                                                                                                                                                                                                                                                                                                                                					end if;*/
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        					                                                                                                                                                                                                                                                                                                                                                                                                					  v2 = V_out;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        					                                                                                                                                                                                                                                                                                                                                                                                                					  i1 = (-i2 * v2) / v1;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        					                                                                                                                                                                                                                                                                                                                                                                                                					elseif v1 >= V_in_min - slope then
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        					                                                                                                                                                                                                                                                                                                                                                                                                					  v2 = V_out / slope * (v1 - V_in_min + slope);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        					                                                                                                                                                                                                                                                                                                                                                                                                					  i1 = (-i2 * v2) / v1;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        					                                                                                                                                                                                                                                                                                                                                                                                                					else
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        					                                                                                                                                                                                                                                                                                                                                                                                                					  v2 = 0;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        					                                                                                                                                                                                                                                                                                                                                                                                                					  i1 = 0;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        					                                                                                                                                                                                                                                                                                                                                                                                                					end if;*/
         annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}), graphics = {Rectangle(fillColor = {0, 0, 255}, extent = {{-87.69450000000001, 78.6421}, {88.5431, -74.6818}}), Text(textString = "%V_out", fillColor = {0, 0, 255}, extent = {{10.4668, 68.1754}, {76.37909999999999, 30.2687}}), Text(textString = "DCDC", fillColor = {0, 0, 255}, extent = {{-63.6492, 18.9533}, {57.9915, -33.0976}})}), experiment(StopTime = 1, StartTime = 0));
       end dcdc_ideal_simple;
 
@@ -1242,6 +1260,34 @@ package satcomponents
       connect(dcdc_pid3.n2, gnd) annotation(Line(points = {{66, -34}, {71, -34}, {85, -34}, {85, -64}, {100, -64}}, thickness = 0.0625), AutoRoute = false);
       annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}), graphics = {Text(textString = "PCU", fillColor = {0, 0, 255}, extent = {{-72.4187, 45.5445}, {24.894, -36.4922}}), Text(textString = "GND", fillColor = {0, 0, 255}, extent = {{22.9137, -45.8274}, {83.7341, -80.0566}}), Text(textString = "3.3V", fillColor = {0, 0, 255}, extent = {{34.2291, -11.3154}, {78.07640000000001, -40.4526}}), Text(textString = "5V", fillColor = {0, 0, 255}, extent = {{31.1174, 21.7822}, {78.6421, -8.769450000000001}}), Text(textString = "12V", fillColor = {0, 0, 255}, extent = {{31.6832, 60.8204}, {76.66200000000001, 26.3083}}), Rectangle(fillColor = {0, 0, 255}, extent = {{-88.82599999999999, 94.4837}, {88.2603, -94.7666}})}), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}})), experiment(StopTime = 1, StartTime = 0));
     end PCU_pid;
+
+    model HBridge
+      extends Modelica.Blocks.Icons.Block;
+      Modelica.Electrical.Analog.Ideal.IdealClosingSwitch idealclosingswitch4 annotation(Placement(visible = true, transformation(origin = {-34, -40}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+      Modelica.Electrical.Analog.Ideal.IdealClosingSwitch idealclosingswitch3 annotation(Placement(visible = true, transformation(origin = {36, -40}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+      Modelica.Electrical.Analog.Ideal.IdealClosingSwitch idealclosingswitch1 annotation(Placement(visible = true, transformation(origin = {-32, 38}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+      Modelica.Electrical.Analog.Ideal.IdealClosingSwitch idealclosingswitch2 annotation(Placement(visible = true, transformation(origin = {34, 38}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+      Modelica.Blocks.Interfaces.BooleanInput forward annotation(Placement(visible = true, transformation(origin = {-34, -102}, extent = {{-10, -10}, {10, 10}}, rotation = 90), iconTransformation(origin = {32, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+      Modelica.Blocks.Interfaces.BooleanInput reverse annotation(Placement(visible = true, transformation(origin = {30, -102}, extent = {{-10, -10}, {10, 10}}, rotation = 90), iconTransformation(origin = {-32, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+      Modelica.Electrical.Analog.Interfaces.NegativePin pin_n annotation(Placement(visible = true, transformation(origin = {-100, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-100, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Interfaces.PositivePin pin_p annotation(Placement(visible = true, transformation(origin = {-100, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-100, 64}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Interfaces.PositivePin pin_p1 annotation(Placement(visible = true, transformation(origin = {100, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {100, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Interfaces.NegativePin pin_n1 annotation(Placement(visible = true, transformation(origin = {100, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {100, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    equation
+      connect(pin_n, idealclosingswitch4.n) annotation(Line(points = {{-100, -60}, {-34, -60}, {-34, -50}, {-34, -50}}, color = {0, 0, 255}));
+      connect(pin_n1, idealclosingswitch3.p) annotation(Line(points = {{100, -60}, {70, -60}, {70, -30}, {36, -30}, {36, -30}}, color = {0, 0, 255}));
+      connect(pin_p1, idealclosingswitch1.n) annotation(Line(points = {{100, 60}, {-12, 60}, {-12, 28}, {-32, 28}, {-32, 28}}, color = {0, 0, 255}));
+      connect(pin_p, idealclosingswitch1.p) annotation(Line(points = {{-100, 60}, {-32, 60}, {-32, 48}, {-32, 48}}, color = {0, 0, 255}));
+      connect(reverse, idealclosingswitch4.control) annotation(Line(points = {{30, -102}, {30, -62}, {10, -62}, {10, -40}, {-26, -40}}, color = {255, 0, 255}));
+      connect(reverse, idealclosingswitch2.control) annotation(Line(points = {{30, -102}, {30, -62}, {10, -62}, {10, 16}, {54, 16}, {54, 38}, {42, 38}}, color = {255, 0, 255}));
+      connect(forward, idealclosingswitch1.control) annotation(Line(points = {{-34, -102}, {-34, -102}, {-34, -72}, {-2, -72}, {-2, 38}, {-24, 38}, {-24, 38}}, color = {255, 0, 255}));
+      connect(forward, idealclosingswitch3.control) annotation(Line(points = {{-34, -102}, {-34, -102}, {-34, -72}, {48, -72}, {48, -40}, {42, -40}, {42, -40}}, color = {255, 0, 255}));
+      connect(idealclosingswitch2.n, idealclosingswitch3.p) annotation(Line(points = {{34, 28}, {36, 28}, {36, -30}, {36, -30}}, color = {0, 0, 255}));
+      connect(idealclosingswitch1.n, idealclosingswitch4.p) annotation(Line(points = {{-32, 28}, {-34, 28}, {-34, -30}, {-34, -30}}, color = {0, 0, 255}));
+      connect(idealclosingswitch4.n, idealclosingswitch3.n) annotation(Line(points = {{-34, -50}, {36, -50}, {36, -50}, {36, -50}}, color = {0, 0, 255}));
+      connect(idealclosingswitch1.p, idealclosingswitch2.p) annotation(Line(points = {{-32, 48}, {34, 48}, {34, 48}, {34, 48}}, color = {0, 0, 255}));
+      annotation(Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2}), graphics = {Text(origin = {-49, 13}, extent = {{-27, 11}, {13, -39}}, textString = "IN"), Text(origin = {45, 41}, extent = {{-37, -19}, {45, -65}}, textString = "OUT"), Text(origin = {-11, -49}, extent = {{-47, -5}, {-1, -41}}, textString = "FW"), Text(origin = {55, -49}, extent = {{-47, -5}, {-1, -41}}, textString = "RV")}));
+    end HBridge;
   end power;
 
   package AOCS
@@ -1386,44 +1432,45 @@ package satcomponents
       end reactionwheel3axis;
 
       model IMU
-        parameter Integer id;
         parameter Real noiseamp = 0.05;
-        parameter Real net_delay = 0.001;
-        ctrl.ACS_bus acs_bus annotation(Placement(transformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}})));
-        Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity absoluteangularvelocity1 annotation(Placement(transformation(origin = {-30, -5}, extent = {{-10, -10}, {10, 10}})));
-        Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(transformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}})));
+        //parameter Modelica.SIunits.Time net_delay(start = 0.001) "Delay time of output with respect to input signal";
         Modelica.Blocks.Math.Add add1[3] annotation(Placement(transformation(extent = {{0, -10}, {20, 10}})));
-        Modelica.Blocks.Nonlinear.FixedDelay fixedDelay1[3](each delayTime = net_delay) annotation(Placement(transformation(extent = {{60, -10}, {80, 10}})));
-        satcomponents.blocks.noise_ung noise_ung2(amplitude = noiseamp, seed = 2 + id) annotation(Placement(transformation(extent = {{-40, 14}, {-19, 25}})));
-        satcomponents.blocks.noise_ung noise_ung1(amplitude = noiseamp, seed = 1 + id) annotation(Placement(transformation(extent = {{-40, 29}, {-19, 40}})));
-        satcomponents.blocks.noise_ung noise_ung3(amplitude = noiseamp, seed = 3 + id) annotation(Placement(transformation(extent = {{-40, 44}, {-20, 55}})));
+        satcomponents.blocks.noise_ung noise_ung2(amplitude = noiseamp, seed = 2) annotation(Placement(transformation(extent = {{-40, 14}, {-19, 25}})));
+        satcomponents.blocks.noise_ung noise_ung1(amplitude = noiseamp, seed = 1) annotation(Placement(transformation(extent = {{-40, 29}, {-19, 40}})));
+        satcomponents.blocks.noise_ung noise_ung3(amplitude = noiseamp, seed = 30) annotation(Placement(transformation(extent = {{-40, 44}, {-20, 55}})));
         Modelica.Blocks.Discrete.Sampler sampler1[3](each samplePeriod = 0.05) annotation(Placement(transformation(extent = {{30, -10}, {50, 10}})));
+        Modelica.Blocks.Interfaces.RealOutput y[3] annotation(Placement(visible = true, transformation(origin = {106, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {106, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Blocks.Interfaces.RealInput ang_vel[3] annotation(Placement(visible = true, transformation(origin = {-110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-106, -2}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       equation
-        connect(frame_a, absoluteangularvelocity1.frame_a) annotation(Line(points = {{-100, 0}, {-95, 0}, {-45, 0}, {-45, -5}, {-40, -5}}));
-        connect(absoluteangularvelocity1.w, add1.u2) annotation(Line(points = {{-19, -5.3}, {-14, -5.3}, {-7, -5.3}, {-7, -6}, {-2, -6}}, color = {0, 0, 127}, thickness = 0.0625));
+        connect(ang_vel, add1.u2) annotation(Line(points = {{-110, 0}, {-60, 0}, {-60, -6}, {-2, -6}, {-2, -6}}, color = {0, 0, 127}));
+        connect(sampler1.y, y) annotation(Line(points = {{51, 0}, {100, 0}, {100, 0}, {100, 0}}, color = {0, 0, 127}));
         connect(noise_ung2.y, add1[2].u1) annotation(Line(points = {{-18, 19.3}, {-13, 19.3}, {-7, 19.3}, {-7, 6}, {-2, 6}}, color = {0, 0, 127}, thickness = 0.015625));
         connect(noise_ung1.y, add1[1].u1) annotation(Line(points = {{-18, 34.3}, {-13, 34.3}, {-7, 34.3}, {-7, 6}, {-2, 6}}, color = {0, 0, 127}, thickness = 0.015625));
         connect(noise_ung3.y, add1[3].u1) annotation(Line(points = {{-19.3, 49.3}, {-14.3, 49.3}, {-7, 49.3}, {-7, 6}, {-2, 6}}, color = {0, 0, 127}, thickness = 0.015625));
-        connect(fixedDelay1.y, acs_bus.w[id, :]) annotation(Line(points = {{66, 0}, {71, 0}, {95, 0}, {100, 0}}, color = {0, 0, 127}, thickness = 0.0625));
         connect(add1.y, sampler1.u) annotation(Line(points = {{21, 0}, {26, 0}, {23, 0}, {28, 0}}, color = {0, 0, 127}, thickness = 0.0625));
-        connect(sampler1.y, fixedDelay1.u) annotation(Line(points = {{51, 0}, {56, 0}, {53, 0}, {58, 0}}, color = {0, 0, 127}, thickness = 0.0625));
         annotation(noise_ung2(y(flags = 2)), noise_ung1(y(flags = 2)), noise_ung3(y(flags = 2)), Icon(graphics = {Rectangle(fillColor = {128, 128, 128}, fillPattern = FillPattern.Sphere, extent = {{-90.11, 86.91}, {90.11, -86.91}}, origin = {4.04682, -1.67855}), Rectangle(fillColor = {88, 88, 88}, fillPattern = FillPattern.Solid, extent = {{-75.20999999999999, 71.87}, {75.20999999999999, -71.87}}, origin = {0.00144847, -2.21986}), Text(textString = "IMU", lineColor = {255, 255, 255}, fillColor = {255, 255, 255}, extent = {{-68.11, 50.28}, {68.11, -50.28}}, origin = {0.42, -4.6})}), experiment(StopTime = 1, StartTime = 0));
       end IMU;
 
       model reactionwheelsimple_noelectricity "reactionwheelsimple_noelectricity"
-        parameter Integer id;
-        ctrl.ACS_bus acs_bus annotation(Placement(transformation(extent = {{90, -30}, {110, -10}}), iconTransformation(extent = {{90, -30}, {110, -10}})));
-        Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(transformation(origin = {19.0752, -86.99420000000001}, extent = {{-10, -10}, {10, 10}}, rotation = 90), iconTransformation(origin = {19, -100}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-        Modelica.Mechanics.MultiBody.Joints.Revolute revolute1 annotation(Placement(transformation(origin = {-15, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-        Modelica.Mechanics.MultiBody.Parts.BodyShape bodyShape1(animation = false, animateSphere = false) annotation(Placement(transformation(origin = {-15, -15}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-        Modelica.Mechanics.MultiBody.Forces.Torque torque1(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameAB.frame_a) annotation(Placement(transformation(origin = {25, -35}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+        Modelica.Blocks.Interfaces.RealInput pseudo_torque annotation(Placement(visible = true, transformation(origin = {-110, 18}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, -12}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Blocks.Interfaces.RealOutput torque annotation(Placement(visible = true, transformation(origin = {110, -52}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {110, -14}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Blocks.Interfaces.RealOutput ang_mom annotation(Placement(visible = true, transformation(origin = {110, -22}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {110, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Blocks.Interfaces.RealInput ctrl_torque annotation(Placement(visible = true, transformation(origin = {-6, -110}, extent = {{-10, -10}, {10, 10}}, rotation = 90), iconTransformation(origin = {2, -110}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+        Modelica.Mechanics.Rotational.Sources.Torque torque1(useSupport = false) annotation(Placement(visible = true, transformation(origin = {-62, 16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Mechanics.Rotational.Components.Inertia inertia(J = 0.1, stateSelect = StateSelect.default) annotation(Placement(visible = true, transformation(origin = {-18, 16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Blocks.Nonlinear.Limiter limiter1(uMax = 1e-1, strict = true) annotation(Placement(visible = true, transformation(origin = {6, -66}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Mechanics.Rotational.Sources.Torque torque2(useSupport = false) annotation(Placement(visible = true, transformation(origin = {46, 16}, extent = {{10, -10}, {-10, 10}}, rotation = 360)));
+        Modelica.Mechanics.Rotational.Sensors.TorqueSensor torquesensor1 annotation(Placement(visible = true, transformation(origin = {12, 16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       equation
-        connect(revolute1.frame_a, frame_a) annotation(Line(points = {{-15, -60}, {-15, -65}, {-15, -87}, {14, -87}, {19, -87}}, color = {95, 95, 95}, thickness = 0.0625));
-        connect(bodyShape1.frame_b, revolute1.frame_b) annotation(Line(points = {{-15, -25}, {-15, -30}, {-15, -35}, {-15, -40}}, color = {95, 95, 95}, thickness = 0.0625));
-        connect(torque1.frame_a, bodyShape1.frame_a) annotation(Line(points = {{25, -25}, {25, -20}, {25, 0}, {-15, 0}, {-15, -5}}, color = {95, 95, 95}, thickness = 0.0625));
-        connect(torque1.frame_b, frame_a) annotation(Line(points = {{25, -45}, {25, -50}, {25, -87}, {24, -87}, {19, -87}}, color = {95, 95, 95}, thickness = 0.0625));
-        connect(torque1.torque[3], acs_bus.w_a[id, 3]) annotation(Line(points = {{37, -29.3}, {42, -29.3}, {95, -29.3}, {95, -20}, {100, -20}}, color = {0, 0, 127}, thickness = 0.0625));
-        annotation(bodyShape1(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), frameTranslation(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2))), body(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), w_a(flags = 2), z_a(flags = 2), g_0(flags = 2))), Icon(graphics = {Ellipse(fillColor = {192, 192, 255}, fillPattern = FillPattern.Solid, extent = {{-49.5665, 9.537570000000001}, {49.5665, -9.537570000000001}}, origin = {19.7977, -28.6127}), Rectangle(pattern = LinePattern.None, fillColor = {192, 192, 255}, fillPattern = FillPattern.Solid, extent = {{-48.8439, 6.93642}, {48.8439, -6.93642}}, origin = {19.6532, -22.5434}), Ellipse(fillPattern = FillPattern.Solid, extent = {{-49.5665, 9.537570000000001}, {49.5665, -9.537570000000001}}, origin = {19.2775, -17.2832}), Text(textString = "1D", extent = {{-38.1503, 29.0462}, {1.94049, -3.66549}}, origin = {5.67671, -6.18507}), Rectangle(pattern = LinePattern.None, fillColor = {255, 0, 0}, fillPattern = FillPattern.VerticalCylinder, extent = {{-4.19075, 13.4393}, {5.34682, -34.5376}}, origin = {18.0636, 18.3526}), Polygon(points = {{-1.42648, 13.1438}, {11.0013, -12.5788}, {-10.9641, -12.5788}, {-1.42648, 13.1438}}, pattern = LinePattern.None, fillColor = {255, 0, 0}, fillPattern = FillPattern.VerticalCylinder, origin = {19.0566, 42.6365}), Rectangle(extent = {{-8.67052, 24.2775}, {2.31214, -25.7225}}, origin = {21.3873, -62.4277}), Rectangle(fillColor = {0, 64, 0}, fillPattern = FillPattern.VerticalCylinder, extent = {{-17.7746, 11.8497}, {17.7746, -11.8497}}, origin = {18.3526, -61.5607}), Text(textString = "%name", extent = {{-33.6717, 47.8849}, {133.164, 11.3368}}, origin = {-47.8536, 39.6233})}), experiment(StopTime = 100, StartTime = 0));
+        connect(torquesensor1.flange_b, torque2.flange) annotation(Line(points = {{22, 16}, {36, 16}}));
+        connect(inertia.flange_b, torquesensor1.flange_a) annotation(Line(points = {{-8, 16}, {2, 16}}));
+        connect(torquesensor1.tau, torque) annotation(Line(points = {{4, 5}, {4.75, 5}, {4.75, -21}, {76, -21}, {76, -52}, {110, -52}}, color = {0, 0, 127}));
+        connect(limiter1.y, torque2.tau) annotation(Line(points = {{17, -66}, {68, -66}, {68, 16}, {60, 16}, {60, 16}}, color = {0, 0, 127}));
+        connect(pseudo_torque, torque1.tau) annotation(Line(points = {{-110, 18}, {-76, 18}, {-76, 16}, {-76, 16}}, color = {0, 0, 127}));
+        connect(ctrl_torque, limiter1.u) annotation(Line(points = {{-6, -110}, {-6, -84}, {-18, -84}, {-18, -66}, {-6, -66}}, color = {0, 0, 127}));
+        connect(torque1.flange, inertia.flange_a) annotation(Line(points = {{-52, 16}, {-28, 16}}));
+        ang_mom = inertia.J * inertia.w;
+        annotation(bodyShape1(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), frameTranslation(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2))), body(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), w_a(flags = 2), z_a(flags = 2), g_0(flags = 2))), experiment(StopTime = 100, StartTime = 0), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2}), graphics = {Ellipse(origin = {3.7977, -22.6127}, fillColor = {192, 192, 255}, fillPattern = FillPattern.Solid, extent = {{-49.5665, 9.53757}, {49.5665, -9.53757}}, endAngle = 360), Rectangle(origin = {3.6532, -16.5434}, fillColor = {192, 192, 255}, pattern = LinePattern.None, fillPattern = FillPattern.Solid, extent = {{-48.8439, 6.93642}, {48.8439, -6.93642}}), Ellipse(origin = {3.2775, -11.2832}, fillPattern = FillPattern.Solid, extent = {{-49.5665, 9.53757}, {49.5665, -9.53757}}, endAngle = 360), Text(origin = {-10.3233, -0.18507}, extent = {{-38.1503, 29.0462}, {1.94049, -3.66549}}, textString = "1D"), Rectangle(origin = {2.0636, 24.3526}, fillColor = {255, 0, 0}, pattern = LinePattern.None, fillPattern = FillPattern.VerticalCylinder, extent = {{-4.19075, 13.4393}, {5.34682, -34.5376}}), Polygon(origin = {3.0566, 48.6365}, fillColor = {255, 0, 0}, pattern = LinePattern.None, fillPattern = FillPattern.VerticalCylinder, points = {{-1.42648, 13.1438}, {11.0013, -12.5788}, {-10.9641, -12.5788}, {-1.42648, 13.1438}}), Rectangle(origin = {5.3873, -56.4277}, extent = {{-8.67052, 24.2775}, {2.31214, -25.7225}}), Rectangle(origin = {2.3526, -55.5607}, fillColor = {0, 64, 0}, fillPattern = FillPattern.VerticalCylinder, extent = {{-17.7746, 11.8497}, {17.7746, -11.8497}}), Text(origin = {-51.8536, 47.6233}, extent = {{-33.6717, 47.8849}, {133.164, 11.3368}}, textString = "%name"), Text(origin = {63, -68}, extent = {{-31, 14}, {31, -14}}, textString = "J = %inertia.J")}));
       end reactionwheelsimple_noelectricity;
 
       model reactionwheel3axis_noelectricity
@@ -1463,14 +1510,25 @@ package satcomponents
       end reactionwheel3axis_noelectricity;
 
       model IMU_simple "IMU_simple"
-        parameter Integer id;
-        ctrl.ACS_bus acs_bus annotation(Placement(transformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}})));
-        Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity absoluteangularvelocity1 annotation(Placement(transformation(origin = {-15, 0}, extent = {{-10, -10}, {10, 10}})));
+        parameter Real noiseamp = 0.05;
+        parameter Modelica.SIunits.Time net_delay(start = 0.001) "Delay time of output with respect to input signal";
+        Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity absoluteangularvelocity1 annotation(Placement(transformation(origin = {-30, -5}, extent = {{-10, -10}, {10, 10}})));
         Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(transformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}})));
+        Modelica.Blocks.Math.Add add1[3] annotation(Placement(transformation(extent = {{0, -10}, {20, 10}})));
+        satcomponents.blocks.noise_ung noise_ung2(amplitude = noiseamp, seed = 2) annotation(Placement(transformation(extent = {{-40, 14}, {-19, 25}})));
+        satcomponents.blocks.noise_ung noise_ung1(amplitude = noiseamp, seed = 1) annotation(Placement(transformation(extent = {{-40, 29}, {-19, 40}})));
+        satcomponents.blocks.noise_ung noise_ung3(amplitude = noiseamp, seed = 3) annotation(Placement(transformation(extent = {{-40, 44}, {-20, 55}})));
+        Modelica.Blocks.Discrete.Sampler sampler1[3](each samplePeriod = 0.05) annotation(Placement(transformation(extent = {{30, -10}, {50, 10}})));
+        Modelica.Blocks.Interfaces.RealOutput y[3] annotation(Placement(visible = true, transformation(origin = {106, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {106, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       equation
-        connect(frame_a, absoluteangularvelocity1.frame_a) annotation(Line(points = {{-100, 0}, {-95, 0}, {-30, 0}, {-25, 0}}));
-        connect(absoluteangularvelocity1.w, acs_bus.w[id, :]) annotation(Line(points = {{11, 0}, {16, 0}, {95, 0}, {100, 0}}, color = {0, 0, 127}, thickness = 0.0625));
-        annotation(Icon(graphics = {Rectangle(fillColor = {128, 128, 128}, fillPattern = FillPattern.Sphere, extent = {{-90.11, 86.91}, {90.11, -86.91}}, origin = {4.04682, -1.67855}), Rectangle(fillColor = {88, 88, 88}, fillPattern = FillPattern.Solid, extent = {{-75.20999999999999, 71.87}, {75.20999999999999, -71.87}}, origin = {0.00144847, -2.21986}), Text(textString = "IMU", lineColor = {255, 255, 255}, fillColor = {255, 255, 255}, extent = {{-68.11, 50.28}, {68.11, -50.28}}, origin = {0.42, -4.6})}), experiment(StopTime = 1, StartTime = 0));
+        connect(sampler1.y, y) annotation(Line(points = {{51, 0}, {100, 0}, {100, 0}, {100, 0}}, color = {0, 0, 127}));
+        connect(frame_a, absoluteangularvelocity1.frame_a) annotation(Line(points = {{-100, 0}, {-95, 0}, {-45, 0}, {-45, -5}, {-40, -5}}));
+        connect(absoluteangularvelocity1.w, add1.u2) annotation(Line(points = {{-19, -5.3}, {-14, -5.3}, {-7, -5.3}, {-7, -6}, {-2, -6}}, color = {0, 0, 127}, thickness = 0.0625));
+        connect(noise_ung2.y, add1[2].u1) annotation(Line(points = {{-18, 19.3}, {-13, 19.3}, {-7, 19.3}, {-7, 6}, {-2, 6}}, color = {0, 0, 127}, thickness = 0.015625));
+        connect(noise_ung1.y, add1[1].u1) annotation(Line(points = {{-18, 34.3}, {-13, 34.3}, {-7, 34.3}, {-7, 6}, {-2, 6}}, color = {0, 0, 127}, thickness = 0.015625));
+        connect(noise_ung3.y, add1[3].u1) annotation(Line(points = {{-19.3, 49.3}, {-14.3, 49.3}, {-7, 49.3}, {-7, 6}, {-2, 6}}, color = {0, 0, 127}, thickness = 0.015625));
+        connect(add1.y, sampler1.u) annotation(Line(points = {{21, 0}, {26, 0}, {23, 0}, {28, 0}}, color = {0, 0, 127}, thickness = 0.0625));
+        annotation(noise_ung2(y(flags = 2)), noise_ung1(y(flags = 2)), noise_ung3(y(flags = 2)), Icon(graphics = {Rectangle(fillColor = {128, 128, 128}, fillPattern = FillPattern.Sphere, extent = {{-90.11, 86.91}, {90.11, -86.91}}, origin = {4.04682, -1.67855}), Rectangle(fillColor = {88, 88, 88}, fillPattern = FillPattern.Solid, extent = {{-75.20999999999999, 71.87}, {75.20999999999999, -71.87}}, origin = {0.00144847, -2.21986}), Text(textString = "IMU", lineColor = {255, 255, 255}, fillColor = {255, 255, 255}, extent = {{-68.11, 50.28}, {68.11, -50.28}}, origin = {0.42, -4.6})}), experiment(StopTime = 1, StartTime = 0));
       end IMU_simple;
 
       model IMU_no_sam_delay
@@ -1508,6 +1566,31 @@ package satcomponents
         connect(absoluteangularvelocity1.w[:], fixedDelay1.u) annotation(Line(points = {{-9, 0}, {-4, 0}, {53, 0}, {58, 0}}, color = {0, 0, 127}, thickness = 0.0625));
         annotation(Icon(graphics = {Rectangle(fillColor = {128, 128, 128}, fillPattern = FillPattern.Sphere, extent = {{-90.11, 86.91}, {90.11, -86.91}}, origin = {4.04682, -1.67855}), Rectangle(fillColor = {88, 88, 88}, fillPattern = FillPattern.Solid, extent = {{-75.20999999999999, 71.87}, {75.20999999999999, -71.87}}, origin = {0.00144847, -2.21986}), Text(textString = "IMU", lineColor = {255, 255, 255}, fillColor = {255, 255, 255}, extent = {{-68.11, 50.28}, {68.11, -50.28}}, origin = {0.42, -4.6})}), experiment(StopTime = 1, StartTime = 0));
       end IMU_nonoise;
+
+      model imu_delay
+        parameter Integer id;
+        parameter Real noiseamp = 0.05;
+        parameter Modelica.SIunits.Time net_delay(start = 0.001) "Delay time of output with respect to input signal";
+        Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity absoluteangularvelocity1 annotation(Placement(transformation(origin = {-30, -5}, extent = {{-10, -10}, {10, 10}})));
+        Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(transformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}})));
+        Modelica.Blocks.Math.Add add1[3] annotation(Placement(transformation(extent = {{0, -10}, {20, 10}})));
+        Modelica.Blocks.Nonlinear.FixedDelay fixedDelay1[3](each delayTime = net_delay) annotation(Placement(transformation(extent = {{60, -10}, {80, 10}})));
+        satcomponents.blocks.noise_ung noise_ung2(amplitude = noiseamp, seed = 2 + id) annotation(Placement(transformation(extent = {{-40, 14}, {-19, 25}})));
+        satcomponents.blocks.noise_ung noise_ung1(amplitude = noiseamp, seed = 1 + id) annotation(Placement(transformation(extent = {{-40, 29}, {-19, 40}})));
+        satcomponents.blocks.noise_ung noise_ung3(amplitude = noiseamp, seed = 3 + id) annotation(Placement(transformation(extent = {{-40, 44}, {-20, 55}})));
+        Modelica.Blocks.Discrete.Sampler sampler1[3](each samplePeriod = 0.05) annotation(Placement(transformation(extent = {{30, -10}, {50, 10}})));
+        Modelica.Blocks.Interfaces.RealOutput y[3] annotation(Placement(visible = true, transformation(origin = {106, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {106, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      equation
+        connect(fixedDelay1.y, y) annotation(Line(points = {{81, 0}, {100, 0}, {100, 0}, {100, 0}}, color = {0, 0, 127}));
+        connect(frame_a, absoluteangularvelocity1.frame_a) annotation(Line(points = {{-100, 0}, {-95, 0}, {-45, 0}, {-45, -5}, {-40, -5}}));
+        connect(absoluteangularvelocity1.w, add1.u2) annotation(Line(points = {{-19, -5.3}, {-14, -5.3}, {-7, -5.3}, {-7, -6}, {-2, -6}}, color = {0, 0, 127}, thickness = 0.0625));
+        connect(noise_ung2.y, add1[2].u1) annotation(Line(points = {{-18, 19.3}, {-13, 19.3}, {-7, 19.3}, {-7, 6}, {-2, 6}}, color = {0, 0, 127}, thickness = 0.015625));
+        connect(noise_ung1.y, add1[1].u1) annotation(Line(points = {{-18, 34.3}, {-13, 34.3}, {-7, 34.3}, {-7, 6}, {-2, 6}}, color = {0, 0, 127}, thickness = 0.015625));
+        connect(noise_ung3.y, add1[3].u1) annotation(Line(points = {{-19.3, 49.3}, {-14.3, 49.3}, {-7, 49.3}, {-7, 6}, {-2, 6}}, color = {0, 0, 127}, thickness = 0.015625));
+        connect(add1.y, sampler1.u) annotation(Line(points = {{21, 0}, {26, 0}, {23, 0}, {28, 0}}, color = {0, 0, 127}, thickness = 0.0625));
+        connect(sampler1.y, fixedDelay1.u) annotation(Line(points = {{51, 0}, {56, 0}, {53, 0}, {58, 0}}, color = {0, 0, 127}, thickness = 0.0625));
+        annotation(noise_ung2(y(flags = 2)), noise_ung1(y(flags = 2)), noise_ung3(y(flags = 2)), Icon(graphics = {Rectangle(fillColor = {128, 128, 128}, fillPattern = FillPattern.Sphere, extent = {{-90.11, 86.91}, {90.11, -86.91}}, origin = {4.04682, -1.67855}), Rectangle(fillColor = {88, 88, 88}, fillPattern = FillPattern.Solid, extent = {{-75.20999999999999, 71.87}, {75.20999999999999, -71.87}}, origin = {0.00144847, -2.21986}), Text(textString = "IMU", lineColor = {255, 255, 255}, fillColor = {255, 255, 255}, extent = {{-68.11, 50.28}, {68.11, -50.28}}, origin = {0.42, -4.6})}), experiment(StopTime = 1, StartTime = 0));
+      end imu_delay;
     end Parts;
 
     package ctrl
@@ -1622,7 +1705,7 @@ package satcomponents
         constant Integer m = 2147483647 "int(2 ^ 31 - 1)";
         constant Integer a = 16807 "7 ^ 5";
       algorithm
-        x := t;
+        x := t * seed;
         for i in 1:10 loop
           x := mod(a * x + seed, m);
         end for;
@@ -1631,31 +1714,90 @@ package satcomponents
     equation
       y = (rand(time * m, seed) - 0.5) * amplitude;
       annotation(x(flags = 2), y(flags = 2), Icon(coordinateSystem(extent = {{-101.7, -51.7}, {101.7, 51.7}}), graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = {{-70, -20}, {-66.7, 20}, {-66.7, -3.3}, {-63.3, 3.3}, {-63.3, 0}, {-63.3, 10}, {-60, -3.3}, {-56.7, 16.7}, {-56.7, -13.3}, {-53.3, 36.7}, {-50, -3.3}, {-50, 10}, {-46.7, -10}, {-43.3, 6.7}, {-43.3, -3.3}, {-36.7, -23.3}, {-36.7, -10}, {-33.3, -3.3}, {-30, -10}, {-30, -3.3}, {-30, 30}, {-26.7, 30}, {-20, 6.7}, {-20, -13.3}, {-16.7, -16.7}, {-16.7, 3.3}, {-13.3, -10}, {-13.3, 3.3}, {-13.3, -16.7}, {-13.3, 43.3}, {-10, -16.7}, {-6.7, -6.7}, {-6.7, -13.3}, {-3.3, 16.7}, {-3.3, -3.3}, {-3.3, 3.3}, {0, -10}, {3.3, -13.3}, {6.7, 23.3}, {10, 6.7}, {13.3, 0}, {16.7, -6.7}, {16.7, -16.7}, {16.7, -3.3}, {20, -23.3}, {23.3, -6.7}, {23.3, -3.3}, {33.3, -23.3}, {33.3, 6.7}, {36.7, 6.7}, {40, 10}, {43.3, 46.7}, {40, -10}, {40, -13.3}, {43.3, 0}, {46.7, 10}, {50, -6.7}, {50, 3.3}, {53.3, 13.3}}, color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0));
-      annotation(x(flags = 2), y(flags = 2), Icon(coordinateSystem(extent = {{-101.7, -51.7}, {101.7, 51.7}}), graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = {{-70, -20}, {-66.7, 20}, {-66.7, -3.3}, {-63.3, 3.3}, {-63.3, 0}, {-63.3, 10}, {-60, -3.3}, {-56.7, 16.7}, {-56.7, -13.3}, {-53.3, 36.7}, {-50, -3.3}, {-50, 10}, {-46.7, -10}, {-43.3, 6.7}, {-43.3, -3.3}, {-36.7, -23.3}, {-36.7, -10}, {-33.3, -3.3}, {-30, -10}, {-30, -3.3}, {-30, 30}, {-26.7, 30}, {-20, 6.7}, {-20, -13.3}, {-16.7, -16.7}, {-16.7, 3.3}, {-13.3, -10}, {-13.3, 3.3}, {-13.3, -16.7}, {-13.3, 43.3}, {-10, -16.7}, {-6.7, -6.7}, {-6.7, -13.3}, {-3.3, 16.7}, {-3.3, -3.3}, {-3.3, 3.3}, {0, -10}, {3.3, -13.3}, {6.7, 23.3}, {10, 6.7}, {13.3, 0}, {16.7, -6.7}, {16.7, -16.7}, {16.7, -3.3}, {20, -23.3}, {23.3, -6.7}, {23.3, -3.3}, {33.3, -23.3}, {33.3, 6.7}, {36.7, 6.7}, {40, 10}, {43.3, 46.7}, {40, -10}, {40, -13.3}, {43.3, 0}, {46.7, 10}, {50, -6.7}, {50, 3.3}, {53.3, 13.3}}, color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0), x(flags = 2), y(flags = 2), Icon(coordinateSystem(extent = {{-101.7, -51.7}, {101.7, 51.7}}), graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = {{-70, -20}, {-66.7, 20}, {-66.7, -3.3}, {-63.3, 3.3}, {-63.3, 0}, {-63.3, 10}, {-60, -3.3}, {-56.7, 16.7}, {-56.7, -13.3}, {-53.3, 36.7}, {-50, -3.3}, {-50, 10}, {-46.7, -10}, {-43.3, 6.7}, {-43.3, -3.3}, {-36.7, -23.3}, {-36.7, -10}, {-33.3, -3.3}, {-30, -10}, {-30, -3.3}, {-30, 30}, {-26.7, 30}, {-20, 6.7}, {-20, -13.3}, {-16.7, -16.7}, {-16.7, 3.3}, {-13.3, -10}, {-13.3, 3.3}, {-13.3, -16.7}, {-13.3, 43.3}, {-10, -16.7}, {-6.7, -6.7}, {-6.7, -13.3}, {-3.3, 16.7}, {-3.3, -3.3}, {-3.3, 3.3}, {0, -10}, {3.3, -13.3}, {6.7, 23.3}, {10, 6.7}, {13.3, 0}, {16.7, -6.7}, {16.7, -16.7}, {16.7, -3.3}, {20, -23.3}, {23.3, -6.7}, {23.3, -3.3}, {33.3, -23.3}, {33.3, 6.7}, {36.7, 6.7}, {40, 10}, {43.3, 46.7}, {40, -10}, {40, -13.3}, {43.3, 0}, {46.7, 10}, {50, -6.7}, {50, 3.3}, {53.3, 13.3}}, color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0), x(flags = 2), y(flags = 2), Icon(coordinateSystem(extent = {{-101.7, -51.7}, {101.7, 51.7}}), graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = {{-70, -20}, {-66.7, 20}, {-66.7, -3.3}, {-63.3, 3.3}, {-63.3, 0}, {-63.3, 10}, {-60, -3.3}, {-56.7, 16.7}, {-56.7, -13.3}, {-53.3, 36.7}, {-50, -3.3}, {-50, 10}, {-46.7, -10}, {-43.3, 6.7}, {-43.3, -3.3}, {-36.7, -23.3}, {-36.7, -10}, {-33.3, -3.3}, {-30, -10}, {-30, -3.3}, {-30, 30}, {-26.7, 30}, {-20, 6.7}, {-20, -13.3}, {-16.7, -16.7}, {-16.7, 3.3}, {-13.3, -10}, {-13.3, 3.3}, {-13.3, -16.7}, {-13.3, 43.3}, {-10, -16.7}, {-6.7, -6.7}, {-6.7, -13.3}, {-3.3, 16.7}, {-3.3, -3.3}, {-3.3, 3.3}, {0, -10}, {3.3, -13.3}, {6.7, 23.3}, {10, 6.7}, {13.3, 0}, {16.7, -6.7}, {16.7, -16.7}, {16.7, -3.3}, {20, -23.3}, {23.3, -6.7}, {23.3, -3.3}, {33.3, -23.3}, {33.3, 6.7}, {36.7, 6.7}, {40, 10}, {43.3, 46.7}, {40, -10}, {40, -13.3}, {43.3, 0}, {46.7, 10}, {50, -6.7}, {50, 3.3}, {53.3, 13.3}}, color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0), y(flags = 2), Icon(coordinateSystem(extent = {{-101.7, -51.7}, {101.7, 51.7}}), graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-80, 56.7}, {53.3, -40}}), Line(points = ":253:
- 789C6C53CB09C240105D72B404CF39791214048530048324043F471BB00EDB880578F266035B40ECC9353B6FF06D3210262FF37F33C99C73BBF0644EE57EF1F1
- 65ED3F7D90D71958806F83CCA27E9E800518A918E712F5D1E21F5D906BEB573F792F0578D0DD42F337EA576A7C6DF1C0C81FFD0EC01A5FC539FAB90073FD32DA
- DB8D618E97A45E6176E0697B2171AEAD61E235F4038C7995879106BFF0437DE2E9CF8E38E6B112C4C1AE7D8C7492D7F6437B1F6B7124F9A82FCCAD7CA31FC177
- F5B33CA88BBE80137EAC2FBAD3B04FD4A1F902E6FB15F3278C7EC2DDF1BEF6D63778D5BB4BED1E787A0FCE711CFE8FDAFA05E6FFAB319EBE000000FFFF", color = {0, 0, 0})}), experiment(StopTime = 1, StartTime = 0));
     end noise_ung;
 
     model noise_sampled
       Modelica.Blocks.Math.Add add1 annotation(Placement(visible = true, transformation(origin = {20, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-      Modelica.Blocks.Sources.Constant const(k = 0.0) annotation(Placement(visible = true, transformation(origin = {-40, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       satcomponents.blocks.noise_ung noise_ung1 annotation(Placement(visible = true, transformation(origin = {-40, 20}, extent = {{-10.17, -5.17}, {10.17, 5.17}}, rotation = 0)));
-      Modelica.Blocks.Interfaces.RealOutput y annotation(Placement(visible = true, transformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {60, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-      Modelica.Blocks.Discrete.ZeroOrderHold zeroorderhold1(samplePeriod = 1.0) annotation(Placement(visible = true, transformation(origin = {60, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Blocks.Discrete.ZeroOrderHold zeroorderhold1(samplePeriod = 0.1) annotation(Placement(visible = true, transformation(origin = {60, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Blocks.Interfaces.RealInput u annotation(Placement(visible = true, transformation(origin = {-102, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-92, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Blocks.Interfaces.RealOutput y annotation(Placement(visible = true, transformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {104, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
     equation
+      connect(u, add1.u2) annotation(Line(points = {{-102, 0}, {-39, 0}, {-39, -6}, {8, -6}}, color = {0, 0, 127}));
       connect(zeroorderhold1.y, y) annotation(Line(points = {{71, 0}, {92.5852, 0}, {92.5852, 0.801603}, {92.5852, 0.801603}}));
       connect(add1.y, zeroorderhold1.u) annotation(Line(points = {{31, 0}, {46.493, 0}, {46.493, 0}, {46.493, 0}}));
       connect(noise_ung1.y, add1.u1) annotation(Line(points = {{-29, 20}, {-9.218439999999999, 20}, {-9.218439999999999, 6.81363}, {8, 6.81363}, {8, 6}}));
-      connect(const.y, add1.u2) annotation(Line(points = {{-29, -20}, {-10.02, -20}, {-10.02, -5.61122}, {6.81363, -5.61122}, {6.81363, -5.61122}}));
       annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})));
     end noise_sampled;
 
     model noisetest
-      noise_ung noise_ung1 annotation(Placement(transformation(extent = {{15, 39}, {36, 50}})));
+      noise_ung noise_ung1 annotation(Placement(visible = true, transformation(extent = {{-9, -1}, {12, 10}}, rotation = 0)));
       annotation(noise_ung1(y(flags = 2)), experiment(StopTime = 1, StartTime = 0));
     end noisetest;
+
+    model sampled_noise_noevent
+      noise_ung noise_ung1 annotation(Placement(visible = true, transformation(extent = {{-43, -5}, {-22, 6}}, rotation = 0)));
+      satcomponents.blocks.no_event_sampler no_event_sampler1 annotation(Placement(visible = true, transformation(origin = {34, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+
+      function sampler
+        input Real current_value;
+        input Real last_value;
+        output Real sampled_value;
+      protected
+        Real x;
+        constant Integer m = 2147483647 "int(2 ^ 31 - 1)";
+        constant Integer a = 16807 "7 ^ 5";
+      algorithm
+        sampled_value := current_value;
+      end sampler;
+    equation
+      connect(noise_ung1.y, no_event_sampler1.u) annotation(Line(points = {{-21, 0.5}, {22, 0.5}, {22, 0}}, color = {0, 0, 127}));
+      annotation(noise_ung1(y(flags = 2)), experiment(StopTime = 1, StartTime = 0));
+    end sampled_noise_noevent;
+
+    model no_event_sampler
+      extends Modelica.Blocks.Interfaces.DiscreteSISO;
+      annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})));
+    end no_event_sampler;
+
+    model sample_test
+      Modelica.Blocks.Discrete.ZeroOrderHold zeroorderhold1(samplePeriod = 0.1) annotation(Placement(visible = true, transformation(origin = {30, -12}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Blocks.Discrete.Sampler sampler1(samplePeriod = 0.1) annotation(Placement(visible = true, transformation(origin = {30, 32}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Blocks.Sources.Sine sine1(freqHz = 2) annotation(Placement(visible = true, transformation(origin = {-62, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    equation
+      connect(sine1.y, zeroorderhold1.u) annotation(Line(points = {{-51, 0}, {-22, 0}, {-22, -12}, {16, -12}, {16, -12}}, color = {0, 0, 127}));
+      connect(sine1.y, sampler1.u) annotation(Line(points = {{-51, 0}, {-22, 0}, {-22, 32}, {18, 32}, {18, 32}}, color = {0, 0, 127}));
+      annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})));
+    end sample_test;
+
+    block OnOffIdleController "On-off controller"
+      extends Modelica.Blocks.Icons.Block;
+      Modelica.Blocks.Interfaces.RealInput reference "Connector of Real input signal used as reference signal" annotation(Placement(transformation(extent = {{-140, 80}, {-100, 40}}, rotation = 0)));
+      Modelica.Blocks.Interfaces.RealInput u "Connector of Real input signal used as measurement signal" annotation(Placement(transformation(extent = {{-140, -40}, {-100, -80}}, rotation = 0)));
+      Modelica.Blocks.Interfaces.RealOutput y "Connector of Real output signal used as actuator signal" annotation(Placement(transformation(extent = {{100, -10}, {120, 10}}, rotation = 0)));
+      parameter Real bandwidth(start = 0.1) "Bandwidth around reference signal";
+    equation
+      y = if u > reference + bandwidth / 2 then 1 else if u < reference - bandwidth / 2 then -1 else 0;
+      annotation(Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}, initialScale = 0.1), graphics = {Text(extent = {{-92, 74}, {44, 44}}, lineThickness = 0.5, textString = "reference"), Text(extent = {{-94, -52}, {-34, -74}}, textString = "u"), Line(points = {{-76.0, -32.0}, {-68.0, -6.0}, {-50.0, 26.0}, {-24.0, 40.0}, {-2.0, 42.0}, {16.0, 36.0}, {32.0, 28.0}, {48.0, 12.0}, {58.0, -6.0}, {68.0, -28.0}}, color = {0, 0, 127}), Line(points = {{-78.0, -2.0}, {-6.0, 18.0}, {82.0, -12.0}}, color = {255, 0, 0}), Line(points = {{-78.0, 12.0}, {-6.0, 30.0}, {82.0, 0.0}}), Line(points = {{-78.0, -16.0}, {-6.0, 4.0}, {82.0, -26.0}}), Line(points = {{-82.0, -18.0}, {-56.0, -18.0}, {-56.0, -40.0}, {64.0, -40.0}, {64.0, -20.0}, {90.0, -20.0}}, color = {255, 0, 255})}), Documentation(info = "<html>
+<p>The block OnOffController sets the output signal <b>y</b> to <b>true</b> when
+the input signal <b>u</b> falls below the <b>reference</b> signal minus half of
+the bandwidth and sets the output signal <b>y</b> to <b>false</b> when the input
+signal <b>u</b> exceeds the <b>reference</b> signal plus half of the bandwidth.</p>
+</html>"));
+    end OnOffIdleController;
+
+    package examples
+      model onoffidletest
+        Modelica.Blocks.Sources.Sine sine1 annotation(Placement(visible = true, transformation(origin = {-72, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        OnOffIdleController onoffidlecontroller1(bandwidth = 0.05) annotation(Placement(visible = true, transformation(origin = {-18, 36}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Blocks.Sources.Constant const(k = 0.2) annotation(Placement(visible = true, transformation(origin = {-72, 42}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      equation
+        connect(const.y, onoffidlecontroller1.reference) annotation(Line(points = {{-61, 42}, {-30, 42}, {-30, 42}, {-30, 42}}, color = {0, 0, 127}));
+        connect(sine1.y, onoffidlecontroller1.u) annotation(Line(points = {{-61, 10}, {-50, 10}, {-50, 30}, {-30, 30}}, color = {0, 0, 127}));
+        annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})));
+      end onoffidletest;
+      annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})));
+    end examples;
     annotation(dateModified = "2014-04-17 11:12:16Z");
   end blocks;
   annotation(dateModified = "2013-07-22 12:21:35Z", Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}), graphics = {Polygon(points = {{-11.5042, 31.4966}, {33.1625, 8.163309999999999}, {11.8292, -31.5034}, {-33.1708, -7.17002}, {-11.5042, 31.4966}}, origin = {-0.495835, -3.82998}), Polygon(points = {{-44.3475, -20.3811}, {-13.0141, -37.3811}, {25.6525, 27.2855}, {-5.68082, 43.9522}, {-44.3475, -20.3811}}, fillColor = {0, 0, 255}, fillPattern = FillPattern.VerticalCylinder, origin = {41.3475, 49.7145}), Polygon(points = {{-44.3475, -20.3811}, {-13.0141, -37.3811}, {25.6525, 27.2855}, {-5.68082, 43.9522}, {-44.3475, -20.3811}}, fillColor = {0, 0, 255}, fillPattern = FillPattern.VerticalCylinder, origin = {-23.6525, -62.9522}), Polygon(points = {{-8.16695, 13.1269}, {-13.1669, 4.12686}, {-0.500278, -13.5398}, {13.1664, 11.1269}, {-8.16695, 13.1269}}, origin = {36.1669, -23.4602}), Polygon(points = {{16.7693, 29.6823}, {14.7693, 5.68234}, {1.10267, -18.651}, {-16.8973, -29.3177}, {16.7693, 29.6823}}, origin = {-35.7693, 14.651})}), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}})));
