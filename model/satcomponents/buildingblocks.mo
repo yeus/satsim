@@ -153,7 +153,6 @@ package ibossmo
 
     model m_int
       Modelica.Mechanics.Rotational.Components.BearingFriction bearingfriction1(tau_pos = [0, 0.0; 0.1, 50.0], peak = 3.0) annotation(Placement(visible = true, transformation(origin = {30, -44}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-      Modelica.Mechanics.Rotational.Components.IdealGear idealgear1(ratio = 22 * 400) annotation(Placement(visible = true, transformation(origin = {-4, -44}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       Modelica.Mechanics.Rotational.Components.Inertia inertia1(J = 0.1 * 0.03 ^ 2) annotation(Placement(visible = true, transformation(origin = {66, -44}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       Modelica.Mechanics.Rotational.Sensors.AngleSensor anglesensor1 annotation(Placement(visible = true, transformation(origin = {80, -16}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
       satcomponents.blocks.OnOffIdleController onoffidlecontroller1(bandwidth = 0.01) annotation(Placement(visible = true, transformation(origin = {34, 42}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
@@ -165,7 +164,10 @@ package ibossmo
       Modelica.Electrical.Analog.Interfaces.NegativePin pin_n annotation(Placement(visible = true, transformation(origin = {-100, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-100, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       output Modelica.Blocks.Interfaces.RealOutput pos_sens annotation(Placement(visible = true, transformation(origin = {-100, -60}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
       input Modelica.Blocks.Interfaces.RealInput target_pos(start = 0) annotation(Placement(visible = true, transformation(origin = {-100, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Mechanics.Rotational.Components.IdealGear idealgear1(ratio = 22 * 400) annotation(Placement(visible = true, transformation(origin = {4, -44}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
     equation
+      connect(dcpm.flange, idealgear1.flange_a) annotation(Line(points = {{-46, -44}, {-6, -44}, {-6, -44}, {-6, -44}}));
+      connect(idealgear1.flange_b, bearingfriction1.flange_a) annotation(Line(points = {{14, -44}, {20, -44}}));
       connect(anglesensor1.phi, pos_sens) annotation(Line(points = {{80, -5}, {80, 2}, {92, 2}, {92, -60}, {-100, -60}}, color = {0, 0, 127}));
       connect(target_pos, onoffidlecontroller1.reference) annotation(Line(points = {{-100, 60}, {58, 60}, {58, 48}, {48, 48}, {48, 48}}, color = {0, 0, 127}));
       connect(onoffidlecontroller1.u, anglesensor1.phi) annotation(Line(points = {{46, 36}, {53, 36}, {53, 8}, {80, 8}, {80, -5}}, color = {0, 0, 127}));
@@ -175,12 +177,10 @@ package ibossmo
       connect(hbridge1.forward, greaterthreshold1.y) annotation(Line(points = {{-48, 0.8}, {-31, 0.8}, {-31, 2.8}, {-14, 2.8}, {-14, 49.8}, {-5, 49.8}, {-5, 47.8}, {4, 47.8}}, color = {255, 0, 255}));
       connect(dcpm.pin_ap, hbridge1.pin_n1) annotation(Line(points = {{-50, -34}, {-52, -34}, {-52, -6}}, color = {0, 0, 255}));
       connect(hbridge1.pin_p1, dcpm.pin_an) annotation(Line(points = {{-64, -6}, {-64, -34}, {-62, -34}}, color = {0, 0, 255}));
-      connect(dcpm.flange, idealgear1.flange_a) annotation(Line(points = {{-46, -44}, {-14, -44}}));
       connect(greaterthreshold1.u, onoffidlecontroller1.y) annotation(Line(points = {{12.8, 48}, {12.3, 48}, {12.3, 48}, {11.8, 48}, {11.8, 42}, {17.3, 42}, {17.3, 42}, {22.8, 42}}, color = {0, 0, 127}));
       connect(lessthreshold1.u, onoffidlecontroller1.y) annotation(Line(points = {{12.8, 34}, {17.8, 34}, {17.8, 42}, {22.8, 42}}, color = {0, 0, 127}));
       connect(inertia1.flange_b, anglesensor1.flange) annotation(Line(points = {{76, -44}, {77, -44}, {77, -44}, {78, -44}, {78, -42}, {80, -42}, {80, -26}}));
       connect(bearingfriction1.flange_b, inertia1.flange_a) annotation(Line(points = {{40, -44}, {48, -44}, {48, -42}, {58, -42}, {58, -42}, {58, -42}, {58, -44}, {57, -44}, {57, -44}, {56, -44}}));
-      connect(idealgear1.flange_b, bearingfriction1.flange_a) annotation(Line(points = {{6, -44}, {20, -44}}));
       annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})));
     end m_int;
 
@@ -193,15 +193,40 @@ package ibossmo
 
     package Examples
       model interface_with_dcdc
-        m_int m_int1 annotation(Placement(visible = true, transformation(origin = {57, 3}, extent = {{-21, -21}, {21, 21}}, rotation = 0)));
         Modelica.Blocks.Sources.TimeTable timetable1(table = [0, 0; 5, 0; 5.01, 0.3; 20, 0.3; 20.01, 1.0; 45, 1.0; 45.0, 0; 70, 0.0]) annotation(Placement(visible = true, transformation(origin = {-61, 55}, extent = {{-13, -13}, {13, 13}}, rotation = 0)));
-        satcomponents.power.dc_power dc_power1(c_int = 1e-6, r_internal = 10, v = 5) annotation(Placement(visible = true, transformation(origin = {-66, -32}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-46, -54}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Sources.ConstantVoltage constantvoltage1(V = 20) annotation(Placement(visible = true, transformation(origin = {-54, -4}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+        satcomponents.power.dcmodel.dcdc_ideal_simple dcdc_ideal_simple1 annotation(Placement(visible = true, transformation(origin = {-16, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        m_int m_int1 annotation(Placement(visible = true, transformation(origin = {38, 2}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       equation
-        connect(dc_power1.pin_n, m_int1.pin_n) annotation(Line(points = {{-56, -36}, {18, -36}, {18, 0}, {36, 0}, {36, 0}}, color = {0, 0, 255}));
-        connect(dc_power1.pin_p, m_int1.pin_p) annotation(Line(points = {{-56, -26}, {-16, -26}, {-16, 8}, {36, 8}, {36, 8}, {36, 8}}, color = {0, 0, 255}));
-        connect(timetable1.y, m_int1.target_pos) annotation(Line(points = {{-47, 55}, {-20, 55}, {-20, 16}, {34, 16}, {34, 16}}, color = {0, 0, 127}));
+        connect(dcdc_ideal_simple1.n2, m_int1.pin_n) annotation(Line(points = {{-6, -5}, {20, -5}, {20, 0}, {28, 0}, {28, 0}}, color = {0, 0, 255}));
+        connect(m_int1.pin_p, dcdc_ideal_simple1.p2) annotation(Line(points = {{28, 4}, {-6, 4}, {-6, 6}, {-6, 6}}, color = {0, 0, 255}));
+        connect(timetable1.y, m_int1.target_pos) annotation(Line(points = {{-47, 55}, {12, 55}, {12, 8}, {28, 8}, {28, 8}}, color = {0, 0, 127}));
+        connect(dcdc_ideal_simple1.n2, dcdc_ideal_simple1.n1) annotation(Line(points = {{-6, -5}, {-6, -5}, {-6, -20}, {-26, -20}, {-26, -6}, {-26, -6}}, color = {0, 0, 255}));
+        connect(constantvoltage1.n, dcdc_ideal_simple1.n1) annotation(Line(points = {{-54, -14}, {-26, -14}, {-26, -6}, {-26, -6}}, color = {0, 0, 255}));
+        connect(constantvoltage1.p, dcdc_ideal_simple1.p1) annotation(Line(points = {{-54, 6}, {-26, 6}, {-26, 6}, {-26, 6}}, color = {0, 0, 255}));
+        connect(constantvoltage1.n, ground1.p) annotation(Line(points = {{-54, -14}, {-46, -14}, {-46, -44}, {-46, -44}}, color = {0, 0, 255}));
         annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-12, Interval = 0.02));
       end interface_with_dcdc;
+
+      model interfacecomplete_with_dcdc
+        Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-46, -54}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Electrical.Analog.Sources.ConstantVoltage constantvoltage1(V = 20) annotation(Placement(visible = true, transformation(origin = {-54, -4}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+        satcomponents.power.dcmodel.dcdc_ideal_simple dcdc_ideal_simple1 annotation(Placement(visible = true, transformation(origin = {-16, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        iboss_interface iboss_interface1 annotation(Placement(visible = true, transformation(origin = {34, 6}, extent = {{-18, -18}, {18, 18}}, rotation = 0)));
+        Modelica.Blocks.Sources.TimeTable timetable1(table = [0, 0; 5, 0; 5.01, 0.3; 20, 0.3; 20.01, 1.0; 45, 1.0; 45.0, 0; 70, 0.0]) annotation(Placement(visible = true, transformation(origin = {-59, 79}, extent = {{-13, -13}, {13, 13}}, rotation = 0)));
+        Modelica.Blocks.Sources.BooleanConstant booleanconstant1 annotation(Placement(visible = true, transformation(origin = {-54, 34}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      equation
+        connect(booleanconstant1.y, iboss_interface1.comm.set_ess) annotation(Line(points = {{-43, 34}, {2, 34}, {2, 18}, {16, 18}, {16, 18}}, color = {255, 0, 255}));
+        connect(timetable1.y, iboss_interface1.comm.set_pos) annotation(Line(points = {{-45, 79}, {-22, 79}, {-22, 18}, {16, 18}}, color = {0, 0, 127}));
+        connect(dcdc_ideal_simple1.n2, iboss_interface1.gnd_int) annotation(Line(points = {{-6, -5}, {16, -5}, {16, -2}, {16, -2}}, color = {0, 0, 255}));
+        connect(dcdc_ideal_simple1.p2, iboss_interface1.vcc_int) annotation(Line(points = {{-6, 5}, {16, 5}, {16, 4}, {16, 4}}, color = {0, 0, 255}));
+        connect(dcdc_ideal_simple1.n2, dcdc_ideal_simple1.n1) annotation(Line(points = {{-6, -5}, {-6, -5}, {-6, -20}, {-26, -20}, {-26, -6}, {-26, -6}}, color = {0, 0, 255}));
+        connect(constantvoltage1.n, dcdc_ideal_simple1.n1) annotation(Line(points = {{-54, -14}, {-26, -14}, {-26, -6}, {-26, -6}}, color = {0, 0, 255}));
+        connect(constantvoltage1.p, dcdc_ideal_simple1.p1) annotation(Line(points = {{-54, 6}, {-26, 6}, {-26, 6}, {-26, 6}}, color = {0, 0, 255}));
+        connect(constantvoltage1.n, ground1.p) annotation(Line(points = {{-54, -14}, {-46, -14}, {-46, -44}, {-46, -44}}, color = {0, 0, 255}));
+        annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-12, Interval = 0.02));
+      end interfacecomplete_with_dcdc;
       annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})));
     end Examples;
   end components;
@@ -574,16 +599,13 @@ package ibossmo
       components.iboss_interface int_zn annotation(Placement(visible = true, transformation(origin = {62, -26}, extent = {{-16, -16}, {16, 16}}, rotation = 0)));
       Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-34, -64}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       Modelica.Electrical.Analog.Sources.RampVoltage rampvoltage1(V = 40, duration = 10, startTime = 1) annotation(Placement(visible = true, transformation(origin = {-62, -38}, extent = {{10, -10}, {-10, 10}}, rotation = 90)));
-      satcomponents.power.dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved1 annotation(Placement(visible = true, transformation(origin = {-4, -32}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-      Modelica.Electrical.Analog.Basic.Resistor resistor1 annotation(Placement(visible = true, transformation(origin = {22, -36}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+      satcomponents.power.dcmodel.dcdc_ideal_simple dcdc_ideal_simple1 annotation(Placement(visible = true, transformation(origin = {-2, -36}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
     equation
-      connect(dcdc_ideal_simple_improved1.n2, resistor1.n) annotation(Line(points = {{5, -37}, {12, -37}, {12, -46}, {22, -46}, {22, -46}}, color = {0, 0, 255}));
-      connect(dcdc_ideal_simple_improved1.p2, resistor1.p) annotation(Line(points = {{5, -28}, {22, -28}, {22, -26}, {22, -26}}, color = {0, 0, 255}));
-      connect(rampvoltage1.n, int_zn.gnd_int) annotation(Line(points = {{-62, -48}, {-62, -48}, {-62, -74}, {46, -74}, {46, -32}, {46, -32}}, color = {0, 0, 255}));
-      connect(rampvoltage1.p, int_zn.vcc_int) annotation(Line(points = {{-62, -28}, {-60, -28}, {-60, -20}, {46, -20}, {46, -28}, {46, -28}}, color = {0, 0, 255}));
-      connect(rampvoltage1.p, dcdc_ideal_simple_improved1.p1) annotation(Line(points = {{-62, -28}, {-13, -28}}, color = {0, 0, 255}));
-      connect(dcdc_ideal_simple_improved1.n1, dcdc_ideal_simple_improved1.n2) annotation(Line(points = {{-13.2786, -36.0453}, {-14.2786, -36.0453}, {-14.2786, -46.0453}, {4.72136, -46.0453}, {4.72136, -41.5453}, {4.72136, -41.5453}, {4.72136, -37.0453}}, color = {0, 0, 255}));
-      connect(dcdc_ideal_simple_improved1.n1, ground1.p) annotation(Line(points = {{-13, -36}, {-22, -36}, {-22, -54}, {-34, -54}}, color = {0, 0, 255}));
+      connect(dcdc_ideal_simple1.p1, rampvoltage1.p) annotation(Line(points = {{-12, -31}, {-50, -31}, {-50, -28}, {-62, -28}, {-62, -28}}, color = {0, 0, 255}));
+      connect(dcdc_ideal_simple1.p2, int_zn.vcc_int) annotation(Line(points = {{8, -31}, {18, -31}, {18, -28}, {44, -28}, {44, -28}}, color = {0, 0, 255}));
+      connect(dcdc_ideal_simple1.n2, int_zn.gnd_int) annotation(Line(points = {{8, -41}, {46, -41}, {46, -34}, {46, -34}}, color = {0, 0, 255}));
+      connect(dcdc_ideal_simple1.n1, dcdc_ideal_simple1.n2) annotation(Line(points = {{-12, -41}, {-12, -41}, {-12, -48}, {8, -48}, {8, -40}, {8, -40}, {8, -40}}, color = {0, 0, 255}));
+      connect(rampvoltage1.n, dcdc_ideal_simple1.n1) annotation(Line(points = {{-62, -48}, {-12, -48}, {-12, -42}, {-12, -42}}, color = {0, 0, 255}));
       connect(rampvoltage1.n, ground1.p) annotation(Line(points = {{-62, -48}, {-34, -48}, {-34, -54}, {-34, -54}}, color = {0, 0, 255}));
       connect(booleanconstant1[1].y, int_zn.comm.set_ess) annotation(Line(points = {{-57, 2}, {12, 2}, {12, -16}, {46, -16}, {46, -16}}, color = {255, 0, 255}));
       connect(timetable1.y, int_zn.comm.set_pos) annotation(Line(points = {{-57, 73}, {26, 73}, {26, -16}, {46, -16}, {46, -16}}, color = {0, 0, 127}));
