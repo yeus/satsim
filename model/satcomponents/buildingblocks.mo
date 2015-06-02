@@ -5,25 +5,41 @@ package ibossmo
     //within iboss;
 
     model iboss_interface
-      Modelica.Electrical.Analog.Sensors.VoltageSensor voltageSensor2 annotation(Placement(transformation(origin = {-65, -25}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-      Modelica.Electrical.Analog.Interfaces.NegativePin gnd annotation(Placement(transformation(origin = {101.556, -50.9194}, extent = {{-12, -12}, {12, 12}}), iconTransformation(origin = {101.556, -50.9194}, extent = {{-12, -12}, {12, 12}})));
-      Modelica.Electrical.Analog.Interfaces.PositivePin vcc annotation(Placement(transformation(origin = {101.273, -18.1046}, extent = {{-12, -12}, {12, 12}}), iconTransformation(origin = {101.273, -18.1046}, extent = {{-12, -12}, {12, 12}})));
-      Modelica.Electrical.Analog.Sensors.VoltageSensor voltageSensor1 annotation(Placement(transformation(origin = {85, -35}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-      Modelica.Electrical.Analog.Interfaces.PositivePin pin_p annotation(Placement(visible = true, transformation(origin = {-100, 16}, extent = {{-12, -12}, {12, 12}}, rotation = 0), iconTransformation(origin = {104, -16}, extent = {{-12, -12}, {12, 12}}, rotation = 0)));
-      Modelica.Electrical.Analog.Interfaces.NegativePin pin_n annotation(Placement(visible = true, transformation(origin = {-100, -14}, extent = {{-12, -12}, {12, 12}}, rotation = 0), iconTransformation(origin = {104, -48}, extent = {{-12, -12}, {12, 12}}, rotation = 0)));
-      Modelica.Electrical.Analog.Ideal.IdealOpeningSwitch idealopeningswitch1 annotation(Placement(visible = true, transformation(origin = {8, 4}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-      Modelica.Electrical.Machines.BasicMachines.QuasiStationaryDCMachines.DC_PermanentMagnet dcpm annotation(Placement(visible = true, transformation(origin = {14, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-      Modelica.Electrical.Analog.Sources.ConstantVoltage constantvoltage1 annotation(Placement(visible = true, transformation(origin = {14, 84}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      m_int m_int1 annotation(Placement(visible = true, transformation(origin = {-34, 42}, extent = {{-14, -14}, {14, 14}}, rotation = 0)));
+      Modelica.Electrical.Analog.Sensors.CurrentSensor currentsensor1 annotation(Placement(visible = true, transformation(origin = {2, 20}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Interfaces.PositivePin vcc_ext annotation(Placement(visible = true, transformation(origin = {99.273, -14.1046}, extent = {{-12, -12}, {12, 12}}, rotation = 0), iconTransformation(extent = {{-12, -12}, {12, 12}}, rotation = 0)));
+      Modelica.Electrical.Analog.Interfaces.NegativePin gnd_ext annotation(Placement(visible = true, transformation(origin = {99.556, -40.9194}, extent = {{-12, -12}, {12, 12}}, rotation = 0), iconTransformation(extent = {{-12, -12}, {12, 12}}, rotation = 0)));
+      Modelica.Electrical.Analog.Sensors.VoltageSensor voltageSensor2 annotation(Placement(visible = true, transformation(origin = {-55, -31}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+      Modelica.Electrical.Analog.Sensors.VoltageSensor voltageSensor1 annotation(Placement(visible = true, transformation(origin = {17, -31}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+      Modelica.Electrical.Analog.Ideal.IdealOpeningSwitch idealopeningswitch1 annotation(Placement(visible = true, transformation(origin = {-28, -6}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 100e-12) annotation(Placement(visible = true, transformation(origin = {40, -34}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+      Modelica.Electrical.Analog.Basic.Capacitor capacitor2(C = 100e-12, v(start = 0)) annotation(Placement(visible = true, transformation(origin = {-70, -32}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+      Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 0.001) annotation(Placement(visible = true, transformation(origin = {-22, -44}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Resistor resistor2(R = 0.02) annotation(Placement(visible = true, transformation(origin = {18, 6}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+      Modelica.Electrical.Analog.Interfaces.NegativePin gnd_int annotation(Placement(visible = true, transformation(origin = {-100, -42}, extent = {{-12, -12}, {12, 12}}, rotation = 0), iconTransformation(extent = {{-12, -12}, {12, 12}}, rotation = 0)));
+      Modelica.Electrical.Analog.Interfaces.PositivePin vcc_int annotation(Placement(visible = true, transformation(origin = {-100, -14}, extent = {{-12, -12}, {12, 12}}, rotation = 0), iconTransformation(origin = {-100, -12}, extent = {{-12, -12}, {12, 12}}, rotation = 0)));
+      comm_int comm annotation(Placement(visible = true, transformation(origin = {-100, 64}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-102, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
     equation
-      connect(idealopeningswitch1.n, vcc) annotation(Line(points = {{18, 4}, {101, 4}, {101, -18}}, color = {0, 0, 255}));
-      connect(voltageSensor2.p, idealopeningswitch1.p) annotation(Line(points = {{-65, -15}, {-66, -15}, {-66, 4}, {-2, 4}}, color = {0, 0, 255}));
-      connect(voltageSensor2.p, pin_p) annotation(Line(points = {{-65, -15}, {-80, -15}, {-80, 16}, {-100, 16}, {-100, 16}}, color = {0, 0, 255}));
-      connect(voltageSensor2.n, pin_n) annotation(Line(points = {{-65, -35}, {-90, -35}, {-90, -14}, {-100, -14}, {-100, -14}}, color = {0, 0, 255}));
-      connect(voltageSensor1.p, vcc) annotation(Line(points = {{85, -25}, {85, -20}, {85, -18}, {96, -18}, {101, -18}}, thickness = 0.0625));
-      connect(voltageSensor1.n, gnd) annotation(Line(points = {{85, -45}, {85, -50}, {85, -51}, {97, -51}, {102, -51}}, thickness = 0.0625));
-      connect(voltageSensor2.n, iBoss_connector.GND) annotation(Line(points = {{-65, -35}, {-80, -35}, {-95, -35}, {-100, -0.3333358764648438}}, thickness = 0.0625), AutoRoute = false);
-      connect(voltageSensor1.n, voltageSensor2.n) annotation(Line(points = {{85, -45}, {85, -50}, {-65, -50}, {-65, -40}, {-65, -35}}, thickness = 0.0625));
-      annotation(voltageSensor2(p(v(flags = 2), i(flags = 2)), n(v(flags = 2), i(flags = 2)), v(flags = 2)), voltageSensor1(p(v(flags = 2), i(flags = 2)), n(v(flags = 2), i(flags = 2)), v(flags = 2)), variableResistor1(LossPower(flags = 2), R_actual(flags = 2)), ei_ctrl(y(flags = 2)), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}), graphics = {Rectangle(fillColor = {0, 0, 255}, fillPattern = FillPattern.Solid, extent = {{-16.6902, 93.63509999999999}, {7.63791, -93.3522}}), Rectangle(fillColor = {0, 0, 255}, fillPattern = FillPattern.Solid, extent = {{-22.0651, 48.0905}, {-16.6902, -49.2221}}), Rectangle(fillColor = {0, 0, 255}, fillPattern = FillPattern.Solid, extent = {{-33.9463, 21.2164}, {15.8416, -22.9137}}), Rectangle(lineColor = {0, 0, 0}, fillPattern = FillPattern.Solid, extent = {{24.0453, 66.1952}, {1.41443, 15.8416}}), Rectangle(lineColor = {0, 0, 0}, fillPattern = FillPattern.Solid, extent = {{1.9802, -9.6181}, {25.1768, -61.9519}}), Text(textString = "GND", fillColor = {0, 0, 255}, extent = {{39.0382, -33.9463}, {85.71429999999999, -64.7807}}), Text(textString = "VCC", fillColor = {0, 0, 255}, extent = {{41.5842, -0.282893}, {80.3395, -33.6634}})}), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}})), experiment(StopTime = 1, StartTime = 0));
+      connect(comm.set_ess, idealopeningswitch1.control) annotation(Line(points = {{-100, 64}, {-72, 64}, {-72, 16}, {-28, 16}, {-28, 1}}));
+      connect(m_int1.pos_sens, comm.get_pos) annotation(Line(points = {{-48, 34}, {-72, 34}, {-72, 64}, {-98, 64}, {-98, 64}}, color = {0, 0, 127}));
+      connect(comm.set_pos, m_int1.target_pos) annotation(Line(points = {{-100, 64}, {-72, 64}, {-72, 50}, {-48, 50}, {-48, 50}}));
+      connect(currentsensor1.p, resistor2.p) annotation(Line(points = {{12, 20}, {18, 20}, {18, 16}}, color = {0, 0, 255}));
+      connect(resistor2.n, voltageSensor1.p) annotation(Line(points = {{18, -4}, {18, -4}, {18, -22}, {18, -22}}, color = {0, 0, 255}));
+      connect(resistor1.n, voltageSensor1.n) annotation(Line(points = {{-12, -44}, {18, -44}, {18, -42}, {18, -42}, {18, -42}, {18, -42}}, color = {0, 0, 255}));
+      connect(resistor1.p, voltageSensor2.n) annotation(Line(points = {{-32, -44}, {-44, -44}, {-44, -44}, {-56, -44}, {-56, -42}, {-56, -42}, {-56, -42}, {-56, -42}}, color = {0, 0, 255}));
+      connect(voltageSensor2.p, capacitor2.p) annotation(Line(points = {{-55, -21}, {-62.5, -21}, {-62.5, -21}, {-70, -21}, {-70, -22}, {-70, -22}, {-70, -22}, {-70, -22}}, color = {0, 0, 255}));
+      connect(capacitor2.n, voltageSensor2.n) annotation(Line(points = {{-70, -42}, {-54, -42}, {-54, -42}, {-54, -42}}, color = {0, 0, 255}));
+      connect(voltageSensor1.p, capacitor1.p) annotation(Line(points = {{17, -21}, {28.5, -21}, {28.5, -21}, {40, -21}, {40, -24}, {40, -24}}, color = {0, 0, 255}));
+      connect(capacitor1.n, voltageSensor1.n) annotation(Line(points = {{40, -44}, {29, -44}, {29, -44}, {18, -44}, {18, -42}, {18, -42}, {18, -42}, {18, -42}}, color = {0, 0, 255}));
+      connect(vcc_int, voltageSensor2.p) annotation(Line(points = {{-100, -14}, {-54, -14}, {-54, -22}, {-54, -22}}, color = {0, 0, 255}));
+      connect(vcc_int, m_int1.pin_p) annotation(Line(points = {{-100, -14}, {-82, -14}, {-82, 44}, {-48, 44}}, color = {0, 0, 255}));
+      connect(voltageSensor2.p, idealopeningswitch1.p) annotation(Line(points = {{-55, -21}, {-54.5, -21}, {-54.5, -21}, {-54, -21}, {-54, -6}, {-38, -6}, {-38, -6}}, color = {0, 0, 255}));
+      connect(currentsensor1.n, idealopeningswitch1.n) annotation(Line(points = {{-8, 20}, {-13, 20}, {-13, -6}, {-18, -6}}, color = {0, 0, 255}));
+      connect(voltageSensor1.n, gnd_ext) annotation(Line(points = {{17, -41}, {100, -41}}, color = {0, 0, 255}));
+      connect(voltageSensor1.p, vcc_ext) annotation(Line(points = {{17, -21}, {17.5, -21}, {17.5, -21}, {18, -21}, {18, -14}, {102, -14}, {102, -14}}, color = {0, 0, 255}));
+      connect(gnd_int, voltageSensor2.n) annotation(Line(points = {{-100, -42}, {-56, -42}}, color = {0, 0, 255}));
+      connect(m_int1.pin_n, gnd_int) annotation(Line(points = {{-48, 39}, {-76, 39}, {-76, -42}, {-100, -42}}, color = {0, 0, 255}));
+      annotation(voltageSensor2(p(v(flags = 2), i(flags = 2)), n(v(flags = 2), i(flags = 2)), v(flags = 2)), voltageSensor1(p(v(flags = 2), i(flags = 2)), n(v(flags = 2), i(flags = 2)), v(flags = 2)), variableResistor1(LossPower(flags = 2), R_actual(flags = 2)), ei_ctrl(y(flags = 2)), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}})), experiment(StartTime = 0, StopTime = 100, Tolerance = 0.0001, Interval = 0.02), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2}), graphics = {Rectangle(origin = {-10, 2}, rotation = 180, fillColor = {0, 0, 255}, fillPattern = FillPattern.Solid, extent = {{-16.6902, 93.6351}, {7.63791, -93.3522}}), Rectangle(origin = {-10, 2}, rotation = 180, fillColor = {0, 0, 255}, fillPattern = FillPattern.Solid, extent = {{-22.0651, 48.0905}, {-16.6902, -49.2221}}), Rectangle(origin = {-10, 2}, rotation = 180, fillColor = {0, 0, 255}, fillPattern = FillPattern.Solid, extent = {{-33.9463, 21.2164}, {15.8416, -22.9137}}), Rectangle(origin = {-10, 2}, rotation = 180, fillPattern = FillPattern.Solid, extent = {{24.0453, 66.1952}, {1.41443, 15.8416}}), Rectangle(origin = {-10, 2}, rotation = 180, fillPattern = FillPattern.Solid, extent = {{1.9802, -9.6181}, {25.1768, -61.9519}}), Text(fillColor = {0, 0, 255}, extent = {{39.0382, -33.9463}, {85.7143, -64.7807}}, textString = "GND"), Text(fillColor = {0, 0, 255}, extent = {{41.5842, -0.282893}, {80.3395, -33.6634}}, textString = "VCC")}));
     end iboss_interface;
 
     model connectionelement
@@ -140,32 +156,54 @@ package ibossmo
       Modelica.Mechanics.Rotational.Components.IdealGear idealgear1(ratio = 22 * 400) annotation(Placement(visible = true, transformation(origin = {-4, -44}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       Modelica.Mechanics.Rotational.Components.Inertia inertia1(J = 0.1 * 0.03 ^ 2) annotation(Placement(visible = true, transformation(origin = {66, -44}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       Modelica.Mechanics.Rotational.Sensors.AngleSensor anglesensor1 annotation(Placement(visible = true, transformation(origin = {80, -16}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-      Modelica.Blocks.Sources.TimeTable timetable1(table = [0, 0; 5, 0; 5.01, 0.3; 20, 0.3; 20.01, 1.0; 45, 1.0; 45.0, 0; 70, 0.0]) annotation(Placement(visible = true, transformation(origin = {72, 46}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
       satcomponents.blocks.OnOffIdleController onoffidlecontroller1(bandwidth = 0.01) annotation(Placement(visible = true, transformation(origin = {34, 42}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
       Modelica.Blocks.Logical.LessThreshold lessthreshold1(threshold = -0.5) annotation(Placement(visible = true, transformation(origin = {8, 34}, extent = {{4, -4}, {-4, 4}}, rotation = 0)));
       Modelica.Blocks.Logical.GreaterThreshold greaterthreshold1(threshold = 0.5) annotation(Placement(visible = true, transformation(origin = {8, 48}, extent = {{4, -4}, {-4, 4}}, rotation = 0)));
-      Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-47, 59}, extent = {{-5, 5}, {5, -5}}, rotation = 0)));
       Modelica.Electrical.Machines.BasicMachines.QuasiStationaryDCMachines.DC_PermanentMagnet dcpm(VaNominal = 6, IaNominal = 0.012, wNominal = 6200 * 2 * 3.141 / 60, TaNominal = 338.15, Ra = 7, TaOperational = 60, TaRef = 273.15, La = 480e-6, ia(start = 0), Jr = 0.0081 * 0.01 ^ 2) annotation(Placement(visible = true, transformation(origin = {-56, -44}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-      Modelica.Electrical.Analog.Sources.ConstantVoltage constantvoltage1(V = 6) annotation(Placement(visible = true, transformation(origin = {-58, 46}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       satcomponents.power.HBridge hbridge1 annotation(Placement(visible = true, transformation(origin = {-58, 4}, extent = {{-10, 10}, {10, -10}}, rotation = -90)));
+      Modelica.Electrical.Analog.Interfaces.PositivePin pin_p annotation(Placement(visible = true, transformation(origin = {-100, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-102, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Interfaces.NegativePin pin_n annotation(Placement(visible = true, transformation(origin = {-100, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-100, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      output Modelica.Blocks.Interfaces.RealOutput pos_sens annotation(Placement(visible = true, transformation(origin = {-100, -60}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+      input Modelica.Blocks.Interfaces.RealInput target_pos(start = 0) annotation(Placement(visible = true, transformation(origin = {-100, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
     equation
+      connect(anglesensor1.phi, pos_sens) annotation(Line(points = {{80, -5}, {80, 2}, {92, 2}, {92, -60}, {-100, -60}}, color = {0, 0, 127}));
+      connect(target_pos, onoffidlecontroller1.reference) annotation(Line(points = {{-100, 60}, {58, 60}, {58, 48}, {48, 48}, {48, 48}}, color = {0, 0, 127}));
+      connect(onoffidlecontroller1.u, anglesensor1.phi) annotation(Line(points = {{46, 36}, {53, 36}, {53, 8}, {80, 8}, {80, -5}}, color = {0, 0, 127}));
+      connect(pin_n, hbridge1.pin_n) annotation(Line(points = {{-100, -20}, {-82, -20}, {-82, 24}, {-52, 24}, {-52, 14}, {-52, 14}}, color = {0, 0, 255}));
+      connect(pin_p, hbridge1.pin_p) annotation(Line(points = {{-100, 20}, {-64, 20}, {-64, 14}, {-64, 14}}, color = {0, 0, 255}));
       connect(lessthreshold1.y, hbridge1.reverse) annotation(Line(points = {{3.6, 34}, {-28.4, 34}, {-28.4, 7}, {-48.4, 7}}, color = {255, 0, 255}));
       connect(hbridge1.forward, greaterthreshold1.y) annotation(Line(points = {{-48, 0.8}, {-31, 0.8}, {-31, 2.8}, {-14, 2.8}, {-14, 49.8}, {-5, 49.8}, {-5, 47.8}, {4, 47.8}}, color = {255, 0, 255}));
       connect(dcpm.pin_ap, hbridge1.pin_n1) annotation(Line(points = {{-50, -34}, {-52, -34}, {-52, -6}}, color = {0, 0, 255}));
       connect(hbridge1.pin_p1, dcpm.pin_an) annotation(Line(points = {{-64, -6}, {-64, -34}, {-62, -34}}, color = {0, 0, 255}));
-      connect(constantvoltage1.n, hbridge1.pin_n) annotation(Line(points = {{-48, 46}, {-38, 46}, {-38, 28}, {-52, 28}, {-52, 14}}, color = {0, 0, 255}));
-      connect(hbridge1.pin_p, constantvoltage1.p) annotation(Line(points = {{-64.4, 14}, {-64.4, 22}, {-64.4, 22}, {-64.4, 30}, {-76.4, 30}, {-76.4, 46}, {-72.4, 46}, {-72.4, 46}, {-68.4, 46}}, color = {0, 0, 255}));
-      connect(ground1.p, constantvoltage1.n) annotation(Line(points = {{-47, 54}, {-48, 54}, {-48, 46}}, color = {0, 0, 255}));
       connect(dcpm.flange, idealgear1.flange_a) annotation(Line(points = {{-46, -44}, {-14, -44}}));
       connect(greaterthreshold1.u, onoffidlecontroller1.y) annotation(Line(points = {{12.8, 48}, {12.3, 48}, {12.3, 48}, {11.8, 48}, {11.8, 42}, {17.3, 42}, {17.3, 42}, {22.8, 42}}, color = {0, 0, 127}));
       connect(lessthreshold1.u, onoffidlecontroller1.y) annotation(Line(points = {{12.8, 34}, {17.8, 34}, {17.8, 42}, {22.8, 42}}, color = {0, 0, 127}));
-      connect(onoffidlecontroller1.reference, timetable1.y) annotation(Line(points = {{46, 48}, {53.5, 48}, {53.5, 46}, {61, 46}}, color = {0, 0, 127}));
-      connect(onoffidlecontroller1.u, anglesensor1.phi) annotation(Line(points = {{46, 36}, {49.5, 36}, {49.5, 36}, {53, 36}, {53, 8}, {80, 8}, {80, -5}}, color = {0, 0, 127}));
       connect(inertia1.flange_b, anglesensor1.flange) annotation(Line(points = {{76, -44}, {77, -44}, {77, -44}, {78, -44}, {78, -42}, {80, -42}, {80, -26}}));
       connect(bearingfriction1.flange_b, inertia1.flange_a) annotation(Line(points = {{40, -44}, {48, -44}, {48, -42}, {58, -42}, {58, -42}, {58, -42}, {58, -44}, {57, -44}, {57, -44}, {56, -44}}));
       connect(idealgear1.flange_b, bearingfriction1.flange_a) annotation(Line(points = {{6, -44}, {20, -44}}));
       annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})));
     end m_int;
+
+    expandable connector comm_int
+      Real get_pos;
+      Real set_pos(start = 0);
+      Boolean set_ess(start = false);
+      annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2}), graphics = {Polygon(origin = {6.94, -7.97}, fillColor = {192, 192, 255}, fillPattern = FillPattern.Solid, points = {{-86.9387, 7.96559}, {-46.9387, -72.0344}, {33.0613, -72.0344}, {73.0613, 7.96559}, {33.0613, 87.9656}, {-46.9387, 87.9656}, {-86.9387, 7.96559}})}), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2}), graphics = {Polygon(fillColor = {192, 192, 255}, fillPattern = FillPattern.Solid, points = {{-40, 0}, {-20, 40}, {20, 40}, {40, 0}, {20, -40}, {-20, -40}, {-40, 0}})}));
+    end comm_int;
+
+    package Examples
+      model interface_with_dcdc
+        m_int m_int1 annotation(Placement(visible = true, transformation(origin = {57, 3}, extent = {{-21, -21}, {21, 21}}, rotation = 0)));
+        Modelica.Blocks.Sources.TimeTable timetable1(table = [0, 0; 5, 0; 5.01, 0.3; 20, 0.3; 20.01, 1.0; 45, 1.0; 45.0, 0; 70, 0.0]) annotation(Placement(visible = true, transformation(origin = {-61, 55}, extent = {{-13, -13}, {13, 13}}, rotation = 0)));
+        satcomponents.power.dc_power dc_power1(c_int = 1e-6, r_internal = 10, v = 5) annotation(Placement(visible = true, transformation(origin = {-66, -32}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      equation
+        connect(dc_power1.pin_n, m_int1.pin_n) annotation(Line(points = {{-56, -36}, {18, -36}, {18, 0}, {36, 0}, {36, 0}}, color = {0, 0, 255}));
+        connect(dc_power1.pin_p, m_int1.pin_p) annotation(Line(points = {{-56, -26}, {-16, -26}, {-16, 8}, {36, 8}, {36, 8}, {36, 8}}, color = {0, 0, 255}));
+        connect(timetable1.y, m_int1.target_pos) annotation(Line(points = {{-47, 55}, {-20, 55}, {-20, 16}, {34, 16}, {34, 16}}, color = {0, 0, 127}));
+        annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-12, Interval = 0.02));
+      end interface_with_dcdc;
+      annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})));
+    end Examples;
   end components;
 
   package buildingblocks
@@ -531,16 +569,25 @@ package ibossmo
     model verosim_basic
       extends icons.basic;
       //extends basic;
-      Modelica.Electrical.Analog.Sources.ConstantVoltage constantvoltage1(V = 80) annotation(Placement(visible = true, transformation(origin = {-8, 2}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-      Modelica.Electrical.Analog.Basic.VariableResistor variableresistor1(useHeatPort = false) annotation(Placement(visible = true, transformation(origin = {-10, -42}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-      Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {18, -64}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-      Modelica.Blocks.Sources.Trapezoid trapezoid1(amplitude = 10000, rising = 10, width = 100, falling = 3, period = 200, offset = 1000) annotation(Placement(visible = true, transformation(origin = {-56, -24}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Blocks.Sources.TimeTable timetable1(table = [0, 0; 5, 0; 5.01, 0.3; 20, 0.3; 20.01, 1.0; 45, 1.0; 45.0, 0; 70, 0.0]) annotation(Placement(visible = true, transformation(origin = {-71, 73}, extent = {{-13, -13}, {13, 13}}, rotation = 0)));
+      Modelica.Blocks.Sources.BooleanConstant booleanconstant1[6] annotation(Placement(visible = true, transformation(origin = {-68, 2}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      components.iboss_interface int_zn annotation(Placement(visible = true, transformation(origin = {62, -26}, extent = {{-16, -16}, {16, 16}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {-34, -64}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Sources.RampVoltage rampvoltage1(V = 40, duration = 10, startTime = 1) annotation(Placement(visible = true, transformation(origin = {-62, -38}, extent = {{10, -10}, {-10, 10}}, rotation = 90)));
+      satcomponents.power.dcmodel.dcdc_ideal_simple_improved dcdc_ideal_simple_improved1 annotation(Placement(visible = true, transformation(origin = {-4, -32}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Electrical.Analog.Basic.Resistor resistor1 annotation(Placement(visible = true, transformation(origin = {22, -36}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
     equation
-      connect(trapezoid1.y, variableresistor1.R) annotation(Line(points = {{-45, -24}, {-38.75, -24}, {-38.75, -24}, {-30.5, -24}, {-30.5, -24}, {-10, -24}, {-10, -30}, {-12, -30}, {-12, -30}, {-12, -30}, {-12, -30}, {-10, -30}}, color = {0, 0, 127}));
-      connect(variableresistor1.n, ground1.p) annotation(Line(points = {{0, -42}, {2.25, -42}, {2.25, -42}, {2.5, -42}, {2.5, -42}, {9, -42}, {9, -42}, {18, -42}, {18, -54}, {18, -54}, {18, -54}, {18, -54}}, color = {0, 0, 255}));
-      connect(variableresistor1.n, constantvoltage1.n) annotation(Line(points = {{0, -42}, {7, -42}, {7, -42}, {14, -42}, {14, 2}, {2, 2}, {2, 2}, {4, 2}, {4, 2}, {2, 2}, {2, 2}}, color = {0, 0, 255}));
-      connect(constantvoltage1.p, variableresistor1.p) annotation(Line(points = {{-18, 2}, {-30, 2}, {-30, -42}, {-22, -42}, {-22, -42}}, color = {0, 0, 255}));
-      annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-06, Interval = 0.2));
+      connect(dcdc_ideal_simple_improved1.n2, resistor1.n) annotation(Line(points = {{5, -37}, {12, -37}, {12, -46}, {22, -46}, {22, -46}}, color = {0, 0, 255}));
+      connect(dcdc_ideal_simple_improved1.p2, resistor1.p) annotation(Line(points = {{5, -28}, {22, -28}, {22, -26}, {22, -26}}, color = {0, 0, 255}));
+      connect(rampvoltage1.n, int_zn.gnd_int) annotation(Line(points = {{-62, -48}, {-62, -48}, {-62, -74}, {46, -74}, {46, -32}, {46, -32}}, color = {0, 0, 255}));
+      connect(rampvoltage1.p, int_zn.vcc_int) annotation(Line(points = {{-62, -28}, {-60, -28}, {-60, -20}, {46, -20}, {46, -28}, {46, -28}}, color = {0, 0, 255}));
+      connect(rampvoltage1.p, dcdc_ideal_simple_improved1.p1) annotation(Line(points = {{-62, -28}, {-13, -28}}, color = {0, 0, 255}));
+      connect(dcdc_ideal_simple_improved1.n1, dcdc_ideal_simple_improved1.n2) annotation(Line(points = {{-13.2786, -36.0453}, {-14.2786, -36.0453}, {-14.2786, -46.0453}, {4.72136, -46.0453}, {4.72136, -41.5453}, {4.72136, -41.5453}, {4.72136, -37.0453}}, color = {0, 0, 255}));
+      connect(dcdc_ideal_simple_improved1.n1, ground1.p) annotation(Line(points = {{-13, -36}, {-22, -36}, {-22, -54}, {-34, -54}}, color = {0, 0, 255}));
+      connect(rampvoltage1.n, ground1.p) annotation(Line(points = {{-62, -48}, {-34, -48}, {-34, -54}, {-34, -54}}, color = {0, 0, 255}));
+      connect(booleanconstant1[1].y, int_zn.comm.set_ess) annotation(Line(points = {{-57, 2}, {12, 2}, {12, -16}, {46, -16}, {46, -16}}, color = {255, 0, 255}));
+      connect(timetable1.y, int_zn.comm.set_pos) annotation(Line(points = {{-57, 73}, {26, 73}, {26, -16}, {46, -16}, {46, -16}}, color = {0, 0, 127}));
+      annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-12, Interval = 0.02));
     end verosim_basic;
 
     model basic_mass
