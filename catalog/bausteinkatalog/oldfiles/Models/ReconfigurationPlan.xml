@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ReconfigurationPlan
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:xlink="http://www.w3.org/1999/xlink" 
+	xmlns:VSD="http://www.VEROSIM.de/namespaces/VSD" 
+	xmlns="http://www.VEROSIM.de/namespaces/IBOSS" 
+	xsi:schemaLocation="http://www.VEROSIM.de/namespaces/IBOSS  ../XSD/iboss.xsd">
+	
+	<initialState xlink:href="#id100"/>
+	<finalState xlink:href="#id900"/>
+	<satellites>
+		<Satellite VSD:id="id100">
+			<VSD:name>Testsatellit 1</VSD:name>
+			<orbit>LEO</orbit>
+			<buildingBlocks>
+				<BuildingBlock VSD:id="id150">
+					<VSD:flags>Show</VSD:flags>
+					<position unit="cm">0.0 0.0 0.0</position>
+					<orientation unit="rad">0.0 0.0 0.0</orientation>
+					<interfaces>
+						<Interface VSD:id="id110">
+							<faceId>6</faceId>
+							<Connection>Locked</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Positive</Direction>
+							<neighbor xlink:href="#id113"/>
+						</Interface>
+						<Interface VSD:id="id111">
+							<faceId>0</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+					</interfaces>
+					<currentPowerConsumption unit="W">0.1
+					</currentPowerConsumption>
+					<definition xlink:href="../Catalogs/bbcatalog.xml#id3"/>
+				</BuildingBlock>
+				<BuildingBlock VSD:id="id101">
+					<position unit="cm">0.0 50.0 0.0</position>
+					<orientation unit="rad">0.0 0.0 0.0</orientation>
+					<interfaces>
+						<Interface VSD:id="id112">
+							<faceId>6</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Positive</Direction>
+						</Interface>
+						<Interface VSD:id="id113">
+							<faceId>6</faceId>
+							<Connection>Locked</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Negative</Direction>
+							<neighbor xlink:href="#id110"/>
+						</Interface>
+						<Interface VSD:id="id102">
+							<faceId>0</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">5.0 0.0 0.0</Offset>
+							<Axis>Z</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+					</interfaces>
+					<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
+				</BuildingBlock>
+			</buildingBlocks>
+		</Satellite>
+		<Satellite VSD:id="id200">
+			<VSD:name>Testsatellit 2</VSD:name>
+			<orbit>LEO</orbit>
+			<buildingBlocks>
+				<BuildingBlock VSD:id="id250">
+					<VSD:flags>Show</VSD:flags>
+					<position unit="cm">0.0 0.0 0.0</position>
+					<orientation unit="rad">0.0 0.0 0.0</orientation>
+					<interfaces>
+						<Interface VSD:id="id210">
+							<faceId>6</faceId>
+							<Connection>Locked</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Positive</Direction>
+							<neighbor xlink:href="#id213"/>
+						</Interface>
+						<Interface VSD:id="id211">
+							<faceId>0</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+					</interfaces>
+					<currentPowerConsumption unit="W">0.1
+					</currentPowerConsumption>
+					<definition xlink:href="../Catalogs/bbcatalog.xml#id3"/>
+				</BuildingBlock>
+				<BuildingBlock VSD:id="id201">
+					<position unit="cm">0.0 50.0 0.0</position>
+					<orientation unit="rad">0.0 0.0 0.0</orientation>
+					<interfaces>
+						<Interface VSD:id="id212">
+							<faceId>6</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Positive</Direction>
+						</Interface>
+						<Interface VSD:id="id213">
+							<faceId>6</faceId>
+							<Connection>Locked</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Negative</Direction>
+							<neighbor xlink:href="#id210"/>
+						</Interface>
+						<Interface VSD:id="id202">
+							<faceId>0</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">5.0 0.0 0.0</Offset>
+							<Axis>Z</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+					</interfaces>
+					<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
+				</BuildingBlock>
+			</buildingBlocks>
+		</Satellite>
+		<Satellite VSD:id="id300">
+			<VSD:name>Testsatellit 3</VSD:name>
+			<orbit>LEO</orbit>
+			<buildingBlocks>
+				<BuildingBlock VSD:id="id350">
+					<VSD:flags>Show</VSD:flags>
+					<position unit="cm">0.0 0.0 0.0</position>
+					<orientation unit="rad">0.0 0.0 0.0</orientation>
+					<interfaces>
+						<Interface VSD:id="id310">
+							<faceId>6</faceId>
+							<Connection>Locked</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Positive</Direction>
+							<neighbor xlink:href="#id313"/>
+						</Interface>
+						<Interface VSD:id="id311">
+							<faceId>0</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+					</interfaces>
+					<currentPowerConsumption unit="W">0.1
+					</currentPowerConsumption>
+					<definition xlink:href="../Catalogs/bbcatalog.xml#id3"/>
+				</BuildingBlock>
+				<BuildingBlock VSD:id="id301">
+					<position unit="cm">0.0 50.0 0.0</position>
+					<orientation unit="rad">0.0 0.0 0.0</orientation>
+					<interfaces>
+						<Interface VSD:id="id312">
+							<faceId>6</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Positive</Direction>
+						</Interface>
+						<Interface VSD:id="id313">
+							<faceId>6</faceId>
+							<Connection>Locked</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Negative</Direction>
+							<neighbor xlink:href="#id310"/>
+						</Interface>
+						<Interface VSD:id="id302">
+							<faceId>0</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">5.0 0.0 0.0</Offset>
+							<Axis>Z</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+					</interfaces>
+					<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
+				</BuildingBlock>
+			</buildingBlocks>
+		</Satellite>
+		<Satellite VSD:id="id400">
+			<VSD:name>Testsatellit 4</VSD:name>
+			<orbit>LEO</orbit>
+			<buildingBlocks>
+				<BuildingBlock VSD:id="id450">
+					<VSD:flags>Show</VSD:flags>
+					<position unit="cm">0.0 0.0 0.0</position>
+					<orientation unit="rad">0.0 0.0 0.0</orientation>
+					<interfaces>
+						<Interface VSD:id="id410">
+							<faceId>6</faceId>
+							<Connection>Locked</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Positive</Direction>
+						</Interface>
+						<Interface VSD:id="id411">
+							<faceId>0</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+					</interfaces>
+					<currentPowerConsumption unit="W">0.1
+					</currentPowerConsumption>
+					<definition xlink:href="../Catalogs/bbcatalog.xml#id3"/>
+				</BuildingBlock>
+				<BuildingBlock VSD:id="id401">
+					<position unit="cm">0.0 50.0 0.0</position>
+					<orientation unit="rad">0.0 0.0 0.0</orientation>
+					<interfaces>
+						<Interface VSD:id="id412">
+							<faceId>6</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Positive</Direction>
+						</Interface>
+						<Interface VSD:id="id413">
+							<faceId>6</faceId>
+							<Connection>Locked</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+						<Interface VSD:id="id402">
+							<faceId>0</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">5.0 0.0 0.0</Offset>
+							<Axis>Z</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+					</interfaces>
+					<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
+				</BuildingBlock>
+			</buildingBlocks>
+		</Satellite>
+		<Satellite VSD:id="id500">
+			<VSD:name>Testsatellit 5</VSD:name>
+			<orbit>LEO</orbit>
+			<buildingBlocks>
+				<BuildingBlock VSD:id="id550">
+					<VSD:flags>Show</VSD:flags>
+					<position unit="cm">0.0 0.0 0.0</position>
+					<orientation unit="rad">0.0 0.0 0.0</orientation>
+					<interfaces>
+						<Interface VSD:id="id510">
+							<faceId>6</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Positive</Direction>
+						</Interface>
+						<Interface VSD:id="id511">
+							<faceId>0</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+					</interfaces>
+					<currentPowerConsumption unit="W">0.1
+					</currentPowerConsumption>
+					<definition xlink:href="../Catalogs/bbcatalog.xml#id3"/>
+				</BuildingBlock>
+				<BuildingBlock VSD:id="id501">
+					<position unit="cm">0.0 50.0 0.0</position>
+					<orientation unit="rad">0.0 0.0 0.0</orientation>
+					<interfaces>
+						<Interface VSD:id="id512">
+							<faceId>6</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Positive</Direction>
+						</Interface>
+						<Interface VSD:id="id513">
+							<faceId>6</faceId>
+							<Connection>Locked</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+						<Interface VSD:id="id502">
+							<faceId>0</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">5.0 0.0 0.0</Offset>
+							<Axis>Z</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+					</interfaces>
+					<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
+				</BuildingBlock>
+			</buildingBlocks>
+		</Satellite>
+		<Satellite VSD:id="id600">
+			<VSD:name>Testsatellit 6</VSD:name>
+			<orbit>LEO</orbit>
+			<buildingBlocks>
+				<BuildingBlock VSD:id="id650">
+					<VSD:flags>Show</VSD:flags>
+					<position unit="cm">0.0 0.0 0.0</position>
+					<orientation unit="rad">0.0 0.0 0.0</orientation>
+					<interfaces>
+						<Interface VSD:id="id610">
+							<faceId>6</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Positive</Direction>
+						</Interface>
+						<Interface VSD:id="id611">
+							<faceId>0</faceId>
+							<Connection>Locked</Connection>
+							<Offset unit="mm">5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+					</interfaces>
+					<currentPowerConsumption unit="W">0.1
+					</currentPowerConsumption>
+					<definition xlink:href="../Catalogs/bbcatalog.xml#id3"/>
+				</BuildingBlock>
+				<BuildingBlock VSD:id="id601">
+					<position unit="cm">0.0 -50.0 0.0</position>
+					<orientation unit="rad">0.0 0.0 0.0</orientation>
+					<interfaces>
+						<Interface VSD:id="id612">
+							<faceId>6</faceId>
+							<Connection>Locked</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Positive</Direction>
+						</Interface>
+						<Interface VSD:id="id613">
+							<faceId>6</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+						<Interface VSD:id="id602">
+							<faceId>0</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">5.0 0.0 0.0</Offset>
+							<Axis>Z</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+					</interfaces>
+					<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
+				</BuildingBlock>
+			</buildingBlocks>
+		</Satellite>
+		<Satellite VSD:id="id700">
+			<VSD:name>Testsatellit 7</VSD:name>
+			<orbit>LEO</orbit>
+			<buildingBlocks>
+				<BuildingBlock VSD:id="id750">
+					<VSD:flags>Show</VSD:flags>
+					<position unit="cm">0.0 0.0 0.0</position>
+					<orientation unit="rad">0.0 0.0 0.0</orientation>
+					<interfaces>
+						<Interface VSD:id="id710">
+							<faceId>6</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Positive</Direction>
+						</Interface>
+						<Interface VSD:id="id711">
+							<faceId>0</faceId>
+							<Connection>Locked</Connection>
+							<Offset unit="mm">5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Negative</Direction>
+							<neighbor xlink:href="#id712"/>
+						</Interface>
+					</interfaces>
+					<currentPowerConsumption unit="W">0.1
+					</currentPowerConsumption>
+					<definition xlink:href="../Catalogs/bbcatalog.xml#id3"/>
+				</BuildingBlock>
+				<BuildingBlock VSD:id="id701">
+					<position unit="cm">0.0 -50.0 0.0</position>
+					<orientation unit="rad">0.0 0.0 0.0</orientation>
+					<interfaces>
+						<Interface VSD:id="id712">
+							<faceId>6</faceId>
+							<Connection>Locked</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Positive</Direction>
+							<neighbor xlink:href="#id711"/>
+						</Interface>
+						<Interface VSD:id="id713">
+							<faceId>6</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+						<Interface VSD:id="id702">
+							<faceId>0</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">5.0 0.0 0.0</Offset>
+							<Axis>Z</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+					</interfaces>
+					<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
+				</BuildingBlock>
+			</buildingBlocks>
+		</Satellite>
+		<Satellite VSD:id="id800">
+			<VSD:name>Testsatellit 8</VSD:name>
+			<orbit>LEO</orbit>
+			<buildingBlocks>
+				<BuildingBlock VSD:id="id850">
+					<VSD:flags>Show</VSD:flags>
+					<position unit="cm">0.0 0.0 0.0</position>
+					<orientation unit="rad">0.0 0.0 0.0</orientation>
+					<interfaces>
+						<Interface VSD:id="id810">
+							<faceId>6</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Positive</Direction>
+						</Interface>
+						<Interface VSD:id="id811">
+							<faceId>0</faceId>
+							<Connection>Locked</Connection>
+							<Offset unit="mm">5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Negative</Direction>
+							<neighbor xlink:href="#id812"/>
+						</Interface>
+					</interfaces>
+					<currentPowerConsumption unit="W">0.1
+					</currentPowerConsumption>
+					<definition xlink:href="../Catalogs/bbcatalog.xml#id3"/>
+				</BuildingBlock>
+				<BuildingBlock VSD:id="id801">
+					<position unit="cm">0.0 -50.0 0.0</position>
+					<orientation unit="rad">0.0 0.0 0.0</orientation>
+					<interfaces>
+						<Interface VSD:id="id812">
+							<faceId>6</faceId>
+							<Connection>Locked</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Positive</Direction>
+							<neighbor xlink:href="#id811"/>
+						</Interface>
+						<Interface VSD:id="id813">
+							<faceId>6</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+						<Interface VSD:id="id802">
+							<faceId>0</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">5.0 0.0 0.0</Offset>
+							<Axis>Z</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+					</interfaces>
+					<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
+				</BuildingBlock>
+			</buildingBlocks>
+		</Satellite>
+		<Satellite VSD:id="id900">
+			<VSD:name>Testsatellit 9</VSD:name>
+			<orbit>LEO</orbit>
+			<buildingBlocks>
+				<BuildingBlock VSD:id="id950">
+					<VSD:flags>Show</VSD:flags>
+					<position unit="cm">0.0 0.0 0.0</position>
+					<orientation unit="rad">0.0 0.0 0.0</orientation>
+					<interfaces>
+						<Interface VSD:id="id910">
+							<faceId>6</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Positive</Direction>
+						</Interface>
+						<Interface VSD:id="id911">
+							<faceId>0</faceId>
+							<Connection>Locked</Connection>
+							<Offset unit="mm">5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Negative</Direction>
+							<neighbor xlink:href="#id912"/>
+						</Interface>
+					</interfaces>
+					<currentPowerConsumption unit="W">0.1
+					</currentPowerConsumption>
+					<definition xlink:href="../Catalogs/bbcatalog.xml#id3"/>
+				</BuildingBlock>
+				<BuildingBlock VSD:id="id901">
+					<position unit="cm">0.0 -50.0 0.0</position>
+					<orientation unit="rad">0.0 0.0 0.0</orientation>
+					<interfaces>
+						<Interface VSD:id="id912">
+							<faceId>6</faceId>
+							<Connection>Locked</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Positive</Direction>
+							<neighbor xlink:href="#id911"/>
+						</Interface>
+						<Interface VSD:id="id913">
+							<faceId>6</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">-5.0 0.0 0.0</Offset>
+							<Axis>Y</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+						<Interface VSD:id="id902">
+							<faceId>0</faceId>
+							<Connection>Valid</Connection>
+							<Offset unit="mm">5.0 0.0 0.0</Offset>
+							<Axis>Z</Axis>
+							<Direction>Negative</Direction>
+						</Interface>
+					</interfaces>
+					<definition xlink:href="../Catalogs/bbcatalog.xml#id2"/>
+				</BuildingBlock>
+			</buildingBlocks>
+		</Satellite>
+	</satellites>
+	<actions>
+		<ActionApproachTake>
+			<startState xlink:href="#id100"/>
+			<targetState xlink:href="#id200"/>
+			<BuildingBlock xlink:href="#id101"/>
+			<Interface xlink:href="#id102"/>
+		</ActionApproachTake>
+		<ActionDock>
+			<startState xlink:href="#id200"/>
+			<targetState xlink:href="#id300"/>
+			<actionParticipants>
+				<ActionParticipantManipulator/>
+			</actionParticipants>
+			<actionParticipants>
+				<ActionParticipantInterface>
+					<BuildingBlock xlink:href="#id201"/>
+					<Interface xlink:href="#id202"/>
+				</ActionParticipantInterface>
+			</actionParticipants>
+		</ActionDock>
+		<ActionUndock>
+			<startState xlink:href="#id300"/>
+			<targetState xlink:href="#id400"/>
+			<actionParticipants>
+				<ActionParticipantInterface>
+					<BuildingBlock xlink:href="#id350"/>
+					<Interface xlink:href="#id310"/>
+				</ActionParticipantInterface>
+			</actionParticipants>
+			<actionParticipants>
+				<ActionParticipantInterface>
+					<BuildingBlock xlink:href="#id301"/>
+					<Interface xlink:href="#id313"/>
+				</ActionParticipantInterface>
+			</actionParticipants>
+		</ActionUndock>
+		<ActionDeproachTake>
+			<startState xlink:href="#id400"/>
+			<targetState xlink:href="#id500"/>
+			<BuildingBlock xlink:href="#id401"/>
+			<Interface xlink:href="#id413"/>
+			<targetPosition unit="cm">
+				0.0 0.0 0.0
+			</targetPosition>
+			<targetOrientation unit="rad">
+				0.0 0.0 0.0
+			</targetOrientation>
+		</ActionDeproachTake>
+		<ActionApproachPlace>
+			<startState xlink:href="#id500"/>
+			<targetState xlink:href="#id600"/>
+			<BuildingBlock xlink:href="#id501"/>
+			<Interface xlink:href="#id502"/>
+			<targetPosition unit="cm">
+				0.0 -50.0 0.0
+			</targetPosition>
+			<targetOrientation unit="rad">
+				0.0 0.0 0.0
+			</targetOrientation>
+		</ActionApproachPlace>
+		<ActionDock>
+			<startState xlink:href="#id600"/>
+			<targetState xlink:href="#id700"/>
+			<actionParticipants>
+				<ActionParticipantInterface>
+					<BuildingBlock xlink:href="#id601"/>
+					<Interface xlink:href="#id612"/>
+				</ActionParticipantInterface>
+			</actionParticipants>
+			<actionParticipants>
+				<ActionParticipantInterface>
+					<BuildingBlock xlink:href="#id650"/>
+					<Interface xlink:href="#id611"/>
+				</ActionParticipantInterface>
+			</actionParticipants>
+		</ActionDock>
+		<ActionUndock>
+			<startState xlink:href="#id700"/>
+			<targetState xlink:href="#id800"/>
+			<actionParticipants>
+				<ActionParticipantManipulator/>
+			</actionParticipants>
+			<actionParticipants>
+				<ActionParticipantInterface>
+					<BuildingBlock xlink:href="#id701"/>
+					<Interface xlink:href="#id702"/>
+				</ActionParticipantInterface>
+			</actionParticipants>
+		</ActionUndock>
+		<ActionDeproachPlace>
+			<startState xlink:href="#id800"/>
+			<targetState xlink:href="#id900"/>
+			<BuildingBlock xlink:href="#id801"/>
+			<Interface xlink:href="#id802"/>
+			<targetPosition unit="cm">
+				0.0 0.0 0.0
+			</targetPosition>
+			<tagretOrientation unit="rad">
+				0.0 0.0 0.0
+			</tagretOrientation>
+		</ActionDeproachPlace>
+	</actions>
+</ReconfigurationPlan>

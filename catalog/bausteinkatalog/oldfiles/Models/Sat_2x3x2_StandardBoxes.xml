@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Satellite VSD:id="id1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:VSD="http://www.VEROSIM.de/namespaces/VSD" xmlns="http://www.VEROSIM.de/namespaces/IBOSS" xsi:schemaLocation="http://www.VEROSIM.de/namespaces/IBOSS ../XSD/iboss.xsd">
+	<VSD:name>Sat_2x3x2_StandardBoxes</VSD:name>
+	<orbit>LEO</orbit>
+	<buildingBlocks>
+		<BuildingBlock VSD:id="id111">
+			<VSD:name>BB 1.1.1</VSD:name>
+			<position unit="cm">0 0 0</position>
+			<orientation unit="deg">0 0 0</orientation>
+			<definition xlink:href="../Catalogs/bbcatalog.xml#id3" VSD:id="id1110"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id211">
+			<VSD:name>BB 2.1.1</VSD:name>
+			<position unit="cm">50 0 0</position>
+			<orientation unit="rad">0 0 0</orientation>
+			<definition xlink:href="../Catalogs/bbcatalog.xml#id3" VSD:id="id2110"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id121">
+			<VSD:name>BB 1.2.1</VSD:name>
+			<position unit="cm">0 50 0</position>
+			<orientation unit="rad">0 0 0</orientation>
+			<definition xlink:href="../Catalogs/bbcatalog.xml#id3" VSD:id="id1210"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id221">
+			<VSD:name>BB 2.2.1</VSD:name>
+			<position unit="cm">50 50 0</position>
+			<orientation unit="rad">0 0 0</orientation>
+			<definition xlink:href="../Catalogs/bbcatalog.xml#id3" VSD:id="id2210"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id131">
+			<VSD:name>BB 1.3.1</VSD:name>
+			<position unit="cm">0 100 0</position>
+			<orientation unit="rad">0 0 0</orientation>
+			<definition xlink:href="../Catalogs/bbcatalog.xml#id3" VSD:id="id1310"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id231">
+			<VSD:name>BB 2.3.1</VSD:name>
+			<position unit="cm">50 100 0</position>
+			<orientation unit="rad">0 0 0</orientation>
+			<definition xlink:href="../Catalogs/bbcatalog.xml#id3" VSD:id="id2310"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id112">
+			<VSD:name>BB 1.1.2</VSD:name>
+			<position unit="cm">0 0 50</position>
+			<orientation unit="deg">0 0 0</orientation>
+			<definition xlink:href="../Catalogs/bbcatalog.xml#id3" VSD:id="id1120"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id212">
+			<VSD:name>BB 2.1.2</VSD:name>
+			<position unit="cm">50 0 50</position>
+			<orientation unit="rad">0 0 0</orientation>
+			<definition xlink:href="../Catalogs/bbcatalog.xml#id3" VSD:id="id2120"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id122">
+			<VSD:name>BB 1.2.2</VSD:name>
+			<position unit="cm">0 50 50</position>
+			<orientation unit="rad">0 0 0</orientation>
+			<definition xlink:href="../Catalogs/bbcatalog.xml#id3" VSD:id="id1220"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id222">
+			<VSD:name>BB 2.2.2</VSD:name>
+			<position unit="cm">50 50 50</position>
+			<orientation unit="rad">0 0 0</orientation>
+			<definition xlink:href="../Catalogs/bbcatalog.xml#id3" VSD:id="id2220"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id132">
+			<VSD:name>BB 1.3.2</VSD:name>
+			<position unit="cm">0 100 50</position>
+			<orientation unit="rad">0 0 0</orientation>
+			<definition xlink:href="../Catalogs/bbcatalog.xml#id3" VSD:id="id1320"/>
+		</BuildingBlock>
+		<BuildingBlock VSD:id="id232">
+			<VSD:name>BB 2.3.2</VSD:name>
+			<position unit="cm">50 100 50</position>
+			<orientation unit="rad">0 0 0</orientation>
+			<definition xlink:href="../Catalogs/bbcatalog.xml#id3" VSD:id="id2320"/>
+		</BuildingBlock>
+	</buildingBlocks>
+</Satellite>

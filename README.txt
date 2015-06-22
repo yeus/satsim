@@ -8,3 +8,10 @@ FAQ
     
 - In meiner Simulation treten Singularitäten auf
     - Es könnte sein, daß die Simulationsschrittweite zu groß eingestellt ist.
+
+Installation
+============
+
+Virtual Satellite: A Satellite simulation Software
+
+How to create a new satellite simulation

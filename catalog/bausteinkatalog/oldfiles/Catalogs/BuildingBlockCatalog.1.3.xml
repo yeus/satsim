@@ -1,0 +1,1561 @@
+<?xml version="1.0" ?>
+<Catalog
+	xmlns="http://www.VEROSIM.de/namespaces/IBOSS"
+	xmlns:VSD="http://www.VEROSIM.de/namespaces/VSD"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.VEROSIM.de/namespaces/IBOSS ../XSD/iboss.xsd">
+	<!--
+        * Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)
+        * Date : 2014/01/14
+        * Version: 1.3
+        * All code (c)2013 Technische UniversitÃ¤t Berlin, ILR, Fachgebiet Raumfahrttechnik, all rights reserved-->
+	<version>1.3</version>
+	<componentDefs/>
+	<buildingBlockDefs>
+		<BuildingBlockDef VSD:id="id65">
+			<VSD:name>Batteriebaustein</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">33.37</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">
+				0.85 0.0 0.0
+				0.0 0.85 0.0
+				0.0 0.0 0.85
+			</inertiaTensor>
+			<geometry xlink:href="../../Models/Library/BuildingBlocks/EnMAP_Battery.mod"/>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>20</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id25"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>20</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id25"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id7"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id7"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id73">
+			<VSD:name>Control Momentum Gyroscope Baustein</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">53.05</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">
+				0.85 0.0 0.0
+				0.0 0.85 0.0
+				0.0 0.0 0.85
+			</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id8"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id8"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>80</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>80</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>10</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>10</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id9"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id9"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id70">
+			<VSD:name>Drallradbaustein</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">27.67</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">
+				0.85 0.0 0.0
+				0.0 0.85 0.0
+				0.0 0.0 0.85</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id10"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id10"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id57">
+			<VSD:name>elektrischer Antriebs-Baustein</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">105.36</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">
+				0.85 0.0 0.0
+				0.0 0.85 0.0
+				0.0 0.0 0.85
+			</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id16"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id16"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id20"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id20"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>104</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>104</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>13</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>13</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id39"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id39"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id30"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id30"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id74">
+			<VSD:name>Erdsensor-Baustein</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">13.35</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">
+				0.85 0.0 0.0
+				0.0 0.85 0.0
+				0.0 0.0 0.85
+			</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id15"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id15"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id59">
+			<VSD:name>GPS-Baustein (GPS und GLONASS)</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">9.85</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">
+				0.85 0.0 0.0
+				0.0 0.85 0.0
+				0.0 0.0 0.85
+			</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id54">
+			<VSD:name>GPS-Baustein (Standard)</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">14.5</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id17"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id17"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id19"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id19"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id64">
+			<VSD:name>Inertial Measurement Unit Baustein (sehr genau)</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">28.95</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>80</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>80</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>10</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>10</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id22"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id22"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id60">
+			<VSD:name>Inertial Measurement Unit Baustein (Standard)</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">15.37</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id23"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id23"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id71">
+			<VSD:name>Kaltgasantriebs-Baustein 1</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">76.58</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>72</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>72</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id24"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id24"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>9</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>9</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id39"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id39"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id72">
+			<VSD:name>Kaltgasantriebs-Baustein 2</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">77.28</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id36"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id36"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>72</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>72</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id24"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id24"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>9</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>9</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id39"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id39"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id51">
+			<VSD:name>Kernstruktur2x2x2</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">80.0</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">0.85 0.0 0.0
+					0.0 0.85 0.0
+					0.0 0.0 0.85</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id42"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id42"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>12</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>12</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id52">
+			<VSD:name>Kernstruktur2x2x3</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">80.0</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">0.85 0.0 0.0
+				0.0 0.85 0.0
+				0.0 0.0 0.85</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id42"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id42"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>12</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>12</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id58">
+			<VSD:name>Magnetorquer-Baustein</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">23.85</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">0.85 0.0 0.0
+				0.0 0.85 0.0
+				0.0 0.0 0.85</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id26"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id26"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id27"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id27"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id69">
+			<VSD:name>Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">84.58</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">0.85 0.0 0.0
+				0.0 0.85 0.0
+				0.0 0.0 0.85</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>72</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>72</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id40"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id40"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>9</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>9</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id28"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id28"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id49">
+			<VSD:name>OBC/SMU-Baustein</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">20.67</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">0.85 0.0 0.0
+				0.0 0.85 0.0
+				0.0 0.0 0.85</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id34"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id34"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id68">
+			<VSD:name>PCU-Baustein</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">36.17</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">0.85 0.0 0.0
+				0.0 0.85 0.0
+				0.0 0.0 0.85</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id29"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id29"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id62">
+			<VSD:name>Reaktionsradbaustein</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">27.67</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">0.85 0.0 0.0
+				0.0 0.85 0.0
+				0.0 0.0 0.85</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id31"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id31"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id63">
+			<VSD:name>Solargeneratorbaustein (entfaltbar)</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">5.82</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">0.85 0.0 0.0
+				0.0 0.85 0.0
+				0.0 0.0 0.85</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id36"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id36"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id46"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id46"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>8</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>8</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id66">
+			<VSD:name>Solargeneratorbaustein (entfaltbar, nachführbar)</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">61.72</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">0.85 0.0 0.0
+				0.0 0.85 0.0
+				0.0 0.0 0.85</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id33"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id33"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id13"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id13"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>48</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>6</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id11"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id11"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id55">
+			<VSD:name>Sternsensorbaustein</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">9.21</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">0.85 0.0 0.0
+				0.0 0.85 0.0
+				0.0 0.0 0.85</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id38"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id38"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>24</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>24</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id56">
+			<VSD:name>test Lageregelungsbaustein</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">4.1</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">0.85 0.0 0.0
+				0.0 0.85 0.0
+				0.0 0.0 0.85</inertiaTensor>
+			<components>
+				<AOCSActuator>
+					<position unit="m">0.5 0.0 1.0</position>
+					<thrustVector>0.0 1.0 -1.0</thrustVector> <!-- ra: Ich fände es sinnvoller, wenn man das über die orientation lösen würde, z.B. thrust lokal immer in z-Richtung und dann den AOCSActuator drehen -->
+					<definition xlink:href="../Catalogs/SpecificComponentCatalog.1.3.xml#id47"/>
+				</AOCSActuator>
+				<AOCSActuator>
+					<position unit="m">0.5 0.0 1.0</position>
+					<thrustVector>0.0 1.0 -1.0</thrustVector>
+					<definition xlink:href="../Catalogs/SpecificComponentCatalog.1.3.xml#id47"/>
+				</AOCSActuator>
+				<AOCSActuator>
+					<position unit="m">1.0 0.5 1.0</position>
+					<thrustVector>-1.0 0.0 -1.0</thrustVector>
+					<definition xlink:href="../Catalogs/SpecificComponentCatalog.1.3.xml#id47"/>
+				</AOCSActuator>
+				<AOCSActuator>
+					<position unit="m">1.0 0.5 1.0</position>
+					<thrustVector>-1.0 0.0 -1.0</thrustVector>
+					<definition xlink:href="../Catalogs/SpecificComponentCatalog.1.3.xml#id47"/>
+				</AOCSActuator>
+				<AOCSActuator>
+					<position unit="m">0.5 1.0 1.0</position>
+					<thrustVector>0.0 -1.0 -1.0</thrustVector>
+					<definition xlink:href="../Catalogs/SpecificComponentCatalog.1.3.xml#id47"/>
+				</AOCSActuator>
+				<AOCSActuator>
+					<position unit="m">0.5 1.0 1.0</position>
+					<thrustVector>0.0 -1.0 -1.0</thrustVector>
+					<definition xlink:href="../Catalogs/SpecificComponentCatalog.1.3.xml#id47"/>
+				</AOCSActuator>
+				<AOCSActuator>
+					<position unit="m">0.0 0.5 1.0</position>
+					<thrustVector>1.0 0.0 -1.0</thrustVector>
+					<definition xlink:href="../Catalogs/SpecificComponentCatalog.1.3.xml#id47"/>
+				</AOCSActuator>
+				<AOCSActuator>
+					<position unit="m">0.0 0.5 1.0</position>
+					<thrustVector>1.0 0.0 -1.0</thrustVector>
+					<definition xlink:href="../Catalogs/SpecificComponentCatalog.1.3.xml#id47"/>
+				</AOCSActuator>
+				<AOCSActuator>
+					<position unit="m">0.5 0.5 1.0</position>
+					<thrustVector>0.0 0.0 -1.0</thrustVector>
+					<definition xlink:href="../Catalogs/SpecificComponentCatalog.1.3.xml#id47"/>
+				</AOCSActuator>
+				<AOCSActuator>
+					<position unit="m">0.5 0.5 1.0</position>
+					<thrustVector>0.0 0.0 -1.0</thrustVector>
+					<definition xlink:href="../Catalogs/SpecificComponentCatalog.1.3.xml#id47"/>
+				</AOCSActuator>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id67">
+			<VSD:name>TM&amp;TC-Baustein (S-Band; Transceiver+SSPA)</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">13.18</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">0.85 0.0 0.0
+				0.0 0.85 0.0
+				0.0 0.0 0.85</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id6"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id6"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id43"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id43"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id37"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id37"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id53">
+			<VSD:name>TM&amp;TC-Baustein (S-Band; Transmitter+Receiver+SSPA)</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">14.76</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">0.85 0.0 0.0
+				0.0 0.85 0.0
+				0.0 0.0 0.85</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id6"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id6"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id37"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id37"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id32"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id32"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id44"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id44"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+		<BuildingBlockDef VSD:id="id61">
+			<VSD:name>TM&amp;TC-Baustein (S-Band; Transponder+SSPA)</VSD:name>
+			<size unit="m">0.41 0.41 0.41</size>
+			<mass unit="kg">14.96</mass>
+			<heatCapacity unit="J/K">10.0</heatCapacity>
+			<centerOfMass unit="m">0.0 0.0 0.0</centerOfMass>
+			<inertiaTensor unit="kg·m²">0.85 0.0 0.0
+				0.0 0.85 0.0
+				0.0 0.0 0.85</inertiaTensor>
+			<components>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id6"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>2</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id6"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id45"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id45"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id35"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>3</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id21"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id37"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id37"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id2"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>40</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id5"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+				<GenericComponent>
+					<num>5</num>
+					<definition xlink:href="../Catalogs/GenericComponentCatalog.1.3.xml#id1"/>
+				</GenericComponent>
+			</components>
+			<orbit>ANY</orbit>
+			<maxPowerConsumption unit="W">0.0</maxPowerConsumption>
+		</BuildingBlockDef>
+	</buildingBlockDefs>
+</Catalog>

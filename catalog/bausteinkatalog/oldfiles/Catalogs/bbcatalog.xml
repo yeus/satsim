@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Catalog
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:VSD="http://www.VEROSIM.de/namespaces/VSD"
+    xmlns="http://www.VEROSIM.de/namespaces/IBOSS"
+    xsi:schemaLocation="http://www.VEROSIM.de/namespaces/IBOSS ../XSD/iboss.xsd">
+
+    <componentDefs/>
+    <buildingBlockDefs>
+	
+		<!-- Core Module -->
+		<BuildingBlockDef VSD:id="id101">
+            <VSD:name>EnMap Core Module</VSD:name> 
+            <size unit="cm">82 91 82</size>
+            <mass unit="kg">80</mass>
+			<heatCapacity unit="J/K">10</heatCapacity>
+			<centerOfMass unit="m">0.41 0.41 0.41</centerOfMass>
+			<inertiaTensor unit="kg·m²">
+				8.75 0 0
+				0 8.75 0
+				0 0 8.75
+			</inertiaTensor>
+			<geometry xlink:href="../../Models/Library/BuildingBlocks/EnMAP_CoreModule.mod"/>
+		    <components>
+		    	<Structure>
+		    		<position unit="m">0 0 0</position>
+		    		<orientation unit="deg">0 0 0</orientation>
+		    		<definition xlink:href="cmpcatalog.xml#id8"/>
+		    	</Structure>
+		    	<StorageTank>
+		    		<position unit="m">0 0 0</position>
+		    		<orientation unit="deg">0 0 0</orientation>
+		    		<fillLevel unit="m³">0.15</fillLevel>
+		    		<definition xlink:href="cmpcatalog.xml#id6"/>
+		    	</StorageTank>
+		    </components>
+            <orbit>ANY</orbit>
+		    <maxPowerConsumption unit="W">0</maxPowerConsumption>
+		</BuildingBlockDef>
+		
+		<!-- Payload Element -->
+		<BuildingBlockDef VSD:id="id100">
+            <VSD:name>EnMap Payload Block</VSD:name> 
+            <size unit="cm">82 91 82</size>
+            <mass unit="kg">50</mass>
+            <geometry xlink:href="../../Models/Library/BuildingBlocks/EnMAP_PayloadBlock.mod"/>
+		    <orbit>ANY</orbit>
+		    <maxPowerConsumption unit="W">0</maxPowerConsumption>
+		</BuildingBlockDef>
+	
+		<!-- Empty Cube -->
+		<BuildingBlockDef VSD:id="id1">
+			<VSD:name>EnMap Empty Frame</VSD:name>
+            <size unit="cm">41 41 41</size>
+            <mass unit="kg">5</mass>
+            <heatCapacity unit="J/K">10</heatCapacity>
+            <centerOfMass unit="cm">20 20 20</centerOfMass>
+            <geometry xlink:href="../../Models/Library/BuildingBlocks/EnMAP_Frame.mod"/>
+		    <components>
+		    	<Structure>
+		    		<position unit="m">0 0 0</position>
+		    		<orientation unit="deg">0 0 0</orientation>
+		    		<definition xlink:href="cmpcatalog.xml#id7"/>
+		    	</Structure>
+		    </components>
+		    <orbit>ANY</orbit>
+		    <maxPowerConsumption unit="W">0</maxPowerConsumption>
+		</BuildingBlockDef>
+		
+		<!-- Battery Cube -->
+		<BuildingBlockDef VSD:id="id2">
+            <VSD:name>EnMap Battery Module</VSD:name> 
+            <size unit="cm">41 41 41</size>
+            <mass unit="kg">20</mass>
+            <geometry xlink:href="../../Models/Library/BuildingBlocks/EnMAP_Battery.mod"/>
+		    <components>
+		    	<Battery>
+		    		<position unit="m">0.205 0.205 0.205</position>
+		    		<orientation unit="deg">0 0 0</orientation>
+		    		<charge unit="Ah">150</charge>
+		    		<definition xlink:href="cmpcatalog.xml#id2"/>
+		    	</Battery>
+		    </components>
+		    <orbit>ANY</orbit>
+		    <maxPowerConsumption unit="W">0</maxPowerConsumption>
+		</BuildingBlockDef>
+		
+		<!-- GPS Cube -->
+		<BuildingBlockDef VSD:id="id3">
+            <VSD:name>EnMap GPS Module</VSD:name> 
+            <size unit="cm">41 41 41</size>
+            <mass unit="kg">20</mass>
+            <geometry xlink:href="../../Models/Library/BuildingBlocks/EnMAP_GPS.mod"/>
+		    <orbit>ANY</orbit>
+		    <maxPowerConsumption unit="W">0</maxPowerConsumption>
+		</BuildingBlockDef>
+	
+		<!-- IMU Cube -->
+		<BuildingBlockDef VSD:id="id4">
+            <VSD:name>EnMap IMU Module</VSD:name> 
+            <size unit="cm">41 41 41</size>
+            <mass unit="kg">20</mass>
+            <geometry xlink:href="../../Models/Library/BuildingBlocks/EnMAP_IMU.mod"/>
+		    <orbit>ANY</orbit>
+            <maxPowerConsumption unit="W">0</maxPowerConsumption>
+		</BuildingBlockDef>
+		
+		<!-- MagnetoMeter Cube -->
+		<BuildingBlockDef VSD:id="id5">
+            <VSD:name>EnMap MagnetoMeter Module</VSD:name> 
+            <size unit="cm">41 41 41</size>
+            <mass unit="kg">20</mass>
+            <geometry xlink:href="../../Models/Library/BuildingBlocks/EnMAP_Magnetometer.mod"/>
+		    <orbit>ANY</orbit>
+            <maxPowerConsumption unit="W">0</maxPowerConsumption>
+		</BuildingBlockDef>
+		
+		<!-- ReactionWheel Cube -->
+		<BuildingBlockDef VSD:id="id6">
+            <VSD:name>EnMap ReactionWheel Module</VSD:name> 
+            <size unit="cm">41 41 41</size>
+            <mass unit="kg">20</mass>
+            <geometry xlink:href="../../Models/Library/BuildingBlocks/EnMAP_ReactionWheel.mod"/>
+		    <orbit>ANY</orbit>
+            <maxPowerConsumption unit="W">0</maxPowerConsumption>
+		</BuildingBlockDef>
+		
+		<!-- Starsensor Cube -->
+		<BuildingBlockDef VSD:id="id7">
+            <VSD:name>EnMap StarSensor Module</VSD:name> 
+            <size unit="cm">41 41 41</size>
+            <mass unit="kg">20</mass>
+            <geometry xlink:href="../../Models/Library/BuildingBlocks/EnMAP_Starsensor.mod"/>
+		    <orbit>ANY</orbit>
+            <maxPowerConsumption unit="W">0</maxPowerConsumption>
+		</BuildingBlockDef>
+		
+		<!-- Thruster Cube -->
+		<BuildingBlockDef VSD:id="id8">
+            <VSD:name>EnMap Thruster Module</VSD:name> 
+            <size unit="cm">41 41 41</size>
+            <mass unit="kg">20</mass>
+            <geometry xlink:href="../../Models/Library/BuildingBlocks/EnMAP_Thruster.mod"/>
+		    <components>
+		    	<Thruster>
+		    		<position unit="m">0 0 0</position>
+		    		<orientation unit="deg">0 0 0</orientation>
+		    		<currentPowerConsumption unit="W">0</currentPowerConsumption>
+		    		<switchedOn>false</switchedOn>
+		    		<definition xlink:href="cmpcatalog.xml#id1"/>
+		    	</Thruster>
+		    </components>
+		    <orbit>ANY</orbit>
+            <maxPowerConsumption unit="W">0</maxPowerConsumption>
+		</BuildingBlockDef>
+		
+		<!-- TM_TC Cube -->
+		<BuildingBlockDef VSD:id="id9">
+            <VSD:name>EnMap TM_TC Module</VSD:name> 
+            <size unit="cm">41 41 41</size>
+            <mass unit="kg">20</mass>
+            <geometry xlink:href="../../Models/Library/BuildingBlocks/EnMAP_TM_TC.mod"/>
+		    <orbit>ANY</orbit>
+            <maxPowerConsumption unit="W">0</maxPowerConsumption>
+		</BuildingBlockDef>
+		
+		<!-- Solar Panel Element -->
+		<BuildingBlockDef VSD:id="id10">
+            <VSD:name>EnMap SolarPanel Module</VSD:name> 
+            <size unit="cm">41 41 41</size>
+            <mass unit="kg">20</mass>
+            <geometry xlink:href="../../Models/Library/BuildingBlocks/EnMAP_SolarPanel.mod"/>
+		    <orbit>ANY</orbit>
+            <maxPowerConsumption unit="W">0</maxPowerConsumption>
+		</BuildingBlockDef>
+		
+    </buildingBlockDefs>
+</Catalog>
