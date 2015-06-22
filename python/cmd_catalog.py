@@ -118,6 +118,9 @@ def main(argv=None):
         cat.update()
         cat.save()
         #filecmp  um den neuen und den alten file zu vergleichen (überprüft Konsistenz der Datenbank)
+      else:
+        import Ipython
+        IPython.embed()        
     except:
       raise
       return
