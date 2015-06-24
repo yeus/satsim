@@ -775,7 +775,7 @@ package ibossmo
         Modelica.Blocks.Sources.BooleanConstant set_ess[6](k = false) annotation(Placement(visible = true, transformation(origin = {-80, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Blocks.Sources.TimeTable timetable1(table = [0, 0; 5, 0; 5.01, 0.3; 20, 0.3; 20.01, 1.0; 45, 1.0; 45.0, 0; 70, 0.0]) annotation(Placement(visible = true, transformation(origin = {-83, 41}, extent = {{-13, -13}, {13, 13}}, rotation = 0)));
         Modelica.Blocks.Sources.Constant const[6](each k = 0) annotation(Placement(visible = true, transformation(origin = {-82, 78}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-        verosim_basic verosim_basic1(m = 1) annotation(Placement(visible = true, transformation(origin = {22, 24}, extent = {{-26, -26}, {26, 26}}, rotation = 0)));
+        iboss_vti verosim_basic1(m = 1) annotation(Placement(visible = true, transformation(origin = {22, 24}, extent = {{-26, -26}, {26, 26}}, rotation = 0)));
         Modelica.Blocks.Sources.Constant acc[3](k = 0) annotation(Placement(visible = true, transformation(origin = {-42, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       equation
         connect(acc.y, verosim_basic1.ddr) annotation(Line(points = {{-31, -30}, {-18, -30}, {-18, 36}, {-2, 36}}, color = {0, 0, 127}));
@@ -790,7 +790,7 @@ package ibossmo
     model iboss_vti
       extends verosim_basic;
 
-      connector Siminterface
+      connector Sim_out
         connector Intf
           Real mi_pos;
           Real v_ext;
@@ -798,13 +798,13 @@ package ibossmo
         end Intf;
 
         Intf intf[6];
-      end Siminterface;
+      end Sim_out;
 
-      output Siminterface siminterface annotation(Placement(visible = true, transformation(origin = {100, 58}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {66, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      output Sim_out sim_out annotation(Placement(visible = true, transformation(origin = {100, 58}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {66, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
     equation
       for i in 1:6 loop
-        connect(siminterface.intf[i].v_ext, intf[i].vcc_ext.v) annotation(Line(points = {{100, 58}, {78, 58}, {78, 6}, {74, 6}, {74, 6}}));
-        connect(siminterface.intf[i].mi_pos, intf[i].mi.pos.phi);
+        connect(sim_out.intf[i].v_ext, intf[i].vcc_ext.v) annotation(Line(points = {{100, 58}, {78, 58}, {78, 6}, {74, 6}, {74, 6}}));
+        connect(sim_out.intf[i].mi_pos, intf[i].mi.pos.phi);
       end for;
       annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})));
     end iboss_vti;
