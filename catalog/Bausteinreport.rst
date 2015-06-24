@@ -2,7 +2,7 @@
 Katalogreport:
 ===============
 
-:Datum: 2014/05/19
+:Datum: 2014/05/20
 :Version: 1.6
 
 ©TU Berlin
@@ -45,8 +45,8 @@ Control Momentum Gyroscope Baustein                                             
 PCU-Baustein                                                                         36.17 kg
 Batteriebaustein                                                                     33.37 kg
 Inertial Measurement Unit Baustein (sehr genau)                                      28.95 kg
-Reaktionsradbaustein                                                                 27.67 kg
 Drallradbaustein                                                                     27.67 kg
+Reaktionsradbaustein                                                                 27.67 kg
 Magnetorquer-Baustein                                                                21.99 kg
 OBC/SMU-Baustein                                                                     20.67 kg
 Inertial Measurement Unit Baustein (Standard)                                        15.37 kg
@@ -69,28 +69,28 @@ Bausteine, maximaler Energieverbrauch:
 elektrischer Antriebs-Baustein                                                    10020.00 W
 Solargeneratorbaustein (entfaltbar, nachführbar)                                   1070.00 W
 Solargeneratorbaustein (entfaltbar)                                                 370.20 W
-Reaktionsradbaustein                                                                320.00 W
 Drallradbaustein                                                                    320.00 W
+Reaktionsradbaustein                                                                320.00 W
 Monopropellantantriebs-Baustein (Hydrazin bzw. HPGP)                                120.00 W
 TM&TC-Baustein (S-Band; Transponder+SSPA)                                            96.00 W
 TM&TC-Baustein (S-Band; Transceiver+SSPA)                                            81.00 W
 TM&TC-Baustein (S-Band; Transmitter+Receiver+SSPA)                                   79.00 W
 Kaltgasantriebs-Baustein 2                                                           75.20 W
 Kaltgasantriebs-Baustein 1                                                           75.00 W
-OBC/SMU-Baustein                                                                     45.00 W
 Control Momentum Gyroscope Baustein                                                  45.00 W
+OBC/SMU-Baustein                                                                     45.00 W
 Inertial Measurement Unit Baustein (sehr genau)                                      44.00 W
 Magnetorquer-Baustein                                                                35.30 W
 Inertial Measurement Unit Baustein (Standard)                                        35.00 W
-Sternsensorbaustein                                                                  30.00 W
 GPS-Baustein (Standard)                                                              30.00 W
+Sternsensorbaustein                                                                  30.00 W
 Erdsensor-Baustein                                                                   28.00 W
-Batteriebaustein                                                                     20.00 W
 PCU-Baustein                                                                         20.00 W
 GPS-Baustein (GPS und GLONASS)                                                       20.00 W
+Batteriebaustein                                                                     20.00 W
+test Lageregelungsbaustein                                                            0.00 W
 Kernstruktur2x2x3                                                                     0.00 W
 Kernstruktur2x2x2                                                                     0.00 W
-test Lageregelungsbaustein                                                            0.00 W
 =========================================================== =================================
 
 

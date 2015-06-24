@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<satXML xmlns="http://ids.fzi.de/iboss" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ids.fzi.de/iboss satXML.xsd">
+	
+	<!-- Include the BB catalogue for reference -->
+	<BB_catalogue href="BB_catalogue_v0.1.xml"/>
+
+	<!--- SATELLITE   -->
+	<!--- this file will be empty at the beginning and filled with more information each step of the development cycle-->
+
+	<satellite>
+		<name>Testsatellit</name>
+		<orbit>LEO</orbit>
+		<mass unit="kg">393.0</mass> 
+		<bbgap>0.1</bbgap>
+		<!-- id is the unique identifier of this instance, block_id refers to the BB catalogue -->
+		<bb id="1" block_name="Lageregelungsantrieb_1">
+			<name>Mein Lageregelungsantrieb_1</name>
+			<!-- the status attribute can be used to give a "broken/jammed/operational..." status which could be used in the simulation -->
+			<faces> 
+				<face face_id="0" status="operational"/>
+				<face face_id="1" status="operational"/>
+				<face face_id="2" status="operational"/>
+				<face face_id="3" status="operational"/>
+				<face face_id="4" status="operational"/>
+				<face face_id="5" status="operational"/>
+				<face face_id="6" status="operational"/>
+				<face face_id="7" status="operational"/>
+				<face face_id="8" status="operational"/>
+			</faces>
+			
+			<!-- postion and rotation around the axes -->
+			<position unit="blocks">
+				<x>0</x>
+				<y>1</y>
+				<z>1</z>
+			</position>
+			<rotation unit="deg">
+				<x>270</x>
+				<y>90</y>
+				<z>0</z>
+			</rotation>
+
+			<!-- the satellite containes the inferred information about the rules-->
+			<!-- these are relative (regarding 2 Blocks) and absolute block rules -->
+			<placement_rules>
+				<rel_distance>
+					<regarding_bb>2</regarding_bb>
+					<min_distance>0</min_distance>
+					<max_distance>2</max_distance>
+				</rel_distance>
+			</placement_rules>
+		</bb>
+		<bb id="2" block_name="Lageregelungsantrieb_1">
+			<name>Mein zweiter Lageregelungsantrieb_1</name>
+			<faces> 
+				<face face_id="0" status="broken"/>
+				<face face_id="1" status="operational"/>
+				<face face_id="2" status="operational"/>
+				<face face_id="3" status="operational"/>
+				<face face_id="4" status="operational"/>
+				<face face_id="5" status="operational"/>
+				<face face_id="6" status="operational"/>
+				<face face_id="7" status="operational"/>
+				<face face_id="8" status="operational"/>
+			</faces>
+			<position unit="blocks">
+				<x>1</x>
+				<y>1</y>
+				<z>1</z>
+			</position>
+			<rotation unit="deg">
+				<x>270</x>
+				<y>90</y>
+				<z>0</z>
+			</rotation>
+			<placement_rules>
+				<rel_distance>
+					<regarding_bb>1</regarding_bb>
+					<min_distance>0</min_distance>
+					<max_distance>1</max_distance>
+				</rel_distance>
+			</placement_rules>
+		</bb>
+		<bb id="3" block_name="Batterie_1">
+			<name>Hauptbatterie</name>
+			<faces> 
+				<face face_id="0" status="operational"/>
+				<face face_id="1" status="operational"/>
+				<face face_id="2" status="operational"/>
+				<face face_id="3" status="operational"/>
+				<face face_id="4" status="operational"/>
+				<face face_id="5" status="operational"/>
+			</faces>
+			<position unit="blocks">
+				<x>1</x>
+				<y>1</y>
+				<z>1</z>
+			</position>
+			<rotation unit="deg">
+				<x>270</x>
+				<y>90</y>
+				<z>0</z>
+			</rotation>
+			<placement_rules>
+				<rel_distance>
+					<regarding_bb>1</regarding_bb>
+					<min_distance>0</min_distance>
+					<max_distance>1</max_distance>
+				</rel_distance>
+			</placement_rules>
+		</bb>
+
+		<bb>.....</bb>
+
+		<bb>.....</bb>
+	</satellite>
+</satXML>

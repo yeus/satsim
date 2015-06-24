@@ -25,7 +25,7 @@ import xml.etree.ElementTree as et
 import codecs, time, traceback, pickle
 import copy, re, sys, json, math
 import pandas as pd  #for csv file loading
-import logging
+import logging, os
 import textwrap
 
 pq.krad=pq.UnitQuantity('kilorad', pq.rads*1000, symbol='krad')
@@ -298,7 +298,7 @@ class buildingblock(ibossxml):
                 _co=[],
                 mass=0*pq.kg,
                 power_max=0*pq.W,
-                com=vec(0,0,0)*Blocksize,
+                com=vec(0,0,0),
                 heatcapacity=10*pq.J/pq.K,
                 inertia=((0.85,0.0,0.0),
                               (0.0,0.85,0.0),
@@ -339,13 +339,15 @@ class buildingblock(ibossxml):
   def add_co(self,co): #todo variable length argument list
     if "num" not in vars(co): co.num=1
     self._co.append(copy.copy(co))  #use copy of component for an update with state variables
+    self.update()
   
   def update(self):
     self.power_max=0*pq.W
     for co in self._co:
       if "power_max" in vars(co): 
         self.power_max+=co.power_max
-    self.mass=np.sum([co.mass*co.num for co in self._co])*pq.kg
+    self.mass = np.sum([co.mass*co.num for co in self._co])*pq.kg
+    self.com = np.sum(self.grid, axis=0)/len(self.grid)*self.size
 
 class Satellite(ibossxml):
   def __init__(self,mitype):
@@ -423,7 +425,9 @@ class Satellite(ibossxml):
   
   def update(self):
     self.mass=np.sum([bb.mass for bb in self._bb])*pq.kg
-    self.com=np.sum([(vec(*bb.pos)*(self.bbsize+self.bbgap))*bb.mass for bb in self._bb],axis=0)*pq.kg*pq.m/self.mass
+    self.com = np.sum([(bb.pos + bb.com) * bb.mass for bb in self._bb], axis = 0)*pq.kg * pq.m / self.mass
+    #import IPython
+    #IPython.embed()
 
 class Catalog(object):
   def __init__(self):
@@ -502,7 +506,25 @@ class Catalog(object):
       root.append(i.xml)
     return root
   
+  def getproperties(self,catalog):
+    import itertools
+    if catalog == 'co':
+      props = [vars(co).keys() for co in self.co.values()]
+      allprops = set(itertools.chain(*props))
+    elif catalog == 'bb':
+      props = [vars(bb).keys() for bb in self.bb.values()]
+      allprops = set(itertools.chain(*props))
+    elif catalog == 'sat':
+      props = [vars(sat).keys() for sat in self.sat.values()]
+      allprops = set(itertools.chain(*props))
+    else:
+      sys.stderr.write("catalog" + str(catalog) +" not known")
+      allprops=set()
+      
+    return allprops
+  
   def savexml(self,filename,xml):
+    logging.debug("saving: " + filename)
     initstr="""
         * Developer : Thomas Meschede (Thomas.Meschede@ilr.tu-berlin.de)
         * Date : {}
@@ -530,9 +552,12 @@ class Catalog(object):
     self.savexml("bausteinkatalog/catalog.{}.xml".format(version),katalog)
     
     print("saving satellite configurations")
+    path="bausteinkatalog/tub_sats.{}".format(version)
+    if not os.path.exists(path):
+      os.makedirs(path)
     for vkeys,vvalues in self.sat.items():
       #missionen=ibosslist2xml("Satellites",referenzmissionen.values())
-      self.savexml("bausteinkatalog/tub_sats/{}.{}.xml".format(vkeys,version),vvalues.xml)
+      self.savexml(path + "/{}.{}.xml".format(vkeys,version),vvalues.xml)
 
   def save_csv(self,filename, catalog, properties):
     """save specific properties of a catalog into a csv-file"""  
@@ -603,8 +628,8 @@ class Catalog(object):
     return data
 
   #loads data from an XML file into catalog
-  def loadxmldata(self,filename='bausteinkatalog/catalog.{}.xml'.format(Version)): 
-    data=self.loadxmlfile(filename)
+  def loadxmldata(self,filename='catalog.{}.xml'.format(Version), directory="bausteinkatalog/"): 
+    data=self.loadxmlfile(os.path.join(directory,filename))
 
     #get list of componenents and buildingblocks
     co_list=data.findall("componentDefs/GenericComponent") #tree.find('foo:bar', namespaces={'foo': 'http://url.of.namespace'})
@@ -642,7 +667,8 @@ class Catalog(object):
       
     #add missions
     import glob
-    for i in glob.glob('bausteinkatalog/tub_sats/*.{}.xml'.format(Version)):  #get a file list of satxml files
+    for i in glob.glob(os.path.join(directory,'tub_sats.{}/*.{}.xml'.format(Version,Version))):  #get a file list of satxml files
+      print("loading satellite from file: ",i)
       data = self.loadxmlfile(i)#TODO: check if it is a valid Satellite XML
       
       new_sat = Satellite('generic')

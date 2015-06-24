@@ -40,16 +40,16 @@ cat.loadxmldata()
 bs=cat.bb["Batteriebaustein"]
 
 
-print("Anzahl der Komponenten im Baustein {}: {}".format(bs.name, len(bs.components)))
+print("Anzahl der Komponenten im Baustein {}: {}".format(bs.name, len(bs.co)))
 
 
-#welche Eigenschaften haben die Bausteine insgesamt im katalog?
+#welche Eigenschaften haben die Komponenen insgesamt im katalog?
 
-Eigenschaften=[]
-for bs in cat.bb.values():
-    for var in vars(bs).keys(): #Liste von Variablennamen im python-Objekt (Datensatz) erzeugen
-        if not var in Eigenschaften: #kam der Variablenname schon einmal vor?
-            Eigenschaften+=[var]  #falls nicht ('not'), dann speichern in Liste
+#Eigenschaften=set()
+#for co in cat.co.values():
+    #for var in vars(co).keys(): #Liste von Variablennamen im python-Objekt (Datensatz) erzeugen
+        #if not var in Eigenschaften: #kam der Variablenname schon einmal vor?
+            #Eigenschaften+=[var]  #falls nicht ('not'), dann speichern in Liste
 
 
 #Komponenteneigenschaften diese bausteins:
@@ -62,19 +62,18 @@ cotable=[[co.name, co.num] for co in bs.components]
 
 # Tabellen und csv-Tabellen erstellen
 table = [[bb.name, bb.mass, bb.Einsatzgebiet] for bb in cat.bb.values()]
-
 #print(table)
 
-f=open("table.csv", 'w')
-
-for r in table:
-    f.write("{},{},{}\n".format(r[0],r[1],r[2]))
-
-f.close()
-
-f=open("table2.csv", 'w')
-
-for bb in cat.bb.values():
-    f.write("{},{},{}\n".format(bb.name.replace(',',' '), bb.Einsatzgebiet, bb.size))
-
-f.close()
+#f=open("table.csv", 'w')
+#
+#for r in table:
+#    f.write("{},{},{}\n".format(r[0],r[1],r[2]))
+#
+#f.close()
+#
+#f=open("table2.csv", 'w')
+#
+#for bb in cat.bb.values():
+#    f.write("{},{},{}\n".format(bb.name.replace(',',' '), bb.Einsatzgebiet, bb.size))
+#
+#f.close()
