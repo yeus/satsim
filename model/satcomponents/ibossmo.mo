@@ -2431,7 +2431,10 @@ package ibossmo
 					StartTime=0));
 		end examples;
 		model iboss_vti
-			extends verosim_basic;
+			extends verosim_basic annotation(Placement(transformation(extent={{-10,-10},{10,10}})));
+			input Real set_mss[intf_count];
+			input Boolean set_ess[intf_count];
+			input Integer set_oci[intf_count];
 			connector Sim_out "Sim_out"
 				connector Intf "Intf"
 					Real mi_pos;
@@ -2439,11 +2442,11 @@ package ibossmo
 				end Intf;
 				Intf intf[intf_count];
 				annotation(Icon(graphics={
-										Ellipse(
-											lineColor={0,0,0},
-											fillColor={127,255,212},
-											fillPattern=FillPattern.CrossDiag,
-											extent={{-63.3,56.7},{63.3,-66.7}})}));
+																						Ellipse(
+																							lineColor={0,0,0},
+																							fillColor={127,255,212},
+																							fillPattern=FillPattern.CrossDiag,
+																							extent={{-63.3,56.7},{63.3,-66.7}})}));
 			end Sim_out;
 			output Sim_out sim_out annotation(Placement(
 				transformation(
@@ -2463,10 +2466,130 @@ package ibossmo
 					noise_ung1(y(flags=2)),
 					noise_ung3(y(flags=2))),
 				thermometer_withnoise1(noise_ung(y(flags=2))),
+				comm_in(intf(
+					set_pos(flags=2),
+					set_ess(flags=2))),
 				intf(mi(noise_ung1(y(flags=2)))),
 				viewinfo[0](
 					viewSettings(clrRaster=12632256),
 					typename="ModelInfo"),
+				viewinfo[1](
+					projectName="iboss_vti",
+					projectPath="C:\\Users\\indahouse\\Documents\\SimulationX 3.6\\Exported C-Code",
+					projectType=20,
+					saveOutputsApproach=1,
+					inputs[0](
+						port="ddr",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=0,
+						typename="CEPort"),
+					inputs[1](
+						port="ddr",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=1,
+						typename="CEPort"),
+					inputs[2](
+						port="ddr",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=2,
+						typename="CEPort"),
+					inputs[3](
+						port="set_mss",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					inputs[4](
+						port="set_ess",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					inputs[5](
+						port="set_oci",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[0](
+						port="comm_out.intf.mi_pos",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[1](
+						port="comm_out.intf.v_ext",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[2](
+						port="comm_out.intf.v_int",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[3](
+						port="comm_out.intf.intf_current",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[4](
+						port="comm_out.intf.tmp",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[5](
+						port="comm_out.T_OBC",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[6](
+						port="comm_out.acc",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=0,
+						typename="CEPort"),
+					outputs[7](
+						port="comm_out.acc",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=1,
+						typename="CEPort"),
+					outputs[8](
+						port="comm_out.acc",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=2,
+						typename="CEPort"),
+					outputs[9](
+						port="sim_out.intf.mi_pos",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[10](
+						port="sim_out.intf.v_ext",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					parameters[0](
+						port="m",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					descriptionProject="iBoss Buildingblock Model",
+					author="Thomas Meschede",
+					fmiIncludeDllWin32=true,
+					fmiIncludeDllWin64=true,
+					fmiExposeVariables=false,
+					fmiIncludeSources=true,
+					fmiExposeStates=false,
+					fmiLogging=true,
+					guid="{8238C50C-1FE7-423A-8A64-BDF9BA86F5A4}",
+					showAdditionalLibPage=false,
+					useCodeOptimization=true,
+					m_x64=false,
+					solverMode=1,
+					checkSum=27224,
+					fmiVersion="1.0",
+					typename="CodeExportInfo"),
 				experiment(
 					StopTime=1,
 					StartTime=0));
