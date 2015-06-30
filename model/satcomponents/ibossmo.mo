@@ -26,14 +26,14 @@ package ibossmo
 				iconTransformation(
 					origin={-100,50},
 					extent={{-12,-12},{12,12}})));
-			output Comm_out comm_out annotation(Placement(
+			Comm_out comm_out annotation(Placement(
 				transformation(
 					origin={-100,82},
 					extent={{-10,-10},{10,10}}),
 				iconTransformation(
 					origin={-50,100},
 					extent={{-10,-10},{10,10}})));
-			input Comm_in comm_in annotation(Placement(
+			Comm_in comm_in annotation(Placement(
 				transformation(
 					origin={-100,55},
 					extent={{-10,-10},{10,10}}),
@@ -1968,48 +1968,6 @@ package ibossmo
 				connect(structure.frame_a, rZp111.frame_a);
 				connect(rZp111.frame_b, Zps111);
 		end Kernstruktur2x2x2;
-		model verosim_basic
-            extends icons.basic;
-            parameter Integer intf_count=1 "number of interfaces";
-            parameter Modelica.SIunits.Mass m=10;
-            satcomponents.power.verbraucher OBC(
-                v_nominal=5,
-                useHeatPort=true) ;
-            satcomponents.AOCS.Parts.IMU imu1 ;
-            Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatcapacitor1(C=897.0 * m) ;
-            Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedtemperature1(T=100) ;
-            Modelica.Thermal.HeatTransfer.Components.BodyRadiation bodyradiation1(Gr=0.02 * 6 * 0.4 * 0.4) ;
-            Modelica.Electrical.Analog.Basic.Ground ground1 ;
-            satcomponents.power.dcmodel.dcdc_ideal_simple dcdc_ideal_simple1 ;
-            Modelica.Electrical.Analog.Sources.RampVoltage rampvoltage1(
-                V=40,
-                duration=2) ;
-            satcomponents.thermal.thermometer_withnoise thermometer_withnoise1 ;
-            components.Comm_in comm_in(intf_count=1) ;
-            input Modelica.Blocks.Interfaces.RealInput ddr[3] ;
-            components.Comm_out comm_out ;
-            components.iboss_interface intf ;
-            equation
-                connect(intf.comm_out,comm_out.intf[1]);
-                connect(comm_in.intf[1],intf.comm_in)  ;
-                connect(thermometer_withnoise1.T,comm_out.T_OBC) ;
-                connect(imu1.y,comm_out.acc) ;
-                connect(heatcapacitor1.port,thermometer_withnoise1.port) ;
-                connect(rampvoltage1.p,dcdc_ideal_simple1.p1) ;
-                connect(ground1.p,rampvoltage1.n) ;
-                connect(ground1.p,dcdc_ideal_simple1.n1)    
-                connect(bodyradiation1.port_b,heatcapacitor1.port) ;
-                connect(fixedtemperature1.port,bodyradiation1.port_a) ;
-                connect(OBC.heatPort,heatcapacitor1.port) ;
-                connect(ddr,imu1.ang_vel) ;
-                connect(OBC.pin_p,dcdc_ideal_simple1.p2) ;
-                connect(OBC.pin_n,dcdc_ideal_simple1.n2) ;
-                connect(dcdc_ideal_simple1.n1,dcdc_ideal_simple1.n2) ;
-                connect(dcdc_ideal_simple1.p2,intf.v_motor) ;
-                connect(dcdc_ideal_simple1.n2,intf.gnd_motor) ;
-                connect(dcdc_ideal_simple1.p1,intf.vcc_int) ;
-                connect(dcdc_ideal_simple1.n1,intf.gnd_int) ;
-        end verosim_basic;
 		model verosim_basic_1D
 			extends icons.basic;
 			parameter Integer intf_count=1 "number of interfaces";
@@ -2382,127 +2340,64 @@ package ibossmo
 					Tolerance=1e-12,
 					Interval=0.02));
 		end versom_basic_battery;
+		model verosim_basic
+            extends icons.basic;
+            parameter Integer intf_count=1 "number of interfaces";
+            parameter Modelica.SIunits.Mass m=10;
+            satcomponents.power.verbraucher OBC(
+                v_nominal=5,
+                useHeatPort=true) ;
+            satcomponents.AOCS.Parts.IMU imu1 ;
+            Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatcapacitor1(C=897.0 * m) ;
+            Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedtemperature1(T=100) ;
+            Modelica.Thermal.HeatTransfer.Components.BodyRadiation bodyradiation1(Gr=0.02 * 6 * 0.4 * 0.4) ;
+            Modelica.Electrical.Analog.Basic.Ground ground1 ;
+            satcomponents.power.dcmodel.dcdc_ideal_simple dcdc_ideal_simple1 ;
+            Modelica.Electrical.Analog.Sources.RampVoltage rampvoltage1(
+                V=40,
+                duration=2) ;
+            satcomponents.thermal.thermometer_withnoise thermometer_withnoise1 ;
+            components.Comm_in comm_in(intf_count=intf_count);
+            input Modelica.Blocks.Interfaces.RealInput ddr[3] ;
+            components.Comm_out comm_out(intf_count=intf_count);
+            components.iboss_interface intf;
+            equation
+                connect(intf.comm_out,comm_out.intf[1]);
+                connect(comm_in.intf[1],intf.comm_in)  ;
+                connect(thermometer_withnoise1.T,comm_out.T_OBC) ;
+                connect(imu1.y,comm_out.acc) ;
+                connect(heatcapacitor1.port,thermometer_withnoise1.port) ;
+                connect(rampvoltage1.p,dcdc_ideal_simple1.p1) ;
+                connect(ground1.p,rampvoltage1.n) ;
+                connect(ground1.p,dcdc_ideal_simple1.n1) ;
+                connect(bodyradiation1.port_b,heatcapacitor1.port) ;
+                connect(fixedtemperature1.port,bodyradiation1.port_a) ;
+                connect(OBC.heatPort,heatcapacitor1.port) ;
+                connect(ddr,imu1.ang_vel) ;
+                connect(OBC.pin_p,dcdc_ideal_simple1.p2) ;
+                connect(OBC.pin_n,dcdc_ideal_simple1.n2) ;
+                connect(dcdc_ideal_simple1.n1,dcdc_ideal_simple1.n2) ;
+                connect(dcdc_ideal_simple1.p2,intf.v_motor) ;
+                connect(dcdc_ideal_simple1.n2,intf.gnd_motor) ;
+                connect(dcdc_ideal_simple1.p1,intf.vcc_int) ;
+                connect(dcdc_ideal_simple1.n1,intf.gnd_int) ;
+        end verosim_basic;
 		package examples
 			extends Modelica.Icons.ExamplesPackage;
 			model verosim_block
 				extends Modelica.Icons.Example;
-				Modelica.Blocks.Sources.BooleanConstant set_ess(k=false) annotation(Placement(transformation(
-					origin={-80,0},
-					extent={{-10,-10},{10,10}})));
-				Modelica.Blocks.Sources.TimeTable timetable1(table=[0, 0; 5, 0; 5.01, 0.3; 20, 0.3; 20.01, 1.0; 45, 1.0; 45.0, 0; 70, 0.0]) annotation(Placement(transformation(
-					origin={-83,41},
-					extent={{-13,-13},{13,13}})));
-				verosim_basic_6D verosim_basic1(m=1) annotation(Placement(transformation(
-					origin={22,24},
-					extent={{-26,-26},{26,26}})));
-				Modelica.Blocks.Sources.Constant acc[3](k=0) annotation(Placement(transformation(
-					origin={-42,-30},
-					extent={{-10,-10},{10,10}})));
+				Modelica.Blocks.Sources.BooleanConstant set_ess(k=false) ;
+				Modelica.Blocks.Sources.TimeTable timetable1(table=[0, 0; 5, 0; 5.01, 0.3; 20, 0.3; 20.01, 1.0; 45, 1.0; 45.0, 0; 70, 0.0]) ;
+				verosim_basic verosim_basic1(m=1) ;
+				Modelica.Blocks.Sources.Constant acc[3](each k=0) ;
 				equation
-					connect(acc.y,verosim_basic1.ddr) annotation(Line(
-						points={{-31,-30},{-26,-30},{-8.300000000000001,-30},{-8.300000000000001,27.7},{-3.3,27.7}},
-						color={0,0,127}));
-					for i in 2:6 loop
-						verosim_basic1.comm_in.intf[i].set_ess = 0;
-						verosim_basic1.comm_in.intf[i].set_pos = 0;
-					end for;
-					verosim_basic1.comm_in.intf[1].set_ess = 1;
+					connect(acc.y,verosim_basic1.ddr);
+					//for i in 2:6 loop
+					//	verosim_basic1.comm_in.intf[i].set_ess = 0.0;
+					//	verosim_basic1.comm_in.intf[i].set_pos = 0.0;
+					//end for;
+					verosim_basic1.comm_in.intf[1].set_ess = true;
 					verosim_basic1.comm_in.intf[1].set_pos = timetable1.y;
-				annotation(
-					timetable1(y(flags=2)),
-					verosim_basic1(
-						imu1(
-							noise_ung2(y(flags=2)),
-							noise_ung1(y(flags=2)),
-							noise_ung3(y(flags=2))),
-						heatcapacitor1(
-							T(flags=2),
-							der_T(flags=2),
-							port(
-								T(flags=2),
-								Q_flow(flags=2))),
-						dcdc_ideal_simple1(
-							v1(flags=2),
-							v2(flags=2),
-							i1(flags=2),
-							i2(flags=2),
-							p1(
-								v(flags=2),
-								i(flags=2)),
-							n1(
-								v(flags=2),
-								i(flags=2)),
-							p2(
-								v(flags=2),
-								i(flags=2)),
-							n2(
-								v(flags=2),
-								i(flags=2))),
-						rampvoltage1(
-							v(flags=2),
-							i(flags=2),
-							p(
-								v(flags=2),
-								i(flags=2)),
-							n(
-								v(flags=2),
-								i(flags=2))),
-						thermometer_withnoise1(
-							T(flags=2),
-							port(
-								T(flags=2),
-								Q_flow(flags=2)),
-							temperaturesensor1(
-								T(flags=2),
-								port(
-									T(flags=2),
-									Q_flow(flags=2))),
-							noise_ung(y(flags=2))),
-						comm_in(intf(
-							set_pos(flags=2),
-							set_ess(flags=2))),
-						comm_out(
-							intf(
-								mi_pos(flags=2),
-								v_ext(flags=2),
-								v_int(flags=2),
-								intf_current(flags=2),
-								tmp(flags=2)),
-							T_OBC(flags=2),
-							acc(flags=2)),
-						iXp(
-							vcc_int(
-								v(flags=2),
-								i(flags=2)),
-							comm_in(
-								set_pos(flags=2),
-								set_ess(flags=2)),
-							v_motor(
-								v(flags=2),
-								i(flags=2)),
-							mi(noise_ung1(y(flags=2)))),
-						iXn(mi(noise_ung1(y(flags=2)))),
-						iYp(mi(noise_ung1(y(flags=2)))),
-						iYn(mi(noise_ung1(y(flags=2)))),
-						iZp(mi(noise_ung1(y(flags=2)))),
-						iZn(mi(noise_ung1(y(flags=2))))),
-					viewinfo[0](
-						viewSettings(clrRaster=12632256),
-						typename="ModelInfo"),
-					viewinfo[1](
-						projectPath="C:\\Users\\indahouse\\Documents\\SimulationX 3.6\\Exported C-Code",
-						projectType=0,
-						saveOutputsApproach=1,
-						showAdditionalLibPage=false,
-						useCodeOptimization=true,
-						m_x64=false,
-						solverMode=1,
-						typename="CodeExportInfo"),
-					experiment(
-						StopTime=100,
-						StartTime=0,
-						Tolerance=1e-006,
-						Interval=0.2));
 			end verosim_block;
 			annotation(
 				dateModified="2015-06-26 10:59:34Z",
