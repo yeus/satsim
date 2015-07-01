@@ -6,54 +6,54 @@ package ibossmo
 		model iboss_interface "iboss_interface"
 			Modelica.Electrical.Analog.Interfaces.PositivePin vcc_ext "Positive pin of an electric component" annotation(Placement(
 				transformation(
-					origin={99.273,-14.1046},
-					extent={{-12,-12},{12,12}}),
-				iconTransformation(extent={{88,38},{112,62}})));
+					origin={99.273, -14.1046},
+					extent={{-12, -12}, {12, 12}}),
+				iconTransformation(extent={{88, 38}, {112, 62}})));
 			Modelica.Electrical.Analog.Interfaces.NegativePin gnd_ext "Negative pin of an electric component" annotation(Placement(
 				transformation(
-					origin={99.556,-40.9194},
-					extent={{-12,-12},{12,12}}),
-				iconTransformation(extent={{88,-12},{112,12}})));
+					origin={99.556, -40.9194},
+					extent={{-12, -12}, {12, 12}}),
+				iconTransformation(extent={{88, -12}, {112, 12}})));
 			Modelica.Electrical.Analog.Interfaces.NegativePin gnd_int "Negative pin of an electric component" annotation(Placement(
 				transformation(
-					origin={-98,-37},
-					extent={{-12,-12},{12,12}}),
-				iconTransformation(extent={{-112,-12},{-88,12}})));
+					origin={-98, -37},
+					extent={{-12, -12}, {12, 12}}),
+				iconTransformation(extent={{-112, -12}, {-88, 12}})));
 			Modelica.Electrical.Analog.Interfaces.PositivePin vcc_int "Positive pin of an electric component" annotation(Placement(
 				transformation(
-					origin={-98,-17},
-					extent={{-12,-12},{12,12}}),
+					origin={-98, -17},
+					extent={{-12, -12}, {12, 12}}),
 				iconTransformation(
-					origin={-100,50},
-					extent={{-12,-12},{12,12}})));
+					origin={-100, 50},
+					extent={{-12, -12}, {12, 12}})));
 			Comm_out comm_out annotation(Placement(
 				transformation(
-					origin={-100,82},
-					extent={{-10,-10},{10,10}}),
+					origin={-100, 82},
+					extent={{-10, -10}, {10, 10}}),
 				iconTransformation(
-					origin={-50,100},
-					extent={{-10,-10},{10,10}})));
+					origin={-50, 100},
+					extent={{-10, -10}, {10, 10}})));
 			Comm_in comm_in annotation(Placement(
 				transformation(
-					origin={-100,55},
-					extent={{-10,-10},{10,10}}),
+					origin={-100, 55},
+					extent={{-10, -10}, {10, 10}}),
 				iconTransformation(
-					origin={0,100},
-					extent={{-10,-10},{10,10}})));
+					origin={0, 100},
+					extent={{-10, -10}, {10, 10}})));
 			Modelica.Electrical.Analog.Interfaces.PositivePin v_motor "Positive pin of an electric component" annotation(Placement(
 				transformation(
-					origin={-98,28},
-					extent={{-12,-12},{12,12}}),
+					origin={-98, 28},
+					extent={{-12, -12}, {12, 12}}),
 				iconTransformation(
-					origin={-50,-100},
-					extent={{-12,-12},{12,12}})));
+					origin={-50, -100},
+					extent={{-12, -12}, {12, 12}})));
 			Modelica.Electrical.Analog.Interfaces.NegativePin gnd_motor "Negative pin of an electric component" annotation(Placement(
 				transformation(
-					origin={-98,8},
-					extent={{-12,-12},{12,12}}),
+					origin={-98, 8},
+					extent={{-12, -12}, {12, 12}}),
 				iconTransformation(
-					origin={0,-100},
-					extent={{-12,-12},{12,12}})));
+					origin={0, -100},
+					extent={{-12, -12}, {12, 12}})));
 			connector Comm_out
 				Modelica.Blocks.Interfaces.RealOutput mi_pos;
 				Modelica.Blocks.Interfaces.RealOutput v_ext;
@@ -61,135 +61,63 @@ package ibossmo
 				Modelica.Blocks.Interfaces.RealOutput intf_current;
 				Modelica.Blocks.Interfaces.RealOutput tmp;
 				annotation(
-					Icon(graphics={
-																																																																										Ellipse(
-																																																																											fillColor={255,255,255},
-																																																																											fillPattern=FillPattern.Solid,
-																																																																											extent={{-70,70},{70,-70}},
-																																																																											origin={0,-2})}),
-					Diagram(graphics={
-																																																																										Ellipse(
-																																																																											fillColor={255,255,255},
-																																																																											fillPattern=FillPattern.Solid,
-																																																																											extent={{-57,59},{57,-59}},
-																																																																											origin={1,1})}));
+					Icon(graphics={Ellipse(fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-70, 70}, {70, -70}}, origin = {0, -2})}),
+					Diagram(graphics={Ellipse(fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-57, 59}, {57, -59}}, origin = {1, 1})}));
 			end Comm_out;
 			connector Comm_in
 				Modelica.Blocks.Interfaces.RealInput set_pos;
 				Modelica.Blocks.Interfaces.BooleanInput set_ess;
 				annotation(
-					Icon(graphics={
-																																																																										Ellipse(
-																																																																											fillColor={152,152,152},
-																																																																											fillPattern=FillPattern.Horizontal,
-																																																																											extent={{-69,69},{69,-69}},
-																																																																											origin={-1,-1})}),
-					Diagram(graphics={
-																																																																										Ellipse(
-																																																																											fillColor={119,119,119},
-																																																																											fillPattern=FillPattern.Solid,
-																																																																											extent={{-48,58},{48,-58}})}));
+					Icon(graphics={Ellipse(fillColor = {152, 152, 152}, fillPattern = FillPattern.Horizontal, extent = {{-69, 69}, {69, -69}}, origin = {-1, -1})}),
+					Diagram(graphics={Ellipse(fillColor = {119, 119, 119}, fillPattern = FillPattern.Solid, extent = {{-48, 58}, {48, -58}})}));
 			end Comm_in;
 			m_int mi annotation(Placement(transformation(
-				origin={-34,42},
-				extent={{-14,-14},{14,14}})));
+				origin={-34, 42},
+				extent={{-14, -14}, {14, 14}})));
 			Modelica.Electrical.Analog.Sensors.VoltageSensor v_int annotation(Placement(transformation(
-				origin={-55,-31},
-				extent={{-10,-10},{10,10}},
+				origin={-55, -31},
+				extent={{-10, -10}, {10, 10}},
 				rotation=-90)));
 			Modelica.Electrical.Analog.Ideal.IdealOpeningSwitch idealopeningswitch1 annotation(Placement(transformation(
-				origin={-28,-6},
-				extent={{-10,-10},{10,10}})));
+				origin={-28, -6},
+				extent={{-10, -10}, {10, 10}})));
 			Modelica.Electrical.Analog.Basic.Resistor resistor1(R=0.001) annotation(Placement(transformation(
-				origin={-22,-44},
-				extent={{-10,-10},{10,10}})));
+				origin={-22, -44},
+				extent={{-10, -10}, {10, 10}})));
 			Modelica.Electrical.Analog.Sensors.VoltageSensor v_ext annotation(Placement(transformation(
-				origin={17,-31},
-				extent={{-10,10},{10,-10}},
+				origin={17, -31},
+				extent={{-10, 10}, {10, -10}},
 				rotation=-90)));
 			Modelica.Electrical.Analog.Basic.Resistor resistor2(R=0.02) annotation(Placement(transformation(
-				origin={16,6},
-				extent={{-10,-10},{10,10}},
+				origin={16, 6},
+				extent={{-10, -10}, {10, 10}},
 				rotation=-90)));
 			Modelica.Electrical.Analog.Sensors.CurrentSensor intf_current annotation(Placement(transformation(
-				origin={0,28},
-				extent={{10,10},{-10,-10}})));
+				origin={0, 28},
+				extent={{10, 10}, {-10, -10}})));
 			equation
-				connect(gnd_motor,mi.pin_n) annotation(Line(points={{-98,8},{-93,8},{-53,8},{-53,39.3},{-48,39.3}}));
-				connect(v_motor,mi.pin_p) annotation(Line(points={{-98,28},{-93,28},{-53.3,28},{-53.3,44.7},{-48.3,44.7}}));
+				connect(gnd_motor, mi.pin_n) annotation(Line(points = {{-98, 8}, {-93, 8}, {-53, 8}, {-53, 39.3}, {-48, 39.3}}));
+				connect(v_motor, mi.pin_p) annotation(Line(points = {{-98, 28}, {-93, 28}, {-53.3, 28}, {-53.3, 44.7}, {-48.3, 44.7}}));
 				comm_out.tmp = 293 + sin(time * 0.001);
-				connect(mi.pos_sens,comm_out.mi_pos) annotation(
-					Line(
-						points={{-48,35},{-53,35},{-70,35},{-70,82},{-100,82}},
-						color={0,0,127}),
-					AutoRoute=false);
-				connect(comm_in.set_pos,mi.target_pos) annotation(Line(points={{-100,55},{-95,55},{-53,55},{-53,50.3},{-48,50.3}}));
-				connect(comm_in.set_ess,idealopeningswitch1.control) annotation(Line(points={{-100,55},{-95,55},{-28,55},{-28,6},{-28,1}}));
-				connect(v_ext.v,comm_out.v_ext) annotation(Line(
-					points={{27,-31},{32,-31},{32,82},{-95,82},{-100,82}},
-					color={0,0,127}));
-				connect(intf_current.i,comm_out.intf_current) annotation(Line(
-					points={{0,38},{0,43},{0,82},{-95,82},{-100,82}},
-					color={0,0,127}));
-				connect(v_int.v,comm_out.v_int) annotation(
-					Line(
-						points={{-65,-31},{-70,-31},{-70,82},{-100,82}},
-						color={0,0,127}),
-					AutoRoute=false);
-				connect(intf_current.n,idealopeningswitch1.n) annotation(Line(points={{-10,28},{-15,28},{-15,11},{-13,11},{-13,-6},{-18,
-				-6}}));
-				connect(intf_current.p,resistor2.p) annotation(Line(points={{10,28},{15,28},{16,28},{16,21},{16,16}}));
-				connect(resistor2.n,v_ext.p) annotation(Line(points={{16,-4},{16,-9},{16,-16},{17,-16},{17,-21}}));
-				connect(v_ext.p,vcc_ext) annotation(Line(points={{17,-21},{17,-16},{17,-14},{94.3,-14},{99.3,-14}}));
-				connect(v_ext.n,gnd_ext) annotation(Line(points={{17,-41},{17,-46},{55.7,-46},{55.7,-41},{94.7,-41},{99.7,
-				-41}}));
-				connect(resistor1.n,v_ext.n) annotation(Line(points={{-12,-44},{-7,-44},{-7,-46},{17,-46},{17,-41}}));
-				connect(resistor1.p,v_int.n) annotation(Line(points={{-32,-44},{-37,-44},{-37,-46},{-55,-46},{-55,-41}}));
-				connect(vcc_int,v_int.p) annotation(Line(points={{-98,-17},{-93,-17},{-93,-16},{-55,-16},{-55,-21}}));
-				connect(v_int.p,idealopeningswitch1.p) annotation(Line(points={{-55,-21},{-55,-16},{-55,-6},{-43,-6},{-38,-6}}));
-				connect(gnd_int,v_int.n) annotation(Line(points={{-98,-37},{-93,-37},{-93,-46},{-55,-46},{-55,-41}}));
+				connect(mi.pos_sens, comm_out.mi_pos) annotation(Line(points = {{-48, 35}, {-53, 35}, {-70, 35}, {-70, 82}, {-100, 82}}, color = {0, 0, 127}), AutoRoute = false);
+				connect(comm_in.set_pos, mi.target_pos) annotation(Line(points = {{-100, 55}, {-95, 55}, {-53, 55}, {-53, 50.3}, {-48, 50.3}}));
+				connect(comm_in.set_ess, idealopeningswitch1.control) annotation(Line(points = {{-100, 55}, {-95, 55}, {-28, 55}, {-28, 6}, {-28, 1}}));
+				connect(v_ext.v, comm_out.v_ext) annotation(Line(points = {{27, -31}, {32, -31}, {32, 82}, {-95, 82}, {-100, 82}}, color = {0, 0, 127}));
+				connect(intf_current.i, comm_out.intf_current) annotation(Line(points = {{0, 38}, {0, 43}, {0, 82}, {-95, 82}, {-100, 82}}, color = {0, 0, 127}));
+				connect(v_int.v, comm_out.v_int) annotation(Line(points = {{-65, -31}, {-70, -31}, {-70, 82}, {-100, 82}}, color = {0, 0, 127}), AutoRoute = false);
+				connect(intf_current.n, idealopeningswitch1.n) annotation(Line(points = {{-10, 28}, {-15, 28}, {-15, 11}, {-13, 11}, {-13, -6}, {-18, -6}}));
+				connect(intf_current.p, resistor2.p) annotation(Line(points = {{10, 28}, {15, 28}, {16, 28}, {16, 21}, {16, 16}}));
+				connect(resistor2.n, v_ext.p) annotation(Line(points = {{16, -4}, {16, -9}, {16, -16}, {17, -16}, {17, -21}}));
+				connect(v_ext.p, vcc_ext) annotation(Line(points = {{17, -21}, {17, -16}, {17, -14}, {94.3, -14}, {99.3, -14}}));
+				connect(v_ext.n, gnd_ext) annotation(Line(points = {{17, -41}, {17, -46}, {55.7, -46}, {55.7, -41}, {94.7, -41}, {99.7, -41}}));
+				connect(resistor1.n, v_ext.n) annotation(Line(points = {{-12, -44}, {-7, -44}, {-7, -46}, {17, -46}, {17, -41}}));
+				connect(resistor1.p, v_int.n) annotation(Line(points = {{-32, -44}, {-37, -44}, {-37, -46}, {-55, -46}, {-55, -41}}));
+				connect(vcc_int, v_int.p) annotation(Line(points = {{-98, -17}, {-93, -17}, {-93, -16}, {-55, -16}, {-55, -21}}));
+				connect(v_int.p, idealopeningswitch1.p) annotation(Line(points = {{-55, -21}, {-55, -16}, {-55, -6}, {-43, -6}, {-38, -6}}));
+				connect(gnd_int, v_int.n) annotation(Line(points = {{-98, -37}, {-93, -37}, {-93, -46}, {-55, -46}, {-55, -41}}));
 			annotation(
 				mi(noise_ung1(y(flags=2))),
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
-				Icon(graphics={
-							Rectangle(
-								fillColor={0,0,255},
-								fillPattern=FillPattern.Solid,
-								extent={{-16.6902,93.63509999999999},{7.63791,-93.3522}},
-								origin={-10,2},
-								rotation=180),
-							Rectangle(
-								fillColor={0,0,255},
-								fillPattern=FillPattern.Solid,
-								extent={{-22.0651,48.0905},{-16.6902,-49.2221}},
-								origin={-10,2},
-								rotation=180),
-							Rectangle(
-								fillColor={0,0,255},
-								fillPattern=FillPattern.Solid,
-								extent={{-33.9463,21.2164},{15.8416,-22.9137}},
-								origin={-10,2},
-								rotation=180),
-							Rectangle(
-								fillPattern=FillPattern.Solid,
-								extent={{24.0453,66.1952},{1.41443,15.8416}},
-								origin={-10,2},
-								rotation=180),
-							Rectangle(
-								fillPattern=FillPattern.Solid,
-								extent={{1.9802,-9.6181},{25.1768,-61.9519}},
-								origin={-10,2},
-								rotation=180),
-							Text(
-								textString="GND",
-								fillColor={0,0,255},
-								extent={{39.0382,-33.9463},{85.71429999999999,-64.7807}}),
-							Text(
-								textString="VCC",
-								fillColor={0,0,255},
-								extent={{41.5842,-0.282893},{80.3395,-33.6634}})}),
+				Icon(graphics={Rectangle(fillColor = {0, 0, 255}, fillPattern = FillPattern.Solid, extent = {{-16.6902, 93.63509999999999}, {7.63791, -93.3522}}, origin = {-10, 2}, rotation = 180), Rectangle(fillColor = {0, 0, 255}, fillPattern = FillPattern.Solid, extent = {{-22.0651, 48.0905}, {-16.6902, -49.2221}}, origin = {-10, 2}, rotation = 180), Rectangle(fillColor = {0, 0, 255}, fillPattern = FillPattern.Solid, extent = {{-33.9463, 21.2164}, {15.8416, -22.9137}}, origin = {-10, 2}, rotation = 180), Rectangle(fillPattern = FillPattern.Solid, extent = {{24.0453, 66.1952}, {1.41443, 15.8416}}, origin = {-10, 2}, rotation = 180), Rectangle(fillPattern = FillPattern.Solid, extent = {{1.9802, -9.6181}, {25.1768, -61.9519}}, origin = {-10, 2}, rotation = 180), Text(textString = "GND", fillColor = {0, 0, 255}, extent = {{39.0382, -33.9463}, {85.71429999999999, -64.7807}}), Text(textString = "VCC", fillColor = {0, 0, 255}, extent = {{41.5842, -0.282893}, {80.3395, -33.6634}})}),
 				experiment(
 					StopTime=100,
 					StartTime=0,
@@ -498,35 +426,35 @@ package ibossmo
 		model m_int "m_int"
 			Modelica.Electrical.Analog.Interfaces.PositivePin pin_p "Positive pin of an electric component" annotation(Placement(
 				transformation(
-					origin={-100,20},
-					extent={{-10,-10},{10,10}}),
+					origin={-100, 20},
+					extent={{-10, -10}, {10, 10}}),
 				iconTransformation(
-					origin={-102,20},
-					extent={{-10,-10},{10,10}})));
+					origin={-102, 20},
+					extent={{-10, -10}, {10, 10}})));
 			Modelica.Electrical.Analog.Interfaces.NegativePin pin_n annotation(Placement(
 				transformation(
-					origin={-100,-20},
-					extent={{-10,-10},{10,10}}),
+					origin={-100, -20},
+					extent={{-10, -10}, {10, 10}}),
 				iconTransformation(
-					origin={-100,-20},
-					extent={{-10,-10},{10,10}})));
+					origin={-100, -20},
+					extent={{-10, -10}, {10, 10}})));
 			input Modelica.Blocks.Interfaces.RealInput target_pos(start=0) annotation(Placement(
 				transformation(
-					origin={-100,60},
-					extent={{-10,-10},{10,10}}),
+					origin={-100, 60},
+					extent={{-10, -10}, {10, 10}}),
 				iconTransformation(
-					origin={-100,60},
-					extent={{-10,-10},{10,10}})));
+					origin={-100, 60},
+					extent={{-10, -10}, {10, 10}})));
 			output Modelica.Blocks.Interfaces.RealOutput pos_sens "'output Real' as connector" annotation(Placement(
 				transformation(
-					origin={-100,-68},
-					extent={{10,-10},{-10,10}}),
-				iconTransformation(extent={{-90,-60},{-110,-40}})));
+					origin={-100, -68},
+					extent={{10, -10}, {-10, 10}}),
+				iconTransformation(extent={{-90, -60}, {-110, -40}})));
 			Modelica.Mechanics.Rotational.Components.BearingFriction bearingfriction1(
 				tau_pos=[0, 0.0; 0.1, 50.0],
 				peak=3.0) annotation(Placement(transformation(
-				origin={30,-44},
-				extent={{-10,-10},{10,10}})));
+				origin={30, -44},
+				extent={{-10, -10}, {10, 10}})));
 			Modelica.Mechanics.Rotational.Components.Inertia inertia1(
 				J=0.1 * 0.03 ^ 2,
 				stateSelect=.StateSelect.prefer,
@@ -539,21 +467,21 @@ package ibossmo
 				a(
 					fixed=false,
 					start=0)) annotation(Placement(transformation(
-				origin={66,-44},
-				extent={{-10,-10},{10,10}})));
+				origin={66, -44},
+				extent={{-10, -10}, {10, 10}})));
 			Modelica.Mechanics.Rotational.Sensors.AngleSensor pos annotation(Placement(transformation(
-				origin={80,-16},
-				extent={{-10,-10},{10,10}},
+				origin={80, -16},
+				extent={{-10, -10}, {10, 10}},
 				rotation=90)));
 			satcomponents.blocks.OnOffIdleController onoffidlecontroller1(bandwidth=0.01) annotation(Placement(transformation(
-				origin={34,42},
-				extent={{10,-10},{-10,10}})));
+				origin={34, 42},
+				extent={{10, -10}, {-10, 10}})));
 			Modelica.Blocks.Logical.LessThreshold lessthreshold1(threshold=-0.5) annotation(Placement(transformation(
-				origin={8,34},
-				extent={{4,-4},{-4,4}})));
+				origin={8, 34},
+				extent={{4, -4}, {-4, 4}})));
 			Modelica.Blocks.Logical.GreaterThreshold greaterthreshold1(threshold=0.5) annotation(Placement(transformation(
-				origin={8,48},
-				extent={{4,-4},{-4,4}})));
+				origin={8, 48},
+				extent={{4, -4}, {-4, 4}})));
 			Modelica.Electrical.Machines.BasicMachines.QuasiStationaryDCMachines.DC_PermanentMagnet dcpm(
 				TaOperational=60,
 				VaNominal=6,
@@ -565,23 +493,23 @@ package ibossmo
 				La=480e-6,
 				Jr=0.0081 * 0.01 ^ 2,
 				ia(start=0)) annotation(Placement(transformation(
-				origin={-56,-44},
-				extent={{-10,-10},{10,10}})));
+				origin={-56, -44},
+				extent={{-10, -10}, {10, 10}})));
 			satcomponents.power.HBridge hbridge1 annotation(Placement(transformation(
-				origin={-58,4},
-				extent={{-10,10},{10,-10}},
+				origin={-58, 4},
+				extent={{-10, 10}, {10, -10}},
 				rotation=-90)));
 			Modelica.Mechanics.Rotational.Components.IdealGear idealgear1(ratio=22 * 400) annotation(Placement(transformation(
-				origin={4,-44},
-				extent={{-10,-10},{10,10}})));
+				origin={4, -44},
+				extent={{-10, -10}, {10, 10}})));
 			satcomponents.blocks.noise_ung noise_ung1(
 				amplitude=0.01,
 				seed=11.0) annotation(Placement(transformation(
-				origin={26,-88},
-				extent={{10.17,-5.17},{-10.17,5.17}})));
+				origin={26, -88},
+				extent={{10.17, -5.17}, {-10.17, 5.17}})));
 			Modelica.Blocks.Math.Add add1 annotation(Placement(transformation(
-				origin={-22,-78},
-				extent={{10,-10},{-10,10}})));
+				origin={-22, -78},
+				extent={{10, -10}, {-10, 10}})));
 			equation
 				connect(add1.u1, pos.phi) annotation(Line(points = {{-10, -72}, {92, -72}, {92, 6}, {80, 6}, {80, -6}, {80, -6}}, color = {0, 0, 127}));
 				connect(add1.u2, noise_ung1.y) annotation(Line(points = {{-10, -84}, {0, -84}, {0, -88}, {16, -88}, {16, -88}}, color = {0, 0, 127}));
@@ -602,45 +530,7 @@ package ibossmo
 				connect(bearingfriction1.flange_b, inertia1.flange_a) annotation(Line(points = {{40, -44}, {48, -44}, {48, -42}, {58, -42}, {58, -42}, {58, -42}, {58, -44}, {57, -44}, {57, -44}, {56, -44}}));
 			annotation(
 				noise_ung1(y(flags=2)),
-				viewinfo[2](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
-				Icon(graphics={
-							Ellipse(
-								lineColor={0,0,0},
-								fillColor={255,255,255},
-								fillPattern=FillPattern.Solid,
-								extent={{-76.7,80},{90,-90}}),
-							Ellipse(
-								lineColor={0,0,0},
-								fillColor={255,255,255},
-								fillPattern=FillPattern.Solid,
-								extent={{-40,36.7},{60,-56.7}}),
-							Ellipse(
-								lineColor={0,0,0},
-								fillColor={255,255,255},
-								fillPattern=FillPattern.Solid,
-								extent={{-23.3,16.7},{43.3,-40}}),
-							Rectangle(
-								lineColor={0,0,0},
-								fillColor={255,255,255},
-								fillPattern=FillPattern.Solid,
-								extent={{0,33.3},{23.3,16.7}}),
-							Rectangle(
-								lineColor={0,0,0},
-								fillColor={255,255,255},
-								fillPattern=FillPattern.Solid,
-								extent={{0,-43.3},{23.3,-53.3}}),
-							Rectangle(
-								lineColor={0,0,0},
-								fillColor={255,255,255},
-								fillPattern=FillPattern.Solid,
-								extent={{-23.3,-3.3},{-36.7,-20}}),
-							Rectangle(
-								lineColor={0,0,0},
-								fillColor={255,255,255},
-								fillPattern=FillPattern.Solid,
-								extent={{56.7,-6.7},{43.3,-23.3}})}),
+				Icon(graphics={Ellipse(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-76.7, 80}, {90, -90}}), Ellipse(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-40, 36.7}, {60, -56.7}}), Ellipse(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-23.3, 16.7}, {43.3, -40}}), Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{0, 33.3}, {23.3, 16.7}}), Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{0, -43.3}, {23.3, -53.3}}), Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-23.3, -3.3}, {-36.7, -20}}), Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{56.7, -6.7}, {43.3, -23.3}})}),
 				experiment(
 					StopTime=1,
 					StartTime=0));
@@ -704,38 +594,40 @@ package ibossmo
 			end interface_with_dcdc;
 			model interfacecomplete_with_dcdc
 				Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(transformation(
-					origin={-46,-54},
-					extent={{-10,-10},{10,10}})));
+					origin={-46, -54},
+					extent={{-10, -10}, {10, 10}})));
 				satcomponents.power.dcmodel.dcdc_ideal_simple dcdc_ideal_simple1 annotation(Placement(transformation(
-					origin={-16,0},
-					extent={{-10,-10},{10,10}})));
-				iboss_interface iboss_interface1 annotation(Placement(transformation(
-					origin={34,6},
-					extent={{-18,-18},{18,18}})));
+					origin={-16, 0},
+					extent={{-10, -10}, {10, 10}})));
 				Modelica.Blocks.Sources.TimeTable timetable1(table=[0, 0; 5, 0; 5.01, 0.3; 20, 0.3; 20.01, 1.0; 45, 1.0; 45.0, 0; 70, 0.0]) annotation(Placement(transformation(
-					origin={-59,79},
-					extent={{-13,-13},{13,13}})));
+					origin={-59, 79},
+					extent={{-13, -13}, {13, 13}})));
 				Modelica.Blocks.Sources.BooleanConstant booleanconstant1 annotation(Placement(transformation(
-					origin={-54,34},
-					extent={{-10,-10},{10,10}})));
+					origin={-54, 34},
+					extent={{-10, -10}, {10, 10}})));
 				Modelica.Electrical.Analog.Sources.ConstantVoltage constantvoltage1(V=25) annotation(Placement(transformation(
-					origin={-72,-2},
-					extent={{-10,-10},{10,10}},
+					origin={-72, -2},
+					extent={{-10, -10}, {10, 10}},
 					rotation=-90)));
+				iboss_interface iboss_interface1 annotation(Placement(
+					visible=true,
+					transformation(
+						origin={44, 16},
+						extent={{-18, -18}, {18, 18}},
+						rotation=0)));
 				equation
+					connect(dcdc_ideal_simple1.n2, iboss_interface1.gnd_int) annotation(Line(points = {{-6, -5}, {8, -5}, {8, 10}, {8, 10}}, color = {0, 0, 255}));
+					connect(dcdc_ideal_simple1.p1, iboss_interface1.vcc_int) annotation(Line(points = {{-26, 5}, {26, 5}, {26, 24}, {26, 24}}, color = {0, 0, 255}));
+					connect(dcdc_ideal_simple1.n2, iboss_interface1.gnd_motor) annotation(Line(points = {{-6, -5}, {46, -5}, {46, -2}, {46, -2}}, color = {0, 0, 255}));
+					connect(dcdc_ideal_simple1.p2, iboss_interface1.v_motor) annotation(Line(points = {{-6, 5}, {34, 5}, {34, -2}, {34, -2}}, color = {0, 0, 255}));
+					connect(timetable1.y, iboss_interface1.comm_in.set_pos) annotation(Line(points = {{-45, 79}, {-22, 79}, {-22, 34}, {44, 34}}, color = {0, 0, 127}));
+					connect(booleanconstant1.y, iboss_interface1.comm_in.set_ess) annotation(Line(points = {{-43, 34}, {44, 34}}, color = {255, 0, 255}));
 					connect(dcdc_ideal_simple1.n1, ground1.p) annotation(Line(points = {{-26, -5}, {-26, -5}, {-26, -44}, {-46, -44}, {-46, -44}}, color = {0, 0, 255}));
 					connect(constantvoltage1.n, dcdc_ideal_simple1.n1) annotation(Line(points = {{-72, -12}, {-26, -12}, {-26, -6}, {-26, -6}}, color = {0, 0, 255}));
 					connect(constantvoltage1.p, dcdc_ideal_simple1.p1) annotation(Line(points = {{-72, 8}, {-26, 8}, {-26, 6}, {-26, 6}}, color = {0, 0, 255}));
-					connect(iboss_interface1.gnd_int, dcdc_ideal_simple1.n2) annotation(Line(points = {{16, -2}, {16, -2}, {16, -14}, {-6, -14}, {-6, -6}, {-6, -6}}, color = {0, 0, 255}));
-					connect(dcdc_ideal_simple1.p2, iboss_interface1.vcc_int) annotation(Line(points = {{-6, 5}, {16, 5}, {16, 4}, {16, 4}}, color = {0, 0, 255}));
-					connect(booleanconstant1.y, iboss_interface1.comm_in.set_ess) annotation(Line(points = {{-43, 34}, {2, 34}, {2, 18}, {16, 18}, {16, 18}}, color = {255, 0, 255}));
-					connect(timetable1.y, iboss_interface1.comm_in.set_pos) annotation(Line(points = {{-45, 79}, {-22, 79}, {-22, 18}, {16, 18}}, color = {0, 0, 127}));
 					connect(dcdc_ideal_simple1.n2, dcdc_ideal_simple1.n1) annotation(Line(points = {{-6, -5}, {-6, -5}, {-6, -20}, {-26, -20}, {-26, -6}, {-26, -6}}, color = {0, 0, 255}));
 				annotation(
 					iboss_interface1(mi(noise_ung1(y(flags=2)))),
-					viewinfo[2](
-						viewSettings(clrRaster=12632256),
-						typename="ModelInfo"),
 					experiment(
 						StopTime=100,
 						StartTime=0,
@@ -744,49 +636,36 @@ package ibossmo
 			end interfacecomplete_with_dcdc;
 			model interfacecomplete_with_battery
 				Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(transformation(
-					origin={-46,-54},
-					extent={{-10,-10},{10,10}})));
+					origin={-46, -54},
+					extent={{-10, -10}, {10, 10}})));
 				Modelica.Blocks.Sources.TimeTable timetable1(table=[0, 0; 5, 0; 5.01, 0.3; 20, 0.3; 20.01, 1.0; 45, 1.0; 45.0, 0; 70, 0.0]) annotation(Placement(transformation(
-					origin={-59,79},
-					extent={{-13,-13},{13,13}})));
+					origin={-59, 79},
+					extent={{-13, -13}, {13, 13}})));
 				Modelica.Blocks.Sources.BooleanConstant booleanconstant1 annotation(Placement(transformation(
-					origin={-55,40},
-					extent={{-10,-10},{10,10}})));
+					origin={-55, 40},
+					extent={{-10, -10}, {10, 10}})));
 				satcomponents.power.batteries.battery battery1(
 					capacity_Ah=0.3,
 					Vnominal=20) annotation(Placement(transformation(
-					origin={-60,-4},
-					extent={{-10,-10},{10,10}},
+					origin={-60, -4},
+					extent={{-10, -10}, {10, 10}},
 					rotation=-90)));
 				iboss_interface iboss_interface1 annotation(Placement(transformation(
-					origin={28,18},
-					extent={{-10,-10},{10,10}})));
+					origin={28, 18},
+					extent={{-10, -10}, {10, 10}})));
 				satcomponents.power.dcmodel.dcdc_ideal_simple dcdc_ideal_simple1 annotation(Placement(transformation(
-					origin={-22,8},
-					extent={{-10,-10},{10,10}})));
+					origin={-22, 8},
+					extent={{-10, -10}, {10, 10}})));
 				equation
-					connect(timetable1.y,iboss_interface1.comm_in.set_pos) annotation(Line(points={{-44.7,79},{-39.7,79},{28,79},{28,33},{28,28}}));
-					connect(dcdc_ideal_simple1.n1,dcdc_ideal_simple1.n2) annotation(Line(points={{-32,3},{-37,3},{-37,-7},{-7,-7},{-7,3},{-12,
-					3}}));
-					connect(battery1.p,dcdc_ideal_simple1.p1) annotation(Line(points={{-60,6},{-60,11},{-60,13},{-37,13},{-32,13}}));
-					connect(dcdc_ideal_simple1.n1,battery1.n) annotation(Line(points={{-32,3},{-37,3},{-37,-19},{-60,-19},{-60,-14}}));
-					connect(battery1.n,ground1.p) annotation(Line(points={{-60,-14},{-60,-19},{-60,-39},{-46,-39},{-46,-44}}));
-					connect(dcdc_ideal_simple1.p2,iboss_interface1.v_motor) annotation(Line(
-						points={{-12,13},{-7,13},{-7,3},{23,3},{23,8}},
-						thickness=0.0625));
-					connect(dcdc_ideal_simple1.n2,iboss_interface1.gnd_motor) annotation(
-						Line(
-							points={{-12,3},{-7,-5},{28,-5},{28,8}},
-							thickness=0.0625),
-						AutoRoute=false);
-					connect(dcdc_ideal_simple1.p1,iboss_interface1.vcc_int) annotation(Line(
-						points={{-32,13},{-37,13},{-37,23},{13,23},{18,23}},
-						thickness=0.0625));
-					connect(dcdc_ideal_simple1.n2,iboss_interface1.gnd_int) annotation(
-						Line(
-							points={{-12,3},{-7,-5},{13,-5},{13,18},{18,18}},
-							thickness=0.0625),
-						AutoRoute=false);
+					connect(timetable1.y, iboss_interface1.comm_in.set_pos) annotation(Line(points = {{-44.7, 79}, {-39.7, 79}, {28, 79}, {28, 33}, {28, 28}}));
+					connect(dcdc_ideal_simple1.n1, dcdc_ideal_simple1.n2) annotation(Line(points = {{-32, 3}, {-37, 3}, {-37, -7}, {-7, -7}, {-7, 3}, {-12, 3}}));
+					connect(battery1.p, dcdc_ideal_simple1.p1) annotation(Line(points = {{-60, 6}, {-60, 11}, {-60, 13}, {-37, 13}, {-32, 13}}));
+					connect(dcdc_ideal_simple1.n1, battery1.n) annotation(Line(points = {{-32, 3}, {-37, 3}, {-37, -19}, {-60, -19}, {-60, -14}}));
+					connect(battery1.n, ground1.p) annotation(Line(points = {{-60, -14}, {-60, -19}, {-60, -39}, {-46, -39}, {-46, -44}}));
+					connect(dcdc_ideal_simple1.p2, iboss_interface1.v_motor) annotation(Line(points = {{-12, 13}, {-7, 13}, {-7, 3}, {23, 3}, {23, 8}}, thickness = 0.0625));
+					connect(dcdc_ideal_simple1.n2, iboss_interface1.gnd_motor) annotation(Line(points = {{-12, 3}, {-7, -5}, {28, -5}, {28, 8}}, thickness = 0.0625), AutoRoute = false);
+					connect(dcdc_ideal_simple1.p1, iboss_interface1.vcc_int) annotation(Line(points = {{-32, 13}, {-37, 13}, {-37, 23}, {13, 23}, {18, 23}}, thickness = 0.0625));
+					connect(dcdc_ideal_simple1.n2, iboss_interface1.gnd_int) annotation(Line(points = {{-12, 3}, {-7, -5}, {13, -5}, {13, 18}, {18, 18}}, thickness = 0.0625), AutoRoute = false);
 				annotation(
 					battery1(
 						v(flags=2),
@@ -799,9 +678,6 @@ package ibossmo
 							intf_current(flags=2),
 							tmp(flags=2)),
 						mi(noise_ung1(y(flags=2)))),
-					viewinfo[0](
-						viewSettings(clrRaster=12632256),
-						typename="ModelInfo"),
 					experiment(
 						StopTime=100,
 						StartTime=0,
@@ -821,7 +697,7 @@ package ibossmo
 					grid={2, 2})));
 		end Examples;
 		connector Comm_in
-			parameter Integer intf_count=6;
+			parameter Integer intf_count=1;
 			iboss_interface.Comm_in intf[intf_count];
 			annotation(
 				Icon(graphics={
@@ -839,7 +715,7 @@ package ibossmo
 								fillPattern=FillPattern.Solid)}));
 		end Comm_in;
 		connector Comm_out
-			parameter Integer intf_count=6;
+			parameter Integer intf_count=1;
 			iboss_interface.Comm_out intf[intf_count];
 			output Modelica.Blocks.Interfaces.RealOutput T_OBC;
 			output Modelica.Blocks.Interfaces.RealOutput acc[3];
@@ -2018,7 +1894,7 @@ package ibossmo
 				iconTransformation(
 					origin={-98,20},
 					extent={{-10,-10},{10,10}})));
-			components.Comm_out comm_out annotation(Placement(
+			components.Comm_out comm_out(intf_count=1) annotation(Placement(
 				transformation(
 					origin={-100,56},
 					extent={{-10,-10},{10,10}}),
@@ -2029,8 +1905,8 @@ package ibossmo
 				origin={64,8},
 				extent={{-10,-10},{10,10}})));
 			equation
-				connect(intf.comm_out,comm_out.intf[1]);
-				connect(comm_in.intf[1],intf.comm_in)  ;
+				connect(intf.comm_out,comm_out.intf[1]) annotation(Line(points={{59,18},{59,23},{59,56},{-95,56},{-100,56}}));
+				connect(comm_in.intf[1],intf.comm_in) annotation(Line(points={{-100,80},{-95,80},{64,80},{64,23},{64,18}}));
 				connect(thermometer_withnoise1.T,comm_out.T_OBC) annotation(Line(
 					points={{0,28},{5,28},{5,56},{-95,56},{-100,56}},
 					color={0,0,127}));
@@ -2090,15 +1966,6 @@ package ibossmo
 				viewinfo[0](
 					viewSettings(clrRaster=12632256),
 					typename="ModelInfo"),
-				viewinfo[1](
-					projectPath="C:\\Users\\indahouse\\Documents\\SimulationX 3.6\\Exported C-Code",
-					projectType=0,
-					saveOutputsApproach=1,
-					showAdditionalLibPage=false,
-					useCodeOptimization=true,
-					m_x64=false,
-					solverMode=1,
-					typename="CodeExportInfo"),
 				experiment(
 					StopTime=100,
 					StartTime=0,
@@ -2341,63 +2208,920 @@ package ibossmo
 					Interval=0.02));
 		end versom_basic_battery;
 		model verosim_basic
-            extends icons.basic;
-            parameter Integer intf_count=1 "number of interfaces";
-            parameter Modelica.SIunits.Mass m=10;
-            satcomponents.power.verbraucher OBC(
-                v_nominal=5,
-                useHeatPort=true) ;
-            satcomponents.AOCS.Parts.IMU imu1 ;
-            Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatcapacitor1(C=897.0 * m) ;
-            Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedtemperature1(T=100) ;
-            Modelica.Thermal.HeatTransfer.Components.BodyRadiation bodyradiation1(Gr=0.02 * 6 * 0.4 * 0.4) ;
-            Modelica.Electrical.Analog.Basic.Ground ground1 ;
-            satcomponents.power.dcmodel.dcdc_ideal_simple dcdc_ideal_simple1 ;
-            Modelica.Electrical.Analog.Sources.RampVoltage rampvoltage1(
-                V=40,
-                duration=2) ;
-            satcomponents.thermal.thermometer_withnoise thermometer_withnoise1 ;
-            components.Comm_in comm_in(intf_count=intf_count);
-            input Modelica.Blocks.Interfaces.RealInput ddr[3] ;
-            components.Comm_out comm_out(intf_count=intf_count);
-            components.iboss_interface intf;
-            equation
-                connect(intf.comm_out,comm_out.intf[1]);
-                connect(comm_in.intf[1],intf.comm_in)  ;
-                connect(thermometer_withnoise1.T,comm_out.T_OBC) ;
-                connect(imu1.y,comm_out.acc) ;
-                connect(heatcapacitor1.port,thermometer_withnoise1.port) ;
-                connect(rampvoltage1.p,dcdc_ideal_simple1.p1) ;
-                connect(ground1.p,rampvoltage1.n) ;
-                connect(ground1.p,dcdc_ideal_simple1.n1) ;
-                connect(bodyradiation1.port_b,heatcapacitor1.port) ;
-                connect(fixedtemperature1.port,bodyradiation1.port_a) ;
-                connect(OBC.heatPort,heatcapacitor1.port) ;
-                connect(ddr,imu1.ang_vel) ;
-                connect(OBC.pin_p,dcdc_ideal_simple1.p2) ;
-                connect(OBC.pin_n,dcdc_ideal_simple1.n2) ;
-                connect(dcdc_ideal_simple1.n1,dcdc_ideal_simple1.n2) ;
-                connect(dcdc_ideal_simple1.p2,intf.v_motor) ;
-                connect(dcdc_ideal_simple1.n2,intf.gnd_motor) ;
-                connect(dcdc_ideal_simple1.p1,intf.vcc_int) ;
-                connect(dcdc_ideal_simple1.n1,intf.gnd_int) ;
-        end verosim_basic;
+			extends icons.basic;
+			parameter Integer intf_count=1 "number of interfaces";
+			parameter Modelica.SIunits.Mass m=10;
+			satcomponents.power.verbraucher OBC(
+				v_nominal=5,
+				useHeatPort=true);
+			satcomponents.AOCS.Parts.IMU imu1;
+			Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatcapacitor1(C=897.0 * m);
+			Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedtemperature1(T=100);
+			Modelica.Thermal.HeatTransfer.Components.BodyRadiation bodyradiation1(Gr=0.02 * 6 * 0.4 * 0.4);
+			Modelica.Electrical.Analog.Basic.Ground ground1;
+			satcomponents.power.dcmodel.dcdc_ideal_simple dcdc_ideal_simple1;
+			Modelica.Electrical.Analog.Sources.RampVoltage rampvoltage1(
+				V=40,
+				duration=2);
+			satcomponents.thermal.thermometer_withnoise thermometer_withnoise1;
+			input Modelica.Blocks.Interfaces.RealInput ddr[3];
+			components.iboss_interface intf;
+			equation
+				connect(heatcapacitor1.port, thermometer_withnoise1.port);
+				connect(rampvoltage1.p, dcdc_ideal_simple1.p1);
+				connect(ground1.p, rampvoltage1.n);
+				connect(ground1.p, dcdc_ideal_simple1.n1);
+				connect(bodyradiation1.port_b, heatcapacitor1.port);
+				connect(fixedtemperature1.port, bodyradiation1.port_a);
+				connect(OBC.heatPort, heatcapacitor1.port);
+				connect(ddr, imu1.ang_vel);
+				connect(OBC.pin_p, dcdc_ideal_simple1.p2);
+				connect(OBC.pin_n, dcdc_ideal_simple1.n2);
+				connect(dcdc_ideal_simple1.n1, dcdc_ideal_simple1.n2);
+				connect(dcdc_ideal_simple1.p2, intf.v_motor);
+				connect(dcdc_ideal_simple1.n2, intf.gnd_motor);
+				connect(dcdc_ideal_simple1.p1, intf.vcc_int);
+				connect(dcdc_ideal_simple1.n1, intf.gnd_int);
+			annotation(
+				imu1(
+					noise_ung2(y(flags=2)),
+					noise_ung1(y(flags=2)),
+					noise_ung3(y(flags=2))),
+				thermometer_withnoise1(noise_ung(y(flags=2))),
+				intf(mi(noise_ung1(y(flags=2)))),
+				viewinfo[0](
+					viewSettings(clrRaster=12632256),
+					typename="ModelInfo"),
+				experiment(
+					StopTime=1,
+					StartTime=0));
+		end verosim_basic;
 		package examples
 			extends Modelica.Icons.ExamplesPackage;
 			model verosim_block
 				extends Modelica.Icons.Example;
-				Modelica.Blocks.Sources.BooleanConstant set_ess(k=false) ;
-				Modelica.Blocks.Sources.TimeTable timetable1(table=[0, 0; 5, 0; 5.01, 0.3; 20, 0.3; 20.01, 1.0; 45, 1.0; 45.0, 0; 70, 0.0]) ;
-				verosim_basic verosim_basic1(m=1) ;
-				Modelica.Blocks.Sources.Constant acc[3](each k=0) ;
+				Modelica.Blocks.Sources.BooleanConstant set_ess[6](each k=false);
+				Modelica.Blocks.Sources.Constant set_mi_pos[6](each k=0.5);
+				Modelica.Blocks.Sources.TimeTable timetable1(table=[0, 0; 5, 0; 5.01, 0.3; 20, 0.3; 20.01, 1.0; 45, 1.0; 45.0, 0; 70, 0.0]);
+				iboss_vti vb(m=1) annotation(Placement(transformation(extent={{-10,-10},{10,10}})));
+				Modelica.Blocks.Sources.Constant acc[3](each k=0);
 				equation
-					connect(acc.y,verosim_basic1.ddr);
-					//for i in 2:6 loop
-					//	verosim_basic1.comm_in.intf[i].set_ess = 0.0;
-					//	verosim_basic1.comm_in.intf[i].set_pos = 0.0;
-					//end for;
-					verosim_basic1.comm_in.intf[1].set_ess = true;
-					verosim_basic1.comm_in.intf[1].set_pos = timetable1.y;
+						connect(vb.sim_ddr, acc.y);
+						//for i in 2:6 loop
+						//	verosim_basic1.comm_in.intf[i].set_ess = 0.0;
+						//	verosim_basic1.comm_in.intf[i].set_pos = 0.0;
+						//end for;
+						connect(timetable1.y, vb.set_mi_pos[1]);
+						connect(set_mi_pos[2:6].y,vb.set_mi_pos[2:6]);
+						connect(set_ess.y, vb.set_ei_state);
+					annotation(
+						verosim_basic1(
+							imu1(
+								noise_ung2(y(flags=2)),
+								noise_ung1(y(flags=2)),
+								noise_ung3(y(flags=2))),
+							thermometer_withnoise1(noise_ung(y(flags=2))),
+							intf(mi(noise_ung1(y(flags=2))))),
+						experiment(
+							StopTime=1,
+							StartTime=0));
+				annotation(
+					verosim_basic1(
+						imu1(
+							noise_ung2(y(flags=2)),
+							noise_ung1(y(flags=2)),
+							noise_ung3(y(flags=2))),
+						thermometer_withnoise1(noise_ung(y(flags=2))),
+						intf(mi(noise_ung1(y(flags=2))))),
+					experiment(
+						StopTime=1,
+						StartTime=0),
+					timetable1(y(flags=2)),
+					vb(
+						imu(
+							noise_ung2(y(flags=2)),
+							noise_ung1(y(flags=2)),
+							noise_ung3(y(flags=2))),
+						rampvoltage1(
+							v(flags=2),
+							i(flags=2),
+							p(
+								v(flags=2),
+								i(flags=2)),
+							n(
+								v(flags=2),
+								i(flags=2))),
+						thermometer_withnoise1(noise_ung(y(flags=2))),
+						iXp(
+							vcc_ext(
+								v(flags=2),
+								i(flags=2)),
+							gnd_ext(
+								v(flags=2),
+								i(flags=2)),
+							gnd_int(
+								v(flags=2),
+								i(flags=2)),
+							vcc_int(
+								v(flags=2),
+								i(flags=2)),
+							comm_out(
+								mi_pos(flags=2),
+								v_ext(flags=2),
+								v_int(flags=2),
+								intf_current(flags=2),
+								tmp(flags=2)),
+							v_motor(
+								v(flags=2),
+								i(flags=2)),
+							gnd_motor(
+								v(flags=2),
+								i(flags=2)),
+							mi(
+								pin_p(
+									v(flags=2),
+									i(flags=2)),
+								pin_n(
+									v(flags=2),
+									i(flags=2)),
+								pos_sens(flags=2),
+								bearingfriction1(
+									flange_a(
+										phi(flags=2),
+										tau(flags=2)),
+									flange_b(
+										phi(flags=2),
+										tau(flags=2)),
+									w_relfric(flags=2),
+									a_relfric(flags=2),
+									tau0(flags=2),
+									tau0_max(flags=2),
+									free(flags=2),
+									sa(flags=2),
+									startForward(flags=2),
+									startBackward(flags=2),
+									locked(flags=2),
+									mode(flags=2),
+									lossPower(flags=2),
+									phi(flags=2),
+									tau(flags=2),
+									w(flags=2),
+									a(flags=2)),
+								inertia1(
+									flange_a(
+										phi(flags=2),
+										tau(flags=2)),
+									flange_b(
+										phi(flags=2),
+										tau(flags=2)),
+									phi(flags=2),
+									w(flags=2),
+									a(flags=2)),
+								pos(flange(
+									phi(flags=2),
+									tau(flags=2))),
+								dcpm(
+									phiMechanical(flags=2),
+									wMechanical(flags=2),
+									tauElectrical(flags=2),
+									tauShaft(flags=2),
+									flange(
+										phi(flags=2),
+										tau(flags=2)),
+									inertiaRotor(
+										flange_a(
+											phi(flags=2),
+											tau(flags=2)),
+										flange_b(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										w(flags=2),
+										a(flags=2)),
+									inertiaStator(
+										flange_a(
+											phi(flags=2),
+											tau(flags=2)),
+										flange_b(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										w(flags=2),
+										a(flags=2)),
+									fixed(flange(
+										phi(flags=2),
+										tau(flags=2))),
+									friction(
+										flange(
+											phi(flags=2),
+											tau(flags=2)),
+										support(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										tau(flags=2),
+										w(flags=2),
+										heatPort(T(flags=2)),
+										lossPower(flags=2)),
+									va(flags=2),
+									ia(flags=2),
+									pin_ap(
+										v(flags=2),
+										i(flags=2)),
+									pin_an(
+										v(flags=2),
+										i(flags=2)),
+									ra(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2),
+										R_actual(flags=2)),
+									la(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2))),
+									brush(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(T(flags=2)),
+										lossPower(flags=2)),
+									core(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(T(flags=2)),
+										lossPower(flags=2),
+										Gc(flags=2)),
+									strayLoad(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										flange(
+											phi(flags=2),
+											tau(flags=2)),
+										support(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										tau(flags=2),
+										w(flags=2),
+										heatPort(T(flags=2)),
+										lossPower(flags=2)),
+									thermalPort(
+										heatPortArmature(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortCore(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortStrayLoad(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortFriction(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortBrush(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortPermanentMagnet(
+											T(flags=2),
+											Q_flow(flags=2))),
+									thermalAmbient(
+										thermalPort(
+											heatPortArmature(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortCore(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortStrayLoad(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortFriction(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortBrush(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortPermanentMagnet(
+												T(flags=2),
+												Q_flow(flags=2))),
+										temperatureArmature(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperatureCore(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperatureStrayLoad(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperatureFriction(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperatureBrush(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperaturePermanentMagnet(port(
+											T(flags=2),
+											Q_flow(flags=2)))),
+									airGapDC(
+										w(flags=2),
+										vei(flags=2),
+										ie(flags=2),
+										psi_e(flags=2),
+										vai(flags=2),
+										ia(flags=2),
+										tauElectrical(flags=2),
+										flange(
+											phi(flags=2),
+											tau(flags=2)),
+										support(
+											phi(flags=2),
+											tau(flags=2)),
+										pin_ap(
+											v(flags=2),
+											i(flags=2)),
+										pin_ep(
+											v(flags=2),
+											i(flags=2)),
+										pin_an(
+											v(flags=2),
+											i(flags=2)),
+										pin_en(
+											v(flags=2),
+											i(flags=2))),
+									eGround(p(
+										v(flags=2),
+										i(flags=2))),
+									ie(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)))),
+								hbridge1(
+									idealclosingswitch4(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									idealclosingswitch3(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									idealclosingswitch1(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									idealclosingswitch2(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									pin_n(
+										v(flags=2),
+										i(flags=2)),
+									pin_p(
+										v(flags=2),
+										i(flags=2)),
+									pin_p1(
+										v(flags=2),
+										i(flags=2)),
+									pin_n1(
+										v(flags=2),
+										i(flags=2)),
+									ground1(p(
+										v(flags=2),
+										i(flags=2))),
+									idealopeningswitch1(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									idealopeningswitch2(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2))),
+								idealgear1(
+									flange_a(
+										phi(flags=2),
+										tau(flags=2)),
+									flange_b(
+										phi(flags=2),
+										tau(flags=2)),
+									phi_a(flags=2),
+									phi_b(flags=2)),
+								noise_ung1(y(flags=2))),
+							v_int(
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2))),
+							idealopeningswitch1(
+								v(flags=2),
+								i(flags=2),
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								LossPower(flags=2),
+								T_heatPort(flags=2)),
+							resistor1(
+								v(flags=2),
+								i(flags=2),
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								LossPower(flags=2),
+								T_heatPort(flags=2),
+								R_actual(flags=2)),
+							v_ext(
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2))),
+							resistor2(
+								v(flags=2),
+								i(flags=2),
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								LossPower(flags=2),
+								T_heatPort(flags=2),
+								R_actual(flags=2)),
+							intf_current(
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)))),
+						iXn(
+							comm_out(
+								mi_pos(flags=2),
+								v_ext(flags=2),
+								v_int(flags=2),
+								intf_current(flags=2),
+								tmp(flags=2)),
+							mi(noise_ung1(y(flags=2)))),
+						iYp(mi(noise_ung1(y(flags=2)))),
+						iYn(
+							comm_out(
+								mi_pos(flags=2),
+								v_ext(flags=2),
+								v_int(flags=2),
+								intf_current(flags=2),
+								tmp(flags=2)),
+							mi(
+								pin_p(
+									v(flags=2),
+									i(flags=2)),
+								pin_n(
+									v(flags=2),
+									i(flags=2)),
+								pos_sens(flags=2),
+								bearingfriction1(
+									flange_a(
+										phi(flags=2),
+										tau(flags=2)),
+									flange_b(
+										phi(flags=2),
+										tau(flags=2)),
+									w_relfric(flags=2),
+									a_relfric(flags=2),
+									tau0(flags=2),
+									tau0_max(flags=2),
+									free(flags=2),
+									sa(flags=2),
+									startForward(flags=2),
+									startBackward(flags=2),
+									locked(flags=2),
+									mode(flags=2),
+									lossPower(flags=2),
+									phi(flags=2),
+									tau(flags=2),
+									w(flags=2),
+									a(flags=2)),
+								inertia1(
+									flange_a(
+										phi(flags=2),
+										tau(flags=2)),
+									flange_b(
+										phi(flags=2),
+										tau(flags=2)),
+									phi(flags=2),
+									w(flags=2),
+									a(flags=2)),
+								pos(flange(
+									phi(flags=2),
+									tau(flags=2))),
+								dcpm(
+									phiMechanical(flags=2),
+									wMechanical(flags=2),
+									tauElectrical(flags=2),
+									tauShaft(flags=2),
+									flange(
+										phi(flags=2),
+										tau(flags=2)),
+									inertiaRotor(
+										flange_a(
+											phi(flags=2),
+											tau(flags=2)),
+										flange_b(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										w(flags=2),
+										a(flags=2)),
+									inertiaStator(
+										flange_a(
+											phi(flags=2),
+											tau(flags=2)),
+										flange_b(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										w(flags=2),
+										a(flags=2)),
+									fixed(flange(
+										phi(flags=2),
+										tau(flags=2))),
+									friction(
+										flange(
+											phi(flags=2),
+											tau(flags=2)),
+										support(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										tau(flags=2),
+										w(flags=2),
+										heatPort(T(flags=2)),
+										lossPower(flags=2)),
+									va(flags=2),
+									ia(flags=2),
+									pin_ap(
+										v(flags=2),
+										i(flags=2)),
+									pin_an(
+										v(flags=2),
+										i(flags=2)),
+									ra(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2),
+										R_actual(flags=2)),
+									la(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2))),
+									brush(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(T(flags=2)),
+										lossPower(flags=2)),
+									core(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(T(flags=2)),
+										lossPower(flags=2),
+										Gc(flags=2)),
+									strayLoad(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										flange(
+											phi(flags=2),
+											tau(flags=2)),
+										support(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										tau(flags=2),
+										w(flags=2),
+										heatPort(T(flags=2)),
+										lossPower(flags=2)),
+									thermalPort(
+										heatPortArmature(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortCore(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortStrayLoad(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortFriction(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortBrush(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortPermanentMagnet(
+											T(flags=2),
+											Q_flow(flags=2))),
+									thermalAmbient(
+										thermalPort(
+											heatPortArmature(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortCore(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortStrayLoad(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortFriction(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortBrush(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortPermanentMagnet(
+												T(flags=2),
+												Q_flow(flags=2))),
+										temperatureArmature(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperatureCore(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperatureStrayLoad(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperatureFriction(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperatureBrush(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperaturePermanentMagnet(port(
+											T(flags=2),
+											Q_flow(flags=2)))),
+									airGapDC(
+										w(flags=2),
+										vei(flags=2),
+										ie(flags=2),
+										psi_e(flags=2),
+										vai(flags=2),
+										ia(flags=2),
+										tauElectrical(flags=2),
+										flange(
+											phi(flags=2),
+											tau(flags=2)),
+										support(
+											phi(flags=2),
+											tau(flags=2)),
+										pin_ap(
+											v(flags=2),
+											i(flags=2)),
+										pin_ep(
+											v(flags=2),
+											i(flags=2)),
+										pin_an(
+											v(flags=2),
+											i(flags=2)),
+										pin_en(
+											v(flags=2),
+											i(flags=2))),
+									eGround(p(
+										v(flags=2),
+										i(flags=2))),
+									ie(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)))),
+								hbridge1(
+									idealclosingswitch4(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									idealclosingswitch3(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									idealclosingswitch1(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									idealclosingswitch2(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									pin_n(
+										v(flags=2),
+										i(flags=2)),
+									pin_p(
+										v(flags=2),
+										i(flags=2)),
+									pin_p1(
+										v(flags=2),
+										i(flags=2)),
+									pin_n1(
+										v(flags=2),
+										i(flags=2)),
+									ground1(p(
+										v(flags=2),
+										i(flags=2))),
+									idealopeningswitch1(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									idealopeningswitch2(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2))),
+								idealgear1(
+									flange_a(
+										phi(flags=2),
+										tau(flags=2)),
+									flange_b(
+										phi(flags=2),
+										tau(flags=2)),
+									phi_a(flags=2),
+									phi_b(flags=2)),
+								noise_ung1(y(flags=2)))),
+						iZp(mi(noise_ung1(y(flags=2)))),
+						iZn(mi(noise_ung1(y(flags=2))))),
+					viewinfo[0](
+						viewSettings(clrRaster=12632256),
+						typename="ModelInfo"),
+					viewinfo[1](
+						projectPath="C:\\Users\\indahouse\\Documents\\SimulationX 3.6\\Exported C-Code",
+						projectType=0,
+						saveOutputsApproach=1,
+						showAdditionalLibPage=false,
+						useCodeOptimization=true,
+						m_x64=false,
+						solverMode=1,
+						typename="CodeExportInfo"),
+					experiment(
+						StopTime=100,
+						StartTime=0));
 			end verosim_block;
 			annotation(
 				dateModified="2015-06-26 10:59:34Z",
@@ -2407,21 +3131,24 @@ package ibossmo
 		end examples;
 		model iboss_vti
 			extends verosim_basic_6D annotation(Placement(transformation(extent={{-10,-10},{10,10}})));
-			input Real set_mi_pos[intf_count];
-			input Boolean set_ei_state[intf_count];
-			input Integer set_oci_state[intf_count];
+			parameter Integer intf_count=6 "number of interfaces";
+			input Modelica.Blocks.Interfaces.RealInput set_mi_pos[6];
+			input Modelica.Blocks.Interfaces.BooleanInput set_ei_state[6];
+			input Modelica.Blocks.Interfaces.IntegerInput set_oci_state[6];
+			input Modelica.Blocks.Interfaces.RealInput sim_ddr[3] annotation(Placement(
+				transformation(
+					origin={-100,20},
+					extent={{-10,-10},{10,10}}),
+				iconTransformation(
+					origin={-98,20},
+					extent={{-10,-10},{10,10}})));
 			connector Sim_out "Sim_out"
 				connector Intf "Intf"
 					Real mi_pos;
 					Real v_ext;
 				end Intf;
 				Intf intf[intf_count];
-				annotation(Icon(graphics={
-																																																																								Ellipse(
-																																																																									lineColor={0,0,0},
-																																																																									fillColor={127,255,212},
-																																																																									fillPattern=FillPattern.CrossDiag,
-																																																																									extent={{-63.3,56.7},{63.3,-66.7}})}));
+				annotation(Icon(graphics={Ellipse(lineColor = {0, 0, 0}, fillColor = {127, 255, 212}, fillPattern = FillPattern.CrossDiag, extent = {{-63.3, 56.7}, {63.3, -66.7}})}));
 			end Sim_out;
 			output Sim_out sim_out annotation(Placement(
 				transformation(
@@ -2431,10 +3158,9 @@ package ibossmo
 					origin={66,30},
 					extent={{-10,-10},{10,10}})));
 			equation
-					for i in 1:intf_count loop
-						set_mss[i]=comm_in.intf[i].set_pos;
-									set_ess[i]=comm_in.intf[i].set_ess;
-				end for;
+				connect(imu.ang_vel, sim_ddr);
+				connect(set_mi_pos[1], iXp.comm_in.set_pos);
+				
 					sim_out.intf[1].mi_pos = iXp.mi.pos.phi;
 					sim_out.intf[1].v_ext = iXp.v_ext.v;
 					sim_out.intf[2].mi_pos = iXn.mi.pos.phi;
@@ -2448,14 +3174,20 @@ package ibossmo
 					sim_out.intf[6].mi_pos = iZn.mi.pos.phi;
 					sim_out.intf[6].v_ext = iZn.v_ext.v;
 			annotation(
-				imu1(
+				imu(
 					noise_ung2(y(flags=2)),
 					noise_ung1(y(flags=2)),
 					noise_ung3(y(flags=2))),
+				rampvoltage1(
+					v(flags=2),
+					i(flags=2),
+					p(
+						v(flags=2),
+						i(flags=2)),
+					n(
+						v(flags=2),
+						i(flags=2))),
 				thermometer_withnoise1(noise_ung(y(flags=2))),
-				comm_in(intf(
-					set_pos(flags=2),
-					set_ess(flags=2))),
 				iXp(mi(noise_ung1(y(flags=2)))),
 				iXn(mi(noise_ung1(y(flags=2)))),
 				iYp(mi(noise_ung1(y(flags=2)))),
@@ -2467,82 +3199,312 @@ package ibossmo
 					typename="ModelInfo"),
 				viewinfo[1](
 					projectName="iboss_vti",
-					projectPath="C:\\Users\\indahouse\\Documents\\SimulationX 3.6\\Exported C-Code",
-					projectType=20,
+					projectPath="E:\\iboss\\FMUs",
+					projectType=21,
 					saveOutputsApproach=1,
 					inputs[0](
-						port="ddr",
+						port="set_mi_pos",
 						interpolation=true,
 						paramTypeSPCK=3,
 						componentIndex=0,
 						typename="CEPort"),
 					inputs[1](
-						port="ddr",
+						port="set_mi_pos",
 						interpolation=true,
 						paramTypeSPCK=3,
 						componentIndex=1,
 						typename="CEPort"),
 					inputs[2](
-						port="ddr",
+						port="set_mi_pos",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=2,
+						typename="CEPort"),
+					inputs[3](
+						port="set_mi_pos",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=3,
+						typename="CEPort"),
+					inputs[4](
+						port="set_mi_pos",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=4,
+						typename="CEPort"),
+					inputs[5](
+						port="set_mi_pos",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=5,
+						typename="CEPort"),
+					inputs[6](
+						port="set_ei_state",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=0,
+						typename="CEPort"),
+					inputs[7](
+						port="set_ei_state",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=1,
+						typename="CEPort"),
+					inputs[8](
+						port="set_ei_state",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=2,
+						typename="CEPort"),
+					inputs[9](
+						port="set_ei_state",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=3,
+						typename="CEPort"),
+					inputs[10](
+						port="set_ei_state",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=4,
+						typename="CEPort"),
+					inputs[11](
+						port="set_ei_state",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=5,
+						typename="CEPort"),
+					inputs[12](
+						port="set_oci_state",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=0,
+						typename="CEPort"),
+					inputs[13](
+						port="set_oci_state",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=1,
+						typename="CEPort"),
+					inputs[14](
+						port="set_oci_state",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=2,
+						typename="CEPort"),
+					inputs[15](
+						port="set_oci_state",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=3,
+						typename="CEPort"),
+					inputs[16](
+						port="set_oci_state",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=4,
+						typename="CEPort"),
+					inputs[17](
+						port="set_oci_state",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=5,
+						typename="CEPort"),
+					inputs[18](
+						port="sim_ddr",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=0,
+						typename="CEPort"),
+					inputs[19](
+						port="sim_ddr",
+						interpolation=true,
+						paramTypeSPCK=3,
+						componentIndex=1,
+						typename="CEPort"),
+					inputs[20](
+						port="sim_ddr",
 						interpolation=true,
 						paramTypeSPCK=3,
 						componentIndex=2,
 						typename="CEPort"),
 					outputs[0](
-						port="comm_out.intf.mi_pos",
+						port="iXp.comm_out.mi_pos",
 						interpolation=true,
 						paramTypeSPCK=3,
 						typename="CEPort"),
 					outputs[1](
-						port="comm_out.intf.v_ext",
+						port="iXp.comm_out.v_ext",
 						interpolation=true,
 						paramTypeSPCK=3,
 						typename="CEPort"),
 					outputs[2](
-						port="comm_out.intf.v_int",
+						port="iXp.comm_out.v_int",
 						interpolation=true,
 						paramTypeSPCK=3,
 						typename="CEPort"),
 					outputs[3](
-						port="comm_out.intf.intf_current",
+						port="iXp.comm_out.intf_current",
 						interpolation=true,
 						paramTypeSPCK=3,
 						typename="CEPort"),
 					outputs[4](
-						port="comm_out.intf.tmp",
+						port="iXp.comm_out.tmp",
 						interpolation=true,
 						paramTypeSPCK=3,
 						typename="CEPort"),
 					outputs[5](
-						port="comm_out.T_OBC",
+						port="iXn.comm_out.mi_pos",
 						interpolation=true,
 						paramTypeSPCK=3,
 						typename="CEPort"),
 					outputs[6](
-						port="comm_out.acc",
+						port="iXn.comm_out.v_ext",
 						interpolation=true,
 						paramTypeSPCK=3,
-						componentIndex=0,
 						typename="CEPort"),
 					outputs[7](
-						port="comm_out.acc",
+						port="iXn.comm_out.intf_current",
 						interpolation=true,
 						paramTypeSPCK=3,
-						componentIndex=1,
 						typename="CEPort"),
 					outputs[8](
-						port="comm_out.acc",
+						port="iXn.comm_out.v_int",
 						interpolation=true,
 						paramTypeSPCK=3,
-						componentIndex=2,
 						typename="CEPort"),
 					outputs[9](
-						port="sim_out.intf.mi_pos",
+						port="iXn.comm_out.tmp",
 						interpolation=true,
 						paramTypeSPCK=3,
 						typename="CEPort"),
 					outputs[10](
-						port="sim_out.intf.v_ext",
+						port="iYp.comm_out.mi_pos",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[11](
+						port="iYp.comm_out.v_ext",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[12](
+						port="iYp.comm_out.v_int",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[13](
+						port="iYp.comm_out.intf_current",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[14](
+						port="iYp.comm_out.tmp",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[15](
+						port="iYn.comm_out.mi_pos",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[16](
+						port="iYn.comm_out.v_ext",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[17](
+						port="iYn.comm_out.v_int",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[18](
+						port="iYn.comm_out.intf_current",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[19](
+						port="iYn.comm_out.tmp",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[20](
+						port="iZp.comm_out.mi_pos",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[21](
+						port="iZp.comm_out.v_ext",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[22](
+						port="iZp.comm_out.v_int",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[23](
+						port="iZp.comm_out.intf_current",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[24](
+						port="iZp.comm_out.tmp",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[25](
+						port="iZn.comm_out.mi_pos",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[26](
+						port="iZn.comm_out.v_ext",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[27](
+						port="iZn.comm_out.v_int",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[28](
+						port="iZn.comm_out.intf_current",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[29](
+						port="iZn.comm_out.tmp",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[30](
+						port="iXp.mi.inertia1.phi",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[31](
+						port="iXn.mi.inertia1.phi",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[32](
+						port="iYp.mi.inertia1.phi",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[33](
+						port="iYn.mi.inertia1.phi",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[34](
+						port="iZp.mi.inertia1.phi",
+						interpolation=true,
+						paramTypeSPCK=3,
+						typename="CEPort"),
+					outputs[35](
+						port="iZn.mi.inertia1.phi",
 						interpolation=true,
 						paramTypeSPCK=3,
 						typename="CEPort"),
@@ -2551,20 +3513,18 @@ package ibossmo
 						interpolation=true,
 						paramTypeSPCK=3,
 						typename="CEPort"),
-					descriptionProject="iBoss Buildingblock Model",
+					descriptionProject="iboss_vti",
+					version="0.9",
 					author="Thomas Meschede",
 					fmiIncludeDllWin32=true,
 					fmiIncludeDllWin64=true,
-					fmiExposeVariables=false,
 					fmiIncludeSources=true,
-					fmiExposeStates=false,
-					fmiLogging=true,
-					guid="{8238C50C-1FE7-423A-8A64-BDF9BA86F5A4}",
+					guid="{0A75B168-98FA-47E1-B4F1-A8F3B9184AF8}",
 					showAdditionalLibPage=false,
 					useCodeOptimization=true,
 					m_x64=false,
 					solverMode=1,
-					checkSum=27224,
+					checkSum=100470,
 					fmiVersion="1.0",
 					typename="CodeExportInfo"),
 				experiment(
@@ -2580,7 +3540,7 @@ package ibossmo
 				useHeatPort=true) annotation(Placement(transformation(
 				origin={5,-15},
 				extent={{-10,-10},{10,10}})));
-			satcomponents.AOCS.Parts.IMU imu1 annotation(Placement(transformation(
+			satcomponents.AOCS.Parts.IMU imu annotation(Placement(transformation(
 				origin={-48,40},
 				extent={{-10,-10},{10,10}})));
 			Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatcapacitor1(C=897.0 * m) annotation(Placement(transformation(
@@ -2607,27 +3567,6 @@ package ibossmo
 			satcomponents.thermal.thermometer_withnoise thermometer_withnoise1 annotation(Placement(transformation(
 				origin={-10,28},
 				extent={{-10,-10},{10,10}})));
-			components.Comm_in comm_in(intf_count=intf_count) annotation(Placement(
-				transformation(
-					origin={-100,80},
-					extent={{-10,-10},{10,10}}),
-				iconTransformation(
-					origin={-98,82},
-					extent={{-10,-10},{10,10}})));
-			input Modelica.Blocks.Interfaces.RealInput ddr[3] annotation(Placement(
-				transformation(
-					origin={-100,20},
-					extent={{-10,-10},{10,10}}),
-				iconTransformation(
-					origin={-98,20},
-					extent={{-10,-10},{10,10}})));
-			components.Comm_out comm_out(intf_count=intf_count) annotation(Placement(
-				transformation(
-					origin={-100,56},
-					extent={{-10,-10},{10,10}}),
-				iconTransformation(
-					origin={-100,52},
-					extent={{-10,-10},{10,10}})));
 			components.iboss_interface iXp annotation(Placement(transformation(
 				origin={65,60},
 				extent={{-10,-10},{10,10}})));
@@ -2647,21 +3586,6 @@ package ibossmo
 				origin={65,-50},
 				extent={{-10,-10},{10,10}})));
 			equation
-				thermometer_withnoise1.T=comm_out.T_OBC;
-				imu1.y=comm_out.acc;
-				connect(iXp.comm_out,comm_in.intf[1]) annotation(Line(points={{60,70},{60,75},{60,80},{-95,80},{-100,80}}));
-				connect(iXn.comm_out,comm_in.intf[2]) annotation(Line(points={{60,45},{60,50},{60,80},{-95,80},{-100,80}}));
-				connect(iYp.comm_out,comm_in.intf[3]) annotation(Line(points={{90,35},{90,40},{90,80},{-95,80},{-100,80}}));
-				connect(iYn.comm_out,comm_in.intf[4]) annotation(Line(points={{90,5},{90,10},{90,80},{-95,80},{-100,80}}));
-				connect(iZp.comm_out,comm_in.intf[5]) annotation(Line(points={{60,-10},{60,-5},{60,80},{-95,80},{-100,80}}));
-				connect(iZn.comm_out,comm_in.intf[6]) annotation(Line(points={{60,-40},{60,-35},{60,80},{-95,80},{-100,80}}));
-				connect(iXp.comm_out,comm_out.intf[1]) annotation(Line(points={{60,70},{60,75},{-17.3,75},{-17.3,56},{-95,56},{-100,
-				56}}));
-				connect(iXn.comm_out,comm_out.intf[2]) annotation(Line(points={{60,45},{60,50},{60,56},{-95,56},{-100,56}}));
-				connect(iYp.comm_out,comm_out.intf[3]) annotation(Line(points={{90,35},{90,40},{90,56},{-95,56},{-100,56}}));
-				connect(iYn.comm_out,comm_out.intf[4]) annotation(Line(points={{90,5},{90,10},{90,56},{-95,56},{-100,56}}));
-				connect(iZp.comm_out,comm_out.intf[5]) annotation(Line(points={{60,-10},{60,-5},{60,56},{-95,56},{-100,56}}));
-				connect(iZn.comm_out,comm_out.intf[6]) annotation(Line(points={{60,-40},{60,-35},{60,56},{-95,56},{-100,56}}));
 				connect(heatcapacitor1.port,thermometer_withnoise1.port) annotation(Line(
 					points={{-48,-12},{-48,-17},{-36.7,-17},{-36.7,28},{-25,28},{-20,
 					28}},
@@ -2680,9 +3604,7 @@ package ibossmo
 				connect(OBC.heatPort,heatcapacitor1.port) annotation(Line(
 					points={{-5,-16.7},{-10,-16.7},{-10,-17},{-48,-17},{-48,-12}},
 					color={191,0,0}));
-				connect(ddr,imu1.ang_vel) annotation(Line(
-					points={{-100,20},{-95,20},{-63.7,20},{-63.7,40.3},{-58.7,40.3}},
-					color={0,0,127}));
+				
 				connect(OBC.pin_p,dcdc_ideal_simple1.p2) annotation(Line(
 					points={{0,-25},{0,-30},{3,-30},{3,-41},{-2,-41}},
 					thickness=0.0625));
@@ -2693,85 +3615,85 @@ package ibossmo
 					points={{-22,-51},{-27,-51},{-27,-61},{3,-61},{3,-51},{-2,
 					-51}},
 					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p2,iXp.vcc_int) annotation(Line(
+				connect(dcdc_ideal_simple1.p1,iXp.vcc_int) annotation(Line(
 					points={{-2,-41},{3,-41},{50,-41},{50,65},{55,65}},
 					thickness=0.0625));
 				connect(dcdc_ideal_simple1.n2,iXp.gnd_int) annotation(Line(
 					points={{-2,-51},{3,-51},{50,-51},{50,60},{55,60}},
 					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p1,iXp.v_motor) annotation(Line(
+				connect(dcdc_ideal_simple1.p2,iXp.v_motor) annotation(Line(
 					points={{-22,-41},{-27,-41},{-27,2},{60,2},{60,45},{60,
 					50}},
 					thickness=0.0625));
 				connect(iXp.gnd_int,iXp.gnd_motor) annotation(Line(
 					points={{55,60},{50,60},{50,45},{65,45},{65,50}},
 					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p2,iYp.vcc_int) annotation(Line(
+				connect(dcdc_ideal_simple1.p1,iYp.vcc_int) annotation(Line(
 					points={{-2,-41},{3,-41},{80,-41},{80,30},{85,30}},
 					thickness=0.0625));
 				connect(dcdc_ideal_simple1.n2,iYp.gnd_int) annotation(Line(
 					points={{-2,-51},{3,-51},{80,-51},{80,25},{85,25}},
 					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p1,iYp.v_motor) annotation(Line(
+				connect(dcdc_ideal_simple1.p2,iYp.v_motor) annotation(Line(
 					points={{-22,-41},{-27,-41},{-27,-15.7},{90,-15.7},{90,10},{90,
 					15}},
 					thickness=0.0625));
 				connect(iYp.gnd_int,iYp.gnd_motor) annotation(Line(
 					points={{85,25},{80,25},{80,10},{95,10},{95,15}},
 					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p2,iZp.vcc_int) annotation(Line(
+				connect(dcdc_ideal_simple1.p1,iZp.vcc_int) annotation(Line(
 					points={{-2,-41},{3,-41},{50,-41},{50,-15},{55,-15}},
 					thickness=0.0625));
 				connect(dcdc_ideal_simple1.n2,iZp.gnd_int) annotation(Line(
 					points={{-2,-51},{3,-51},{50,-51},{50,-20},{55,-20}},
 					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p1,iZp.v_motor) annotation(Line(
+				connect(dcdc_ideal_simple1.p2,iZp.v_motor) annotation(Line(
 					points={{-22,-41},{-27,-41},{-27,-38},{60,-38},{60,-35},{60,
 					-30}},
 					thickness=0.0625));
 				connect(iZp.gnd_int,iZp.gnd_motor) annotation(Line(
 					points={{55,-20},{50,-20},{50,-35},{65,-35},{65,-30}},
 					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p2,iXn.vcc_int) annotation(Line(
+				connect(dcdc_ideal_simple1.p1,iXn.vcc_int) annotation(Line(
 					points={{-2,-41},{3,-41},{50,-41},{50,40},{55,40}},
 					thickness=0.0625));
 				connect(dcdc_ideal_simple1.n2,iXn.gnd_int) annotation(Line(
 					points={{-2,-51},{3,-51},{50,-51},{50,35},{55,35}},
 					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p1,iXn.v_motor) annotation(Line(
+				connect(dcdc_ideal_simple1.p2,iXn.v_motor) annotation(Line(
 					points={{-22,-41},{-27,-41},{-27,-10.7},{60,-10.7},{60,20},{60,
 					25}},
 					thickness=0.0625));
 				connect(iXn.gnd_int,iXn.gnd_motor) annotation(Line(
 					points={{55,35},{50,35},{50,20},{65,20},{65,25}},
 					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p2,iYn.vcc_int) annotation(Line(
+				connect(dcdc_ideal_simple1.p1,iYn.vcc_int) annotation(Line(
 					points={{-2,-41},{3,-41},{80,-41},{80,0},{85,0}},
 					thickness=0.0625));
 				connect(dcdc_ideal_simple1.n2,iYn.gnd_int) annotation(Line(
 					points={{-2,-51},{3,-51},{80,-51},{80,-5},{85,-5}},
 					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p1,iYn.v_motor) annotation(Line(
+				connect(dcdc_ideal_simple1.p2,iYn.v_motor) annotation(Line(
 					points={{-22,-41},{-27,-41},{-27,-30.7},{90,-30.7},{90,-20},{90,
 					-15}},
 					thickness=0.0625));
 				connect(iYn.gnd_int,iYn.gnd_motor) annotation(Line(
 					points={{85,-5},{80,-5},{80,-20},{95,-20},{95,-15}},
 					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p2,iZn.vcc_int) annotation(Line(
+				connect(dcdc_ideal_simple1.p1,iZn.vcc_int) annotation(Line(
 					points={{-2,-41},{3,-41},{50,-41},{50,-45},{55,-45}},
 					thickness=0.0625));
 				connect(dcdc_ideal_simple1.n2,iZn.gnd_int) annotation(Line(
 					points={{-2,-51},{3,-51},{50,-51},{50,-50},{55,-50}},
 					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p1,iZn.v_motor) annotation(Line(
+				connect(dcdc_ideal_simple1.p2,iZn.v_motor) annotation(Line(
 					points={{-22,-41},{-27,-41},{-27,-65},{60,-65},{60,-60}},
 					thickness=0.0625));
 				connect(iZn.gnd_int,iZn.gnd_motor) annotation(Line(
 					points={{55,-50},{50,-50},{50,-65},{65,-65},{65,-60}},
 					thickness=0.0625));
 			annotation(
-				imu1(
+				imu(
 					noise_ung2(y(flags=2)),
 					noise_ung1(y(flags=2)),
 					noise_ung3(y(flags=2))),
@@ -2792,15 +3714,6 @@ package ibossmo
 				iZp(mi(noise_ung1(y(flags=2)))),
 				iZn(mi(noise_ung1(y(flags=2)))),
 				viewinfo[0](
-					projectPath="C:\\Users\\indahouse\\Documents\\SimulationX 3.6\\Exported C-Code",
-					projectType=0,
-					saveOutputsApproach=1,
-					showAdditionalLibPage=false,
-					useCodeOptimization=true,
-					m_x64=false,
-					solverMode=1,
-					typename="CodeExportInfo"),
-				viewinfo[1](
 					viewSettings(clrRaster=12632256),
 					typename="ModelInfo"),
 				experiment(
