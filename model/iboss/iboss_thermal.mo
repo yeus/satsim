@@ -5794,22 +5794,8 @@ in order to simulate temperature dependent losses (which are given with respect 
 					color={0,0,127},
 					thickness=0.0625));
 			annotation(
-				viewinfo[2](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
-				Icon(graphics={
-							Rectangle(
-								lineColor={0,0,0},
-								fillPattern=FillPattern.Solid,
-								extent={{-100,100},{100,-100}}),
-							Ellipse(
-								lineColor={0,0,0},
-								fillColor={255,255,0},
-								fillPattern=FillPattern.Solid,
-								extent={{98,-96},{-96,98}})}),
-				experiment(
-					StopTime=10,
-					StartTime=0));
+				Icon(graphics = {Rectangle(lineColor = {0, 0, 0}, fillPattern = FillPattern.Solid, extent = {{-100, 100}, {100, -100}}), Ellipse(lineColor = {0, 0, 0}, fillColor = {255, 255, 0}, fillPattern = FillPattern.Solid, extent = {{98, -96}, {-96, 98}})}),
+				experiment(StopTime = 1, StartTime = 0));
 		end environment_opt_prop_external_Verosim;
 		model Panel_2x2_opt_prop "Panel_2x2_opt_prop"
 			thermal_connector_opt_prop_out thermal_connector_opt_prop_out_outer_zp00 annotation(Placement(
