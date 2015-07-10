@@ -9,6 +9,13 @@ FAQ
 - In meiner Simulation treten Singularitäten auf
     - Es könnte sein, daß die Simulationsschrittweite zu groß eingestellt ist.
 
+
+clean modelica files from annotations:  annotation\(([^;]|[^\)].|\n)*[\);]+
+
+clean modeliac files for openmodelica:
+  
+viewinfo.*\n+.*\n+.*(typename=".+")[\),]+
+
 Installation
 ============
 
