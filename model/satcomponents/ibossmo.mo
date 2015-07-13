@@ -701,18 +701,18 @@ package ibossmo
 			iboss_interface.Comm_in intf[intf_count];
 			annotation(
 				Icon(graphics={
-							Polygon(
-								points={{-86.9387,7.96559},{-46.9387,-72.03440000000001},{33.0613,-72.03440000000001},{73.0613,7.96559},{33.0613,87.9656},{-46.9387,
-								87.9656},{-86.9387,7.96559}},
-								fillColor={192,192,255},
-								fillPattern=FillPattern.Solid,
-								origin={6.94,-7.97})}),
+																															Polygon(
+																																points={{-86.9387,7.96559},{-46.9387,-72.03440000000001},{33.0613,-72.03440000000001},{73.0613,7.96559},{33.0613,87.9656},{-46.9387,
+																																87.9656},{-86.9387,7.96559}},
+																																fillColor={192,192,255},
+																																fillPattern=FillPattern.Solid,
+																																origin={6.94,-7.97})}),
 				Diagram(graphics={
-							Polygon(
-								points={{-40,0},{-20,40},{20,40},{40,0},{20,-40},{-20,
-								-40},{-40,0}},
-								fillColor={192,192,255},
-								fillPattern=FillPattern.Solid)}));
+																															Polygon(
+																																points={{-40,0},{-20,40},{20,40},{40,0},{20,-40},{-20,
+																																-40},{-40,0}},
+																																fillColor={192,192,255},
+																																fillPattern=FillPattern.Solid)}));
 		end Comm_in;
 		connector Comm_out
 			parameter Integer intf_count=1;
@@ -721,18 +721,18 @@ package ibossmo
 			output Modelica.Blocks.Interfaces.RealOutput acc[3];
 			annotation(
 				Icon(graphics={
-							Polygon(
-								points={{-86.9387,7.96559},{-46.9387,-72.03440000000001},{33.0613,-72.03440000000001},{73.0613,7.96559},{33.0613,87.9656},{-46.9387,
-								87.9656},{-86.9387,7.96559}},
-								fillColor={255,255,255},
-								fillPattern=FillPattern.Solid,
-								origin={6.94,-7.97})}),
+																															Polygon(
+																																points={{-86.9387,7.96559},{-46.9387,-72.03440000000001},{33.0613,-72.03440000000001},{73.0613,7.96559},{33.0613,87.9656},{-46.9387,
+																																87.9656},{-86.9387,7.96559}},
+																																fillColor={255,255,255},
+																																fillPattern=FillPattern.Solid,
+																																origin={6.94,-7.97})}),
 				Diagram(graphics={
-							Polygon(
-								points={{-40,0},{-20,40},{20,40},{40,0},{20,-40},{-20,
-								-40},{-40,0}},
-								fillColor={255,255,255},
-								fillPattern=FillPattern.Solid)}));
+																															Polygon(
+																																points={{-40,0},{-20,40},{20,40},{40,0},{20,-40},{-20,
+																																-40},{-40,0}},
+																																fillColor={255,255,255},
+																																fillPattern=FillPattern.Solid)}));
 		end Comm_out;
 	end components;
 	package buildingblocks
@@ -2266,25 +2266,14 @@ package ibossmo
 				iboss_vti vb(m=1) annotation(Placement(transformation(extent={{-10,-10},{10,10}})));
 				Modelica.Blocks.Sources.Constant acc[3](each k=0);
 				equation
-						connect(vb.sim_ddr, acc.y);
-						//for i in 2:6 loop
-						//	verosim_basic1.comm_in.intf[i].set_ess = 0.0;
-						//	verosim_basic1.comm_in.intf[i].set_pos = 0.0;
-						//end for;
-						connect(timetable1.y, vb.set_mi_pos[1]);
-						connect(set_mi_pos[2:6].y,vb.set_mi_pos[2:6]);
-						connect(set_ess.y, vb.set_ei_state);
-					annotation(
-						verosim_basic1(
-							imu1(
-								noise_ung2(y(flags=2)),
-								noise_ung1(y(flags=2)),
-								noise_ung3(y(flags=2))),
-							thermometer_withnoise1(noise_ung(y(flags=2))),
-							intf(mi(noise_ung1(y(flags=2))))),
-						experiment(
-							StopTime=1,
-							StartTime=0));
+					connect(vb.sim_ddr, acc.y);
+					//for i in 2:6 loop
+					//	verosim_basic1.comm_in.intf[i].set_ess = 0.0;
+					//	verosim_basic1.comm_in.intf[i].set_pos = 0.0;
+					//end for;
+					connect(timetable1.y, vb.set_mi_pos[1]);
+					connect(set_mi_pos[2:6].y,vb.set_mi_pos[2:6]);
+					connect(set_ess.y, vb.set_ei_state);
 				annotation(
 					verosim_basic1(
 						imu1(
@@ -3123,604 +3112,1082 @@ package ibossmo
 						StopTime=100,
 						StartTime=0));
 			end verosim_block;
-			annotation(
-				dateModified="2015-06-26 10:59:34Z",
-				experiment(
-					StopTime=1,
-					StartTime=0));
-		end examples;
-		model iboss_vti
-			extends verosim_basic_6D annotation(Placement(transformation(extent={{-10,-10},{10,10}})));
-			parameter Integer intf_count=6 "number of interfaces";
-			input Modelica.Blocks.Interfaces.RealInput set_mi_pos[6];
-			input Modelica.Blocks.Interfaces.BooleanInput set_ei_state[6];
-			input Modelica.Blocks.Interfaces.IntegerInput set_oci_state[6];
-			input Modelica.Blocks.Interfaces.RealInput sim_ddr[3] annotation(Placement(
-				transformation(
-					origin={-100,20},
-					extent={{-10,-10},{10,10}}),
-				iconTransformation(
-					origin={-98,20},
-					extent={{-10,-10},{10,10}})));
-			connector Sim_out "Sim_out"
-				connector Intf "Intf"
-					Real mi_pos;
-					Real v_ext;
-				end Intf;
-				Intf intf[intf_count];
-				annotation(Icon(graphics={Ellipse(lineColor = {0, 0, 0}, fillColor = {127, 255, 212}, fillPattern = FillPattern.CrossDiag, extent = {{-63.3, 56.7}, {63.3, -66.7}})}));
-			end Sim_out;
-			output Sim_out sim_out annotation(Placement(
-				transformation(
-					origin={100,58},
-					extent={{-10,-10},{10,10}}),
-				iconTransformation(
-					origin={66,30},
-					extent={{-10,-10},{10,10}})));
-			equation
-				connect(imu.ang_vel, sim_ddr);
-				connect(set_mi_pos[1], iXp.comm_in.set_pos);
-				
-					sim_out.intf[1].mi_pos = iXp.mi.pos.phi;
-					sim_out.intf[1].v_ext = iXp.v_ext.v;
-					sim_out.intf[2].mi_pos = iXn.mi.pos.phi;
-					sim_out.intf[2].v_ext = iXn.v_ext.v;
-					sim_out.intf[3].mi_pos = iYp.mi.pos.phi;
-					sim_out.intf[3].v_ext = iYp.v_ext.v;
-					sim_out.intf[4].mi_pos = iYn.mi.pos.phi;
-					sim_out.intf[4].v_ext = iYn.v_ext.v;
-					sim_out.intf[5].mi_pos = iZp.mi.pos.phi;
-					sim_out.intf[5].v_ext = iZp.v_ext.v;
-					sim_out.intf[6].mi_pos = iZn.mi.pos.phi;
-					sim_out.intf[6].v_ext = iZn.v_ext.v;
-			annotation(
-				imu(
-					noise_ung2(y(flags=2)),
-					noise_ung1(y(flags=2)),
-					noise_ung3(y(flags=2))),
-				rampvoltage1(
-					v(flags=2),
-					i(flags=2),
-					p(
-						v(flags=2),
-						i(flags=2)),
-					n(
-						v(flags=2),
-						i(flags=2))),
-				thermometer_withnoise1(noise_ung(y(flags=2))),
-				iXp(mi(noise_ung1(y(flags=2)))),
-				iXn(mi(noise_ung1(y(flags=2)))),
-				iYp(mi(noise_ung1(y(flags=2)))),
-				iYn(mi(noise_ung1(y(flags=2)))),
-				iZp(mi(noise_ung1(y(flags=2)))),
-				iZn(mi(noise_ung1(y(flags=2)))),
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
-				viewinfo[1](
-					projectName="iboss_vti",
-					projectPath="E:\\iboss\\FMUs",
-					projectType=21,
-					saveOutputsApproach=1,
-					inputs[0](
-						port="set_mi_pos",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=0,
-						typename="CEPort"),
-					inputs[1](
-						port="set_mi_pos",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=1,
-						typename="CEPort"),
-					inputs[2](
-						port="set_mi_pos",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=2,
-						typename="CEPort"),
-					inputs[3](
-						port="set_mi_pos",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=3,
-						typename="CEPort"),
-					inputs[4](
-						port="set_mi_pos",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=4,
-						typename="CEPort"),
-					inputs[5](
-						port="set_mi_pos",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=5,
-						typename="CEPort"),
-					inputs[6](
-						port="set_ei_state",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=0,
-						typename="CEPort"),
-					inputs[7](
-						port="set_ei_state",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=1,
-						typename="CEPort"),
-					inputs[8](
-						port="set_ei_state",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=2,
-						typename="CEPort"),
-					inputs[9](
-						port="set_ei_state",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=3,
-						typename="CEPort"),
-					inputs[10](
-						port="set_ei_state",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=4,
-						typename="CEPort"),
-					inputs[11](
-						port="set_ei_state",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=5,
-						typename="CEPort"),
-					inputs[12](
-						port="set_oci_state",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=0,
-						typename="CEPort"),
-					inputs[13](
-						port="set_oci_state",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=1,
-						typename="CEPort"),
-					inputs[14](
-						port="set_oci_state",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=2,
-						typename="CEPort"),
-					inputs[15](
-						port="set_oci_state",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=3,
-						typename="CEPort"),
-					inputs[16](
-						port="set_oci_state",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=4,
-						typename="CEPort"),
-					inputs[17](
-						port="set_oci_state",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=5,
-						typename="CEPort"),
-					inputs[18](
-						port="sim_ddr",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=0,
-						typename="CEPort"),
-					inputs[19](
-						port="sim_ddr",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=1,
-						typename="CEPort"),
-					inputs[20](
-						port="sim_ddr",
-						interpolation=true,
-						paramTypeSPCK=3,
-						componentIndex=2,
-						typename="CEPort"),
-					outputs[0](
-						port="iXp.comm_out.mi_pos",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[1](
-						port="iXp.comm_out.v_ext",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[2](
-						port="iXp.comm_out.v_int",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[3](
-						port="iXp.comm_out.intf_current",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[4](
-						port="iXp.comm_out.tmp",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[5](
-						port="iXn.comm_out.mi_pos",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[6](
-						port="iXn.comm_out.v_ext",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[7](
-						port="iXn.comm_out.intf_current",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[8](
-						port="iXn.comm_out.v_int",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[9](
-						port="iXn.comm_out.tmp",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[10](
-						port="iYp.comm_out.mi_pos",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[11](
-						port="iYp.comm_out.v_ext",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[12](
-						port="iYp.comm_out.v_int",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[13](
-						port="iYp.comm_out.intf_current",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[14](
-						port="iYp.comm_out.tmp",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[15](
-						port="iYn.comm_out.mi_pos",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[16](
-						port="iYn.comm_out.v_ext",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[17](
-						port="iYn.comm_out.v_int",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[18](
-						port="iYn.comm_out.intf_current",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[19](
-						port="iYn.comm_out.tmp",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[20](
-						port="iZp.comm_out.mi_pos",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[21](
-						port="iZp.comm_out.v_ext",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[22](
-						port="iZp.comm_out.v_int",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[23](
-						port="iZp.comm_out.intf_current",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[24](
-						port="iZp.comm_out.tmp",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[25](
-						port="iZn.comm_out.mi_pos",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[26](
-						port="iZn.comm_out.v_ext",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[27](
-						port="iZn.comm_out.v_int",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[28](
-						port="iZn.comm_out.intf_current",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[29](
-						port="iZn.comm_out.tmp",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[30](
-						port="iXp.mi.inertia1.phi",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[31](
-						port="iXn.mi.inertia1.phi",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[32](
-						port="iYp.mi.inertia1.phi",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[33](
-						port="iYn.mi.inertia1.phi",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[34](
-						port="iZp.mi.inertia1.phi",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					outputs[35](
-						port="iZn.mi.inertia1.phi",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					parameters[0](
-						port="m",
-						interpolation=true,
-						paramTypeSPCK=3,
-						typename="CEPort"),
-					descriptionProject="iboss_vti",
-					version="0.9",
-					author="Thomas Meschede",
-					fmiIncludeDllWin32=true,
-					fmiIncludeDllWin64=true,
-					fmiIncludeSources=true,
-					guid="{0A75B168-98FA-47E1-B4F1-A8F3B9184AF8}",
-					showAdditionalLibPage=false,
-					useCodeOptimization=true,
-					m_x64=false,
-					solverMode=1,
-					checkSum=100470,
-					fmiVersion="1.0",
-					typename="CodeExportInfo"),
-				experiment(
-					StopTime=1,
-					StartTime=0));
-		end iboss_vti;
-		model verosim_basic_6D
-			extends icons.basic;
-			parameter Integer intf_count=6 "number of interfaces";
-			parameter Modelica.SIunits.Mass m=10;
-			satcomponents.power.verbraucher OBC(
-				v_nominal=5,
-				useHeatPort=true) annotation(Placement(transformation(
-				origin={5,-15},
-				extent={{-10,-10},{10,10}})));
-			satcomponents.AOCS.Parts.IMU imu annotation(Placement(transformation(
-				origin={-48,40},
-				extent={{-10,-10},{10,10}})));
-			Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatcapacitor1(C=897.0 * m) annotation(Placement(transformation(
-				origin={-48,-2},
-				extent={{-10,-10},{10,10}})));
-			Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedtemperature1(T=100) annotation(Placement(transformation(
-				origin={-102,-10},
-				extent={{-10,-10},{10,10}})));
-			Modelica.Thermal.HeatTransfer.Components.BodyRadiation bodyradiation1(Gr=0.02 * 6 * 0.4 * 0.4) annotation(Placement(transformation(
-				origin={-74,-10},
-				extent={{-10,-10},{10,10}})));
-			Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(transformation(
-				origin={-44,-74},
-				extent={{-10,-10},{10,10}})));
-			satcomponents.power.dcmodel.dcdc_ideal_simple dcdc_ideal_simple1 annotation(Placement(transformation(
-				origin={-12,-46},
-				extent={{-10,-10},{10,10}})));
-			Modelica.Electrical.Analog.Sources.RampVoltage rampvoltage1(
-				V=40,
-				duration=2) annotation(Placement(transformation(
-				origin={-72,-46},
-				extent={{-10,-10},{10,10}},
-				rotation=-90)));
-			satcomponents.thermal.thermometer_withnoise thermometer_withnoise1 annotation(Placement(transformation(
-				origin={-10,28},
-				extent={{-10,-10},{10,10}})));
-			components.iboss_interface iXp annotation(Placement(transformation(
-				origin={65,60},
-				extent={{-10,-10},{10,10}})));
-			components.iboss_interface iXn annotation(Placement(transformation(
-				origin={65,35},
-				extent={{-10,-10},{10,10}})));
-			components.iboss_interface iYp annotation(Placement(transformation(
-				origin={95,25},
-				extent={{-10,-10},{10,10}})));
-			components.iboss_interface iYn annotation(Placement(transformation(
-				origin={95,-5},
-				extent={{-10,-10},{10,10}})));
-			components.iboss_interface iZp annotation(Placement(transformation(
-				origin={65,-20},
-				extent={{-10,-10},{10,10}})));
-			components.iboss_interface iZn annotation(Placement(transformation(
-				origin={65,-50},
-				extent={{-10,-10},{10,10}})));
-			equation
-				connect(heatcapacitor1.port,thermometer_withnoise1.port) annotation(Line(
-					points={{-48,-12},{-48,-17},{-36.7,-17},{-36.7,28},{-25,28},{-20,
-					28}},
-					color={191,0,0}));
-				connect(rampvoltage1.p,dcdc_ideal_simple1.p1) annotation(Line(points={{-72,-36},{-72,-31},{-49.7,-31},{-49.7,-41},{-27,-41},{-22,
-				-41}}));
-				connect(ground1.p,rampvoltage1.n) annotation(Line(points={{-44,-64},{-44,-59},{-58,-59},{-58,-61},{-72,-61},{-72,
-				-56}}));
-				connect(ground1.p,dcdc_ideal_simple1.n1) annotation(Line(points={{-44,-64},{-44,-59},{-44,-51},{-27,-51},{-22,-51}}));
-				connect(bodyradiation1.port_b,heatcapacitor1.port) annotation(Line(
-					points={{-64,-10},{-59,-10},{-59,-17},{-48,-17},{-48,-12}},
-					color={191,0,0}));
-				connect(fixedtemperature1.port,bodyradiation1.port_a) annotation(Line(
-					points={{-92,-10},{-87,-10},{-89,-10},{-84,-10}},
-					color={191,0,0}));
-				connect(OBC.heatPort,heatcapacitor1.port) annotation(Line(
-					points={{-5,-16.7},{-10,-16.7},{-10,-17},{-48,-17},{-48,-12}},
-					color={191,0,0}));
-				
-				connect(OBC.pin_p,dcdc_ideal_simple1.p2) annotation(Line(
-					points={{0,-25},{0,-30},{3,-30},{3,-41},{-2,-41}},
-					thickness=0.0625));
-				connect(OBC.pin_n,dcdc_ideal_simple1.n2) annotation(Line(
-					points={{9.699999999999999,-25},{9.699999999999999,-30},{9.699999999999999,-51},{3,-51},{-2,-51}},
-					thickness=0.0625));
-				connect(dcdc_ideal_simple1.n1,dcdc_ideal_simple1.n2) annotation(Line(
-					points={{-22,-51},{-27,-51},{-27,-61},{3,-61},{3,-51},{-2,
-					-51}},
-					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p1,iXp.vcc_int) annotation(Line(
-					points={{-2,-41},{3,-41},{50,-41},{50,65},{55,65}},
-					thickness=0.0625));
-				connect(dcdc_ideal_simple1.n2,iXp.gnd_int) annotation(Line(
-					points={{-2,-51},{3,-51},{50,-51},{50,60},{55,60}},
-					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p2,iXp.v_motor) annotation(Line(
-					points={{-22,-41},{-27,-41},{-27,2},{60,2},{60,45},{60,
-					50}},
-					thickness=0.0625));
-				connect(iXp.gnd_int,iXp.gnd_motor) annotation(Line(
-					points={{55,60},{50,60},{50,45},{65,45},{65,50}},
-					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p1,iYp.vcc_int) annotation(Line(
-					points={{-2,-41},{3,-41},{80,-41},{80,30},{85,30}},
-					thickness=0.0625));
-				connect(dcdc_ideal_simple1.n2,iYp.gnd_int) annotation(Line(
-					points={{-2,-51},{3,-51},{80,-51},{80,25},{85,25}},
-					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p2,iYp.v_motor) annotation(Line(
-					points={{-22,-41},{-27,-41},{-27,-15.7},{90,-15.7},{90,10},{90,
-					15}},
-					thickness=0.0625));
-				connect(iYp.gnd_int,iYp.gnd_motor) annotation(Line(
-					points={{85,25},{80,25},{80,10},{95,10},{95,15}},
-					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p1,iZp.vcc_int) annotation(Line(
-					points={{-2,-41},{3,-41},{50,-41},{50,-15},{55,-15}},
-					thickness=0.0625));
-				connect(dcdc_ideal_simple1.n2,iZp.gnd_int) annotation(Line(
-					points={{-2,-51},{3,-51},{50,-51},{50,-20},{55,-20}},
-					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p2,iZp.v_motor) annotation(Line(
-					points={{-22,-41},{-27,-41},{-27,-38},{60,-38},{60,-35},{60,
-					-30}},
-					thickness=0.0625));
-				connect(iZp.gnd_int,iZp.gnd_motor) annotation(Line(
-					points={{55,-20},{50,-20},{50,-35},{65,-35},{65,-30}},
-					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p1,iXn.vcc_int) annotation(Line(
-					points={{-2,-41},{3,-41},{50,-41},{50,40},{55,40}},
-					thickness=0.0625));
-				connect(dcdc_ideal_simple1.n2,iXn.gnd_int) annotation(Line(
-					points={{-2,-51},{3,-51},{50,-51},{50,35},{55,35}},
-					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p2,iXn.v_motor) annotation(Line(
-					points={{-22,-41},{-27,-41},{-27,-10.7},{60,-10.7},{60,20},{60,
-					25}},
-					thickness=0.0625));
-				connect(iXn.gnd_int,iXn.gnd_motor) annotation(Line(
-					points={{55,35},{50,35},{50,20},{65,20},{65,25}},
-					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p1,iYn.vcc_int) annotation(Line(
-					points={{-2,-41},{3,-41},{80,-41},{80,0},{85,0}},
-					thickness=0.0625));
-				connect(dcdc_ideal_simple1.n2,iYn.gnd_int) annotation(Line(
-					points={{-2,-51},{3,-51},{80,-51},{80,-5},{85,-5}},
-					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p2,iYn.v_motor) annotation(Line(
-					points={{-22,-41},{-27,-41},{-27,-30.7},{90,-30.7},{90,-20},{90,
-					-15}},
-					thickness=0.0625));
-				connect(iYn.gnd_int,iYn.gnd_motor) annotation(Line(
-					points={{85,-5},{80,-5},{80,-20},{95,-20},{95,-15}},
-					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p1,iZn.vcc_int) annotation(Line(
-					points={{-2,-41},{3,-41},{50,-41},{50,-45},{55,-45}},
-					thickness=0.0625));
-				connect(dcdc_ideal_simple1.n2,iZn.gnd_int) annotation(Line(
-					points={{-2,-51},{3,-51},{50,-51},{50,-50},{55,-50}},
-					thickness=0.0625));
-				connect(dcdc_ideal_simple1.p2,iZn.v_motor) annotation(Line(
-					points={{-22,-41},{-27,-41},{-27,-65},{60,-65},{60,-60}},
-					thickness=0.0625));
-				connect(iZn.gnd_int,iZn.gnd_motor) annotation(Line(
-					points={{55,-50},{50,-50},{50,-65},{65,-65},{65,-60}},
-					thickness=0.0625));
-			annotation(
-				imu(
-					noise_ung2(y(flags=2)),
-					noise_ung1(y(flags=2)),
-					noise_ung3(y(flags=2))),
-				rampvoltage1(
-					v(flags=2),
-					i(flags=2),
-					p(
-						v(flags=2),
-						i(flags=2)),
-					n(
-						v(flags=2),
-						i(flags=2))),
-				thermometer_withnoise1(noise_ung(y(flags=2))),
-				iXp(mi(noise_ung1(y(flags=2)))),
-				iXn(mi(noise_ung1(y(flags=2)))),
-				iYp(mi(noise_ung1(y(flags=2)))),
-				iYn(mi(noise_ung1(y(flags=2)))),
-				iZp(mi(noise_ung1(y(flags=2)))),
-				iZn(mi(noise_ung1(y(flags=2)))),
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
-				experiment(
-					StopTime=100,
-					StartTime=0,
-					Tolerance=1e-012,
-					Interval=0.02));
-		end verosim_basic_6D;
-	end buildingblocks;
+			model verosim_block_fmu2
+				extends Modelica.Icons.Example;
+				Modelica.Blocks.Sources.BooleanConstant set_ess[6](each k=false);
+				Modelica.Blocks.Sources.Constant set_mi_pos[6](each k=0.5);
+				Modelica.Blocks.Sources.TimeTable timetable1(table=[0, 0; 5, 0; 5.01, 0.3; 20, 0.3; 20.01, 1.0; 45, 1.0; 45.0, 0; 70, 0.0]);
+				Modelica.Blocks.Sources.Constant acc[3](each k=0);
+				iboss_vti3 iboss_vti2 annotation(Placement(transformation(extent={{-75,-35},{-35,-95}})));
+				equation
+					//for i in 2:6 loop
+					//	verosim_basic1.comm_in.intf[i].set_ess = 0.0;
+					//	verosim_basic1.comm_in.intf[i].set_pos = 0.0;
+					//end for;
+					connect(timetable1.y,iboss_vti2.'set_mi_pos[1]') annotation(Line(points={{-150,110},{-150,-93.3},{-80,-93.3},{-75,-93.3}}));
+				annotation(
+					timetable1(y(flags=2)),
+					iboss_vti2(
+						'iXp.comm_out.mi_pos'(flags=2),
+						'iXp.comm_out.v_ext'(flags=2),
+						'iXp.comm_out.v_int'(flags=2),
+						'iXp.comm_out.intf_current'(flags=2),
+						'iXp.comm_out.tmp'(flags=2),
+						'iXn.comm_out.mi_pos'(flags=2),
+						'iXn.comm_out.v_ext'(flags=2),
+						'iXn.comm_out.intf_current'(flags=2),
+						'iXn.comm_out.v_int'(flags=2),
+						'iXn.comm_out.tmp'(flags=2),
+						'iYp.comm_out.mi_pos'(flags=2),
+						'iYp.comm_out.v_ext'(flags=2),
+						'iYp.comm_out.v_int'(flags=2),
+						'iYp.comm_out.intf_current'(flags=2),
+						'iYp.comm_out.tmp'(flags=2),
+						'iYn.comm_out.mi_pos'(flags=2),
+						'iYn.comm_out.v_ext'(flags=2),
+						'iYn.comm_out.v_int'(flags=2),
+						'iYn.comm_out.intf_current'(flags=2),
+						'iYn.comm_out.tmp'(flags=2),
+						'iZp.comm_out.mi_pos'(flags=2),
+						'iZp.comm_out.v_ext'(flags=2),
+						'iZp.comm_out.v_int'(flags=2),
+						'iZp.comm_out.intf_current'(flags=2),
+						'iZp.comm_out.tmp'(flags=2),
+						'iZn.comm_out.mi_pos'(flags=2),
+						'iZn.comm_out.v_ext'(flags=2),
+						'iZn.comm_out.v_int'(flags=2),
+						'iZn.comm_out.intf_current'(flags=2),
+						'iZn.comm_out.tmp'(flags=2),
+						'iXp.mi.inertia1.phi'(flags=2),
+						'iXn.mi.inertia1.phi'(flags=2),
+						'iYp.mi.inertia1.phi'(flags=2),
+						'iYn.mi.inertia1.phi'(flags=2),
+						'iZp.mi.inertia1.phi'(flags=2),
+						'iZn.mi.inertia1.phi'(flags=2)),
+					viewinfo[0](
+						projectPath="C:\\Users\\indahouse\\Documents\\SimulationX 3.6\\Exported C-Code",
+						projectType=0,
+						saveOutputsApproach=1,
+						showAdditionalLibPage=false,
+						useCodeOptimization=true,
+						m_x64=false,
+						solverMode=1,
+						typename="CodeExportInfo"),
+					viewinfo[1](
+						viewSettings(clrRaster=12632256),
+						typename="ModelInfo"),
+					experiment(
+						StopTime=100,
+						StartTime=0));
+			end verosim_block_fmu2;
+			model iboss_vti3 "iboss_vti3"
+				input Modelica.Blocks.Interfaces.RealInput 'set_mi_pos[1]' "'input Real' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,855.5},{-80,895.5}})));
+				input Modelica.Blocks.Interfaces.RealInput 'set_mi_pos[2]' "'input Real' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,805.5},{-80,845.5}})));
+				input Modelica.Blocks.Interfaces.RealInput 'set_mi_pos[3]' "'input Real' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,755.5},{-80,795.5}})));
+				input Modelica.Blocks.Interfaces.RealInput 'set_mi_pos[4]' "'input Real' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,705.5},{-80,745.5}})));
+				input Modelica.Blocks.Interfaces.RealInput 'set_mi_pos[5]' "'input Real' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,655.5},{-80,695.5}})));
+				input Modelica.Blocks.Interfaces.RealInput 'set_mi_pos[6]' "'input Real' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,605.5},{-80,645.5}})));
+				input Modelica.Blocks.Interfaces.BooleanInput 'set_ei_state[1]' "'input Boolean' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,555.5},{-80,595.5}})));
+				input Modelica.Blocks.Interfaces.BooleanInput 'set_ei_state[2]' "'input Boolean' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,505.5},{-80,545.5}})));
+				input Modelica.Blocks.Interfaces.BooleanInput 'set_ei_state[3]' "'input Boolean' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,455.5},{-80,495.5}})));
+				input Modelica.Blocks.Interfaces.BooleanInput 'set_ei_state[4]' "'input Boolean' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,405.5},{-80,445.5}})));
+				input Modelica.Blocks.Interfaces.BooleanInput 'set_ei_state[5]' "'input Boolean' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,355.5},{-80,395.5}})));
+				input Modelica.Blocks.Interfaces.BooleanInput 'set_ei_state[6]' "'input Boolean' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,305.5},{-80,345.5}})));
+				input Modelica.Blocks.Interfaces.IntegerInput 'set_oci_state[1]' "'input Integer' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,255.5},{-80,295.5}})));
+				input Modelica.Blocks.Interfaces.IntegerInput 'set_oci_state[2]' "'input Integer' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,205.5},{-80,245.5}})));
+				input Modelica.Blocks.Interfaces.IntegerInput 'set_oci_state[3]' "'input Integer' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,155.5},{-80,195.5}})));
+				input Modelica.Blocks.Interfaces.IntegerInput 'set_oci_state[4]' "'input Integer' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,105.5},{-80,145.5}})));
+				input Modelica.Blocks.Interfaces.IntegerInput 'set_oci_state[5]' "'input Integer' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,55.5},{-80,95.5}})));
+				input Modelica.Blocks.Interfaces.IntegerInput 'set_oci_state[6]' "'input Integer' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,5.5},{-80,45.5}})));
+				input Modelica.Blocks.Interfaces.RealInput 'sim_ddr[1]' "'input Real' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,-44.5},{-80,-4.5}})));
+				input Modelica.Blocks.Interfaces.RealInput 'sim_ddr[2]' "'input Real' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,-94.5},{-80,-54.5}})));
+				input Modelica.Blocks.Interfaces.RealInput 'sim_ddr[3]' "'input Real' as connector" annotation(Placement(
+					transformation(extent={{-20,-20},{20,20}}),
+					iconTransformation(extent={{-120,-144.5},{-80,-104.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iXp.comm_out.mi_pos' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,865.5},{110,885.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iXp.comm_out.v_ext' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,815.5},{110,835.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iXp.comm_out.v_int' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,765.5},{110,785.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iXp.comm_out.intf_current' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,715.5},{110,735.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iXp.comm_out.tmp' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,665.5},{110,685.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iXn.comm_out.mi_pos' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,615.5},{110,635.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iXn.comm_out.v_ext' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,565.5},{110,585.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iXn.comm_out.intf_current' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,515.5},{110,535.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iXn.comm_out.v_int' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,465.5},{110,485.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iXn.comm_out.tmp' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,415.5},{110,435.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iYp.comm_out.mi_pos' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,365.5},{110,385.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iYp.comm_out.v_ext' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,315.5},{110,335.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iYp.comm_out.v_int' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,265.5},{110,285.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iYp.comm_out.intf_current' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,215.5},{110,235.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iYp.comm_out.tmp' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,165.5},{110,185.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iYn.comm_out.mi_pos' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,115.5},{110,135.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iYn.comm_out.v_ext' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,65.5},{110,85.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iYn.comm_out.v_int' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,15.5},{110,35.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iYn.comm_out.intf_current' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,-34.5},{110,-14.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iYn.comm_out.tmp' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,-84.5},{110,-64.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iZp.comm_out.mi_pos' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,-134.5},{110,-114.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iZp.comm_out.v_ext' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,-184.5},{110,-164.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iZp.comm_out.v_int' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,-234.5},{110,-214.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iZp.comm_out.intf_current' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,-284.5},{110,-264.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iZp.comm_out.tmp' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,-334.5},{110,-314.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iZn.comm_out.mi_pos' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,-384.5},{110,-364.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iZn.comm_out.v_ext' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,-434.5},{110,-414.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iZn.comm_out.v_int' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,-484.5},{110,-464.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iZn.comm_out.intf_current' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,-534.5},{110,-514.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iZn.comm_out.tmp' "'output Real' as connector" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,-584.5},{110,-564.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iXp.mi.inertia1.phi' "Absolute rotation angle of component" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,-634.5},{110,-614.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iXn.mi.inertia1.phi' "Absolute rotation angle of component" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,-684.5},{110,-664.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iYp.mi.inertia1.phi' "Absolute rotation angle of component" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,-734.5},{110,-714.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iYn.mi.inertia1.phi' "Absolute rotation angle of component" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,-784.5},{110,-764.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iZp.mi.inertia1.phi' "Absolute rotation angle of component" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,-834.5},{110,-814.5}})));
+				output Modelica.Blocks.Interfaces.RealOutput 'iZn.mi.inertia1.phi' "Absolute rotation angle of component" annotation(Placement(
+					transformation(extent={{-10,-10},{10,10}}),
+					iconTransformation(extent={{90,-884.5},{110,-864.5}})));
+				package fmiStatus
+					constant Integer fmiOK=0;
+					constant Integer fmiWarning=1;
+					constant Integer fmiDiscard=2;
+					constant Integer fmiError=3;
+					constant Integer fmiFatal=4;
+					constant Integer fmiPending=5;
+				end fmiStatus;
+				parameter Real tc(
+					quantity="Basics.Time",
+					displayUnit="ms")=0.01 "Communication Step Size";
+				parameter String instanceName="fmu1" "Instance Name" annotation(Dialog(tab="FMI"));
+				parameter String fmuLocation="" "FMU Location" annotation(Dialog(tab="FMI"));
+				parameter String mimeType="" "FMU Mime Type" annotation(Dialog(tab="FMI"));
+				parameter Real timeout(
+					quantity="Basics.Time",
+					displayUnit="s")=10 "FMU Timeout" annotation(Dialog(tab="FMI"));
+				parameter Boolean visible=false "FMU Visible?" annotation(Dialog(tab="FMI"));
+				parameter Boolean interactive=false "FMU Interactive?" annotation(Dialog(tab="FMI"));
+				parameter Boolean loggingOn=false "Logging On" annotation(Dialog(tab="FMI"));
+				protected
+					Real initCalled(start=0);
+					nondiscrete Integer ret;
+				public
+					type FMU
+						extends ExternalObject;
+						function constructor
+							input String instanceName;
+							input String GUID;
+							input String fmuLocation;
+							input String mimeType;
+							input Real timeout;
+							input Boolean visible;
+							input Boolean interactive;
+							input Boolean loggingOn;
+							parameter output FMU fmu;
+							external "C" fmu=fmiHelpersInstantiateSlave("iboss_vti",instanceName,GUID,fmuLocation,mimeType,timeout,visible,interactive,loggingOn);
+					end constructor;
+					function destructor
+						parameter input FMU fmu;
+						external "C" fmiHelpersFreeSlaveInstance(fmu);
+				end destructor;
+			end FMU;
+		protected
+			function SetDebugLogging
+				parameter input FMU fmu;
+				input Boolean loggingOn;
+				output Integer status;
+				external "C" status=iboss_vti_fmiSetDebugLogging(fmu,loggingOn)
+					annotation(Library="iboss_vti");
+			end SetDebugLogging;
+			function SetReal
+				parameter input FMU fmu;
+				input Integer vr[nvr];
+				input Integer nvr;
+				input Real value[nvr];
+				output Integer status;
+				external "C" status=iboss_vti_fmiSetReal(fmu,vr,nvr,value)
+					annotation(Library="iboss_vti");
+			end SetReal;
+			function GetReal
+				parameter input FMU fmu;
+				input Integer vr[nvr];
+				input Integer nvr;
+				output Integer status;
+				output Real value[nvr];
+				external "C" status=iboss_vti_fmiGetReal(fmu,vr,nvr,value)
+					annotation(Library="iboss_vti");
+			end GetReal;
+			function SetInteger
+				parameter input FMU fmu;
+				input Integer vr[nvr];
+				input Integer nvr;
+				input Integer value[nvr];
+				output Integer status;
+				external "C" status=iboss_vti_fmiSetInteger(fmu,vr,nvr,value)
+					annotation(Library="iboss_vti");
+			end SetInteger;
+			function GetInteger
+				parameter input FMU fmu;
+				input Integer vr[nvr];
+				input Integer nvr;
+				output Integer status;
+				output Integer value[nvr];
+				external "C" status=iboss_vti_fmiGetInteger(fmu,vr,nvr,value)
+					annotation(Library="iboss_vti");
+			end GetInteger;
+			function SetBoolean
+				parameter input FMU fmu;
+				input Integer vr[nvr];
+				input Integer nvr;
+				input Boolean value[nvr];
+				output Integer status;
+				external "C" status=iboss_vti_fmiSetBoolean(fmu,vr,nvr,value)
+					annotation(Library="iboss_vti");
+			end SetBoolean;
+			function GetBoolean
+				parameter input FMU fmu;
+				input Integer vr[nvr];
+				input Integer nvr;
+				output Integer status;
+				output Boolean value[nvr];
+				external "C" status=iboss_vti_fmiGetBoolean(fmu,vr,nvr,value)
+					annotation(Library="iboss_vti");
+			end GetBoolean;
+			function SetString
+				parameter input FMU fmu;
+				input Integer vr[nvr];
+				input Integer nvr;
+				input String value[nvr];
+				output Integer status;
+				external "C" status=iboss_vti_fmiSetString(fmu,vr,nvr,value)
+					annotation(Library="iboss_vti");
+			end SetString;
+			function GetString
+				parameter input FMU fmu;
+				input Integer vr[nvr];
+				input Integer nvr;
+				output Integer status;
+				output String value[nvr];
+				external "C" status=iboss_vti_fmiGetString(fmu,vr,nvr,value)
+					annotation(Library="iboss_vti");
+			end GetString;
+			function InitializeSlave
+				parameter input FMU fmu;
+				input Real tStart;
+				input Boolean StopTimeDefined;
+				input Real tStop;
+				output Integer status;
+				external "C" status=iboss_vti_fmiInitializeSlave(fmu,tStart,StopTimeDefined,tStop)
+					annotation(Library="iboss_vti");
+			end InitializeSlave;
+			function TerminateSlave
+				parameter input FMU fmu;
+				output Integer status;
+				external "C" status=iboss_vti_fmiTerminateSlave(fmu)
+					annotation(Library="iboss_vti");
+			end TerminateSlave;
+			function DoStep
+				parameter input FMU fmu;
+				input Real currentCommunicationPoint;
+				input Real communicationStepSize;
+				input Boolean newStep;
+				output Integer status;
+				external "C" status=iboss_vti_fmiDoStep(fmu,currentCommunicationPoint,communicationStepSize,newStep)
+					annotation(Library="iboss_vti");
+			end DoStep;
+			constant Integer numberOfContinuousStates=13;
+			constant Integer numberOfEventIndicators=65;
+			discrete Real real_in_l[9];
+			Integer int_in_l[6];
+			Boolean boolean_in_l[6];
+			discrete Real t_l;
+			Real real_out[36];
+		public
+			parameter Real 'm'=10.;
+		protected
+			ExternalObject fmu=FMU(instanceName, "{0A75B168-98FA-47E1-B4F1-A8F3B9184AF8}", fmuLocation,mimeType,timeout,visible,interactive,loggingOn);
+		algorithm
+			when initial() then
+				assert(fmu<>0, "Invalid FMU instance handle.");
+				if noEvent(initCalled<1) then
+					initCalled:=1;
+					SetDebugLogging(fmu, loggingOn);
+					ret:=SetReal(fmu,{1073741824}, 1, {
+			'm'
+			});
+					assert(ret<>fmiStatus.fmiError, "fmiSetReal returned an error during setting of parameters");
+					assert(ret<>fmiStatus.fmiFatal, "fmiSetReal returned a fatal error during setting of parameters");
+					assert(ret<>fmiStatus.fmiDiscard, "fmiSetReal discarded setting of parameters");
+					ret:=SetReal(fmu, {536870912, 536870913, 536870914, 536870915, 536870916, 536870917, 536870918, 536870919, 536870920}, 9, {
+			'set_mi_pos[1]', 
+			'set_mi_pos[2]', 
+			'set_mi_pos[3]', 
+			'set_mi_pos[4]', 
+			'set_mi_pos[5]', 
+			'set_mi_pos[6]', 
+			'sim_ddr[1]', 
+			'sim_ddr[2]', 
+			'sim_ddr[3]'
+			});
+					assert(ret<>fmiStatus.fmiError, "fmiSetReal returned an error during setting of inputs");
+					assert(ret<>fmiStatus.fmiFatal, "fmiSetReal returned a fatal error during setting of inputs");
+					assert(ret<>fmiStatus.fmiDiscard, "fmiSetReal discarded setting of inputs");
+					ret:=SetInteger(fmu, {536870918, 536870919, 536870920, 536870921, 536870922, 536870923}, 6, {
+			'set_oci_state[1]', 
+			'set_oci_state[2]', 
+			'set_oci_state[3]', 
+			'set_oci_state[4]', 
+			'set_oci_state[5]', 
+			'set_oci_state[6]'
+			});
+					assert(ret<>fmiStatus.fmiError, "fmiSetInteger returned an error during setting of inputs");
+					assert(ret<>fmiStatus.fmiFatal, "fmiSetInteger returned a fatal error during setting of inputs");
+					assert(ret<>fmiStatus.fmiDiscard, "fmiSetInteger discarded setting of inputs");
+					ret:=SetBoolean(fmu, {536870912}, 1, {'set_ei_state[1]'});
+					ret:=SetBoolean(fmu, {536870913}, 1, {'set_ei_state[2]'});
+					ret:=SetBoolean(fmu, {536870914}, 1, {'set_ei_state[3]'});
+					ret:=SetBoolean(fmu, {536870915}, 1, {'set_ei_state[4]'});
+					ret:=SetBoolean(fmu, {536870916}, 1, {'set_ei_state[5]'});
+					ret:=SetBoolean(fmu, {536870917}, 1, {'set_ei_state[6]'});
+				t_l:=time;
+					ret:=InitializeSlave(fmu, time, false, 0);
+					assert(ret<>fmiStatus.fmiError, "fmiInitialize returned an error");
+					assert(ret<>fmiStatus.fmiFatal, "fmiInitialize returned a fatal error");
+					if (ret==fmiStatus.fmiWarning) then
+						trace("fmiInitialize returned a warning");
+					end if;
+					(ret, real_out):=GetReal(fmu, {805306368, 805306369, 805306370, 805306371, 805306372, 805306373, 805306374, 805306375, 805306376, 805306377, 805306378, 805306379, 805306380, 805306381, 805306382, 805306383, 805306384, 805306385, 805306386, 805306387, 805306388, 805306389, 805306390, 805306391, 805306392, 805306393, 805306394, 805306395, 805306396, 805306397, 805306398, 805306399, 805306400, 805306401, 805306402, 805306403}, 36);
+				end if;
+					real_in_l:={
+			'set_mi_pos[1]', 
+			'set_mi_pos[2]', 
+			'set_mi_pos[3]', 
+			'set_mi_pos[4]', 
+			'set_mi_pos[5]', 
+			'set_mi_pos[6]', 
+			'sim_ddr[1]', 
+			'sim_ddr[2]', 
+			'sim_ddr[3]'
+			};
+					int_in_l:={
+			'set_oci_state[1]', 
+			'set_oci_state[2]', 
+			'set_oci_state[3]', 
+			'set_oci_state[4]', 
+			'set_oci_state[5]', 
+			'set_oci_state[6]'
+			};
+					boolean_in_l:={
+			'set_ei_state[1]', 
+			'set_ei_state[2]', 
+			'set_ei_state[3]', 
+			'set_ei_state[4]', 
+			'set_ei_state[5]', 
+			'set_ei_state[6]'
+			};
+			end when;
+			when sample(tc,tc)then
+					ret:=SetReal(fmu, {536870912, 536870913, 536870914, 536870915, 536870916, 536870917, 536870918, 536870919, 536870920}, 9, real_in_l);
+				assert(ret<>fmiStatus.fmiError, "fmiSetReal returned an error during setting of inputs");
+				assert(ret<>fmiStatus.fmiFatal, "fmiSetReal returned a fatal error during setting of inputs");
+				assert(ret<>fmiStatus.fmiDiscard, "fmiSetReal discarded setting of inputs");
+				real_in_l:={
+			'set_mi_pos[1]', 
+			'set_mi_pos[2]', 
+			'set_mi_pos[3]', 
+			'set_mi_pos[4]', 
+			'set_mi_pos[5]', 
+			'set_mi_pos[6]', 
+			'sim_ddr[1]', 
+			'sim_ddr[2]', 
+			'sim_ddr[3]'
+			};
+					ret:=SetInteger(fmu, {536870918, 536870919, 536870920, 536870921, 536870922, 536870923}, 6, int_in_l);
+				assert(ret<>fmiStatus.fmiError, "fmiSetInteger returned an error during setting of inputs");
+				assert(ret<>fmiStatus.fmiFatal, "fmiSetInteger returned a fatal error during setting of inputs");
+				assert(ret<>fmiStatus.fmiDiscard, "fmiSetInteger discarded setting of inputs");
+				int_in_l:={
+			'set_oci_state[1]', 
+			'set_oci_state[2]', 
+			'set_oci_state[3]', 
+			'set_oci_state[4]', 
+			'set_oci_state[5]', 
+			'set_oci_state[6]'
+			};
+						ret:=SetBoolean(fmu, {536870912}, 1, {boolean_in_l[1]});
+					ret:=SetBoolean(fmu, {536870913}, 1, {boolean_in_l[2]});
+					ret:=SetBoolean(fmu, {536870914}, 1, {boolean_in_l[3]});
+					ret:=SetBoolean(fmu, {536870915}, 1, {boolean_in_l[4]});
+					ret:=SetBoolean(fmu, {536870916}, 1, {boolean_in_l[5]});
+					ret:=SetBoolean(fmu, {536870917}, 1, {boolean_in_l[6]});
+					boolean_in_l:={
+			'set_ei_state[1]', 
+			'set_ei_state[2]', 
+			'set_ei_state[3]', 
+			'set_ei_state[4]', 
+			'set_ei_state[5]', 
+			'set_ei_state[6]'
+			};
+				ret:=DoStep(fmu, t_l, time-t_l, true);
+				t_l:=time;
+				assert(ret<>fmiStatus.fmiError, "fmiDoStep returned an error");
+				assert(ret<>fmiStatus.fmiFatal, "fmiDoStep returned a fatal error");
+				assert(ret<>fmiStatus.fmiDiscard, "fmiDoStep was dicarded");
+				if(ret==fmiStatus.fmiOK) then
+					(ret, real_out):=GetReal(fmu, {805306368, 805306369, 805306370, 805306371, 805306372, 805306373, 805306374, 805306375, 805306376, 805306377, 805306378, 805306379, 805306380, 805306381, 805306382, 805306383, 805306384, 805306385, 805306386, 805306387, 805306388, 805306389, 805306390, 805306391, 805306392, 805306393, 805306394, 805306395, 805306396, 805306397, 805306398, 805306399, 805306400, 805306401, 805306402, 805306403}, 36);
+				end if;
+			end when;
+			when terminal() then
+				ret:=TerminateSlave(fmu);
+			end when;
+		equation
+			real_out={
+			'iXp.comm_out.mi_pos', 
+			'iXp.comm_out.v_ext', 
+			'iXp.comm_out.v_int', 
+			'iXp.comm_out.intf_current', 
+			'iXp.comm_out.tmp', 
+			'iXn.comm_out.mi_pos', 
+			'iXn.comm_out.v_ext', 
+			'iXn.comm_out.intf_current', 
+			'iXn.comm_out.v_int', 
+			'iXn.comm_out.tmp', 
+			'iYp.comm_out.mi_pos', 
+			'iYp.comm_out.v_ext', 
+			'iYp.comm_out.v_int', 
+			'iYp.comm_out.intf_current', 
+			'iYp.comm_out.tmp', 
+			'iYn.comm_out.mi_pos', 
+			'iYn.comm_out.v_ext', 
+			'iYn.comm_out.v_int', 
+			'iYn.comm_out.intf_current', 
+			'iYn.comm_out.tmp', 
+			'iZp.comm_out.mi_pos', 
+			'iZp.comm_out.v_ext', 
+			'iZp.comm_out.v_int', 
+			'iZp.comm_out.intf_current', 
+			'iZp.comm_out.tmp', 
+			'iZn.comm_out.mi_pos', 
+			'iZn.comm_out.v_ext', 
+			'iZn.comm_out.v_int', 
+			'iZn.comm_out.intf_current', 
+			'iZn.comm_out.tmp', 
+			'iXp.mi.inertia1.phi', 
+			'iXn.mi.inertia1.phi', 
+			'iYp.mi.inertia1.phi', 
+			'iYn.mi.inertia1.phi', 
+			'iZp.mi.inertia1.phi', 
+			'iZn.mi.inertia1.phi'
+			};
+		annotation(Icon(
+			coordinateSystem(extent={{-100,-925.5},{100,925.5}}),
+			graphics={
+					Rectangle(
+						lineColor={0,0,0},
+						extent={{-92,-917.5},{92,917.5}})}));
+	end iboss_vti3;
+	iboss_vti3 iboss_vti1;
+	annotation(
+		dateModified="2015-07-10 12:25:34Z",
+		experiment(
+			StopTime=1,
+			StartTime=0));
+end examples;
+model iboss_vti
+	extends verosim_basic_6D annotation(Placement(transformation(extent={{-10,-10},{10,10}})));
+	parameter Integer intf_count=6 "number of interfaces";
+	input Modelica.Blocks.Interfaces.RealInput set_mi_pos[6];
+	input Modelica.Blocks.Interfaces.BooleanInput set_ei_state[6];
+	input Modelica.Blocks.Interfaces.IntegerInput set_oci_state[6];
+	input Modelica.Blocks.Interfaces.RealInput sim_ddr[3] annotation(Placement(
+		transformation(
+			origin={-100,20},
+			extent={{-10,-10},{10,10}}),
+		iconTransformation(
+			origin={-98,20},
+			extent={{-10,-10},{10,10}})));
+	connector Sim_out "Sim_out"
+		connector Intf "Intf"
+			Real mi_pos;
+			Real v_ext;
+		end Intf;
+		Intf intf[intf_count];
+		annotation(Icon(graphics={Ellipse(lineColor = {0, 0, 0}, fillColor = {127, 255, 212}, fillPattern = FillPattern.CrossDiag, extent = {{-63.3, 56.7}, {63.3, -66.7}})}));
+	end Sim_out;
+	output Sim_out sim_out annotation(Placement(
+		transformation(
+			origin={100,58},
+			extent={{-10,-10},{10,10}}),
+		iconTransformation(
+			origin={66,30},
+			extent={{-10,-10},{10,10}})));
+	equation
+		connect(imu.ang_vel, sim_ddr);
+		connect(set_mi_pos[1], iXp.comm_in.set_pos);
+		connect(set_mi_pos[2], iXn.comm_in.set_pos);
+		connect(set_mi_pos[3], iYp.comm_in.set_pos);
+		connect(set_mi_pos[4], iYn.comm_in.set_pos);
+		connect(set_mi_pos[5], iZp.comm_in.set_pos);
+		connect(set_mi_pos[6], iZn.comm_in.set_pos);
+		
+			sim_out.intf[1].mi_pos = iXp.mi.pos.phi;
+			sim_out.intf[1].v_ext = iXp.v_ext.v;
+			sim_out.intf[2].mi_pos = iXn.mi.pos.phi;
+			sim_out.intf[2].v_ext = iXn.v_ext.v;
+			sim_out.intf[3].mi_pos = iYp.mi.pos.phi;
+			sim_out.intf[3].v_ext = iYp.v_ext.v;
+			sim_out.intf[4].mi_pos = iYn.mi.pos.phi;
+			sim_out.intf[4].v_ext = iYn.v_ext.v;
+			sim_out.intf[5].mi_pos = iZp.mi.pos.phi;
+			sim_out.intf[5].v_ext = iZp.v_ext.v;
+			sim_out.intf[6].mi_pos = iZn.mi.pos.phi;
+			sim_out.intf[6].v_ext = iZn.v_ext.v;
+	annotation(
+		imu(
+			noise_ung2(y(flags=2)),
+			noise_ung1(y(flags=2)),
+			noise_ung3(y(flags=2))),
+		rampvoltage1(
+			v(flags=2),
+			i(flags=2),
+			p(
+				v(flags=2),
+				i(flags=2)),
+			n(
+				v(flags=2),
+				i(flags=2))),
+		thermometer_withnoise1(noise_ung(y(flags=2))),
+		iXp(mi(noise_ung1(y(flags=2)))),
+		iXn(mi(noise_ung1(y(flags=2)))),
+		iYp(mi(noise_ung1(y(flags=2)))),
+		iYn(mi(noise_ung1(y(flags=2)))),
+		iZp(mi(noise_ung1(y(flags=2)))),
+		iZn(mi(noise_ung1(y(flags=2)))),
+		viewinfo[0](
+			viewSettings(clrRaster=12632256),
+			typename="ModelInfo"),
+		viewinfo[1](
+			projectName="iboss_vti",
+			projectPath="E:\\iboss\\FMUs",
+			projectType=21,
+			saveOutputsApproach=1,
+			inputs[0](
+				port="set_mi_pos",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			inputs[1](
+				port="set_ei_state",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			inputs[2](
+				port="set_oci_state",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			inputs[3](
+				port="sim_ddr",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[0](
+				port="iXp.comm_out.mi_pos",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[1](
+				port="iXp.comm_out.v_ext",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[2](
+				port="iXp.comm_out.v_int",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[3](
+				port="iXp.comm_out.intf_current",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[4](
+				port="iXp.comm_out.tmp",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[5](
+				port="iXn.comm_out.mi_pos",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[6](
+				port="iXn.comm_out.v_ext",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[7](
+				port="iXn.comm_out.intf_current",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[8](
+				port="iXn.comm_out.v_int",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[9](
+				port="iXn.comm_out.tmp",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[10](
+				port="iYp.comm_out.mi_pos",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[11](
+				port="iYp.comm_out.v_ext",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[12](
+				port="iYp.comm_out.v_int",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[13](
+				port="iYp.comm_out.intf_current",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[14](
+				port="iYp.comm_out.tmp",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[15](
+				port="iYn.comm_out.mi_pos",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[16](
+				port="iYn.comm_out.v_ext",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[17](
+				port="iYn.comm_out.v_int",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[18](
+				port="iYn.comm_out.intf_current",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[19](
+				port="iYn.comm_out.tmp",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[20](
+				port="iZp.comm_out.mi_pos",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[21](
+				port="iZp.comm_out.v_ext",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[22](
+				port="iZp.comm_out.v_int",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[23](
+				port="iZp.comm_out.intf_current",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[24](
+				port="iZp.comm_out.tmp",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[25](
+				port="iZn.comm_out.mi_pos",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[26](
+				port="iZn.comm_out.v_ext",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[27](
+				port="iZn.comm_out.v_int",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[28](
+				port="iZn.comm_out.intf_current",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[29](
+				port="iZn.comm_out.tmp",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[30](
+				port="iXp.mi.inertia1.phi",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[31](
+				port="iXn.mi.inertia1.phi",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[32](
+				port="iYp.mi.inertia1.phi",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[33](
+				port="iYn.mi.inertia1.phi",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[34](
+				port="iZp.mi.inertia1.phi",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			outputs[35](
+				port="iZn.mi.inertia1.phi",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			parameters[0](
+				port="m",
+				interpolation=true,
+				paramTypeSPCK=3,
+				typename="CEPort"),
+			descriptionProject="iboss_vti",
+			version="0.9",
+			author="Thomas Meschede",
+			fmiIncludeDllWin32=true,
+			fmiIncludeDllWin64=true,
+			fmiIncludeSources=true,
+			guid="{0A75B168-98FA-47E1-B4F1-A8F3B9184AF8}",
+			showAdditionalLibPage=false,
+			useCodeOptimization=true,
+			m_x64=false,
+			solverMode=1,
+			checkSum=100470,
+			fmiVersion="1.0",
+			typename="CodeExportInfo"),
+		experiment(
+			StopTime=1,
+			StartTime=0));
+end iboss_vti;
+model verosim_basic_6D
+	extends icons.basic;
+	parameter Integer intf_count=6 "number of interfaces";
+	parameter Modelica.SIunits.Mass m=10;
+	satcomponents.power.verbraucher OBC(
+		v_nominal=5,
+		useHeatPort=true) annotation(Placement(transformation(
+		origin={5,-15},
+		extent={{-10,-10},{10,10}})));
+	satcomponents.AOCS.Parts.IMU imu annotation(Placement(transformation(
+		origin={-48,40},
+		extent={{-10,-10},{10,10}})));
+	Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatcapacitor1(C=897.0 * m) annotation(Placement(transformation(
+		origin={-48,-2},
+		extent={{-10,-10},{10,10}})));
+	Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedtemperature1(T=100) annotation(Placement(transformation(
+		origin={-102,-10},
+		extent={{-10,-10},{10,10}})));
+	Modelica.Thermal.HeatTransfer.Components.BodyRadiation bodyradiation1(Gr=0.02 * 6 * 0.4 * 0.4) annotation(Placement(transformation(
+		origin={-74,-10},
+		extent={{-10,-10},{10,10}})));
+	Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(transformation(
+		origin={-44,-74},
+		extent={{-10,-10},{10,10}})));
+	satcomponents.power.dcmodel.dcdc_ideal_simple dcdc_ideal_simple1 annotation(Placement(transformation(
+		origin={-12,-46},
+		extent={{-10,-10},{10,10}})));
+	Modelica.Electrical.Analog.Sources.RampVoltage rampvoltage1(
+		V=40,
+		duration=2) annotation(Placement(transformation(
+		origin={-72,-46},
+		extent={{-10,-10},{10,10}},
+		rotation=-90)));
+	satcomponents.thermal.thermometer_withnoise thermometer_withnoise1 annotation(Placement(transformation(
+		origin={-10,28},
+		extent={{-10,-10},{10,10}})));
+	components.iboss_interface iXp annotation(Placement(transformation(
+		origin={65,60},
+		extent={{-10,-10},{10,10}})));
+	components.iboss_interface iXn annotation(Placement(transformation(
+		origin={65,35},
+		extent={{-10,-10},{10,10}})));
+	components.iboss_interface iYp annotation(Placement(transformation(
+		origin={95,25},
+		extent={{-10,-10},{10,10}})));
+	components.iboss_interface iYn annotation(Placement(transformation(
+		origin={95,-5},
+		extent={{-10,-10},{10,10}})));
+	components.iboss_interface iZp annotation(Placement(transformation(
+		origin={65,-20},
+		extent={{-10,-10},{10,10}})));
+	components.iboss_interface iZn annotation(Placement(transformation(
+		origin={65,-50},
+		extent={{-10,-10},{10,10}})));
+	equation
+		connect(heatcapacitor1.port,thermometer_withnoise1.port) annotation(Line(
+			points={{-48,-12},{-48,-17},{-36.7,-17},{-36.7,28},{-25,28},{-20,
+			28}},
+			color={191,0,0}));
+		connect(rampvoltage1.p,dcdc_ideal_simple1.p1) annotation(Line(points={{-72,-36},{-72,-31},{-49.7,-31},{-49.7,-41},{-27,-41},{-22,
+		-41}}));
+		connect(ground1.p,rampvoltage1.n) annotation(Line(points={{-44,-64},{-44,-59},{-58,-59},{-58,-61},{-72,-61},{-72,
+		-56}}));
+		connect(ground1.p,dcdc_ideal_simple1.n1) annotation(Line(points={{-44,-64},{-44,-59},{-44,-51},{-27,-51},{-22,-51}}));
+		connect(bodyradiation1.port_b,heatcapacitor1.port) annotation(Line(
+			points={{-64,-10},{-59,-10},{-59,-17},{-48,-17},{-48,-12}},
+			color={191,0,0}));
+		connect(fixedtemperature1.port,bodyradiation1.port_a) annotation(Line(
+			points={{-92,-10},{-87,-10},{-89,-10},{-84,-10}},
+			color={191,0,0}));
+		connect(OBC.heatPort,heatcapacitor1.port) annotation(Line(
+			points={{-5,-16.7},{-10,-16.7},{-10,-17},{-48,-17},{-48,-12}},
+			color={191,0,0}));
+		
+		connect(OBC.pin_p,dcdc_ideal_simple1.p2) annotation(Line(
+			points={{0,-25},{0,-30},{3,-30},{3,-41},{-2,-41}},
+			thickness=0.0625));
+		connect(OBC.pin_n,dcdc_ideal_simple1.n2) annotation(Line(
+			points={{9.699999999999999,-25},{9.699999999999999,-30},{9.699999999999999,-51},{3,-51},{-2,-51}},
+			thickness=0.0625));
+		connect(dcdc_ideal_simple1.n1,dcdc_ideal_simple1.n2) annotation(Line(
+			points={{-22,-51},{-27,-51},{-27,-61},{3,-61},{3,-51},{-2,
+			-51}},
+			thickness=0.0625));
+		connect(dcdc_ideal_simple1.p1,iXp.vcc_int) annotation(Line(
+			points={{-2,-41},{3,-41},{50,-41},{50,65},{55,65}},
+			thickness=0.0625));
+		connect(dcdc_ideal_simple1.n2,iXp.gnd_int) annotation(Line(
+			points={{-2,-51},{3,-51},{50,-51},{50,60},{55,60}},
+			thickness=0.0625));
+		connect(dcdc_ideal_simple1.p2,iXp.v_motor) annotation(Line(
+			points={{-22,-41},{-27,-41},{-27,2},{60,2},{60,45},{60,
+			50}},
+			thickness=0.0625));
+		connect(iXp.gnd_int,iXp.gnd_motor) annotation(Line(
+			points={{55,60},{50,60},{50,45},{65,45},{65,50}},
+			thickness=0.0625));
+		connect(dcdc_ideal_simple1.p1,iYp.vcc_int) annotation(Line(
+			points={{-2,-41},{3,-41},{80,-41},{80,30},{85,30}},
+			thickness=0.0625));
+		connect(dcdc_ideal_simple1.n2,iYp.gnd_int) annotation(Line(
+			points={{-2,-51},{3,-51},{80,-51},{80,25},{85,25}},
+			thickness=0.0625));
+		connect(dcdc_ideal_simple1.p2,iYp.v_motor) annotation(Line(
+			points={{-22,-41},{-27,-41},{-27,-15.7},{90,-15.7},{90,10},{90,
+			15}},
+			thickness=0.0625));
+		connect(iYp.gnd_int,iYp.gnd_motor) annotation(Line(
+			points={{85,25},{80,25},{80,10},{95,10},{95,15}},
+			thickness=0.0625));
+		connect(dcdc_ideal_simple1.p1,iZp.vcc_int) annotation(Line(
+			points={{-2,-41},{3,-41},{50,-41},{50,-15},{55,-15}},
+			thickness=0.0625));
+		connect(dcdc_ideal_simple1.n2,iZp.gnd_int) annotation(Line(
+			points={{-2,-51},{3,-51},{50,-51},{50,-20},{55,-20}},
+			thickness=0.0625));
+		connect(dcdc_ideal_simple1.p2,iZp.v_motor) annotation(Line(
+			points={{-22,-41},{-27,-41},{-27,-38},{60,-38},{60,-35},{60,
+			-30}},
+			thickness=0.0625));
+		connect(iZp.gnd_int,iZp.gnd_motor) annotation(Line(
+			points={{55,-20},{50,-20},{50,-35},{65,-35},{65,-30}},
+			thickness=0.0625));
+		connect(dcdc_ideal_simple1.p1,iXn.vcc_int) annotation(Line(
+			points={{-2,-41},{3,-41},{50,-41},{50,40},{55,40}},
+			thickness=0.0625));
+		connect(dcdc_ideal_simple1.n2,iXn.gnd_int) annotation(Line(
+			points={{-2,-51},{3,-51},{50,-51},{50,35},{55,35}},
+			thickness=0.0625));
+		connect(dcdc_ideal_simple1.p2,iXn.v_motor) annotation(Line(
+			points={{-22,-41},{-27,-41},{-27,-10.7},{60,-10.7},{60,20},{60,
+			25}},
+			thickness=0.0625));
+		connect(iXn.gnd_int,iXn.gnd_motor) annotation(Line(
+			points={{55,35},{50,35},{50,20},{65,20},{65,25}},
+			thickness=0.0625));
+		connect(dcdc_ideal_simple1.p1,iYn.vcc_int) annotation(Line(
+			points={{-2,-41},{3,-41},{80,-41},{80,0},{85,0}},
+			thickness=0.0625));
+		connect(dcdc_ideal_simple1.n2,iYn.gnd_int) annotation(Line(
+			points={{-2,-51},{3,-51},{80,-51},{80,-5},{85,-5}},
+			thickness=0.0625));
+		connect(dcdc_ideal_simple1.p2,iYn.v_motor) annotation(Line(
+			points={{-22,-41},{-27,-41},{-27,-30.7},{90,-30.7},{90,-20},{90,
+			-15}},
+			thickness=0.0625));
+		connect(iYn.gnd_int,iYn.gnd_motor) annotation(Line(
+			points={{85,-5},{80,-5},{80,-20},{95,-20},{95,-15}},
+			thickness=0.0625));
+		connect(dcdc_ideal_simple1.p1,iZn.vcc_int) annotation(Line(
+			points={{-2,-41},{3,-41},{50,-41},{50,-45},{55,-45}},
+			thickness=0.0625));
+		connect(dcdc_ideal_simple1.n2,iZn.gnd_int) annotation(Line(
+			points={{-2,-51},{3,-51},{50,-51},{50,-50},{55,-50}},
+			thickness=0.0625));
+		connect(dcdc_ideal_simple1.p2,iZn.v_motor) annotation(Line(
+			points={{-22,-41},{-27,-41},{-27,-65},{60,-65},{60,-60}},
+			thickness=0.0625));
+		connect(iZn.gnd_int,iZn.gnd_motor) annotation(Line(
+			points={{55,-50},{50,-50},{50,-65},{65,-65},{65,-60}},
+			thickness=0.0625));
+	annotation(
+		imu(
+			noise_ung2(y(flags=2)),
+			noise_ung1(y(flags=2)),
+			noise_ung3(y(flags=2))),
+		rampvoltage1(
+			v(flags=2),
+			i(flags=2),
+			p(
+				v(flags=2),
+				i(flags=2)),
+			n(
+				v(flags=2),
+				i(flags=2))),
+		thermometer_withnoise1(noise_ung(y(flags=2))),
+		iXp(mi(noise_ung1(y(flags=2)))),
+		iXn(mi(noise_ung1(y(flags=2)))),
+		iYp(mi(noise_ung1(y(flags=2)))),
+		iYn(mi(noise_ung1(y(flags=2)))),
+		iZp(mi(noise_ung1(y(flags=2)))),
+		iZn(mi(noise_ung1(y(flags=2)))),
+		viewinfo[0](
+			viewSettings(clrRaster=12632256),
+			typename="ModelInfo"),
+		experiment(
+			StopTime=100,
+			StartTime=0,
+			Tolerance=1e-012,
+			Interval=0.02));
+end verosim_basic_6D;
+end buildingblocks;
 end ibossmo;
