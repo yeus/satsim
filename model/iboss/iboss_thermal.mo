@@ -20587,6 +20587,53 @@ An approppriate simulating time would be 10 seconds.
 																lineColor={255,255,255},
 																extent={{-50.5,-5.2},{59.5,-98.5}})}));
 		end T_out_Q_flow_in;
+		model T_out_Q_flow_in_cap "T_out_Q_flow_in_cap mit kleiner Kapazität für den FMU export - soll instabilitäten verhindern"
+			Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_a annotation(Placement(
+				transformation(extent={{-110,-25},{-90,-5}}),
+				iconTransformation(extent={{-86.7,-8.300000000000001},{-66.7,11.7}})));
+			input Modelica.Blocks.Interfaces.RealInput Q_flow_in annotation(Placement(
+				transformation(extent={{15,-10},{55,30}}),
+				iconTransformation(extent={{53.3,31.7},{93.3,71.7}})));
+			Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow1 annotation(Placement(transformation(extent={{-40,-10},{-20,10}})));
+			output Modelica.Blocks.Interfaces.RealOutput T_out annotation(Placement(
+				transformation(extent={{35,-40},{55,-20}}),
+				iconTransformation(extent={{63.3,-58.3},{83.3,-38.3}})));
+			Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperatureSensor1 annotation(Placement(transformation(extent={{-30,-45},{-10,-25}})));
+			equation
+				connect(prescribedHeatFlow1.port,port_a) annotation(Line(
+					points={{-20,0},{-15,0},{-15,-15},{-95,-15},{-100,-15}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(prescribedHeatFlow1.Q_flow,Q_flow_in) annotation(Line(
+					points={{-40,0},{-45,0},{-45,10},{30,10},{35,10}},
+					color={0,0,127},
+					thickness=0.0625));
+				
+				connect(temperatureSensor1.port,port_a) annotation(Line(
+					points={{-30,-35},{-35,-35},{-95,-35},{-95,-15},{-100,-15}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(temperatureSensor1.T,T_out) annotation(Line(
+					points={{-10,-35},{-5,-35},{40,-35},{40,-30},{45,-30}},
+					color={0,0,127},
+					thickness=0.0625));
+			annotation(Icon(
+				coordinateSystem(extent={{-76.7,-101.7},{76.7,101.7}}),
+				graphics={
+															Rectangle(
+																lineColor={255,0,0},
+																fillColor={0,0,255},
+																fillPattern=FillPattern.VerticalCylinder,
+																extent={{-80,106.7},{80,-113.3}}),
+															Text(
+																textString="Q_in",
+																lineColor={255,255,255},
+																extent={{-53.2,93.5},{56.8,0.2}}),
+															Text(
+																textString="T_out",
+																lineColor={255,255,255},
+																extent={{-50.5,-5.2},{59.5,-98.5}})}));
+		end T_out_Q_flow_in_cap;
 		model T_in_Q_out "T_in_Q_out.mo"
 			Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b port_b annotation(Placement(
 				transformation(extent={{-105,10},{-85,30}}),
@@ -20629,6 +20676,48 @@ An approppriate simulating time would be 10 seconds.
 					StopTime=1,
 					StartTime=0));
 		end T_in_Q_out;
+		model T_in_Q_out_cap "T_in_Q_out_cap mit kleiner Kapazität für den FMU export - soll instabilitäten verhindern"
+			Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b port_b annotation(Placement(
+				transformation(extent={{-105,10},{-85,30}}),
+				iconTransformation(extent={{-86.7,-8.300000000000001},{-66.7,11.7}})));
+			Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature prescribedTemperature1 annotation(Placement(transformation(extent={{-45,-5},{-25,15}})));
+			output Modelica.Blocks.Interfaces.RealOutput Q_flow_out annotation(Placement(
+				transformation(extent={{15,55},{35,75}}),
+				iconTransformation(extent={{63.3,41.7},{83.3,61.7}})));
+			input Modelica.Blocks.Interfaces.RealInput T_in annotation(Placement(
+				transformation(extent={{0,-20},{40,20}}),
+				iconTransformation(extent={{53.3,-68.3},{93.3,-28.3}})));
+			equation
+				Q_flow_out=port_b.Q_flow;
+				connect(prescribedTemperature1.port,port_b) annotation(Line(
+					points={{-25,5},{-20,5},{-20,20},{-90,20},{-95,20}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(prescribedTemperature1.T,T_in) annotation(Line(
+					points={{-47,5},{-52,5},{-52,-5},{15,-5},{15,0},{20,
+					0}},
+					color={0,0,127},
+					thickness=0.0625));
+			annotation(
+				Icon(
+					coordinateSystem(extent={{-76.7,-101.7},{76.7,101.7}}),
+					graphics={
+																			Rectangle(
+																				fillColor={255,0,0},
+																				fillPattern=FillPattern.VerticalCylinder,
+																				extent={{-80,106.7},{80,-113.3}}),
+																			Text(
+																				textString="Q_out",
+																				lineColor={255,255,255},
+																				extent={{-53.2,93.5},{56.8,0.2}}),
+																			Text(
+																				textString="T_in",
+																				lineColor={255,255,255},
+																				extent={{-50.5,-5.2},{59.5,-98.5}})}),
+				experiment(
+					StopTime=1,
+					StartTime=0));
+		end T_in_Q_out_cap;
 		model TE_for_FMU "TE_for_FMU.mo"
 			iboss.iboss_thermal.components.thermal_element thermal_element1(
 				material=iboss.MaterialDatabase.Aluminiumlegierungen_1060_Legierung(),
@@ -21282,6 +21371,377 @@ An approppriate simulating time would be 10 seconds.
 					StopTime=1,
 					StartTime=0));
 		end BB_connector_FMU;
+		model BB_connector_FMU_cap "BB_connector_FMU.mo mit Kapazität"
+			input Modelica.Blocks.Interfaces.RealInput TSS_T_xp(start=293) "'input Real' as connector" annotation(Placement(
+				transformation(extent={{95,70},{135,110}}),
+				iconTransformation(extent={{130,196.7},{170,236.7}})));
+			output Modelica.Blocks.Interfaces.RealOutput TSS_Q_flow_xp annotation(Placement(
+				transformation(
+					origin={120,-15},
+					extent={{-10,-10},{10,10}},
+					rotation=-180),
+				iconTransformation(
+					origin={150,166.7},
+					extent={{-10,-10},{10,10}},
+					rotation=-180)));
+			input Modelica.Blocks.Interfaces.RealInput TSS_A_xp(start=0.04) annotation(Placement(
+				transformation(extent={{95,45},{135,85}}),
+				iconTransformation(extent={{130,246.7},{170,286.7}})));
+			input Modelica.Blocks.Interfaces.RealInput TSS_alpha_xp(start=0.32) annotation(Placement(
+				transformation(extent={{95,20},{135,60}}),
+				iconTransformation(extent={{130,346.7},{170,386.7}})));
+			input Modelica.Blocks.Interfaces.RealInput TSS_epsilon_xp(start=0.02) annotation(Placement(
+				transformation(extent={{95,-5},{135,35}}),
+				iconTransformation(extent={{130,296.7},{170,336.7}})));
+			input Modelica.Blocks.Interfaces.RealInput MSS_T_xp(start=293) annotation(Placement(
+				transformation(extent={{140,-55},{180,-15}}),
+				iconTransformation(extent={{130,-53.3},{170,-13.3}})));
+			output Modelica.Blocks.Interfaces.RealOutput MSS_Q_flow_xp annotation(Placement(
+				transformation(
+					origin={165,-140},
+					extent={{-10,-10},{10,10}},
+					rotation=-180),
+				iconTransformation(
+					origin={150,-83.3},
+					extent={{-10,-10},{10,10}},
+					rotation=-180)));
+			input Modelica.Blocks.Interfaces.RealInput MSS_A_xp(start=0.0064) annotation(Placement(
+				transformation(extent={{140,-80},{180,-40}}),
+				iconTransformation(extent={{130,-3.3},{170,36.7}})));
+			input Modelica.Blocks.Interfaces.RealInput MSS_alpha_xp(start=0.15) annotation(Placement(
+				transformation(extent={{140,-105},{180,-65}}),
+				iconTransformation(extent={{130,96.7},{170,136.7}})));
+			input Modelica.Blocks.Interfaces.RealInput MSS_epsilon_xp(start=0.05) annotation(Placement(
+				transformation(extent={{140,-130},{180,-90}}),
+				iconTransformation(extent={{130,46.7},{170,86.7}})));
+			input Modelica.Blocks.Interfaces.RealInput Rad_T_xp(start=293) annotation(Placement(
+				transformation(extent={{120,-190},{160,-150}}),
+				iconTransformation(extent={{130,-303.3},{170,-263.3}})));
+			output Modelica.Blocks.Interfaces.RealOutput Rad_Q_flow_xp annotation(Placement(
+				transformation(
+					origin={145,-275},
+					extent={{-10,-10},{10,10}},
+					rotation=-180),
+				iconTransformation(
+					origin={150,-333.3},
+					extent={{-10,-10},{10,10}},
+					rotation=-180)));
+			input Modelica.Blocks.Interfaces.RealInput Rad_A_xp(start=0.1136) annotation(Placement(
+				transformation(extent={{120,-215},{160,-175}}),
+				iconTransformation(extent={{130,-253.3},{170,-213.3}})));
+			input Modelica.Blocks.Interfaces.RealInput Rad_alpha_xp(start=0.0037) annotation(Placement(
+				transformation(extent={{120,-240},{160,-200}}),
+				iconTransformation(extent={{130,-153.3},{170,-113.3}})));
+			input Modelica.Blocks.Interfaces.RealInput Rad_epsilon_xp(start=0.016) annotation(Placement(
+				transformation(extent={{120,-265},{160,-225}}),
+				iconTransformation(extent={{130,-203.3},{170,-163.3}})));
+			input Modelica.Blocks.Interfaces.RealInput TSS_T_xn(start=293) annotation(Placement(
+				transformation(
+					origin={-90,85},
+					extent={{-20,-20},{20,20}},
+					rotation=-180),
+				iconTransformation(
+					origin={-150,-283.3},
+					extent={{-20,-20},{20,20}},
+					rotation=-180)));
+			output Modelica.Blocks.Interfaces.RealOutput TSS_Q_flow_xn annotation(Placement(
+				transformation(
+					origin={-95,-20},
+					extent={{-10,-10},{10,10}}),
+				iconTransformation(
+					origin={-150,-333.3},
+					extent={{-10,-10},{10,10}})));
+			input Modelica.Blocks.Interfaces.RealInput TSS_A_xn(start=0.04) annotation(Placement(
+				transformation(
+					origin={-90,60},
+					extent={{-20,-20},{20,20}},
+					rotation=-180),
+				iconTransformation(
+					origin={-150,-233.3},
+					extent={{-20,-20},{20,20}},
+					rotation=-180)));
+			input Modelica.Blocks.Interfaces.RealInput TSS_alpha_xn(start=0.32) annotation(Placement(
+				transformation(
+					origin={-90,35},
+					extent={{-20,-20},{20,20}},
+					rotation=-180),
+				iconTransformation(
+					origin={-150,-133.3},
+					extent={{-20,-20},{20,20}},
+					rotation=-180)));
+			input Modelica.Blocks.Interfaces.RealInput TSS_epsilon_xn(start=0.02) annotation(Placement(
+				transformation(
+					origin={-90,10},
+					extent={{-20,-20},{20,20}},
+					rotation=-180),
+				iconTransformation(
+					origin={-150,-183.3},
+					extent={{-20,-20},{20,20}},
+					rotation=-180)));
+			input Modelica.Blocks.Interfaces.RealInput MSS_T_xn(start=293) annotation(Placement(
+				transformation(
+					origin={-120,-45},
+					extent={{-20,-20},{20,20}},
+					rotation=-180),
+				iconTransformation(
+					origin={-150,-33.3},
+					extent={{-20,-20},{20,20}},
+					rotation=-180)));
+			output Modelica.Blocks.Interfaces.RealOutput MSS_Q_flow_xn annotation(Placement(
+				transformation(
+					origin={-125,-150},
+					extent={{-10,-10},{10,10}}),
+				iconTransformation(
+					origin={-150,-83.3},
+					extent={{-10,-10},{10,10}})));
+			input Modelica.Blocks.Interfaces.RealInput MSS_A_xn(start=0.0064) annotation(Placement(
+				transformation(
+					origin={-120,-70},
+					extent={{-20,-20},{20,20}},
+					rotation=-180),
+				iconTransformation(
+					origin={-150,16.7},
+					extent={{-20,-20},{20,20}},
+					rotation=-180)));
+			input Modelica.Blocks.Interfaces.RealInput MSS_alpha_xn(start=0.15) annotation(Placement(
+				transformation(
+					origin={-120,-95},
+					extent={{-20,-20},{20,20}},
+					rotation=-180),
+				iconTransformation(
+					origin={-150,116.7},
+					extent={{-20,-20},{20,20}},
+					rotation=-180)));
+			input Modelica.Blocks.Interfaces.RealInput MSS_epsilon_xn(start=0.05) annotation(Placement(
+				transformation(
+					origin={-120,-120},
+					extent={{-20,-20},{20,20}},
+					rotation=-180),
+				iconTransformation(
+					origin={-150,66.7},
+					extent={{-20,-20},{20,20}},
+					rotation=-180)));
+			input Modelica.Blocks.Interfaces.RealInput Rad_T_xn(start=293) annotation(Placement(
+				transformation(
+					origin={-90,-175},
+					extent={{-20,-20},{20,20}},
+					rotation=-180),
+				iconTransformation(
+					origin={-150,216.7},
+					extent={{-20,-20},{20,20}},
+					rotation=-180)));
+			output Modelica.Blocks.Interfaces.RealOutput Rad_Q_flow_xn annotation(Placement(
+				transformation(
+					origin={-95,-280},
+					extent={{-10,-10},{10,10}}),
+				iconTransformation(
+					origin={-150,166.7},
+					extent={{-10,-10},{10,10}})));
+			input Modelica.Blocks.Interfaces.RealInput Rad_A_xn(start=0.1136) annotation(Placement(
+				transformation(
+					origin={-90,-200},
+					extent={{-20,-20},{20,20}},
+					rotation=-180),
+				iconTransformation(
+					origin={-150,266.7},
+					extent={{-20,-20},{20,20}},
+					rotation=-180)));
+			input Modelica.Blocks.Interfaces.RealInput Rad_alpha_xn(start=0.0037) annotation(Placement(
+				transformation(
+					origin={-90,-225},
+					extent={{-20,-20},{20,20}},
+					rotation=-180),
+				iconTransformation(
+					origin={-150,366.7},
+					extent={{-20,-20},{20,20}},
+					rotation=-180)));
+			input Modelica.Blocks.Interfaces.RealInput Rad_epsilon_xn(start=0.016) annotation(Placement(
+				transformation(
+					origin={-90,-250},
+					extent={{-20,-20},{20,20}},
+					rotation=-180),
+				iconTransformation(
+					origin={-150,316.7},
+					extent={{-20,-20},{20,20}},
+					rotation=-180)));
+			components.BB_connector bB_connector1 annotation(Placement(transformation(extent={{0,-95},{20,-75}})));
+			T_in_Q_out TSS_T_Q_out_xp;
+			T_in_Q_out MSS_T_Q_out_xp;
+			T_in_Q_out Rad_T_Q_out_xp;
+			T_in_Q_out TSS_T_Q_out_xn;
+			T_in_Q_out MSS_T_Q_out_xn;
+			T_in_Q_out Rad_T_Q_out_xn;
+			equation
+				connect(TSS_T_Q_out_xn.port_b,bB_connector1.thermal_connector_opt_prop_in1.TSS.thermal_port) annotation(Line(
+					points={{-25.3,-7.3},{-20.3,-7.3},{-1.3,-7.3},{-1.3,-85.7},{3.7,-85.7}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(MSS_T_Q_out_xn.port_b,bB_connector1.thermal_connector_opt_prop_in1.MSS.thermal_port) annotation(Line(
+					points={{-25.3,-92},{-20.3,-92},{-1.3,-92},{-1.3,-85.7},{3.7,-85.7}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Rad_T_Q_out_xn.port_b,bB_connector1.thermal_connector_opt_prop_in1.Rad.thermal_port) annotation(Line(
+					points={{-25.3,-182.3},{-20.3,-182.3},{-1.3,-182.3},{-1.3,-85.7},{3.7,-85.7}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(TSS_T_Q_out_xp.port_b,bB_connector1.thermal_connector_opt_prop_in2.TSS.thermal_port) annotation(Line(
+					points={{30.7,-28},{25.7,-28},{22,-28},{22,-85.7},{17,-85.7}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(MSS_T_Q_out_xp.port_b,bB_connector1.thermal_connector_opt_prop_in2.MSS.thermal_port) annotation(Line(
+					points={{55.7,-93},{50.7,-93},{22,-93},{22,-85.7},{17,-85.7}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(Rad_T_Q_out_xp.port_b,bB_connector1.thermal_connector_opt_prop_in2.Rad.thermal_port) annotation(Line(
+					points={{45.7,-183},{40.7,-183},{22,-183},{22,-85.7},{17,-85.7}},
+					color={191,0,0},
+					thickness=0.0625));
+				connect(TSS_T_Q_out_xp.Q_flow_out,TSS_Q_flow_xp) annotation(Line(
+					points={{42.7,-23.7},{42.7,-18.7},{42.7,-15},{115,-15},{120,-15}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(TSS_T_Q_out_xp.T_in,TSS_T_xp) annotation(Line(points={{42,-30},{42,-25},{42,90},{110,90},{115,90}}));
+				connect(bB_connector1.thermal_connector_opt_prop_in2.TSS.A,TSS_A_xp) annotation(Line(
+					points={{17,-85.7},{22,-85.7},{110,-85.7},{110,65},{115,65}},
+					thickness=0.0625));
+				connect(bB_connector1.thermal_connector_opt_prop_in2.TSS.alpha,TSS_alpha_xp) annotation(Line(
+					points={{17,-85.7},{22,-85.7},{110,-85.7},{110,40},{115,40}},
+					thickness=0.0625));
+				connect(bB_connector1.thermal_connector_opt_prop_in2.TSS.epsilon,TSS_epsilon_xp) annotation(Line(
+					points={{17,-85.7},{22,-85.7},{110,-85.7},{110,15},{115,15}},
+					thickness=0.0625));
+				connect(MSS_T_Q_out_xp.Q_flow_out,MSS_Q_flow_xp) annotation(Line(
+					points={{67.7,-88.7},{67.7,-83.7},{113.7,-83.7},{113.7,-140},{160,-140},{165,
+					-140}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(MSS_T_Q_out_xp.T_in,MSS_T_xp) annotation(Line(points={{67,-95},{67,-90},{67,-35},{155,-35},{160,-35}}));
+				connect(bB_connector1.thermal_connector_opt_prop_in2.MSS.A,MSS_A_xp) annotation(Line(
+					points={{17,-85.7},{22,-85.7},{155,-85.7},{155,-60},{160,-60}},
+					thickness=0.0625));
+				connect(bB_connector1.thermal_connector_opt_prop_in2.MSS.alpha,MSS_alpha_xp) annotation(Line(
+					points={{17,-85.7},{22,-85.7},{155,-85.7},{155,-85},{160,-85}},
+					thickness=0.0625));
+				connect(bB_connector1.thermal_connector_opt_prop_in2.MSS.epsilon,MSS_epsilon_xp) annotation(Line(
+					points={{17,-85.7},{22,-85.7},{155,-85.7},{155,-110},{160,-110}},
+					thickness=0.0625));
+				connect(Rad_T_Q_out_xp.Q_flow_out,Rad_Q_flow_xp) annotation(Line(
+					points={{57.7,-178.7},{57.7,-173.7},{98.7,-173.7},{98.7,-275},{140,-275},{145,
+					-275}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(Rad_T_Q_out_xp.T_in,Rad_T_xp) annotation(Line(points={{57,-185.3},{57,-190.3},{96,-190.3},{96,-170},{135,-170},{140,
+				-170}}));
+				connect(bB_connector1.thermal_connector_opt_prop_in2.Rad.A,Rad_A_xp) annotation(Line(
+					points={{17,-85.7},{22,-85.7},{135,-85.7},{135,-195},{140,-195}},
+					thickness=0.0625));
+				connect(bB_connector1.thermal_connector_opt_prop_in2.Rad.alpha,Rad_alpha_xp) annotation(Line(
+					points={{17,-85.7},{22,-85.7},{135,-85.7},{135,-220},{140,-220}},
+					thickness=0.0625));
+				connect(bB_connector1.thermal_connector_opt_prop_in2.Rad.epsilon,Rad_epsilon_xp) annotation(Line(
+					points={{17,-85.7},{22,-85.7},{135,-85.7},{135,-245},{140,-245}},
+					thickness=0.0625));
+				connect(TSS_T_Q_out_xn.Q_flow_out,TSS_Q_flow_xn) annotation(Line(
+					points={{-37.3,-11.7},{-37.3,-16.7},{-37.3,-20},{-90,-20},{-95,-20}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(TSS_T_Q_out_xn.T_in,TSS_T_xn) annotation(Line(
+					points={{-36.7,-5},{-36.7,0},{-36.7,85},{-85,85},{-90,85}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(bB_connector1.thermal_connector_opt_prop_in1.TSS.A,TSS_A_xn) annotation(Line(
+					points={{3.7,-85.7},{-1.3,-85.7},{-85,-85.7},{-85,60},{-90,60}},
+					thickness=0.0625));
+				connect(bB_connector1.thermal_connector_opt_prop_in1.TSS.alpha,TSS_alpha_xn) annotation(Line(
+					points={{3.7,-85.7},{-1.3,-85.7},{-85,-85.7},{-85,35},{-90,35}},
+					thickness=0.0625));
+				connect(bB_connector1.thermal_connector_opt_prop_in1.TSS.epsilon,TSS_epsilon_xn) annotation(Line(
+					points={{3.7,-85.7},{-1.3,-85.7},{-85,-85.7},{-85,10},{-90,10}},
+					thickness=0.0625));
+				connect(MSS_T_Q_out_xn.Q_flow_out,MSS_Q_flow_xn) annotation(Line(
+					points={{-37.3,-96.7},{-37.3,-101.7},{-37.3,-150},{-120,-150},{-125,-150}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(MSS_T_Q_out_xn.T_in,MSS_T_xn) annotation(Line(
+					points={{-36.7,-90},{-36.7,-85},{-36.7,-45},{-115,-45},{-120,-45}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(bB_connector1.thermal_connector_opt_prop_in1.MSS.A,MSS_A_xn) annotation(Line(
+					points={{3.7,-85.7},{-1.3,-85.7},{-115,-85.7},{-115,-70},{-120,-70}},
+					thickness=0.0625));
+				connect(bB_connector1.thermal_connector_opt_prop_in1.MSS.alpha,MSS_alpha_xn) annotation(Line(
+					points={{3.7,-85.7},{-1.3,-85.7},{-115,-85.7},{-115,-95},{-120,-95}},
+					thickness=0.0625));
+				connect(bB_connector1.thermal_connector_opt_prop_in1.MSS.epsilon,MSS_epsilon_xn) annotation(Line(
+					points={{3.7,-85.7},{-1.3,-85.7},{-115,-85.7},{-115,-120},{-120,-120}},
+					thickness=0.0625));
+				connect(Rad_T_Q_out_xn.Q_flow_out,Rad_Q_flow_xn) annotation(Line(
+					points={{-37.3,-186.7},{-37.3,-191.7},{-37.3,-280},{-90,-280},{-95,-280}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(Rad_T_Q_out_xn.T_in,Rad_T_xn) annotation(Line(
+					points={{-36.7,-180},{-36.7,-175},{-85,-175},{-90,-175}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(bB_connector1.thermal_connector_opt_prop_in1.Rad.A,Rad_A_xn) annotation(Line(
+					points={{3.7,-85.7},{-1.3,-85.7},{-85,-85.7},{-85,-200},{-90,-200}},
+					thickness=0.0625));
+				connect(bB_connector1.thermal_connector_opt_prop_in1.Rad.alpha,Rad_alpha_xn) annotation(Line(
+					points={{3.7,-85.7},{-1.3,-85.7},{-85,-85.7},{-85,-225},{-90,-225}},
+					thickness=0.0625));
+				connect(bB_connector1.thermal_connector_opt_prop_in1.Rad.epsilon,Rad_epsilon_xn) annotation(Line(
+					points={{3.7,-85.7},{-1.3,-85.7},{-85,-85.7},{-85,-250},{-90,-250}},
+					thickness=0.0625));
+			annotation(
+				Icon(
+					coordinateSystem(extent={{-150,-416.7},{150,416.7}}),
+					graphics={
+									Text(
+										textString="BB_connector_FMU",
+										lineColor={0,0,0},
+										extent={{-293.3,85},{534.9,-123.1}},
+										origin={-16.4,-121.6},
+										rotation=-270),
+									Text(
+										textString="TSS",
+										lineColor={0,0,0},
+										extent={{-108.3,31.7},{108.3,-31.6}},
+										origin={-79.09999999999999,-224.1},
+										rotation=-270),
+									Text(
+										textString="TSS",
+										lineColor={0,0,0},
+										extent={{-108.3,31.7},{108.3,-31.6}},
+										origin={84,276},
+										rotation=-270),
+									Text(
+										textString="MSS",
+										lineColor={0,0,0},
+										extent={{-108.3,31.7},{108.3,-31.6}},
+										origin={77.8,25.8},
+										rotation=-270),
+									Text(
+										textString="MSS",
+										lineColor={0,0,0},
+										extent={{-108.3,31.7},{108.3,-31.6}},
+										origin={-78.8,24.4},
+										rotation=-270),
+									Text(
+										textString="Rad",
+										lineColor={0,0,0},
+										extent={{-108.3,31.7},{108.3,-31.6}},
+										origin={87.40000000000001,-224.1},
+										rotation=-270),
+									Text(
+										textString="Rad",
+										lineColor={0,0,0},
+										extent={{-108.3,31.7},{108.3,-31.6}},
+										origin={-89.2,272.4},
+										rotation=-270)}),
+				experiment(
+					StopTime=1,
+					StartTime=0));
+		end BB_connector_FMU_cap;
 		model BB_thermal_FMU "BB_thermal_FMU.mo"
 			input Modelica.Blocks.Interfaces.RealInput Rad_Q_flow_yp(start=0) "'input Real' as connector" annotation(Placement(
 				transformation(
