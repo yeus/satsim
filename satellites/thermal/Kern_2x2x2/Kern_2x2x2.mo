@@ -10,13 +10,13 @@ model Kern_2x2x2 "Kern_2x2x2.mo"
 		columns=2:103,
 		smoothness=.Modelica.Blocks.Types.Smoothness.ConstantSegments) annotation(Placement(transformation(extent={{-100,80},{-80,100}})));
 	Modelica.Blocks.Sources.Clock clock1 annotation(Placement(transformation(extent={{-135,80},{-115,100}})));
-	iboss.iboss_thermal.buildingblocks.BB_Tank_2x2x2 bb_tank_2x2x21(propellant=false) annotation(Placement(transformation(
+	iboss.iboss_thermal.buildingblocks.BB_Tank_2x2x2 BB_tank2x2x2_000(propellant=false) annotation(Placement(transformation(
 		origin={220,-120},
 		extent={{-50,-45},{10,10}})));
 	iboss.iboss_thermal.buildingblocks.BB_opt_prop BB_n110 annotation(Placement(transformation(extent={{-20,-116},{1,-95}})));
 	iboss.iboss_thermal.buildingblocks.BB_opt_prop BB_n100 annotation(Placement(transformation(extent={{-20,-181},{1,-160}})));
-	iboss.iboss_thermal.buildingblocks.BB_opt_prop BB_xn_n111 annotation(Placement(transformation(extent={{-95,-121},{-74,-100}})));
-	iboss.iboss_thermal.buildingblocks.BB_opt_prop BB_xn_n101 annotation(Placement(transformation(extent={{-95,-181},{-74,-160}})));
+	iboss.iboss_thermal.buildingblocks.BB_opt_prop BB_n111 annotation(Placement(transformation(extent={{-95,-121},{-74,-100}})));
+	iboss.iboss_thermal.buildingblocks.BB_opt_prop BB_n101 annotation(Placement(transformation(extent={{-95,-181},{-74,-160}})));
 	iboss.iboss_thermal.components.BB_connector bB_connector_n111_011 annotation(Placement(transformation(extent={{20,-120},{40,-100}})));
 	iboss.iboss_thermal.components.BB_connector bB_connector_n101_001 annotation(Placement(transformation(extent={{20,-175},{40,-155}})));
 	iboss.iboss_thermal.components.BB_connector bB_connector_n110_010 annotation(Placement(transformation(extent={{50,-115},{70,-95}})));
@@ -296,22 +296,14 @@ model Kern_2x2x2 "Kern_2x2x2.mo"
 		
 		
 		
-		connect(bB_connector_xn_01_11.thermal_connector_opt_prop_in1,BB_xn_n111.thermal_connector_opt_prop_out_zn) annotation(Line(
-			points={{-51.3,-105.7},{-56.3,-105.7},{-56.3,-96.3},{-67.3,-96.3},{-67.3,-101.3}},
-			thickness=0.0625));
-		connect(bB_connector_xn_00_01.thermal_connector_opt_prop_in1,BB_xn_n111.thermal_connector_opt_prop_out_yn) annotation(Line(
-			points={{-85.3,-133.3},{-85.3,-128.3},{-81.3,-128.3},{-81.3,-123.3}},
-			thickness=0.0625));
 		
 		
 		
 		
-		connect(bB_connector_xn_00_01.thermal_connector_opt_prop_in2,BB_xn_n101.thermal_connector_opt_prop_out_yp) annotation(Line(
-			points={{-85.7,-147},{-85.7,-152},{-85.7,-155.3},{-83,-155.3},{-83,-160.3}},
-			thickness=0.0625));
-		connect(bB_connector_xn_00_10.thermal_connector_opt_prop_in1,BB_xn_n101.thermal_connector_opt_prop_out_zn) annotation(Line(
-			points={{-51.3,-170.7},{-56.3,-170.7},{-56.3,-156.3},{-67.3,-156.3},{-67.3,-161.3}},
-			thickness=0.0625));
+		
+		
+		
+		
 		
 		
 		connect(bB_connector_xp_00_01.thermal_connector_opt_prop_in1,BB_210.thermal_connector_opt_prop_out_yn) annotation(Line(
@@ -338,42 +330,17 @@ model Kern_2x2x2 "Kern_2x2x2.mo"
 		
 		
 		
-		connect(bB_connector_n101_001.thermal_connector_opt_prop_in1,BB_xn_n101.thermal_connector_opt_prop_out_xp) annotation(Line(
-			points={{23.7,-165.7},{18.7,-165.7},{-60,-165.7},{-60,-171},{-65,-171}},
-			thickness=0.0625));
-		connect(bb_tank_2x2x21.thermal_connector_opt_prop_out_001xn,bB_connector_n101_001.thermal_connector_opt_prop_in2) annotation(Line(
-			points={{170,-132},{165,-132},{42,-132},{42,-165.7},{37,-165.7}},
-			thickness=0.0625));
+		
+		
 		connect(bB_connector_n100_000.thermal_connector_opt_prop_in1,BB_n100.thermal_connector_opt_prop_out_xp) annotation(Line(
 			points={{53.7,-160.7},{48.7,-160.7},{15,-160.7},{15,-171},{10,-171}},
 			thickness=0.0625));
-		connect(bb_tank_2x2x21.thermal_connector_opt_prop_out_000xn,bB_connector_n100_000.thermal_connector_opt_prop_in2) annotation(Line(
-			points={{170,-143},{165,-143},{72,-143},{72,-160.7},{67,-160.7}},
-			thickness=0.0625));
-		connect(bB_connector_n111_011.thermal_connector_opt_prop_in1,BB_xn_n111.thermal_connector_opt_prop_out_xp) annotation(Line(
-			points={{23.7,-110.7},{18.7,-110.7},{-60,-110.7},{-60,-111},{-65,-111}},
-			thickness=0.0625));
-		connect(bB_connector_n111_011.thermal_connector_opt_prop_in2,bb_tank_2x2x21.thermal_connector_opt_prop_out_011xn) annotation(Line(
-			points={{37,-110.7},{42,-110.7},{165,-110.7},{165,-126.3},{170,-126.3}},
-			thickness=0.0625));
+		
+		
+		
 		connect(BB_n110.thermal_connector_opt_prop_out_xp,bB_connector_n110_010.thermal_connector_opt_prop_in1) annotation(Line(
 			points={{10,-106},{15,-106},{48.7,-106},{48.7,-105.7},{53.7,-105.7}},
 			thickness=0.0625));
-		connect(bb_tank_2x2x21.thermal_connector_opt_prop_out_010xn,bB_connector_n110_010.thermal_connector_opt_prop_in2) annotation(Line(
-			points={{170,-137.7},{165,-137.7},{72,-137.7},{72,-105.7},{67,-105.7}},
-			thickness=0.0625));
-		connect(bb_tank_2x2x21.thermal_connector_opt_prop_out_110xp,bB_connector_210_110.thermal_connector_opt_prop_in2) annotation(Line(
-			points={{230,-137.7},{235,-137.7},{258,-137.7},{258,-99.3},{263,-99.3}},
-			thickness=0.0625));
-		connect(bb_tank_2x2x21.thermal_connector_opt_prop_out_111xp,bB_connector_211_111.thermal_connector_opt_prop_in2) annotation(Line(
-			points={{230,-148.7},{235,-148.7},{293,-148.7},{293,-94.3},{298,-94.3}},
-			thickness=0.0625));
-		connect(bb_tank_2x2x21.thermal_connector_opt_prop_out_101xp,bB_connector_201_101.thermal_connector_opt_prop_in2) annotation(Line(
-			points={{230,-143},{235,-143},{298,-143},{298,-149.3},{303,-149.3}},
-			thickness=0.0625));
-		connect(bb_tank_2x2x21.thermal_connector_opt_prop_out_100xp,bB_connector_200_100.thermal_connector_opt_prop_in2) annotation(Line(
-			points={{230,-132},{235,-132},{258,-132},{258,-144.3},{263,-144.3}},
-			thickness=0.0625));
 		
 		
 		
@@ -414,30 +381,19 @@ model Kern_2x2x2 "Kern_2x2x2.mo"
 		
 		
 		
-		connect(bB_connector_121_111.thermal_connector_opt_prop_in2,bb_tank_2x2x21.thermal_connector_opt_prop_out_111yp) annotation(Line(
-			points={{194.3,-92},{194.3,-97},{194.3,-105},{188,-105},{188,-110}},
-			thickness=0.0625));
-		connect(bB_connector_021_011.thermal_connector_opt_prop_in2,bb_tank_2x2x21.thermal_connector_opt_prop_out_011yp) annotation(Line(
-			points={{149.3,-92},{149.3,-97},{149.3,-105},{194,-105},{194,-110}},
-			thickness=0.0625));
-		connect(bB_connector_120_110.thermal_connector_opt_prop_in2,bb_tank_2x2x21.thermal_connector_opt_prop_out_110yp) annotation(Line(
-			points={{209.3,-67},{209.3,-72},{209.3,-105},{200,-105},{200,-110}},
-			thickness=0.0625));
-		connect(bB_connector_020_010.thermal_connector_opt_prop_in2,bb_tank_2x2x21.thermal_connector_opt_prop_out_010yp) annotation(Line(
-			points={{159.3,-67},{159.3,-72},{159.3,-105},{206,-105},{206,-110}},
-			thickness=0.0625));
-		connect(bb_tank_2x2x21.thermal_connector_opt_prop_out_101yn,bB_connector_1n11_101.thermal_connector_opt_prop_in2) annotation(Line(
-			points={{212,-165},{212,-170},{212,-218},{175.7,-218},{175.7,-223}},
-			thickness=0.0625));
-		connect(bb_tank_2x2x21.thermal_connector_opt_prop_out_000yn,bB_connector_0n10_000.thermal_connector_opt_prop_in2) annotation(Line(
-			points={{194,-165},{194,-170},{194,-178},{125.7,-178},{125.7,-183}},
-			thickness=0.0625));
-		connect(bb_tank_2x2x21.thermal_connector_opt_prop_out_100yn,bB_connector_1n10_100.thermal_connector_opt_prop_in2) annotation(Line(
-			points={{200,-165},{200,-170},{200,-178},{185.7,-178},{185.7,-183}},
-			thickness=0.0625));
-		connect(bb_tank_2x2x21.thermal_connector_opt_prop_out_001yn,bB_connector_0n11_001.thermal_connector_opt_prop_in2) annotation(Line(
-			points={{206,-165},{206,-170},{206,-218},{115.7,-218},{115.7,-223}},
-			thickness=0.0625));
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		connect(bB_connector_210_110.thermal_connector_opt_prop_in1,BB_210.thermal_connector_opt_prop_out_xn) annotation(Line(
 			points={{276.7,-99.7},{281.7,-99.7},{436,-99.7},{436,-100.7},{441,-100.7}},
 			thickness=0.0625));
@@ -626,29 +582,17 @@ model Kern_2x2x2 "Kern_2x2x2.mo"
 			points={{125,-40},{130,-40},{140.3,-40},{140.3,-17.3},{145.3,-17.3}},
 			thickness=0.0625));
 		
-		connect(env_BB_n111_yp.thermal_connector_opt_prop_in1,BB_xn_n111.thermal_connector_opt_prop_out_yp) annotation(Line(
-			points={{-85,-90},{-85,-95},{-85,-95.3},{-83,-95.3},{-83,-100.3}},
-			thickness=0.0625));
 		
-		connect(BB_xn_n111.thermal_connector_opt_prop_out_xn,env_BB_n111_xn.thermal_connector_opt_prop_in1) annotation(Line(
-			points={{-99,-110.7},{-104,-110.7},{-105,-110.7},{-105,-95},{-110,-95}},
-			thickness=0.0625));
 		
-		connect(env_BB_n111_zp.thermal_connector_opt_prop_in1,BB_xn_n111.thermal_connector_opt_prop_out_zp) annotation(Line(
-			points={{-110,-130},{-105,-130},{-99.7,-130},{-99.7,-122.3},{-94.7,-122.3}},
-			thickness=0.0625));
 		
-		connect(BB_xn_n101.thermal_connector_opt_prop_out_xn,env_BB_n101_xn.thermal_connector_opt_prop_in1) annotation(Line(
-			points={{-99,-170.7},{-104,-170.7},{-105,-170.7},{-105,-170},{-110,-170}},
-			thickness=0.0625));
 		
-		connect(BB_xn_n101.thermal_connector_opt_prop_out_zp,env_BB_n101_zp.thermal_connector_opt_prop_in1) annotation(Line(
-			points={{-94.7,-182.3},{-99.7,-182.3},{-105,-182.3},{-105,-200},{-110,-200}},
-			thickness=0.0625));
 		
-		connect(env_BB_n101_yn.thermal_connector_opt_prop_in1,BB_xn_n101.thermal_connector_opt_prop_out_yn) annotation(Line(
-			points={{-80,-200},{-80,-195},{-80,-188.3},{-81.3,-188.3},{-81.3,-183.3}},
-			thickness=0.0625));
+		
+		
+		
+		
+		
+		
 		
 		connect(env_BB_n100_xn.thermal_connector_opt_prop_in1,BB_n100.thermal_connector_opt_prop_out_xn) annotation(Line(
 			points={{-35,-195},{-30,-195},{-29,-195},{-29,-170.7},{-24,-170.7}},
@@ -798,18 +742,10 @@ model Kern_2x2x2 "Kern_2x2x2.mo"
 		
 		
 		
-		connect(bb_tank_2x2x21.thermal_connector_opt_prop_out_111zp,env_BB_111_zp.thermal_connector_opt_prop_in1) annotation(Line(
-			points={{170,-154},{165,-154},{35,-154},{35,-330},{30,-330}},
-			thickness=0.0625));
-		connect(bb_tank_2x2x21.thermal_connector_opt_prop_out_011zp,env_BB_011_zp.thermal_connector_opt_prop_in1) annotation(Line(
-			points={{170,-159.7},{165,-159.7},{5,-159.7},{5,-330},{0,-330}},
-			thickness=0.0625));
-		connect(bb_tank_2x2x21.thermal_connector_opt_prop_out_101zp,env_BB_101_zp.thermal_connector_opt_prop_in1) annotation(Line(
-			points={{176,-165},{176,-170},{176,-330},{-25,-330},{-30,-330}},
-			thickness=0.0625));
-		connect(bb_tank_2x2x21.thermal_connector_opt_prop_out_001zp,env_BB_001_zp.thermal_connector_opt_prop_in1) annotation(Line(
-			points={{182,-165},{182,-170},{182,-330},{-55,-330},{-60,-330}},
-			thickness=0.0625));
+		
+		
+		
+		
 		
 		
 		connect(Area_reduction_zn.y,env_BB_110_zn.u) annotation(Line(
@@ -820,18 +756,10 @@ model Kern_2x2x2 "Kern_2x2x2.mo"
 			points={{331,35},{336,35},{410,35},{410,15},{415,15}},
 			color={0,0,127},
 			thickness=0.0625));
-		connect(bb_tank_2x2x21.thermal_connector_opt_prop_out_110zn,env_BB_110_zn.thermal_connector_opt_prop_in1) annotation(Line(
-			points={{218,-110},{218,-105},{470,-105},{470,15},{465,15}},
-			thickness=0.0625));
-		connect(bb_tank_2x2x21.thermal_connector_opt_prop_out_010zn,env_BB_010_zn.thermal_connector_opt_prop_in1) annotation(Line(
-			points={{224,-110},{224,-105},{440,-105},{440,15},{435,15}},
-			thickness=0.0625));
-		connect(bb_tank_2x2x21.thermal_connector_opt_prop_out_100zn,env_BB_100_zn.thermal_connector_opt_prop_in1) annotation(Line(
-			points={{230,-115.3},{235,-115.3},{410,-115.3},{410,15},{405,15}},
-			thickness=0.0625));
-		connect(bb_tank_2x2x21.thermal_connector_opt_prop_out_000zn,env_BB_000_zn.thermal_connector_opt_prop_in1) annotation(Line(
-			points={{230,-121},{235,-121},{380,-121},{380,15},{375,15}},
-			thickness=0.0625));
+		
+		
+		
+		
 		connect(Area_reduction_zp.u,Power_Verosim.y[1]) annotation(Line(
 			points={{-122,-315},{-127,-315},{-127,-112.7},{-74,-112.7},{-74,90},{-79,
 			90}},
@@ -1057,8 +985,116 @@ model Kern_2x2x2 "Kern_2x2x2.mo"
 			points={{385,15},{380,15},{336,15},{336,35},{331,35}},
 			color={0,0,127},
 			thickness=0.0625));
+		connect(env_BB_n111_zp.thermal_connector_opt_prop_in1,BB_n111.thermal_connector_opt_prop_out_zp) annotation(Line(
+			points={{-110,-130},{-105,-130},{-99.7,-130},{-99.7,-122.3},{-94.7,-122.3}},
+			thickness=0.0625));
+		connect(BB_n111.thermal_connector_opt_prop_out_xn,env_BB_n111_xn.thermal_connector_opt_prop_in1) annotation(Line(
+			points={{-99,-110.7},{-104,-110.7},{-105,-110.7},{-105,-95},{-110,-95}},
+			thickness=0.0625));
+		connect(env_BB_n111_yp.thermal_connector_opt_prop_in1,BB_n111.thermal_connector_opt_prop_out_yp) annotation(Line(
+			points={{-85,-90},{-85,-95},{-85,-95.3},{-83,-95.3},{-83,-100.3}},
+			thickness=0.0625));
+		connect(bB_connector_n111_011.thermal_connector_opt_prop_in1,BB_n111.thermal_connector_opt_prop_out_xp) annotation(Line(
+			points={{23.7,-110.7},{18.7,-110.7},{-60,-110.7},{-60,-111},{-65,-111}},
+			thickness=0.0625));
+		connect(bB_connector_xn_00_01.thermal_connector_opt_prop_in1,BB_n111.thermal_connector_opt_prop_out_yn) annotation(Line(
+			points={{-85.3,-133.3},{-85.3,-128.3},{-81.3,-128.3},{-81.3,-123.3}},
+			thickness=0.0625));
+		connect(bB_connector_xn_01_11.thermal_connector_opt_prop_in1,BB_n111.thermal_connector_opt_prop_out_zn) annotation(Line(
+			points={{-51.3,-105.7},{-56.3,-105.7},{-56.3,-96.3},{-67.3,-96.3},{-67.3,-101.3}},
+			thickness=0.0625));
+		connect(env_BB_n101_yn.thermal_connector_opt_prop_in1,BB_n101.thermal_connector_opt_prop_out_yn) annotation(Line(
+			points={{-80,-200},{-80,-195},{-80,-188.3},{-81.3,-188.3},{-81.3,-183.3}},
+			thickness=0.0625));
+		connect(BB_n101.thermal_connector_opt_prop_out_zp,env_BB_n101_zp.thermal_connector_opt_prop_in1) annotation(Line(
+			points={{-94.7,-182.3},{-99.7,-182.3},{-105,-182.3},{-105,-200},{-110,-200}},
+			thickness=0.0625));
+		connect(BB_n101.thermal_connector_opt_prop_out_xn,env_BB_n101_xn.thermal_connector_opt_prop_in1) annotation(Line(
+			points={{-99,-170.7},{-104,-170.7},{-105,-170.7},{-105,-170},{-110,-170}},
+			thickness=0.0625));
+		connect(bB_connector_n101_001.thermal_connector_opt_prop_in1,BB_n101.thermal_connector_opt_prop_out_xp) annotation(Line(
+			points={{23.7,-165.7},{18.7,-165.7},{-60,-165.7},{-60,-171},{-65,-171}},
+			thickness=0.0625));
+		connect(bB_connector_xn_00_10.thermal_connector_opt_prop_in1,BB_n101.thermal_connector_opt_prop_out_zn) annotation(Line(
+			points={{-51.3,-170.7},{-56.3,-170.7},{-56.3,-156.3},{-67.3,-156.3},{-67.3,-161.3}},
+			thickness=0.0625));
+		connect(bB_connector_xn_00_01.thermal_connector_opt_prop_in2,BB_n101.thermal_connector_opt_prop_out_yp) annotation(Line(
+			points={{-85.7,-147},{-85.7,-152},{-85.7,-155.3},{-83,-155.3},{-83,-160.3}},
+			thickness=0.0625));
+		connect(BB_tank2x2x2_000.thermal_connector_opt_prop_out_000zn,env_BB_000_zn.thermal_connector_opt_prop_in1) annotation(Line(
+			points={{230,-121},{235,-121},{380,-121},{380,15},{375,15}},
+			thickness=0.0625));
+		connect(BB_tank2x2x2_000.thermal_connector_opt_prop_out_100zn,env_BB_100_zn.thermal_connector_opt_prop_in1) annotation(Line(
+			points={{230,-115.3},{235,-115.3},{410,-115.3},{410,15},{405,15}},
+			thickness=0.0625));
+		connect(BB_tank2x2x2_000.thermal_connector_opt_prop_out_010zn,env_BB_010_zn.thermal_connector_opt_prop_in1) annotation(Line(
+			points={{224,-110},{224,-105},{440,-105},{440,15},{435,15}},
+			thickness=0.0625));
+		connect(BB_tank2x2x2_000.thermal_connector_opt_prop_out_110zn,env_BB_110_zn.thermal_connector_opt_prop_in1) annotation(Line(
+			points={{218,-110},{218,-105},{470,-105},{470,15},{465,15}},
+			thickness=0.0625));
+		connect(BB_tank2x2x2_000.thermal_connector_opt_prop_out_001zp,env_BB_001_zp.thermal_connector_opt_prop_in1) annotation(Line(
+			points={{182,-165},{182,-170},{182,-330},{-55,-330},{-60,-330}},
+			thickness=0.0625));
+		connect(BB_tank2x2x2_000.thermal_connector_opt_prop_out_101zp,env_BB_101_zp.thermal_connector_opt_prop_in1) annotation(Line(
+			points={{176,-165},{176,-170},{176,-330},{-25,-330},{-30,-330}},
+			thickness=0.0625));
+		connect(BB_tank2x2x2_000.thermal_connector_opt_prop_out_011zp,env_BB_011_zp.thermal_connector_opt_prop_in1) annotation(Line(
+			points={{170,-159.7},{165,-159.7},{5,-159.7},{5,-330},{0,-330}},
+			thickness=0.0625));
+		connect(BB_tank2x2x2_000.thermal_connector_opt_prop_out_111zp,env_BB_111_zp.thermal_connector_opt_prop_in1) annotation(Line(
+			points={{170,-154},{165,-154},{35,-154},{35,-330},{30,-330}},
+			thickness=0.0625));
+		connect(BB_tank2x2x2_000.thermal_connector_opt_prop_out_001yn,bB_connector_0n11_001.thermal_connector_opt_prop_in2) annotation(Line(
+			points={{206,-165},{206,-170},{206,-218},{115.7,-218},{115.7,-223}},
+			thickness=0.0625));
+		connect(BB_tank2x2x2_000.thermal_connector_opt_prop_out_100yn,bB_connector_1n10_100.thermal_connector_opt_prop_in2) annotation(Line(
+			points={{200,-165},{200,-170},{200,-178},{185.7,-178},{185.7,-183}},
+			thickness=0.0625));
+		connect(BB_tank2x2x2_000.thermal_connector_opt_prop_out_000yn,bB_connector_0n10_000.thermal_connector_opt_prop_in2) annotation(Line(
+			points={{194,-165},{194,-170},{194,-178},{125.7,-178},{125.7,-183}},
+			thickness=0.0625));
+		connect(BB_tank2x2x2_000.thermal_connector_opt_prop_out_101yn,bB_connector_1n11_101.thermal_connector_opt_prop_in2) annotation(Line(
+			points={{212,-165},{212,-170},{212,-218},{175.7,-218},{175.7,-223}},
+			thickness=0.0625));
+		connect(bB_connector_020_010.thermal_connector_opt_prop_in2,BB_tank2x2x2_000.thermal_connector_opt_prop_out_010yp) annotation(Line(
+			points={{159.3,-67},{159.3,-72},{159.3,-105},{206,-105},{206,-110}},
+			thickness=0.0625));
+		connect(bB_connector_120_110.thermal_connector_opt_prop_in2,BB_tank2x2x2_000.thermal_connector_opt_prop_out_110yp) annotation(Line(
+			points={{209.3,-67},{209.3,-72},{209.3,-105},{200,-105},{200,-110}},
+			thickness=0.0625));
+		connect(bB_connector_021_011.thermal_connector_opt_prop_in2,BB_tank2x2x2_000.thermal_connector_opt_prop_out_011yp) annotation(Line(
+			points={{149.3,-92},{149.3,-97},{149.3,-105},{194,-105},{194,-110}},
+			thickness=0.0625));
+		connect(bB_connector_121_111.thermal_connector_opt_prop_in2,BB_tank2x2x2_000.thermal_connector_opt_prop_out_111yp) annotation(Line(
+			points={{194.3,-92},{194.3,-97},{194.3,-105},{188,-105},{188,-110}},
+			thickness=0.0625));
+		connect(BB_tank2x2x2_000.thermal_connector_opt_prop_out_100xp,bB_connector_200_100.thermal_connector_opt_prop_in2) annotation(Line(
+			points={{230,-132},{235,-132},{258,-132},{258,-144.3},{263,-144.3}},
+			thickness=0.0625));
+		connect(BB_tank2x2x2_000.thermal_connector_opt_prop_out_101xp,bB_connector_201_101.thermal_connector_opt_prop_in2) annotation(Line(
+			points={{230,-143},{235,-143},{298,-143},{298,-149.3},{303,-149.3}},
+			thickness=0.0625));
+		connect(BB_tank2x2x2_000.thermal_connector_opt_prop_out_111xp,bB_connector_211_111.thermal_connector_opt_prop_in2) annotation(Line(
+			points={{230,-148.7},{235,-148.7},{293,-148.7},{293,-94.3},{298,-94.3}},
+			thickness=0.0625));
+		connect(BB_tank2x2x2_000.thermal_connector_opt_prop_out_110xp,bB_connector_210_110.thermal_connector_opt_prop_in2) annotation(Line(
+			points={{230,-137.7},{235,-137.7},{258,-137.7},{258,-99.3},{263,-99.3}},
+			thickness=0.0625));
+		connect(BB_tank2x2x2_000.thermal_connector_opt_prop_out_010xn,bB_connector_n110_010.thermal_connector_opt_prop_in2) annotation(Line(
+			points={{170,-137.7},{165,-137.7},{72,-137.7},{72,-105.7},{67,-105.7}},
+			thickness=0.0625));
+		connect(bB_connector_n111_011.thermal_connector_opt_prop_in2,BB_tank2x2x2_000.thermal_connector_opt_prop_out_011xn) annotation(Line(
+			points={{37,-110.7},{42,-110.7},{165,-110.7},{165,-126.3},{170,-126.3}},
+			thickness=0.0625));
+		connect(BB_tank2x2x2_000.thermal_connector_opt_prop_out_000xn,bB_connector_n100_000.thermal_connector_opt_prop_in2) annotation(Line(
+			points={{170,-143},{165,-143},{72,-143},{72,-160.7},{67,-160.7}},
+			thickness=0.0625));
+		connect(BB_tank2x2x2_000.thermal_connector_opt_prop_out_001xn,bB_connector_n101_001.thermal_connector_opt_prop_in2) annotation(Line(
+			points={{170,-132},{165,-132},{42,-132},{42,-165.7},{37,-165.7}},
+			thickness=0.0625));
 	annotation(
 		experiment(
-			StopTime=86000,
+			StopTime=690000,
 			StartTime=0));
 end Kern_2x2x2;
