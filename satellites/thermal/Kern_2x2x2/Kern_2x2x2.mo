@@ -944,11 +944,4 @@ model Kern_2x2x2 "Kern_2x2x2.mo"
 			points={{175,-6},{180,-6},{180,-3.3},{178.7,-3.3},{178.7,-0.7},{183.7,
 			-0.7}},
 			thickness=0.0625));
-	annotation(
-		viewinfo[0](
-			viewSettings(clrRaster=12632256),
-			typename="ModelInfo"),
-		experiment(
-			StopTime=690000,
-			StartTime=0));
 end Kern_2x2x2;
