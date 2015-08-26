@@ -2266,41 +2266,100 @@ package ibossmo
 				iboss_vti vb(m=1) annotation(Placement(transformation(extent={{-10,-10},{10,10}})));
 				Modelica.Blocks.Sources.Constant acc[3](each k=0);
 				equation
-					connect(vb.sim_ddr, acc.y);
+					connect(vb.sim_ddr,acc.y) annotation(Line(points={{-9.699999999999999,2.7},{-14.7,2.7},{-145,2.7},{-145,110},{-150,110}}));
 					//for i in 2:6 loop
 					//	verosim_basic1.comm_in.intf[i].set_ess = 0.0;
 					//	verosim_basic1.comm_in.intf[i].set_pos = 0.0;
 					//end for;
-					connect(timetable1.y, vb.set_mi_pos[1]);
-					connect(set_mi_pos[2:6].y,vb.set_mi_pos[2:6]);
-					connect(set_ess.y, vb.set_ei_state);
+					connect(timetable1.y,vb.set_mi_pos[1]) annotation(Line(points={{-150,110},{-150,0},{-5,0},{0,0}}));
+					connect(set_mi_pos[2:6].y,vb.set_mi_pos[2:6]) annotation(Line(points={{-150,110},{-150,0},{-5,0},{0,0}}));
+					connect(set_ess.y,vb.set_ei_state) annotation(Line(points={{-150,110},{-150,0},{-5,0},{0,0}}));
 				annotation(
-					verosim_basic1(
-						imu1(
-							noise_ung2(y(flags=2)),
-							noise_ung1(y(flags=2)),
-							noise_ung3(y(flags=2))),
-						thermometer_withnoise1(noise_ung(y(flags=2))),
-						intf(mi(noise_ung1(y(flags=2))))),
-					experiment(
-						StopTime=1,
-						StartTime=0),
 					timetable1(y(flags=2)),
 					vb(
-						imu(
-							noise_ung2(y(flags=2)),
-							noise_ung1(y(flags=2)),
-							noise_ung3(y(flags=2))),
-						rampvoltage1(
-							v(flags=2),
-							i(flags=2),
-							p(
+						OBC(
+							LossPower(flags=2),
+							T_heatPort(flags=2),
+							pin_p(
 								v(flags=2),
 								i(flags=2)),
-							n(
+							pin_n(
+								v(flags=2),
+								i(flags=2)),
+							resistor1(
+								v(flags=2),
+								i(flags=2),
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								heatPort(
+									T(flags=2),
+									Q_flow(flags=2)),
+								LossPower(flags=2),
+								T_heatPort(flags=2),
+								R_actual(flags=2)),
+							heatPort(
+								T(flags=2),
+								Q_flow(flags=2))),
+						imu(
+							add1(y(flags=2)),
+							noise_ung2(y(flags=2)),
+							noise_ung1(y(flags=2)),
+							noise_ung3(y(flags=2)),
+							y(flags=2)),
+						heatcapacitor1(
+							T(flags=2),
+							der_T(flags=2),
+							port(
+								T(flags=2),
+								Q_flow(flags=2))),
+						fixedtemperature1(port(
+							T(flags=2),
+							Q_flow(flags=2))),
+						bodyradiation1(
+							Q_flow(flags=2),
+							dT(flags=2),
+							port_a(
+								T(flags=2),
+								Q_flow(flags=2)),
+							port_b(
+								T(flags=2),
+								Q_flow(flags=2))),
+						ground1(p(
+							v(flags=2),
+							i(flags=2))),
+						dcdc_ideal_simple1(
+							v1(flags=2),
+							v2(flags=2),
+							i1(flags=2),
+							i2(flags=2),
+							p1(
+								v(flags=2),
+								i(flags=2)),
+							n1(
+								v(flags=2),
+								i(flags=2)),
+							p2(
+								v(flags=2),
+								i(flags=2)),
+							n2(
 								v(flags=2),
 								i(flags=2))),
-						thermometer_withnoise1(noise_ung(y(flags=2))),
+						thermometer_withnoise1(
+							T(flags=2),
+							port(
+								T(flags=2),
+								Q_flow(flags=2)),
+							add1(y(flags=2)),
+							temperaturesensor1(
+								T(flags=2),
+								port(
+									T(flags=2),
+									Q_flow(flags=2))),
+							noise_ung(y(flags=2))),
 						iXp(
 							vcc_ext(
 								v(flags=2),
@@ -2341,6 +2400,9 @@ package ibossmo
 									flange_b(
 										phi(flags=2),
 										tau(flags=2)),
+									support(
+										phi(flags=2),
+										tau(flags=2)),
 									w_relfric(flags=2),
 									a_relfric(flags=2),
 									tau0(flags=2),
@@ -2351,6 +2413,7 @@ package ibossmo
 									startBackward(flags=2),
 									locked(flags=2),
 									mode(flags=2),
+									heatPort(T(flags=2)),
 									lossPower(flags=2),
 									phi(flags=2),
 									tau(flags=2),
@@ -2366,9 +2429,14 @@ package ibossmo
 									phi(flags=2),
 									w(flags=2),
 									a(flags=2)),
-								pos(flange(
-									phi(flags=2),
-									tau(flags=2))),
+								pos(
+									flange(
+										phi(flags=2),
+										tau(flags=2)),
+									phi(flags=2)),
+								onoffidlecontroller1(y(flags=2)),
+								lessthreshold1(y(flags=2)),
+								greaterthreshold1(y(flags=2)),
 								dcpm(
 									phiMechanical(flags=2),
 									wMechanical(flags=2),
@@ -2387,6 +2455,9 @@ package ibossmo
 										phi(flags=2),
 										w(flags=2),
 										a(flags=2)),
+									support(
+										phi(flags=2),
+										tau(flags=2)),
 									inertiaStator(
 										flange_a(
 											phi(flags=2),
@@ -2507,6 +2578,11 @@ package ibossmo
 											T(flags=2),
 											Q_flow(flags=2))),
 									thermalAmbient(
+										Q_flowArmature(flags=2),
+										Q_flowCore(flags=2),
+										Q_flowStrayLoad(flags=2),
+										Q_flowFriction(flags=2),
+										Q_flowBrush(flags=2),
 										thermalPort(
 											heatPortArmature(
 												T(flags=2),
@@ -2538,12 +2614,16 @@ package ibossmo
 										temperatureFriction(port(
 											T(flags=2),
 											Q_flow(flags=2))),
+										constTa(y(flags=2)),
 										temperatureBrush(port(
 											T(flags=2),
 											Q_flow(flags=2))),
+										Q_flowPermanentMagnet(flags=2),
+										Q_flowTotal(flags=2),
 										temperaturePermanentMagnet(port(
 											T(flags=2),
-											Q_flow(flags=2)))),
+											Q_flow(flags=2))),
+										constTpm(y(flags=2))),
 									airGapDC(
 										w(flags=2),
 										vei(flags=2),
@@ -2592,6 +2672,9 @@ package ibossmo
 										n(
 											v(flags=2),
 											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
 										LossPower(flags=2),
 										T_heatPort(flags=2)),
 									idealclosingswitch3(
@@ -2603,6 +2686,9 @@ package ibossmo
 										n(
 											v(flags=2),
 											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
 										LossPower(flags=2),
 										T_heatPort(flags=2)),
 									idealclosingswitch1(
@@ -2614,6 +2700,9 @@ package ibossmo
 										n(
 											v(flags=2),
 											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
 										LossPower(flags=2),
 										T_heatPort(flags=2)),
 									idealclosingswitch2(
@@ -2625,6 +2714,9 @@ package ibossmo
 										n(
 											v(flags=2),
 											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
 										LossPower(flags=2),
 										T_heatPort(flags=2)),
 									pin_n(
@@ -2651,8 +2743,12 @@ package ibossmo
 										n(
 											v(flags=2),
 											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
 										LossPower(flags=2),
 										T_heatPort(flags=2)),
+									or1(y(flags=2)),
 									idealopeningswitch2(
 										v(flags=2),
 										i(flags=2),
@@ -2662,6 +2758,9 @@ package ibossmo
 										n(
 											v(flags=2),
 											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
 										LossPower(flags=2),
 										T_heatPort(flags=2))),
 								idealgear1(
@@ -2671,16 +2770,21 @@ package ibossmo
 									flange_b(
 										phi(flags=2),
 										tau(flags=2)),
+									support(
+										phi(flags=2),
+										tau(flags=2)),
 									phi_a(flags=2),
 									phi_b(flags=2)),
-								noise_ung1(y(flags=2))),
+								noise_ung1(y(flags=2)),
+								add1(y(flags=2))),
 							v_int(
 								p(
 									v(flags=2),
 									i(flags=2)),
 								n(
 									v(flags=2),
-									i(flags=2))),
+									i(flags=2)),
+								v(flags=2)),
 							idealopeningswitch1(
 								v(flags=2),
 								i(flags=2),
@@ -2690,6 +2794,9 @@ package ibossmo
 								n(
 									v(flags=2),
 									i(flags=2)),
+								heatPort(
+									T(flags=2),
+									Q_flow(flags=2)),
 								LossPower(flags=2),
 								T_heatPort(flags=2)),
 							resistor1(
@@ -2701,6 +2808,9 @@ package ibossmo
 								n(
 									v(flags=2),
 									i(flags=2)),
+								heatPort(
+									T(flags=2),
+									Q_flow(flags=2)),
 								LossPower(flags=2),
 								T_heatPort(flags=2),
 								R_actual(flags=2)),
@@ -2710,7 +2820,8 @@ package ibossmo
 									i(flags=2)),
 								n(
 									v(flags=2),
-									i(flags=2))),
+									i(flags=2)),
+								v(flags=2)),
 							resistor2(
 								v(flags=2),
 								i(flags=2),
@@ -2720,6 +2831,9 @@ package ibossmo
 								n(
 									v(flags=2),
 									i(flags=2)),
+								heatPort(
+									T(flags=2),
+									Q_flow(flags=2)),
 								LossPower(flags=2),
 								T_heatPort(flags=2),
 								R_actual(flags=2)),
@@ -2729,23 +2843,33 @@ package ibossmo
 									i(flags=2)),
 								n(
 									v(flags=2),
-									i(flags=2)))),
+									i(flags=2)),
+								i(flags=2))),
 						iXn(
+							vcc_ext(
+								v(flags=2),
+								i(flags=2)),
+							gnd_ext(
+								v(flags=2),
+								i(flags=2)),
+							gnd_int(
+								v(flags=2),
+								i(flags=2)),
+							vcc_int(
+								v(flags=2),
+								i(flags=2)),
 							comm_out(
 								mi_pos(flags=2),
 								v_ext(flags=2),
 								v_int(flags=2),
 								intf_current(flags=2),
 								tmp(flags=2)),
-							mi(noise_ung1(y(flags=2)))),
-						iYp(mi(noise_ung1(y(flags=2)))),
-						iYn(
-							comm_out(
-								mi_pos(flags=2),
-								v_ext(flags=2),
-								v_int(flags=2),
-								intf_current(flags=2),
-								tmp(flags=2)),
+							v_motor(
+								v(flags=2),
+								i(flags=2)),
+							gnd_motor(
+								v(flags=2),
+								i(flags=2)),
 							mi(
 								pin_p(
 									v(flags=2),
@@ -2761,6 +2885,9 @@ package ibossmo
 									flange_b(
 										phi(flags=2),
 										tau(flags=2)),
+									support(
+										phi(flags=2),
+										tau(flags=2)),
 									w_relfric(flags=2),
 									a_relfric(flags=2),
 									tau0(flags=2),
@@ -2771,6 +2898,7 @@ package ibossmo
 									startBackward(flags=2),
 									locked(flags=2),
 									mode(flags=2),
+									heatPort(T(flags=2)),
 									lossPower(flags=2),
 									phi(flags=2),
 									tau(flags=2),
@@ -2786,9 +2914,14 @@ package ibossmo
 									phi(flags=2),
 									w(flags=2),
 									a(flags=2)),
-								pos(flange(
-									phi(flags=2),
-									tau(flags=2))),
+								pos(
+									flange(
+										phi(flags=2),
+										tau(flags=2)),
+									phi(flags=2)),
+								onoffidlecontroller1(y(flags=2)),
+								lessthreshold1(y(flags=2)),
+								greaterthreshold1(y(flags=2)),
 								dcpm(
 									phiMechanical(flags=2),
 									wMechanical(flags=2),
@@ -2807,6 +2940,9 @@ package ibossmo
 										phi(flags=2),
 										w(flags=2),
 										a(flags=2)),
+									support(
+										phi(flags=2),
+										tau(flags=2)),
 									inertiaStator(
 										flange_a(
 											phi(flags=2),
@@ -2927,6 +3063,11 @@ package ibossmo
 											T(flags=2),
 											Q_flow(flags=2))),
 									thermalAmbient(
+										Q_flowArmature(flags=2),
+										Q_flowCore(flags=2),
+										Q_flowStrayLoad(flags=2),
+										Q_flowFriction(flags=2),
+										Q_flowBrush(flags=2),
 										thermalPort(
 											heatPortArmature(
 												T(flags=2),
@@ -2958,12 +3099,16 @@ package ibossmo
 										temperatureFriction(port(
 											T(flags=2),
 											Q_flow(flags=2))),
+										constTa(y(flags=2)),
 										temperatureBrush(port(
 											T(flags=2),
 											Q_flow(flags=2))),
+										Q_flowPermanentMagnet(flags=2),
+										Q_flowTotal(flags=2),
 										temperaturePermanentMagnet(port(
 											T(flags=2),
-											Q_flow(flags=2)))),
+											Q_flow(flags=2))),
+										constTpm(y(flags=2))),
 									airGapDC(
 										w(flags=2),
 										vei(flags=2),
@@ -3012,6 +3157,9 @@ package ibossmo
 										n(
 											v(flags=2),
 											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
 										LossPower(flags=2),
 										T_heatPort(flags=2)),
 									idealclosingswitch3(
@@ -3023,6 +3171,9 @@ package ibossmo
 										n(
 											v(flags=2),
 											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
 										LossPower(flags=2),
 										T_heatPort(flags=2)),
 									idealclosingswitch1(
@@ -3034,6 +3185,9 @@ package ibossmo
 										n(
 											v(flags=2),
 											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
 										LossPower(flags=2),
 										T_heatPort(flags=2)),
 									idealclosingswitch2(
@@ -3045,6 +3199,9 @@ package ibossmo
 										n(
 											v(flags=2),
 											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
 										LossPower(flags=2),
 										T_heatPort(flags=2)),
 									pin_n(
@@ -3071,8 +3228,12 @@ package ibossmo
 										n(
 											v(flags=2),
 											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
 										LossPower(flags=2),
 										T_heatPort(flags=2)),
+									or1(y(flags=2)),
 									idealopeningswitch2(
 										v(flags=2),
 										i(flags=2),
@@ -3082,6 +3243,9 @@ package ibossmo
 										n(
 											v(flags=2),
 											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
 										LossPower(flags=2),
 										T_heatPort(flags=2))),
 								idealgear1(
@@ -3091,11 +3255,2024 @@ package ibossmo
 									flange_b(
 										phi(flags=2),
 										tau(flags=2)),
+									support(
+										phi(flags=2),
+										tau(flags=2)),
 									phi_a(flags=2),
 									phi_b(flags=2)),
-								noise_ung1(y(flags=2)))),
-						iZp(mi(noise_ung1(y(flags=2)))),
-						iZn(mi(noise_ung1(y(flags=2))))),
+								noise_ung1(y(flags=2)),
+								add1(y(flags=2))),
+							v_int(
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								v(flags=2)),
+							idealopeningswitch1(
+								v(flags=2),
+								i(flags=2),
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								heatPort(
+									T(flags=2),
+									Q_flow(flags=2)),
+								LossPower(flags=2),
+								T_heatPort(flags=2)),
+							resistor1(
+								v(flags=2),
+								i(flags=2),
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								heatPort(
+									T(flags=2),
+									Q_flow(flags=2)),
+								LossPower(flags=2),
+								T_heatPort(flags=2),
+								R_actual(flags=2)),
+							v_ext(
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								v(flags=2)),
+							resistor2(
+								v(flags=2),
+								i(flags=2),
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								heatPort(
+									T(flags=2),
+									Q_flow(flags=2)),
+								LossPower(flags=2),
+								T_heatPort(flags=2),
+								R_actual(flags=2)),
+							intf_current(
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								i(flags=2))),
+						iYp(
+							vcc_ext(
+								v(flags=2),
+								i(flags=2)),
+							gnd_ext(
+								v(flags=2),
+								i(flags=2)),
+							gnd_int(
+								v(flags=2),
+								i(flags=2)),
+							vcc_int(
+								v(flags=2),
+								i(flags=2)),
+							comm_out(
+								mi_pos(flags=2),
+								v_ext(flags=2),
+								v_int(flags=2),
+								intf_current(flags=2),
+								tmp(flags=2)),
+							v_motor(
+								v(flags=2),
+								i(flags=2)),
+							gnd_motor(
+								v(flags=2),
+								i(flags=2)),
+							mi(
+								pin_p(
+									v(flags=2),
+									i(flags=2)),
+								pin_n(
+									v(flags=2),
+									i(flags=2)),
+								pos_sens(flags=2),
+								bearingfriction1(
+									flange_a(
+										phi(flags=2),
+										tau(flags=2)),
+									flange_b(
+										phi(flags=2),
+										tau(flags=2)),
+									support(
+										phi(flags=2),
+										tau(flags=2)),
+									w_relfric(flags=2),
+									a_relfric(flags=2),
+									tau0(flags=2),
+									tau0_max(flags=2),
+									free(flags=2),
+									sa(flags=2),
+									startForward(flags=2),
+									startBackward(flags=2),
+									locked(flags=2),
+									mode(flags=2),
+									heatPort(T(flags=2)),
+									lossPower(flags=2),
+									phi(flags=2),
+									tau(flags=2),
+									w(flags=2),
+									a(flags=2)),
+								inertia1(
+									flange_a(
+										phi(flags=2),
+										tau(flags=2)),
+									flange_b(
+										phi(flags=2),
+										tau(flags=2)),
+									phi(flags=2),
+									w(flags=2),
+									a(flags=2)),
+								pos(
+									flange(
+										phi(flags=2),
+										tau(flags=2)),
+									phi(flags=2)),
+								onoffidlecontroller1(y(flags=2)),
+								lessthreshold1(y(flags=2)),
+								greaterthreshold1(y(flags=2)),
+								dcpm(
+									phiMechanical(flags=2),
+									wMechanical(flags=2),
+									tauElectrical(flags=2),
+									tauShaft(flags=2),
+									flange(
+										phi(flags=2),
+										tau(flags=2)),
+									inertiaRotor(
+										flange_a(
+											phi(flags=2),
+											tau(flags=2)),
+										flange_b(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										w(flags=2),
+										a(flags=2)),
+									support(
+										phi(flags=2),
+										tau(flags=2)),
+									inertiaStator(
+										flange_a(
+											phi(flags=2),
+											tau(flags=2)),
+										flange_b(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										w(flags=2),
+										a(flags=2)),
+									fixed(flange(
+										phi(flags=2),
+										tau(flags=2))),
+									friction(
+										flange(
+											phi(flags=2),
+											tau(flags=2)),
+										support(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										tau(flags=2),
+										w(flags=2),
+										heatPort(T(flags=2)),
+										lossPower(flags=2)),
+									va(flags=2),
+									ia(flags=2),
+									pin_ap(
+										v(flags=2),
+										i(flags=2)),
+									pin_an(
+										v(flags=2),
+										i(flags=2)),
+									ra(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2),
+										R_actual(flags=2)),
+									la(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2))),
+									brush(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(T(flags=2)),
+										lossPower(flags=2)),
+									core(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(T(flags=2)),
+										lossPower(flags=2),
+										Gc(flags=2)),
+									strayLoad(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										flange(
+											phi(flags=2),
+											tau(flags=2)),
+										support(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										tau(flags=2),
+										w(flags=2),
+										heatPort(T(flags=2)),
+										lossPower(flags=2)),
+									thermalPort(
+										heatPortArmature(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortCore(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortStrayLoad(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortFriction(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortBrush(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortPermanentMagnet(
+											T(flags=2),
+											Q_flow(flags=2))),
+									thermalAmbient(
+										Q_flowArmature(flags=2),
+										Q_flowCore(flags=2),
+										Q_flowStrayLoad(flags=2),
+										Q_flowFriction(flags=2),
+										Q_flowBrush(flags=2),
+										thermalPort(
+											heatPortArmature(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortCore(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortStrayLoad(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortFriction(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortBrush(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortPermanentMagnet(
+												T(flags=2),
+												Q_flow(flags=2))),
+										temperatureArmature(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperatureCore(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperatureStrayLoad(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperatureFriction(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										constTa(y(flags=2)),
+										temperatureBrush(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										Q_flowPermanentMagnet(flags=2),
+										Q_flowTotal(flags=2),
+										temperaturePermanentMagnet(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										constTpm(y(flags=2))),
+									airGapDC(
+										w(flags=2),
+										vei(flags=2),
+										ie(flags=2),
+										psi_e(flags=2),
+										vai(flags=2),
+										ia(flags=2),
+										tauElectrical(flags=2),
+										flange(
+											phi(flags=2),
+											tau(flags=2)),
+										support(
+											phi(flags=2),
+											tau(flags=2)),
+										pin_ap(
+											v(flags=2),
+											i(flags=2)),
+										pin_ep(
+											v(flags=2),
+											i(flags=2)),
+										pin_an(
+											v(flags=2),
+											i(flags=2)),
+										pin_en(
+											v(flags=2),
+											i(flags=2))),
+									eGround(p(
+										v(flags=2),
+										i(flags=2))),
+									ie(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)))),
+								hbridge1(
+									idealclosingswitch4(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									idealclosingswitch3(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									idealclosingswitch1(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									idealclosingswitch2(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									pin_n(
+										v(flags=2),
+										i(flags=2)),
+									pin_p(
+										v(flags=2),
+										i(flags=2)),
+									pin_p1(
+										v(flags=2),
+										i(flags=2)),
+									pin_n1(
+										v(flags=2),
+										i(flags=2)),
+									ground1(p(
+										v(flags=2),
+										i(flags=2))),
+									idealopeningswitch1(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									or1(y(flags=2)),
+									idealopeningswitch2(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2))),
+								idealgear1(
+									flange_a(
+										phi(flags=2),
+										tau(flags=2)),
+									flange_b(
+										phi(flags=2),
+										tau(flags=2)),
+									support(
+										phi(flags=2),
+										tau(flags=2)),
+									phi_a(flags=2),
+									phi_b(flags=2)),
+								noise_ung1(y(flags=2)),
+								add1(y(flags=2))),
+							v_int(
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								v(flags=2)),
+							idealopeningswitch1(
+								v(flags=2),
+								i(flags=2),
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								heatPort(
+									T(flags=2),
+									Q_flow(flags=2)),
+								LossPower(flags=2),
+								T_heatPort(flags=2)),
+							resistor1(
+								v(flags=2),
+								i(flags=2),
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								heatPort(
+									T(flags=2),
+									Q_flow(flags=2)),
+								LossPower(flags=2),
+								T_heatPort(flags=2),
+								R_actual(flags=2)),
+							v_ext(
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								v(flags=2)),
+							resistor2(
+								v(flags=2),
+								i(flags=2),
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								heatPort(
+									T(flags=2),
+									Q_flow(flags=2)),
+								LossPower(flags=2),
+								T_heatPort(flags=2),
+								R_actual(flags=2)),
+							intf_current(
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								i(flags=2))),
+						iYn(
+							vcc_ext(
+								v(flags=2),
+								i(flags=2)),
+							gnd_ext(
+								v(flags=2),
+								i(flags=2)),
+							gnd_int(
+								v(flags=2),
+								i(flags=2)),
+							vcc_int(
+								v(flags=2),
+								i(flags=2)),
+							comm_out(
+								mi_pos(flags=2),
+								v_ext(flags=2),
+								v_int(flags=2),
+								intf_current(flags=2),
+								tmp(flags=2)),
+							v_motor(
+								v(flags=2),
+								i(flags=2)),
+							gnd_motor(
+								v(flags=2),
+								i(flags=2)),
+							mi(
+								pin_p(
+									v(flags=2),
+									i(flags=2)),
+								pin_n(
+									v(flags=2),
+									i(flags=2)),
+								pos_sens(flags=2),
+								bearingfriction1(
+									flange_a(
+										phi(flags=2),
+										tau(flags=2)),
+									flange_b(
+										phi(flags=2),
+										tau(flags=2)),
+									support(
+										phi(flags=2),
+										tau(flags=2)),
+									w_relfric(flags=2),
+									a_relfric(flags=2),
+									tau0(flags=2),
+									tau0_max(flags=2),
+									free(flags=2),
+									sa(flags=2),
+									startForward(flags=2),
+									startBackward(flags=2),
+									locked(flags=2),
+									mode(flags=2),
+									heatPort(T(flags=2)),
+									lossPower(flags=2),
+									phi(flags=2),
+									tau(flags=2),
+									w(flags=2),
+									a(flags=2)),
+								inertia1(
+									flange_a(
+										phi(flags=2),
+										tau(flags=2)),
+									flange_b(
+										phi(flags=2),
+										tau(flags=2)),
+									phi(flags=2),
+									w(flags=2),
+									a(flags=2)),
+								pos(
+									flange(
+										phi(flags=2),
+										tau(flags=2)),
+									phi(flags=2)),
+								onoffidlecontroller1(y(flags=2)),
+								lessthreshold1(y(flags=2)),
+								greaterthreshold1(y(flags=2)),
+								dcpm(
+									phiMechanical(flags=2),
+									wMechanical(flags=2),
+									tauElectrical(flags=2),
+									tauShaft(flags=2),
+									flange(
+										phi(flags=2),
+										tau(flags=2)),
+									inertiaRotor(
+										flange_a(
+											phi(flags=2),
+											tau(flags=2)),
+										flange_b(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										w(flags=2),
+										a(flags=2)),
+									support(
+										phi(flags=2),
+										tau(flags=2)),
+									inertiaStator(
+										flange_a(
+											phi(flags=2),
+											tau(flags=2)),
+										flange_b(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										w(flags=2),
+										a(flags=2)),
+									fixed(flange(
+										phi(flags=2),
+										tau(flags=2))),
+									friction(
+										flange(
+											phi(flags=2),
+											tau(flags=2)),
+										support(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										tau(flags=2),
+										w(flags=2),
+										heatPort(T(flags=2)),
+										lossPower(flags=2)),
+									va(flags=2),
+									ia(flags=2),
+									pin_ap(
+										v(flags=2),
+										i(flags=2)),
+									pin_an(
+										v(flags=2),
+										i(flags=2)),
+									ra(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2),
+										R_actual(flags=2)),
+									la(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2))),
+									brush(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(T(flags=2)),
+										lossPower(flags=2)),
+									core(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(T(flags=2)),
+										lossPower(flags=2),
+										Gc(flags=2)),
+									strayLoad(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										flange(
+											phi(flags=2),
+											tau(flags=2)),
+										support(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										tau(flags=2),
+										w(flags=2),
+										heatPort(T(flags=2)),
+										lossPower(flags=2)),
+									thermalPort(
+										heatPortArmature(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortCore(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortStrayLoad(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortFriction(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortBrush(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortPermanentMagnet(
+											T(flags=2),
+											Q_flow(flags=2))),
+									thermalAmbient(
+										Q_flowArmature(flags=2),
+										Q_flowCore(flags=2),
+										Q_flowStrayLoad(flags=2),
+										Q_flowFriction(flags=2),
+										Q_flowBrush(flags=2),
+										thermalPort(
+											heatPortArmature(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortCore(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortStrayLoad(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortFriction(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortBrush(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortPermanentMagnet(
+												T(flags=2),
+												Q_flow(flags=2))),
+										temperatureArmature(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperatureCore(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperatureStrayLoad(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperatureFriction(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										constTa(y(flags=2)),
+										temperatureBrush(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										Q_flowPermanentMagnet(flags=2),
+										Q_flowTotal(flags=2),
+										temperaturePermanentMagnet(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										constTpm(y(flags=2))),
+									airGapDC(
+										w(flags=2),
+										vei(flags=2),
+										ie(flags=2),
+										psi_e(flags=2),
+										vai(flags=2),
+										ia(flags=2),
+										tauElectrical(flags=2),
+										flange(
+											phi(flags=2),
+											tau(flags=2)),
+										support(
+											phi(flags=2),
+											tau(flags=2)),
+										pin_ap(
+											v(flags=2),
+											i(flags=2)),
+										pin_ep(
+											v(flags=2),
+											i(flags=2)),
+										pin_an(
+											v(flags=2),
+											i(flags=2)),
+										pin_en(
+											v(flags=2),
+											i(flags=2))),
+									eGround(p(
+										v(flags=2),
+										i(flags=2))),
+									ie(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)))),
+								hbridge1(
+									idealclosingswitch4(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									idealclosingswitch3(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									idealclosingswitch1(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									idealclosingswitch2(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									pin_n(
+										v(flags=2),
+										i(flags=2)),
+									pin_p(
+										v(flags=2),
+										i(flags=2)),
+									pin_p1(
+										v(flags=2),
+										i(flags=2)),
+									pin_n1(
+										v(flags=2),
+										i(flags=2)),
+									ground1(p(
+										v(flags=2),
+										i(flags=2))),
+									idealopeningswitch1(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									or1(y(flags=2)),
+									idealopeningswitch2(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2))),
+								idealgear1(
+									flange_a(
+										phi(flags=2),
+										tau(flags=2)),
+									flange_b(
+										phi(flags=2),
+										tau(flags=2)),
+									support(
+										phi(flags=2),
+										tau(flags=2)),
+									phi_a(flags=2),
+									phi_b(flags=2)),
+								noise_ung1(y(flags=2)),
+								add1(y(flags=2))),
+							v_int(
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								v(flags=2)),
+							idealopeningswitch1(
+								v(flags=2),
+								i(flags=2),
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								heatPort(
+									T(flags=2),
+									Q_flow(flags=2)),
+								LossPower(flags=2),
+								T_heatPort(flags=2)),
+							resistor1(
+								v(flags=2),
+								i(flags=2),
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								heatPort(
+									T(flags=2),
+									Q_flow(flags=2)),
+								LossPower(flags=2),
+								T_heatPort(flags=2),
+								R_actual(flags=2)),
+							v_ext(
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								v(flags=2)),
+							resistor2(
+								v(flags=2),
+								i(flags=2),
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								heatPort(
+									T(flags=2),
+									Q_flow(flags=2)),
+								LossPower(flags=2),
+								T_heatPort(flags=2),
+								R_actual(flags=2)),
+							intf_current(
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								i(flags=2))),
+						iZp(
+							vcc_ext(
+								v(flags=2),
+								i(flags=2)),
+							gnd_ext(
+								v(flags=2),
+								i(flags=2)),
+							gnd_int(
+								v(flags=2),
+								i(flags=2)),
+							vcc_int(
+								v(flags=2),
+								i(flags=2)),
+							comm_out(
+								mi_pos(flags=2),
+								v_ext(flags=2),
+								v_int(flags=2),
+								intf_current(flags=2),
+								tmp(flags=2)),
+							v_motor(
+								v(flags=2),
+								i(flags=2)),
+							gnd_motor(
+								v(flags=2),
+								i(flags=2)),
+							mi(
+								pin_p(
+									v(flags=2),
+									i(flags=2)),
+								pin_n(
+									v(flags=2),
+									i(flags=2)),
+								pos_sens(flags=2),
+								bearingfriction1(
+									flange_a(
+										phi(flags=2),
+										tau(flags=2)),
+									flange_b(
+										phi(flags=2),
+										tau(flags=2)),
+									support(
+										phi(flags=2),
+										tau(flags=2)),
+									w_relfric(flags=2),
+									a_relfric(flags=2),
+									tau0(flags=2),
+									tau0_max(flags=2),
+									free(flags=2),
+									sa(flags=2),
+									startForward(flags=2),
+									startBackward(flags=2),
+									locked(flags=2),
+									mode(flags=2),
+									heatPort(T(flags=2)),
+									lossPower(flags=2),
+									phi(flags=2),
+									tau(flags=2),
+									w(flags=2),
+									a(flags=2)),
+								inertia1(
+									flange_a(
+										phi(flags=2),
+										tau(flags=2)),
+									flange_b(
+										phi(flags=2),
+										tau(flags=2)),
+									phi(flags=2),
+									w(flags=2),
+									a(flags=2)),
+								pos(
+									flange(
+										phi(flags=2),
+										tau(flags=2)),
+									phi(flags=2)),
+								onoffidlecontroller1(y(flags=2)),
+								lessthreshold1(y(flags=2)),
+								greaterthreshold1(y(flags=2)),
+								dcpm(
+									phiMechanical(flags=2),
+									wMechanical(flags=2),
+									tauElectrical(flags=2),
+									tauShaft(flags=2),
+									flange(
+										phi(flags=2),
+										tau(flags=2)),
+									inertiaRotor(
+										flange_a(
+											phi(flags=2),
+											tau(flags=2)),
+										flange_b(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										w(flags=2),
+										a(flags=2)),
+									support(
+										phi(flags=2),
+										tau(flags=2)),
+									inertiaStator(
+										flange_a(
+											phi(flags=2),
+											tau(flags=2)),
+										flange_b(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										w(flags=2),
+										a(flags=2)),
+									fixed(flange(
+										phi(flags=2),
+										tau(flags=2))),
+									friction(
+										flange(
+											phi(flags=2),
+											tau(flags=2)),
+										support(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										tau(flags=2),
+										w(flags=2),
+										heatPort(T(flags=2)),
+										lossPower(flags=2)),
+									va(flags=2),
+									ia(flags=2),
+									pin_ap(
+										v(flags=2),
+										i(flags=2)),
+									pin_an(
+										v(flags=2),
+										i(flags=2)),
+									ra(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2),
+										R_actual(flags=2)),
+									la(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2))),
+									brush(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(T(flags=2)),
+										lossPower(flags=2)),
+									core(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(T(flags=2)),
+										lossPower(flags=2),
+										Gc(flags=2)),
+									strayLoad(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										flange(
+											phi(flags=2),
+											tau(flags=2)),
+										support(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										tau(flags=2),
+										w(flags=2),
+										heatPort(T(flags=2)),
+										lossPower(flags=2)),
+									thermalPort(
+										heatPortArmature(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortCore(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortStrayLoad(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortFriction(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortBrush(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortPermanentMagnet(
+											T(flags=2),
+											Q_flow(flags=2))),
+									thermalAmbient(
+										Q_flowArmature(flags=2),
+										Q_flowCore(flags=2),
+										Q_flowStrayLoad(flags=2),
+										Q_flowFriction(flags=2),
+										Q_flowBrush(flags=2),
+										thermalPort(
+											heatPortArmature(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortCore(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortStrayLoad(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortFriction(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortBrush(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortPermanentMagnet(
+												T(flags=2),
+												Q_flow(flags=2))),
+										temperatureArmature(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperatureCore(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperatureStrayLoad(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperatureFriction(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										constTa(y(flags=2)),
+										temperatureBrush(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										Q_flowPermanentMagnet(flags=2),
+										Q_flowTotal(flags=2),
+										temperaturePermanentMagnet(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										constTpm(y(flags=2))),
+									airGapDC(
+										w(flags=2),
+										vei(flags=2),
+										ie(flags=2),
+										psi_e(flags=2),
+										vai(flags=2),
+										ia(flags=2),
+										tauElectrical(flags=2),
+										flange(
+											phi(flags=2),
+											tau(flags=2)),
+										support(
+											phi(flags=2),
+											tau(flags=2)),
+										pin_ap(
+											v(flags=2),
+											i(flags=2)),
+										pin_ep(
+											v(flags=2),
+											i(flags=2)),
+										pin_an(
+											v(flags=2),
+											i(flags=2)),
+										pin_en(
+											v(flags=2),
+											i(flags=2))),
+									eGround(p(
+										v(flags=2),
+										i(flags=2))),
+									ie(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)))),
+								hbridge1(
+									idealclosingswitch4(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									idealclosingswitch3(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									idealclosingswitch1(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									idealclosingswitch2(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									pin_n(
+										v(flags=2),
+										i(flags=2)),
+									pin_p(
+										v(flags=2),
+										i(flags=2)),
+									pin_p1(
+										v(flags=2),
+										i(flags=2)),
+									pin_n1(
+										v(flags=2),
+										i(flags=2)),
+									ground1(p(
+										v(flags=2),
+										i(flags=2))),
+									idealopeningswitch1(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									or1(y(flags=2)),
+									idealopeningswitch2(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2))),
+								idealgear1(
+									flange_a(
+										phi(flags=2),
+										tau(flags=2)),
+									flange_b(
+										phi(flags=2),
+										tau(flags=2)),
+									support(
+										phi(flags=2),
+										tau(flags=2)),
+									phi_a(flags=2),
+									phi_b(flags=2)),
+								noise_ung1(y(flags=2)),
+								add1(y(flags=2))),
+							v_int(
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								v(flags=2)),
+							idealopeningswitch1(
+								v(flags=2),
+								i(flags=2),
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								heatPort(
+									T(flags=2),
+									Q_flow(flags=2)),
+								LossPower(flags=2),
+								T_heatPort(flags=2)),
+							resistor1(
+								v(flags=2),
+								i(flags=2),
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								heatPort(
+									T(flags=2),
+									Q_flow(flags=2)),
+								LossPower(flags=2),
+								T_heatPort(flags=2),
+								R_actual(flags=2)),
+							v_ext(
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								v(flags=2)),
+							resistor2(
+								v(flags=2),
+								i(flags=2),
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								heatPort(
+									T(flags=2),
+									Q_flow(flags=2)),
+								LossPower(flags=2),
+								T_heatPort(flags=2),
+								R_actual(flags=2)),
+							intf_current(
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								i(flags=2))),
+						iZn(
+							vcc_ext(
+								v(flags=2),
+								i(flags=2)),
+							gnd_ext(
+								v(flags=2),
+								i(flags=2)),
+							gnd_int(
+								v(flags=2),
+								i(flags=2)),
+							vcc_int(
+								v(flags=2),
+								i(flags=2)),
+							comm_out(
+								mi_pos(flags=2),
+								v_ext(flags=2),
+								v_int(flags=2),
+								intf_current(flags=2),
+								tmp(flags=2)),
+							v_motor(
+								v(flags=2),
+								i(flags=2)),
+							gnd_motor(
+								v(flags=2),
+								i(flags=2)),
+							mi(
+								pin_p(
+									v(flags=2),
+									i(flags=2)),
+								pin_n(
+									v(flags=2),
+									i(flags=2)),
+								pos_sens(flags=2),
+								bearingfriction1(
+									flange_a(
+										phi(flags=2),
+										tau(flags=2)),
+									flange_b(
+										phi(flags=2),
+										tau(flags=2)),
+									support(
+										phi(flags=2),
+										tau(flags=2)),
+									w_relfric(flags=2),
+									a_relfric(flags=2),
+									tau0(flags=2),
+									tau0_max(flags=2),
+									free(flags=2),
+									sa(flags=2),
+									startForward(flags=2),
+									startBackward(flags=2),
+									locked(flags=2),
+									mode(flags=2),
+									heatPort(T(flags=2)),
+									lossPower(flags=2),
+									phi(flags=2),
+									tau(flags=2),
+									w(flags=2),
+									a(flags=2)),
+								inertia1(
+									flange_a(
+										phi(flags=2),
+										tau(flags=2)),
+									flange_b(
+										phi(flags=2),
+										tau(flags=2)),
+									phi(flags=2),
+									w(flags=2),
+									a(flags=2)),
+								pos(
+									flange(
+										phi(flags=2),
+										tau(flags=2)),
+									phi(flags=2)),
+								onoffidlecontroller1(y(flags=2)),
+								lessthreshold1(y(flags=2)),
+								greaterthreshold1(y(flags=2)),
+								dcpm(
+									phiMechanical(flags=2),
+									wMechanical(flags=2),
+									tauElectrical(flags=2),
+									tauShaft(flags=2),
+									flange(
+										phi(flags=2),
+										tau(flags=2)),
+									inertiaRotor(
+										flange_a(
+											phi(flags=2),
+											tau(flags=2)),
+										flange_b(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										w(flags=2),
+										a(flags=2)),
+									support(
+										phi(flags=2),
+										tau(flags=2)),
+									inertiaStator(
+										flange_a(
+											phi(flags=2),
+											tau(flags=2)),
+										flange_b(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										w(flags=2),
+										a(flags=2)),
+									fixed(flange(
+										phi(flags=2),
+										tau(flags=2))),
+									friction(
+										flange(
+											phi(flags=2),
+											tau(flags=2)),
+										support(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										tau(flags=2),
+										w(flags=2),
+										heatPort(T(flags=2)),
+										lossPower(flags=2)),
+									va(flags=2),
+									ia(flags=2),
+									pin_ap(
+										v(flags=2),
+										i(flags=2)),
+									pin_an(
+										v(flags=2),
+										i(flags=2)),
+									ra(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2),
+										R_actual(flags=2)),
+									la(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2))),
+									brush(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(T(flags=2)),
+										lossPower(flags=2)),
+									core(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(T(flags=2)),
+										lossPower(flags=2),
+										Gc(flags=2)),
+									strayLoad(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										flange(
+											phi(flags=2),
+											tau(flags=2)),
+										support(
+											phi(flags=2),
+											tau(flags=2)),
+										phi(flags=2),
+										tau(flags=2),
+										w(flags=2),
+										heatPort(T(flags=2)),
+										lossPower(flags=2)),
+									thermalPort(
+										heatPortArmature(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortCore(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortStrayLoad(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortFriction(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortBrush(
+											T(flags=2),
+											Q_flow(flags=2)),
+										heatPortPermanentMagnet(
+											T(flags=2),
+											Q_flow(flags=2))),
+									thermalAmbient(
+										Q_flowArmature(flags=2),
+										Q_flowCore(flags=2),
+										Q_flowStrayLoad(flags=2),
+										Q_flowFriction(flags=2),
+										Q_flowBrush(flags=2),
+										thermalPort(
+											heatPortArmature(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortCore(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortStrayLoad(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortFriction(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortBrush(
+												T(flags=2),
+												Q_flow(flags=2)),
+											heatPortPermanentMagnet(
+												T(flags=2),
+												Q_flow(flags=2))),
+										temperatureArmature(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperatureCore(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperatureStrayLoad(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										temperatureFriction(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										constTa(y(flags=2)),
+										temperatureBrush(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										Q_flowPermanentMagnet(flags=2),
+										Q_flowTotal(flags=2),
+										temperaturePermanentMagnet(port(
+											T(flags=2),
+											Q_flow(flags=2))),
+										constTpm(y(flags=2))),
+									airGapDC(
+										w(flags=2),
+										vei(flags=2),
+										ie(flags=2),
+										psi_e(flags=2),
+										vai(flags=2),
+										ia(flags=2),
+										tauElectrical(flags=2),
+										flange(
+											phi(flags=2),
+											tau(flags=2)),
+										support(
+											phi(flags=2),
+											tau(flags=2)),
+										pin_ap(
+											v(flags=2),
+											i(flags=2)),
+										pin_ep(
+											v(flags=2),
+											i(flags=2)),
+										pin_an(
+											v(flags=2),
+											i(flags=2)),
+										pin_en(
+											v(flags=2),
+											i(flags=2))),
+									eGround(p(
+										v(flags=2),
+										i(flags=2))),
+									ie(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)))),
+								hbridge1(
+									idealclosingswitch4(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									idealclosingswitch3(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									idealclosingswitch1(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									idealclosingswitch2(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									pin_n(
+										v(flags=2),
+										i(flags=2)),
+									pin_p(
+										v(flags=2),
+										i(flags=2)),
+									pin_p1(
+										v(flags=2),
+										i(flags=2)),
+									pin_n1(
+										v(flags=2),
+										i(flags=2)),
+									ground1(p(
+										v(flags=2),
+										i(flags=2))),
+									idealopeningswitch1(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2)),
+									or1(y(flags=2)),
+									idealopeningswitch2(
+										v(flags=2),
+										i(flags=2),
+										p(
+											v(flags=2),
+											i(flags=2)),
+										n(
+											v(flags=2),
+											i(flags=2)),
+										heatPort(
+											T(flags=2),
+											Q_flow(flags=2)),
+										LossPower(flags=2),
+										T_heatPort(flags=2))),
+								idealgear1(
+									flange_a(
+										phi(flags=2),
+										tau(flags=2)),
+									flange_b(
+										phi(flags=2),
+										tau(flags=2)),
+									support(
+										phi(flags=2),
+										tau(flags=2)),
+									phi_a(flags=2),
+									phi_b(flags=2)),
+								noise_ung1(y(flags=2)),
+								add1(y(flags=2))),
+							v_int(
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								v(flags=2)),
+							idealopeningswitch1(
+								v(flags=2),
+								i(flags=2),
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								heatPort(
+									T(flags=2),
+									Q_flow(flags=2)),
+								LossPower(flags=2),
+								T_heatPort(flags=2)),
+							resistor1(
+								v(flags=2),
+								i(flags=2),
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								heatPort(
+									T(flags=2),
+									Q_flow(flags=2)),
+								LossPower(flags=2),
+								T_heatPort(flags=2),
+								R_actual(flags=2)),
+							v_ext(
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								v(flags=2)),
+							resistor2(
+								v(flags=2),
+								i(flags=2),
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								heatPort(
+									T(flags=2),
+									Q_flow(flags=2)),
+								LossPower(flags=2),
+								T_heatPort(flags=2),
+								R_actual(flags=2)),
+							intf_current(
+								p(
+									v(flags=2),
+									i(flags=2)),
+								n(
+									v(flags=2),
+									i(flags=2)),
+								i(flags=2))),
+						sim_out(intf(
+							mi_pos(flags=2),
+							v_ext(flags=2)))),
 					viewinfo[0](
 						viewSettings(clrRaster=12632256),
 						typename="ModelInfo"),
@@ -3112,58 +5289,35 @@ package ibossmo
 						StopTime=100,
 						StartTime=0));
 			end verosim_block;
-			model verosim_block_fmu2
+			model verosim_block_battery "verosim_block_battery"
+				iboss_vti_battery iboss_vti_battery1(vsource(Vnominal=25)) annotation(Placement(transformation(extent={{-30,-60},{-10,-40}})));
 				extends Modelica.Icons.Example;
 				Modelica.Blocks.Sources.BooleanConstant set_ess[6](each k=false);
 				Modelica.Blocks.Sources.Constant set_mi_pos[6](each k=0.5);
-				Modelica.Blocks.Sources.TimeTable timetable1(table=[0, 0; 5, 0; 5.01, 0.3; 20, 0.3; 20.01, 1.0; 45, 1.0; 45.0, 0; 70, 0.0]);
 				Modelica.Blocks.Sources.Constant acc[3](each k=0);
-				iboss_vti3 iboss_vti2 annotation(Placement(transformation(extent={{-75,-35},{-35,-95}})));
+				Modelica.Blocks.Sources.TimeTable tt(table=[0, 0; 5, 0; 5.01, 0.3; 20, 0.3; 20.01, 1.0; 45, 1.0; 45.0, 0; 70, 0.0]) annotation(Placement(transformation(extent={{-110,-60},{-90,-40}})));
 				equation
 					//for i in 2:6 loop
 					//	verosim_basic1.comm_in.intf[i].set_ess = 0.0;
 					//	verosim_basic1.comm_in.intf[i].set_pos = 0.0;
 					//end for;
-					connect(timetable1.y,iboss_vti2.'set_mi_pos[1]') annotation(Line(points={{-150,110},{-150,-93.3},{-80,-93.3},{-75,-93.3}}));
+					connect(tt.y,iboss_vti_battery1.set_mi_pos[1]) annotation(Line(points={{-89,-50},{-84,-50},{-25,-50},{-20,-50}}));
 				annotation(
-					timetable1(y(flags=2)),
-					iboss_vti2(
-						'iXp.comm_out.mi_pos'(flags=2),
-						'iXp.comm_out.v_ext'(flags=2),
-						'iXp.comm_out.v_int'(flags=2),
-						'iXp.comm_out.intf_current'(flags=2),
-						'iXp.comm_out.tmp'(flags=2),
-						'iXn.comm_out.mi_pos'(flags=2),
-						'iXn.comm_out.v_ext'(flags=2),
-						'iXn.comm_out.intf_current'(flags=2),
-						'iXn.comm_out.v_int'(flags=2),
-						'iXn.comm_out.tmp'(flags=2),
-						'iYp.comm_out.mi_pos'(flags=2),
-						'iYp.comm_out.v_ext'(flags=2),
-						'iYp.comm_out.v_int'(flags=2),
-						'iYp.comm_out.intf_current'(flags=2),
-						'iYp.comm_out.tmp'(flags=2),
-						'iYn.comm_out.mi_pos'(flags=2),
-						'iYn.comm_out.v_ext'(flags=2),
-						'iYn.comm_out.v_int'(flags=2),
-						'iYn.comm_out.intf_current'(flags=2),
-						'iYn.comm_out.tmp'(flags=2),
-						'iZp.comm_out.mi_pos'(flags=2),
-						'iZp.comm_out.v_ext'(flags=2),
-						'iZp.comm_out.v_int'(flags=2),
-						'iZp.comm_out.intf_current'(flags=2),
-						'iZp.comm_out.tmp'(flags=2),
-						'iZn.comm_out.mi_pos'(flags=2),
-						'iZn.comm_out.v_ext'(flags=2),
-						'iZn.comm_out.v_int'(flags=2),
-						'iZn.comm_out.intf_current'(flags=2),
-						'iZn.comm_out.tmp'(flags=2),
-						'iXp.mi.inertia1.phi'(flags=2),
-						'iXn.mi.inertia1.phi'(flags=2),
-						'iYp.mi.inertia1.phi'(flags=2),
-						'iYn.mi.inertia1.phi'(flags=2),
-						'iZp.mi.inertia1.phi'(flags=2),
-						'iZn.mi.inertia1.phi'(flags=2)),
+					iboss_vti_battery1(
+						imu(
+							noise_ung2(y(flags=2)),
+							noise_ung1(y(flags=2)),
+							noise_ung3(y(flags=2))),
+						thermometer_withnoise1(noise_ung(y(flags=2))),
+						iXp(mi(noise_ung1(y(flags=2)))),
+						iXn(mi(noise_ung1(y(flags=2)))),
+						iYp(mi(noise_ung1(y(flags=2)))),
+						iYn(mi(noise_ung1(y(flags=2)))),
+						iZp(mi(noise_ung1(y(flags=2)))),
+						iZn(mi(noise_ung1(y(flags=2)))),
+						vsource(
+							v(flags=2),
+							soc(flags=2))),
 					viewinfo[0](
 						projectPath="C:\\Users\\indahouse\\Documents\\SimulationX 3.6\\Exported C-Code",
 						projectType=0,
@@ -3179,7 +5333,7 @@ package ibossmo
 					experiment(
 						StopTime=100,
 						StartTime=0));
-			end verosim_block_fmu2;
+			end verosim_block_battery;
 			model iboss_vti3 "iboss_vti3"
 				input Modelica.Blocks.Interfaces.RealInput 'set_mi_pos[1]' "'input Real' as connector" annotation(Placement(
 					transformation(extent={{-20,-20},{20,20}}),
@@ -3698,7 +5852,7 @@ package ibossmo
 			StartTime=0));
 end examples;
 model iboss_vti
-	extends verosim_basic_6D annotation(Placement(transformation(extent={{-10,-10},{10,10}})));
+	extends verosim_basic_6D_vsource annotation(Placement(transformation(extent={{-10,-10},{10,10}})));
 	parameter Integer intf_count=6 "number of interfaces";
 	input Modelica.Blocks.Interfaces.RealInput set_mi_pos[6];
 	input Modelica.Blocks.Interfaces.BooleanInput set_ei_state[6];
@@ -3726,7 +5880,7 @@ model iboss_vti
 			origin={66,30},
 			extent={{-10,-10},{10,10}})));
 	equation
-		connect(imu.ang_vel, sim_ddr);
+		connect(imu.ang_vel,sim_ddr) annotation(Line(points={{-58.7,40.3},{-63.7,40.3},{-95,40.3},{-95,20},{-100,20}}));
 		connect(set_mi_pos[1], iXp.comm_in.set_pos);
 		connect(set_mi_pos[2], iXn.comm_in.set_pos);
 		connect(set_mi_pos[3], iYp.comm_in.set_pos);
@@ -3751,15 +5905,6 @@ model iboss_vti
 			noise_ung2(y(flags=2)),
 			noise_ung1(y(flags=2)),
 			noise_ung3(y(flags=2))),
-		rampvoltage1(
-			v(flags=2),
-			i(flags=2),
-			p(
-				v(flags=2),
-				i(flags=2)),
-			n(
-				v(flags=2),
-				i(flags=2))),
 		thermometer_withnoise1(noise_ung(y(flags=2))),
 		iXp(mi(noise_ung1(y(flags=2)))),
 		iXn(mi(noise_ung1(y(flags=2)))),
@@ -4025,12 +6170,6 @@ model verosim_basic_6D
 	satcomponents.power.dcmodel.dcdc_ideal_simple dcdc_ideal_simple1 annotation(Placement(transformation(
 		origin={-12,-46},
 		extent={{-10,-10},{10,10}})));
-	Modelica.Electrical.Analog.Sources.RampVoltage rampvoltage1(
-		V=40,
-		duration=2) annotation(Placement(transformation(
-		origin={-72,-46},
-		extent={{-10,-10},{10,10}},
-		rotation=-90)));
 	satcomponents.thermal.thermometer_withnoise thermometer_withnoise1 annotation(Placement(transformation(
 		origin={-10,28},
 		extent={{-10,-10},{10,10}})));
@@ -4057,10 +6196,6 @@ model verosim_basic_6D
 			points={{-48,-12},{-48,-17},{-36.7,-17},{-36.7,28},{-25,28},{-20,
 			28}},
 			color={191,0,0}));
-		connect(rampvoltage1.p,dcdc_ideal_simple1.p1) annotation(Line(points={{-72,-36},{-72,-31},{-49.7,-31},{-49.7,-41},{-27,-41},{-22,
-		-41}}));
-		connect(ground1.p,rampvoltage1.n) annotation(Line(points={{-44,-64},{-44,-59},{-58,-59},{-58,-61},{-72,-61},{-72,
-		-56}}));
 		connect(ground1.p,dcdc_ideal_simple1.n1) annotation(Line(points={{-44,-64},{-44,-59},{-44,-51},{-27,-51},{-22,-51}}));
 		connect(bodyradiation1.port_b,heatcapacitor1.port) annotation(Line(
 			points={{-64,-10},{-59,-10},{-59,-17},{-48,-17},{-48,-12}},
@@ -4164,15 +6299,6 @@ model verosim_basic_6D
 			noise_ung2(y(flags=2)),
 			noise_ung1(y(flags=2)),
 			noise_ung3(y(flags=2))),
-		rampvoltage1(
-			v(flags=2),
-			i(flags=2),
-			p(
-				v(flags=2),
-				i(flags=2)),
-			n(
-				v(flags=2),
-				i(flags=2))),
 		thermometer_withnoise1(noise_ung(y(flags=2))),
 		iXp(mi(noise_ung1(y(flags=2)))),
 		iXn(mi(noise_ung1(y(flags=2)))),
@@ -4189,5 +6315,71 @@ model verosim_basic_6D
 			Tolerance=1e-012,
 			Interval=0.02));
 end verosim_basic_6D;
+model verosim_basic_6D_vsource "verosim_basic_6D_vsource"
+	extends verosim_basic_6D;
+	replaceable satcomponents.power.dc_power vsource(v=25) annotation(Placement(transformation(extent={{-95,-55},{-75,-35}})));
+	equation
+		connect(vsource.p,dcdc_ideal_simple1.p1) annotation(Line(
+			points={{-75,-39},{-70,-39},{-27,-39},{-27,-41},{-22,-41}},
+			thickness=0.0625));
+		connect(vsource.n,ground1.p) annotation(Line(
+			points={{-75,-49},{-70,-49},{-44,-49},{-44,-59},{-44,-64}},
+			thickness=0.0625));
+	annotation(
+		imu(
+			noise_ung2(y(flags=2)),
+			noise_ung1(y(flags=2)),
+			noise_ung3(y(flags=2))),
+		thermometer_withnoise1(noise_ung(y(flags=2))),
+		iXp(mi(noise_ung1(y(flags=2)))),
+		iXn(mi(noise_ung1(y(flags=2)))),
+		iYp(mi(noise_ung1(y(flags=2)))),
+		iYn(mi(noise_ung1(y(flags=2)))),
+		iZp(mi(noise_ung1(y(flags=2)))),
+		iZn(mi(noise_ung1(y(flags=2)))),
+		experiment(
+			StopTime=100,
+			StartTime=0,
+			Tolerance=1e-012));
+end verosim_basic_6D_vsource;
+model iboss_vti_solar
+	extends iboss_vti(redeclare satcomponents.power.solar_power.solarcell_simple vsource)annotation(Placement(transformation(extent={{-10,-10},{10,10}})));
+	annotation(
+		imu(
+			noise_ung2(y(flags=2)),
+			noise_ung1(y(flags=2)),
+			noise_ung3(y(flags=2))),
+		thermometer_withnoise1(noise_ung(y(flags=2))),
+		iXp(mi(noise_ung1(y(flags=2)))),
+		iXn(mi(noise_ung1(y(flags=2)))),
+		iYp(mi(noise_ung1(y(flags=2)))),
+		iYn(mi(noise_ung1(y(flags=2)))),
+		iZp(mi(noise_ung1(y(flags=2)))),
+		iZn(mi(noise_ung1(y(flags=2)))),
+		experiment(
+			StopTime=1,
+			StartTime=0));
+end iboss_vti_solar;
+model iboss_vti_battery
+	extends iboss_vti(redeclare satcomponents.power.batteries.battery vsource)annotation(Placement(transformation(extent={{-10,-10},{10,10}})));
+	annotation(
+		imu(
+			noise_ung2(y(flags=2)),
+			noise_ung1(y(flags=2)),
+			noise_ung3(y(flags=2))),
+		thermometer_withnoise1(noise_ung(y(flags=2))),
+		iXp(mi(noise_ung1(y(flags=2)))),
+		iXn(mi(noise_ung1(y(flags=2)))),
+		iYp(mi(noise_ung1(y(flags=2)))),
+		iYn(mi(noise_ung1(y(flags=2)))),
+		iZp(mi(noise_ung1(y(flags=2)))),
+		iZn(mi(noise_ung1(y(flags=2)))),
+		vsource(
+			v(flags=2),
+			soc(flags=2)),
+		experiment(
+			StopTime=1,
+			StartTime=0));
+end iboss_vti_battery;
 end buildingblocks;
 end ibossmo;

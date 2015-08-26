@@ -1507,7 +1507,7 @@ package modelicatests
 		annotation(experiment(
 			StopTime=100,
 			StartTime=0,
-			Tolerance=1e-012,
-			Interval=0.02));
+			Tolerance=1e-014,
+			Interval=0.01));
 	end multidimensional_motor;
 end modelicatests;
