@@ -242,7 +242,7 @@ package modelicatests
 
   package bus_simulation
     expandable connector modcom "modcom"
-      Real a[10];
+      Real a[10] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
       annotation(Icon(graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-73.3, 76.7}, {80, -76.7}}), Text(textString = "iCOM", lineColor = {0, 0, 0}, extent = {{-46.7, 50}, {53.3, -50}})}));
     end modcom;
 
@@ -298,21 +298,18 @@ package modelicatests
     end Test;
 
     model signalbustest
-      modcom modcom1 annotation(Placement(transformation(extent = {{-70, 20}, {-50, 40}})));
       modcom modcom2 annotation(Placement(transformation(extent = {{20, 20}, {40, 40}})));
       Modelica.Blocks.Math.Cos cos1 annotation(Placement(transformation(origin = {115, -5}, extent = {{-10, -10}, {10, 10}})));
       modelicatests.bus_simulation.modcom modcom3 annotation(Placement(visible = true, transformation(origin = {-20, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-20, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       modelicatests.bus_simulation.modcom modcom4 annotation(Placement(visible = true, transformation(origin = {20, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {20, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-      Modelica.Blocks.Sources.Sine sine2(amplitude = 2.0, freqHz = 0.1) annotation(Placement(visible = true, transformation(origin = {-80, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       Modelica.Blocks.Sources.Sine sine1(amplitude = 2.0, freqHz = 0.1) annotation(Placement(visible = true, transformation(origin = {-20, -80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       Modelica.Blocks.Math.Gain gain1 annotation(Placement(visible = true, transformation(origin = {-20, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      modcom modcom1 annotation(Placement(visible = true, transformation(extent = {{-80, 50}, {-60, 70}}, rotation = 0), iconTransformation(extent = {{-70, 20}, {-50, 40}}, rotation = 0)));
     equation
-      connect(modcom1.s2, gain1.u) annotation(Line(points = {{-60, 30}, {-33.0275, 30}, {-33.0275, 60.0917}, {-33.0275, 60.0917}}));
+      connect(modcom1.s2, gain1.u) annotation(Line(points = {{-70, 60}, {-33.0275, 60}, {-33.0275, 60.0917}}));
       connect(sine1.y, modcom4.s2) annotation(Line(points = {{-9, -80}, {19.2661, -80}, {19.2661, -41.7431}, {19.2661, -41.7431}}));
-      connect(sine2.y, modcom1.s1) annotation(Line(points = {{-69, 0}, {-56.8807, 0}, {-56.8807, 26.1468}, {-56.8807, 26.1468}}));
       connect(modcom4, modcom2) annotation(Line(points = {{20, -40}, {27.9817, -40}, {27.9817, 24.3119}, {27.9817, 24.3119}}));
       connect(modcom3, modcom4) annotation(Line(points = {{-20, -20}, {17.8899, -20}, {17.8899, -40.367}, {17.8899, -40.367}}));
-      connect(modcom3, modcom1) annotation(Line(points = {{-20, -20}, {-51.8349, -20}, {-51.8349, 29.8165}, {-51.8349, 29.8165}}));
       connect(modcom2.s1, cos1.u) annotation(Line(points = {{30, 30}, {65.5963, 30}, {65.5963, -4.58716}, {101.835, -4.58716}, {101.835, -4.58716}}));
       annotation(sine1(y(flags = 2)), tanh1(y(flags = 2)), realValue1(showNumber(flags = 2)), sine2(y(flags = 2)), experiment(StartTime = 0, StopTime = 100, Tolerance = 0.0001, Interval = 0.2));
     end signalbustest;
