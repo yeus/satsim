@@ -4771,39 +4771,39 @@ place from the inner to the outer cylinder):
 		model thermal_element_opt_prop "thermal_element_opt_prop.mo"
 			import iboss.*;
 			surface_properties_out xp "optical properties of the outer surface of the side panel" annotation(Placement(
-				transformation(extent={{105,-31},{125,-11}}),
+				transformation(extent={{105,-51},{125,-31}}),
 				iconTransformation(
 					origin={100,0},
 					extent={{-10,-10},{10,10}},
 					rotation=-90)));
 			surface_properties_out xn "optical properties of the outer surface of the side panel" annotation(Placement(
-				transformation(extent={{-115,-26},{-95,-6}}),
+				transformation(extent={{-115,-46},{-95,-26}}),
 				iconTransformation(
 					origin={-100,0},
 					extent={{-10,-10},{10,10}},
 					rotation=90)));
 			surface_properties_out yp annotation(Placement(
-				transformation(extent={{-35,49},{-15,69}}),
+				transformation(extent={{-35,29},{-15,49}}),
 				iconTransformation(
 					origin={0,-25},
 					extent={{-10,90},{10,110}})));
 			surface_properties_out zp "optical properties of the outer surface of the side panel" annotation(Placement(
-				transformation(extent={{-85,-81},{-65,-61}}),
+				transformation(extent={{-85,-101},{-65,-81}}),
 				iconTransformation(
 					origin={0,50},
 					extent={{-60,-110},{-40,-90}})));
 			surface_properties_out zn annotation(Placement(
-				transformation(extent={{50,-1},{70,19}}),
+				transformation(extent={{50,-21},{70,-1}}),
 				iconTransformation(
 					origin={0,-50},
 					extent={{40,90},{60,110}})));
 			surface_properties_out yn "optical properties of the outer surface of the side panel" annotation(Placement(
-				transformation(extent={{-10,-121},{10,-101}}),
+				transformation(extent={{-10,-141},{10,-121}}),
 				iconTransformation(
 					origin={0,-75},
 					extent={{-10,-10},{10,10}},
 					rotation=-180)));
-			Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b dissipation_power if dissipation_power_on "Thermal port for 1-dim. heat transfer (unfilled rectangular icon)" annotation(Placement(transformation(extent={{-40,4},{-20,24}})));
+			Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b dissipation_power if dissipation_power_on "Thermal port for 1-dim. heat transfer (unfilled rectangular icon)" annotation(Placement(transformation(extent={{-40,-16},{-20,4}})));
 			parameter Boolean dissipation_power_on=false "true if component has a disipation power(connection to electrical simulation)";
 			parameter Boolean var_rad_xn=false "variable radiator or fixed alpha/epsilon in xn direction";
 			parameter Boolean var_rad_xp=false "variable radiator or fixed alpha/epsilon in xp direction";
@@ -4813,55 +4813,55 @@ place from the inner to the outer cylinder):
 			parameter Boolean var_rad_zp=false "variable radiator or fixed alpha/epsilon in zp direction";
 			parameter Modelica.SIunits.HeatFlowRate Q_flow_dissipation=0 if dissipation_power_on "Fixed heat flow rate at port";
 			Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalconductorrechts_x(G=Gx / 2) annotation(Placement(transformation(
-				origin={47,-11},
+				origin={47,-31},
 				extent={{-12,-12},{0,0}})));
 			Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatcapacitor1(
 				C=C,
 				T(fixed=true)) annotation(Placement(transformation(
-				origin={2,2},
+				origin={2,-18},
 				extent={{-12,-12},{12,12}})));
 			Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductorlinks_x(G=Gx / 2) annotation(Placement(transformation(
-				origin={-30,-16},
+				origin={-30,-36},
 				extent={{-10,-10},{10,10}})));
 			Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductorunten_y(G=Gy / 2) annotation(Placement(transformation(
-				origin={-2.4,-53.6},
+				origin={-2.4,-73.59999999999999},
 				extent={{-7.5,-7.5},{7.5,7.5}},
 				rotation=-270)));
 			Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductoroben_y(G=Gy / 2) annotation(Placement(transformation(
-				origin={-5,34},
+				origin={-5,14},
 				extent={{-10,-10},{5,5}},
 				rotation=-270)));
 			Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductorhinten_z(G=Gz / 2) annotation(Placement(transformation(
-				origin={25,5},
+				origin={25,-15},
 				extent={{-10,-10},{10,10}},
 				rotation=-135)));
 			Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductorvorne_z(G=Gz / 2) annotation(Placement(transformation(
-				origin={-35,-40},
+				origin={-35,-60},
 				extent={{-10,-10},{10,10}},
 				rotation=-135)));
 			parameter MaterialDatabase.Material material=MaterialDatabase.Aluminiumlegierungen_6061_Legierung() "Material from MaterialDataBase" annotation(
-				Placement(transformation(extent={{-10,-41},{10,-21}})),
+				Placement(transformation(extent={{-10,-61},{10,-41}})),
 				choicesAllMatching=true);
 			parameter Modelica.SIunits.Length x=1 "Laenge des Materials in x Richtung der Waermeausbreitung";
 			parameter Modelica.SIunits.Length y=1 "Laenge des Materials in y Richtung der Waermeausbreitung";
 			parameter Modelica.SIunits.Length z=1 "Laenge des Materials in z Richtung der Waermeausbreitung";
 			parameter OpticalPropertiesDatabase.OpticalProperties opticalProperties_xn=OpticalPropertiesDatabase.Schwarze_Beschichtungen_IMAGECURE_XV501T_4()if not var_rad_xn annotation(
-				Placement(transformation(extent={{125,-81},{145,-61}})),
+				Placement(transformation(extent={{125,-101},{145,-81}})),
 				choicesAllMatching=true);
 			parameter OpticalPropertiesDatabase.OpticalProperties opticalProperties_xp=OpticalPropertiesDatabase.Schwarze_Beschichtungen_Deep_Sky_Black()if not var_rad_xp annotation(
-				Placement(transformation(extent={{125,-81},{145,-61}})),
+				Placement(transformation(extent={{125,-101},{145,-81}})),
 				choicesAllMatching=true);
 			parameter OpticalPropertiesDatabase.OpticalProperties opticalProperties_yn=OpticalPropertiesDatabase.Schwarze_Beschichtungen_C_black_Anfang()if not var_rad_yn annotation(
-				Placement(transformation(extent={{125,-81},{145,-61}})),
+				Placement(transformation(extent={{125,-101},{145,-81}})),
 				choicesAllMatching=true);
 			parameter OpticalPropertiesDatabase.OpticalProperties opticalProperties_yp=OpticalPropertiesDatabase.Schwarze_Beschichtungen_Z306_Ende()if not var_rad_yp annotation(
-				Placement(transformation(extent={{125,-81},{145,-61}})),
+				Placement(transformation(extent={{125,-101},{145,-81}})),
 				choicesAllMatching=true);
 			parameter OpticalPropertiesDatabase.OpticalProperties opticalProperties_zn=OpticalPropertiesDatabase.Schwarze_Beschichtungen_N_150_1()if not var_rad_zn annotation(
-				Placement(transformation(extent={{125,-81},{145,-61}})),
+				Placement(transformation(extent={{125,-101},{145,-81}})),
 				choicesAllMatching=true);
 			parameter OpticalPropertiesDatabase.OpticalProperties opticalProperties_zp=OpticalPropertiesDatabase.Schwarze_Beschichtungen_Pyromark_1200()if not var_rad_zp annotation(
-				Placement(transformation(extent={{125,-81},{145,-61}})),
+				Placement(transformation(extent={{125,-101},{145,-81}})),
 				choicesAllMatching=true);
 			protected
 				parameter Modelica.SIunits.ThermalConductance Gx=y * z * material.k / x "Constant thermal conductance of material in x direction";
@@ -4872,183 +4872,273 @@ place from the inner to the outer cylinder):
 				parameter Modelica.SIunits.Area A_y=x*z "surface area in x direction";
 				parameter Modelica.SIunits.Area A_z=x*y "surface area in x direction";
 			public
-				Modelica.Blocks.Sources.Constant epsilon_xp(k=opticalProperties_xp.epsilon)if not var_rad_xp annotation(Placement(transformation(extent={{55,-81},{75,-61}})));
-				Modelica.Blocks.Sources.Constant alpha_xp(k=opticalProperties_xp.alpha)if not var_rad_xp annotation(Placement(transformation(extent={{55,-51},{75,-31}})));
-				Modelica.Blocks.Sources.Constant epsilon_xn(k=opticalProperties_xn.epsilon)if not var_rad_xn annotation(Placement(transformation(extent={{-70,-6},{-50,14}})));
-				Modelica.Blocks.Sources.Constant alpha_xn(k=opticalProperties_xn.alpha)if not var_rad_xn annotation(Placement(transformation(extent={{-70,24},{-50,44}})));
-				Modelica.Blocks.Sources.Constant epsilon_yp(k=opticalProperties_yp.epsilon)if not var_rad_yp annotation(Placement(transformation(extent={{15,24},{35,44}})));
-				Modelica.Blocks.Sources.Constant alpha_yp(k=opticalProperties_yp.alpha)if not var_rad_yp annotation(Placement(transformation(extent={{15,54},{35,74}})));
-				Modelica.Blocks.Sources.Constant epsilon_yn(k=opticalProperties_yn.epsilon)if not var_rad_yn annotation(Placement(transformation(extent={{15,-71},{35,-51}})));
-				Modelica.Blocks.Sources.Constant alpha_yn(k=opticalProperties_yn.alpha)if not var_rad_yn annotation(Placement(transformation(extent={{15,-101},{35,-81}})));
-				Modelica.Blocks.Sources.Constant epsilon_zp(k=opticalProperties_zp.epsilon)if not var_rad_zp annotation(Placement(transformation(extent={{-40,-126},{-20,-106}})));
-				Modelica.Blocks.Sources.Constant alpha_zp(k=opticalProperties_zp.alpha)if not var_rad_zp annotation(Placement(transformation(extent={{-40,-96},{-20,-76}})));
-				Modelica.Blocks.Sources.Constant epsilon_zn(k=opticalProperties_zn.epsilon)if not var_rad_zn annotation(Placement(transformation(extent={{75,14},{95,34}})));
-				Modelica.Blocks.Sources.Constant alpha_zn(k=opticalProperties_zn.alpha)if not var_rad_zn annotation(Placement(transformation(extent={{75,44},{95,64}})));
-				Modelica.Blocks.Sources.Constant Area_xp(k=A_x) annotation(Placement(transformation(extent={{60,-111},{80,-91}})));
-				Modelica.Blocks.Sources.Constant Area_xn(k=A_x) annotation(Placement(transformation(extent={{-70,54},{-50,74}})));
-				Modelica.Blocks.Sources.Constant Area_yn(k=A_y) annotation(Placement(transformation(extent={{15,-131},{35,-111}})));
-				Modelica.Blocks.Sources.Constant Area_yp(k=A_y) annotation(Placement(transformation(extent={{45,54},{65,74}})));
-				Modelica.Blocks.Sources.Constant Area_zn(k=A_z) annotation(Placement(transformation(extent={{110,14},{130,34}})));
-				Modelica.Blocks.Sources.Constant Area_zp(k=A_z) annotation(Placement(transformation(extent={{-70,-126},{-50,-106}})));
-				Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow fixed_dissipation_HeatFlow(Q_flow=Q_flow_dissipation)if dissipation_power_on annotation(Placement(transformation(extent={{-40,29},{-20,49}})));
-				Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperatureSensor_yp if var_rad_yp annotation(Placement(transformation(extent={{130,49},{150,69}})));
+				Modelica.Blocks.Sources.Constant epsilon_xp(k=opticalProperties_xp.epsilon)if not var_rad_xp annotation(Placement(transformation(extent={{55,-101},{75,-81}})));
+				Modelica.Blocks.Sources.Constant alpha_xp(k=opticalProperties_xp.alpha)if not var_rad_xp annotation(Placement(transformation(extent={{55,-71},{75,-51}})));
+				Modelica.Blocks.Sources.Constant epsilon_xn(k=opticalProperties_xn.epsilon)if not var_rad_xn annotation(Placement(transformation(extent={{-70,-26},{-50,-6}})));
+				Modelica.Blocks.Sources.Constant alpha_xn(k=opticalProperties_xn.alpha)if not var_rad_xn annotation(Placement(transformation(extent={{-70,4},{-50,24}})));
+				Modelica.Blocks.Sources.Constant epsilon_yp(k=opticalProperties_yp.epsilon)if not var_rad_yp annotation(Placement(transformation(extent={{15,4},{35,24}})));
+				Modelica.Blocks.Sources.Constant alpha_yp(k=opticalProperties_yp.alpha)if not var_rad_yp annotation(Placement(transformation(extent={{15,34},{35,54}})));
+				Modelica.Blocks.Sources.Constant epsilon_yn(k=opticalProperties_yn.epsilon)if not var_rad_yn annotation(Placement(transformation(extent={{15,-91},{35,-71}})));
+				Modelica.Blocks.Sources.Constant alpha_yn(k=opticalProperties_yn.alpha)if not var_rad_yn annotation(Placement(transformation(extent={{15,-121},{35,-101}})));
+				Modelica.Blocks.Sources.Constant epsilon_zp(k=opticalProperties_zp.epsilon)if not var_rad_zp annotation(Placement(transformation(extent={{-40,-146},{-20,-126}})));
+				Modelica.Blocks.Sources.Constant alpha_zp(k=opticalProperties_zp.alpha)if not var_rad_zp annotation(Placement(transformation(extent={{-40,-116},{-20,-96}})));
+				Modelica.Blocks.Sources.Constant epsilon_zn(k=opticalProperties_zn.epsilon)if not var_rad_zn annotation(Placement(transformation(extent={{75,-6},{95,14}})));
+				Modelica.Blocks.Sources.Constant alpha_zn(k=opticalProperties_zn.alpha)if not var_rad_zn annotation(Placement(transformation(extent={{75,24},{95,44}})));
+				Modelica.Blocks.Sources.Constant Area_xp(k=A_x) annotation(Placement(transformation(extent={{60,-131},{80,-111}})));
+				Modelica.Blocks.Sources.Constant Area_xn(k=A_x) annotation(Placement(transformation(extent={{-70,34},{-50,54}})));
+				Modelica.Blocks.Sources.Constant Area_yn(k=A_y) annotation(Placement(transformation(extent={{15,-151},{35,-131}})));
+				Modelica.Blocks.Sources.Constant Area_yp(k=A_y) annotation(Placement(transformation(extent={{45,34},{65,54}})));
+				Modelica.Blocks.Sources.Constant Area_zn(k=A_z) annotation(Placement(transformation(extent={{110,-6},{130,14}})));
+				Modelica.Blocks.Sources.Constant Area_zp(k=A_z) annotation(Placement(transformation(extent={{-70,-146},{-50,-126}})));
+				Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow fixed_dissipation_HeatFlow(Q_flow=Q_flow_dissipation)if dissipation_power_on annotation(Placement(transformation(extent={{-40,9},{-20,29}})));
+				Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperatureSensor_yp if var_rad_yp annotation(Placement(transformation(extent={{5,59},{25,79}})));
 				Modelica.Blocks.Tables.CombiTable1Ds combiTable1Ds1_yp(
 					tableOnFile=true,
 					table=[250,0.5,0.9;290,0.7,0.7],
 					tableName="thermochromLaCaMnO3",
 					fileName="/home/jens/iBOSS2/Simulation_Linux/ibosssim/model/iboss/thermochrom_alpha_epsilon.txt",
-					smoothness=Modelica.Blocks.Types.Smoothness.ContinuousDerivative)if var_rad_yp annotation(Placement(transformation(extent={{175,49},{195,69}})));
+					smoothness=Modelica.Blocks.Types.Smoothness.ContinuousDerivative)if var_rad_yp annotation(Placement(transformation(extent={{50,59},{70,79}})));
+				Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperatureSensor_xp if var_rad_yp annotation(Placement(transformation(extent={{185,-46},{205,-26}})));
+				Modelica.Blocks.Tables.CombiTable1Ds combiTable1Ds1_xp(
+					tableOnFile=true,
+					table=[250,0.5,0.9;290,0.7,0.7],
+					tableName="thermochromLaCaMnO3",
+					fileName="/home/jens/iBOSS2/Simulation_Linux/ibosssim/model/iboss/thermochrom_alpha_epsilon.txt",
+					smoothness=Modelica.Blocks.Types.Smoothness.ContinuousDerivative)if var_rad_yp annotation(Placement(transformation(extent={{230,-46},{250,-26}})));
+				Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperatureSensor_zn if var_rad_yp annotation(Placement(transformation(extent={{160,39},{180,59}})));
+				Modelica.Blocks.Tables.CombiTable1Ds combiTable1Ds1_zn(
+					tableOnFile=true,
+					table=[250,0.5,0.9;290,0.7,0.7],
+					tableName="thermochromLaCaMnO3",
+					fileName="/home/jens/iBOSS2/Simulation_Linux/ibosssim/model/iboss/thermochrom_alpha_epsilon.txt",
+					smoothness=Modelica.Blocks.Types.Smoothness.ContinuousDerivative)if var_rad_yp annotation(Placement(transformation(extent={{205,39},{225,59}})));
+				Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperatureSensor_xn if var_rad_yp annotation(Placement(transformation(extent={{-150,-81},{-130,-61}})));
+				Modelica.Blocks.Tables.CombiTable1Ds combiTable1Ds1_xn(
+					tableOnFile=true,
+					table=[250,0.5,0.9;290,0.7,0.7],
+					tableName="thermochromLaCaMnO3",
+					fileName="/home/jens/iBOSS2/Simulation_Linux/ibosssim/model/iboss/thermochrom_alpha_epsilon.txt",
+					smoothness=Modelica.Blocks.Types.Smoothness.ContinuousDerivative)if var_rad_yp annotation(Placement(transformation(extent={{-120,-81},{-100,-61}})));
+				Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperatureSensor_zp if var_rad_yp annotation(Placement(transformation(extent={{-145,-146},{-125,-126}})));
+				Modelica.Blocks.Tables.CombiTable1Ds combiTable1Ds1_zp(
+					tableOnFile=true,
+					table=[250,0.5,0.9;290,0.7,0.7],
+					tableName="thermochromLaCaMnO3",
+					fileName="/home/jens/iBOSS2/Simulation_Linux/ibosssim/model/iboss/thermochrom_alpha_epsilon.txt",
+					smoothness=Modelica.Blocks.Types.Smoothness.ContinuousDerivative)if var_rad_yp annotation(Placement(transformation(extent={{-110,-146},{-90,-126}})));
+				Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temperatureSensor_yn if var_rad_yp annotation(Placement(transformation(extent={{-65,-191},{-45,-171}})));
+				Modelica.Blocks.Tables.CombiTable1Ds combiTable1Ds1_yn(
+					tableOnFile=true,
+					table=[250,0.5,0.9;290,0.7,0.7],
+					tableName="thermochromLaCaMnO3",
+					fileName="/home/jens/iBOSS2/Simulation_Linux/ibosssim/model/iboss/thermochrom_alpha_epsilon.txt",
+					smoothness=Modelica.Blocks.Types.Smoothness.ContinuousDerivative)if var_rad_yp annotation(Placement(transformation(extent={{-20,-191},{0,-171}})));
 			equation
 				connect(heatcapacitor1.port,thermalConductorlinks_x.port_b) annotation(Line(
-					points={{2,-10},{2,-15},{-5.3,-15},{-5.3,-13},{-13,-13},{-18,
-					-13}},
+					points={{2,-30},{2,-35},{2,-36},{-15,-36},{-20,-36}},
 					color={191,0,0},
 					thickness=0.0625));
 				connect(heatcapacitor1.port,thermalconductorrechts_x.port_a) annotation(Line(
-					points={{2,-10},{2,-15},{17,-15},{17,-14},{32,-14},{37,
-					-14}},
+					points={{2,-30},{2,-35},{2,-37},{30,-37},{35,-37}},
 					color={191,0,0},
 					thickness=0.0625));
 				connect(thermalConductorunten_y.port_b,heatcapacitor1.port) annotation(Line(
-					points={{-2.4,-45.9},{-2.4,-40.9},{-2.4,-18.6},{0.6,-18.6},{0.6,-13.6}},
+					points={{-2.3,-66},{-2.3,-61},{-2.3,-35},{2,-35},{2,-30}},
 					color={191,0,0},
 					thickness=0.0625));
 				connect(thermalConductoroben_y.port_a,heatcapacitor1.port) annotation(Line(
-					points={{-2.7,24},{-2.7,19},{-1.3,19},{-1.3,-18},{0,-18},{0,
-					-13}},
+					points={{-2.7,4},{-2.7,-1},{-0.3,-1},{-0.3,-35},{2,-35},{2,
+					-30}},
 					color={191,0,0},
 					thickness=0.0625));
 				connect(thermalConductorvorne_z.port_a,heatcapacitor1.port) annotation(Line(
-					points={{-28,-33},{-23,-33},{0,-33},{0,-18},{0,-13}},
+					points={{-28,-53},{-23,-53},{2,-53},{2,-35},{2,-30}},
 					color={191,0,0},
 					thickness=0.0625));
 				connect(thermalConductorhinten_z.port_b,heatcapacitor1.port) annotation(Line(
-					points={{18,-2},{13,-2},{13,-18},{0,-18},{0,-13}},
+					points={{18,-22},{13,-22},{13,-35},{2,-35},{2,-30}},
 					color={191,0,0},
 					thickness=0.0625));
 				
 				
 				
 				connect(epsilon_xp.y,xp.epsilon) annotation(Line(
-					points={{76,-71},{81,-71},{110,-71},{110,-21},{115,-21}},
+					points={{76,-91},{81,-91},{110,-91},{110,-41},{115,-41}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(alpha_xp.y,xp.alpha) annotation(Line(
-					points={{76,-41},{81,-41},{110,-41},{110,-21},{115,-21}},
+					points={{76,-61},{81,-61},{110,-61},{110,-41},{115,-41}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(epsilon_xn.y,xn.epsilon) annotation(Line(
-					points={{-49,4},{-44,4},{-44,-16},{-100,-16},{-105,-16}},
+					points={{-49,-16},{-44,-16},{-44,-36},{-100,-36},{-105,-36}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(alpha_xn.y,xn.alpha) annotation(Line(
-					points={{-49,34},{-44,34},{-44,-16},{-100,-16},{-105,-16}},
+					points={{-49,14},{-44,14},{-44,-36},{-100,-36},{-105,-36}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(thermalconductorrechts_x.port_b,xp.thermal_port) annotation(Line(
-					points={{47,-17},{52,-17},{110,-17},{110,-21},{115,-21}},
+					points={{47,-37},{52,-37},{110,-37},{110,-41},{115,-41}},
 					color={191,0,0},
 					thickness=0.0625));
 				connect(thermalConductorlinks_x.port_a,xn.thermal_port) annotation(Line(
-					points={{-40,-16},{-45,-16},{-100,-16},{-105,-16}},
+					points={{-40,-36},{-45,-36},{-100,-36},{-105,-36}},
 					color={191,0,0},
 					thickness=0.0625));
 				connect(Area_xp.y,xp.A) annotation(Line(
-					points={{81,-101},{86,-101},{110,-101},{110,-21},{115,-21}},
+					points={{81,-121},{86,-121},{110,-121},{110,-41},{115,-41}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(Area_xn.y,xn.A) annotation(Line(
-					points={{-49,64},{-44,64},{-44,-16},{-100,-16},{-105,-16}},
+					points={{-49,44},{-44,44},{-44,-36},{-100,-36},{-105,-36}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(Area_zp.y,zp.A) annotation(Line(
-					points={{-49,-116},{-44,-116},{-44,-71},{-70,-71},{-75,-71}},
+					points={{-49,-136},{-44,-136},{-44,-91},{-70,-91},{-75,-91}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(epsilon_zp.y,zp.epsilon) annotation(Line(
-					points={{-19,-116},{-14,-116},{-14,-71},{-70,-71},{-75,-71}},
+					points={{-19,-136},{-14,-136},{-14,-91},{-70,-91},{-75,-91}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(alpha_zp.y,zp.alpha) annotation(Line(
-					points={{-19,-86},{-14,-86},{-14,-71},{-70,-71},{-75,-71}},
+					points={{-19,-106},{-14,-106},{-14,-91},{-70,-91},{-75,-91}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(thermalConductorvorne_z.port_b,zp.thermal_port) annotation(Line(
-					points={{-42,-47},{-47,-47},{-70,-47},{-70,-71},{-75,-71}},
+					points={{-42,-67},{-47,-67},{-70,-67},{-70,-91},{-75,-91}},
 					color={191,0,0},
 					thickness=0.0625));
 				connect(thermalConductorunten_y.port_a,yn.thermal_port) annotation(Line(
-					points={{-2.3,-61},{-2.3,-66},{-5,-66},{-5,-111},{0,-111}},
+					points={{-2.3,-81},{-2.3,-86},{-5,-86},{-5,-131},{0,-131}},
 					color={191,0,0},
 					thickness=0.0625));
 				connect(Area_yn.y,yn.A) annotation(Line(
-					points={{36,-121},{41,-121},{41,-111},{5,-111},{0,-111}},
+					points={{36,-141},{41,-141},{41,-131},{5,-131},{0,-131}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(alpha_yn.y,yn.alpha) annotation(Line(
-					points={{36,-91},{41,-91},{41,-111},{5,-111},{0,-111}},
+					points={{36,-111},{41,-111},{41,-131},{5,-131},{0,-131}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(epsilon_yn.y,yn.epsilon) annotation(Line(
-					points={{36,-61},{41,-61},{41,-111},{5,-111},{0,-111}},
+					points={{36,-81},{41,-81},{41,-131},{5,-131},{0,-131}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(thermalConductorhinten_z.port_a,zn.thermal_port) annotation(Line(
-					points={{32,12},{37,12},{55,12},{55,9},{60,9}},
+					points={{32,-8},{37,-8},{55,-8},{55,-11},{60,-11}},
 					color={191,0,0},
 					thickness=0.0625));
 				connect(epsilon_zn.y,zn.epsilon) annotation(Line(
-					points={{96,24},{101,24},{101,9},{65,9},{60,9}},
+					points={{96,4},{101,4},{101,-11},{65,-11},{60,-11}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(Area_zn.y,zn.A) annotation(Line(
-					points={{131,24},{136,24},{136,9},{65,9},{60,9}},
+					points={{131,4},{136,4},{136,-11},{65,-11},{60,-11}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(alpha_zn.y,zn.alpha) annotation(Line(
-					points={{96,54},{101,54},{101,9},{65,9},{60,9}},
+					points={{96,34},{101,34},{101,-11},{65,-11},{60,-11}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(thermalConductoroben_y.port_b,yp.thermal_port) annotation(Line(
-					points={{-2.7,39},{-2.7,44},{-2.7,59},{-20,59},{-25,59}},
+					points={{-2.7,19},{-2.7,24},{-2.7,39},{-20,39},{-25,39}},
 					color={191,0,0},
 					thickness=0.0625));
 				connect(epsilon_yp.y,yp.epsilon) annotation(Line(
-					points={{36,34},{41,34},{41,59},{-20,59},{-25,59}},
+					points={{36,14},{41,14},{41,39},{-20,39},{-25,39}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(alpha_yp.y,yp.alpha) annotation(Line(
-					points={{36,64},{41,64},{41,54},{-20,54},{-20,59},{-25,
-					59}},
+					points={{36,44},{41,44},{41,34},{-20,34},{-20,39},{-25,
+					39}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(Area_yp.y,yp.A) annotation(Line(
-					points={{66,64},{71,64},{71,54},{-20,54},{-20,59},{-25,
-					59}},
+					points={{66,44},{71,44},{71,34},{-20,34},{-20,39},{-25,
+					39}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(heatcapacitor1.port,dissipation_power) annotation(Line(
-					points={{2,-10},{2,-15},{-11.3,-15},{-11.3,14},{-25,14},{-30,
-					14}},
+					points={{2,-30},{2,-35},{-11.3,-35},{-11.3,-6},{-25,-6},{-30,
+					-6}},
 					color={191,0,0},
 					thickness=0.0625));
 				
 				connect(fixed_dissipation_HeatFlow.port,dissipation_power) annotation(Line(
-					points={{-20,39},{-15,39},{-15,14},{-25,14},{-30,14}},
+					points={{-20,19},{-15,19},{-15,-6},{-25,-6},{-30,-6}},
 					color={191,0,0},
 					thickness=0.0625));
 				
 				
 				connect(temperatureSensor_yp.T,combiTable1Ds1_yp.u) annotation(Line(
-					points={{150,58.7},{155,58.7},{168,58.7},{173,58.7}},
+					points={{25,69},{30,69},{43,69},{48,69}},
 					color={0,0,127},
 					thickness=0.0625));
 				connect(thermalConductoroben_y.port_b,temperatureSensor_yp.port) annotation(Line(
-					points={{-2.7,39},{-2.7,44},{-2.7,58.7},{125,58.7},{130,58.7}},
+					points={{-2.7,19},{-2.7,24},{-2.7,69},{0,69},{5,69}},
 					color={191,0,0},
+					thickness=0.0625));
+				
+				
+				connect(temperatureSensor_xp.T,combiTable1Ds1_xp.u) annotation(Line(
+					points={{205,-36},{210,-36},{223,-36},{228,-36}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(thermalconductorrechts_x.port_b,temperatureSensor_xp.port) annotation(Line(
+					points={{47,-37},{52,-37},{180,-37},{180,-36},{185,-36}},
+					color={191,0,0},
+					thickness=0.0625));
+				
+				
+				connect(temperatureSensor_zn.T,combiTable1Ds1_zn.u) annotation(Line(
+					points={{180,49},{185,49},{198,49},{203,49}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(temperatureSensor_zn.port,thermalConductorhinten_z.port_a) annotation(Line(
+					points={{160,49},{155,49},{37,49},{37,-8},{32,-8}},
+					color={191,0,0},
+					thickness=0.0625));
+				
+				
+				connect(temperatureSensor_xn.T,combiTable1Ds1_xn.u) annotation(Line(
+					points={{-130,-71},{-125,-71},{-127,-71},{-122,-71}},
+					color={0,0,127},
+					thickness=0.0625));
+				connect(temperatureSensor_xn.port,thermalConductorlinks_x.port_a) annotation(Line(
+					points={{-150,-71},{-155,-71},{-155,-36},{-45,-36},{-40,-36}},
+					color={191,0,0},
+					thickness=0.0625));
+				
+				
+				connect(thermalConductorvorne_z.port_b,temperatureSensor_zp.port) annotation(Line(
+					points={{-42,-67},{-47,-67},{-150,-67},{-150,-136},{-145,-136}},
+					color={191,0,0},
+					thickness=0.0625));
+				
+				connect(temperatureSensor_zp.T,combiTable1Ds1_zp.u) annotation(Line(
+					points={{-125,-136},{-120,-136},{-117,-136},{-112,-136}},
+					color={0,0,127},
+					thickness=0.0625));
+				
+				
+				connect(thermalConductorunten_y.port_a,temperatureSensor_yn.port) annotation(Line(
+					points={{-2.3,-81},{-2.3,-86},{-70,-86},{-70,-181},{-65,-181}},
+					color={191,0,0},
+					thickness=0.0625));
+				
+				connect(temperatureSensor_yn.T,combiTable1Ds1_yn.u) annotation(Line(
+					points={{-45,-181},{-40,-181},{-27,-181},{-22,-181}},
+					color={0,0,127},
 					thickness=0.0625));
 			annotation(
 				combiTable1Ds1_yp(y(flags=2)),
+				combiTable1Ds1_xp(y(flags=2)),
+				combiTable1Ds1_zn(y(flags=2)),
+				combiTable1Ds1_xn(y(flags=2)),
+				combiTable1Ds1_zp(y(flags=2)),
+				combiTable1Ds1_yn(y(flags=2)),
 				viewinfo[0](
 					viewSettings(clrRaster=12632256),
 					typename="ModelInfo"),
