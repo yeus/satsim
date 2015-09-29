@@ -5138,6 +5138,24 @@ place from the inner to the outer cylinder):
 					AutoRoute=false);
 				connect(combiTable1Ds1_xp.y[2],xp.alpha) annotation(Line(points={{251,-36},{256,-36},{256,-46},{120,-46},{120,-41},{115,
 				-41}}));
+				connect(combiTable1Ds1_xn.y[1],xn.epsilon) annotation(
+					Line(points={{-99,-71},{-85,-71},{-85,-36},{-100,-36},{-105,-36}}),
+					AutoRoute=false);
+				connect(combiTable1Ds1_xn.y[2],xn.alpha) annotation(Line(points={{-99,-71},{-94,-71},{-94,-36},{-100,-36},{-105,-36}}));
+				connect(combiTable1Ds1_yn.y[1],yn.epsilon) annotation(
+					Line(points={{1,-181},{15,-181},{15,-131},{5,-131},{0,-131}}),
+					AutoRoute=false);
+				connect(combiTable1Ds1_yn.y[2],yn.alpha) annotation(Line(points={{1,-181},{6,-181},{6,-131},{5,-131},{0,-131}}));
+				connect(combiTable1Ds1_yp.y[1],yp.epsilon) annotation(
+					Line(points={{71,69},{80,69},{80,39},{-20,39},{-25,39}}),
+					AutoRoute=false);
+				connect(combiTable1Ds1_yp.y[2],yp.alpha) annotation(Line(points={{71,69},{76,69},{76,39},{-20,39},{-25,39}}));
+				connect(combiTable1Ds1_zn.y[1],zn.epsilon) annotation(Line(points={{226,49},{231,49},{231,-11},{65,-11},{60,-11}}));
+				connect(combiTable1Ds1_zn.y[2],zn.alpha) annotation(Line(points={{226,49},{231,49},{231,-11},{65,-11},{60,-11}}));
+				connect(combiTable1Ds1_zp.y[1],zp.epsilon) annotation(
+					Line(points={{-89,-136},{-84,-136},{-75,-136},{-75,-91}}),
+					AutoRoute=false);
+				connect(combiTable1Ds1_zp.y[2],zp.alpha) annotation(Line(points={{-89,-136},{-84,-136},{-80,-136},{-80,-91},{-75,-91}}));
 			annotation(
 				combiTable1Ds1_yp(y(flags=2)),
 				combiTable1Ds1_xp(y(flags=2)),
@@ -5145,9 +5163,6 @@ place from the inner to the outer cylinder):
 				combiTable1Ds1_xn(y(flags=2)),
 				combiTable1Ds1_zp(y(flags=2)),
 				combiTable1Ds1_yn(y(flags=2)),
-				viewinfo[0](
-					viewSettings(clrRaster=12632256),
-					typename="ModelInfo"),
 				Icon(
 					coordinateSystem(grid={10,10}),
 					graphics={
