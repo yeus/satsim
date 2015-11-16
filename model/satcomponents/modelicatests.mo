@@ -1,6 +1,6 @@
 package modelicatests
   // CP: 65001
-  // SimulationX Version: 3.6.1.26028
+  // SimulationX Version: 3.6.5.34033
 
   model test
     Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 0.1) annotation(Placement(visible = true, transformation(origin = {-58.0612, 29.7164}, extent = {{-12, -12}, {12, 12}}, rotation = 0)));
@@ -242,7 +242,7 @@ package modelicatests
 
   package bus_simulation
     expandable connector modcom "modcom"
-      Real a[10] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+      Real a[10];
       annotation(Icon(graphics = {Rectangle(lineColor = {0, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-73.3, 76.7}, {80, -76.7}}), Text(textString = "iCOM", lineColor = {0, 0, 0}, extent = {{-46.7, 50}, {53.3, -50}})}));
     end modcom;
 
@@ -298,18 +298,21 @@ package modelicatests
     end Test;
 
     model signalbustest
+      modcom modcom1 annotation(Placement(transformation(extent = {{-70, 20}, {-50, 40}})));
       modcom modcom2 annotation(Placement(transformation(extent = {{20, 20}, {40, 40}})));
       Modelica.Blocks.Math.Cos cos1 annotation(Placement(transformation(origin = {115, -5}, extent = {{-10, -10}, {10, 10}})));
       modelicatests.bus_simulation.modcom modcom3 annotation(Placement(visible = true, transformation(origin = {-20, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-20, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       modelicatests.bus_simulation.modcom modcom4 annotation(Placement(visible = true, transformation(origin = {20, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {20, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Blocks.Sources.Sine sine2(amplitude = 2.0, freqHz = 0.1) annotation(Placement(visible = true, transformation(origin = {-80, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       Modelica.Blocks.Sources.Sine sine1(amplitude = 2.0, freqHz = 0.1) annotation(Placement(visible = true, transformation(origin = {-20, -80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       Modelica.Blocks.Math.Gain gain1 annotation(Placement(visible = true, transformation(origin = {-20, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-      modcom modcom1 annotation(Placement(visible = true, transformation(extent = {{-80, 50}, {-60, 70}}, rotation = 0), iconTransformation(extent = {{-70, 20}, {-50, 40}}, rotation = 0)));
     equation
-      connect(modcom1.s2, gain1.u) annotation(Line(points = {{-70, 60}, {-33.0275, 60}, {-33.0275, 60.0917}}));
+      connect(modcom1.s2, gain1.u) annotation(Line(points = {{-60, 30}, {-33.0275, 30}, {-33.0275, 60.0917}, {-33.0275, 60.0917}}));
       connect(sine1.y, modcom4.s2) annotation(Line(points = {{-9, -80}, {19.2661, -80}, {19.2661, -41.7431}, {19.2661, -41.7431}}));
+      connect(sine2.y, modcom1.s1) annotation(Line(points = {{-69, 0}, {-56.8807, 0}, {-56.8807, 26.1468}, {-56.8807, 26.1468}}));
       connect(modcom4, modcom2) annotation(Line(points = {{20, -40}, {27.9817, -40}, {27.9817, 24.3119}, {27.9817, 24.3119}}));
       connect(modcom3, modcom4) annotation(Line(points = {{-20, -20}, {17.8899, -20}, {17.8899, -40.367}, {17.8899, -40.367}}));
+      connect(modcom3, modcom1) annotation(Line(points = {{-20, -20}, {-51.8349, -20}, {-51.8349, 29.8165}, {-51.8349, 29.8165}}));
       connect(modcom2.s1, cos1.u) annotation(Line(points = {{30, 30}, {65.5963, 30}, {65.5963, -4.58716}, {101.835, -4.58716}, {101.835, -4.58716}}));
       annotation(sine1(y(flags = 2)), tanh1(y(flags = 2)), realValue1(showNumber(flags = 2)), sine2(y(flags = 2)), experiment(StartTime = 0, StopTime = 100, Tolerance = 0.0001, Interval = 0.2));
     end signalbustest;
@@ -579,4 +582,27 @@ package modelicatests
     connect(dcpm.support, fixed1.flange) annotation(Line(points = {{-8, -10}, {-8, -23}, {-6, -23}, {-6, -38}}));
     annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})));
   end motortest;
+
+  model NewModel1 "NewModel1"
+    Modelica.Electrical.Analog.Basic.Resistor resistor1[1] annotation(Placement(transformation(extent = {{-5, 75}, {15, 95}})));
+    Modelica.Electrical.Analog.Sources.SineVoltage sineVoltage1 annotation(Placement(transformation(extent = {{-5, 20}, {15, 40}})));
+    Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(transformation(extent = {{20, 5}, {40, 25}})));
+  equation
+    connect(resistor1[1].p, sineVoltage1.p) annotation(Line(points = {{-5, 85}, {-10, 85}, {-10, 30}, {-5, 30}}, thickness = 0.0625));
+    connect(sineVoltage1.n, resistor1[1].n) annotation(Line(points = {{15, 30}, {20, 30}, {20, 85}, {15, 85}}, thickness = 0.0625));
+    connect(sineVoltage1.n, ground1.p) annotation(Line(points = {{15, 30}, {20, 30}, {30, 30}, {30, 25}}, thickness = 0.0625));
+    annotation(experiment(StopTime = 1, StartTime = 0));
+  end NewModel1;
+
+  model multidimensional_motor
+    Modelica.Blocks.Sources.TimeTable timetable1(table = [0, 0; 5, 0; 5.01, 0.3; 20, 0.3; 20.01, 1.0; 45, 1.0; 45.0, 0; 70, 0.0]) annotation(Placement(transformation(origin = {-61, 55}, extent = {{-13, -13}, {13, 13}})));
+    Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(transformation(origin = {-46, -54}, extent = {{-10, -10}, {10, 10}})));
+    Modelica.Electrical.Analog.Sources.ConstantVoltage constantvoltage1(V = 20) annotation(Placement(transformation(origin = {-54, -4}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+    Modelica.Electrical.Machines.BasicMachines.DCMachines.DC_PermanentMagnet dcpm[1] annotation(Placement(transformation(extent = {{20, -10}, {40, 10}})));
+  equation
+    connect(constantvoltage1.n, ground1.p) annotation(Line(points = {{-54, -14}, {-54, -19}, {-54, -39}, {-46, -39}, {-46, -44}}));
+    connect(constantvoltage1.p, dcpm[1].pin_ap) annotation(Line(points = {{-54, 6}, {-54, 11}, {-54, 15}, {36, 15}, {36, 10}}, thickness = 0.0625));
+    connect(constantvoltage1.n, dcpm[1].pin_an) annotation(Line(points = {{-54, -14}, {-54, -19}, {-15, -19}, {-15, 15}, {24, 15}, {24, 10}}, thickness = 0.0625));
+    annotation(experiment(StopTime = 100, StartTime = 0, Tolerance = 1e-012, Interval = 0.02));
+  end multidimensional_motor;
 end modelicatests;
