@@ -8,7 +8,7 @@ Created on Tue Jun  2 11:51:02 2015
 V_in_max = 100.0
 V_in_min = 6.5
 V_out = 5
-slope = 0.01
+slope = 0.1
 
 import numpy as np
 from numpy import sin, pi
