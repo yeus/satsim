@@ -1,0 +1,8 @@
+within iboss.iboss_thermal.obsolete;
+
+connector thermal_connector_with_optical_properties "thermal connector between the BB with switchable optical properties of the surface"
+  parameter Boolean use_optical_properties = true;
+  components.thermal_connector thermal_connector1 annotation(Placement(transformation(origin = {50, -1}, extent = {{-10, -10}, {10, 10}}, rotation = -180), iconTransformation(origin = {30, 0}, extent = {{-10, -10}, {10, 10}})));
+  components.panel_surface optical_properties if use_optical_properties annotation(Placement(transformation(extent = {{-10, -110}, {10, -90}}), iconTransformation(extent = {{-10, -110}, {10, -90}})));
+  annotation(Icon(graphics = {Rectangle(lineColor = {255, 255, 255}, fillPattern = FillPattern.CrossDiag, extent = {{-100, 0}, {100, -50}}), Line(points = {{-12.8, -57.8}, {8.9, -38.5}, {-16.1, -7.8}, {14.3, 15.1}, {2.8, 43}, {2.8, 43}}, color = {255, 0, 0}, smooth = Smooth.Bezier, origin = {-56.9, 51.8}, rotation = -16), Line(points = {{-12.8, -57.8}, {8.9, -38.5}, {-16.1, -7.8}, {14.3, 15.1}, {2.8, 43}, {2.8, 43}}, color = {255, 0, 0}, smooth = Smooth.Bezier, origin = {-27.2, 51.1}, rotation = -16), Line(points = {{-12.8, -57.8}, {8.9, -38.5}, {-16.1, -7.8}, {14.3, 15.1}, {2.8, 43}, {2.8, 43}}, color = {255, 0, 0}, smooth = Smooth.Bezier, origin = {5.8, 51.1}, rotation = -16), Line(points = {{-12.8, -57.8}, {8.9, -38.5}, {-16.1, -7.8}, {14.3, 15.1}, {2.8, 43}, {2.8, 43}}, color = {255, 0, 0}, smooth = Smooth.Bezier, origin = {39.8, 51.1}, rotation = -16), Line(points = {{-12.8, -57.8}, {8.9, -38.5}, {-16.1, -7.8}, {14.3, 15.1}, {2.8, 43}, {2.8, 43}}, color = {255, 0, 0}, smooth = Smooth.Bezier, origin = {68.8, 51.1}, rotation = -16)}));
+end thermal_connector_with_optical_properties;

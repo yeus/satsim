@@ -1,0 +1,42 @@
+within iboss.iboss_thermal.components;
+
+model thermal_TIM_optical_properties "thermal interfacial material parameters (Conductance)"
+  thermal_connector thermal_connector2 "Verbindungselement fuer mehr als eine Schnittstelle" annotation(Placement(transformation(origin = {-50, -1}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = -180)));
+  thermal_connector thermal_connector1 "Verbindungselement fuer mehr als eine Schnittstelle" annotation(Placement(transformation(origin = {40, 0}, extent = {{-10, -10}, {10, 10}}, rotation = -180), iconTransformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = -360)));
+  panel_surface panel_surface1 annotation(Placement(transformation(origin = {35, 69}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  panel_surface panel_surface2 annotation(Placement(transformation(origin = {-35, 69}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  variable_ThermalConductor_input Conductance_TIM_TSS "Lumped thermal element transporting heat without storing it" annotation(Placement(transformation(origin = {-0, 10}, extent = {{-6.1349, -6.1349}, {6.1349, 6.1349}})));
+  variable_ThermalConductor_input Conductance_MSS "Lumped thermal element transporting heat without storing it" annotation(Placement(transformation(origin = {-0, -10}, extent = {{-6.0931, -6.0931}, {6.0931, 6.0931}})));
+  variable_ThermalConductor_input Conductance_ESS "Lumped thermal element transporting heat without storing it" annotation(Placement(transformation(origin = {0, -30}, extent = {{-6.1934, -6.1934}, {6.1934, 6.1934}})));
+  parameter Real h_TSS(unit = "W/(m³·K)") = 300 "Heat transfer coefficient TSS - TSS";
+  parameter Real h_MSS(unit = "W/(m³·K)") = 190 "Heat transfer coefficient MSS - MSS";
+  parameter Real h_ESS(unit = "W/(m³·K)") = 240 "Heat transfer coefficient ESS - ESS";
+  parameter Real ViewFactor_Rad = 0.2 "Viewfactor of Radiator";
+  VariableRad_for_TIM Radiator "Lumped thermal element for radiation heat transfer" annotation(Placement(transformation(origin = {0, 30}, extent = {{-6.25, -6.25}, {6.25, 6.25}})));
+  Modelica.Blocks.Math.Gain gain_view_factor(k = ViewFactor_Rad) annotation(Placement(transformation(origin = {-70, 59}, extent = {{-10, -10}, {10, 10}}, rotation = -180)));
+  Modelica.Blocks.Math.Gain gain_h_TSS(k = h_TSS) annotation(Placement(transformation(origin = {75, 29}, extent = {{-10, -10}, {10, 10}}, rotation = -180)));
+  Modelica.Blocks.Math.Gain gain_h_MSS(k = h_MSS) annotation(Placement(transformation(origin = {75, -1}, extent = {{-10, -10}, {10, 10}}, rotation = -180)));
+  Modelica.Blocks.Math.Gain gain_h_ESS(k = h_ESS) annotation(Placement(transformation(origin = {75, -31}, extent = {{-10, -10}, {10, 10}}, rotation = -180)));
+equation
+  connect(Radiator.port_b, thermal_connector1.Rad) annotation(Line(points = {{6.3, 30}, {11.3, 30}, {35, 30}, {35, 0}, {40, 0}}, color = {191, 0, 0}, visible = true, origin = {19.5679, 5.309}));
+  connect(thermal_connector2.Rad, Radiator.port_a) annotation(Line(points = {{-50, -1}, {-45, -1}, {-11.3, -1}, {-11.3, 30}, {-6.3, 30}}, color = {191, 0, 0}, visible = true, origin = {-26.4466, 22.485}));
+  connect(thermal_connector2.TSS, Conductance_TIM_TSS.port_a) annotation(Line(points = {{-50, -1}, {-45, -1}, {-11, -1}, {-11, 10}, {-6, 10}}, color = {191, 0, 0}, visible = true, origin = {-15.2265, 6.2513}));
+  connect(Conductance_TIM_TSS.port_b, thermal_connector1.TSS) annotation(Line(points = {{6, 10}, {11, 10}, {35, 10}, {35, 0}, {40, 0}}, color = {191, 0, 0}, visible = true, origin = {24.159, 3.7486}));
+  connect(thermal_connector2.MSS, Conductance_MSS.port_a) annotation(Line(points = {{-50, -1}, {-45, -1}, {-11, -1}, {-11, -10}, {-6, -10}}, color = {191, 0, 0}, visible = true, origin = {-15.1875, -6.2673}));
+  connect(thermal_connector1.MSS, Conductance_MSS.port_b) annotation(Line(points = {{40, 0}, {35, 0}, {11, 0}, {11, -10}, {6, -10}}, color = {191, 0, 0}, visible = true, origin = {15.1875, -3.7327}));
+  connect(thermal_connector2.ESS, Conductance_ESS.port_a) annotation(Line(points = {{-50, -1}, {-45, -1}, {-11.3, -1}, {-11.3, -30}, {-6.3, -30}}, color = {191, 0, 0}, visible = true, origin = {-26.3625, -22.5122}));
+  connect(thermal_connector1.ESS, Conductance_ESS.port_b) annotation(Line(points = {{40, 0}, {35, 0}, {11.3, 0}, {11.3, -30}, {6.3, -30}}, color = {191, 0, 0}, visible = true, origin = {19.4949, -5.2927}));
+  connect(Radiator.alpha_l, panel_surface2.alpha_Rad) annotation(Line(points = {{-5.3, 35.7}, {-5.3, 40.7}, {-5.3, 69}, {-30, 69}, {-35, 69}}, color = {0, 0, 127}, thickness = 0.0625));
+  connect(Radiator.alpha_r, panel_surface1.alpha_Rad) annotation(Line(points = {{5.3, 35.7}, {5.3, 40.7}, {5.3, 69}, {30, 69}, {35, 69}}, color = {0, 0, 127}, thickness = 0.0625));
+  connect(Radiator.epsilon_r, panel_surface1.epsilon_Rad) annotation(Line(points = {{2.7, 35.7}, {2.7, 40.7}, {2.7, 69}, {30, 69}, {35, 69}}, color = {0, 0, 127}, thickness = 0.0625));
+  connect(Radiator.epsilon_l, panel_surface2.epsilon_Rad) annotation(Line(points = {{-2.7, 35.7}, {-2.7, 40.7}, {-2.7, 69}, {-30, 69}, {-35, 69}}, color = {0, 0, 127}, thickness = 0.0625));
+  connect(gain_view_factor.y, Radiator.A_View) annotation(Line(points = {{-81, 59}, {-86, 59}, {-86, 50}, {-0.3, 50}, {-0.3, 40.7}, {-0.3, 35.7}}, color = {0, 0, 127}, thickness = 0.0625));
+  connect(gain_view_factor.u, panel_surface1.A_Rad) annotation(Line(points = {{-58, 59}, {-53, 59}, {30, 59}, {30, 69}, {35, 69}}, color = {0, 0, 127}, thickness = 0.0625));
+  connect(gain_h_TSS.u, panel_surface1.A_TSS) annotation(Line(points = {{87, 29}, {92, 29}, {92, 69}, {40, 69}, {35, 69}}, color = {0, 0, 127}, thickness = 0.0625));
+  connect(gain_h_TSS.y, Conductance_TIM_TSS.G) annotation(Line(points = {{64, 29}, {59, 29}, {0, 29}, {0, 21}, {0, 16}}, color = {0, 0, 127}, thickness = 0.0625));
+  connect(gain_h_MSS.u, panel_surface1.A_MSS) annotation(Line(points = {{87, -1}, {92, -1}, {92, 69}, {40, 69}, {35, 69}}, color = {0, 0, 127}, thickness = 0.0625));
+  connect(gain_h_MSS.y, Conductance_MSS.G) annotation(Line(points = {{64, -1}, {59, -1}, {59, 1}, {0, 1}, {0, -4}}, color = {0, 0, 127}, thickness = 0.0625));
+  connect(gain_h_ESS.u, panel_surface1.A_ESS) annotation(Line(points = {{87, -31}, {92, -31}, {92, 69}, {40, 69}, {35, 69}}, color = {0, 0, 127}, thickness = 0.0625));
+  connect(gain_h_ESS.y, Conductance_ESS.G) annotation(Line(points = {{64, -31}, {59, -31}, {59, -18.7}, {0, -18.7}, {0, -23.7}}, color = {0, 0, 127}, thickness = 0.0625));
+  annotation(Icon(coordinateSystem(grid = {10, 10}), graphics = {Rectangle(lineColor = {255, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.CrossDiag, extent = {{-20, -100}, {20, 100}}, visible = true, origin = {-80, 0}), Rectangle(lineColor = {255, 0, 0}, fillColor = {255, 255, 255}, fillPattern = FillPattern.CrossDiag, extent = {{-20, -100}, {20, 100}}, visible = true, origin = {80, 0}), Rectangle(lineColor = {255, 0, 0}, fillColor = {255, 0, 0}, fillPattern = FillPattern.Solid, extent = {{-40, -100}, {40, 100}}, visible = true), Text(textString = "%name", textStyle = {TextStyle.Bold}, fillPattern = FillPattern.Solid, extent = {{-100.0603, -40}, {100.0603, 40}}, visible = true, origin = {-0, 0.0603}, rotation = 90)}), Diagram(coordinateSystem(extent = {{-105, -74}, {105, 74}}, grid = {5, 5})), experiment(StopTime = 1, StartTime = 0));
+end thermal_TIM_optical_properties;
