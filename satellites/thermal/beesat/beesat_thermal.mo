@@ -362,6 +362,38 @@ model beesat_thermal "beesat_thermal.mo"
 		origin={55,-290},
 		extent={{-10,-10},{10,10}},
 		rotation=-90)));
+	radiation_3 radiation_Platine_oben_hinten annotation(Placement(transformation(
+		origin={65,-115},
+		extent={{-10,-10},{10,10}},
+		rotation=-270)));
+	radiation_3 radiation_Platine_oben_links annotation(Placement(transformation(
+		origin={35,-115},
+		extent={{-10,-10},{10,10}},
+		rotation=-270)));
+	radiation_3 radiation_Platine_oben_rechts annotation(Placement(transformation(
+		origin={100,-115},
+		extent={{-10,-10},{10,10}},
+		rotation=-270)));
+	radiation_3 radiation_Platine_oben_vorne annotation(Placement(transformation(
+		origin={140,-115},
+		extent={{-10,-10},{10,10}},
+		rotation=-270)));
+	radiation_3 radiation_Platine_unten_hinten annotation(Placement(transformation(
+		origin={65,-330},
+		extent={{-10,-10},{10,10}},
+		rotation=-90)));
+	radiation_3 radiation_Platine_unten_links annotation(Placement(transformation(
+		origin={35,-330},
+		extent={{-10,-10},{10,10}},
+		rotation=-90)));
+	radiation_3 radiation_Platine_unten_rechts annotation(Placement(transformation(
+		origin={100,-330},
+		extent={{-10,-10},{10,10}},
+		rotation=-90)));
+	radiation_3 radiation_Platine_unten_vorne annotation(Placement(transformation(
+		origin={130,-330},
+		extent={{-10,-10},{10,10}},
+		rotation=-90)));
 	equation
 		connect(Bolzen_Platine_oben_Batterie_ol.yp,Bolzen_patine_oben_ol.surface_properties2) annotation(Line(
 			points={{225,-107.3},{225,-102.3},{225,-105},{225,-100}},
@@ -1124,6 +1156,158 @@ model beesat_thermal "beesat_thermal.mo"
 			thickness=0.0625));
 		connect(radiation_Batterie_vorne_unten.ru,beesat_batterie1.ul_zn_innen) annotation(Line(
 			points={{95,-300},{95,-305},{238.7,-305},{238.7,-209.3},{233.7,-209.3}},
+			color={255,0,0},
+			thickness=0.0625));
+		connect(radiation_Platine_oben_hinten.lo,beesat_struktur1.hinten_innen_ol) annotation(Line(
+			points={{60,-125},{60,-130},{60,-180.3},{109.7,-180.3},{109.7,-185.3}},
+			color={255,0,0},
+			thickness=0.0625));
+		connect(radiation_Platine_oben_hinten.lm,beesat_struktur1.hinten_innen_om) annotation(Line(
+			points={{65,-125},{65,-130},{65,-180.3},{112.7,-180.3},{112.7,-185.3}},
+			color={255,0,0},
+			thickness=0.0625));
+		connect(radiation_Platine_oben_hinten.lu,beesat_struktur1.hinten_innen_or) annotation(Line(
+			points={{70,-125},{70,-130},{70,-180.3},{115.7,-180.3},{115.7,-185.3}},
+			color={255,0,0},
+			thickness=0.0625));
+		connect(beesat_struktur1.links_innen_ol,radiation_Platine_oben_links.lo) annotation(Line(
+			points={{65.3,-227.7},{60.3,-227.7},{30,-227.7},{30,-130},{30,-125}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_struktur1.links_innen_om,radiation_Platine_oben_links.lm) annotation(Line(
+			points={{68.3,-227.7},{63.3,-227.7},{35,-227.7},{35,-130},{35,-125}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_struktur1.links_innen_or,radiation_Platine_oben_links.lu) annotation(Line(
+			points={{71.3,-227.7},{66.3,-227.7},{40,-227.7},{40,-130},{40,-125}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_platine_oben.ul_zn_innen,radiation_Platine_oben_links.ru) annotation(Line(
+			points={{288.7,-24.3},{293.7,-24.3},{293.7,-62},{40,-62},{40,-100},{40,
+			-105}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_platine_oben.ml_zn_innen,radiation_Platine_oben_links.rm) annotation(Line(
+			points={{288.7,-20.3},{288.7,-15.3},{35,-15.3},{35,-100},{35,-105}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_platine_oben.ol_zn_innen,radiation_Platine_oben_links.ro) annotation(Line(
+			points={{288.7,-16.3},{288.7,-11.3},{30,-11.3},{30,-100},{30,-105}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(radiation_Platine_oben_rechts.lo,beesat_struktur1.rechts_innen_ol) annotation(Line(
+			points={{95,-125},{95,-130},{134.7,-130},{134.7,-217.3},{129.7,-217.3}},
+			color={255,0,0},
+			thickness=0.0625));
+		connect(radiation_Platine_oben_rechts.lm,beesat_struktur1.rechts_innen_om) annotation(Line(
+			points={{100,-125},{100,-130},{137.7,-130},{137.7,-217.3},{132.7,-217.3}},
+			color={255,0,0},
+			thickness=0.0625));
+		connect(radiation_Platine_oben_rechts.lu,beesat_struktur1.rechts_innen_or) annotation(Line(
+			points={{105,-125},{105,-130},{140.7,-130},{140.7,-217.3},{135.7,-217.3}},
+			color={255,0,0},
+			thickness=0.0625));
+		connect(beesat_platine_oben.or_zn_innen,radiation_Platine_oben_rechts.ro) annotation(Line(
+			points={{296.7,-16.3},{301.7,-16.3},{301.7,-58},{95,-58},{95,-100},{95,
+			-105}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_platine_oben.mr_zn_innen,radiation_Platine_oben_rechts.rm) annotation(Line(
+			points={{296.7,-20.3},{301.7,-20.3},{301.7,-60},{100,-60},{100,-100},{100,
+			-105}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_platine_oben.ur_zn_innen,radiation_Platine_oben_rechts.ru) annotation(Line(
+			points={{296.7,-24.3},{301.7,-24.3},{301.7,-62},{105,-62},{105,-100},{105,
+			-105}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_platine_oben.ul_zn_innen,radiation_Platine_oben_vorne.ro) annotation(Line(
+			points={{288.7,-24.3},{293.7,-24.3},{293.7,-62},{135,-62},{135,-100},{135,
+			-105}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_platine_oben.um_zn_innen,radiation_Platine_oben_vorne.rm) annotation(Line(
+			points={{292.7,-24.3},{297.7,-24.3},{297.7,-62},{140,-62},{140,-100},{140,
+			-105}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_platine_oben.ur_zn_innen,radiation_Platine_oben_vorne.ru) annotation(Line(
+			points={{296.7,-24.3},{301.7,-24.3},{301.7,-62},{145,-62},{145,-100},{145,
+			-105}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_platine_oben.ol_zn_innen,radiation_Platine_oben_hinten.ro) annotation(Line(
+			points={{288.7,-16.3},{288.7,-11.3},{60,-11.3},{60,-100},{60,-105}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_platine_oben.om_zn_innen,radiation_Platine_oben_hinten.rm) annotation(Line(
+			points={{292.7,-16.3},{292.7,-11.3},{65,-11.3},{65,-100},{65,-105}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_platine_oben.or_zn_innen,radiation_Platine_oben_hinten.ru) annotation(Line(
+			points={{296.7,-16.3},{301.7,-16.3},{301.7,-58},{70,-58},{70,-100},{70,
+			-105}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(radiation_Platine_oben_vorne.lo,beesat_struktur1.vorne_innen_ol) annotation(Line(
+			points={{135,-125},{135,-130},{135,-257.7},{85.3,-257.7},{85.3,-252.7}},
+			color={255,0,0},
+			thickness=0.0625));
+		connect(radiation_Platine_oben_vorne.lm,beesat_struktur1.vorne_innen_om) annotation(Line(
+			points={{140,-125},{140,-130},{140,-257.7},{88.3,-257.7},{88.3,-252.7}},
+			color={255,0,0},
+			thickness=0.0625));
+		connect(radiation_Platine_oben_vorne.lu,beesat_struktur1.vorne_innen_or) annotation(Line(
+			points={{145,-125},{145,-130},{145,-257.7},{91.3,-257.7},{91.3,-252.7}},
+			color={255,0,0},
+			thickness=0.0625));
+		connect(beesat_struktur1.links_innen_ul,radiation_Platine_unten_links.lu) annotation(Line(
+			points={{65.3,-230.7},{60.3,-230.7},{30,-230.7},{30,-315},{30,-320}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_struktur1.links_innen_um,radiation_Platine_unten_links.lm) annotation(Line(
+			points={{68.3,-230.7},{63.3,-230.7},{35,-230.7},{35,-315},{35,-320}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_struktur1.links_innen_ur,radiation_Platine_unten_links.lo) annotation(Line(
+			points={{71.3,-230.7},{66.3,-230.7},{40,-230.7},{40,-315},{40,-320}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(radiation_Platine_unten_hinten.lu,beesat_struktur1.Deckel_innen_ul) annotation(Line(
+			points={{60,-320},{60,-315},{60,-201.3},{114.7,-201.3},{119.7,-201.3}},
+			color={255,0,0},
+			thickness=0.0625));
+		connect(radiation_Platine_unten_hinten.lm,beesat_struktur1.Deckel_innen_um) annotation(Line(
+			points={{65,-320},{65,-315},{127.7,-315},{127.7,-201.3},{122.7,-201.3}},
+			color={255,0,0},
+			thickness=0.0625));
+		connect(radiation_Platine_unten_hinten.lo,beesat_struktur1.Deckel_innen_ur) annotation(Line(
+			points={{70,-320},{70,-315},{130.7,-315},{130.7,-201.3},{125.7,-201.3}},
+			color={255,0,0},
+			thickness=0.0625));
+		connect(radiation_Platine_unten_rechts.lu,beesat_struktur1.rechts_innen_ul) annotation(Line(
+			points={{95,-320},{95,-315},{134.7,-315},{134.7,-220.7},{129.7,-220.7}},
+			color={255,0,0},
+			thickness=0.0625));
+		connect(radiation_Platine_unten_rechts.lm,beesat_struktur1.rechts_innen_um) annotation(Line(
+			points={{100,-320},{100,-315},{137.7,-315},{137.7,-220.7},{132.7,-220.7}},
+			color={255,0,0},
+			thickness=0.0625));
+		connect(radiation_Platine_unten_rechts.lo,beesat_struktur1.rechts_innen_ur) annotation(Line(
+			points={{105,-320},{105,-315},{140.7,-315},{140.7,-220.7},{135.7,-220.7}},
+			color={255,0,0},
+			thickness=0.0625));
+		connect(radiation_Platine_unten_vorne.lu,beesat_struktur1.vorne_innen_ul) annotation(Line(
+			points={{125,-320},{125,-315},{125,-260.7},{85.3,-260.7},{85.3,-255.7}},
+			color={255,0,0},
+			thickness=0.0625));
+		connect(radiation_Platine_unten_vorne.lm,beesat_struktur1.vorne_innen_um) annotation(Line(
+			points={{130,-320},{130,-315},{130,-260.7},{88.3,-260.7},{88.3,-255.7}},
+			color={255,0,0},
+			thickness=0.0625));
+		connect(radiation_Platine_unten_vorne.lo,beesat_struktur1.vorne_innen_ur) annotation(Line(
+			points={{135,-320},{135,-315},{135,-260.7},{91.3,-260.7},{91.3,-255.7}},
 			color={255,0,0},
 			thickness=0.0625));
 	annotation(
