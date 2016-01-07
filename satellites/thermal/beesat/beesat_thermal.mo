@@ -2,8 +2,11 @@
 // SimulationX Version: 3.6.5.34033 x64
 within ;
 model beesat_thermal "beesat_thermal.mo"
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b Platine_yn annotation(Placement(transformation(extent={{480,-415},{500,-395}})));
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a Bat annotation(Placement(transformation(extent={{475,-230},{495,-210}})));
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b Platine_yp annotation(Placement(transformation(extent={{475,-50},{495,-30}})));
 	beesat_struktur beesat_struktur1 annotation(Placement(transformation(extent={{65,-256},{136,-185}})));
-	beesat_platine beesat_platine_unten annotation(Placement(transformation(extent={{240,-436},{301,-375}})));
+	beesat_platine beesat_platine_unten annotation(Placement(transformation(extent={{235,-436},{296,-375}})));
 	beesat_batterie beesat_batterie1 annotation(Placement(transformation(extent={{190,-251},{251,-190}})));
 	iboss.iboss_thermal.components.thermal_element_opt_prop Bolzen_Platine_oben_Batterie_or(
 		x=0.004,
@@ -614,37 +617,38 @@ model beesat_thermal "beesat_thermal.mo"
 			color={0,0,0},
 			thickness=0.0625));
 		connect(beesat_platine_unten.ol_zn_innen,Bolzen_patine_unten_ol.surface_properties2) annotation(Line(
-			points={{283.7,-386.3},{283.7,-381.3},{283.7,-340},{235,-340},{235,-335}},
+			points={{278.7,-386.3},{278.7,-381.3},{278.7,-340},{235,-340},{235,-335}},
 			color={0,0,0},
 			thickness=0.0625));
 		connect(beesat_platine_unten.or_zn_innen,Bolzen_patine_unten_or.surface_properties2) annotation(Line(
-			points={{291.7,-386.3},{296.7,-386.3},{296.7,-363.3},{265,-363.3},{265,-340},{265,
+			points={{286.7,-386.3},{291.7,-386.3},{291.7,-363.3},{265,-363.3},{265,-340},{265,
 			-335}},
 			color={0,0,0},
 			thickness=0.0625));
 		connect(beesat_platine_unten.ul_zn_innen,Bolzen_patine_unten_ul.surface_properties2) annotation(Line(
-			points={{283.7,-394.3},{288.7,-394.3},{290,-394.3},{290,-365},{290,-360}},
+			points={{278.7,-394.3},{283.7,-394.3},{290,-394.3},{290,-365},{290,-360}},
 			color={0,0,0},
 			thickness=0.0625));
 		connect(beesat_platine_unten.ur_zn_innen,Bolzen_patine_unten_ur.surface_properties2) annotation(Line(
-			points={{291.7,-394.3},{296.7,-394.3},{325,-394.3},{325,-365},{325,-360}},
+			points={{286.7,-394.3},{291.7,-394.3},{325,-394.3},{325,-365},{325,-360}},
 			color={0,0,0},
 			thickness=0.0625));
 		connect(beesat_platine_unten.ol_zp_aussen,Bolzen_platine_unten_platine_ol.surface_properties1) annotation(Line(
-			points={{249.3,-416.7},{244.3,-416.7},{220,-416.7},{220,-445},{220,-450}},
+			points={{244.3,-416.7},{239.3,-416.7},{220,-416.7},{220,-445},{220,-450}},
 			color={0,0,0},
 			thickness=0.0625));
 		connect(beesat_platine_unten.or_zp_aussen,Bolzen_platine_unten_platine_or.surface_properties1) annotation(Line(
-			points={{257.3,-416.7},{252.3,-416.7},{250,-416.7},{250,-445},{250,-450}},
+			points={{252.3,-416.7},{247.3,-416.7},{247.3,-430.7},{250,-430.7},{250,-445},{250,
+			-450}},
 			color={0,0,0},
 			thickness=0.0625));
 		connect(beesat_platine_unten.ul_zp_aussen,Bolzen_platine_unten_platine_ul.surface_properties1) annotation(Line(
-			points={{249.3,-424.7},{244.3,-424.7},{244.3,-447.3},{280,-447.3},{280,-470},{280,
+			points={{244.3,-424.7},{239.3,-424.7},{239.3,-447.3},{280,-447.3},{280,-470},{280,
 			-475}},
 			color={0,0,0},
 			thickness=0.0625));
 		connect(beesat_platine_unten.ur_zp_aussen,Bolzen_platine_unten_platine_ur.surface_properties1) annotation(Line(
-			points={{257.3,-424.7},{257.3,-429.7},{257.3,-470},{310,-470},{310,-475}},
+			points={{252.3,-424.7},{252.3,-429.7},{252.3,-470},{310,-470},{310,-475}},
 			color={0,0,0},
 			thickness=0.0625));
 		connect(beesat_struktur1.Boden_innen_ul,Bolzen_patine_unten_Boden_ul.surface_properties2) annotation(Line(
@@ -783,44 +787,44 @@ model beesat_thermal "beesat_thermal.mo"
 			color={0,0,0},
 			thickness=0.0625));
 		connect(beesat_platine_unten.or_zp_aussen,thermal_radiation_Batterie_Platine_unten_or.surface_properties1) annotation(Line(
-			points={{257.3,-416.7},{252.3,-416.7},{252.3,-363.3},{415,-363.3},{415,-310},{415,
+			points={{252.3,-416.7},{247.3,-416.7},{247.3,-363.3},{415,-363.3},{415,-310},{415,
 			-305}},
 			color={0,0,0},
 			thickness=0.0625));
 		connect(beesat_platine_unten.om_zp_aussen,thermal_radiation_Batterie_Platine_unten_om.surface_properties1) annotation(Line(
-			points={{253.3,-416.7},{248.3,-416.7},{248.3,-363.3},{390,-363.3},{390,-310},{390,
+			points={{248.3,-416.7},{243.3,-416.7},{243.3,-363.3},{390,-363.3},{390,-310},{390,
 			-305}},
 			color={0,0,0},
 			thickness=0.0625));
 		connect(beesat_platine_unten.ol_zp_aussen,thermal_radiation_Batterie_Platine_unten_ol.surface_properties1) annotation(Line(
-			points={{249.3,-416.7},{244.3,-416.7},{244.3,-363.3},{365,-363.3},{365,-310},{365,
+			points={{244.3,-416.7},{239.3,-416.7},{239.3,-363.3},{365,-363.3},{365,-310},{365,
 			-305}},
 			color={0,0,0},
 			thickness=0.0625));
 		connect(beesat_platine_unten.mr_zp_aussen,thermal_radiation_Batterie_Platine_unten_mr.surface_properties1) annotation(Line(
-			points={{257.3,-420.7},{257.3,-425.7},{420,-425.7},{420,-335},{420,-330}},
+			points={{252.3,-420.7},{252.3,-425.7},{420,-425.7},{420,-335},{420,-330}},
 			color={0,0,0},
 			thickness=0.0625));
 		connect(beesat_platine_unten.mm_zp_aussen,thermal_radiation_Batterie_Platine_unten_mm.surface_properties1) annotation(Line(
-			points={{253.3,-420.7},{248.3,-420.7},{248.3,-378},{395,-378},{395,-335},{395,
+			points={{248.3,-420.7},{243.3,-420.7},{243.3,-378},{395,-378},{395,-335},{395,
 			-330}},
 			color={0,0,0},
 			thickness=0.0625));
 		connect(beesat_platine_unten.ml_zp_aussen,thermal_radiation_Batterie_Platine_unten_ml.surface_properties1) annotation(Line(
-			points={{249.3,-420.7},{244.3,-420.7},{244.3,-378},{370,-378},{370,-335},{370,
+			points={{244.3,-420.7},{239.3,-420.7},{239.3,-378},{370,-378},{370,-335},{370,
 			-330}},
 			color={0,0,0},
 			thickness=0.0625));
 		connect(beesat_platine_unten.ur_zp_aussen,thermal_radiation_Batterie_Platine_unten_ur.surface_properties1) annotation(Line(
-			points={{257.3,-424.7},{257.3,-429.7},{425,-429.7},{425,-360},{425,-355}},
+			points={{252.3,-424.7},{252.3,-429.7},{425,-429.7},{425,-360},{425,-355}},
 			color={0,0,0},
 			thickness=0.0625));
 		connect(beesat_platine_unten.um_zp_aussen,thermal_radiation_Batterie_Platine_unten_um.surface_properties1) annotation(Line(
-			points={{253.3,-424.7},{253.3,-429.7},{400,-429.7},{400,-360},{400,-355}},
+			points={{248.3,-424.7},{248.3,-429.7},{400,-429.7},{400,-360},{400,-355}},
 			color={0,0,0},
 			thickness=0.0625));
 		connect(beesat_platine_unten.ul_zp_aussen,thermal_radiation_Batterie_Platine_unten_ul.surface_properties1) annotation(Line(
-			points={{249.3,-424.7},{244.3,-424.7},{244.3,-392.3},{375,-392.3},{375,-360},{375,
+			points={{244.3,-424.7},{239.3,-424.7},{239.3,-392.3},{375,-392.3},{375,-360},{375,
 			-355}},
 			color={0,0,0},
 			thickness=0.0625));
@@ -875,39 +879,39 @@ model beesat_thermal "beesat_thermal.mo"
 		connect(beesat_struktur1.Boden_innen_mr,thermal_radiation_Platine_unten_Boden_mr.surface_properties1) annotation(Line(points={{81.3,-242.7},{81.3,-247.7},{81.3,-555},{425,-555},{425,-550}}));
 		connect(beesat_struktur1.Boden_innen_or,thermal_radiation_Platine_unten_Boden_or.surface_properties1) annotation(Line(points={{81.3,-239.7},{86.3,-239.7},{86.3,-525},{420,-525},{420,-520}}));
 		connect(thermal_radiation_Platine_unten_Boden_ol.surface_properties2,beesat_platine_unten.ol_zp_aussen) annotation(Line(
-			points={{370,-490},{370,-485},{244.3,-485},{244.3,-416.7},{249.3,-416.7}},
+			points={{370,-490},{370,-485},{239.3,-485},{239.3,-416.7},{244.3,-416.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(thermal_radiation_Platine_unten_Boden_om.surface_properties2,beesat_platine_unten.om_zp_aussen) annotation(Line(
-			points={{395,-495},{395,-490},{248.3,-490},{248.3,-416.7},{253.3,-416.7}},
+			points={{395,-495},{395,-490},{243.3,-490},{243.3,-416.7},{248.3,-416.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(thermal_radiation_Platine_unten_Boden_or.surface_properties2,beesat_platine_unten.or_zp_aussen) annotation(Line(
-			points={{420,-500},{420,-495},{252.3,-495},{252.3,-416.7},{257.3,-416.7}},
+			points={{420,-500},{420,-495},{247.3,-495},{247.3,-416.7},{252.3,-416.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(thermal_radiation_Platine_unten_Boden_ml.surface_properties2,beesat_platine_unten.ml_zp_aussen) annotation(Line(
-			points={{375,-520},{375,-515},{244.3,-515},{244.3,-420.7},{249.3,-420.7}},
+			points={{375,-520},{375,-515},{239.3,-515},{239.3,-420.7},{244.3,-420.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(thermal_radiation_Platine_unten_Boden_mm.surface_properties2,beesat_platine_unten.mm_zp_aussen) annotation(Line(
-			points={{400,-525},{400,-520},{248.3,-520},{248.3,-420.7},{253.3,-420.7}},
+			points={{400,-525},{400,-520},{243.3,-520},{243.3,-420.7},{248.3,-420.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(thermal_radiation_Platine_unten_Boden_mr.surface_properties2,beesat_platine_unten.mr_zp_aussen) annotation(Line(
-			points={{425,-530},{425,-525},{425,-425.7},{257.3,-425.7},{257.3,-420.7}},
+			points={{425,-530},{425,-525},{425,-425.7},{252.3,-425.7},{252.3,-420.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(thermal_radiation_Platine_unten_Boden_ul.surface_properties2,beesat_platine_unten.ul_zp_aussen) annotation(Line(
-			points={{380,-545},{380,-540},{244.3,-540},{244.3,-424.7},{249.3,-424.7}},
+			points={{380,-545},{380,-540},{239.3,-540},{239.3,-424.7},{244.3,-424.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(thermal_radiation_Platine_unten_Boden_um.surface_properties2,beesat_platine_unten.um_zp_aussen) annotation(Line(
-			points={{405,-550},{405,-545},{405,-429.7},{253.3,-429.7},{253.3,-424.7}},
+			points={{405,-550},{405,-545},{405,-429.7},{248.3,-429.7},{248.3,-424.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(thermal_radiation_Platine_unten_Boden_ur.surface_properties2,beesat_platine_unten.ur_zp_aussen) annotation(Line(
-			points={{430,-555},{430,-550},{430,-429.7},{257.3,-429.7},{257.3,-424.7}},
+			points={{430,-555},{430,-550},{430,-429.7},{252.3,-429.7},{252.3,-424.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(thermal_radiation_Platine_oben_Deckel_ol.surface_properties2,beesat_struktur1.Deckel_innen_ol) annotation(Line(
@@ -1267,51 +1271,51 @@ model beesat_thermal "beesat_thermal.mo"
 			color={255,0,0},
 			thickness=0.0625));
 		connect(radiation_Platine_unten_links.lo,beesat_platine_unten.ul_zp_aussen) annotation(Line(
-			points={{100,-335},{100,-340},{100,-424.7},{244.3,-424.7},{249.3,-424.7}},
+			points={{100,-335},{100,-340},{100,-424.7},{239.3,-424.7},{244.3,-424.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(radiation_Platine_unten_links.lm,beesat_platine_unten.ml_zp_aussen) annotation(Line(
-			points={{105,-335},{105,-340},{105,-420.7},{244.3,-420.7},{249.3,-420.7}},
+			points={{105,-335},{105,-340},{105,-420.7},{239.3,-420.7},{244.3,-420.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(radiation_Platine_unten_links.lu,beesat_platine_unten.ol_zp_aussen) annotation(Line(
-			points={{110,-335},{110,-340},{110,-416.7},{244.3,-416.7},{249.3,-416.7}},
+			points={{110,-335},{110,-340},{110,-416.7},{239.3,-416.7},{244.3,-416.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(radiation_Platine_unten_hinten.lo,beesat_platine_unten.ol_zp_aussen) annotation(Line(
-			points={{130,-335},{130,-340},{130,-416.7},{244.3,-416.7},{249.3,-416.7}},
+			points={{130,-335},{130,-340},{130,-416.7},{239.3,-416.7},{244.3,-416.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(radiation_Platine_unten_hinten.lm,beesat_platine_unten.om_zp_aussen) annotation(Line(
-			points={{135,-335},{135,-340},{135,-416.7},{248.3,-416.7},{253.3,-416.7}},
+			points={{135,-335},{135,-340},{135,-416.7},{243.3,-416.7},{248.3,-416.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(radiation_Platine_unten_hinten.lu,beesat_platine_unten.or_zp_aussen) annotation(Line(
-			points={{140,-335},{140,-340},{140,-416.7},{252.3,-416.7},{257.3,-416.7}},
+			points={{140,-335},{140,-340},{140,-416.7},{247.3,-416.7},{252.3,-416.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(radiation_Platine_unten_rechts.lo,beesat_platine_unten.or_zp_aussen) annotation(Line(
-			points={{155,-335},{155,-340},{155,-416.7},{252.3,-416.7},{257.3,-416.7}},
+			points={{155,-335},{155,-340},{155,-416.7},{247.3,-416.7},{252.3,-416.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(radiation_Platine_unten_rechts.lm,beesat_platine_unten.mr_zp_aussen) annotation(Line(
-			points={{160,-335},{160,-340},{160,-425.7},{257.3,-425.7},{257.3,-420.7}},
+			points={{160,-335},{160,-340},{160,-425.7},{252.3,-425.7},{252.3,-420.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(radiation_Platine_unten_rechts.lu,beesat_platine_unten.ur_zp_aussen) annotation(Line(
-			points={{165,-335},{165,-340},{165,-429.7},{257.3,-429.7},{257.3,-424.7}},
+			points={{165,-335},{165,-340},{165,-429.7},{252.3,-429.7},{252.3,-424.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(radiation_Platine_unten_vorne.lo,beesat_platine_unten.ul_zp_aussen) annotation(Line(
-			points={{180,-335},{180,-340},{180,-424.7},{244.3,-424.7},{249.3,-424.7}},
+			points={{180,-335},{180,-340},{180,-424.7},{239.3,-424.7},{244.3,-424.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(radiation_Platine_unten_vorne.lm,beesat_platine_unten.um_zp_aussen) annotation(Line(
-			points={{185,-335},{185,-340},{185,-429.7},{253.3,-429.7},{253.3,-424.7}},
+			points={{185,-335},{185,-340},{185,-429.7},{248.3,-429.7},{248.3,-424.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(radiation_Platine_unten_vorne.lu,beesat_platine_unten.ur_zp_aussen) annotation(Line(
-			points={{190,-335},{190,-340},{190,-429.7},{257.3,-429.7},{257.3,-424.7}},
+			points={{190,-335},{190,-340},{190,-429.7},{252.3,-429.7},{252.3,-424.7}},
 			color={255,0,0},
 			thickness=0.0625));
 		connect(beesat_struktur1.hinten_aussen_ol,external_Radiation_hinten.thermal_connector_opt_prop_in1.lo) annotation(Line(
@@ -1435,6 +1439,20 @@ model beesat_thermal "beesat_thermal.mo"
 		connect(external_Radiation_Boden.u,yn) annotation(Line(
 			points={{-35,-290},{-40,-290},{-70,-290},{-75,-290}},
 			color={0,0,127},
+			thickness=0.0625));
+		
+		connect(beesat_platine_oben.heatpower_mm,Platine_yp) annotation(Line(
+			points={{252.7,-36.3},{257.7,-36.3},{480,-36.3},{480,-40},{485,-40}},
+			color={191,0,0},
+			thickness=0.0625));
+		connect(beesat_batterie1.heatpower_mm,Bat) annotation(Line(
+			points={{221.7,-219.3},{226.7,-219.3},{480,-219.3},{480,-220},{485,-220}},
+			color={191,0,0},
+			thickness=0.0625));
+		
+		connect(beesat_platine_unten.heatpower_mm,Platine_yn) annotation(Line(
+			points={{266.7,-404.3},{271.7,-404.3},{485,-404.3},{485,-405},{490,-405}},
+			color={191,0,0},
 			thickness=0.0625));
 	annotation(
 		beesat_struktur1(
