@@ -395,7 +395,13 @@ model beesat_thermal "beesat_thermal.mo"
 		extent={{-10,-10},{10,10}},
 		rotation=-270)));
 	external_Radiation external_Radiation_hinten annotation(Placement(transformation(extent={{-35,-180},{-15,-160}})));
-	Modelica.Blocks.Sources.Constant const annotation(Placement(transformation(extent={{-120,15},{-100,35}})));
+	Modelica.Blocks.Sources.Constant const annotation(Placement(transformation(extent={{-120,-180},{-100,-160}})));
+	external_Radiation external_Radiation_links annotation(Placement(transformation(extent={{-35,-210},{-15,-190}})));
+	Modelica.Blocks.Sources.Constant const1 annotation(Placement(transformation(extent={{-120,-210},{-100,-190}})));
+	external_Radiation external_Radiation_rechts annotation(Placement(transformation(extent={{-35,-240},{-15,-220}})));
+	Modelica.Blocks.Sources.Constant const2 annotation(Placement(transformation(extent={{-120,-240},{-100,-220}})));
+	external_Radiation external_Radiation_vorne annotation(Placement(transformation(extent={{-35,-270},{-15,-250}})));
+	Modelica.Blocks.Sources.Constant const3 annotation(Placement(transformation(extent={{-120,-270},{-100,-250}})));
 	equation
 		connect(radiation_Platine_oben_hinten.lo,beesat_platine_oben.or_zn_innen) annotation(Line(
 			points={{53,-94},{53,-89},{277.7,-89},{277.7,-18.3},{272.7,-18.3}},
@@ -1305,7 +1311,7 @@ model beesat_thermal "beesat_thermal.mo"
 			color={255,0,0},
 			thickness=0.0625));
 		connect(const.y,external_Radiation_hinten.u) annotation(Line(
-			points={{-99,25},{-94,25},{-40,25},{-40,-170},{-35,-170}},
+			points={{-99,-170},{-94,-170},{-40,-170},{-35,-170}},
 			color={0,0,127},
 			thickness=0.0625));
 		connect(beesat_struktur1.hinten_aussen_ol,external_Radiation_hinten.thermal_connector_opt_prop_in1.lo) annotation(Line(
@@ -1331,6 +1337,45 @@ model beesat_thermal "beesat_thermal.mo"
 		connect(beesat_struktur1.hinten_aussen_ur,external_Radiation_hinten.thermal_connector_opt_prop_in1.ru) annotation(Line(
 			points={{100.7,-188.3},{100.7,-183.3},{100.7,-170},{-10,-170},{-15,-170}},
 			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_struktur1.links_aussen_ol,external_Radiation_links.thermal_connector_opt_prop_in1.lo) annotation(Line(points={{65.3,-217.3},{60.3,-217.3},{-10,-217.3},{-10,-200},{-15,-200}}));
+		connect(beesat_struktur1.links_aussen_om,external_Radiation_links.thermal_connector_opt_prop_in1.mo) annotation(Line(points={{68.3,-217.3},{63.3,-217.3},{-10,-217.3},{-10,-200},{-15,-200}}));
+		connect(beesat_struktur1.links_aussen_or,external_Radiation_links.thermal_connector_opt_prop_in1.ro) annotation(Line(points={{71.3,-217.3},{66.3,-217.3},{-10,-217.3},{-10,-200},{-15,-200}}));
+		connect(beesat_struktur1.links_aussen_ul,external_Radiation_links.thermal_connector_opt_prop_in1.lu) annotation(Line(points={{65.3,-220.7},{60.3,-220.7},{-10,-220.7},{-10,-200},{-15,-200}}));
+		connect(beesat_struktur1.links_aussen_um,external_Radiation_links.thermal_connector_opt_prop_in1.mu) annotation(Line(points={{68.3,-220.7},{63.3,-220.7},{-10,-220.7},{-10,-200},{-15,-200}}));
+		connect(beesat_struktur1.links_aussen_ur,external_Radiation_links.thermal_connector_opt_prop_in1.ru) annotation(Line(points={{71.3,-220.7},{66.3,-220.7},{-10,-220.7},{-10,-200},{-15,-200}}));
+		connect(beesat_struktur1.rechts_aussen_ol,external_Radiation_rechts.thermal_connector_opt_prop_in1.lo) annotation(Line(points={{129.7,-227.7},{134.7,-227.7},{134.7,-237.7},{-10,-237.7},{-10,-230},{-15,
+		-230}}));
+		connect(beesat_struktur1.rechts_aussen_om,external_Radiation_rechts.thermal_connector_opt_prop_in1.mo) annotation(Line(points={{132.7,-227.7},{137.7,-227.7},{137.7,-237.7},{-10,-237.7},{-10,-230},{-15,
+		-230}}));
+		connect(beesat_struktur1.rechts_aussen_or,external_Radiation_rechts.thermal_connector_opt_prop_in1.ro) annotation(Line(points={{135.7,-227.7},{140.7,-227.7},{140.7,-237.7},{-10,-237.7},{-10,-230},{-15,
+		-230}}));
+		connect(beesat_struktur1.rechts_aussen_ul,external_Radiation_rechts.thermal_connector_opt_prop_in1.lu) annotation(Line(points={{129.7,-230.7},{134.7,-230.7},{134.7,-220.7},{-10,-220.7},{-10,-230},{-15,
+		-230}}));
+		connect(beesat_struktur1.rechts_aussen_um,external_Radiation_rechts.thermal_connector_opt_prop_in1.mu) annotation(Line(points={{132.7,-230.7},{137.7,-230.7},{137.7,-220.7},{-10,-220.7},{-10,-230},{-15,
+		-230}}));
+		connect(beesat_struktur1.rechts_aussen_ur,external_Radiation_rechts.thermal_connector_opt_prop_in1.ru) annotation(Line(points={{135.7,-230.7},{140.7,-230.7},{140.7,-220.7},{-10,-220.7},{-10,-230},{-15,
+		-230}}));
+		connect(beesat_struktur1.vorne_aussen_ol,external_Radiation_vorne.thermal_connector_opt_prop_in1.lo) annotation(Line(points={{100.7,-252.7},{100.7,-257.7},{100.7,-260},{-10,-260},{-15,-260}}));
+		connect(beesat_struktur1.vorne_aussen_om,external_Radiation_vorne.thermal_connector_opt_prop_in1.mo) annotation(Line(points={{103.7,-252.7},{103.7,-257.7},{103.7,-260},{-10,-260},{-15,-260}}));
+		connect(beesat_struktur1.vorne_aussen_or,external_Radiation_vorne.thermal_connector_opt_prop_in1.ro) annotation(Line(points={{106.7,-252.7},{106.7,-257.7},{106.7,-260},{-10,-260},{-15,-260}}));
+		connect(beesat_struktur1.vorne_aussen_ul,external_Radiation_vorne.thermal_connector_opt_prop_in1.lu) annotation(Line(points={{100.7,-255.7},{100.7,-260.7},{45.3,-260.7},{45.3,-260},{-10,-260},{-15,
+		-260}}));
+		connect(beesat_struktur1.vorne_aussen_um,external_Radiation_vorne.thermal_connector_opt_prop_in1.mu) annotation(Line(points={{103.7,-255.7},{103.7,-260.7},{47,-260.7},{47,-260},{-10,-260},{-15,
+		-260}}));
+		connect(beesat_struktur1.vorne_aussen_ur,external_Radiation_vorne.thermal_connector_opt_prop_in1.ru) annotation(Line(points={{106.7,-255.7},{106.7,-260.7},{48.3,-260.7},{48.3,-260},{-10,-260},{-15,
+		-260}}));
+		connect(const1.y,external_Radiation_links.u) annotation(Line(
+			points={{-99,-200},{-94,-200},{-40,-200},{-35,-200}},
+			color={0,0,127},
+			thickness=0.0625));
+		connect(const2.y,external_Radiation_rechts.u) annotation(Line(
+			points={{-99,-230},{-94,-230},{-40,-230},{-35,-230}},
+			color={0,0,127},
+			thickness=0.0625));
+		connect(const3.y,external_Radiation_vorne.u) annotation(Line(
+			points={{-99,-260},{-94,-260},{-40,-260},{-35,-260}},
+			color={0,0,127},
 			thickness=0.0625));
 	annotation(
 		beesat_struktur1(
@@ -2406,6 +2451,9 @@ model beesat_thermal "beesat_thermal.mo"
 				combiTable1Ds1_xn(y(flags=2)),
 				combiTable1Ds1_zp(y(flags=2)),
 				combiTable1Ds1_yn(y(flags=2)))),
+		viewinfo[0](
+			viewSettings(clrRaster=12632256),
+			typename="ModelInfo"),
 		experiment(
 			StopTime=1,
 			StartTime=0));
