@@ -1921,9 +1921,6 @@ model beesat_thermal "beesat_thermal.mo"
 				combiTable1Ds1_xn(y(flags=2)),
 				combiTable1Ds1_zp(y(flags=2)),
 				combiTable1Ds1_yn(y(flags=2)))),
-		viewinfo[0](
-			viewSettings(clrRaster=12632256),
-			typename="ModelInfo"),
 		experiment(
 			StopTime=1,
 			StartTime=0));
