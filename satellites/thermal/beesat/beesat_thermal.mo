@@ -394,6 +394,8 @@ model beesat_thermal "beesat_thermal.mo"
 		origin={135,-325},
 		extent={{-10,-10},{10,10}},
 		rotation=-270)));
+	external_Radiation external_Radiation_hinten annotation(Placement(transformation(extent={{-35,-180},{-15,-160}})));
+	Modelica.Blocks.Sources.Constant const annotation(Placement(transformation(extent={{-120,15},{-100,35}})));
 	equation
 		connect(radiation_Platine_oben_hinten.lo,beesat_platine_oben.or_zn_innen) annotation(Line(
 			points={{53,-94},{53,-89},{277.7,-89},{277.7,-18.3},{272.7,-18.3}},
@@ -1301,6 +1303,34 @@ model beesat_thermal "beesat_thermal.mo"
 		connect(radiation_Platine_unten_vorne.lu,beesat_platine_unten.ur_zp_aussen) annotation(Line(
 			points={{190,-335},{190,-340},{190,-429.7},{257.3,-429.7},{257.3,-424.7}},
 			color={255,0,0},
+			thickness=0.0625));
+		connect(const.y,external_Radiation_hinten.u) annotation(Line(
+			points={{-99,25},{-94,25},{-40,25},{-40,-170},{-35,-170}},
+			color={0,0,127},
+			thickness=0.0625));
+		connect(beesat_struktur1.hinten_aussen_ol,external_Radiation_hinten.thermal_connector_opt_prop_in1.lo) annotation(Line(
+			points={{94.3,-185.3},{94.3,-180.3},{94.3,-170},{-10,-170},{-15,-170}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_struktur1.hinten_aussen_om,external_Radiation_hinten.thermal_connector_opt_prop_in1.mo) annotation(Line(
+			points={{97.3,-185.3},{97.3,-180.3},{97.3,-170},{-10,-170},{-15,-170}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_struktur1.hinten_aussen_or,external_Radiation_hinten.thermal_connector_opt_prop_in1.ro) annotation(Line(
+			points={{100.7,-185.3},{100.7,-180.3},{100.7,-170},{-10,-170},{-15,-170}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_struktur1.hinten_aussen_ul,external_Radiation_hinten.thermal_connector_opt_prop_in1.lu) annotation(Line(
+			points={{94.3,-188.3},{94.3,-183.3},{94.3,-170},{-10,-170},{-15,-170}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_struktur1.hinten_aussen_um,external_Radiation_hinten.thermal_connector_opt_prop_in1.mu) annotation(Line(
+			points={{97.3,-188.3},{97.3,-183.3},{97.3,-170},{-10,-170},{-15,-170}},
+			color={0,0,0},
+			thickness=0.0625));
+		connect(beesat_struktur1.hinten_aussen_ur,external_Radiation_hinten.thermal_connector_opt_prop_in1.ru) annotation(Line(
+			points={{100.7,-188.3},{100.7,-183.3},{100.7,-170},{-10,-170},{-15,-170}},
+			color={0,0,0},
 			thickness=0.0625));
 	annotation(
 		beesat_struktur1(
