@@ -2,9 +2,15 @@
 // SimulationX Version: 3.6.5.34033 x64
 within ;
 model beesat_thermal "beesat_thermal.mo"
-	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b Platine_yn annotation(Placement(transformation(extent={{480,-415},{500,-395}})));
-	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a Bat annotation(Placement(transformation(extent={{475,-230},{495,-210}})));
-	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b Platine_yp annotation(Placement(transformation(extent={{475,-50},{495,-30}})));
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b Platine_yn annotation(Placement(
+		transformation(extent={{480,-415},{500,-395}}),
+		iconTransformation(extent={{288.3,-258.3},{308.3,-238.3}})));
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a Bat annotation(Placement(
+		transformation(extent={{475,-230},{495,-210}}),
+		iconTransformation(extent={{288.3,-58.3},{308.3,-38.3}})));
+	Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b Platine_yp annotation(Placement(
+		transformation(extent={{475,-50},{495,-30}}),
+		iconTransformation(extent={{288.3,191.7},{308.3,211.7}})));
 	beesat_struktur beesat_struktur1 annotation(Placement(transformation(extent={{65,-256},{136,-185}})));
 	beesat_platine beesat_platine_unten annotation(Placement(transformation(extent={{235,-436},{296,-375}})));
 	beesat_batterie beesat_batterie1 annotation(Placement(transformation(extent={{190,-251},{251,-190}})));
@@ -403,12 +409,24 @@ model beesat_thermal "beesat_thermal.mo"
 	external_Radiation external_Radiation_vorne annotation(Placement(transformation(extent={{-35,-270},{-15,-250}})));
 	external_Radiation_9 external_Radiation_Deckel annotation(Placement(transformation(extent={{-35,-150},{-15,-130}})));
 	external_Radiation_9 external_Radiation_Boden annotation(Placement(transformation(extent={{-35,-300},{-15,-280}})));
-	input Modelica.Blocks.Interfaces.RealInput yp annotation(Placement(transformation(extent={{-95,-160},{-55,-120}})));
-	input Modelica.Blocks.Interfaces.RealInput zn annotation(Placement(transformation(extent={{-95,-190},{-55,-150}})));
-	input Modelica.Blocks.Interfaces.RealInput xn annotation(Placement(transformation(extent={{-95,-220},{-55,-180}})));
-	input Modelica.Blocks.Interfaces.RealInput xp annotation(Placement(transformation(extent={{-95,-250},{-55,-210}})));
-	input Modelica.Blocks.Interfaces.RealInput zp annotation(Placement(transformation(extent={{-95,-280},{-55,-240}})));
-	input Modelica.Blocks.Interfaces.RealInput yn annotation(Placement(transformation(extent={{-95,-310},{-55,-270}})));
+	input Modelica.Blocks.Interfaces.RealInput yp annotation(Placement(
+		transformation(extent={{-95,-160},{-55,-120}}),
+		iconTransformation(extent={{-21.7,281.7},{18.3,321.7}})));
+	input Modelica.Blocks.Interfaces.RealInput zn annotation(Placement(
+		transformation(extent={{-95,-190},{-55,-150}}),
+		iconTransformation(extent={{228.3,281.7},{268.3,321.7}})));
+	input Modelica.Blocks.Interfaces.RealInput xn annotation(Placement(
+		transformation(extent={{-95,-220},{-55,-180}}),
+		iconTransformation(extent={{-321.7,-18.3},{-281.7,21.7}})));
+	input Modelica.Blocks.Interfaces.RealInput xp annotation(Placement(
+		transformation(extent={{-95,-250},{-55,-210}}),
+		iconTransformation(extent={{278.3,-18.3},{318.3,21.7}})));
+	input Modelica.Blocks.Interfaces.RealInput zp annotation(Placement(
+		transformation(extent={{-95,-280},{-55,-240}}),
+		iconTransformation(extent={{-271.7,-318.3},{-231.7,-278.3}})));
+	input Modelica.Blocks.Interfaces.RealInput yn annotation(Placement(
+		transformation(extent={{-95,-310},{-55,-270}}),
+		iconTransformation(extent={{-21.7,-318.3},{18.3,-278.3}})));
 	equation
 		connect(radiation_Platine_oben_hinten.lo,beesat_platine_oben.or_zn_innen) annotation(Line(
 			points={{53,-94},{53,-89},{277.7,-89},{277.7,-18.3},{272.7,-18.3}},
@@ -2528,9 +2546,65 @@ model beesat_thermal "beesat_thermal.mo"
 				combiTable1Ds1_xn(y(flags=2)),
 				combiTable1Ds1_zp(y(flags=2)),
 				combiTable1Ds1_yn(y(flags=2)))),
-		viewinfo[0](
-			viewSettings(clrRaster=12632256),
-			typename="ModelInfo"),
+		Icon(
+			coordinateSystem(extent={{-301.7,-301.7},{301.7,301.7}}),
+			graphics={
+							Rectangle(
+								lineColor={0,0,0},
+								fillColor={0,85,0},
+								fillPattern=FillPattern.Solid,
+								lineThickness=4.5,
+								extent={{-300,146.7},{146.7,-306.7}}),
+							Polygon(
+								points={{-303.3,146.7},{-143.3,303.3},{303.3,300},{146.7,146.7},{146.7,146.7}},
+								lineColor={0,0,0},
+								fillColor={0,85,0},
+								fillPattern=FillPattern.Solid,
+								lineThickness=3.5),
+							Polygon(
+								points={{150,-306.7},{303.3,-153.3},{300,300},{143.3,150}},
+								lineColor={0,0,0},
+								fillColor={0,85,0},
+								fillPattern=FillPattern.Solid,
+								lineThickness=3.5),
+							Polygon(
+								points={{-270,-120},{-270,-230},{-230,-273.3},{80,-276.7},{123.3,-236.7},{123.3,
+								-190},{123.3,-120},{76.7,-120}},
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								lineThickness=3.5),
+							Polygon(
+								points={{-239.6,75.8},{-239.6,-34.2},{-199.6,-77.5},{110.4,-80.90000000000001},{153.7,-40.9},{153.7,
+								5.8},{153.7,75.8},{107.1,75.8}},
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								lineThickness=3.5,
+								origin={-120.5,23.7},
+								rotation=-180),
+							Polygon(
+								points={{173.3,-90},{173.3,-216.7},{190,-236.7},{283.3,-146.7},{290,-116.7},{290,
+								30}},
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								lineThickness=3.5),
+							Polygon(
+								points={{170,-23.3},{166.7,90},{180,143.3},{270,230},{290,223.3},{286.7,
+								93.3}},
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								lineThickness=3.5),
+							Polygon(
+								points={{-193.3,223.3},{-240,176.7},{-230,156.7},{106.7,156.7},{136.7,170},{193.3,
+								223.3},{190,223.3}},
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								lineThickness=3.5),
+							Polygon(
+								points={{-176.7,240},{206.7,240},{256.7,280},{233.3,293.3},{-110,293.3},{-136.7,
+								283.3}},
+								lineColor={0,0,0},
+								fillPattern=FillPattern.Solid,
+								lineThickness=3.5)}),
 		experiment(
 			StopTime=1,
 			StartTime=0));
