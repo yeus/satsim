@@ -1747,20 +1747,18 @@ package satcomponents
       end busexample;
 
       model ACS_P
-        ACS_bus acs_bus annotation(Placement(transformation(origin = {90, 15}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}})));
-        parameter Integer id;
-        Modelica.Blocks.Math.Gain gain1[3](k = 1.0) annotation(Placement(transformation(extent = {{15, 5}, {35, 25}})));
-        Modelica.Blocks.Math.Add error[3](k2 = -1) annotation(Placement(transformation(extent = {{-20, 5}, {0, 25}})));
-        Modelica.Blocks.Math.Product product1[3] annotation(Placement(transformation(extent = {{50, 10}, {70, 30}})));
-        Modelica.Blocks.Sources.Step step1[3](offset = 1, startTime = 5) annotation(Placement(transformation(extent = {{10, 40}, {30, 60}})));
-        Modelica.Blocks.Sources.Step step3[3](height = {-0.1, 0.02, 0.05}, offset = {0.1, 0.0, 0.0}, startTime = 10) annotation(Placement(transformation(extent = {{-75, 10}, {-55, 30}})));
+  parameter Real k = 1.0 "gain";
+  Modelica.Blocks.Math.Gain gain1[3](each k = k) annotation(Placement(visible = true, transformation(extent = {{9, -11}, {29, 9}}, rotation = 0)));
+  Modelica.Blocks.Interfaces.RealOutput y[3] annotation(Placement(visible = true, transformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Math.Feedback feedback1[3] annotation(Placement(visible = true, transformation(origin = {-38, -2}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Interfaces.RealInput w_u[3] annotation(Placement(visible = true, transformation(origin = {-101, -33}, extent = {{-11, -11}, {11, 11}}, rotation = 0), iconTransformation(origin = {-98, -52}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+  Modelica.Blocks.Interfaces.RealInput a_measure[3] annotation(Placement(visible = true, transformation(origin = {-3, -99}, extent = {{-11, -11}, {11, 11}}, rotation = 90), iconTransformation(origin = {0, -100}, extent = {{-20, -20}, {20, 20}}, rotation = 90)));
+  Modelica.Blocks.Interfaces.RealInput a_u[3] annotation(Placement(visible = true, transformation(origin = {-101, -1}, extent = {{-11, -11}, {11, 11}}, rotation = 0), iconTransformation(origin = {-98, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
       equation
-        connect(error.y, gain1.u) annotation(Line(points = {{1, 15}, {6, 15}, {8, 15}, {13, 15}}, color = {0, 0, 127}, thickness = 0.0625));
-        connect(error.u2, acs_bus.w[id, :]) annotation(Line(points = {{-22, 9}, {-27, 9}, {-27, -15}, {85, -15}, {85, 15}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625), AutoRoute = false);
-        connect(gain1.y, product1.u2) annotation(Line(points = {{36, 15}, {41, 15}, {43, 15}, {43, 14}, {48, 14}}, color = {0, 0, 127}, thickness = 0.0625));
-        connect(product1.y, acs_bus.w_a) annotation(Line(points = {{71, 20}, {76, 20}, {85, 20}, {85, 15}, {90, 15}}, color = {0, 0, 127}, thickness = 0.0625));
-        connect(step1.y, product1.u1) annotation(Line(points = {{31, 50}, {36, 50}, {43, 50}, {43, 26}, {48, 26}}, color = {0, 0, 127}, thickness = 0.0625));
-        connect(step3.y, error.u1) annotation(Line(points = {{-54, 20}, {-49, 20}, {-27, 20}, {-27, 21}, {-22, 21}}, color = {0, 0, 127}, thickness = 0.0625));
+        connect(a_measure, feedback1.u2) annotation(Line(points = {{-2, -98}, {-4, -98}, {-4, -44}, {-38, -44}, {-38, -10}, {-38, -10}}, color = {0, 0, 127}));
+        connect(gain1.y, y) annotation(Line(points = {{30, 0}, {94, 0}, {94, 0}, {100, 0}}, color = {0, 0, 127}));
+        connect(feedback1.y, gain1.u) annotation(Line(points = {{-29, -2}, {7, -2}, {7, -1}}, color = {0, 0, 127}));
+        connect(a_u, feedback1.u1) annotation(Line(points = {{-100, 0}, {-48, 0}, {-48, -2}, {-46, -2}}, color = {0, 0, 127}));
         annotation(error(y(flags = 2)), Icon(graphics = {Rectangle(fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-86.39, 85.40000000000001}, {93.6909, -86.0637}}, origin = {1.22, 1.55}), Text(textString = "ACS", extent = {{-80.75, 56.53}, {80.75, -56.53}}, origin = {0.44, 3.43})}), experiment(StopTime = 1, StartTime = 0));
       end ACS_P;
 
@@ -1815,13 +1813,27 @@ package satcomponents
       extends Modelica.Icons.ExamplesPackage;
 
       model basic_pid_control
-        inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.PointGravity) annotation(Placement(visible = true, transformation(origin = {-60, 54}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-        Modelica.Mechanics.MultiBody.Parts.Body body1(I_11 = 0.5, I_21 = 0.2, I_22 = 0.1, I_31 = 0.1, I_33 = 0.333, m = 5.0, r_0(start = {6500e3, 0, 0}), useQuaternions = true, v_0(start = {0, 7.8e3, 0}), w_0_fixed = true, w_0_start = {0.01, 0.002, 0.0001}) annotation(Placement(visible = true, transformation(origin = {26, 44}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-        Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngles absoluteAngles1 annotation(Placement(visible = true, transformation(origin = {22, 16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity absoluteAngularVelocity1(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameA.frame_a)  annotation(Placement(visible = true, transformation(origin = {22, -12}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.PointGravity) annotation(Placement(visible = true, transformation(origin = {-86, 82}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
+  Modelica.Mechanics.MultiBody.Parts.Body body1(I_11 = 0.5, I_21 = 0.2, I_22 = 0.1, I_31 = 0.1, I_33 = 0.333, m = 5.0, r_0(start = {6500e3, 0, 0}), useQuaternions = true, v_0(start = {0, 7.8e3, 0}), w_0_fixed = true, w_0_start = {0.01, 0.002, 0.0001}) annotation(Placement(visible = true, transformation(origin = {-40, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngles absoluteAngles1 annotation(Placement(visible = true, transformation(origin = {-44, 12}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity absoluteAngularVelocity1(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameA.frame_a) annotation(Placement(visible = true, transformation(origin = {-44, -16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  satcomponents.AOCS.Parts.RW3a_noelec_nobus rW3a_noelec_nobus1 annotation(Placement(visible = true, transformation(origin = {-36, 78}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  satcomponents.blocks.timed_switch timed_switch1[3](switchTime = 100) annotation(Placement(visible = true, transformation(origin = {37, 59}, extent = {{-7, -7}, {7, 7}}, rotation = 180)));
+  satcomponents.AOCS.ctrl.ACS_P aCS_P1(k = 0.1)  annotation(Placement(visible = true, transformation(origin = {34, 26}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Sources.Constant const[3](k = {1, 0, 0})  annotation(Placement(visible = true, transformation(origin = {-9, 31}, extent = {{-7, -7}, {7, 7}}, rotation = 0)));
+  Modelica.Blocks.Routing.DeMultiplex3 deMultiplex31 annotation(Placement(visible = true, transformation(origin = {-9, 59}, extent = {{5, -5}, {-5, 5}}, rotation = 0)));
       equation
-        connect(body1.frame_a, absoluteAngularVelocity1.frame_a) annotation(Line(points = {{16, 44}, {-4, 44}, {-4, -12}, {12, -12}, {12, -12}}, color = {95, 95, 95}));
-        connect(body1.frame_a, absoluteAngles1.frame_a) annotation(Line(points = {{16, 44}, {-4, 44}, {-4, 16}, {12, 16}, {12, 16}}, color = {95, 95, 95}));
+        connect(absoluteAngularVelocity1.w, aCS_P1.w_u) annotation(Line(points = {{-32, -16}, {14, -16}, {14, 20}, {24, 20}, {24, 20}}, color = {0, 0, 127}));
+  connect(deMultiplex31.y3[1], rW3a_noelec_nobus1.tz) annotation(Line(points = {{-14, 56}, {-32, 56}, {-32, 66}, {-32, 66}}, color = {0, 0, 127}));
+  connect(deMultiplex31.y2[1], rW3a_noelec_nobus1.ty) annotation(Line(points = {{-14, 60}, {-36, 60}, {-36, 66}, {-36, 66}}, color = {0, 0, 127}));
+  connect(deMultiplex31.y1[1], rW3a_noelec_nobus1.tx) annotation(Line(points = {{-14, 62}, {-40, 62}, {-40, 66}, {-40, 66}}, color = {0, 0, 127}));
+        connect(timed_switch1.y, deMultiplex31.u) annotation(Line(points = {{30, 60}, {-2, 60}, {-2, 60}, {-2, 60}}, color = {0, 0, 127}));
+        connect(body1.frame_a, rW3a_noelec_nobus1.frame_a) annotation(Line(points = {{-50, 40}, {-54, 40}, {-54, 79}, {-46, 79}}, color = {95, 95, 95}));
+        connect(const.y, aCS_P1.a_u) annotation(Line(points = {{-2, 32}, {12, 32}, {12, 26}, {24, 26}, {24, 26}}, color = {0, 0, 127}));
+        connect(aCS_P1.y, timed_switch1.u) annotation(Line(points = {{44, 26}, {62, 26}, {62, 58}, {46, 58}, {46, 60}}, color = {0, 0, 127}));
+        connect(absoluteAngles1.angles, aCS_P1.a_measure) annotation(Line(points = {{-32, 12}, {-14, 12}, {-14, -8}, {34, -8}, {34, 16}}, color = {0, 0, 127}));
+        connect(body1.frame_a, absoluteAngularVelocity1.frame_a) annotation(Line(points = {{-50, 40}, {-70, 40}, {-70, -16}, {-54, -16}}, color = {95, 95, 95}));
+        connect(body1.frame_a, absoluteAngles1.frame_a) annotation(Line(points = {{-50, 40}, {-70, 40}, {-70, 12}, {-54, 12}}, color = {95, 95, 95}));
         annotation(Icon, Diagram, experiment(StartTime = 0, StopTime = 5000, Tolerance = 1e-06, Interval = 5));
       end basic_pid_control;
 
@@ -1949,6 +1961,18 @@ signal <b>u</b> exceeds the <b>reference</b> signal plus half of the bandwidth.<
       end onoffidletest;
       annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})));
     end examples;
+
+    model timed_switch
+      extends Modelica.Blocks.Interfaces.SISO;
+  parameter Real switchTime = 0 "time where signal is turned on";
+  Modelica.Blocks.Math.Product product1 annotation(Placement(visible = true, transformation(origin = {6, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Sources.Step step1(startTime = switchTime)  annotation(Placement(visible = true, transformation(origin = {-46, 26}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      equation
+      connect(step1.y, product1.u1) annotation(Line(points = {{-34, 26}, {-22, 26}, {-22, 6}, {-6, 6}, {-6, 6}}, color = {0, 0, 127}));
+      connect(product1.y, y) annotation(Line(points = {{18, 0}, {104, 0}, {104, 0}, {110, 0}}, color = {0, 0, 127}));
+      connect(u, product1.u2) annotation(Line(points = {{-120, 0}, {-60, 0}, {-60, -6}, {-6, -6}, {-6, -6}}, color = {0, 0, 127}));
+      annotation(Icon(graphics = {Text(origin = {-1, -13}, extent = {{-73, 17}, {73, -17}}, textString = "%switchTime"), Text(origin = {0, 55}, extent = {{-64, 23}, {64, -23}}, textString = "time")}), Diagram);
+    end timed_switch;
     annotation(dateModified = "2014-04-17 11:12:16Z");
   end blocks;
 
