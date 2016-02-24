@@ -1786,6 +1786,42 @@ package satcomponents
         connect(w, acs_bus.w);
         annotation(Icon(graphics = {Rectangle(fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-86.39, 85.40000000000001}, {93.6909, -86.0637}}, origin = {1.22, 1.55}), Text(textString = "Bus\\nCtrl", extent = {{-80.75, 56.53}, {80.75, -56.53}}, origin = {0.44, 3.43})}), experiment(StopTime = 1, StartTime = 0));
       end ACS_bus_ctrl;
+
+      model ACS_Q_P_cont
+        extends ACS_IO;
+          import Modelica.Mechanics.MultiBody.Types;
+          import Modelica.Mechanics.MultiBody.Frames;
+          import Modelica.Mechanics.MultiBody.Frames.Quaternions;
+          import Modelica.SIunits.Conversions.to_unit1;
+          Quaternions.Orientation Q "state quaternion";
+          parameter Types.RotationSequence sequence={1,2,3} "Sequence of rotations of satellite within inertial frame";
+          Quaternions.Orientation Q_e "delta quaternion";
+          parameter Real K_q = 0.5;
+          parameter Real K_w[3] = {1.0,1.0,1.0} * 10.0;
+          parameter Modelica.SIunits.Torque T_level[3]={1,1,1};
+          Frames.Orientation R_c= Modelica.Mechanics.MultiBody.Frames.axesRotations(sequence, a_u, zeros(3));
+          Quaternions.Orientation Q_c = Frames.to_Q(R_c) "target quaternion";
+          Frames.Orientation A "current orientation matrix";
+          Real totalerror;
+      equation
+           A = Modelica.Mechanics.MultiBody.Frames.axesRotations(sequence, a_measure, zeros(3));
+           //w = Frames.angularVelocity1(A);
+           Q = Frames.to_Q(A);
+           Q_e = Frames.Quaternions.relativeRotation(Q_c,Q);
+           totalerror = sum(Q_e);
+           y = - K_q*Q_e[1:3] - K_w .* w_measure;
+            annotation(Icon, Diagram);
+      end ACS_Q_P_cont;
+
+      model ACS_IO
+      Modelica.Blocks.Interfaces.RealOutput y[3] annotation(Placement(visible = true, transformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      Modelica.Blocks.Interfaces.RealInput w_u[3] annotation(Placement(visible = true, transformation(origin = {-101, -33}, extent = {{-11, -11}, {11, 11}}, rotation = 0), iconTransformation(origin = {-98, -52}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+      Modelica.Blocks.Interfaces.RealInput a_measure[3] annotation(Placement(visible = true, transformation(origin = {-3, -99}, extent = {{-11, -11}, {11, 11}}, rotation = 90), iconTransformation(origin = {-5, -95}, extent = {{-15, -15}, {15, 15}}, rotation = 90)));
+      Modelica.Blocks.Interfaces.RealInput a_u[3] annotation(Placement(visible = true, transformation(origin = {-101, -1}, extent = {{-11, -11}, {11, 11}}, rotation = 0), iconTransformation(origin = {-98, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+  Modelica.Blocks.Interfaces.RealInput w_measure[3] annotation(Placement(visible = true, transformation(origin = {43, -99}, extent = {{-11, -11}, {11, 11}}, rotation = 90), iconTransformation(origin = {55, -95}, extent = {{-15, -15}, {15, 15}}, rotation = 90)));
+      equation
+        annotation(error(y(flags = 2)), Icon(graphics = {Rectangle(fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-86.39, 85.40000000000001}, {93.6909, -86.0637}}, origin = {1.22, 1.55}), Text(textString = "ACS", extent = {{-80.75, 56.53}, {80.75, -56.53}}, origin = {0.44, 3.43})}), experiment(StopTime = 1, StartTime = 0), Diagram);
+      end ACS_IO;
     end ctrl;
 
     model momentum_add "momentum_add"
@@ -1820,25 +1856,23 @@ package satcomponents
         import Modelica.Mechanics.MultiBody.Frames;
         import Modelica.Mechanics.MultiBody.Frames.Quaternions;
         import Modelica.SIunits.Conversions.to_unit1;
+      Modelica.Blocks.Sources.Constant const[3](k = {1, 0.5, 0.3}) annotation(Placement(visible = true, transformation(origin = {-5, 33}, extent = {{-7, -7}, {7, 7}}, rotation = 0)));
         inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.PointGravity) annotation(Placement(visible = true, transformation(origin = {-86, 82}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
-        Modelica.Mechanics.MultiBody.Parts.Body body1(I_11 = 0.5, I_21 = 0.2, I_22 = 0.1, I_31 = 0.1, I_33 = 0.333, enforceStates = true, m = 5.0, r_0(start = {6500e3, 0, 0}), useQuaternions = true, v_0(start = {0, 7.8e3, 0}), w_0_fixed = true, w_0_start = {0.01, 0.002, 0.0001}) annotation(Placement(visible = true, transformation(origin = {-40, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Mechanics.MultiBody.Parts.Body body1(I_11 = 0.5, I_21 = 0.2, I_22 = 0.1, I_31 = 0.1, I_33 = 0.333, enforceStates = true, m = 5.0, r_0(start = {6500e3, 0, 0}), useQuaternions = true, v_0(start = {0, 7.8e3, 0}), w_0_fixed = true, w_0_start = {0.1, 0.2, 0.01}) annotation(Placement(visible = true, transformation(origin = {-40, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngles absoluteAngles1 annotation(Placement(visible = true, transformation(origin = {-44, 12}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity w(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameA.frame_a) annotation(Placement(visible = true, transformation(origin = {-44, -16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         satcomponents.AOCS.Parts.RW3a_noelec_nobus rW3a_noelec_nobus1 annotation(Placement(visible = true, transformation(origin = {-36, 78}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         satcomponents.blocks.timed_switch timed_switch[3](each switchTime = 100) annotation(Placement(visible = true, transformation(origin = {37, 59}, extent = {{-7, -7}, {7, 7}}, rotation = 180)));
         Modelica.Blocks.Routing.DeMultiplex3 deMultiplex31 annotation(Placement(visible = true, transformation(origin = {-9, 59}, extent = {{5, -5}, {-5, 5}}, rotation = 0)));
-        Quaternions.Orientation Q "state quaternion";
-        parameter Quaternions.Orientation Q_c ={0,0,0,1} "target quaternion";
-        Quaternions.Orientation Q_e "delta quaternion";
-        Modelica.SIunits.Torque T_wheels[3] "target control torque";
-        parameter Real K_q = 10;
-        parameter Real K_w[3] = {200.0,200.0,200.0};
-        parameter Modelica.SIunits.Torque T_level[3]={1,1,1};
+  satcomponents.AOCS.ctrl.ACS_Q_P_cont aCS_Q_P_cont1 annotation(Placement(visible = true, transformation(origin = {30, 32}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+          Quaternions.Orientation Q;
       equation
+        connect(w.w, aCS_Q_P_cont1.w_u) annotation(Line(points = {{-32, -16}, {12, -16}, {12, 26}, {20, 26}, {20, 26}}, color = {0, 0, 127}));
+        connect(w.w, aCS_Q_P_cont1.w_measure) annotation(Line(points = {{-32, -16}, {36, -16}, {36, 22}, {36, 22}}, color = {0, 0, 127}));
         Q = body1.Q;
-        Q_e = Frames.Quaternions.relativeRotation(Q_c,Q);
-        T_wheels = - K_q*Q_e[1:3] - K_w .* w.w;
-        timed_switch.u = T_wheels;
+        connect(const.y, aCS_Q_P_cont1.a_u) annotation(Line(points = {{2, 34}, {20, 34}, {20, 32}, {20, 32}}, color = {0, 0, 127}));
+        connect(aCS_Q_P_cont1.y, timed_switch.u) annotation(Line(points = {{40, 32}, {58, 32}, {58, 60}, {46, 60}}, color = {0, 0, 127}));
+        connect(absoluteAngles1.angles, aCS_Q_P_cont1.a_measure) annotation(Line(points = {{-32, 12}, {-14, 12}, {-14, -6}, {30, -6}, {30, 22}}, color = {0, 0, 127}));
         connect(deMultiplex31.y3[1], rW3a_noelec_nobus1.tz) annotation(Line(points = {{-14, 56}, {-32, 56}, {-32, 66}, {-32, 66}}, color = {0, 0, 127}));
         connect(deMultiplex31.y2[1], rW3a_noelec_nobus1.ty) annotation(Line(points = {{-14, 60}, {-36, 60}, {-36, 66}, {-36, 66}}, color = {0, 0, 127}));
         connect(deMultiplex31.y1[1], rW3a_noelec_nobus1.tx) annotation(Line(points = {{-14, 62}, {-40, 62}, {-40, 66}, {-40, 66}}, color = {0, 0, 127}));
