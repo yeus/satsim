@@ -1357,9 +1357,6 @@ package satcomponents
       annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), experiment(StartTime = 0.0, StopTime = 30, Tolerance = 0.0001));
     end gyroeffects;
 
-    model cubesatwith3axisreactionwheel
-    end cubesatwith3axisreactionwheel;
-
     model reactionwheelexample
       extends Modelica.Icons.Example;
       Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedtranslation1(r = {0, 0.03, 0.02}) annotation(Placement(visible = true, transformation(origin = {12.1328, -11.8278}, extent = {{10, -10}, {-10, 10}}, rotation = 180)));
@@ -1750,7 +1747,8 @@ package satcomponents
           parameter Types.RotationSequence sequence={1,2,3} "Sequence of rotations of satellite within inertial frame";
           Quaternions.Orientation Q_e "delta quaternion";
           parameter Real K_q = 0.5;
-          parameter Real K_w[3] = {1.0,1.0,1.0} * 10.0;
+          parameter Real kw = 10.0;
+          parameter Real K_w[3] = {1.0,1.0,1.0} * kw;
           parameter Modelica.SIunits.Torque T_level[3]={1,1,1};
           Frames.Orientation R_c= Modelica.Mechanics.MultiBody.Frames.axesRotations(sequence, a_u, zeros(3));
           Quaternions.Orientation Q_c = Frames.to_Q(R_c) "target quaternion";
@@ -2061,8 +2059,15 @@ sensor model.
     annotation(Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2}), graphics = {Text(origin = {-3.49187e-07, 85.4046}, fillColor = {255, 255, 255}, extent = {{-68.7861, 16.3295}, {68.7861, -16.3295}}, textString = "%name"), Rectangle(origin = {1, -3}, rotation = 30, fillColor = {213, 168, 104}, fillPattern = FillPattern.Solid, extent = {{-13, 21}, {13, -21}}), Rectangle(origin = {-47, -21}, rotation = 30, fillColor = {39, 60, 254}, fillPattern = FillPattern.VerticalCylinder, extent = {{-17, 1}, {33, -19}}), Rectangle(origin = {27, 21}, rotation = 30, fillColor = {39, 60, 254}, fillPattern = FillPattern.VerticalCylinder, extent = {{-17, 1}, {33, -19}})}), experiment(StartTime = 0, StopTime = 20000, Tolerance = 0.0001, Interval = 40));
   end satellite_basic;
   model Cubesat
+  Modelica.Blocks.Sources.Constant const[3](k = {1, 0.5, 0.3}) annotation(Placement(visible = true, transformation(origin = {-15, 17}, extent = {{-7, -7}, {7, 7}}, rotation = 0)));
+    Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngles absoluteAngles1 annotation(Placement(visible = true, transformation(origin = {-48, 62}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity w(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameA.frame_a) annotation(Placement(visible = true, transformation(origin = {-48, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    satcomponents.AOCS.Parts.RW3a_noelec_nobus rW3a_noelec_nobus1 annotation(Placement(visible = true, transformation(origin = {-4, 84}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    satcomponents.blocks.timed_switch timed_switch[3](each switchTime = 100) annotation(Placement(visible = true, transformation(origin = {37, 59}, extent = {{-7, -7}, {7, 7}}, rotation = 180)));
+    Modelica.Blocks.Routing.DeMultiplex3 deMultiplex31 annotation(Placement(visible = true, transformation(origin = {11, 59}, extent = {{5, -5}, {-5, 5}}, rotation = 0)));
+  satcomponents.AOCS.ctrl.ACS_Q_P_cont aCS_Q_P_cont1(K_q = 10.0, kw = 30.0)  annotation(Placement(visible = true, transformation(origin = {36, 36}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
     Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(visible = true, transformation(origin = {-99.711, 0.289017}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-99.711, 0.289017}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-    satcomponents.AOCS.Parts.Struktur struktur1 annotation(Placement(visible = true, transformation(origin = {-54.711, 0.086705}, extent = {{-24.6532, -24.6532}, {24.6532, 24.6532}}, rotation = 0)));
+  satcomponents.AOCS.Parts.Struktur struktur1 annotation(Placement(visible = true, transformation(origin = {-62.711, 0.086705}, extent = {{-24.6532, -24.6532}, {24.6532, 24.6532}}, rotation = 0)));
     Modelica.Electrical.Analog.Ideal.IdealDiode idealdiode1 annotation(Placement(visible = true, transformation(origin = {-0.843931, -68.1985}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
     Modelica.Electrical.Analog.Ideal.IdealDiode idealdiode2 annotation(Placement(visible = true, transformation(origin = {-0.984619, -41.1638}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
     satcomponents.power.solar_power.solarcell_simple solarcell_simple1 annotation(Placement(visible = true, transformation(origin = {23.9884, -78.6127}, extent = {{10, 10}, {-10, -10}}, rotation = 0)));
@@ -2070,43 +2075,51 @@ sensor model.
     Modelica.Electrical.Analog.Semiconductors.ZDiode zdiode1(Bv = 39) annotation(Placement(visible = true, transformation(origin = {23.998, -54.422}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
     satcomponents.power.batteries.battery battery1 annotation(Placement(visible = true, transformation(origin = {25.7225, -20.5202}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
     Modelica.Blocks.Interfaces.RealInput u annotation(Placement(visible = true, transformation(origin = {2.02312, -101.445}, extent = {{-10, -10}, {10, 10}}, rotation = 90), iconTransformation(origin = {-0.867052, -96.5318}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-    satcomponents.data.OBC obc1 annotation(Placement(visible = true, transformation(origin = {24.8555, 25.4335}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-    Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedtranslation1(r = {0, 0.04, 0.03}) annotation(Placement(visible = true, transformation(origin = {-20, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-    satcomponents.AOCS.Parts.reactionwheel3axis_noelectricity reactionwheel3axis_noelectricity1(id = 1) annotation(Placement(visible = true, transformation(origin = {20, 60}, extent = {{-15, -15}, {15, 15}}, rotation = 0)));
-    satcomponents.AOCS.ctrl.ACS acs1 annotation(Placement(visible = true, transformation(origin = {60, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  satcomponents.data.OBC obc1 annotation(Placement(visible = true, transformation(origin = {24.8555, -0.5665}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedtranslation1(r = {0, 0.04, 0.03}) annotation(Placement(visible = true, transformation(origin = {-34, 84}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
     Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitor1 annotation(Placement(visible = true, transformation(origin = {74, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   equation
-    connect(zdiode1.heatPort, heatCapacitor1.port) annotation(Line(points = {{24, -44}, {74, -44}, {74, 0}}, color = {191, 0, 0}));
-    connect(reactionwheel3axis_noelectricity1.acs_bus, acs1.acs_bus) annotation(Line(points = {{33, 63}, {78, 63}, {78, 40}, {70, 40}, {70, 40}}));
-    connect(fixedtranslation1.frame_b, reactionwheel3axis_noelectricity1.frame_a) annotation(Line(points = {{-10, 60}, {5.61404, 60}, {5.61404, 61.0526}, {5.61404, 61.0526}}));
-    connect(fixedtranslation1.frame_a, struktur1.frame_a) annotation(Line(points = {{-30, 60}, {-54.3353, 60}, {-54.3353, 0.867052}, {-54.3353, 0.867052}}));
-    connect(obc1.pin_n, battery1.n) annotation(Line(points = {{24.7989, 15.5325}, {35.8382, 15.5325}, {35.8382, -20.8092}, {35.8382, -20.8092}}));
-    connect(obc1.pin_p, battery1.p) annotation(Line(points = {{20.5839, 15.6174}, {15.0289, 15.6174}, {15.0289, -20.5202}, {15.0289, -20.5202}}));
-    connect(u, solarcell_simple1.E_s) annotation(Line(points = {{2.02312, -101.445}, {2.02312, -89.8844}, {23.9884, -89.8844}, {23.9884, -86.4162}, {23.9884, -86.4162}}));
-    connect(zdiode1.p, ground1.p) annotation(Line(points = {{33.998, -54.422}, {54.9133, -54.422}, {54.9133, -79.1908}, {54.9133, -79.1908}}));
-    connect(battery1.n, ground1.p) annotation(Line(points = {{35.7225, -20.5202}, {54.9133, -20.5202}, {54.9133, -78.6127}, {54.9133, -78.6127}}));
-    connect(zdiode1.n, idealdiode2.p) annotation(Line(points = {{13.998, -54.422}, {-0.867052, -54.422}, {-0.867052, -51.1561}, {-0.867052, -51.1561}}));
-    connect(idealdiode2.n, battery1.p) annotation(Line(points = {{-0.984619, -31.1638}, {-0.984619, -20.5202}, {15.6069, -20.5202}, {15.6069, -20.5202}}));
-    connect(idealdiode1.n, idealdiode2.p) annotation(Line(points = {{-0.843931, -58.1985}, {-0.843931, -51.4451}, {-0.867052, -51.4451}, {-0.867052, -51.4451}}));
-    connect(idealdiode1.p, solarcell_simple1.n) annotation(Line(points = {{-0.843931, -78.1985}, {-0.843931, -78.90170000000001}, {13.8728, -78.90170000000001}, {13.8728, -78.90170000000001}}));
-    connect(solarcell_simple1.p, ground1.p) annotation(Line(points = {{33.9884, -78.6127}, {54.6243, -78.6127}, {54.6243, -78.3237}, {54.6243, -78.3237}}));
-    connect(frame_a, struktur1.frame_a) annotation(Line(points = {{-99.711, 0.289017}, {-56.0694, 0.289017}, {-53.9273, 0.289017}, {-53.9273, 0.94173}}));
-    annotation(Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2}), graphics = {Rectangle(origin = {-8.81503, 2.02312}, fillColor = {160, 160, 160}, fillPattern = FillPattern.Solid, extent = {{-67.1966, 69.36409999999999}, {89.4509, -89.01730000000001}}), Polygon(origin = {2.45663, 25.1445}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{-72.6878, 41.0405}, {-72.10980000000001, -19.0752}, {-55.6358, -32.3699}, {60.8381, -31.7919}, {73.2659, -15.029}, {73.5549, 40.7515}, {-72.6878, 41.0405}}), Text(origin = {-3.49187e-07, 85.4046}, fillColor = {255, 255, 255}, extent = {{-68.7861, 16.3295}, {68.7861, -16.3295}}, textString = "%name"), Polygon(origin = {3.09246, -50.8092}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{-72.6878, 41.0405}, {-72.10980000000001, -19.0752}, {-55.6358, -32.3699}, {60.8381, -31.7919}, {73.2659, -15.029}, {73.5549, 40.7515}, {-72.6878, 41.0405}})}), experiment(StartTime = 0, StopTime = 20000, Tolerance = 0.0001, Interval = 40));
+      connect(const.y, aCS_Q_P_cont1.w_u) annotation(Line(points = {{-8, 18}, {6, 18}, {6, 30}, {26, 30}, {26, 30}}, color = {0, 0, 127}));
+      connect(aCS_Q_P_cont1.y, timed_switch.u) annotation(Line(points = {{46, 36}, {58, 36}, {58, 60}, {46, 60}, {46, 60}}, color = {0, 0, 127}));
+      connect(w.w, aCS_Q_P_cont1.w_measure) annotation(Line(points = {{-36, 40}, {-14, 40}, {-14, 32}, {20, 32}, {20, 16}, {42, 16}, {42, 26}, {42, 26}, {42, 26}}, color = {0, 0, 127}));
+      connect(absoluteAngles1.angles, aCS_Q_P_cont1.a_measure) annotation(Line(points = {{-36, 62}, {-22, 62}, {-22, 46}, {14, 46}, {14, 18}, {36, 18}, {36, 26}, {36, 26}}, color = {0, 0, 127}));
+      connect(const.y, aCS_Q_P_cont1.a_u) annotation(Line(points = {{-8, 18}, {6, 18}, {6, 36}, {26, 36}, {26, 36}}, color = {0, 0, 127}));
+      connect(struktur1.frame_a, absoluteAngles1.frame_a) annotation(Line(points = {{-62, 0}, {-62, 0}, {-62, 62}, {-58, 62}, {-58, 62}}, color = {95, 95, 95}));
+      connect(struktur1.frame_a, w.frame_a) annotation(Line(points = {{-62, 0}, {-58, 0}, {-58, 40}, {-58, 40}}, color = {95, 95, 95}));
+      connect(frame_a, struktur1.frame_a) annotation(Line(points = {{-99.711, 0.289017}, {-62, 0.289017}, {-62, 1}}));
+      connect(fixedtranslation1.frame_a, struktur1.frame_a) annotation(Line(points = {{-44, 84}, {-62, 84}, {-62, 1}}));
+      connect(rW3a_noelec_nobus1.frame_a, fixedtranslation1.frame_b) annotation(Line(points = {{-14, 84}, {-24, 84}, {-24, 84}, {-24, 84}}, color = {95, 95, 95}));
+      connect(timed_switch.y, deMultiplex31.u) annotation(Line(points = {{30, 60}, {18, 60}, {18, 60}, {18, 60}}, color = {0, 0, 127}));
+      connect(deMultiplex31.y3[1], rW3a_noelec_nobus1.tz) annotation(Line(points = {{6, 56}, {0, 56}, {0, 72}, {0, 72}}, color = {0, 0, 127}));
+      connect(deMultiplex31.y2[1], rW3a_noelec_nobus1.ty) annotation(Line(points = {{6, 60}, {-4, 60}, {-4, 72}, {-4, 72}}, color = {0, 0, 127}));
+      connect(deMultiplex31.y1[1], rW3a_noelec_nobus1.tx) annotation(Line(points = {{6, 62}, {-8, 62}, {-8, 72}, {-8, 72}}, color = {0, 0, 127}));
+      connect(obc1.pin_p, battery1.p) annotation(Line(points = {{21, -10}, {15.0289, -10}, {15.0289, -20.5202}}));
+      connect(obc1.pin_n, battery1.n) annotation(Line(points = {{25, -10}, {35.8382, -10}, {35.8382, -20.8092}}));
+      connect(zdiode1.heatPort, heatCapacitor1.port) annotation(Line(points = {{24, -44}, {74, -44}, {74, 0}}, color = {191, 0, 0}));
+      connect(u, solarcell_simple1.E_s) annotation(Line(points = {{2.02312, -101.445}, {2.02312, -89.8844}, {23.9884, -89.8844}, {23.9884, -86.4162}, {23.9884, -86.4162}}));
+      connect(zdiode1.p, ground1.p) annotation(Line(points = {{33.998, -54.422}, {54.9133, -54.422}, {54.9133, -79.1908}, {54.9133, -79.1908}}));
+      connect(battery1.n, ground1.p) annotation(Line(points = {{35.7225, -20.5202}, {54.9133, -20.5202}, {54.9133, -78.6127}, {54.9133, -78.6127}}));
+      connect(zdiode1.n, idealdiode2.p) annotation(Line(points = {{13.998, -54.422}, {-0.867052, -54.422}, {-0.867052, -51.1561}, {-0.867052, -51.1561}}));
+      connect(idealdiode2.n, battery1.p) annotation(Line(points = {{-0.984619, -31.1638}, {-0.984619, -20.5202}, {15.6069, -20.5202}, {15.6069, -20.5202}}));
+      connect(idealdiode1.n, idealdiode2.p) annotation(Line(points = {{-0.843931, -58.1985}, {-0.843931, -51.4451}, {-0.867052, -51.4451}, {-0.867052, -51.4451}}));
+      connect(idealdiode1.p, solarcell_simple1.n) annotation(Line(points = {{-0.843931, -78.1985}, {-0.843931, -78.90170000000001}, {13.8728, -78.90170000000001}, {13.8728, -78.90170000000001}}));
+      connect(solarcell_simple1.p, ground1.p) annotation(Line(points = {{33.9884, -78.6127}, {54.6243, -78.6127}, {54.6243, -78.3237}, {54.6243, -78.3237}}));
+      annotation(Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2}), graphics = {Rectangle(origin = {-8.81503, 2.02312}, fillColor = {160, 160, 160}, fillPattern = FillPattern.Solid, extent = {{-67.1966, 69.36409999999999}, {89.4509, -89.01730000000001}}), Polygon(origin = {2.45663, 25.1445}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{-72.6878, 41.0405}, {-72.10980000000001, -19.0752}, {-55.6358, -32.3699}, {60.8381, -31.7919}, {73.2659, -15.029}, {73.5549, 40.7515}, {-72.6878, 41.0405}}), Text(origin = {-3.49187e-07, 85.4046}, fillColor = {255, 255, 255}, extent = {{-68.7861, 16.3295}, {68.7861, -16.3295}}, textString = "%name"), Polygon(origin = {3.09246, -50.8092}, fillColor = {0, 0, 128}, fillPattern = FillPattern.Solid, points = {{-72.6878, 41.0405}, {-72.10980000000001, -19.0752}, {-55.6358, -32.3699}, {60.8381, -31.7919}, {73.2659, -15.029}, {73.5549, 40.7515}, {-72.6878, 41.0405}})}), experiment(StartTime = 0, StopTime = 20000, Tolerance = 0.0001, Interval = 40));
   end Cubesat;
     package Examples
       extends Modelica.Icons.ExamplesPackage;
 
       model cubesat_in_orbit
         extends Modelica.Icons.Example;
-        inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(visible = true, transformation(origin = {-74.9845, 45.4769}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-        Modelica.Mechanics.MultiBody.Joints.FreeMotion freemotion1(r_rel_a(start = {6500e3, 0, 0}), useQuaternions = true, v_rel_a(start = {0, 7.8e3, 0}), w_rel_a_fixed = true, w_rel_a_start = {0.0, 0, 0}) annotation(Placement(visible = true, transformation(origin = {-42.2197, 45.3757}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-        Modelica.Blocks.Sources.Trapezoid trapezoid1(rising = 20, width = 1000, falling = 20, startTime = 2000, period = 5000, nperiod = -1, amplitude = 1367) annotation(Placement(visible = true, transformation(origin = {-29.8712, -10.2364}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-        satcomponents.satellites.Cubesat cubesat annotation(Placement(visible = true, transformation(origin = {-7.80347, 46.2428}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity) annotation(Placement(visible = true, transformation(origin = {-52.9845, 29.4769}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Mechanics.MultiBody.Joints.FreeMotion freemotion1(r_rel_a(start = {6500e3, 0, 0}), useQuaternions = true, v_rel_a(start = {0, 7.8e3, 0}), w_rel_a_fixed = true, w_rel_a_start = {0.5, 0.2, 0.1}) annotation(Placement(visible = true, transformation(origin = {-20.2197, 29.3757}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Sources.Trapezoid sun(rising = 20, width = 1000, falling = 20, startTime = 2000, period = 5000, nperiod = -1, amplitude = 1367) annotation(Placement(visible = true, transformation(origin = {-7.8712, -26.2364}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  satcomponents.satellites.Cubesat cubesat annotation(Placement(visible = true, transformation(origin = {14.1965, 30.2428}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       equation
-        connect(world.frame_b, freemotion1.frame_a) annotation(Line(points = {{-64.9845, 45.4769}, {-54.6243, 45.4769}, {-54.6243, 45.6647}, {-52, 45.6647}, {-52, 45}}));
-        connect(freemotion1.frame_b, cubesat.frame_a) annotation(Line(points = {{-32, 45}, {-18.2081, 45}, {-18.2081, 46.5318}}));
-        connect(cubesat.u, trapezoid1.y) annotation(Line(points = {{-7.60116, 36.0983}, {-7.22543, 36.0983}, {-7.22543, -10.4046}, {-18.7861, -10.4046}, {-18.7861, -10.4046}}));
-        annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-05, Interval = 0.2));
+        connect(cubesat.u, sun.y) annotation(Line(points = {{14, 21}, {14.7746, 21}, {14.7746, -26}, {3, -26}}));
+        connect(freemotion1.frame_b, cubesat.frame_a) annotation(Line(points = {{-10, 29}, {4, 29}, {4, 30}}));
+        connect(world.frame_b, freemotion1.frame_a) annotation(Line(points = {{-43, 29}, {-32.6243, 29}, {-32.6243, 29.6647}, {-30, 29.6647}, {-30, 29}}));
+        annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), experiment(StartTime = 50, StopTime = 300, Tolerance = 1e-05, Interval = 0.5));
       end cubesat_in_orbit;
       annotation(Icon, Diagram);
     end Examples;
