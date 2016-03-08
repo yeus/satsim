@@ -1408,17 +1408,28 @@ package satcomponents
       model reactionwheelsimple_noelectricity "reactionwheelsimple_noelectricity"
         extends RW_icon;
         extends frame_input;
-        Modelica.Mechanics.MultiBody.Joints.Revolute x_axis(animation = false, n = {1, 0, 0}) annotation(Placement(visible = true, transformation(origin = {-12, 6}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
-        Modelica.Mechanics.MultiBody.Forces.Torque torque_x(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameAB.frame_a) annotation(Placement(visible = true, transformation(origin = {-12, -16}, extent = {{-10, -10}, {10, 10}}, rotation = -180)));
-        Modelica.Mechanics.MultiBody.Parts.Body body1 annotation(Placement(visible = true, transformation(origin = {24, 6}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        parameter Real axis[3] = {1, 0, 0};
+        parameter Real m = 0.5;
+        parameter Real r = 0.1;
+        parameter Real h = 0.02;
+        //parameter Real Iz = m*r*r*0.5;
+        //parameter Real Iy = m*(3*r*r+h*h)/12.0;
+        //parameter Real Ix = Iy;
+        parameter Real Iz = 0.4;
+        parameter Real Iy = Iz;
+        parameter Real Ix = Iy;
+        Modelica.Mechanics.MultiBody.Parts.Body body1(I_11 = Ix, I_22 = Iy, I_33 = Iz, m = m) annotation(Placement(visible = true, transformation(origin = {24, 6}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Mechanics.MultiBody.Parts.FixedRotation fixedRotation1(angle = -90, n = {0, 1, 0}) annotation(Placement(visible = true, transformation(origin = {-50, 6}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Mechanics.MultiBody.Parts.Rotor1D rotor1D1(J = Iz, exact = false, n = axis, phi(fixed = false), w(fixed = false)) annotation(Placement(visible = true, transformation(origin = {-14, -22}, extent = {{10, -10}, {-10, 10}}, rotation = 180)));
+        Modelica.Mechanics.Rotational.Sources.Torque torque1 annotation(Placement(visible = true, transformation(origin = {-52, -22}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       equation
-        connect(x_axis.frame_b, body1.frame_a) annotation(Line(points = {{-2, 6}, {14, 6}}, color = {95, 95, 95}));
-        connect(torque_x.frame_b, x_axis.frame_a) annotation(Line(points = {{-22, -16}, {-27, -16}, {-27, 6}, {-22, 6}}, color = {95, 95, 95}, thickness = 0.0625));
-        connect(x_axis.frame_b, torque_x.frame_a) annotation(Line(points = {{-2, 6}, {6, 6}, {6, -16}, {-2, -16}}, color = {95, 95, 95}));
-        connect(x_axis.frame_a, frame_a) annotation(Line(points = {{-22, 6}, {-94.3, 6}, {-94.3, 5.3}, {-99.3, 5.3}}, color = {95, 95, 95}, thickness = 0.0625));
-        torque_x.torque[2:3] = {0, 0};
-        torque_x.torque[1] = T;
-        annotation(bodyShape1(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), frameTranslation(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2))), body(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), w_a(flags = 2), z_a(flags = 2), g_0(flags = 2))), experiment(StopTime = 100, StartTime = 0), Icon(coordinateSystem(initialScale = 0.1)));
+        connect(torque1.flange, rotor1D1.flange_a) annotation(Line(points = {{-42, -22}, {-24, -22}, {-24, -22}, {-24, -22}}));
+        connect(fixedRotation1.frame_a, rotor1D1.frame_a) annotation(Line(points = {{-60, 6}, {-60, 6}, {-60, -6}, {-14, -6}, {-14, -12}, {-14, -12}}, color = {95, 95, 95}));
+        torque1.tau = T;
+        connect(fixedRotation1.frame_b, body1.frame_a) annotation(Line(points = {{-40, 6}, {14, 6}, {14, 6}, {14, 6}}, color = {95, 95, 95}));
+        connect(frame_a, fixedRotation1.frame_a) annotation(Line(points = {{-100, 6}, {-60, 6}}));
+//torque_x.torque = {T, 0, 0};
+        annotation(bodyShape1(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), frameTranslation(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2))), body(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), w_a(flags = 2), z_a(flags = 2), g_0(flags = 2))), experiment(StopTime = 100, StartTime = 0), Icon(coordinateSystem(initialScale = 0.1)), uses(Modelica(version = "3.2.1")));
       end reactionwheelsimple_noelectricity;
 
       model IMU_simple "IMU_simple"
@@ -1524,22 +1535,24 @@ package satcomponents
       model RW3a_noelec_nobus
         parameter Integer id;
         extends RW3a_icon;
+        parameter Real m = 0.5;
+        parameter Real r = 0.1;
+        parameter Real h = 0.02;
+        parameter Real Iz = m * r * r * 0.5;
+        parameter Real Iy = m * (3 * r * r + h * h) / 12.0;
+        parameter Real Ix = Iy;
         Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(transformation(origin = {-99.422, 5.20231}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-99.422, 5.20231}, extent = {{-10, -10}, {10, 10}})));
         Modelica.Mechanics.MultiBody.Joints.Revolute x_axis(animation = false, n = {1, 0, 0}) annotation(Placement(visible = true, transformation(origin = {-30, 90}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Forces.Torque torque_x(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameAB.frame_a) annotation(Placement(visible = true, transformation(origin = {-30, 68}, extent = {{-10, -10}, {10, 10}}, rotation = -180)));
         Modelica.Mechanics.MultiBody.Joints.Revolute y_axis(animation = false, n = {0, 1, 0}) annotation(Placement(visible = true, transformation(origin = {-30, 35}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Forces.Torque torque_y(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameAB.frame_a) annotation(Placement(visible = true, transformation(origin = {-30, 13}, extent = {{-10, -10}, {10, 10}}, rotation = -180)));
-        Modelica.Mechanics.MultiBody.Joints.Revolute z_axis(useAxisFlange = false, animation = false, n = {0, 0, 1}) annotation(Placement(visible = true, transformation(origin = {-30, -20}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
         Modelica.Blocks.Interfaces.RealInput T[3] annotation(Placement(visible = true, transformation(origin = {0, -100}, extent = {{-20, -20}, {20, 20}}, rotation = 90), iconTransformation(origin = {100, 2}, extent = {{-14, -14}, {14, 14}}, rotation = 180)));
-        Modelica.Mechanics.MultiBody.Parts.Body body1 annotation(Placement(visible = true, transformation(origin = {6, 90}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-        Modelica.Mechanics.MultiBody.Parts.Body body2 annotation(Placement(visible = true, transformation(origin = {4, 34}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-        Modelica.Mechanics.MultiBody.Parts.Body body3(I_11 = 1, I_22 = 1, I_33 = 1, m = 1) annotation(Placement(visible = true, transformation(origin = {4, -20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-        Modelica.Mechanics.MultiBody.Forces.Torque torque_z annotation(Placement(visible = true, transformation(origin = {-30, -47}, extent = {{-10, -10}, {10, 10}}, rotation = -180)));
+        Modelica.Mechanics.MultiBody.Parts.Body body1(m = m) annotation(Placement(visible = true, transformation(origin = {6, 90}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Mechanics.MultiBody.Parts.Body body2(m = m) annotation(Placement(visible = true, transformation(origin = {4, 34}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        reactionwheelsimple_noelectricity reactionwheelsimple_noelectricity1(axis = {0, 0, 1}) annotation(Placement(visible = true, transformation(origin = {-22, -24}, extent = {{-18, -18}, {18, 18}}, rotation = -90)));
       equation
-        connect(z_axis.frame_b, torque_z.frame_a) annotation(Line(points = {{-20, -20}, {-16, -20}, {-16, -48}, {-20, -48}, {-20, -46}}, color = {95, 95, 95}));
-        connect(z_axis.frame_a, torque_z.frame_b) annotation(Line(points = {{-40, -20}, {-44, -20}, {-44, -46}, {-40, -46}, {-40, -46}}, color = {95, 95, 95}));
-        connect(z_axis.frame_a, frame_a) annotation(Line(points = {{-40, -20}, {-94.3, -20}, {-94.3, 5.3}, {-99.3, 5.3}}, color = {95, 95, 95}, thickness = 0.0625));
-        connect(z_axis.frame_b, body3.frame_a) annotation(Line(points = {{-20, -20}, {-6, -20}}, color = {95, 95, 95}));
+        connect(T[3], reactionwheelsimple_noelectricity1.T) annotation(Line(points = {{0, -100}, {0, -100}, {0, -66}, {-20, -66}, {-20, -42}, {-22, -42}}, color = {0, 0, 127}));
+        connect(frame_a, reactionwheelsimple_noelectricity1.frame_a) annotation(Line(points = {{-100, 6}, {-66, 6}, {-66, -24}, {-40, -24}, {-40, -24}}));
         connect(y_axis.frame_b, body2.frame_a) annotation(Line(points = {{-20, 36}, {-6, 36}, {-6, 34}, {-6, 34}}, color = {95, 95, 95}));
         connect(torque_y.frame_a, y_axis.frame_b) annotation(Line(points = {{-20, 14}, {-14, 14}, {-14, 36}, {-20, 36}, {-20, 36}}, color = {95, 95, 95}));
         connect(x_axis.frame_b, body1.frame_a) annotation(Line(points = {{-20, 90}, {-4, 90}, {-4, 90}, {-4, 90}}, color = {95, 95, 95}));
@@ -1548,19 +1561,16 @@ package satcomponents
         connect(x_axis.frame_b, torque_x.frame_a) annotation(Line(points = {{-20, 90}, {-12, 90}, {-12, 68}, {-20, 68}}, color = {95, 95, 95}));
         connect(x_axis.frame_a, frame_a) annotation(Line(points = {{-40, 90}, {-94.3, 90}, {-94.3, 5.3}, {-99.3, 5.3}}, color = {95, 95, 95}, thickness = 0.0625));
         connect(torque_x.frame_b, x_axis.frame_a) annotation(Line(points = {{-40, 68}, {-45, 68}, {-45, 90}, {-40, 90}}, color = {95, 95, 95}, thickness = 0.0625));
-        torque_x.torque[2:3] = {0, 0};
-        torque_y.torque[1] = 0;
-        torque_y.torque[3] = 0;
-        torque_x.torque[1] = T[1];
-        torque_y.torque[2] = T[2];
-        torque_z.torque = {0, 0, T[3]};
+        torque_x.torque = {T[1], 0, 0};
+        torque_y.torque = {0, T[2], 0};
         annotation(wheel_x(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), frameTranslation(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2))), body(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), w_a(flags = 2), z_a(flags = 2), g_0(flags = 2))), wheel_y(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), frameTranslation(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2))), body(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), w_a(flags = 2), z_a(flags = 2), g_0(flags = 2))), wheel_z(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), frameTranslation(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2))), body(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), w_a(flags = 2), z_a(flags = 2), g_0(flags = 2))), Icon(coordinateSystem(initialScale = 0.1)), experiment(StopTime = 30, StartTime = 0, Tolerance = 0.0001, Interval = 0.06), uses(Modelica(version = "3.2.1")));
       end RW3a_noelec_nobus;
 
       model reactionwheel
         extends RW_icon;
         extends frame_input;
-        Modelica.Mechanics.MultiBody.Joints.Revolute Gelenk(n = {1, 0, 0}, useAxisFlange = true) annotation(Placement(visible = true, transformation(origin = {-0.859602, -18.5064}, extent = {{10, -10}, {-10, 10}}, rotation = 270)));
+        parameter Real axis[3] = {1, 0, 0};
+        Modelica.Mechanics.MultiBody.Joints.Revolute Gelenk(n = axis, useAxisFlange = true) annotation(Placement(visible = true, transformation(origin = {-0.859602, -18.5064}, extent = {{10, -10}, {-10, 10}}, rotation = 270)));
         Modelica.Mechanics.MultiBody.Parts.Body Schwungmasse(r_CM = {0, 0, 0}, m = 0.02, I_11 = 1e-07, I_22 = 1e-07, I_33 = 1e-07) annotation(Placement(visible = true, transformation(origin = {-0.867052, 28.0347}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
         Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {64, -72}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Electrical.Analog.Sources.SignalVoltage signalVoltage1 annotation(Placement(visible = true, transformation(origin = {64, -42}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
@@ -1603,24 +1613,18 @@ package satcomponents
       model RW3a_limited_torque
         extends RW3a_icon;
         Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(transformation(origin = {-99.422, 5.20231}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-99.422, 5.20231}, extent = {{-10, -10}, {10, 10}})));
-        reactionwheelsimple_noelectricity X_wheel annotation(Placement(transformation(origin = {-23.8, 63.7}, extent = {{-16.2717, -16.2717}, {16.2717, 16.2717}}, rotation = -90)));
-        reactionwheelsimple_noelectricity Z_wheel annotation(Placement(transformation(origin = {-23.7, -31.3}, extent = {{-16.2717, -16.2717}, {16.2717, 16.2717}}, rotation = -90)));
-        reactionwheelsimple_noelectricity Y_wheel annotation(Placement(transformation(origin = {-23.8, 18.8}, extent = {{-16.2717, -16.2717}, {16.2717, 16.2717}}, rotation = -90)));
-        Modelica.Mechanics.MultiBody.Parts.FixedRotation X_axis(angle = 0, n = {0, 0, 1}, rotationType = Modelica.Mechanics.MultiBody.Types.RotationTypes.RotationAxis) annotation(Placement(transformation(origin = {-59.9, 60.1}, extent = {{-10, -10}, {10, 10}})));
-        Modelica.Mechanics.MultiBody.Parts.FixedRotation Y_axis(angle = 90, angles = {-90, 0, 0}, n = {0, 0, 1}, rotationType = Modelica.Mechanics.MultiBody.Types.RotationTypes.RotationAxis) annotation(Placement(transformation(origin = {-60.1, 15.1}, extent = {{-10, -10}, {10, 10}})));
-        Modelica.Mechanics.MultiBody.Parts.FixedRotation Z_axis(angle = -90, angles = {0, -90, 0}, n = {0, 1, 0}, rotationType = Modelica.Mechanics.MultiBody.Types.RotationTypes.RotationAxis) annotation(Placement(transformation(origin = {-59.9, -35.2}, extent = {{-10, -10}, {10, 10}})));
+        reactionwheelsimple_noelectricity X_wheel(axis = {1, 0, 0}) annotation(Placement(transformation(origin = {-23.8, 63.7}, extent = {{-16.2717, -16.2717}, {16.2717, 16.2717}}, rotation = -90)));
+        reactionwheelsimple_noelectricity Z_wheel(axis = {0, 0, 1}) annotation(Placement(transformation(origin = {-23.7, -31.3}, extent = {{-16.2717, -16.2717}, {16.2717, 16.2717}}, rotation = -90)));
+        reactionwheelsimple_noelectricity Y_wheel(axis = {0, 1, 0}) annotation(Placement(transformation(origin = {-23.8, 18.8}, extent = {{-16.2717, -16.2717}, {16.2717, 16.2717}}, rotation = -90)));
         input Modelica.Blocks.Interfaces.RealInput T[3] "Desired Torque" annotation(Placement(visible = true, transformation(origin = {100, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {100, 2}, extent = {{-14, -14}, {14, 14}}, rotation = 180)));
       equation
+        connect(Z_wheel.frame_a, frame_a) annotation(Line(points = {{-40, -32}, {-62, -32}, {-62, 4}, {-100, 4}, {-100, 6}}, color = {95, 95, 95}));
+        connect(Y_wheel.frame_a, frame_a) annotation(Line(points = {{-40, 18}, {-66, 18}, {-66, 4}, {-100, 4}, {-100, 6}}, color = {95, 95, 95}));
+        connect(X_wheel.frame_a, frame_a) annotation(Line(points = {{-40, 64}, {-72, 64}, {-72, 4}, {-100, 4}, {-100, 6}}, color = {95, 95, 95}));
         connect(Z_wheel.T, T[3]) annotation(Line(points = {{-24, -48}, {46, -48}, {46, 0}, {100, 0}, {100, 0}}, color = {0, 0, 127}));
         connect(Y_wheel.T, T[2]) annotation(Line(points = {{-24, 2}, {86, 2}, {86, 0}, {100, 0}}, color = {0, 0, 127}));
         connect(X_wheel.T, T[1]) annotation(Line(points = {{-24, 48}, {-24, 48}, {-24, 40}, {46, 40}, {46, 0}, {100, 0}, {100, 0}}, color = {0, 0, 127}));
-        connect(Z_axis.frame_b, Z_wheel.frame_a) annotation(Line(points = {{-50, -35.3}, {-45, -35.3}, {-45, -34.3}, {-40, -34.3}}));
-        connect(Y_axis.frame_b, Y_wheel.frame_a) annotation(Line(points = {{-50, 15}, {-45, 15}, {-45, 15.7}, {-40, 15.7}}));
-        connect(Z_axis.frame_a, frame_a) annotation(Line(points = {{-70, -35.3}, {-75, -35.3}, {-94.3, -35.3}, {-94.3, 5.3}, {-99.3, 5.3}}));
-        connect(Y_axis.frame_a, frame_a) annotation(Line(points = {{-70, 15}, {-75, 15}, {-94.3, 15}, {-94.3, 5.3}, {-99.3, 5.3}}));
-        connect(X_axis.frame_a, frame_a) annotation(Line(points = {{-70, 60}, {-75, 60}, {-94.3, 60}, {-94.3, 5.3}, {-99.3, 5.3}}));
-        connect(X_axis.frame_b, X_wheel.frame_a) annotation(Line(points = {{-50, 60}, {-45, 60}, {-45, 60.7}, {-40, 60.7}}));
-        annotation(Icon(coordinateSystem(initialScale = 0.1)), experiment(StopTime = 30, StartTime = 0, Tolerance = 0.0001));
+        annotation(Icon(coordinateSystem(initialScale = 0.1)), experiment(StopTime = 30, StartTime = 0, Tolerance = 0.0001), uses(Modelica(version = "3.2.1")));
       end RW3a_limited_torque;
 
       model RW_icon
@@ -1628,13 +1632,12 @@ package satcomponents
       end RW_icon;
 
       model frame_input
-      Modelica.Blocks.Interfaces.RealInput T annotation(Placement(visible = true, transformation(origin = {-6, -110}, extent = {{-10, -10}, {10, 10}}, rotation = 90), iconTransformation(origin = {100, 2}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
+        Modelica.Blocks.Interfaces.RealInput T annotation(Placement(visible = true, transformation(origin = {-6, -110}, extent = {{-10, -10}, {10, 10}}, rotation = 90), iconTransformation(origin = {100, 2}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
         Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(visible = true, transformation(origin = {-99.422, 5.20231}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {2.578, -100.798}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
       end frame_input;
 
       model RW3a_icon
         annotation(wheel_x(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), frameTranslation(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2))), body(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), w_a(flags = 2), z_a(flags = 2), g_0(flags = 2))), wheel_y(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), frameTranslation(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2))), body(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), w_a(flags = 2), z_a(flags = 2), g_0(flags = 2))), wheel_z(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), frameTranslation(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2))), body(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), w_a(flags = 2), z_a(flags = 2), g_0(flags = 2))), Icon(graphics = {Rectangle(origin = {0.144508, 13.2948}, fillColor = {128, 128, 128}, fillPattern = FillPattern.Solid, extent = {{-90.0289, 54.3352}, {61.7052, -76.8786}}), Rectangle(origin = {2.16763, 20.2312}, fillColor = {88, 88, 88}, fillPattern = FillPattern.Solid, extent = {{-71.2428, -8.0925}, {5.6358, -80.0578}}), Rectangle(origin = {-0.144509, 13.2948}, fillColor = {88, 88, 88}, fillPattern = FillPattern.Solid, extent = {{35.6936, 25.7225}, {70.6647, -52.0231}}), Rectangle(origin = {-46.9653, 97.6879}, fillColor = {88, 88, 88}, fillPattern = FillPattern.Solid, extent = {{2.45662, -18.2081}, {85.9826, -50.8671}}), Rectangle(origin = {11.4162, -3.32367}, fillColor = {255, 0, 0}, pattern = LinePattern.None, fillPattern = FillPattern.VerticalCylinder, extent = {{-16.0405, 25.8671}, {-12.8613, 5.92483}}), Polygon(origin = {-0.307609, 23.5614}, fillColor = {255, 0, 0}, pattern = LinePattern.None, fillPattern = FillPattern.VerticalCylinder, points = {{-2.87157, 16.034}, {1.46373, -3.90828}, {-6.91786, -3.61926}, {-2.87157, 16.034}}), Polygon(origin = {19.6924, 1.07585}, rotation = -90, fillColor = {255, 0, 0}, pattern = LinePattern.None, fillPattern = FillPattern.VerticalCylinder, points = {{-2.87157, 16.034}, {1.46373, -3.90828}, {-6.91786, -3.61926}, {-2.87157, 16.034}}), Rectangle(origin = {-9.91328, -10.4913}, rotation = -90, fillColor = {255, 0, 0}, pattern = LinePattern.None, fillPattern = FillPattern.VerticalCylinder, extent = {{-16.0405, 25.8671}, {-12.8613, 5.92483}}), Polygon(origin = {-9.53757, -2.17522}, fillColor = {255, 0, 0}, fillPattern = FillPattern.Solid, points = {{-7.80347, -5.05026}, {5.49133, 7.08847}, {7.80347, 4.77633}, {-5.78035, -7.07338}, {-7.80347, -5.05026}}), Polygon(origin = {-14.9319, -12.1611}, rotation = -90, fillColor = {255, 0, 0}, pattern = LinePattern.None, fillPattern = FillPattern.VerticalCylinder, points = {{-2.00451, 2.45016}, {5.22095, -9.68863}, {-6.91786, -3.61926}, {-2.00451, 2.45016}}), Text(origin = {-4.62427, 56.2139}, extent = {{-14.4509, 10.8382}, {14.4509, -10.8382}}, textString = "Z"), Text(origin = {47.4567, 3.38154}, extent = {{-14.4509, 10.8382}, {14.4509, -10.8382}}, textString = "Y"), Text(origin = {-31.9652, -24.5953}, extent = {{-14.4509, 10.8382}, {14.4509, -10.8382}}, textString = "X"), Text(origin = {96, -29}, extent = {{-10, 13}, {14, -13}}, textString = "X"), Text(origin = {96, -53}, extent = {{-10, 13}, {14, -13}}, textString = "Y"), Text(origin = {96, -73}, extent = {{-10, 13}, {14, -13}}, textString = "Z")}, coordinateSystem(initialScale = 0.1)), experiment(StopTime = 30, StartTime = 0, Tolerance = 0.0001, Interval = 0.06), uses(Modelica(version = "3.2.1")));
-      
       end RW3a_icon;
     end Parts;
 
@@ -1786,7 +1789,7 @@ package satcomponents
         Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity w(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameA.frame_a) annotation(Placement(visible = true, transformation(origin = {-44, -16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         satcomponents.AOCS.Parts.RW3a_noelec_nobus rW3a_noelec_nobus1 annotation(Placement(visible = true, transformation(origin = {-36, 78}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         satcomponents.blocks.timed_switch timed_switch[3](each switchTime = 100) annotation(Placement(visible = true, transformation(origin = {37, 59}, extent = {{-7, -7}, {7, 7}}, rotation = 180)));
-        satcomponents.AOCS.ctrl.ACS_Q_P_cont aCS_Q_P_cont1(K_w = {1, 1, 100} * 10) annotation(Placement(visible = true, transformation(origin = {30, 32}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        satcomponents.AOCS.ctrl.ACS_Q_P_cont aCS_Q_P_cont1(K_q = 1, K_w = {1, 1, 1} * 5) annotation(Placement(visible = true, transformation(origin = {30, 32}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Quaternions.Orientation Q;
       equation
         connect(timed_switch.y, rW3a_noelec_nobus1.T) annotation(Line(points = {{30, 60}, {-2, 60}, {-2, 78}, {-26, 78}, {-26, 78}}, color = {0, 0, 127}));
@@ -1799,7 +1802,7 @@ package satcomponents
         connect(body1.frame_a, rW3a_noelec_nobus1.frame_a) annotation(Line(points = {{-50, 40}, {-54, 40}, {-54, 79}, {-46, 79}}, color = {95, 95, 95}));
         connect(body1.frame_a, w.frame_a) annotation(Line(points = {{-50, 40}, {-70, 40}, {-70, -16}, {-54, -16}}, color = {95, 95, 95}));
         connect(body1.frame_a, absoluteAngles1.frame_a) annotation(Line(points = {{-50, 40}, {-70, 40}, {-70, 12}, {-54, 12}}, color = {95, 95, 95}));
-        annotation(Icon, Diagram, experiment(StartTime = 0, StopTime = 500, Tolerance = 1e-06, Interval = 0.5));
+        annotation(Icon, Diagram, experiment(StartTime = 70, StopTime = 400, Tolerance = 1e-06, Interval = 0.33));
       end basic_pid_q_control;
 
       model rotating_rigid_body
@@ -1872,14 +1875,14 @@ package satcomponents
         import Modelica.Mechanics.MultiBody.Frames;
         import Modelica.Mechanics.MultiBody.Frames.Quaternions;
         import Modelica.SIunits.Conversions.to_unit1;
-        Modelica.Blocks.Sources.Constant const[3](k = {1, 0.5, 0.3}) annotation(Placement(visible = true, transformation(origin = {-5, 33}, extent = {{-7, -7}, {7, 7}}, rotation = 0)));
+        Modelica.Blocks.Sources.Constant const[3](k = {1, 0, 0}) annotation(Placement(visible = true, transformation(origin = {-5, 33}, extent = {{-7, -7}, {7, 7}}, rotation = 0)));
         inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.PointGravity) annotation(Placement(visible = true, transformation(origin = {-86, 82}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
-        Modelica.Mechanics.MultiBody.Parts.Body body1(I_11 = 0.5, I_21 = 0.2, I_22 = 0.1, I_31 = 0.1, I_33 = 0.333, enforceStates = true, m = 5.0, r_0(start = {6500e3, 0, 0}), useQuaternions = true, v_0(start = {0, 7.8e3, 0}), w_0_fixed = true, w_0_start = {0.1, 0.2, 0.01}) annotation(Placement(visible = true, transformation(origin = {-40, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Mechanics.MultiBody.Parts.Body body1(I_11 = 0.5, I_21 = 0, I_22 = 0.1, I_31 = 0, I_32 = 0, I_33 = 0.3, enforceStates = true, m = 5.0, r_0(start = {6500e3, 0, 0}), useQuaternions = true, v_0(start = {0, 7.8e3, 0}), w_0_fixed = true, w_0_start = {0.1, 0, 0}) annotation(Placement(visible = true, transformation(origin = {-40, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngles absoluteAngles1 annotation(Placement(visible = true, transformation(origin = {-44, 12}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity w(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameA.frame_a) annotation(Placement(visible = true, transformation(origin = {-44, -16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         satcomponents.AOCS.Parts.RW3a_limited_torque rW3a_noelec_nobus1 annotation(Placement(visible = true, transformation(origin = {-36, 78}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         satcomponents.blocks.timed_switch timed_switch[3](each switchTime = 100) annotation(Placement(visible = true, transformation(origin = {37, 59}, extent = {{-7, -7}, {7, 7}}, rotation = 180)));
-        satcomponents.AOCS.ctrl.ACS_Q_P_cont aCS_Q_P_cont1(K_w = {1, 1, 100} * 10) annotation(Placement(visible = true, transformation(origin = {30, 32}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        satcomponents.AOCS.ctrl.ACS_Q_P_cont aCS_Q_P_cont1(K_q = 1, K_w = {1, 1, 1}) annotation(Placement(visible = true, transformation(origin = {30, 32}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Quaternions.Orientation Q;
       equation
         connect(timed_switch.y, rW3a_noelec_nobus1.T) annotation(Line(points = {{30, 60}, {-2, 60}, {-2, 78}, {-26, 78}, {-26, 78}}, color = {0, 0, 127}));
@@ -1892,8 +1895,23 @@ package satcomponents
         connect(body1.frame_a, rW3a_noelec_nobus1.frame_a) annotation(Line(points = {{-50, 40}, {-54, 40}, {-54, 79}, {-46, 79}}, color = {95, 95, 95}));
         connect(body1.frame_a, w.frame_a) annotation(Line(points = {{-50, 40}, {-70, 40}, {-70, -16}, {-54, -16}}, color = {95, 95, 95}));
         connect(body1.frame_a, absoluteAngles1.frame_a) annotation(Line(points = {{-50, 40}, {-70, 40}, {-70, 12}, {-54, 12}}, color = {95, 95, 95}));
-        annotation(Icon, Diagram, experiment(StartTime = 0, StopTime = 500, Tolerance = 1e-06, Interval = 0.5));
+        annotation(Icon, Diagram, experiment(StartTime = 70, StopTime = 400, Tolerance = 1e-06, Interval = 0.33));
       end q_control_limited;
+
+      model gyroeffects
+        inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.PointGravity) annotation(Placement(visible = true, transformation(origin = {-60, 54}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Mechanics.MultiBody.Parts.Body quaternions(I_11 = 1, I_22 = 1, I_33 = 1, angles_fixed = true, angles_start = {0, 0, 0}, enforceStates = true, m = 5.0, r_0(start = {6500e3, 0.1, 0.1}), r_CM = {0, 0, 0}, useQuaternions = true, v_0(start = {0, 7.8e3, 0}), w_0_fixed = true, w_0_start = {0, 0, 0}) annotation(Placement(visible = true, transformation(origin = {22, 44}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngles absoluteAngles1 annotation(Placement(visible = true, transformation(origin = {20, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Mechanics.Rotational.Sources.TorqueStep torqueStep1(offsetTorque = 0, startTime = 10, stepTorque = 0.1, useSupport = true)  annotation(Placement(visible = true, transformation(origin = {-52, -24}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Mechanics.MultiBody.Parts.Mounting1D mounting1D1 annotation(Placement(visible = true, transformation(origin = {-78, -34}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Mechanics.Rotational.Components.Inertia inertia1(J = 1)  annotation(Placement(visible = true, transformation(origin = {-20, -24}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+      equation
+        connect(torqueStep1.support, mounting1D1.flange_b) annotation(Line(points = {{-52, -34}, {-68, -34}, {-68, -34}, {-68, -34}}));
+        connect(torqueStep1.flange, inertia1.flange_a) annotation(Line(points = {{-42, -24}, {-30, -24}, {-30, -24}, {-30, -24}}));
+        connect(mounting1D1.frame_a, quaternions.frame_a) annotation(Line(points = {{-78, -44}, {0, -44}, {0, 44}, {12, 44}}, color = {95, 95, 95}));
+        connect(quaternions.frame_a, absoluteAngles1.frame_a) annotation(Line(points = {{12, 44}, {12, 15}, {10, 15}, {10, -10}}, color = {95, 95, 95}));
+        annotation(Icon, Diagram, experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-06, Interval = 0.02), uses(Modelica(version = "3.2.1")));
+      end gyroeffects;
       annotation(Icon, Diagram);
     end examples;
   end AOCS;
