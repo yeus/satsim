@@ -605,4 +605,19 @@ package modelicatests
     connect(constantvoltage1.n, dcpm[1].pin_an) annotation(Line(points = {{-54, -14}, {-54, -19}, {-15, -19}, {-15, 15}, {24, 15}, {24, 10}}, thickness = 0.0625));
     annotation(experiment(StopTime = 100, StartTime = 0, Tolerance = 1e-012, Interval = 0.02));
   end multidimensional_motor;
+
+  model realtime_sim
+    Modelica.Blocks.Sources.Sine sine1(freqHz = 0.5) annotation(Placement(visible = true, transformation(origin = {-76, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Modelica_DeviceDrivers.Blocks.OperatingSystem.SynchronizeRealtime synchronizerealtime1 annotation(Placement(visible = true, transformation(origin = {-8, 74}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Modelica_DeviceDrivers.Blocks.InputDevices.KeyboardInput keyboardinput1 annotation(Placement(visible = true, transformation(origin = {-64, -60}, extent = {{-22, -22}, {22, 22}}, rotation = 0)));
+    Modelica.Blocks.Math.Product product1 annotation(Placement(visible = true, transformation(origin = {48, 32}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Modelica.Blocks.Continuous.Integrator integrator1 annotation(Placement(visible = true, transformation(origin = {-4, 4}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Modelica.Blocks.Math.BooleanToReal booleantoreal1 annotation(Placement(visible = true, transformation(origin = {-36, 4}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  equation
+    connect(booleantoreal1.u, keyboardinput1.keyReturn) annotation(Line(points = {{-48, 4}, {-58, 4}, {-58, -24}, {-26, -24}, {-26, -60}, {-40, -60}, {-40, -60}}, color = {255, 0, 255}));
+    connect(booleantoreal1.y, integrator1.u) annotation(Line(points = {{-25, 4}, {-16, 4}, {-16, 4}, {-16, 4}}, color = {0, 0, 127}));
+    connect(integrator1.y, product1.u2) annotation(Line(points = {{7, 4}, {18, 4}, {18, 24}, {-1, 24}, {-1, 26}, {36, 26}}, color = {0, 0, 127}));
+    connect(sine1.y, product1.u1) annotation(Line(points = {{-65, 50}, {-42, 50}, {-42, 38}, {36, 38}}, color = {0, 0, 127}));
+    annotation(Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})));
+  end realtime_sim;
 end modelicatests;
