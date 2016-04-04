@@ -1582,21 +1582,26 @@ package satcomponents
         parameter Real Ix = Iy;
         Modelica.SIunits.AngularVelocity w "current speed of wheel";
       Modelica.Mechanics.MultiBody.Parts.Mounting1D mounting1D1(n = axis)  annotation(Placement(visible = true, transformation(origin = {-62,-28}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
-  Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {6, -74}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Electrical.Analog.Sources.SignalVoltage signalVoltage1 annotation(Placement(visible = true, transformation(origin = {6, -52}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  Modelica.Electrical.Analog.Basic.Ground ground1 annotation(Placement(visible = true, transformation(origin = {18, -76}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Electrical.Analog.Sources.SignalVoltage signalVoltage1 annotation(Placement(visible = true, transformation(origin = {18, -52}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   //Modelica.Electrical.Machines.BasicMachines.DCMachines.DC_PermanentMagnet dcpm(useSupport = false) annotation(Placement(visible = true, transformation(origin = {-30, -46}, extent = {{-8, 8}, {8, -8}}, rotation = 90)));
       Modelica.Electrical.Machines.BasicMachines.QuasiStationaryDCMachines.DC_PermanentMagnet dcpm(phiMechanical(displayUnit = "rad"), useSupport = true, wMechanical(displayUnit = "rad/s"), wNominal(displayUnit = "rad/s")) annotation(Placement(visible = true, transformation(origin = {-30, -46}, extent = {{-8, 8}, {8, -8}}, rotation = 90)));
   //Modelica.Mechanics.MultiBody.Parts.Rotor1D rotor1D1(J = 1, phi(displayUnit = "rad"))  annotation(Placement(visible = true, transformation(origin = {-4, -28}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
       Modelica.Mechanics.Rotational.Components.Inertia rotor1D1(J = 1, phi(displayUnit = "rad"))  annotation(Placement(visible = true, transformation(origin = {-4, -28}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
+  Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = 1e-12)  annotation(Placement(visible = true, transformation(origin = {-7, -51}, extent = {{-7, -7}, {7, 7}}, rotation = 90)));
+  Modelica.Electrical.Analog.Basic.Resistor resistor1(R = 0.01)  annotation(Placement(visible = true, transformation(origin = {5, -43}, extent = {{-7, -7}, {7, 7}}, rotation = 0)));
       equation
+        connect(capacitor1.n, dcpm.pin_an) annotation(Line(points = {{-6, -44}, {-18, -44}, {-18, -50}, {-22, -50}, {-22, -50}}, color = {0, 0, 255}));
+        connect(resistor1.p, capacitor1.n) annotation(Line(points = {{-2, -42}, {-6, -42}, {-6, -44}, {-6, -44}}, color = {0, 0, 255}));
+        connect(resistor1.n, signalVoltage1.p) annotation(Line(points = {{12, -42}, {18, -42}, {18, -42}, {18, -42}}, color = {0, 0, 255}));
+        connect(capacitor1.p, signalVoltage1.n) annotation(Line(points = {{-7, -58}, {2, -58}, {2, -62}, {18, -62}}, color = {0, 0, 255}));
+        connect(signalVoltage1.n, ground1.p) annotation(Line(points = {{18, -62}, {18, -66}}, color = {0, 0, 255}));
+        connect(dcpm.pin_ap, signalVoltage1.n) annotation(Line(points = {{-22, -42}, {-20, -42}, {-20, -62}, {18, -62}}, color = {0, 0, 255}));
+        connect(signalVoltage1.v, T) annotation(Line(points = {{25, -52}, {30, -52}, {30, -88}, {-4, -88}, {-4, -102}, {-6, -102}, {-6, -110}}, color = {0, 0, 127}));
         w = dcpm.inertiaRotor.w;
         connect(dcpm.flange, rotor1D1.flange_a) annotation(Line(points = {{-30, -38}, {-30, -38}, {-30, -28}, {-14, -28}, {-14, -28}}));
         connect(mounting1D1.flange_b, dcpm.internalSupport) annotation(Line(points = {{-52, -28}, {-48, -28}, {-48, -42}, {-38, -42}, {-38, -42}}));
-        connect(signalVoltage1.v, T) annotation(Line(points = {{14, -52}, {30, -52}, {30, -88}, {-4, -88}, {-4, -102}, {-6, -102}, {-6, -110}}, color = {0, 0, 127}));
-        connect(dcpm.pin_ap, signalVoltage1.n) annotation(Line(points = {{-22, -41}, {-10, -41}, {-10, -62}, {6, -62}}, color = {0, 0, 255}));
-        connect(dcpm.pin_an, signalVoltage1.p) annotation(Line(points = {{-22, -51}, {-16, -51}, {-16, -42}, {6, -42}}, color = {0, 0, 255}));
 //signalVoltage1.v = 5.0;
-        connect(signalVoltage1.n, ground1.p) annotation(Line(points = {{6, -62}, {6, -64}}, color = {0, 0, 255}));
         connect(frame_a, mounting1D1.frame_a) annotation(Line(points = {{-100, 6}, {-62, 6}, {-62, -18}, {-62, -18}}));
         annotation(Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), experiment(StartTime = 0, StopTime = 30, Tolerance = 0.0001), Icon(coordinateSystem(initialScale = 0.1)), uses(Modelica(version = "3.2.1")));
       end reactionwheel;
@@ -1780,6 +1785,7 @@ model ACS_Q_PI_contr
   Frames.Orientation A "current orientation matrix";
   Real totalerror;
   Real i_e[3] "integralerror";
+  parameter Real ifac = 1.0;
 equation
   A = Modelica.Mechanics.MultiBody.Frames.axesRotations(sequence, a_measure, zeros(3));
 //w = Frames.angularVelocity1(A);
@@ -1787,7 +1793,7 @@ equation
   Q_e = Frames.Quaternions.relativeRotation(Q_c, Q);
   totalerror = sum(Q_e);
   der(i_e) = Q_e[1:3];
-  y = (-K_q * Q_e[1:3]) - 5* atan(i_e) - K_w .* w_measure "control law"; 
+  y = (-K_q * Q_e[1:3]) - ifac * atan(i_e) - K_w .* w_measure "control law"; 
   annotation(Icon, Diagram);
 end ACS_Q_PI_contr;
     end ctrl;
@@ -1906,8 +1912,8 @@ end ACS_Q_PI_contr;
         Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngles absoluteAngles1 annotation(Placement(visible = true, transformation(origin = {-44, 12}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity w(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameA.frame_a) annotation(Placement(visible = true, transformation(origin = {-44, -16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         satcomponents.AOCS.Parts.reactionwheel3axis rW3a_noelec_nobus1 annotation(Placement(visible = true, transformation(origin = {-36, 78}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-        satcomponents.blocks.timed_switch timed_switch[3](switchTime = 2) annotation(Placement(visible = true, transformation(origin = {37, 59}, extent = {{-7, -7}, {7, 7}}, rotation = 180)));
-        satcomponents.AOCS.ctrl.ACS_Q_PI_contr ACS(K_q = 10, T_level = {1, 1, 1}, kw = 1) annotation(Placement(visible = true, transformation(origin = {30, 32}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        satcomponents.blocks.timed_switch timed_switch[3](switchTime = 0) annotation(Placement(visible = true, transformation(origin = {37, 59}, extent = {{-7, -7}, {7, 7}}, rotation = 180)));
+        satcomponents.AOCS.ctrl.ACS_Q_PI_contr ACS(K_q = 10, T_level = {1, 1, 1}, ifac = 0.0, kw = 1) annotation(Placement(visible = true, transformation(origin = {30, 32}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Quaternions.Orientation Q;
       equation
         connect(timed_switch.y, rW3a_noelec_nobus1.T) annotation(Line(points = {{30, 60}, {-2, 60}, {-2, 78}, {-26, 78}, {-26, 78}}, color = {0, 0, 127}));
