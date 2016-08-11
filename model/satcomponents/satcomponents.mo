@@ -82,7 +82,7 @@ package satcomponents
         i = voltage.i;
         der(soc) = i / capacity;
         SOD = 1 - soc;
-        /*exp-fucntion: logistic function*/
+/*exp-fucntion: logistic function*/
         annotation(v(flags = 2), soc(flags = 2), Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}, grid = {1, 1}), graphics = {Line(points = {{-90, 0}, {-10, 0}}), Line(points = {{-10, 60}, {-10, -60}}), Line(points = {{0, 30}, {0, -30}}), Line(points = {{0, 0}, {90, 0}}), Text(textString = "%capacity_Ah Ah", extent = {{-150, -112}, {150, -72}}), Text(textString = "+", extent = {{-120, 50}, {-20, 0}}), Text(textString = "-", extent = {{20, 50}, {120, 0}})}), experiment(StopTime = 10000, StartTime = 0, Tolerance = 0.0001));
       end battery;
 
@@ -105,7 +105,7 @@ package satcomponents
         parameter Real beta = 1;
         extends Modelica.Blocks.Interfaces.SO;
       equation
-        //y = alpha * exp(beta * time);exp function
+//y = alpha * exp(beta * time);exp function
         y = exp(alpha * time) - 1;
         annotation(Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}, grid = {2, 2}), graphics = {Line(points = {{0, -80}, {0, 68}}, color = {192, 192, 192}), Polygon(points = {{0, 90}, {-8, 68}, {8, 68}, {0, 90}}, lineColor = {192, 192, 192}, fillColor = {192, 192, 192}, fillPattern = FillPattern.Solid), Text(extent = {{-86, 50}, {-14, 2}}, lineColor = {192, 192, 192}, textString = "exp"), Line(points = {{-80, -80}, {-31, -77.90000000000001}, {-6.03, -74}, {10.9, -68.40000000000001}, {23.7, -61}, {34.2, -51.6}, {43, -40.3}, {50.3, -27.8}, {56.7, -13.5}, {62.3, 2.23}, {67.09999999999999, 18.6}, {72, 38.2}, {76, 57.6}, {80, 80}}, color = {0, 0, 0}), Line(points = {{-90, -80.3976}, {68, -80.3976}}, color = {192, 192, 192}), Polygon(points = {{90, -80.3976}, {68, -72.3976}, {68, -88.3976}, {90, -80.3976}}, lineColor = {192, 192, 192}, fillColor = {192, 192, 192}, fillPattern = FillPattern.Solid)}), Diagram(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}, grid = {2, 2}), graphics = {Line(points = {{0, 80}, {-8, 80}}, color = {192, 192, 192}), Line(points = {{0, -80}, {-8, -80}}, color = {192, 192, 192}), Line(points = {{0, -90}, {0, 84}}, color = {192, 192, 192}), Text(extent = {{9, 100}, {40, 80}}, lineColor = {160, 160, 164}, textString = "y"), Polygon(points = {{0, 100}, {-6, 84}, {6, 84}, {0, 100}}, lineColor = {192, 192, 192}, fillColor = {192, 192, 192}, fillPattern = FillPattern.Solid), Line(points = {{-100, -80.3976}, {84, -80.3976}}, color = {192, 192, 192}), Polygon(points = {{100, -80.3976}, {84, -74.3976}, {84, -86.3976}, {100, -80.3976}}, lineColor = {192, 192, 192}, fillColor = {192, 192, 192}, fillPattern = FillPattern.Solid), Line(points = {{-80, -80}, {-31, -77.90000000000001}, {-6.03, -74}, {10.9, -68.40000000000001}, {23.7, -61}, {34.2, -51.6}, {43, -40.3}, {50.3, -27.8}, {56.7, -13.5}, {62.3, 2.23}, {67.09999999999999, 18.6}, {72, 38.2}, {76, 57.6}, {80, 80}}, color = {0, 0, 0}), Text(extent = {{-31, 72}, {-11, 88}}, textString = "20", lineColor = {0, 0, 255}), Text(extent = {{-92, -83}, {-72, -103}}, textString = "-3", lineColor = {0, 0, 255}), Text(extent = {{70, -83}, {90, -103}}, textString = "3", lineColor = {0, 0, 255}), Text(extent = {{-18, -53}, {2, -73}}, textString = "1", lineColor = {0, 0, 255}), Text(extent = {{66, -52}, {96, -72}}, lineColor = {160, 160, 164}, textString = "u")}));
       end Exprgenerator;
@@ -283,7 +283,7 @@ package satcomponents
         parameter Real beta = 1;
         extends Modelica.Blocks.Interfaces.SO;
       equation
-        //y = alpha * exp(beta * time);exp function
+//y = alpha * exp(beta * time);exp function
         y = exp(alpha * time) - 1;
         annotation(Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}, grid = {2, 2}), graphics = {Line(points = {{0, -80}, {0, 68}}, color = {192, 192, 192}), Polygon(points = {{0, 90}, {-8, 68}, {8, 68}, {0, 90}}, lineColor = {192, 192, 192}, fillColor = {192, 192, 192}, fillPattern = FillPattern.Solid), Text(extent = {{-86, 50}, {-14, 2}}, lineColor = {192, 192, 192}, textString = "exp"), Line(points = {{-80, -80}, {-31, -77.90000000000001}, {-6.03, -74}, {10.9, -68.40000000000001}, {23.7, -61}, {34.2, -51.6}, {43, -40.3}, {50.3, -27.8}, {56.7, -13.5}, {62.3, 2.23}, {67.09999999999999, 18.6}, {72, 38.2}, {76, 57.6}, {80, 80}}, color = {0, 0, 0}), Line(points = {{-90, -80.3976}, {68, -80.3976}}, color = {192, 192, 192}), Polygon(points = {{90, -80.3976}, {68, -72.3976}, {68, -88.3976}, {90, -80.3976}}, lineColor = {192, 192, 192}, fillColor = {192, 192, 192}, fillPattern = FillPattern.Solid)}), Diagram(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}, grid = {2, 2}), graphics = {Line(points = {{0, 80}, {-8, 80}}, color = {192, 192, 192}), Line(points = {{0, -80}, {-8, -80}}, color = {192, 192, 192}), Line(points = {{0, -90}, {0, 84}}, color = {192, 192, 192}), Text(extent = {{9, 100}, {40, 80}}, lineColor = {160, 160, 164}, textString = "y"), Polygon(points = {{0, 100}, {-6, 84}, {6, 84}, {0, 100}}, lineColor = {192, 192, 192}, fillColor = {192, 192, 192}, fillPattern = FillPattern.Solid), Line(points = {{-100, -80.3976}, {84, -80.3976}}, color = {192, 192, 192}), Polygon(points = {{100, -80.3976}, {84, -74.3976}, {84, -86.3976}, {100, -80.3976}}, lineColor = {192, 192, 192}, fillColor = {192, 192, 192}, fillPattern = FillPattern.Solid), Line(points = {{-80, -80}, {-31, -77.90000000000001}, {-6.03, -74}, {10.9, -68.40000000000001}, {23.7, -61}, {34.2, -51.6}, {43, -40.3}, {50.3, -27.8}, {56.7, -13.5}, {62.3, 2.23}, {67.09999999999999, 18.6}, {72, 38.2}, {76, 57.6}, {80, 80}}, color = {0, 0, 0}), Text(extent = {{-31, 72}, {-11, 88}}, textString = "20", lineColor = {0, 0, 255}), Text(extent = {{-92, -83}, {-72, -103}}, textString = "-3", lineColor = {0, 0, 255}), Text(extent = {{70, -83}, {90, -103}}, textString = "3", lineColor = {0, 0, 255}), Text(extent = {{-18, -53}, {2, -73}}, textString = "1", lineColor = {0, 0, 255}), Text(extent = {{66, -52}, {96, -72}}, lineColor = {160, 160, 164}, textString = "u")}));
       end Exprgenerator;
@@ -390,7 +390,7 @@ package satcomponents
       equation
         I_sc_actual = I_sc * E_s / E0;
         i = noEvent(if v < V_Sperr then I_sc_actual * A_cell * N_p * (1 - C_b * (exp(-v / (C_a * V_oc * N_s)) - 1)) else alpha + (v - V_Sperr) * 3);
-        //i=10.0-0.01*(exp(v)-1);
+//i=10.0-0.01*(exp(v)-1);
         annotation(Icon(graphics = {Ellipse(rotation = 0, lineColor = {0, 0, 255}, fillColor = {0, 0, 255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-48.9392, 47.8076}, {46.6761, -50.0707}}), Line(points = {{-78.3593, 89.10890000000001}, {-41.5842, 46.6761}, {-43.5644, 60.5375}, {-41.867, 46.6761}, {-53.7482, 50.0707}}, rotation = 0, color = {0, 0, 255}, pattern = LinePattern.Solid, thickness = 0.25), Line(points = {{-56.5771, 92.22069999999999}, {-26.8741, 55.7284}, {-37.9066, 59.4059}, {-27.4399, 56.0113}, {-27.7228, 66.1952}}, rotation = 0, color = {0, 0, 255}, pattern = LinePattern.Solid, thickness = 0.25), Line(points = {{-89.6747, 0.282885}, {-19.5191, 0.282885}}, rotation = 0, color = {0, 0, 255}, pattern = LinePattern.Solid, thickness = 0.25), Line(points = {{89.6747, 0.282885}, {5.09194, 0.282885}}, rotation = 0, color = {0, 0, 255}, pattern = LinePattern.Solid, thickness = 0.25), Line(points = {{-18.3876, -37.3409}, {-18.3876, 40.1697}}, rotation = 0, color = {0, 0, 255}, pattern = LinePattern.Solid, thickness = 0.25), Line(points = {{4.24328, -17.5389}, {4.24328, 18.6704}}, rotation = 0, color = {0, 0, 255}, pattern = LinePattern.Solid, thickness = 0.25), Line(points = {{76.9449, -20.3678}, {76.9449, -52.6167}}, rotation = 0, color = {0, 0, 255}, pattern = LinePattern.Solid, thickness = 0.25), Line(points = {{63.3664, -35.6436}, {90.2405, -35.6436}}, rotation = 0, color = {0, 0, 255}, pattern = LinePattern.Solid, thickness = 0.25), Line(points = {{-92.22069999999999, -34.512}, {-66.4781, -34.512}}, rotation = 0, color = {0, 0, 255}, pattern = LinePattern.Solid, thickness = 0.25)}), Diagram);
       end solarcell;
 
@@ -693,7 +693,7 @@ package satcomponents
         connect(Feedback1.y, LimPI.u) annotation(Line(points = {{-41.3354, 79.2469}, {-28.0057, 79.2469}, {-28.0057, 79.3165}, {-27.9484, 79.3165}}));
         Iout = Pout / Vref;
         CCS1.i2 = smooth(0, CCS1.v1 * Amp.i / ((CCS1.v2 + 1e-07) * eff));
-        //SignalCurrent1.i = smooth(0, if p.v > Vinmin and p.v < Vinmax then SignalCurrent1.u else 0);
+//SignalCurrent1.i = smooth(0, if p.v > Vinmin and p.v < Vinmax then SignalCurrent1.u else 0);
         annotation(Diagram, Icon(graphics = {Rectangle(rotation = 0, lineColor = {0, 0, 255}, fillColor = {0, 0, 255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-87.69450000000001, 78.6421}, {88.5431, -74.6818}}), Text(rotation = 0, lineColor = {0, 0, 255}, fillColor = {0, 0, 255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{10.4668, 68.1754}, {76.37909999999999, 30.2687}}, textString = "%Vref V"), Text(rotation = 0, lineColor = {0, 0, 255}, fillColor = {0, 0, 255}, pattern = LinePattern.Solid, fillPattern = FillPattern.None, lineThickness = 0.25, extent = {{-63.6492, 18.9533}, {57.9915, -33.0976}}, textString = "DCDC")}));
       end dcdc_ideal;
 
@@ -746,7 +746,7 @@ package satcomponents
           v2 = 0;
           i1 = 0;
         end if;
-        /*if v1 < V_in_max and v1 > V_in_min then
+/*if v1 < V_in_max and v1 > V_in_min then
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 					                                                                                                                                                                                                                                                                                                                                                                                                					  v2 = V_out;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 					                                                                                                                                                                                                                                                                                                                                                                                                					  i1 = (-i2 * v2) / v1;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 					                                                                                                                                                                                                                                                                                                                                                                                                					elseif v1 >= V_in_min - slope then
@@ -888,7 +888,7 @@ package satcomponents
         v2 = p2.v - n2.v;
         i1 = p1.i;
         i2 = p2.i;
-        //I2.i= if v1 > V_in_min and v1< V_in_max then pID.y else 0;
+//I2.i= if v1 > V_in_min and v1< V_in_max then pID.y else 0;
         I1.i = I2.i * I2.v / ((I1.v + 1e-10) * eff);
       equation
         connect(I2.p, n2) annotation(Line(points = {{50, -10}, {50, -15}, {50, -47}, {88, -47}, {93, -47}}, thickness = 0.0625));
@@ -1153,7 +1153,7 @@ package satcomponents
       parameter Real beta = 1;
       extends Modelica.Blocks.Interfaces.SO;
     equation
-      //y = alpha * exp(beta * time);exp function
+//y = alpha * exp(beta * time);exp function
       y = exp(alpha * time) - 1;
       annotation(Icon(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}, grid = {2, 2}), graphics = {Line(points = {{0, -80}, {0, 68}}, color = {192, 192, 192}), Polygon(points = {{0, 90}, {-8, 68}, {8, 68}, {0, 90}}, lineColor = {192, 192, 192}, fillColor = {192, 192, 192}, fillPattern = FillPattern.Solid), Text(extent = {{-86, 50}, {-14, 2}}, lineColor = {192, 192, 192}, textString = "exp"), Line(points = {{-80, -80}, {-31, -77.90000000000001}, {-6.03, -74}, {10.9, -68.40000000000001}, {23.7, -61}, {34.2, -51.6}, {43, -40.3}, {50.3, -27.8}, {56.7, -13.5}, {62.3, 2.23}, {67.09999999999999, 18.6}, {72, 38.2}, {76, 57.6}, {80, 80}}, color = {0, 0, 0}), Line(points = {{-90, -80.3976}, {68, -80.3976}}, color = {192, 192, 192}), Polygon(points = {{90, -80.3976}, {68, -72.3976}, {68, -88.3976}, {90, -80.3976}}, lineColor = {192, 192, 192}, fillColor = {192, 192, 192}, fillPattern = FillPattern.Solid)}), Diagram(coordinateSystem(preserveAspectRatio = true, extent = {{-100, -100}, {100, 100}}, grid = {2, 2}), graphics = {Line(points = {{0, 80}, {-8, 80}}, color = {192, 192, 192}), Line(points = {{0, -80}, {-8, -80}}, color = {192, 192, 192}), Line(points = {{0, -90}, {0, 84}}, color = {192, 192, 192}), Text(extent = {{9, 100}, {40, 80}}, lineColor = {160, 160, 164}, textString = "y"), Polygon(points = {{0, 100}, {-6, 84}, {6, 84}, {0, 100}}, lineColor = {192, 192, 192}, fillColor = {192, 192, 192}, fillPattern = FillPattern.Solid), Line(points = {{-100, -80.3976}, {84, -80.3976}}, color = {192, 192, 192}), Polygon(points = {{100, -80.3976}, {84, -74.3976}, {84, -86.3976}, {100, -80.3976}}, lineColor = {192, 192, 192}, fillColor = {192, 192, 192}, fillPattern = FillPattern.Solid), Line(points = {{-80, -80}, {-31, -77.90000000000001}, {-6.03, -74}, {10.9, -68.40000000000001}, {23.7, -61}, {34.2, -51.6}, {43, -40.3}, {50.3, -27.8}, {56.7, -13.5}, {62.3, 2.23}, {67.09999999999999, 18.6}, {72, 38.2}, {76, 57.6}, {80, 80}}, color = {0, 0, 0}), Text(extent = {{-31, 72}, {-11, 88}}, textString = "20", lineColor = {0, 0, 255}), Text(extent = {{-92, -83}, {-72, -103}}, textString = "-3", lineColor = {0, 0, 255}), Text(extent = {{70, -83}, {90, -103}}, textString = "3", lineColor = {0, 0, 255}), Text(extent = {{-18, -53}, {2, -73}}, textString = "1", lineColor = {0, 0, 255}), Text(extent = {{66, -52}, {96, -72}}, lineColor = {160, 160, 164}, textString = "u")}));
     end Exprgenerator;
@@ -1429,7 +1429,7 @@ package satcomponents
         connect(frame_a, mounting1D1.frame_a) annotation(Line(points = {{-100, 6}, {-62, 6}, {-62, -18}, {-62, -18}}));
         torque1.tau = -T;
         connect(mounting1D1.flange_b, torque1.support) annotation(Line(points = {{-52, -28}, {-36, -28}}));
-        //torque_x.torque = {T, 0, 0};
+//torque_x.torque = {T, 0, 0};
         annotation(bodyShape1(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), frameTranslation(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), frame_b(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2))), body(frame_a(r_0(flags = 2), R(T(flags = 2), w(flags = 2)), f(flags = 2), t(flags = 2)), r_0(flags = 2), v_0(flags = 2), a_0(flags = 2), w_a(flags = 2), z_a(flags = 2), g_0(flags = 2))), experiment(StopTime = 100, StartTime = 0), Icon(coordinateSystem(initialScale = 0.1)), uses(Modelica(version = "3.2.1")));
       end reactionwheelsimple_noelectricity;
 
@@ -1550,9 +1550,9 @@ package satcomponents
         Modelica.Blocks.Interfaces.RealInput T[3] annotation(Placement(visible = true, transformation(origin = {0, -100}, extent = {{-20, -20}, {20, 20}}, rotation = 90), iconTransformation(origin = {100, 2}, extent = {{-14, -14}, {14, 14}}, rotation = 180)));
         Modelica.Mechanics.MultiBody.Parts.Body body1(m = m) annotation(Placement(visible = true, transformation(origin = {6, 90}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Parts.Body body2(m = m) annotation(Placement(visible = true, transformation(origin = {4, 34}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Mechanics.MultiBody.Parts.Body body3(m = m) annotation(Placement(visible = true, transformation(origin = {6, -24}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Mechanics.MultiBody.Forces.Torque torque_z annotation(Placement(visible = true, transformation(origin = {-28, -45}, extent = {{-10, -10}, {10, 10}}, rotation = -180)));
-  Modelica.Mechanics.MultiBody.Joints.Revolute torque_z(animation = false, n = {0, 0, 1}, phi(displayUnit = "rad")) annotation(Placement(visible = true, transformation(origin = {-28, -23}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
+        Modelica.Mechanics.MultiBody.Parts.Body body3(m = m) annotation(Placement(visible = true, transformation(origin = {6, -24}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Mechanics.MultiBody.Forces.Torque torque_z annotation(Placement(visible = true, transformation(origin = {-28, -45}, extent = {{-10, -10}, {10, 10}}, rotation = -180)));
+        Modelica.Mechanics.MultiBody.Joints.Revolute torque_z(animation = false, n = {0, 0, 1}, phi(displayUnit = "rad")) annotation(Placement(visible = true, transformation(origin = {-28, -23}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
       equation
         connect(frame_a, torque_z.frame_a) annotation(Line(points = {{-100, 6}, {-82, 6}, {-82, -22}, {-38, -22}, {-38, -22}, {-38, -22}}));
         connect(torque_z.frame_b, torque_z.frame_a) annotation(Line(points = {{-38, -44}, {-44, -44}, {-44, -22}, {-38, -22}, {-38, -22}}, color = {95, 95, 95}));
@@ -1607,7 +1607,7 @@ package satcomponents
         w = dcpm.inertiaRotor.w;
         connect(dcpm.flange, rotor1D1.flange_a) annotation(Line(points = {{-30, -38}, {-30, -38}, {-30, -28}, {-14, -28}, {-14, -28}}));
         connect(mounting1D1.flange_b, dcpm.internalSupport) annotation(Line(points = {{-52, -28}, {-48, -28}, {-48, -42}, {-38, -42}, {-38, -42}}));
-        //signalVoltage1.v = 5.0;
+//signalVoltage1.v = 5.0;
         connect(frame_a, mounting1D1.frame_a) annotation(Line(points = {{-100, 6}, {-62, 6}, {-62, -18}, {-62, -18}}));
         annotation(Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})), experiment(StartTime = 0, StopTime = 30, Tolerance = 0.0001), Icon(coordinateSystem(initialScale = 0.1)), uses(Modelica(version = "3.2.1")));
       end reactionwheel;
@@ -1675,7 +1675,7 @@ package satcomponents
         parameter Real Ix = Iy;
         Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(transformation(origin = {-99.422, 5.20231}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-99.422, 5.20231}, extent = {{-10, -10}, {10, 10}})));
         Modelica.Blocks.Interfaces.RealInput T[3] annotation(Placement(visible = true, transformation(origin = {0, -100}, extent = {{-20, -20}, {20, 20}}, rotation = 90), iconTransformation(origin = {100, 2}, extent = {{-14, -14}, {14, 14}}, rotation = 180)));
-  Modelica.Mechanics.MultiBody.Forces.WorldTorque torque annotation(Placement(visible = true, transformation(origin = {-46, 4}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+        Modelica.Mechanics.MultiBody.Forces.WorldTorque torque annotation(Placement(visible = true, transformation(origin = {-46, 4}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
       equation
         connect(torque.torque, T) annotation(Line(points = {{-34, 4}, {-6, 4}, {-6, -86}, {0, -86}, {0, -100}}, color = {0, 0, 127}));
         connect(frame_a, torque.frame_b) annotation(Line(points = {{-100, 6}, {-56, 6}, {-56, 4}, {-56, 4}}));
@@ -1772,7 +1772,7 @@ package satcomponents
         Real totalerror;
       equation
         A = Modelica.Mechanics.MultiBody.Frames.axesRotations(sequence, a_measure, zeros(3));
-        //w = Frames.angularVelocity1(A);
+//w = Frames.angularVelocity1(A);
         Q = Frames.to_Q(A);
         Q_e = Frames.Quaternions.relativeRotation(Q_c, Q);
         totalerror = sum(Q_e);
@@ -1786,7 +1786,7 @@ package satcomponents
         Modelica.Blocks.Interfaces.RealInput a_measure[3] "measured attitude" annotation(Placement(visible = true, transformation(origin = {-3, -99}, extent = {{-11, -11}, {11, 11}}, rotation = 90), iconTransformation(origin = {-5, -95}, extent = {{-15, -15}, {15, 15}}, rotation = 90)));
         Modelica.Blocks.Interfaces.RealInput a_u[3] "desired attitude" annotation(Placement(visible = true, transformation(origin = {-101, -1}, extent = {{-11, -11}, {11, 11}}, rotation = 0), iconTransformation(origin = {-98, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
         Modelica.Blocks.Interfaces.RealInput w_measure[3] "measured angular velocity" annotation(Placement(visible = true, transformation(origin = {43, -99}, extent = {{-11, -11}, {11, 11}}, rotation = 90), iconTransformation(origin = {55, -95}, extent = {{-15, -15}, {15, 15}}, rotation = 90)));
-  Modelica.Blocks.Interfaces.BooleanInput on_off(start = false) annotation(Placement(visible = true, transformation(origin = {-1, 99}, extent = {{11, -11}, {-11, 11}}, rotation = 90), iconTransformation(origin = {1, 85}, extent = {{15, -15}, {-15, 15}}, rotation = 90)));
+        Modelica.Blocks.Interfaces.BooleanInput on_off(start = false) annotation(Placement(visible = true, transformation(origin = {-1, 99}, extent = {{11, -11}, {-11, 11}}, rotation = 90), iconTransformation(origin = {1, 85}, extent = {{15, -15}, {-15, 15}}, rotation = 90)));
       equation
 
         annotation(error(y(flags = 2)), Icon(graphics = {Rectangle(origin = {1.22, 1.55}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-86.39, 85.4}, {93.6909, -86.0637}}), Text(origin = {0.44, 3.43}, extent = {{-80.75, 56.53}, {80.75, -56.53}}, textString = "ACS", fontName = "DejaVu Sans Mono"), Text(origin = {42, 73}, extent = {{-18, 7}, {18, -7}}, textString = "on/off", fontName = "DejaVu Sans Mono")}, coordinateSystem(initialScale = 0.1)), experiment(StopTime = 1, StartTime = 0), Diagram, uses(Modelica(version = "3.2.1")));
@@ -1811,20 +1811,34 @@ package satcomponents
         Real totalerror;
         Real i_e[3] "integralerror";
         parameter Real ifac = 1.0;
-  protected
-    Real onoff;
-  equation
+      protected
+        Real onoff;
+      equation
         onoff = if on_off then 1.0 else 0.0;
         A = Modelica.Mechanics.MultiBody.Frames.axesRotations(sequence, a_measure, zeros(3));
-        //w = Frames.angularVelocity1(A);
+//w = Frames.angularVelocity1(A);
         Q = Frames.to_Q(A);
         Q_e = Frames.Quaternions.relativeRotation(Q_c, Q);
-        totalerror = sum(Q_e);      
-        //y = (-K_q * Q_e[1:3]) - ifac * atan(i_e) - K_w .* w_measure "control law";
-        der(i_e) = onoff * Q_e[1:3];//TODO:  anti-windup control
+        totalerror = sum(Q_e);
+//y = (-K_q * Q_e[1:3]) - ifac * atan(i_e) - K_w .* w_measure "control law";
+        der(i_e) = onoff * Q_e[1:3];
+//TODO:  anti-windup control
         y = onoff * ((-K_q * Q_e[1:3]) - ifac * i_e - K_w .* w_measure) "control law";
         annotation(Icon, Diagram, uses(Modelica(version = "3.2.1")));
       end ACS_Q_PI_contr;
+
+      model targetquat
+        extends Modelica.Blocks.Icons.Block;
+        import Modelica.Mechanics.MultiBody.Frames.Quaternions;
+        Modelica.Blocks.Interfaces.RealVectorInput u[3] annotation(Placement(visible = true, transformation(origin = {-100, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-100, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+        Modelica.Blocks.Interfaces.RealOutput y[3] annotation(Placement(visible = true, transformation(origin = {100, -2}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {100, -2}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Real[3] v={0.0,0.0,1.0};
+        Quaternions.Orientation Q "rotation quaternion";
+      equation
+        Q = utils.QfromUV(v, u);
+        y = {0, 0, 0};
+        annotation(uses(Modelica(version = "3.2.1")));
+      end targetquat;
     end ctrl;
 
     model momentum_add "momentum_add"
@@ -2006,18 +2020,20 @@ package satcomponents
         import Modelica.Mechanics.MultiBody.Frames;
         import Modelica.Mechanics.MultiBody.Frames.Quaternions;
         import Modelica.SIunits.Conversions.to_unit1;
-        Modelica.Blocks.Sources.Constant const[3](k = {1, 0.5, 0.3}) annotation(Placement(visible = true, transformation(origin = {-5, 33}, extent = {{-7, -7}, {7, 7}}, rotation = 0)));
+        Modelica.Blocks.Sources.Constant const[3](k = {1, 0.5, 0.3}) annotation(Placement(visible = true, transformation(origin = {-61, -53}, extent = {{-7, -7}, {7, 7}}, rotation = 0)));
         inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.PointGravity) annotation(Placement(visible = true, transformation(origin = {-86, 82}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Parts.Body body1(I_11 = 0.5, I_21 = 0.2, I_22 = 0.1, I_31 = 0.1, I_33 = 0.333, angles_start(displayUnit = "rad"), enforceStates = true, m = 50, r_0(start = {6500e3, 0, 0}), useQuaternions = true, v_0(start = {0, 7.8e3, 0}), w_0_fixed = true) annotation(Placement(visible = true, transformation(origin = {-40, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngles absoluteAngles1 annotation(Placement(visible = true, transformation(origin = {-44, 12}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity w(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameA.frame_a) annotation(Placement(visible = true, transformation(origin = {-44, -16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  satcomponents.AOCS.ctrl.ACS_Q_PI_contr ACS(K_q = 10.0, T_level = {1, 1, 1}, ifac = 1.0, kw = 5.0) annotation(Placement(visible = true, transformation(origin = {32, 18}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        satcomponents.AOCS.ctrl.ACS_Q_PI_contr ACS(K_q = 10.0, T_level = {1, 1, 1}, ifac = 1.0, kw = 5.0) annotation(Placement(visible = true, transformation(origin = {32, 18}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Quaternions.Orientation Q;
-  Parts.RW_ideal rW_ideal1 annotation(Placement(visible = true, transformation(origin = {-10, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime = 5, startValue = false)  annotation(Placement(visible = true, transformation(origin = {14, 56}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Parts.RW_ideal rW_ideal1 annotation(Placement(visible = true, transformation(origin = {-10, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime = 5, startValue = false) annotation(Placement(visible = true, transformation(origin = {14, 56}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  ctrl.targetquat targetquat1 annotation(Placement(visible = true, transformation(origin = {-10, -46}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       equation
+        connect(const.y, targetquat1.u) annotation(Line(points = {{-54, -52}, {-32, -52}, {-32, -46}, {-20, -46}, {-20, -46}}, color = {0, 0, 127}));
+        connect(targetquat1.y, ACS.a_u) annotation(Line(points = {{0, -46}, {4, -46}, {4, 18}, {22, 18}, {22, 18}}, color = {0, 0, 127}));
         connect(absoluteAngles1.angles, ACS.a_measure) annotation(Line(points = {{-32, 12}, {-14, 12}, {-14, -6}, {31.5, -6}, {31.5, 8.5}}, color = {0, 0, 127}));
-        connect(const.y, ACS.a_u) annotation(Line(points = {{2, 34}, {22, 34}, {22, 18}}, color = {0, 0, 127}));
         connect(w.w, ACS.w_measure) annotation(Line(points = {{-32, -16}, {37.5, -16}, {37.5, 8.5}}, color = {0, 0, 127}));
         connect(w.w, ACS.w_u) annotation(Line(points = {{-32, -16}, {12, -16}, {12, 13}, {22, 13}}, color = {0, 0, 127}));
         connect(rW_ideal1.T, ACS.y) annotation(Line(points = {{0, 70}, {58, 70}, {58, 34}, {42, 34}, {42, 18}}, color = {0, 0, 127}));
@@ -2038,37 +2054,38 @@ package satcomponents
         input Real u[3] "Vector1";
         input Real v[3] "Vector2";
         output Quaternions.Orientation Q "rotation quaternion";
-        Real k_cos_theta, u2,v2, k, w, x, y, z;
+        Real k_cos_theta, u2, v2, k, w, x, y, z;
         Real xyz[3];
       algorithm
-        k_cos_theta := u*v;
-        u2 := u*u;
-        v2 := v*v;
+        k_cos_theta := u * v;
+        u2 := u * u;
+        v2 := v * v;
         k := sqrt(u2 * v2);
-        if (k_cos_theta / k == -1) then //180 degree rotation around any orthogonal vector
-          xyz := u/sqrt(u2);
+        if k_cos_theta / k == (-1) then
+          xyz := u / sqrt(u2);
           w := 0;
           Q := {w, x, y, z};
         else
-          xyz := cross(u,v);
+          xyz := cross(u, v);
           w := k_cos_theta + k;
           x := xyz[1];
           y := xyz[2];
           z := xyz[3];
           Q := {w, x, y, z};
-          Q := Q/sqrt(Q*Q);
+          Q := Q / sqrt(Q * Q);
         end if;
+//180 degree rotation around any orthogonal vector
         annotation(Inline = true);
       end QfromUV;
 
       model quaterniontest
         extends Modelica.Icons.Example;
         import Modelica.Mechanics.MultiBody.Frames.Quaternions;
-        Real v1[3] = {1.0,-0.3,0.9}"Vector1";
-        Real v2[3] = {0.0,0.0,1.0}"Vector2";
+        Real v1[3] = {1.0, -0.3, 0.9} "Vector1";
+        Real v2[3] = {0.0, 0.0, 1.0} "Vector2";
         Quaternions.Orientation Q "rotation quaternion";
       equation
-        Q = QfromUV(-v2,v1);
+        Q = QfromUV(-v2, v1);
       end quaterniontest;
     end utils;
   end AOCS;
