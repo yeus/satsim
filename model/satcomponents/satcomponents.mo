@@ -2011,25 +2011,66 @@ package satcomponents
         Modelica.Mechanics.MultiBody.Parts.Body body1(I_11 = 0.5, I_21 = 0.2, I_22 = 0.1, I_31 = 0.1, I_33 = 0.333, angles_start(displayUnit = "rad"), enforceStates = true, m = 50, r_0(start = {6500e3, 0, 0}), useQuaternions = true, v_0(start = {0, 7.8e3, 0}), w_0_fixed = true) annotation(Placement(visible = true, transformation(origin = {-40, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngles absoluteAngles1 annotation(Placement(visible = true, transformation(origin = {-44, 12}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity w(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameA.frame_a) annotation(Placement(visible = true, transformation(origin = {-44, -16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-        satcomponents.AOCS.ctrl.ACS_Q_PI_contr ACS(K_q = 10.0, T_level = {1, 1, 1}, ifac = 1.0, kw = 5.0) annotation(Placement(visible = true, transformation(origin = {30, 32}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  satcomponents.AOCS.ctrl.ACS_Q_PI_contr ACS(K_q = 10.0, T_level = {1, 1, 1}, ifac = 1.0, kw = 5.0) annotation(Placement(visible = true, transformation(origin = {32, 18}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Quaternions.Orientation Q;
   Parts.RW_ideal rW_ideal1 annotation(Placement(visible = true, transformation(origin = {-10, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime = 5, startValue = false)  annotation(Placement(visible = true, transformation(origin = {14, 56}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       equation
-        connect(booleanStep1.y, ACS.on_off) annotation(Line(points = {{26, 56}, {30, 56}, {30, 40}, {30, 40}}, color = {255, 0, 255}));
-        connect(rW_ideal1.T, ACS.y) annotation(Line(points = {{0, 70}, {58, 70}, {58, 34}, {40, 34}, {40, 32}, {40, 32}}, color = {0, 0, 127}));
+        connect(absoluteAngles1.angles, ACS.a_measure) annotation(Line(points = {{-32, 12}, {-14, 12}, {-14, -6}, {31.5, -6}, {31.5, 8.5}}, color = {0, 0, 127}));
+        connect(const.y, ACS.a_u) annotation(Line(points = {{2, 34}, {22, 34}, {22, 18}}, color = {0, 0, 127}));
+        connect(w.w, ACS.w_measure) annotation(Line(points = {{-32, -16}, {37.5, -16}, {37.5, 8.5}}, color = {0, 0, 127}));
+        connect(w.w, ACS.w_u) annotation(Line(points = {{-32, -16}, {12, -16}, {12, 13}, {22, 13}}, color = {0, 0, 127}));
+        connect(rW_ideal1.T, ACS.y) annotation(Line(points = {{0, 70}, {58, 70}, {58, 34}, {42, 34}, {42, 18}}, color = {0, 0, 127}));
+        connect(booleanStep1.y, ACS.on_off) annotation(Line(points = {{26, 56}, {32, 56}, {32, 26.5}}, color = {255, 0, 255}));
         connect(rW_ideal1.frame_a, body1.frame_a) annotation(Line(points = {{-20, 70}, {-64, 70}, {-64, 40}, {-50, 40}, {-50, 40}}, color = {95, 95, 95}));
-        connect(w.w, ACS.w_u) annotation(Line(points = {{-32, -16}, {12, -16}, {12, 26}, {20, 26}, {20, 26}}, color = {0, 0, 127}));
-        connect(w.w, ACS.w_measure) annotation(Line(points = {{-32, -16}, {36, -16}, {36, 22}, {36, 22}}, color = {0, 0, 127}));
         Q = body1.Q;
-        connect(const.y, ACS.a_u) annotation(Line(points = {{2, 34}, {20, 34}, {20, 32}, {20, 32}}, color = {0, 0, 127}));
-        connect(absoluteAngles1.angles, ACS.a_measure) annotation(Line(points = {{-32, 12}, {-14, 12}, {-14, -6}, {30, -6}, {30, 22}}, color = {0, 0, 127}));
         connect(body1.frame_a, w.frame_a) annotation(Line(points = {{-50, 40}, {-70, 40}, {-70, -16}, {-54, -16}}, color = {95, 95, 95}));
         connect(body1.frame_a, absoluteAngles1.frame_a) annotation(Line(points = {{-50, 40}, {-70, 40}, {-70, 12}, {-54, 12}}, color = {95, 95, 95}));
         annotation(Icon, Diagram, experiment(StartTime = 0, StopTime = 50, Tolerance = 1e-06, Interval = 0.05), uses(Modelica(version = "3.2.1")));
       end mission_simulation_ideal;
       annotation(Icon, Diagram);
     end examples;
+
+    package utils
+      function QfromUV "create orientation quaternion between two vectors"
+        import Modelica.Mechanics.MultiBody.Frames.Quaternions;
+        import Modelica.Math.Vectors;
+        input Real u[3] "Vector1";
+        input Real v[3] "Vector2";
+        output Quaternions.Orientation Q "rotation quaternion";
+        Real k_cos_theta, u2,v2, k, w, x, y, z;
+        Real xyz[3];
+      algorithm
+        k_cos_theta := u*v;
+        u2 := u*u;
+        v2 := v*v;
+        k := sqrt(u2 * v2);
+        if (k_cos_theta / k == -1) then //180 degree rotation around any orthogonal vector
+          xyz := u/sqrt(u2);
+          w := 0;
+          Q := {w, x, y, z};
+        else
+          xyz := cross(u,v);
+          w := k_cos_theta + k;
+          x := xyz[1];
+          y := xyz[2];
+          z := xyz[3];
+          Q := {w, x, y, z};
+          Q := Q/sqrt(Q*Q);
+        end if;
+        annotation(Inline = true);
+      end QfromUV;
+
+      model quaterniontest
+        extends Modelica.Icons.Example;
+        import Modelica.Mechanics.MultiBody.Frames.Quaternions;
+        Real v1[3] = {1.0,-0.3,0.9}"Vector1";
+        Real v2[3] = {0.0,0.0,1.0}"Vector2";
+        Quaternions.Orientation Q "rotation quaternion";
+      equation
+        Q = QfromUV(-v2,v1);
+      end quaterniontest;
+    end utils;
   end AOCS;
 
   package blocks "blocks"
