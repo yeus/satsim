@@ -1806,7 +1806,10 @@ package satcomponents
         parameter Real K_w[3] = {1.0, 1.0, 1.0} * kw;
         parameter Modelica.SIunits.Torque T_level[3] = {1, 1, 1};
         Frames.Orientation R_c = Modelica.Mechanics.MultiBody.Frames.axesRotations(sequence, a_u, zeros(3));
-        Quaternions.Orientation Q_c = Frames.to_Q(R_c) "target quaternion";
+        //Quaternions.Orientation Q_c = Frames.to_Q(R_c) "target quaternion";
+        //Quaternions.Orientation Q_c = {0.491751,  0.145262,  0.244347,  0.823028} "target quaternion";
+        //Quaternions.Orientation Q_c = {0.416576148442, -0.261228200231, -0.870760667436, 0.0} "target quaternion";
+        Quaternions.Orientation Q_c = {0.70710678,  0.        ,  0.        ,  0.70710678} "target quaternion";
         Frames.Orientation A "current orientation matrix";
         Real totalerror;
         Real i_e[3] "integralerror";
@@ -2010,8 +2013,8 @@ package satcomponents
         inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.PointGravity) annotation(Placement(visible = true, transformation(origin = {-86, 82}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Parts.Body body1(I_11 = 0.5, I_21 = 0.2, I_22 = 0.1, I_31 = 0.1, I_33 = 0.333, angles_start(displayUnit = "rad"), enforceStates = true, m = 50, r_0(start = {6500e3, 0, 0}), useQuaternions = true, v_0(start = {0, 7.8e3, 0}), w_0_fixed = true) annotation(Placement(visible = true, transformation(origin = {-40, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngles absoluteAngles1 annotation(Placement(visible = true, transformation(origin = {-44, 12}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-        Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity w(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameA.frame_a) annotation(Placement(visible = true, transformation(origin = {-44, -16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  satcomponents.AOCS.ctrl.ACS_Q_PI_contr ACS(K_q = 10.0, T_level = {1, 1, 1}, ifac = 1.0, kw = 5.0) annotation(Placement(visible = true, transformation(origin = {32, 18}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity w(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameA.world) annotation(Placement(visible = true, transformation(origin = {-44, -16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  satcomponents.AOCS.ctrl.ACS_Q_PI_contr ACS(K_q = 10.0, T_level = {1, 1, 1}, ifac = 0.0, kw = 5.0) annotation(Placement(visible = true, transformation(origin = {32, 18}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Quaternions.Orientation Q;
   Parts.RW_ideal rW_ideal1 annotation(Placement(visible = true, transformation(origin = {-10, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime = 5, startValue = false)  annotation(Placement(visible = true, transformation(origin = {14, 56}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
