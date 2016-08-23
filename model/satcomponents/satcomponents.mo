@@ -1809,7 +1809,7 @@ package satcomponents
         //Quaternions.Orientation Q_c = Frames.to_Q(R_c) "target quaternion";
         //Quaternions.Orientation Q_c = {0.491751,  0.145262,  0.244347,  0.823028} "target quaternion";
         //Quaternions.Orientation Q_c = {0.416576148442, -0.261228200231, -0.870760667436, 0.0} "target quaternion";
-        Quaternions.Orientation Q_c = {0.70710678,  0.        ,  0.        ,  0.70710678} "target quaternion";
+        Quaternions.Orientation Q_c = {0.70710678,  0.        , -0.29260287,  0.64372631} "target quaternion";
         Frames.Orientation A "current orientation matrix";
         Real totalerror;
         Real i_e[3] "integralerror";
@@ -1817,7 +1817,6 @@ package satcomponents
       protected
         Real onoff;
       equation
-        Q_c = a_u;
         onoff = if on_off then 1.0 else 0.0;
         A = Modelica.Mechanics.MultiBody.Frames.axesRotations(sequence, a_measure, zeros(3));
 //w = Frames.angularVelocity1(A);
@@ -1852,7 +1851,7 @@ package satcomponents
         Modelica.Blocks.Interfaces.RealOutput y[3] "control value for torque" annotation(Placement(visible = true, transformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Blocks.Interfaces.RealInput w_u[3] "desired angular velocity" annotation(Placement(visible = true, transformation(origin = {-101, -33}, extent = {{-11, -11}, {11, 11}}, rotation = 0), iconTransformation(origin = {-98, -52}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
         Modelica.Blocks.Interfaces.RealInput a_measure[3] "measured attitude" annotation(Placement(visible = true, transformation(origin = {-3, -99}, extent = {{-11, -11}, {11, 11}}, rotation = 90), iconTransformation(origin = {-5, -95}, extent = {{-15, -15}, {15, 15}}, rotation = 90)));
-        Modelica.Blocks.Interfaces.RealInput a_u[4] "desired attitude" annotation(Placement(visible = true, transformation(origin = {-101, -1}, extent = {{-11, -11}, {11, 11}}, rotation = 0), iconTransformation(origin = {-98, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+        Modelica.Blocks.Interfaces.RealInput q_u[4] "desired attitude" annotation(Placement(visible = true, transformation(origin = {-101, -1}, extent = {{-11, -11}, {11, 11}}, rotation = 0), iconTransformation(origin = {-98, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
         Modelica.Blocks.Interfaces.RealInput w_measure[3] "measured angular velocity" annotation(Placement(visible = true, transformation(origin = {43, -99}, extent = {{-11, -11}, {11, 11}}, rotation = 90), iconTransformation(origin = {55, -95}, extent = {{-15, -15}, {15, 15}}, rotation = 90)));
         Modelica.Blocks.Interfaces.BooleanInput on_off(start = false) annotation(Placement(visible = true, transformation(origin = {-1, 99}, extent = {{11, -11}, {-11, 11}}, rotation = 90), iconTransformation(origin = {1, 85}, extent = {{15, -15}, {-15, 15}}, rotation = 90)));
       equation
@@ -2045,12 +2044,12 @@ package satcomponents
         Modelica.Mechanics.MultiBody.Parts.Body body1(I_11 = 0.5, I_21 = 0.2, I_22 = 0.1, I_31 = 0.1, I_33 = 0.333, angles_start(displayUnit = "rad"), enforceStates = true, m = 50, r_0(start = {6500e3, 0, 0}), useQuaternions = true, v_0(start = {0, 7.8e3, 0}), w_0_fixed = true) annotation(Placement(visible = true, transformation(origin = {-40, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngles absoluteAngles1 annotation(Placement(visible = true, transformation(origin = {-44, 12}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity w(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameA.world) annotation(Placement(visible = true, transformation(origin = {-44, -16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  satcomponents.AOCS.ctrl.ACS_Q_PI_contr ACS(K_q = 10.0, T_level = {1, 1, 1}, ifac = 0.0, kw = 5.0) annotation(Placement(visible = true, transformation(origin = {32, 18}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  satcomponents.AOCS.ctrl.ACS_Q_PI_contr ACS(K_q = 50, T_level = {1, 1, 1}, ifac = 0.0, kw = 5) annotation(Placement(visible = true, transformation(origin = {32, 18}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Quaternions.Orientation Q;
         Parts.RW_ideal rW_ideal1 annotation(Placement(visible = true, transformation(origin = {-10, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime = 5, startValue = false) annotation(Placement(visible = true, transformation(origin = {10, 46}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       equation
-        connect(const.y, ACS.a_u) annotation(Line(points = {{-54, -52}, {0, -52}, {0, 18}, {22, 18}, {22, 18}}, color = {0, 0, 127}));
+        connect(const.y, ACS.q_u) annotation(Line(points = {{-54, -52}, {0, -52}, {0, 18}, {22, 18}, {22, 18}}, color = {0, 0, 127}));
         connect(booleanStep1.y, ACS.on_off) annotation(Line(points = {{21, 46}, {32, 46}, {32, 26.5}}, color = {255, 0, 255}));
         connect(absoluteAngles1.angles, ACS.a_measure) annotation(Line(points = {{-32, 12}, {-14, 12}, {-14, -6}, {31.5, -6}, {31.5, 8.5}}, color = {0, 0, 127}));
         connect(w.w, ACS.w_measure) annotation(Line(points = {{-32, -16}, {37.5, -16}, {37.5, 8.5}}, color = {0, 0, 127}));
