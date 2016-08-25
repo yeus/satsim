@@ -1807,7 +1807,7 @@ package satcomponents
         parameter Modelica.SIunits.Torque T_level[3] = {1, 1, 1};
         //Quaternions.Orientation Q_c "target quaternion";
         //Quaternions.Orientation Q_c = Frames.to_Q(R_c) "target quaternion";
-        Quaternions.Orientation Q_c = {0.491751,  0.145262,  0.244347,  0.823028} "target quaternion";
+        Quaternions.Orientation Q_c = {1,0,0,0} "target quaternion";
         //Quaternions.Orientation Q_c = {0.416576148442, -0.261228200231, -0.870760667436, 0.0} "target quaternion";
         //Quaternions.Orientation Q_c = {0.923879532511287, 0, 0.382683432365090, 0} "target quaternion";
         Real totalerror;
@@ -1820,10 +1820,10 @@ package satcomponents
         Q = utils.QfromEU(a_measure);
         onoff = if on_off then 1.0 else 0.0;
 //w = Frames.angularVelocity1(A);
-        Q_e = utils.Qmult(Q,{Q_c[1],-Q_c[2],-Q_c[3],-Q_c[4]});
+        Q_e = utils.Qmult(Q, {Q_c[1], -Q_c[2], -Q_c[3], -Q_c[4]});
         totalerror = sum(Q_e);
 //y = (-K_q * Q_e[1:3]) - ifac * atan(i_e) - K_w .* w_measure "control law";
-        //der(i_e) = onoff * Q_e[1:3];
+//der(i_e) = onoff * Q_e[1:3];
 //TODO:  anti-windup control
 //y = onoff * ((-K_q * Q_e[1:3]) - ifac * i_e - K_w .* w_measure) "control law";
         y = {0, 0, 0} annotation(Icon, Diagram, uses(Modelica(version = "3.2.1")));
@@ -2040,8 +2040,8 @@ package satcomponents
         import Modelica.SIunits.Conversions.to_unit1;
         Modelica.Blocks.Sources.Constant const[4](k = {0.86386843, 0.43193421, 0.25916053, 0.0}) annotation(Placement(visible = true, transformation(origin = {-61, -53}, extent = {{-7, -7}, {7, 7}}, rotation = 0)));
         inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.PointGravity) annotation(Placement(visible = true, transformation(origin = {-86, 82}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
-        Modelica.Mechanics.MultiBody.Parts.Body body1(sequence_angleStates={3,2,1},I_11 = 0.5, I_21 = 0.2, I_22 = 0.1, I_31 = 0.1, I_33 = 0.333, angles_fixed = true, angles_start(displayUnit = "rad") = {0, 0, 3.14159}, enforceStates = true, m = 50, r_0(start = {6500e3, 0, 0}), useQuaternions = true, v_0(start = {0, 7.8e3, 0}), w_0_fixed = true, w_a(start = {0.1, 0.2, 0.3})) annotation(Placement(visible = true, transformation(origin = {-40, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-        Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngles absoluteAngles1(guessAngle1(displayUnit = "rad"), sequence = {3, 2, 1})  annotation(Placement(visible = true, transformation(origin = {-44, 12}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Mechanics.MultiBody.Parts.Body body1(I_11 = 0.5, I_21 = 0.2, I_22 = 0.1, I_31 = 0.1, I_33 = 0.333, angles_fixed = true, angles_start(displayUnit = "rad") = {0, 0, 0}, enforceStates = true, m = 50, r_0(start = {6500e3, 0, 0}), sequence_angleStates = {3, 2, 1}, sequence_start = {3, 2, 1}, useQuaternions = true, v_0(start = {0, 7.8e3, 0}), w_0_fixed = true, w_a(start = {0.01, 0.02, 0.03})) annotation(Placement(visible = true, transformation(origin = {-40, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngles absoluteAngles1(guessAngle1(displayUnit = "rad"), sequence = {3, 2, 1}) annotation(Placement(visible = true, transformation(origin = {-44, 12}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity w(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameA.world) annotation(Placement(visible = true, transformation(origin = {-44, -16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         satcomponents.AOCS.ctrl.ACS_Q_PI_contr ACS(T_level = {1, 1, 1}, ifac = 0.0) annotation(Placement(visible = true, transformation(origin = {30, 18}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Quaternions.Orientation Q;
@@ -2063,94 +2063,92 @@ package satcomponents
       annotation(Icon, Diagram);
     end examples;
 
-package utils
-  function QfromUV "create orientation quaternion between two vectors"
-    import Modelica.Mechanics.MultiBody.Frames.Quaternions;
-    import Modelica.Math.Vectors;
-    input Real u[3] "Vector1";
-    input Real v[3] "Vector2";
-    output Quaternions.Orientation Q "rotation quaternion";
-    Real k_cos_theta, u2, v2, k, w;
-    Real xyz[3];
-  algorithm
-    k_cos_theta := u * v;
-    u2 := u * u;
-    v2 := v * v;
-    k := sqrt(u2 * v2);
-    if k_cos_theta / k == (-1) then
-      xyz := u / sqrt(u2);
-      w := 0;
-      Q := {w, xyz[1], xyz[2], xyz[3]};
-    else
-      xyz := cross(u, v);
-      w := k_cos_theta + k;
-      Q := {w, xyz[1], xyz[2], xyz[3]};
-      Q := Q / sqrt(Q * Q);
-    end if;
+    package utils
+      function QfromUV "create orientation quaternion between two vectors"
+        import Modelica.Mechanics.MultiBody.Frames.Quaternions;
+        import Modelica.Math.Vectors;
+        input Real u[3] "Vector1";
+        input Real v[3] "Vector2";
+        output Quaternions.Orientation Q "rotation quaternion";
+        Real k_cos_theta, u2, v2, k, w;
+        Real xyz[3];
+      algorithm
+        k_cos_theta := u * v;
+        u2 := u * u;
+        v2 := v * v;
+        k := sqrt(u2 * v2);
+        if k_cos_theta / k == (-1) then
+          xyz := u / sqrt(u2);
+          w := 0;
+          Q := {w, xyz[1], xyz[2], xyz[3]};
+        else
+          xyz := cross(u, v);
+          w := k_cos_theta + k;
+          Q := {w, xyz[1], xyz[2], xyz[3]};
+          Q := Q / sqrt(Q * Q);
+        end if;
 //180 degree rotation around any orthogonal vector
-    annotation(Inline = true);
-  end QfromUV;
+        annotation(Inline = true);
+      end QfromUV;
 
-  function QfromEU "create orientation quaternion from euler sequence {3,2,1}"
-    import Modelica.Mechanics.MultiBody.Frames.Quaternions;
-    import Modelica.Math.Vectors;
-    input Real eu[3] "Vector1";
-    output Quaternions.Orientation Q "rotation quaternion";
-  protected
-    Real s0,s1,s2,c1,c2,c3;
-  algorithm
-    s0:=sin(eu[1]/2);
-    s1:=sin(eu[2]/2);
-    s2:=sin(eu[3]/2);
-    c1:=cos(eu[1]/2);
-    c2:=cos(eu[2]/2);
-    c3:=cos(eu[3]/2);
-    Q := {c1*c2*c3 + s0*s1*s2,-c1*s1*s2 + c2*c3*s0,c1*c3*s1 + c2*s0*s2,c1*c2*s2 - c3*s0*s1}
-    annotation(Inline = true);
-  end QfromEU;
-  
-  function Qmult "create orientation quaternion between two vectors"
-    import Modelica.Mechanics.MultiBody.Frames.Quaternions;
-    import Modelica.Math.Vectors;
-    input Quaternions.Orientation q "rotation quaternion";
-    input Quaternions.Orientation q2 "rotation quaternion";
-    output Quaternions.Orientation Q "rotation quaternion";
-  algorithm
-    Q :=  [q[1], -q[2], -q[3], -q[4];
-          q[2], q[1], -q[4], q[3];
-          q[3], q[4], q[1], -q[2];
-          q[4], -q[3], q[2], q[1]]*q2;
-    annotation(Inline = true);
-  end Qmult;
+      function QfromEU "create orientation quaternion from euler sequence {3,2,1}"
+        import Modelica.Mechanics.MultiBody.Frames.Quaternions;
+        import Modelica.Math.Vectors;
+        input Real eu[3] "Vector1";
+        output Quaternions.Orientation Q "rotation quaternion";
+      protected
+        Real s0, s1, s2, c1, c2, c3;
+      algorithm
+        s0 := sin(eu[1] / 2);
+        s1 := sin(eu[2] / 2);
+        s2 := sin(eu[3] / 2);
+        c1 := cos(eu[1] / 2);
+        c2 := cos(eu[2] / 2);
+        c3 := cos(eu[3] / 2);
+        Q := {c1 * c2 * c3 + s0 * s1 * s2, (-c1 * s1 * s2) + c2 * c3 * s0, c1 * c3 * s1 + c2 * s0 * s2, c1 * c2 * s2 - c3 * s0 * s1} annotation(Inline = true);
+      end QfromEU;
 
-  model eu2q
-    extends Modelica.Blocks.Icons.Block;
-    import Modelica.Mechanics.MultiBody.Frames;
-    import Modelica.Mechanics.MultiBody.Frames.Quaternions;
-    Modelica.Blocks.Interfaces.RealVectorInput eu[3] annotation(Placement(visible = true, transformation(origin = {-100, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-100, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-    Modelica.Blocks.Interfaces.RealOutput q[4] annotation(Placement(visible = true, transformation(origin = {100, -2}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {100, -2}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-    //Integer sequence[3] = {1, 2, 3};
-    //Real[3] v = {0.0, 0.0, 1.0};
-    //Quaternions.Orientation Q "rotation quaternion";
-    Frames.Orientation R "corresponding Orientation object";
-  equation
-    q = QfromEU(eu);
-  //R = Frames.from_Q(Q, {0, 0, 0});
-  //y = Frames.axesRotationsAngles(R, sequence);
-    annotation(uses(Modelica(version = "3.2.1")));
-  end eu2q;
+      function Qmult "create orientation quaternion between two vectors"
+        import Modelica.Mechanics.MultiBody.Frames.Quaternions;
+        import Modelica.Math.Vectors;
+        input Quaternions.Orientation q "rotation quaternion";
+        input Quaternions.Orientation q2 "rotation quaternion";
+        output Quaternions.Orientation Q "rotation quaternion";
+      algorithm
+        Q := [q[1], -q[2], -q[3], -q[4]; 
+              q[2], q[1], -q[4], q[3];
+              q[3], q[4], q[1], -q[2];
+              q[4], -q[3], q[2], q[1]] * q2;
+        annotation(Inline = true);
+      end Qmult;
 
+      model eu2q
+        extends Modelica.Blocks.Icons.Block;
+        import Modelica.Mechanics.MultiBody.Frames;
+        import Modelica.Mechanics.MultiBody.Frames.Quaternions;
+        Modelica.Blocks.Interfaces.RealVectorInput eu[3] annotation(Placement(visible = true, transformation(origin = {-100, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-100, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+        Modelica.Blocks.Interfaces.RealOutput q[4] annotation(Placement(visible = true, transformation(origin = {100, -2}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {100, -2}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        //Integer sequence[3] = {1, 2, 3};
+        //Real[3] v = {0.0, 0.0, 1.0};
+        //Quaternions.Orientation Q "rotation quaternion";
+        Frames.Orientation R "corresponding Orientation object";
+      equation
+        q = QfromEU(eu);
+//R = Frames.from_Q(Q, {0, 0, 0});
+//y = Frames.axesRotationsAngles(R, sequence);
+        annotation(uses(Modelica(version = "3.2.1")));
+      end eu2q;
 
-  model quaterniontest
-    extends Modelica.Icons.Example;
-    import Modelica.Mechanics.MultiBody.Frames.Quaternions;
-    Real v1[3] = {1.0, -0.3, 0.9} "Vector1";
-    Real v2[3] = {0.0, 0.0, 1.0} "Vector2";
-    Quaternions.Orientation Q "rotation quaternion";
-  equation
-    Q = QfromUV(-v2, v1);
-  end quaterniontest;
-end utils;
+      model quaterniontest
+        extends Modelica.Icons.Example;
+        import Modelica.Mechanics.MultiBody.Frames.Quaternions;
+        Real v1[3] = {1.0, -0.3, 0.9} "Vector1";
+        Real v2[3] = {0.0, 0.0, 1.0} "Vector2";
+        Quaternions.Orientation Q "rotation quaternion";
+      equation
+        Q = QfromUV(-v2, v1);
+      end quaterniontest;
+    end utils;
   end AOCS;
 
   package blocks "blocks"
