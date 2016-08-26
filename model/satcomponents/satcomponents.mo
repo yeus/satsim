@@ -1798,35 +1798,30 @@ package satcomponents
         import Modelica.Mechanics.MultiBody.Frames;
         import Modelica.Mechanics.MultiBody.Frames.Quaternions;
         import Modelica.SIunits.Conversions.to_unit1;
-        Quaternions.Orientation Q "state quaternion";
-        parameter Types.RotationSequence sequence = {1, 2, 3} "Sequence of rotations of satellite within inertial frame";
-        Quaternions.Orientation Q_e "delta quaternion";
-        parameter Real K_q = 0.5;
+        //parameter Types.RotationSequence sequence = {1, 2, 3} "Sequence of rotations of satellite within inertial frame";
+        parameter Real K_q = 10.0;
         parameter Real kw = 10.0;
         parameter Real K_w[3] = {1.0, 1.0, 1.0} * kw;
         parameter Modelica.SIunits.Torque T_level[3] = {1, 1, 1};
-        //Quaternions.Orientation Q_c "target quaternion";
-        //Quaternions.Orientation Q_c = Frames.to_Q(R_c) "target quaternion";
-        Quaternions.Orientation Q_c = {1,0,0,0} "target quaternion";
-        //Quaternions.Orientation Q_c = {0.416576148442, -0.261228200231, -0.870760667436, 0.0} "target quaternion";
-        //Quaternions.Orientation Q_c = {0.923879532511287, 0, 0.382683432365090, 0} "target quaternion";
+        Real[4] Q_c "target quaternion";
         Real totalerror;
-        //Real i_e[3] "integralerror";
-        //Real quats[4];
-        parameter Real ifac = 1.0;
-      protected
+        Real i_e[4] "integralerror";
+        parameter Real ifac = 0.0 "Integrator influence on controller";
+        parameter Real f_wu = 0.01 "windup-factor (decay factor for integral part)";
         Real onoff;
+        Real[4] Q "state quaternion";
+        Real[4] Q_e "delta quaternion";
       equation
-        Q = utils.QfromEU(a_measure);
+        Q_c = q_u;
+        Q = utils.QfromEU(a_measure);  // reverse vector, as the modelica version of {3,2,1} sequence is {psi_z, theta_y, phi_x}
         onoff = if on_off then 1.0 else 0.0;
-//w = Frames.angularVelocity1(A);
         Q_e = utils.Qmult(Q, {Q_c[1], -Q_c[2], -Q_c[3], -Q_c[4]});
-        totalerror = sum(Q_e);
-//y = (-K_q * Q_e[1:3]) - ifac * atan(i_e) - K_w .* w_measure "control law";
-//der(i_e) = onoff * Q_e[1:3];
-//TODO:  anti-windup control
-//y = onoff * ((-K_q * Q_e[1:3]) - ifac * i_e - K_w .* w_measure) "control law";
-        y = {0, 0, 0} annotation(Icon, Diagram, uses(Modelica(version = "3.2.1")));
+        totalerror = sum(Q_e[2:4]);
+  //y = (-K_q * Q_e[1:3]) - ifac * atan(i_e) - K_w .* w_measure "control law";
+    der(i_e) = onoff * Q_e-f_wu*time*i_e;
+  //TODO:  anti-windup control
+        y = onoff * ((-K_q/ifac * Q_e[2:4]) - ifac * i_e[2:4] -K_w .* w_measure) "control law";
+        //y = {0, 0, 0} annotation(Icon, Diagram, uses(Modelica(version = "3.2.1")));
       end ACS_Q_PI_contr;
 
       model targetquat
@@ -1857,6 +1852,63 @@ package satcomponents
 
         annotation(error(y(flags = 2)), Icon(graphics = {Rectangle(origin = {1.22, 1.55}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-86.39, 85.4}, {93.6909, -86.0637}}), Text(origin = {0.44, 3.43}, extent = {{-80.75, 56.53}, {80.75, -56.53}}, textString = "ACS", fontName = "DejaVu Sans Mono"), Text(origin = {42, 73}, extent = {{-18, 7}, {18, -7}}, textString = "on/off", fontName = "DejaVu Sans Mono")}, coordinateSystem(initialScale = 0.1)), experiment(StopTime = 1, StartTime = 0), Diagram, uses(Modelica(version = "3.2.1")));
       end ACS_IO_Q;
+
+      model eulerangles
+        "Measure absolute angles between frame connector and the world frame"
+        extends Modelica.Icons.RotationalSensor;
+        import Modelica.Math.Vectors;
+        import SI = Modelica.SIunits;
+        Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a
+          "Coordinate system a from which the angles shall be determined"             annotation (Placement(
+              transformation(extent={{-116,-16},{-84,16}}, rotation=0)));
+      
+        Modelica.Blocks.Interfaces.RealOutput angles[3](
+          each final quantity="Angle",
+          each final unit="rad",
+          each displayUnit="deg")
+          "Angles to rotate world frame into frame_a via 'sequence'"
+          annotation (Placement(transformation(
+              origin={110,0},
+              extent={{-10,-10},{10,10}},
+              rotation=0)));
+        parameter Modelica.Mechanics.MultiBody.Types.RotationSequence sequence(
+          min={1,1,1},
+          max={3,3,3})={3,2,1}
+          "Angles are returned to rotate world frame around axes sequence[1], sequence[2] and finally sequence[3] into frame_a"
+          annotation (Evaluate=true);
+        parameter SI.Angle guessAngle1=0
+          "Select angles[1] such that abs(angles[1] - guessAngle1) is a minimum";
+      
+      equation
+        frame_a.f = zeros(3);
+        frame_a.t = zeros(3);
+        angles = Vectors.reverse( Modelica.Mechanics.MultiBody.Frames.axesRotationsAngles(
+          frame_a.R,
+          sequence,
+          guessAngle1));
+        annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
+                  -100},{100,100}}), graphics={
+              Text(
+                extent={{-108,43},{-72,18}},
+                lineColor={128,128,128},
+                textString="a"),
+              Line(
+                points={{-70,0},{-96,0},{-96,0}},
+                color={0,0,0},
+                smooth=Smooth.None),
+              Text(
+                extent={{-132,76},{129,124}},
+                textString="%name",
+                lineColor={0,0,255}),
+              Line(
+                points={{70,0},{100,0}},
+                color={0,0,127},
+                smooth=Smooth.None),
+              Text(
+                extent={{62,-22},{172,-44}},
+                lineColor={0,0,0},
+                textString="angles")}));
+      end eulerangles;
     end ctrl;
 
     model momentum_add "momentum_add"
@@ -2038,26 +2090,26 @@ package satcomponents
         import Modelica.Mechanics.MultiBody.Frames;
         import Modelica.Mechanics.MultiBody.Frames.Quaternions;
         import Modelica.SIunits.Conversions.to_unit1;
-        Modelica.Blocks.Sources.Constant const[4](k = {0.86386843, 0.43193421, 0.25916053, 0.0}) annotation(Placement(visible = true, transformation(origin = {-61, -53}, extent = {{-7, -7}, {7, 7}}, rotation = 0)));
+  Modelica.Blocks.Sources.Constant const[4](k = {0.901, 0.261, 0.318, 0.138}) annotation(Placement(visible = true, transformation(origin = {-15, -37}, extent = {{-7, -7}, {7, 7}}, rotation = 0)));
         inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.PointGravity) annotation(Placement(visible = true, transformation(origin = {-86, 82}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
-        Modelica.Mechanics.MultiBody.Parts.Body body1(I_11 = 0.5, I_21 = 0.2, I_22 = 0.1, I_31 = 0.1, I_33 = 0.333, angles_fixed = true, angles_start(displayUnit = "rad") = {0, 0, 0}, enforceStates = true, m = 50, r_0(start = {6500e3, 0, 0}), sequence_angleStates = {3, 2, 1}, sequence_start = {3, 2, 1}, useQuaternions = true, v_0(start = {0, 7.8e3, 0}), w_0_fixed = true, w_a(start = {0.01, 0.02, 0.03})) annotation(Placement(visible = true, transformation(origin = {-40, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-        Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngles absoluteAngles1(guessAngle1(displayUnit = "rad"), sequence = {3, 2, 1}) annotation(Placement(visible = true, transformation(origin = {-44, 12}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        Modelica.Mechanics.MultiBody.Parts.Body body1(I_11 = 0.5, I_21 = 0.2, I_22 = 0.1, I_31 = 0.1, I_33 = 0.333, angles_fixed = true, angles_start(displayUnit = "rad") = {0, 0, 0}, enforceStates = true, m = 50, r_0(start = {6500e3, 0, 0}), sequence_angleStates = {3, 2, 1}, sequence_start = {3, 2, 1}, useQuaternions = true, v_0(start = {0, 7.8e3, 0}), w_0_fixed = true, w_a(start = {0.001, 0.002, 0.003})) annotation(Placement(visible = true, transformation(origin = {-40, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity w(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameA.world) annotation(Placement(visible = true, transformation(origin = {-44, -16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-        satcomponents.AOCS.ctrl.ACS_Q_PI_contr ACS(T_level = {1, 1, 1}, ifac = 0.0) annotation(Placement(visible = true, transformation(origin = {30, 18}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+        satcomponents.AOCS.ctrl.ACS_Q_PI_contr ACS(K_q = 5,T_level = {1, 1, 1}, f_wu = 0.01, ifac = 1.0, kw = 5) annotation(Placement(visible = true, transformation(origin = {30, 18}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Quaternions.Orientation Q;
         Parts.RW_ideal rW_ideal1 annotation(Placement(visible = true, transformation(origin = {-10, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime = 5, startValue = false) annotation(Placement(visible = true, transformation(origin = {10, 46}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  ctrl.eulerangles eulerangles1 annotation(Placement(visible = true, transformation(origin = {-44, 14}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       equation
+        connect(eulerangles1.angles, ACS.a_measure) annotation(Line(points = {{-32, 14}, {-16, 14}, {-16, -2}, {30, -2}, {30, 8}, {30, 8}}, color = {0, 0, 127}));
+        connect(body1.frame_a, eulerangles1.frame_a) annotation(Line(points = {{-50, 40}, {-70, 40}, {-70, 14}, {-54, 14}, {-54, 14}}, color = {95, 95, 95}));
+        connect(const.y, ACS.q_u) annotation(Line(points = {{-7, -37}, {0, -37}, {0, 18}, {20, 18}}, color = {0, 0, 127}));
         connect(ACS.y, rW_ideal1.T) annotation(Line(points = {{40, 18}, {66, 18}, {66, 70}, {0, 70}, {0, 70}}, color = {0, 0, 127}));
         connect(w.w, ACS.w_u) annotation(Line(points = {{-32, -16}, {12, -16}, {12, 13}, {20, 13}}, color = {0, 0, 127}));
         connect(w.w, ACS.w_measure) annotation(Line(points = {{-32, -16}, {35.5, -16}, {35.5, 8.5}}, color = {0, 0, 127}));
-        connect(absoluteAngles1.angles, ACS.a_measure) annotation(Line(points = {{-32, 12}, {-14, 12}, {-14, -6}, {29.5, -6}, {29.5, 8.5}}, color = {0, 0, 127}));
         connect(booleanStep1.y, ACS.on_off) annotation(Line(points = {{21, 46}, {30, 46}, {30, 26.5}}, color = {255, 0, 255}));
-        connect(const.y, ACS.q_u) annotation(Line(points = {{-54, -52}, {0, -52}, {0, 18}, {20, 18}}, color = {0, 0, 127}));
         connect(rW_ideal1.frame_a, body1.frame_a) annotation(Line(points = {{-20, 70}, {-64, 70}, {-64, 40}, {-50, 40}, {-50, 40}}, color = {95, 95, 95}));
         Q = body1.Q;
         connect(body1.frame_a, w.frame_a) annotation(Line(points = {{-50, 40}, {-70, 40}, {-70, -16}, {-54, -16}}, color = {95, 95, 95}));
-        connect(body1.frame_a, absoluteAngles1.frame_a) annotation(Line(points = {{-50, 40}, {-70, 40}, {-70, 12}, {-54, 12}}, color = {95, 95, 95}));
         annotation(Icon, Diagram, experiment(StartTime = 0, StopTime = 50, Tolerance = 1e-06, Interval = 0.05), uses(Modelica(version = "3.2.1")));
       end mission_simulation_ideal;
       annotation(Icon, Diagram);
@@ -2115,10 +2167,10 @@ package satcomponents
         input Quaternions.Orientation q2 "rotation quaternion";
         output Quaternions.Orientation Q "rotation quaternion";
       algorithm
-        Q := [q[1], -q[2], -q[3], -q[4]; 
-              q[2], q[1], -q[4], q[3];
-              q[3], q[4], q[1], -q[2];
-              q[4], -q[3], q[2], q[1]] * q2;
+        Q := [q[1], -q[2], -q[3], -q[4];
+      q[2], q[1], -q[4], q[3];
+      q[3], q[4], q[1], -q[2];
+      q[4], -q[3], q[2], q[1]] * q2;
         annotation(Inline = true);
       end Qmult;
 
