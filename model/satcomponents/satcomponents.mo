@@ -2090,7 +2090,6 @@ package satcomponents
         import Modelica.Mechanics.MultiBody.Frames;
         import Modelica.Mechanics.MultiBody.Frames.Quaternions;
         import Modelica.SIunits.Conversions.to_unit1;
-  Modelica.Blocks.Sources.Constant const[4](k = {0.901, 0.261, 0.318, 0.138}) annotation(Placement(visible = true, transformation(origin = {-15, -37}, extent = {{-7, -7}, {7, 7}}, rotation = 0)));
         inner Modelica.Mechanics.MultiBody.World world(gravityType = Modelica.Mechanics.MultiBody.Types.GravityTypes.PointGravity) annotation(Placement(visible = true, transformation(origin = {-86, 82}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Parts.Body body1(I_11 = 0.5, I_21 = 0.2, I_22 = 0.1, I_31 = 0.1, I_33 = 0.333, angles_fixed = true, angles_start(displayUnit = "rad") = {0, 0, 0}, enforceStates = true, m = 50, r_0(start = {6500e3, 0, 0}), sequence_angleStates = {3, 2, 1}, sequence_start = {3, 2, 1}, useQuaternions = true, v_0(start = {0, 7.8e3, 0}), w_0_fixed = true, w_a(start = {0.001, 0.002, 0.003})) annotation(Placement(visible = true, transformation(origin = {-40, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngularVelocity w(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameA.world) annotation(Placement(visible = true, transformation(origin = {-44, -16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -2099,10 +2098,11 @@ package satcomponents
         Parts.RW_ideal rW_ideal1 annotation(Placement(visible = true, transformation(origin = {-10, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime = 5, startValue = false) annotation(Placement(visible = true, transformation(origin = {10, 46}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ctrl.eulerangles eulerangles1 annotation(Placement(visible = true, transformation(origin = {-44, 14}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Interfaces.RealVectorInput q_in[4](start={1,0,0,0}) annotation(Placement(visible = true, transformation(origin = {-100, -68}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-100, -68}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
       equation
+        connect(q_in, ACS.q_u) annotation(Line(points = {{-100, -68}, {0, -68}, {0, 18}, {20, 18}, {20, 18}}, color = {0, 0, 127}));
         connect(eulerangles1.angles, ACS.a_measure) annotation(Line(points = {{-32, 14}, {-16, 14}, {-16, -2}, {30, -2}, {30, 8}, {30, 8}}, color = {0, 0, 127}));
         connect(body1.frame_a, eulerangles1.frame_a) annotation(Line(points = {{-50, 40}, {-70, 40}, {-70, 14}, {-54, 14}, {-54, 14}}, color = {95, 95, 95}));
-        connect(const.y, ACS.q_u) annotation(Line(points = {{-7, -37}, {0, -37}, {0, 18}, {20, 18}}, color = {0, 0, 127}));
         connect(ACS.y, rW_ideal1.T) annotation(Line(points = {{40, 18}, {66, 18}, {66, 70}, {0, 70}, {0, 70}}, color = {0, 0, 127}));
         connect(w.w, ACS.w_u) annotation(Line(points = {{-32, -16}, {12, -16}, {12, 13}, {20, 13}}, color = {0, 0, 127}));
         connect(w.w, ACS.w_measure) annotation(Line(points = {{-32, -16}, {35.5, -16}, {35.5, 8.5}}, color = {0, 0, 127}));
