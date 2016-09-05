@@ -1812,15 +1812,15 @@ package satcomponents
         Real[4] Q "state quaternion";
         Real[4] Q_e "delta quaternion";
       equation
-        Q_c = q_u;
-        Q = utils.QfromEU(a_measure);  // reverse vector, as the modelica version of {3,2,1} sequence is {psi_z, theta_y, phi_x}
+        Q_c = noEvent(q_u*sign(q_u[1]));
+        Q =  noEvent(utils.QfromEU(a_measure));  // reverse vector, as the modelica version of {3,2,1} sequence is {psi_z, theta_y, phi_x}
         onoff = if on_off then 1.0 else 0.0;
-        Q_e = utils.Qmult(Q, {Q_c[1], -Q_c[2], -Q_c[3], -Q_c[4]});
-        totalerror = sum(Q_e[2:4]);
+        Q_e = noEvent(utils.Qmult(Q, {Q_c[1], -Q_c[2], -Q_c[3], -Q_c[4]}));
+        totalerror = noEvent(sum(Q_e[2:4]));
   //y = (-K_q * Q_e[1:3]) - ifac * atan(i_e) - K_w .* w_measure "control law";
-    der(i_e) = onoff * Q_e-f_wu*time*i_e;
+    der(i_e) = noEvent(onoff * Q_e-f_wu*time*i_e);
   //TODO:  anti-windup control
-        y = onoff * ((-K_q/ifac * Q_e[2:4]) - ifac * i_e[2:4] -K_w .* w_measure) "control law";
+        y = noEvent(onoff * ((-K_q/ifac * Q_e[2:4]*sign(Q_e[1])) - ifac * i_e[2:4] -K_w .* w_measure)) "control law";
         //y = {0, 0, 0} annotation(Icon, Diagram, uses(Modelica(version = "3.2.1")));
       end ACS_Q_PI_contr;
 
@@ -2097,9 +2097,11 @@ package satcomponents
         Quaternions.Orientation Q;
         Parts.RW_ideal rW_ideal1 annotation(Placement(visible = true, transformation(origin = {-10, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime = 5, startValue = false) annotation(Placement(visible = true, transformation(origin = {10, 46}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ctrl.eulerangles eulerangles1 annotation(Placement(visible = true, transformation(origin = {-44, 14}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Blocks.Interfaces.RealVectorInput q_in[4](start={1,0,0,0}) annotation(Placement(visible = true, transformation(origin = {-100, -68}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-100, -68}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+  ctrl.eulerangles eulerangles1(guessAngle1(displayUnit = "rad") = 1.04)  annotation(Placement(visible = true, transformation(origin = {-44, 14}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Interfaces.RealVectorInput q_in[4](start={0.47792624, -0.30791203,  0.23109108,  0.78954012}) annotation(Placement(visible = true, transformation(origin = {-100, -68}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-100, -68}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+  Modelica.Mechanics.MultiBody.Sensors.AbsoluteAngles absoluteAngles1(guessAngle1(displayUnit = "rad"))  annotation(Placement(visible = true, transformation(origin = {-44, -46}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
       equation
+        connect(body1.frame_a, absoluteAngles1.frame_a) annotation(Line(points = {{-50, 40}, {-70, 40}, {-70, -46}, {-54, -46}, {-54, -46}}, color = {95, 95, 95}));
         connect(q_in, ACS.q_u) annotation(Line(points = {{-100, -68}, {0, -68}, {0, 18}, {20, 18}, {20, 18}}, color = {0, 0, 127}));
         connect(eulerangles1.angles, ACS.a_measure) annotation(Line(points = {{-32, 14}, {-16, 14}, {-16, -2}, {30, -2}, {30, 8}, {30, 8}}, color = {0, 0, 127}));
         connect(body1.frame_a, eulerangles1.frame_a) annotation(Line(points = {{-50, 40}, {-70, 40}, {-70, 14}, {-54, 14}, {-54, 14}}, color = {95, 95, 95}));
@@ -2158,6 +2160,7 @@ package satcomponents
         c2 := cos(eu[2] / 2);
         c3 := cos(eu[3] / 2);
         Q := {c1 * c2 * c3 + s0 * s1 * s2, (-c1 * s1 * s2) + c2 * c3 * s0, c1 * c3 * s1 + c2 * s0 * s2, c1 * c2 * s2 - c3 * s0 * s1} annotation(Inline = true);
+        Q := Q*sign(Q[1]);
       end QfromEU;
 
       function Qmult "create orientation quaternion between two vectors"
