@@ -1809,13 +1809,14 @@ package satcomponents
         parameter Real ifac = 0.0 "Integrator influence on controller";
         parameter Real f_wu = 0.01 "windup-factor (decay factor for integral part)";
         Real onoff;
-        Real[4] Q "state quaternion";
+        Real[4] Q,Q2 "state quaternion";
         Real[4] Q_e "delta quaternion";
       equation
-        Q_c = q_u;
+        Q_c = q_u*sign(q_u[1]);
         Q = utils.QfromEU(a_measure);  // reverse vector, as the modelica version of {3,2,1} sequence is {psi_z, theta_y, phi_x}
+        Q2 = Q*sign(Q[1]);
         onoff = if on_off then 1.0 else 0.0;
-        Q_e = utils.Qmult(Q, {Q_c[1], -Q_c[2], -Q_c[3], -Q_c[4]});
+        Q_e = utils.Qmult(Q2, {Q_c[1], -Q_c[2], -Q_c[3], -Q_c[4]});
         totalerror = sum(Q_e[2:4]);
   //y = (-K_q * Q_e[1:3]) - ifac * atan(i_e) - K_w .* w_measure "control law";
     der(i_e) = onoff * Q_e-f_wu*time*i_e;
@@ -2098,7 +2099,7 @@ package satcomponents
         Parts.RW_ideal rW_ideal1 annotation(Placement(visible = true, transformation(origin = {-10, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
         Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime = 5, startValue = false) annotation(Placement(visible = true, transformation(origin = {10, 46}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ctrl.eulerangles eulerangles1 annotation(Placement(visible = true, transformation(origin = {-44, 14}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Blocks.Interfaces.RealVectorInput q_in[4](start={1,0,0,0}) annotation(Placement(visible = true, transformation(origin = {-100, -68}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-100, -68}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+  Modelica.Blocks.Interfaces.RealVectorInput q_in[4](start={0.47792624, -0.30791203,  0.23109108,  0.78954012}) annotation(Placement(visible = true, transformation(origin = {-100, -68}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-100, -68}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
       equation
         connect(q_in, ACS.q_u) annotation(Line(points = {{-100, -68}, {0, -68}, {0, 18}, {20, 18}, {20, 18}}, color = {0, 0, 127}));
         connect(eulerangles1.angles, ACS.a_measure) annotation(Line(points = {{-32, 14}, {-16, 14}, {-16, -2}, {30, -2}, {30, 8}, {30, 8}}, color = {0, 0, 127}));
@@ -2151,12 +2152,12 @@ package satcomponents
       protected
         Real s0, s1, s2, c1, c2, c3;
       algorithm
-        s0 := sin(eu[1] / 2);
-        s1 := sin(eu[2] / 2);
-        s2 := sin(eu[3] / 2);
-        c1 := cos(eu[1] / 2);
-        c2 := cos(eu[2] / 2);
-        c3 := cos(eu[3] / 2);
+        s0 := sin(eu[1] / 2.0);
+        s1 := sin(eu[2] / 2.0);
+        s2 := sin(eu[3] / 2.0);
+        c1 := cos(eu[1] / 2.0);
+        c2 := cos(eu[2] / 2.0);
+        c3 := cos(eu[3] / 2.0);
         Q := {c1 * c2 * c3 + s0 * s1 * s2, (-c1 * s1 * s2) + c2 * c3 * s0, c1 * c3 * s1 + c2 * s0 * s2, c1 * c2 * s2 - c3 * s0 * s1} annotation(Inline = true);
       end QfromEU;
 
